@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<project name="ext-impl" basedir="." default="compile">
+	<import file="build-parent.xml" />
+	
+	<target name="build-service-portlet-journal-workflow">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/nss/portlet/journalworkflow/service.xml" />
+			</antcall>
+	</target>
+	<target name="build-vietnamese-lang-native2ascii">
+		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="vi" />
+			<param name="lang.file" value="Language-ext" />
+			<param name="lang.dir" value="src/content" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-van_ban_phap_quy">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/van_ban_phap_quy/service.xml" />
+		</antcall>
+	</target>
+	
+	<target name="build-service-portlet-chat">
+				<antcall target="build-service">
+					<param name="service.file" value="src/com/nss/portlet/chat/service.xml" />
+				</antcall>
+	</target>	
+	<target name="build-service-portlet-loai_van_ban">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/loai_van_ban/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-linh_vuc_van_ban">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/linh_vuc_van_ban/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-lien-ket-website">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/link/service.xml" />
+		</antcall>
+	</target>
+	
+	<target name="build-service-portlet-co-quan-ban-hanh">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/co_quan_ban_hanh/service.xml" />
+		</antcall>
+	</target>
+	
+	<target name="build-service-portlet-partner">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/partner/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-necessary-info">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/necessary_info/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-adv">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/adv/service.xml" />
+		</antcall>
+	</target>
+	
+	<target name="build-service-portlet-nss_don_vi_thu_tuc">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/nss_don_vi_thu_tuc/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-loai-thu-tuc">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/loai_thu_tuc/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-linh-vuc-thu-tuc">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/linh_vuc_thu_tuc/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-thu-tuc-hanh-chinh">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/thu_tuc_hanh_chinh/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-contact">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/contact/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-messageboards">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/liferay/portlet/messageboards/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-qa-cau-hoi">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/qa_cau_hoi/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-qa-chu-de">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/qa_chu_de/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-qa-phan-quyen">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/qa_phan_quyen/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-qa-cau-tra-loi">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/qa_cau_tra_loi/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-media-chu-de">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/media_chu_de/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-media-library">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/media_library/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-digital_signature">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/digitalsignature/service.xml" />
+		</antcall>
+	</target>
+</project>
