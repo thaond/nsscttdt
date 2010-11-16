@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <action-mappings>
+        <!-- Reports -->
+        <action path="/ext/reports/view_reports" type="com.ext.portlet.reports.action.ViewReportsAction">
+            <forward name="portlet.ext.reports.view" path="portlet.ext.reports.view"/>
+            <forward name="portlet.ext.reports.view_reports" path="portlet.ext.reports.view_reports"/>
+        </action>
+        <!-- Asset Publisher -->
+        <action path="/nss/asset_publisher/edit_article_discussion" type="com.nss.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.journal_content.error"/>
+        </action>
+        <action path="/nss/asset_publisher/edit_entry_discussion" type="com.nss.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.blogs.error"/>
+        </action>
+        <action path="/nss/asset_publisher/edit_file_entry_discussion" type="com.nss.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.document_library.error"/>
+        </action>
+        <action path="/nss/asset_publisher/edit_page_discussion" type="com.nss.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.page_comments.error"/>
+        </action>
+        <action path="/nss/asset_publisher/view" type="com.nss.portlet.assetpublisher.action.ViewAction">
+            <forward name="portlet.nss.asset_publisher.view" path="portlet.nss.asset_publisher.view"/>
+        </action>
+        <action forward="portlet.nss.asset_publisher.view_content" path="/nss/asset_publisher/view_content"/>
+        <!-- Asset Publisher NSS -->
+        <action path="/nss/asset_publisher_nss/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.journal_content.error"/>
+        </action>
+        <action path="/nss/asset_publisher_nss/edit_entry_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.blogs.error"/>
+        </action>
+        <action
+            path="/nss/asset_publisher_nss/edit_file_entry_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.document_library.error"/>
+        </action>
+        <action path="/nss/asset_publisher_nss/edit_page_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.page_comments.error"/>
+        </action>
+        <action path="/nss/asset_publisher_nss/view" type="com.nss.portlet.assetpublisher_nss.action.ViewAction">
+            <forward name="portlet.nss.asset_publisher_nss.view" path="portlet.nss.asset_publisher_nss.view"/>
+        </action>
+        <action forward="portlet.nss.asset_publisher_nss.view_content" path="/nss/asset_publisher_nss/view_content"/>
+        <action path="/nss/asset_publisher_nss/viewhelp" type="com.nss.portlet.assetpublisher_nss.action.ViewHelpAction">
+            <forward name="portlet.nss.asset_publisher_nss.viewhelp" path="portlet.nss.asset_publisher_nss.viewhelp"/>
+        </action>
+        <!-- Journal -->
+        <action path="/nss/journal/copy_article" type="com.nss.portlet.journal.action.CopyArticleAction">
+            <forward name="portlet.nss.journal.copy_article" path="portlet.nss.journal.copy_article"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/copy_structure" type="com.nss.portlet.journal.action.CopyStructureAction">
+            <forward name="portlet.nss.journal.copy_structure" path="portlet.nss.journal.copy_structure"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/copy_template" type="com.nss.portlet.journal.action.CopyTemplateAction">
+            <forward name="portlet.nss.journal.copy_template" path="portlet.nss.journal.copy_template"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/edit_article" type="com.nss.portlet.journal.action.EditArticleAction">
+            <forward name="portlet.nss.journal.edit_article" path="portlet.nss.journal.edit_article"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.message_boards.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/edit_feed" type="com.nss.portlet.journal.action.EditFeedAction">
+            <forward name="portlet.nss.journal.edit_feed" path="portlet.nss.journal.edit_feed"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action path="/nss/journal/edit_structure" type="com.nss.portlet.journal.action.EditStructureAction">
+            <forward name="portlet.nss.journal.edit_structure" path="portlet.nss.journal.edit_structure"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action forward="portlet.nss.journal.edit_structure_xsd" path="/nss/journal/edit_structure_xsd"/>
+        <action path="/nss/journal/edit_template" type="com.nss.portlet.journal.action.EditTemplateAction">
+            <forward name="portlet.nss.journal.edit_template" path="portlet.nss.journal.edit_template"/>
+            <forward name="portlet.nss.journal.error" path="portlet.nss.journal.error"/>
+        </action>
+        <action forward="portlet.nss.journal.edit_template_xsl" path="/nss/journal/edit_template_xsl"/>
+        <action path="/nss/journal/get_article" type="com.nss.portlet.journal.action.GetArticleAction"/>
+        <action path="/nss/journal/get_article_content" type="com.nss.portlet.journal.action.GetArticleContentAction"/>
+        <action path="/nss/journal/get_articles" type="com.nss.portlet.journal.action.GetArticlesAction"/>
+        <action path="/nss/journal/get_latest_article_content" type="com.nss.portlet.journal.action.GetLatestArticleContentAction"/>
+        <action path="/nss/journal/get_structure" type="com.nss.portlet.journal.action.GetStructureAction"/>
+        <action path="/nss/journal/get_structure_content" type="com.nss.portlet.journal.action.GetStructureContentAction"/>
+        <action path="/nss/journal/get_template" type="com.nss.portlet.journal.action.GetTemplateAction"/>
+        <action path="/nss/journal/get_template_content" type="com.nss.portlet.journal.action.GetTemplateContentAction"/>
+        <action path="/nss/journal/rss" type="com.nss.portlet.journal.action.RSSAction"/>
+        <action path="/nss/journal/select_document_library" type="com.nss.portlet.documentlibrary.action.ViewAction">
+            <forward name="portlet.document_library.error" path="portlet.document_library.error"/>
+            <forward name="portlet.document_library.view" path="portlet.nss.journal.select_document_library"/>
+        </action>
+        <action path="/nss/journal/select_image_gallery" type="com.nss.portlet.imagegallery.action.ViewAction">
+            <forward name="portlet.image_gallery.error" path="portlet.image_gallery.error"/>
+            <forward name="portlet.image_gallery.view" path="portlet.nss.journal.select_image_gallery"/>
+        </action>
+        <action forward="portlet.nss.journal.select_structure" path="/nss/journal/select_structure"/>
+        <action forward="portlet.nss.journal.select_template" path="/nss/journal/select_template"/>
+        <action forward="portlet.nss.journal.view" path="/nss/journal/view"/>
+        <action path="/nss/journal/view_article_content" type="com.nss.portlet.journal.action.ViewArticleContentAction">
+            <forward name="portlet.nss.journal.raw_article_content" path="/portlet/nss/journal/raw_article_content.jsp"/>
+            <forward name="portlet.nss.journal.view_article_content" path="/portlet/nss/journal/view_article_content.jsp"/>
+        </action>
+        <!-- Journal Articles -->
+        <action path="/nss/journal_articles/view" type="com.nss.portlet.journalarticles.action.ViewAction">
+            <forward name="portlet.journal_articles.view" path="portlet.journal_articles.view"/>
+        </action>
+        <action path="/nss/journal_articles/view_article_content" type="com.nss.portlet.journal.action.ViewArticleContentAction">
+            <forward name="portlet.nss.journal.view_article_content" path="/portlet/nss/journal/view_article_content.jsp"/>
+        </action>
+        <!-- Navigation -->
+        <action forward="portlet.nss.navigation.view" path="/nss/navigation/view"/>
+        <action path="/nss/header/view" type="com.nss.portlet.header.action.ViewAction">
+            <forward name="portlet.nss.header.view" path="portlet.nss.header.view"/>
+        </action>
+        <action path="/nss/header/clock" type="com.nss.portlet.header.action.ClockAction">
+            <forward name="portlet.nss.header.clock" path="portlet.nss.header.clock"/>
+        </action>
+        <action path="/nss/footer/view" type="com.nss.portlet.footer.action.ViewAction">
+            <forward name="portlet.nss.footer.view" path="portlet.nss.footer.view"/>
+        </action>
+        <action path="/nss/partner/view" type="com.nss.portlet.partner.action.ViewAction">
+            <forward name="portlet.nss.partner.view" path="portlet.nss.partner.view"/>
+        </action>
+        <action path="/nss/adv/view" type="com.nss.portlet.adv.action.ViewAction">
+            <forward name="portlet.nss.adv.view" path="portlet.nss.adv.view"/>
+        </action>
+        <action path="/nss/visitor/view" type="com.nss.portlet.visitor.action.ViewAction">
+            <forward name="portlet.nss.visitor.view" path="portlet.nss.visitor.view"/>
+        </action>
+        <action path="/nss/vote/view" type="com.nss.portlet.vote.action.ViewAction">
+            <forward name="portlet.nss.vote.view" path="portlet.nss.vote.view"/>
+        </action>
+        <action path="/nss/link/view" type="com.nss.portlet.link.action.ViewAction">
+            <forward name="portlet.nss.link.view" path="portlet.nss.link.view"/>
+        </action>
+        <action path="/nss/link/viewloaiwebsite" type="com.nss.portlet.link.action.ViewLoaiWebsiteAction">
+            <forward name="portlet.nss.link.view" path="portlet.nss.link.view"/>
+        </action>
+        <!-- Journal Workflow -->
+        <action path="/nss/journalworkflow/view" type="com.nss.portlet.journalworkflow.action.ViewAction">
+            <forward name="portlet.nss.journalworkflow.view" path="portlet.nss.journalworkflow.view"/>
+        </action>
+        <action forward="portlet.nss.journalworkflow.addBusinessProcess" path="/nss/journalworkflow/addBusinessProcess"/>
+        <action path="/nss/home_news/view" type="com.nss.portlet.home_news.action.ViewAction">
+            <forward name="portlet.nss.home_news.view" path="portlet.nss.home_news.view"/>
+        </action>
+        <!-- Site Map -->
+        <action forward="portlet.nss.site_map.view" path="/nss/site_map/view"/>
+        <action path="/nss/chinh_quyen/view" type="com.nss.portlet.chinh_quyen.action.ViewAction">
+            <forward name="portlet.nss.chinh_quyen.view" path="portlet.nss.chinh_quyen.view"/>
+        </action>
+        <!-- Journal Content -->
+        <action path="/nss/journal_content/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.message_boards.error" path="portlet.nss.journal_content.error"/>
+        </action>
+        <action path="/nss/journal_content/export_article" type="com.nss.portlet.journalcontent.action.ExportArticleAction"/>
+        <action path="/nss/journal_content/update_article_field" type="com.nss.portlet.journalcontent.action.UpdateArticleFieldAction"/>
+        <action path="/nss/journal_content/view" type="com.nss.portlet.journalcontent.action.ViewAction">
+            <forward name="portlet.nss.journal_content.view" path="portlet.nss.journal_content.view"/>
+        </action>
+        <action path="/nss/van_ban_phap_quy/view" type="com.nss.portlet.van_ban_phap_quy.action.ViewAction">
+            <forward name="portlet.nss.van_ban_phap_quy.view" path="portlet.nss.van_ban_phap_quy.view"/>
+        </action>
+        <!-- tin moi -->
+        <action path="/nss/tinmoi/view" type="com.nss.portlet.tinmoi.action.ViewAction">
+            <forward name="portlet.nss.tinmoi.view" path="portlet.nss.tinmoi.view"/>
+        </action>
+        <action forward="portlet.nss.tinmoi.view_content" path="/nss/tinmoi/view_content"/>
+        <action path="/nss/loai_van_ban/view" type="com.nss.portlet.loai_van_ban.action.ViewAction">
+            <forward name="portlet.nss.loai_van_ban.view" path="portlet.nss.loai_van_ban.view"/>
+        </action>
+        <action path="/nss/linh_vuc_van_ban/view" type="com.nss.portlet.linh_vuc_van_ban.action.ViewAction">
+            <forward name="portlet.nss.linh_vuc_van_ban.view" path="portlet.nss.linh_vuc_van_ban.view"/>
+        </action>
+        <action path="/nss/chat/view" type="com.nss.portlet.chat.action.ViewAction">
+            <forward name="portlet.nss.chat.view" path="portlet.nss.chat.view"/>
+        </action>
+        <action path="/nss/van_ban_phap_quy_display/view" type="com.nss.portlet.van_ban_phap_quy_display.action.ViewAction">
+            <forward name="portlet.nss.van_ban_phap_quy_display.view" path="portlet.nss.van_ban_phap_quy_display.view"/>
+        </action>
+        <action path="/nss/link_display/view" type="com.nss.portlet.link_display.action.ViewAction">
+            <forward name="portlet.nss.link_display.view" path="portlet.nss.link_display.view"/>
+        </action>
+        <!-- Journal content search -->
+        <action path="/journal_content_search/view_journal_content" type="com.liferay.portlet.journalcontentsearch.action.ViewJournalAction">
+            <forward
+                name="portlet.journal_content_search.view_journal_content" path="portlet.journal_content_search.view_journal_content"/>
+        </action>
+        <!-- end Journal content search -->
+        <action path="/nss/co_quan_ban_hanh/view" type="com.nss.portlet.co_quan_ban_hanh.action.ViewAction">
+            <forward name="portlet.nss.co_quan_ban_hanh.view" path="portlet.nss.co_quan_ban_hanh.view"/>
+        </action>
+        <action path="/nss/partner_management/view" type="com.nss.portlet.partner_management.action.ViewAction">
+            <forward name="portlet.nss.partner_management.view" path="portlet.nss.partner_management.view"/>
+        </action>
+        <!-- Login -->
+        <action path="/nss/login/captcha" type="com.nss.portal.captcha.CaptchaPortletAction"/>
+        <action path="/nss/login/create_account" type="com.nss.portlet.login.action.CreateAccountAction">
+            <forward name="portlet.nss.login.create_account" path="portlet.nss.login.create_account"/>
+        </action>
+        <action path="/nss/login/forgot_password" type="com.nss.portlet.login.action.ForgotPasswordAction">
+            <forward name="portlet.nss.login.forgot_password" path="portlet.nss.login.forgot_password"/>
+        </action>
+        <action path="/nss/login/login" type="com.nss.portlet.login.action.LoginAction">
+            <forward name="portlet.nss.login.login" path="portlet.nss.login.login"/>
+        </action>
+        <action path="/nss/login/open_id" type="com.nss.portlet.login.action.OpenIdAction">
+            <forward name="portlet.nss.login.open_id" path="portlet.nss.login.open_id"/>
+        </action>
+        <action path="/nss/necessary_info/view" type="com.nss.portlet.necessary_info.action.ViewAction">
+            <forward name="portlet.nss.necessary_info.view" path="portlet.nss.necessary_info.view"/>
+        </action>
+        <action path="/nss/necessary_info_display/view" type="com.nss.portlet.necessary_info_display.action.ViewAction">
+            <forward name="portlet.nss.necessary_info_display.view" path="portlet.nss.necessary_info_display.view"/>
+        </action>
+        <action path="/nss/adv_display/view" type="com.nss.portlet.adv_display.action.ViewAction">
+            <forward name="portlet.nss.adv_display.view" path="portlet.nss.adv_display.view"/>
+        </action>
+        <action path="/nss/nss_don_vi_thu_tuc/view" type="com.nss.portlet.nss_don_vi_thu_tuc.action.ViewAction">
+            <forward name="portlet.nss.nss_don_vi_thu_tuc.view" path="portlet.nss.nss_don_vi_thu_tuc.view"/>
+        </action>
+        <action path="/nss/loai_thu_tuc/view" type="com.nss.portlet.loai_thu_tuc.action.ViewAction">
+            <forward name="portlet.nss.loai_thu_tuc.view" path="portlet.nss.loai_thu_tuc.view"/>
+        </action>
+        <action path="/nss/linh_vuc_thu_tuc/view" type="com.nss.portlet.linh_vuc_thu_tuc.action.ViewAction">
+            <forward name="portlet.nss.linh_vuc_thu_tuc.view" path="portlet.nss.linh_vuc_thu_tuc.view"/>
+        </action>
+        <action path="/nss/thu_tuc_hanh_chinh/view" type="com.nss.portlet.thu_tuc_hanh_chinh.action.ViewAction">
+            <forward name="portlet.nss.thu_tuc_hanh_chinh.view" path="portlet.nss.thu_tuc_hanh_chinh.view"/>
+        </action>
+        <action path="/nss/thu_tuc_hanh_chinh_display/view" type="com.nss.portlet.thu_tuc_hanh_chinh_display.action.ViewAction">
+            <forward name="portlet.nss.thu_tuc_hanh_chinh_display.view" path="portlet.nss.thu_tuc_hanh_chinh_display.view"/>
+        </action>
+        <action path="/nss/tintonghop/view" type="com.nss.portlet.tintonghop.action.ViewAction">
+            <forward name="portlet.nss.tintonghop.view" path="portlet.nss.tintonghop.view"/>
+        </action>
+        <action forward="portlet.nss.tintonghop.view_content" path="/nss/tintonghop/view_content"/>
+        <action path="/nss/thoitiet_tygia/view" type="com.nss.portlet.thoitiet_tygia.action.ViewAction">
+            <forward name="portlet.nss.thoitiet_tygia.view" path="portlet.nss.thoitiet_tygia.view"/>
+        </action>
+        <action path="/nss/contact/view" type="com.nss.portlet.contact.action.ViewAction">
+            <forward name="portlet.nss.contact.view" path="portlet.nss.contact.view"/>
+        </action>
+        <action path="/nss/qa_cau_hoi/view" type="com.nss.portlet.qa_cau_hoi.action.ViewAction">
+            <forward name="portlet.nss.qa_cau_hoi.view" path="portlet.nss.qa_cau_hoi.view"/>
+        </action>
+        <action path="/nss/qa_chu_de/view" type="com.nss.portlet.qa_chu_de.action.ViewAction">
+            <forward name="portlet.nss.qa_chu_de.view" path="portlet.nss.qa_chu_de.view"/>
+        </action>
+        <action path="/nss/qa_phan_quyen/view" type="com.nss.portlet.qa_phan_quyen.action.ViewAction">
+            <forward name="portlet.nss.qa_phan_quyen.view" path="portlet.nss.qa_phan_quyen.view"/>
+        </action>
+        <action path="/nss/qa_cau_tra_loi/view" type="com.nss.portlet.qa_cau_tra_loi.action.ViewAction">
+            <forward name="portlet.nss.qa_cau_tra_loi.view" path="portlet.nss.qa_cau_tra_loi.view"/>
+        </action>
+        <action path="/nss/media_chu_de/view" type="com.nss.portlet.media_chu_de.action.ViewAction">
+            <forward name="portlet.nss.media_chu_de.view" path="portlet.nss.media_chu_de.view"/>
+        </action>
+        <action path="/nss/media_library/view" type="com.nss.portlet.media_library.action.ViewAction">
+            <forward name="portlet.nss.media_library.view" path="portlet.nss.media_library.view"/>
+        </action>
+        <action path="/nss/media_library_display/view" type="com.nss.portlet.media_library_display.action.ViewAction">
+            <forward name="portlet.nss.media_library_display.view" path="portlet.nss.media_library_display.view"/>
+        </action>
+    </action-mappings>
+</struts-config>

@@ -1,0 +1,41 @@
+<%@page import="javax.portlet.WindowState"%>
+<%@page import="javax.portlet.PortletMode"%>
+<%@page import="com.liferay.portlet.RenderRequestImpl"%>
+<%@page import="javax.portlet.PortletURL"%>
+<%@page import="com.liferay.portlet.PortletURLImpl"%>
+<%@page import="javax.portlet.PortletRequest"%>
+<%@page import="com.liferay.portal.security.permission.ActionKeys"%>
+
+<%
+	RenderRequestImpl renderRequestImpl = (RenderRequestImpl)renderRequest;
+	
+	PortletURL addURL = null;
+
+	addURL = new PortletURLImpl(renderRequestImpl, "NSS_JOURNAL", themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+
+	addURL.setParameter("struts_action", "/nss/journal/edit_article");
+	addURL.setParameter("groupId", String.valueOf(themeDisplay.getLayout().getGroupId()));
+
+	addURL.setWindowState(WindowState.MAXIMIZED);
+	addURL.setPortletMode(PortletMode.VIEW);
+	addURL.setParameter("workflow", String.valueOf(businessProcessId));
+	addURL.setParameter("redirect", themeDisplay.getURLCurrent());
+	addURL.setParameter("backURL", themeDisplay.getURLCurrent());
+
+%>
+
+<portlet:renderURL var="addBp">
+	<portlet:param name="struts_action" value="/nss/journalworkflow/addBusinessProcess"/>
+	<portlet:param name="redirect" value="<%=themeDisplay.getURLCurrent() %>"/>
+</portlet:renderURL>
+<fieldset>
+	<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_JOURNALWORKFLOW" /></div>
+		<div>
+			<c:if test="<%= JournalPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_ARTICLE) %>">
+				<input type="button" value="<liferay-ui:message key="add-new-article"/>" onclick="location.href = '<%=addURL.toString() %>';"/>
+			</c:if>
+			<c:if test="<%= permissionChecker.isCompanyAdmin()%>">
+				<input type="button" value="<liferay-ui:message key="add-business-process"/>" onclick="location.href = '<%=addBp %>';"/>
+			</c:if>
+		</div>
+</fieldset>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+
+	<allow>
+		<create creator="new" javascript="JWFA">
+			<param name="class" value="com.nss.portlet.journalworkflow.ajax.JWFA"></param>
+		</create>
+		
+		<!-- user for reIndex van ban phap quy Yenlt 14072010 -->
+		<create creator="new" javascript="VanBanPhapQuyIndexUtil"> 
+			<param name="class" value="com.nss.portlet.van_ban_phap_quy.util.VanBanPhapQuyIndexUtil" />
+		</create>
+		<create creator="new" javascript="DonViThuTucDWRClient"> 
+			<param name="class" value="com.nss.portlet.nss_don_vi_thu_tuc.util.DonViThuTucDWRUtil" />
+		</create>
+		<convert converter="bean" match="com.nss.portlet.nss_don_vi_thu_tuc.model.DonViThuTuc" />
+		<!-- user for parenId linh vuc van ban Yenlt 07082010 -->
+		<create creator="new" javascript="LinhVucVanBanDWRClient"> 
+			<param name="class" value="com.nss.portlet.linh_vuc_van_ban.util.LinhVucVanBanDWR" />
+		</create>
+	</allow>
+
+</dwr>
