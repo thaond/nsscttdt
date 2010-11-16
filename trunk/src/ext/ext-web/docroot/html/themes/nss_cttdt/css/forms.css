@@ -1,0 +1,55 @@
+/* This CSS sets the default styles for forms. */
+
+fieldset {
+	border: 1px solid #C3D9FF;
+	padding: 1px;
+}
+input[type="text"],textarea,input[type="file"],textarea[type="textarea"],input[type="password"] {
+	font-size: 11px;font-family: arial, sans-serif;padding: 3px 3px 2px;background: #fff; border-style: solid solid; border-color: #7bd5eb #96e0f0 #d4fbfd #96e0f0; border-width: 1px 1px;
+}
+.ie7 select,select {
+	font-size: 11px;font-family: arial, sans-serif;background: #fff;padding: 1px; border-style: solid solid; border-color: #7bd5eb #96e0f0 #d4fbfd #96e0f0; border-width: 1px 1px;
+}
+.ie7 select, .ie8 select, .ie7 textarea, .ie8 textarea {overflow-x: hidden;overflow-y: auto;font-size: 11px; }
+input,select,textarea,button,keygen,isindex {
+	font-size: 11px;
+}
+
+input[type="image"] {
+	background: transparent none;
+	border: none;
+	padding: 0;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+	font-size: 11px;cursor: pointer;background:#8fe1fe url("../images/cttdt/bginput.jpg") repeat-x bottom left;border: 1px solid #56bcfd;padding: 1px 5px; color: #003354;text-shadow: 0 1px 0 #8cdffe;font-family: arial, tahoma;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focus {
+	color: #000a11;
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie6 input.text, input.password, .ie6 input.submit, .ie6 input.file, .ie6 input.button {
+	background-image: url(../images/forms/input_shadow.png);
+	background-repeat: no-repeat;
+	border: 1px solid;
+	border-color: #BFBFBF #DEDEDE #DEDEDE #BFBFBF;
+	font: 1em Arial,Helvetica,Verdana,sans-serif;
+	padding: 5px 1px;
+}
+
+.ie6 input.submit, .ie6 input.button {
+	background: #F5F5F5 url(../images/forms/button.png) repeat-x 0 0;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	color: #34404F;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 5px;
+}
+
+input.focus, textarea.focus, .ie6 input.focus, .ie6 textarea.focus {
+	background: #FFC none;
+	border: 1px solid #FC0;
+}

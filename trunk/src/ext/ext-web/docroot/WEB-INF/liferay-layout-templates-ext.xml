@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE layout-templates PUBLIC "-//Liferay//DTD Layout Templates 5.2.0//EN" "http://www.liferay.com/dtd/liferay-layout-templates_5_2_0.dtd">
+
+<layout-templates>
+	<custom>
+		<layout-template id="nss_cttdt_131" name="NSS - 1_3_1">
+			<template-path>/layouttpl/nss_cttdt/1_3_1_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/nss_cttdt/1_3_1_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/nss_cttdt/1_3_1_columns.png</thumbnail-path>
+			<roles>
+				<role-name>User</role-name>
+			</roles>
+		</layout-template>
+		<layout-template id="nss_cttdt_121" name="NSS - 1_2_1">
+			<template-path>/layouttpl/nss_cttdt/1_2_1_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/nss_cttdt/1_2_1_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/nss_cttdt/1_2_1_columns.png</thumbnail-path>
+			<roles>
+				<role-name>User</role-name>
+			</roles>
+		</layout-template>
+		<layout-template id="nss_cttdt_home" name="NSS - Home">
+			<template-path>/layouttpl/nss_cttdt/1_3_1_a_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/nss_cttdt/1_3_1_a_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/nss_cttdt/1_3_1_a_columns.png</thumbnail-path>
+			<roles>
+				<role-name>User</role-name>
+			</roles>
+		</layout-template>
+	</custom>
+</layout-templates>
