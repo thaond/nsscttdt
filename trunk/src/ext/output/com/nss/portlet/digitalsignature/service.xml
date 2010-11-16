@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.digitalsignature">
+	<author>canhminh</author>
+	<namespace>DigitalSignature</namespace>
+	<entity name="DigitalSignature" local-service="true" remote-service="true"/>
+	<entity name="Signature" local-service="true" remote-service="true" table="nss_signature">
+		<!-- Primary fields -->
+		
+		<column name="signatureId" type="long" primary="true"/>
+		
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		
+		<!-- Other fields -->
+		
+		<column name="articleId" type="long"/>
+		<column name="signData" type="String"/>
+	</entity>
+	<entity name="Certificate" local-service="true" remote-service="true" table="nss_certificate">
+		<column name="userId" type="long" primary="true"/>
+		<column name="x509Certificate" type="String"/>
+	</entity>
+</service-builder>
