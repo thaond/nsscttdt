@@ -26,8 +26,9 @@
 								new ArrayList<Partner>() : (List<Partner>)renderRequest.getAttribute("partnerList");
 %>
 
+<!-- MoNT start 16/11/2010 -->
 
-
+<div id="<portlet:namespace/>partner_management" style="display: none"> 
 <div class="toptitleright">
     <h3><liferay-ui:message key="nss-doi-tac" /></h3>
     <div class="btmtitleright">
@@ -50,4 +51,6 @@
     </div>
     </div>
 </div>
+</div>
 
+<!-- MoNT end 16/11/2010 -->

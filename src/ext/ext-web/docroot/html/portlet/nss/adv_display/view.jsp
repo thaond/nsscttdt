@@ -27,7 +27,8 @@
 				: (List<QuangCao>)renderRequest.getAttribute("quangCaoList");
 %>
 
-
+<!-- MoNT start 16/11/2010 -->
+<div id="<portlet:namespace/>adv_display" style="display: none">
 <div class="toptitleright">
     <h3><liferay-ui:message key="nss-quang-cao" /></h3>
     <div class="btmtitleright">
@@ -98,7 +99,16 @@
 				</tr>
 			</table>
 		</div>
-		<script type="text/javascript">
+		<% }  %>
+		
+   			</form>
+    	</div>
+    </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
 			window.addEvent('load', function() {
 				var hVI = null;
 				if ('<%= displayStyleAdv %>' == "right") {
@@ -109,7 +119,10 @@
 				//slider variables for making things easier below
 				var itemsHolder = $('<portlet:namespace/>boxadv');
 				var myItems = $$(itemsHolder.getElements('.<portlet:namespace />adv'));
-		
+				jQuery("#<portlet:namespace/>adv_display").show();
+				for(var i=0;i<myItems.length;i++){
+					jQuery(myItems[i]).show();
+				}
 				//create instance of the slider, and start it up		
 					var mySliderI = new SL_Slider({
 						slideTimer: 4000,				// thoi gian chay, so cang nho chay cang nhanh
@@ -122,11 +135,6 @@
 					mySliderI.start();
 								 
 			});
-		</script>
-		<% }  %>
-		
-   			</form>
-    	</div>
-    </div>
-</div>
+</script>
 
+<!-- MoNT end 16/11/2010 -->

@@ -18,6 +18,7 @@
 	padding-left: 0px;
 	/*float: left;*/
 	width: 190px;
+	height: 150px;
 }
 </style>
 
@@ -25,6 +26,8 @@
 	List<ThongTinCanThiet> thongTinCanThietList = (List<ThongTinCanThiet>)renderRequest.getAttribute("thongTinCanThietList") == null ? new ArrayList<ThongTinCanThiet>() 
 				: (List<ThongTinCanThiet>)renderRequest.getAttribute("thongTinCanThietList");
 %>
+
+<!-- MoNT start 16/11/2010 -->
 
 <div  id="<portlet:namespace/>necessary_info_display" style="display: none">
 <div class="toptitleleft">
@@ -76,24 +79,26 @@
        	} else if ("up".equals(displayStyleInfo) || "right".equals(displayStyleInfo)) {
 		%>
 		<div id="<portlet:namespace/>boxinfo">
-			<table cellspacing="0" width="100%">
-			    <tr>
+			<table cellspacing="0" height="50%" width="100%">
+			    
 				<%
 				for( int i=0; i < thongTinCanThietList.size(); i++) {
 		    		ThongTinCanThiet thongTinCanThiet = thongTinCanThietList.get(i);
 		    	%>
+		    	<tr>
 					<td>
-						<div class="<portlet:namespace />info">
+						<div class="<portlet:namespace />info" style="display: none">
 							<a href="<%= thongTinCanThiet.getUrlWebsite() %>"  target="<%= thongTinCanThiet.getTarget() %>">
 								<img width="200px" src='<%= themeDisplay.getPathImage() %>/necessary_info?img_id=<%= thongTinCanThiet.getImageId_liferay() %>' />
 							</a>
+							
 						</div>
 					</td>
-					<td ></td>
+				</tr>
 				<%
 				}
 				%>
-				</tr>
+				
 			</table>
 		</div>
 		
@@ -116,6 +121,10 @@
 				//slider variables for making things easier below
 				var itemsHolder = $('<portlet:namespace/>boxinfo');
 				var myItems = $$(itemsHolder.getElements('.<portlet:namespace />info'));
+				jQuery("#<portlet:namespace/>necessary_info_display").show();
+				for(var i=0;i<myItems.length;i++){
+				jQuery(myItems[i]).show();
+				}
 		
 				//create instance of the slider, and start it up		
 					var mySliderI = new SL_Slider({
@@ -126,10 +135,8 @@
 						container: itemsHolder,
 						items: myItems
 					});
-					mySliderI.start();		 
-			});
-			jQuery(document).ready(function(){
-				jQuery("#<portlet:namespace/>necessary_info_display").show();
+					mySliderI.start();	
 			});
 </script>
 
+<!-- MoNT end 16/11/2010 -->

@@ -113,6 +113,8 @@
 	%>
 	
 <!-- phmphuc create 19/07/2010 -->
+<!-- MoNT start 16/11/2010 -->
+
 <div id="<portlet:namespace/>tinmoi_display" style="display: none">
 <input type="hidden" id="displayType-id" name="displayType-name" value="<%= displayType %>"/>
 
@@ -159,6 +161,8 @@
 		jQuery("#<portlet:namespace/>tinmoi_display").show();
 	});
 </script>
+
+<!-- MoNT end 16/11/2010 -->
 <!-- phmphuc end 20/07/2010 -->
 	
 	<%!
