@@ -27,6 +27,14 @@
 			//slider variables for making things easier below
 			var itemsHolder = $('<portlet:namespace/>boxpartner');
 			var myItems = $$(itemsHolder.getElements('.<portlet:namespace/>partner'));
+			
+			/* MoNT start 16/11/2010 */	
+			jQuery("#<portlet:namespace/>partner_management").show();
+			for(var i=0;i<myItems.length;i++){
+				jQuery(myItems[i]).show();
+			}
+			/* MoNT end 16/11/2010 */
+			
 			//create instance of the slider, and start it up		
 			
 				var mySliderP = new SL_Slider({
@@ -37,11 +45,8 @@
 					container: itemsHolder,
 					items: myItems
 				});
-				mySliderP.start();
-		
-			
-		});
-		
+				mySliderP.start();		
+			});
 	</script>
 	<% }  %>
 	
