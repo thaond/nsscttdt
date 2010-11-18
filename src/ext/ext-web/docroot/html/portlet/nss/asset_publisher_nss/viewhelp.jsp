@@ -67,6 +67,7 @@
 	  		viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 	  		viewCategoryURL.setParameter("tagsEntryId", "0");
 	  		
+	  		
 	  		if (tagsEntryId == 0) {
 		%>
 	    	<li class="leftact"><a  class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %>2.1</a></li>
@@ -84,6 +85,7 @@
 							   viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 						  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 						  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
+						  	   
 						  	   name = tagsEntry.getName();
 						  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 		%>

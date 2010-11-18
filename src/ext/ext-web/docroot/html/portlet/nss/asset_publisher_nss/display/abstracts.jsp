@@ -48,6 +48,13 @@ boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 
 request.setAttribute("view.jsp-showIconLabel", true);
 
+// MoNT start 18/11/2010
+String categoryParentId = (String)request.getAttribute("categoryParentId");
+//String tagLabel = (String) request.getAttribute("tagLabel");
+String vocabularyId = (String) request.getAttribute("vocabularyId");
+String vocabularyName = (String) request.getAttribute("vocabularyName");
+// MoNT end 18/11/2010
+
 // minh 20100713
 //PortletURL viewFullContentURL = renderResponse.createRenderURL();
 PortletURL viewFullContentURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
@@ -207,14 +214,16 @@ else if (className.equals(JournalArticle.class.getName())) {
 			//sb.append("\" /></a></div>");
 			sb.append("\" /></a>");
 		}
-
-		if (abstractNumber == 1) {
-			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "1" + "</a></h5>");
-		} else {
-			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "2" +"</a></h5>");
-		}
 		
-		sb.append("<h1>" + df.format(asset.getPublishDate()) + "</h1>");
+		//MoNT start 18/11/2010
+		//if (abstractNumber == 1) {
+			//sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + " --1--"+categoryParentId +"---"+abstractNumber+ "</a></h5>");
+		//} else {
+			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + " --2--" +categoryParentId +"-"+valueAbstract+"--"+"---"+abstractNumber+"</a></h5>");
+		//}
+		//MoNT end 18/11/2010
+		
+		sb.append("<h1>" + df.format(asset.getPublishDate())+"--"+vocabularyId +"--"+vocabularyName+ "</h1>");
 		
 		sb.append("<span>" + articleDisplay.getDescription() + "</span>");
 
@@ -280,6 +289,8 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 		
 		<div class="asset-content">
 			<p class="asset-summary">
+			categoryParentId -<%= categoryParentId %>++ valueAbstract
+			-<%= valueAbstract %>
 				<%= summary %>
 			</p>
 

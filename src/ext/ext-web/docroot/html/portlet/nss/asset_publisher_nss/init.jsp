@@ -201,11 +201,11 @@ if (0 != tagsEntryId) {
 // end minh 20100713
 
 //MoNT start 17/11/2010
-String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","1"));
+String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","2"));
 //MoNT end 17/11/2010
 
 
-int abstractDelta = GetterUtil.getInteger(preferences.getValue("abstractDelta", StringPool.BLANK), 10);
+int abstractDelta = GetterUtil.getInteger(preferences.getValue("abstractDelta", StringPool.BLANK), 1);
 
 String defaultMetadataFields = StringPool.BLANK;
 String allMetadataFields = "create-date,modified-date,publish-date,expiration-date,priority,author,view-count,tags";

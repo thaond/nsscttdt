@@ -436,9 +436,14 @@ configurationActionURL.setParameter("portletResource", portletResource);
 					
 					<!-- MoNT start 17/11/2010 -->
 					Tin abstract 
+					<% int countAbstract = Integer.parseInt(valueAbstract); %>
 					<select name="valueAbstract">
 					<%for(int i=1;i<=5;i++){%>
-						<option value="<%=i %>" ><%=i %></option>						
+						<% if(countAbstract==i){ %>
+						<option value="<%=i %>" selected="selected"><%=i %></option>		
+						<%}else{%>
+						<option value="<%=i %>" ><%=i %></option>	
+						<%}%>			
 					<%}%>
 					</select>
 					<!-- MoNT end 17/11/2010 -->	
