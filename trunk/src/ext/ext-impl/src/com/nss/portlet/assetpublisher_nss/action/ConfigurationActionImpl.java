@@ -360,6 +360,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		String valueAbstract = ParamUtil.getString(actionRequest,
 				"valueAbstract");
 		preferences.setValue("valueAbstract", valueAbstract);
+		String valueChildren = ParamUtil.getString(actionRequest,
+		"valueChildren");
+		preferences.setValue("valueChildren", valueChildren);
 		// MoNT end 17/11/2010
 	}
 
