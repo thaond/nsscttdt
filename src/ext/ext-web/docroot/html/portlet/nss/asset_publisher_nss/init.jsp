@@ -202,6 +202,7 @@ if (0 != tagsEntryId) {
 
 //MoNT start 17/11/2010
 String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","2"));
+String valueChildren = GetterUtil.getString(preferences.getValue("valueChildren","5"));
 //MoNT end 17/11/2010
 
 
