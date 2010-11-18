@@ -101,7 +101,10 @@ if (!itr.hasNext()) {
 
 <%}
 int countAbstract=Integer.parseInt(valueAbstract);
+int countChildren=Integer.parseInt(valueChildren);
 List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
+List<TagsAsset> listTagAssetAbstract = new ArrayList<TagsAsset>();
+List<TagsAsset> listTagAssetChildren = new ArrayList<TagsAsset>();
 //List<String> listTagLabel = new ArrayList<String>();
 while(itr.hasNext()){
 	Map.Entry<String, List<TagsAsset>> entry = itr.next();
@@ -111,7 +114,8 @@ while(itr.hasNext()){
 	//listTagLabel.add(tagLabel);
 }
 if(countAbstract<listTagAsset.size()&&tagsEntryId==0){
-	listTagAsset= listTagAsset.subList(0,countAbstract);
+	listTagAssetAbstract= listTagAsset.subList(0,countAbstract);
+	listTagAssetChildren=listTagAsset.subList(countAbstract,listTagAsset.size());
 	//listTagLabel=listTagLabel.subList(0,countAbstract);
 }
 if(listTagAsset.size()>0){
@@ -125,8 +129,8 @@ if(listTagAsset.size()>0){
 ---------------------------------------------------------------------------------------------------
 	<div class="asset-tag-entries">
 		<%
-		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
-			TagsAsset asset = results.get(assetIndex);
+		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {
+			TagsAsset asset = listTagAssetAbstract.get(assetIndex);
 
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
@@ -164,9 +168,9 @@ if(listTagAsset.size()>0){
 		
 		<!-- 
 		-----------------------------------------<br>
-		assetIndex ++++ <%=assetIndex %><br>
-		abstractDelta ++++ <%=abstractDelta %><br>
-		results.size() ++++ <%=results.size() %><br>
+		<%for(int i=0;i<results.size();i++){%>
+			<%=results.get(i).getTitle() %><br>
+		<%}%>
 		valueAbstract +++++ <%=valueAbstract %><br>
 		selectPlId +++++<%=selectPlId %><br>
 		tagsCategoriesHelp +++++<br>
@@ -177,12 +181,15 @@ if(listTagAsset.size()>0){
 			<%=results.get(i).getTitle() %><br>
 		<%}%>
 		 categoryParentId <%=categoryParentId %>
+		 assetIndex ++++ <%=assetIndex %><br>
+		abstractDelta ++++ <%=abstractDelta %><br>
+		results.size() ++++ <%=results.size() %><br>
+		valueAbstract +++++ <%=valueAbstract %><br>
+		 valueChildren +++++<%=valueChildren %><br>
+		 listTagAssetChildren ++++<%=listTagAssetChildren.size() %><br>
+		 listTagAsset+++<%=listTagAsset.size() %><br>
 		-----------------------------------------<br>
 		 -->
-		valueAbstract +++++ <%=valueAbstract %><br>
-		<%for(int i=0;i<results.size();i++){%>
-			<%=results.get(i).getTitle() %><br>
-		<%}%>
 		<!-- MoNT end 17/11/2010 -->
 		
 				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_display.jspf" %>
@@ -200,8 +207,8 @@ if(listTagAsset.size()>0){
 	<div class="asset-tag-entries">
 	
 		<%
-		for (int assetIndex = abstractDelta; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
-			TagsAsset asset = results.get(assetIndex);
+		for (int assetIndex = 0; (assetIndex < listTagAssetChildren.size()) && (assetIndex < countChildren); assetIndex++) {
+			TagsAsset asset = listTagAssetChildren.get(assetIndex);
 
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
@@ -234,9 +241,6 @@ if(listTagAsset.size()>0){
 		
 		<!-- 
 		-----------------------------------------<br>
-		assetIndex ++++ <%=assetIndex %><br>
-		abstractDelta ++++ <%=abstractDelta %><br>
-		results.size() ++++ <%=results.size() %><br>
 		delta ++++ <%=delta %><br>
 		valueAbstract +++++<%=valueAbstract %><br>
 		selectPlId +++++<%=selectPlId %><br>
@@ -244,9 +248,14 @@ if(listTagAsset.size()>0){
 		<%for(int i=0;i<tagsCategoriesHelp.length;i++){%>
 			<%=tagsCategoriesHelp[i] %><br>
 		<%}%>
+		 assetIndex ++++ <%=assetIndex %><br>
+		 abstractDelta ++++ <%=abstractDelta %><br>
+		 results.size() ++++ <%=results.size() %><br>
+		 valueAbstract +++++<%=valueAbstract %><br>
+		  valueChildren +++++<%=valueChildren %><br>
 		-----------------------------------------<br>
 		 -->
-		 valueAbstract +++++<%=valueAbstract %><br>
+		
 		<!-- MoNT end 17/11/2010 -->
 		
 				<%@ include file="/html/portlet/nss/asset_publisher_nss/display/nss_title_list.jsp" %>

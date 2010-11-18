@@ -446,6 +446,17 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						<%}%>			
 					<%}%>
 					</select>
+					Tin con
+					<% int countChildren = Integer.parseInt(valueChildren); %>
+					<select name="valueChildren">
+					<%for(int i=1;i<=10;i++){%>
+						<% if(countChildren==i){ %>
+						<option value="<%=i %>" selected="selected"><%=i %></option>		
+						<%}else{%>
+						<option value="<%=i %>" ><%=i %></option>	
+						<%}%>			
+					<%}%>
+					</select>
 					<!-- MoNT end 17/11/2010 -->	
 						
 					 <br/> <br/>
