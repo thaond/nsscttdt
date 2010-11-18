@@ -117,6 +117,8 @@ if(countAbstract<listTagAsset.size()&&tagsEntryId==0){
 	listTagAssetAbstract= listTagAsset.subList(0,countAbstract);
 	listTagAssetChildren=listTagAsset.subList(countAbstract,listTagAsset.size());
 	//listTagLabel=listTagLabel.subList(0,countAbstract);
+}else{
+	listTagAssetAbstract=listTagAsset;
 }
 if(listTagAsset.size()>0){
 //for(int k=0;k<listTagAsset.size();k++){
