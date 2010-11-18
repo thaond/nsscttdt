@@ -46,7 +46,11 @@ for (TagsAsset asset : assets) {
 
 	for (TagsEntry assetEntry : assetEntries) {
 		TagsVocabulary vocabulary = assetEntry.getVocabulary();
-
+		String vocabularyId=""+vocabulary.getVocabularyId();
+		String vocabularyName = vocabulary.getName();
+		request.setAttribute("vocabularyId",vocabularyId);
+		request.setAttribute("vocabularyName",vocabularyName);
+		
 		if (vocabulary.getName().equals(category)) {
 			String tagLabel = null;
 
@@ -83,6 +87,7 @@ for (TagsAsset asset : assets) {
 
 Iterator<Map.Entry<String, List<TagsAsset>>> itr = assetsByCategory.entrySet().iterator();
 
+
 if (!itr.hasNext()) {
 	if (!showPortletWithNoResults) {
 		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
@@ -92,16 +97,32 @@ if (!itr.hasNext()) {
 	
 <liferay-ui:message key="there-are-no-results" />
 
-<%
-}
-while (itr.hasNext()) {
-	Map.Entry<String, List<TagsAsset>> entry = itr.next();
+<!--  MoNT start 18/11/2010 -->
 
+<%}
+int countAbstract=Integer.parseInt(valueAbstract);
+List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
+//List<String> listTagLabel = new ArrayList<String>();
+while(itr.hasNext()){
+	Map.Entry<String, List<TagsAsset>> entry = itr.next();
+	List<TagsAsset> tagAsset = entry.getValue();
 	String tagLabel = entry.getKey();
-	List<TagsAsset> results = entry.getValue();
+	listTagAsset.addAll(tagAsset);
+	//listTagLabel.add(tagLabel);
+}
+if(countAbstract<listTagAsset.size()&&tagsEntryId==0){
+	listTagAsset= listTagAsset.subList(0,countAbstract);
+	//listTagLabel=listTagLabel.subList(0,countAbstract);
+}
+if(listTagAsset.size()>0){
+//for(int k=0;k<listTagAsset.size();k++){
+	//String tagLabel = listTagLabel.get(k);
+	List<TagsAsset> results = listTagAsset;
 	request.setAttribute("view.jsp-results", results);
 %>
 
+<!-- MoNT end 18/11/2010 -->
+---------------------------------------------------------------------------------------------------
 	<div class="asset-tag-entries">
 		<%
 		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
@@ -131,7 +152,11 @@ while (itr.hasNext()) {
 			request.setAttribute("view.jsp-classPK", new Long(classPK));
 
 			request.setAttribute("view.jsp-show", new Boolean(show));
-
+			
+			// MoNT start 18/11/2010
+			request.setAttribute("categoryParentId",""+categoryParentId);
+			//  MoNT start 18/11/2010 
+			
 			try {
 		%>
 		
@@ -148,10 +173,14 @@ while (itr.hasNext()) {
 		<%for(int i=0;i<tagsCategoriesHelp.length;i++){%>
 			<%=tagsCategoriesHelp[i] %><br>
 		<%}%>
+		 <%for(int i=0;i<results.size();i++){%>
+			<%=results.get(i).getTitle() %><br>
+		<%}%>
+		 categoryParentId <%=categoryParentId %>
 		-----------------------------------------<br>
 		 -->
-		 valueAbstract +++++ <%=valueAbstract %><br>
-		 <%for(int i=0;i<results.size();i++){%>
+		valueAbstract +++++ <%=valueAbstract %><br>
+		<%for(int i=0;i<results.size();i++){%>
 			<%=results.get(i).getTitle() %><br>
 		<%}%>
 		<!-- MoNT end 17/11/2010 -->
@@ -233,6 +262,7 @@ while (itr.hasNext()) {
 	</div>
 
 <%
-}
+	}
+
 %>
 

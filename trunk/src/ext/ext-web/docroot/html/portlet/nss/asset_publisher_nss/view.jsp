@@ -27,21 +27,26 @@
 		    	List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
 			    for (TagsVocabulary vocabulary : vocabularies) {
 			    	if (vocabulary.getName().equals(category)) {
-			    		categoryParentId = vocabulary.getVocabularyId();	    		
+			    		categoryParentId = vocabulary.getVocabularyId();	
 			    	}
 			    }
 			    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
 			    try {
 			    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentId);
 			    	%>
+			    	
+			    	<!-- MoNT start 18/11/2010 -->
 			    	<%=categoryParentId %>
 			    	<%=tagsEntrys.size() %>
+			    	<%=tagsCategoriesHelp.length %>
+			    	<!-- MoNT start 18/11/2010 -->
+			    	
 			    	<%
 			    } catch (Exception e) {}
 			    
 		    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
 		    	PortletURL viewCategoryURL = renderResponse.createRenderURL();
-		    	 viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+		    	viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 		  		viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 		  		viewCategoryURL.setParameter("tagsEntryId", "0");
 		  		
