@@ -124,6 +124,11 @@
 			<param name="service.file" value="src/com/nss/portlet/media_library/service.xml" />
 		</antcall>
 	</target>
+	<target name="build-service-portlet-meetingcalendar">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/ext/portlet/meetingcalendar/service.xml" />
+		</antcall>
+	</target>
 	<target name="build-service-portlet-digital_signature">
 		<antcall target="build-service">
 			<param name="service.file" value="src/com/nss/portlet/digitalsignature/service.xml" />

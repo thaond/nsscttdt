@@ -458,4 +458,40 @@
 		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
 		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.CertificateService" />
 	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
 </beans>

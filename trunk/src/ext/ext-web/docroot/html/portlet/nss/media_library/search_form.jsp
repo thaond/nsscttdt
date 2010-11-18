@@ -17,21 +17,21 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="tieu-de" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.TIEU_DE_MEDIA_LIBRARY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTieuDeMediaLibrary()) %>" />
+				<input name="<portlet:namespace/><%= MediaLibraryDisplayTerms.TIEU_DE_MEDIA_LIBRARY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTieuDeMediaLibrary()) %>" />
 			</td>
 		</tr>
 		<tr height="10"></tr>
 		<tr>
 			<td align="right"><liferay-ui:message key="ten-media-library" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.TEN_MEDIA_LIBRARY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenMediaLibrary()) %>" />
+				<input name="<portlet:namespace/><%= MediaLibraryDisplayTerms.TEN_MEDIA_LIBRARY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenMediaLibrary()) %>" />
 			</td>
 		</tr>
 		<tr height="10"></tr>
 		<tr>
 			<td align="right"><liferay-ui:message key="media-chu-de" />:&nbsp;</td>
 			<td align="left">
-				<select name="<portlet:namespace /><%= displayTerms.MA_MEDIA_CHU_DE%>"  style="width: 89%;">
+				<select name="<portlet:namespace /><%= MediaLibraryDisplayTerms.MA_MEDIA_CHU_DE%>"  style="width: 89%;">
 		    		<option  value="<%= 0 %>"><liferay-ui:message key="chon-chu-de" /></option>
 					<%
 						if (!mediaChuDeList.isEmpty()) { 

@@ -19,7 +19,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=loaiWebsiteDisplayTerms.TEN_LOAI_WEBSITE%>" size="20" type="text" value="<%= HtmlUtil.escape(loaiWebsiteDisplayTerms.getTenLoaiWebsite()) %>" />
+				<input name="<portlet:namespace/><%=LoaiWebsiteDisplayTerms.TEN_LOAI_WEBSITE%>" size="20" type="text" value="<%= HtmlUtil.escape(loaiWebsiteDisplayTerms.getTenLoaiWebsite()) %>" />
 			</td>
 			
 			<td align="right">
@@ -27,7 +27,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=loaiWebsiteDisplayTerms.MO_TA_LOAI %>" size="20" type="text" value="<%= HtmlUtil.escape(loaiWebsiteDisplayTerms.getMoTaLoai()) %>" />
+				<input name="<portlet:namespace/><%=LoaiWebsiteDisplayTerms.MO_TA_LOAI %>" size="20" type="text" value="<%= HtmlUtil.escape(loaiWebsiteDisplayTerms.getMoTaLoai()) %>" />
 			</td>
 		</tr>
 		

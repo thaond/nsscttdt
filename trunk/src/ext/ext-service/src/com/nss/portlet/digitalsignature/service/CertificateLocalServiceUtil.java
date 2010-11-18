@@ -89,6 +89,15 @@ public class CertificateLocalServiceUtil {
         return getService().updateCertificate(certificate, merge);
     }
 
+    public static java.security.cert.X509Certificate addCertificate(
+        java.lang.String algorithmId, java.security.PrivateKey privateKey,
+        java.security.PublicKey publicKey, java.lang.String issuerDN,
+        java.lang.String subjectDN) throws com.liferay.portal.PortalException {
+        return getService()
+                   .addCertificate(algorithmId, privateKey, publicKey,
+            issuerDN, subjectDN);
+    }
+
     public static CertificateLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("CertificateLocalService is not set");

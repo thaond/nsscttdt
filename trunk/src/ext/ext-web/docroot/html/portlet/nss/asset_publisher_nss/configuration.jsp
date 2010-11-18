@@ -341,7 +341,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 						<!-- minhnv 20100813 -->
 						
-						<liferay-ui:message key="chon-trang-hien-thi" /> :
+						<liferay-ui:message key="chon-trang-hien-thi" /> 
 						
 						<%
 							PortletPreferences preferencesLayout = renderRequest.getPreferences();
@@ -372,7 +372,6 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							_buildSiteMap(selectPlId, layout, rootLayouts, rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, 1, themeDisplay, sb);
 							sb.append("</select>");	
 							%>
-							
 							<%= sb.toString() %>
 					<%!
 						private void _buildLayoutView(long selectPlId, Layout layout, String cssClass, boolean useHtmlTitle, ThemeDisplay themeDisplay, StringBuilder sb) throws Exception {
@@ -434,6 +433,16 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							}
 						}
 					%>
+					
+					<!-- MoNT start 17/11/2010 -->
+					Tin abstract 
+					<select name="valueAbstract">
+					<%for(int i=1;i<=5;i++){%>
+						<option value="<%=i %>" ><%=i %></option>						
+					<%}%>
+					</select>
+					<!-- MoNT end 17/11/2010 -->	
+						
 					 <br/> <br/>
 					<%
 					//List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
@@ -479,7 +488,28 @@ configurationActionURL.setParameter("portletResource", portletResource);
 				    
 					
 					%>		
-
+				
+				<!-- start 16/11/2010 MoNT -->
+					vocabularies <%= vocabularies.size() %> 
+					<%
+					for(int i=0;i<vocabularies.size();i++){%>
+						<%= vocabularies.get(i).getName() %>
+					<%}
+					%><br>
+					tagsEntrys <%= tagsEntrys.size() %> <br>
+					<%
+					TagsEntry entry=null;
+					for(int i=0;i<tagsEntrys.size();i++){
+						entry = tagsEntrys.get(i);
+						%>
+						<%= entry.getName() %><br>
+					<%}%>
+					entry <%= entry.getVocabulary().getName() %><br>
+					<% for(int i=0;i<tagsCategories.length;i++){%>
+						tagsCategories<%=i %> <%=tagsCategories[i] %><br>
+					<%}%>
+					-----------------------<br>
+				<!-- end 16/11/2010 MoNT -->	
 							
 				<!-- end minhnv 20100813 -->			
 

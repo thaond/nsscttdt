@@ -1,3 +1,6 @@
+<%@page import="com.nss.portlet.thoitiet_tygia.util.Weather"%>
+<%@page import="com.nss.portlet.thoitiet_tygia.util.WeatherUtil"%>
+<%@page import="java.util.List"%>
 <%@ include file="/html/portlet/nss/thoitiet_tygia/init.jsp" %>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -29,7 +32,6 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 </script>
 
 <link type="text/css" rel="stylesheet" href="/html/portlet/nss/thoitiet_tygia/css/thoitiet_tygia.css" />
-<script type="text/javascript" src="http://rilwis.googlecode.com/svn/trunk/weather.min.js"></script>
 <script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Gold_Content.js"></Script>
 <script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Forex_Content.js"></Script>
  <!-- Thoi tiet -->
@@ -47,20 +49,60 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		 <h3></h3>
 		 <div>
 			 <h4><liferay-ui:message key="ha-noi" /></h4>
-			 <script type="text/javascript">
-			  showWeather('hanoi, vietnam');		 </script>
+			 <%
+			List<Weather> list = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/HaNoi.xml");
+			if(list.size()>0){
+				String img = "<img width='25px' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg()+"'/>";
+				String img1 = "<img width='16px' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg1()+"'/>";
+				String img2 = "<img width='16px' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg2()+"'/>";
+			%>
+			<%= img + img1 + img2 %>
+			<img width='28px' src='http://vnexpress.net/Images/Weather/c.gif'/>
+			<br>
+			<div class="content_weather" style="padding-left: 25px;">
+			<%= list.get(0).getWeather()  %>
+			</div>
+			<%
+			}
+			%>
 		 </div>
 		 <div>
 			 <h4><liferay-ui:message key="da-nang" /></h4>
-			 <script type="text/javascript">
-			  showWeather('danang, vietnam');
-			 </script>
+			 <%
+			List<Weather> list1 = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/DaNang.xml");
+			if(list1.size()>0){
+				String img = "<img width='25' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg()+"'/>";
+				String img1 = "<img width='16' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg1()+"'/>";
+				String img2 = "<img width='16' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg2()+"'/>";
+			%>
+			<%= img + img1 + img2 %>
+			<img width='26' src='http://vnexpress.net/Images/Weather/c.gif'/>
+			<br>
+			<div class="content_weather" style="padding-left: 25px;">
+			<%= list1.get(0).getWeather()  %>
+			</div>
+			<%
+			}
+			%>
 		 </div>
 		 <div>
 			 <h4><liferay-ui:message key="tp-hcm" /></h4>
-			 <script type="text/javascript">
-			  showWeather('hochiminh, vietnam');
-			 </script>
+			 <%
+			List<Weather> list2 = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/HCM.xml");
+			if(list.size()>0){
+				String img = "<img width='25' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg()+"'/>";
+				String img1 = "<img width='16' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg1()+"'/>";
+				String img2 = "<img width='16' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg2()+"'/>";
+			%>
+			<%= img + img1 + img2 %>
+			<img width='26' src='http://vnexpress.net/Images/Weather/c.gif'/>
+			<br>
+			<div class="content_weather" style="padding-left: 25px;">
+			<%= list2.get(0).getWeather()  %>
+			</div>
+			<%
+			}
+			%>
 		 </div>
 	</div>
 	</div>

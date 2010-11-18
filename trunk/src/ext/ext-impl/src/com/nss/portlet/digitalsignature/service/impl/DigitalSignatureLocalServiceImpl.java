@@ -6,7 +6,10 @@ import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.Security;
 import java.security.Signature;
+
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import com.nss.portlet.digitalsignature.DigitalSignatureKeys;
 import com.nss.portlet.digitalsignature.service.base.DigitalSignatureLocalServiceBaseImpl;
@@ -16,7 +19,7 @@ public class DigitalSignatureLocalServiceImpl
 
 	public byte[] hash(InputStream inputStream, String algorithm)
 		throws Exception {
-
+		Security.addProvider(new BouncyCastleProvider());
 		MessageDigest messageDigest =
 			MessageDigest.getInstance(algorithm, "BC");
 

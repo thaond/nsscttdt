@@ -19,7 +19,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_WEBSITE%>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenWebsite()) %>" />
+				<input name="<portlet:namespace/><%=LienKetWebsiteDisplayTerms.TEN_WEBSITE%>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenWebsite()) %>" />
 			</td>
 			
 			<td align="right">
@@ -27,7 +27,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=LienKetWebsiteDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		

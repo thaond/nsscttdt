@@ -19,7 +19,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_LINH_VUC_THU_TUC %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLinhVucThuTuc()) %>" />
+				<input name="<portlet:namespace/><%=LinhVucThuTucHanhChinhDisplayTerms.TEN_LINH_VUC_THU_TUC %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLinhVucThuTuc()) %>" />
 			</td>
 			
 			<td width="30px"></td>
@@ -29,7 +29,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=LinhVucThuTucHanhChinhDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		

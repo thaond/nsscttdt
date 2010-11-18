@@ -2,6 +2,56 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalendarImpl" table="MeetingCalendar">
+		<cache usage="read-write" />
+		<id name="mcalId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="state" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="place" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="place_diff" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sponsor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="component" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userApproved" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dateApproved" type="org.hibernate.type.TimestampType" />
+		<property name="moveMcalId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="repeatWeek" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="filename" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="morning" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="afternoon" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="evening" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="stt" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="prior" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalComponentImpl" table="MeetingCalComponent">
+		<cache usage="read-write" />
+		<id name="mcalId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingDetailWeekImpl" table="MeetingDetailWeek">
+		<cache usage="read-write" />
+		<id name="mdweekId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="focus" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="receive" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="week" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="year" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
 	<class name="com.nss.portlet.journalworkflow.model.impl.JournalProcessDefinitionImpl" table="JournalProcessDefinition">
 		<cache usage="read-write" />
 		<id name="journalProcessDefinitionId" type="long">

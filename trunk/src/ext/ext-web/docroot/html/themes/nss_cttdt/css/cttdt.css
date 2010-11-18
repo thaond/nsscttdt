@@ -891,8 +891,7 @@ select > option {
 }
 #centermain-vbpq {
 	float: left;
-	width: 756px;
-	padding-right: 15px;
+	width: 770px;
 }
 #vbpq {
 	background-image: url(/html/images/btommnleft.jpg);
@@ -936,7 +935,7 @@ select > option {
 #vbpq a {
 	background-image: url(/html/images/iconli.png);
 	background-repeat: no-repeat;
-	background-position: left 4px;
+	background-position: left 6px;
 	display: block;
 	padding-left: 12px;
 	color: #FFFFFF;
@@ -990,19 +989,13 @@ ul.title-list li.title-list a:hover {
 
 /*cau truc khung form->fieldset-->div class='parent-title'*/
 .parent-title {
-	background-image: url(../images/forms/parent-title.png);
-	background-position: left top;
-	background-repeat: repeat-x;
+	background: url(../images/cttdt/bgtitle22.jpg) no-repeat left bottom ;
 	color: #005696;
-	font-family: Arial, sans-serif;
-	font-size: 13px;
-	height: 28px;
-	line-height: 23px;
-	padding: 0 0 0 5px;
-	text-align: left;
-	text-transform: none;
+	height: 23px;
+	text-transform: uppercase;
 	font-weight: bold;
-	margin-left: -4px;
+	margin-bottom: 15px;
+	padding: 5px 0 0 30px;
 }
 
 .boxsupport {
@@ -1056,30 +1049,11 @@ ul.title-list li.title-list a:hover {
 .message_boards {
 	
 }
-.ui-autocomplete-even, .results-row td {
-	background:url("../images/cttdt/forum/grey-up.png") repeat-x scroll left bottom #FFFFFF;
-	border-top:1px solid #FFFFFF;
-}
-
-.ui-autocomplete-odd, .results-row.alt td {
-	background:url("../images/cttdt/forum/grey-up.png") repeat-x scroll left bottom #FFFFFF;
-	border-top:1px solid #FFFFFF;
-}
-
-.ui-autocomplete-over, .results-row.hover td {
-	background: #F1F1F1;
-}
 
 /*---common formf6f6f6 border d2d2d2*/
 .commom-form {
-	background:none repeat scroll 0 0 #FFFFFF;
-	border:1px solid #C3D9FF;
-	display:inline;
-	float:right;
-	margin-bottom:1px;
-	margin-top:1px;
-	padding:1px 1px 24px 5px;
-	width: 99%;
+	float: left;
+	width: 770px;
 }
 .commom-form-basic {
 	background:none repeat scroll 0 0 #FFFFFF;
@@ -1089,13 +1063,9 @@ ul.title-list li.title-list a:hover {
 	padding:1px 1px 24px 5px;
 }
 .common-table {
-	margin:10px 0 20px;
-	color:#005696;
-	font-weight:bold;
 }
 .common-table td{
-	width: 140px;
-	padding: 5px;
+	padding: 3px 5px;
 	text-align: left;
 }
 .form-input-box {
@@ -1111,3 +1081,13 @@ div ul.title-list li.title-list img {display: none;}
 #_NSS_NECESSARY_INFO_DISPLAY_INSTANCE_7amA_boxinfo  {width: 200px !important;}
 .borderendTab {border-width: 0 1px 1px;border-color: #049fcc;border-style: solid;padding: 10px;}
 .taglib-icon-list li {float: left;margin-right: 10px;font-size: 10px; }
+.menuolder li {background:url("/html/images/bglinemn.jpg");background-position:center bottom;background-repeat:repeat-x;}
+#p_p_id_NSS_VAN_BAN_PHAP_QUY_DISPLAY_ {padding: 0 !important;margin: 0;}
+
+.taglib-search-iterator {border: 1px solid #02b8fc;border-right:none; border-collapse: separate;color: #222;}
+.taglib-search-iterator td a,.taglib-search-iterator td a:hover {color: #007eff;}
+.results-grid .results-header td,.results-grid .results-header td {
+	background:#71e0fd url("../images/cttdt/bgtitle_tr.jpg") repeat-x left top;
+	padding: 5px 2px;border-width: 1px;border-color: #80e4fe #02b8fc #02b8fc #80e4fe ;border-style: solid;font-weight: bold;font-size: 11px;
+}
+.results-row td, .results-row th {border-right: 1px solid #5cc4fc;padding: 4px ;background: #fff;}

@@ -875,4 +875,66 @@
 	<bean id="com.nss.portlet.digitalsignature.service.persistence.CertificateUtil" class="com.nss.portlet.digitalsignature.service.persistence.CertificateUtil">
 		<property name="persistence" ref="com.nss.portlet.digitalsignature.service.persistence.CertificatePersistence.impl" />
 	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalendarLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalendarServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalendarServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistence.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderUtil">
+		<property name="finder" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalComponentLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalComponentServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalComponentServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistence.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinder.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderUtil">
+		<property name="finder" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinder.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingDetailWeekLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingDetailWeekServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistence.impl" />
+	</bean>
 </beans>

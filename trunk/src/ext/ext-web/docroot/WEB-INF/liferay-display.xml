@@ -131,4 +131,7 @@
 		<portlet id="NSS_QA_CHU_DE" />
 		<portlet id="NSS_QA_PHAN_QUYEN" />
 	</category>
+	<category name="category.CALENDAR">
+		<portlet id="EXT_M_CAL" />
+	</category>
 </display>
