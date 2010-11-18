@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -93,18 +94,15 @@ if (!itr.hasNext()) {
 
 <%
 }
-
 while (itr.hasNext()) {
 	Map.Entry<String, List<TagsAsset>> entry = itr.next();
 
 	String tagLabel = entry.getKey();
 	List<TagsAsset> results = entry.getValue();
-
 	request.setAttribute("view.jsp-results", results);
 %>
 
 	<div class="asset-tag-entries">
-
 		<%
 		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
 			TagsAsset asset = results.get(assetIndex);
@@ -136,7 +134,28 @@ while (itr.hasNext()) {
 
 			try {
 		%>
-				
+		
+		<!-- MoNT start 17/11/2010 -->
+		
+		<!-- 
+		-----------------------------------------<br>
+		assetIndex ++++ <%=assetIndex %><br>
+		abstractDelta ++++ <%=abstractDelta %><br>
+		results.size() ++++ <%=results.size() %><br>
+		valueAbstract +++++ <%=valueAbstract %><br>
+		selectPlId +++++<%=selectPlId %><br>
+		tagsCategoriesHelp +++++<br>
+		<%for(int i=0;i<tagsCategoriesHelp.length;i++){%>
+			<%=tagsCategoriesHelp[i] %><br>
+		<%}%>
+		-----------------------------------------<br>
+		 -->
+		 valueAbstract +++++ <%=valueAbstract %><br>
+		 <%for(int i=0;i<results.size();i++){%>
+			<%=results.get(i).getTitle() %><br>
+		<%}%>
+		<!-- MoNT end 17/11/2010 -->
+		
 				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_display.jspf" %>
 
 		<%
@@ -148,8 +167,9 @@ while (itr.hasNext()) {
 		%>
 
 	</div>
+	
 	<div class="asset-tag-entries">
-
+	
 		<%
 		for (int assetIndex = abstractDelta; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
 			TagsAsset asset = results.get(assetIndex);
@@ -181,7 +201,25 @@ while (itr.hasNext()) {
 
 			try {
 		%>
-
+		<!-- MoNT start 17/11/2010 -->
+		
+		<!-- 
+		-----------------------------------------<br>
+		assetIndex ++++ <%=assetIndex %><br>
+		abstractDelta ++++ <%=abstractDelta %><br>
+		results.size() ++++ <%=results.size() %><br>
+		delta ++++ <%=delta %><br>
+		valueAbstract +++++<%=valueAbstract %><br>
+		selectPlId +++++<%=selectPlId %><br>
+		tagsCategoriesHelp +++++<br>
+		<%for(int i=0;i<tagsCategoriesHelp.length;i++){%>
+			<%=tagsCategoriesHelp[i] %><br>
+		<%}%>
+		-----------------------------------------<br>
+		 -->
+		 valueAbstract +++++<%=valueAbstract %><br>
+		<!-- MoNT end 17/11/2010 -->
+		
 				<%@ include file="/html/portlet/nss/asset_publisher_nss/display/nss_title_list.jsp" %>
 
 		<%

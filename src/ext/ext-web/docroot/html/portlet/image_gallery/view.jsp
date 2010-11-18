@@ -218,32 +218,24 @@ if (themeDisplay.isSignedIn()) {
 					slideShowWindow.focus();
 				}
 			</script>
-
 			<br />
-
-			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm2" onSubmit="submitForm(this); return false;">
+<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm2" onSubmit="submitForm(this); return false;">
 			<liferay-portlet:renderURLParams varImpl="searchURL" />
 			<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 			<input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
 			<input name="<portlet:namespace />searchFolderId" type="hidden" value="<%= folderId %>" />
 
 			<liferay-ui:tabs names="images" />
-
 			<%
 			searchContainer = new SearchContainer(renderRequest, null, null, "cur2", SearchContainer.DEFAULT_DELTA, portletURL, null, null);
-
 			total = IGImageLocalServiceUtil.getImagesCount(folder.getFolderId());
-
 			searchContainer.setTotal(total);
-
 			results = IGImageLocalServiceUtil.getImages(folder.getFolderId(), searchContainer.getStart(), searchContainer.getEnd());
-
 			searchContainer.setResults(results);
-
 			boolean showAddImageButton = IGFolderPermission.contains(permissionChecker, folder, ActionKeys.ADD_IMAGE);
 			showSearch = (results.size() > 0);
 			%>
-
+			<div class="borderendTab">
 			<c:if test="<%= showAddImageButton || showSearch %>">
 				<div>
 					<c:if test="<%= showSearch %>">
@@ -260,12 +252,9 @@ if (themeDisplay.isSignedIn()) {
 						<input type="button" value="<liferay-ui:message key="view-slide-show" />" onClick="<portlet:namespace />viewSlideShow();" />
 					</c:if>
 				</div>
-
-				<br />
 			</c:if>
-
 			<%@ include file="/html/portlet/image_gallery/view_images.jspf" %>
-
+			</div>
 			</form>
 
 			<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

@@ -588,4 +588,45 @@
 		<field name="userId" type="long" />
 		<field name="x509Certificate" type="String" />
 	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingCalendar">
+		<field name="uuid" type="String" />
+		<field name="mcalId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="state" type="int" />
+		<field name="place" type="String" />
+		<field name="place_diff" type="String" />
+		<field name="sponsor" type="String" />
+		<field name="component" type="String" />
+		<field name="note" type="String" />
+		<field name="userApproved" type="long" />
+		<field name="dateApproved" type="Date" />
+		<field name="moveMcalId" type="long" />
+		<field name="repeatWeek" type="boolean" />
+		<field name="filename" type="String" />
+		<field name="morning" type="boolean" />
+		<field name="afternoon" type="boolean" />
+		<field name="evening" type="boolean" />
+		<field name="stt" type="int" />
+		<field name="prior" type="boolean" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingCalComponent">
+		<field name="mcalId" type="long" />
+		<field name="groupIds" type="String" />
+		<field name="startDate" type="Date" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingDetailWeek">
+		<field name="mdweekId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="focus" type="String" />
+		<field name="note" type="String" />
+		<field name="receive" type="String" />
+		<field name="week" type="int" />
+		<field name="year" type="int" />
+	</model>
 </model-hints>

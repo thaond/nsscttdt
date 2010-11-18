@@ -19,7 +19,7 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="chu-de-cau-hoi" />:&nbsp;</td>
 			<td align="left">
-				<select name="<portlet:namespace /><%= displayTerms.MA_CHU_DE_CAU_HOI%>" id="select2" style="width: 89%;">
+				<select name="<portlet:namespace /><%= QACauHoiDisplayTerms.MA_CHU_DE_CAU_HOI%>" id="select2" style="width: 89%;">
 		    		<option <%=(displayTerms.getMaChuDeCauHoi() == 0  ? "selected" : "" )%> value="0"><liferay-ui:message key="chon-chu-de" /></option>
 					<%
 						if (!qAChuDeCauHoilList.isEmpty()) { 
@@ -40,7 +40,7 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="tieu-de-cau-hoi" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.TIEU_DE_CAU_HOI %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTieuDeCauHoi()) %>" />
+				<input name="<portlet:namespace/><%= QACauHoiDisplayTerms.TIEU_DE_CAU_HOI %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTieuDeCauHoi()) %>" />
 			</td>
 		</tr>
 	</table>	

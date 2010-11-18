@@ -19,7 +19,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.TEN_PARTNER %>" size="30" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenPartner()) %>" />
+				<input name="<portlet:namespace/><%= PartnerDisplayTerms.TEN_PARTNER %>" size="30" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenPartner()) %>" />
 			</td>
 			
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -29,7 +29,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.MO_TA_PARTNER %>" size="30" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTaPartner()) %>" />
+				<input name="<portlet:namespace/><%= PartnerDisplayTerms.MO_TA_PARTNER %>" size="30" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTaPartner()) %>" />
 			</td>
 		</tr>
 		

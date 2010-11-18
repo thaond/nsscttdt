@@ -74,7 +74,7 @@ List<String> primaryKeys = new ArrayList<String>();
 			id="<%= id %>SearchContainer"
 		</c:if>
 	>
-		<table class="taglib-search-iterator">
+		<table class="taglib-search-iterator" cellspacing="0" width="100%">
 		<tr class="portlet-section-header results-header">
 
 		<%
@@ -113,7 +113,7 @@ List<String> primaryKeys = new ArrayList<String>();
 			}
 		%>
 
-			<th class="col-<%= i + 1 %> <%= cssClass %>"
+			<td class="col-<%= i + 1 %> <%= cssClass %>"
 
 				<%--
 
@@ -149,7 +149,7 @@ List<String> primaryKeys = new ArrayList<String>();
 						</a>
 					</span>
 				</c:if>
-			</th>
+			</td>
 
 		<%
 		}

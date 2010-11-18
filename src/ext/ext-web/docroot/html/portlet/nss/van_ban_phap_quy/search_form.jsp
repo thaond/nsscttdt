@@ -49,12 +49,12 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="ky-hieu-van-ban" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.KY_HIEU_VAN_BAN %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getKyHieuVanBan()) %>" />
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.KY_HIEU_VAN_BAN %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getKyHieuVanBan()) %>" />
 			</td>
 					
 			<td align="right"><liferay-ui:message key="tom-tat" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TOM_TAT %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTomTat()) %>" />
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.TOM_TAT %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTomTat()) %>" />
 			</td>		
 			
 		</tr>
@@ -62,12 +62,12 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="nguoi-ky" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.NGUOI_KY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getNguoiKy()) %>" />
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.NGUOI_KY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getNguoiKy()) %>" />
 			</td>
 					
 			<td align="right"><liferay-ui:message key="co-quan-ban-hanh" />:&nbsp;</td>
 			<td align="left">
-				<select name="<portlet:namespace /><%= displayTerms.MA_CO_QUAN_BAN_HANH%>" id="select2" style="width: 89%;">
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_CO_QUAN_BAN_HANH%>" id="select2" style="width: 89%;">
 		    		<option <%=(displayTerms.getMaCoQuanBanHanh() == 0  ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!coQuanBanHanhList.isEmpty()) { 
@@ -85,7 +85,7 @@
 		<tr>
 		 	<td align="right" class="minlabel"><liferay-ui:message key="loai-van-ban" /></td>
 		    <td align="left" >
-				<select name="<portlet:namespace /><%= displayTerms.MA_LOAI_VAN_BAN%>" id="select2" style="width: 89%;">
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LOAI_VAN_BAN%>" id="select2" style="width: 89%;">
 		    		<option <%=(displayTerms.getMaLoaiVanBan() == 0 ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!loaiVBList.isEmpty()) { 
@@ -101,7 +101,7 @@
 					
 			<td class="minlabel"><liferay-ui:message key="linh-vuc-van-ban" />:&nbsp;</td>
 			<td align="left">
-				<select name="<portlet:namespace /><%= displayTerms.MA_LINH_VUC_VAN_BAN%>" id="select2" style="width: 89%;">
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LINH_VUC_VAN_BAN%>" id="select2" style="width: 89%;">
 		    		<option <%=(displayTerms.getMaLinhVucVanBan() == 0 ? "selected" : "" )%> value=""><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!linhVucVBList.isEmpty()) { 
@@ -127,13 +127,13 @@
 			%>
 			<td align="right"><liferay-ui:message key="ngay-ban-hanh" /><liferay-ui:message key="tu-ngay" />:&nbsp;</td>
 			<td align="left">
-				<input type="text"  name="<portlet:namespace/><%= displayTerms.TU_NGAY %>" id="<portlet:namespace />fromDate" value="<%= (!"".equals(displayTerms.getTuNgay()) ? displayTerms.getTuNgay(): tuNgay)  %>" style="width: 125px" />
+				<input type="text"  name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.TU_NGAY %>" id="<portlet:namespace />fromDate" value="<%= (!"".equals(displayTerms.getTuNgay()) ? displayTerms.getTuNgay(): tuNgay)  %>" style="width: 125px" />
 				<img src="/html/images/cal.gif" style="cursor: pointer;" id="cal-button-FromDate" onClick="callCalendar('<portlet:namespace/>fromDate','cal-button-FromDate')" />
 			</td>
 			
 			<td align="right"><liferay-ui:message key="den-ngay" />:&nbsp;</td>
 			<td align="left">
-				<input type="text" name="<portlet:namespace/><%= displayTerms.DEN_NGAY %>" id="<portlet:namespace />toDate" value="<%= (!"".equals(displayTerms.getDenNgay()) ? displayTerms.getDenNgay(): denNgay)  %>" style="width: 125px" />
+				<input type="text" name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.DEN_NGAY %>" id="<portlet:namespace />toDate" value="<%= (!"".equals(displayTerms.getDenNgay()) ? displayTerms.getDenNgay(): denNgay)  %>" style="width: 125px" />
 				<img src="/html/images/cal.gif" id="cal-button-ToDate" style="cursor: pointer;" onClick="callCalendar('<portlet:namespace/>toDate','cal-button-ToDate')" />
 			</td>		
 		</tr>

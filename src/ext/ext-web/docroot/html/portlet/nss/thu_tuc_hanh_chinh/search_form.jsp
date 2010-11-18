@@ -22,7 +22,7 @@
 		<tr>
 			<td align="right"><liferay-ui:message key="ten-thu-tuc-hanh-chinh" />:&nbsp;</td>
 			<td align="left">
-				<input name="<portlet:namespace/><%= displayTerms.TEN_THU_TUC_HANH_CHINH %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenThuTucHanhChinh()) %>" />
+				<input name="<portlet:namespace/><%= ThuTucHanhChinhDisplayTerms.TEN_THU_TUC_HANH_CHINH %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenThuTucHanhChinh()) %>" />
 			</td>
 		</tr>
 		
@@ -30,7 +30,7 @@
 		<tr style="display: none;">
 			<td align="right"><liferay-ui:message key="linh-vuc" />:&nbsp;</td>
 			<td align="left">
-				<select name="<portlet:namespace /><%= displayTerms.LINH_VUC_THU_TUC %>" id="select2" style="width: 89%;">
+				<select name="<portlet:namespace /><%= ThuTucHanhChinhDisplayTerms.LINH_VUC_THU_TUC %>" id="select2" style="width: 89%;">
 		    		<option <%=(displayTerms.getLinhVucThuTuc() == 0  ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!linhVucThuTucHanhChinhList.isEmpty()) { 
@@ -51,7 +51,7 @@
 		<tr>
 		 	<td align="right" class="minlabel"><liferay-ui:message key="cap-co-quan-thuc-hien" />:&nbsp;</td>
 		    <td align="left" >
-				<select name="<portlet:namespace /><%= displayTerms.CAP_DON_VI_THU_TUC%>" id="<portlet:namespace/>radioCapDV" style="width: 100%;" onchange="selectCapDonVi(this.value)">
+				<select name="<portlet:namespace /><%= ThuTucHanhChinhDisplayTerms.CAP_DON_VI_THU_TUC%>" id="<portlet:namespace/>radioCapDV" style="width: 100%;" onchange="selectCapDonVi(this.value)">
 		    		<option <%= (displayTerms.getCapDonViThuTuc() == 1 ? "selected" : "" ) %> value="1"><liferay-ui:message key="cap-thanh-pho" /></option>
 		    		<option <%= (displayTerms.getCapDonViThuTuc() == 2 ? "selected" : "" ) %> value="2"><liferay-ui:message key="cap-quan-huyen" /></option>
 		    		<option <%= (displayTerms.getCapDonViThuTuc() == 3 ? "selected" : "" ) %> value="3"><liferay-ui:message key="cap-phuong-xa" /></option>
@@ -64,7 +64,7 @@
 		 	<td align="right" class="minlabel"><liferay-ui:message key="co-quan-thuc-hien" />:&nbsp;</td>
 		    <td align="left" >
 		    	<div id="donViOnChange">
-		    		<select name="<portlet:namespace /><%= displayTerms.DON_VI_THU_TUC%>" id='maDonViThuTuc' style="width: 100%;" onchange="setDisplayTermsMaDV(this.value)">
+		    		<select name="<portlet:namespace /><%= ThuTucHanhChinhDisplayTerms.DON_VI_THU_TUC%>" id='maDonViThuTuc' style="width: 100%;" onchange="setDisplayTermsMaDV(this.value)">
 						<option <%=(displayTerms.getDonViThuTuc() == 0 ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 						<%
 							if (1 == displayTerms.getCapDonViThuTuc()) {

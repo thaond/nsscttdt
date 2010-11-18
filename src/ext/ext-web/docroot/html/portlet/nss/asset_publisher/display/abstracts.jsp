@@ -279,6 +279,5 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 	</div>
 
 	<c:if test="<%= (assetIndex + 1) == results.size() %>">
-		<div class="final-separator"><!-- --></div>
 	</c:if>
 </c:if>

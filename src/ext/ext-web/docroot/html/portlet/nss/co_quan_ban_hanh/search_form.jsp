@@ -19,7 +19,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_CO_QUAN_BAN_HANH %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenCoQuanBanHanh()) %>" />
+				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.TEN_CO_QUAN_BAN_HANH %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenCoQuanBanHanh()) %>" />
 			</td>
 			
 			<td align="right">
@@ -27,7 +27,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		

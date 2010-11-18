@@ -28,69 +28,23 @@
 <%@page import="com.nss.portlet.linh_vuc_van_ban.model.LinhVucVanBan"%>
 <%@page import="com.nss.portlet.co_quan_ban_hanh.model.CoQuanBanHanh"%>
 
-
-<style type="text/css">
-.shownew-2 input[type="text"] {
-	background-image: none !important;
-	width: 220px;
-	padding: 2px;
-	border: 1px solid #dedede;
-	font-size: 8.5pt;
-}
-.shownew-2 input[type="text"]:hover {
-	border: 1px solid #14B9FB;
-}
-.shownew-2 input[type="text"]:focus {
-	border: 1px solid #14B9FB;
-}
-.shownew-2 select {
-	background-image: none !important;
-	padding: 0;
-	border: 1px solid #dedede;
-	font-size: 8.5pt;
-}
-.shownew-2 select:hover {
-	border: 1px solid #14B9FB;
-}
-.shownew-2 input[type="submit"] {
-	padding: 3px 10px 3px 10px;
-}
-
-
-
-/*
-.results-header {
-	background: #fefefe url(/html/images/bg_title.jpg) left top repeat-x;
-	border-bottom: 1px solid #dedede;
-}
-
-.ui-autocomplete-over, .results-row.hover td {
-	background: #e5e5e5;
-}
-*/
-</style>
 <%
 	List<CoQuanBanHanh> coQuanBanHanhList = (List<CoQuanBanHanh>)renderRequest.getAttribute("coQuanBanHanhList") == null ? new ArrayList<CoQuanBanHanh>() : (List<CoQuanBanHanh>)renderRequest.getAttribute("coQuanBanHanhList");
 	List<LoaiVanBan> loaiVBList = (List<LoaiVanBan>)renderRequest.getAttribute("loaiVBList") == null ? new ArrayList<LoaiVanBan>() : (List<LoaiVanBan>)renderRequest.getAttribute("loaiVBList");
 	List<LinhVucVanBan> linhVucVBList = (List<LinhVucVanBan>)renderRequest.getAttribute("linhVucVBList") == null ? new ArrayList<LinhVucVanBan>() : (List<LinhVucVanBan>)renderRequest.getAttribute("linhVucVBList");
-	
-	
 	PortletURL portletURLDisplay = renderResponse.createRenderURL();
 	portletURLDisplay.setWindowState(WindowState.NORMAL);
 	portletURLDisplay.setParameter("struts_action", "/nss/van_ban_phap_quy_display/view");
-	
 	String portletURLDisplayString = portletURLDisplay.toString();
 	renderRequest.setAttribute("portletURLDisplayString", portletURLDisplayString);
-	
 %>
 <div id="boxcontainer-vbpq">
-	<div id="bttomcontainer-vbpq">
-		<div id="container-vbpq">
-  
-	<div id="main">
+<div id="bttomcontainer-vbpq">
+<div id="container-vbpq">
+<div id="main">
     <div id="leftmenu">
     <div id="topmnl">
-    <div id="vbpq">
+    <div id="vbpq" class="menuolder">
 	    <ul>
 	    	<h2><liferay-ui:message key="co-quan-ban-hanh" /></h2>
 	    	<%

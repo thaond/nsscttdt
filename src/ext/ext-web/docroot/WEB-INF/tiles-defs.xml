@@ -251,4 +251,47 @@
     <definition extends="portlet" name="portlet.nss.media_library_display.view">
         <put name="portlet_content" value="/portlet/nss/media_library_display/view.jsp"/>
     </definition>
+        <!-- Meeting Calendar -->
+    <definition extends="portlet" name="portlet.ext.meeting_calendar"/>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.week_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/week.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.error">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/error.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.search">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/search.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print_DK">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print_DK.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.select_organization">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/select_organization.jsp"/>
+    </definition>
+      <!-- Meeting Calendar View -->
+    <definition extends="portlet" name="portlet.ext.meetingcalendarview"/>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.edit_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/edit_view.jsp"/>
+    </definition>
 </tiles-definitions>

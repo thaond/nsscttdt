@@ -865,4 +865,25 @@
         <struts-path>nss/media_library_display</struts-path>
         <use-default-template>false</use-default-template>
     </portlet>
+    <!-- Meeting Calendar -->
+    <portlet>
+        <portlet-name>EXT_M_CAL</portlet-name>
+        <icon>/html/icons/calendar.png</icon>
+        <struts-path>ext/meeting_calendar</struts-path>
+        <configuration-action-class>com.ext.portlet.meetingcalendar.action.ConfigurationActionImpl</configuration-action-class>
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <instanceable>false</instanceable>
+    </portlet>
+    <!-- Meeting Calendar View -->
+    <portlet>
+        <portlet-name>EXT_M_CAL_VIEW</portlet-name>
+        <icon>/html/icons/calendar.png</icon>
+        <struts-path>ext/meeting_calendar_view</struts-path>
+        <configuration-action-class>com.ext.portlet.meetingcalendarview.action.ConfigurationActionImpl</configuration-action-class>
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <instanceable>false</instanceable>
+    </portlet>
+    <!-- #### end ######## -->
 </liferay-portlet-app>

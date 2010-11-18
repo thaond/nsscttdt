@@ -18,7 +18,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_THONG_TIN_CAN_THIET %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenThongTinCanThiet()) %>" />
+				<input name="<portlet:namespace/><%=ThongTinCanThietDisplayTerms.TEN_THONG_TIN_CAN_THIET %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenThongTinCanThiet()) %>" />
 			</td>
 			
 			<td align="right">
@@ -26,7 +26,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=ThongTinCanThietDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		

@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -28,7 +29,7 @@
 
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 
-List results = (List)request.getAttribute("view.jsp-results");
+List<TagsAsset> results = (List<TagsAsset>)request.getAttribute("view.jsp-results");
 
 int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
 
@@ -208,9 +209,9 @@ else if (className.equals(JournalArticle.class.getName())) {
 		}
 
 		if (abstractNumber == 1) {
-			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "1" + "</a></h5>");
 		} else {
-			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "2" +"</a></h5>");
 		}
 		
 		sb.append("<h1>" + df.format(asset.getPublishDate()) + "</h1>");
@@ -275,7 +276,7 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 
 <c:if test="<%= show %>">
 	<div class="asset-abstract">
-		<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
+		
 		
 		<div class="asset-content">
 			<p class="asset-summary">
@@ -289,12 +290,10 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 			</c:if> -->
 		</div>
 
-		<div class="asset-metadata">
-			<%@ include file="/html/portlet/nss/asset_publisher_nss/asset_metadata.jspf" %>		
-		</div>
+		
 	</div>
 
 	<c:if test="<%= (assetIndex + 1) == results.size() %>">
-		<div class="final-separator"><!-- --></div>
+	 <%--<div class="final-separator"><!-- --></div> --%>
 	</c:if>
 </c:if>

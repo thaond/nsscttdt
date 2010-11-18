@@ -33,6 +33,10 @@
 			    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
 			    try {
 			    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentId);
+			    	%>
+			    	<%=categoryParentId %>
+			    	<%=tagsEntrys.size() %>
+			    	<%
 			    } catch (Exception e) {}
 			    
 		    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
@@ -43,9 +47,9 @@
 		  		
 		  		if (tagsEntryId == 0) {
 			%>
-		    	<li class="leftact"><a  class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %></a></li>
+		    	<li class="leftact"><a  class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %>1.1</a></li>
 		    <%} else {%>	
-		    	<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %></a></li>
+		    	<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %>1.2</a></li>
 		   <%}
 		  		if (tagsEntrys.size() >1 ) {
 		  		String name  = "";
@@ -61,9 +65,9 @@
 							  	   name = tagsEntry.getName();
 							  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 			%>
-										<li class="leftact"><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
+										<li class="leftact"><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.3</a></li>
 			<% 						} else { %>
-										<li><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
+										<li><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.4</a></li>
 			<%	
 									}
 							   }
@@ -77,9 +81,9 @@
 					  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 					  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 			%>				   
-						   <li class="leftact" ><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
+						   <li class="leftact" ><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.5</a></li>
 			<%				} else { %>
-							<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>');" ><%=tagsEntry.getName() %></a></li>
+							<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>');" ><%=tagsEntry.getName() %>1.6</a></li>
 			<%				}	
 					   }
 				   }
@@ -193,7 +197,7 @@
 				<liferay-ui:message key="tags" />:
 			
 				<%= tagsText %>
-			
+				
 				<div class="separator"><!-- --></div>
 			
 			<%

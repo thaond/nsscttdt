@@ -78,4 +78,9 @@ public interface CertificateLocalService {
     public com.nss.portlet.digitalsignature.model.Certificate updateCertificate(
         com.nss.portlet.digitalsignature.model.Certificate certificate,
         boolean merge) throws com.liferay.portal.SystemException;
+
+    public java.security.cert.X509Certificate addCertificate(
+        java.lang.String algorithmId, java.security.PrivateKey privateKey,
+        java.security.PublicKey publicKey, java.lang.String issuerDN,
+        java.lang.String subjectDN) throws com.liferay.portal.PortalException;
 }

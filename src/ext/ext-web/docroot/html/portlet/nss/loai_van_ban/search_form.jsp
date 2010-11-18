@@ -18,7 +18,7 @@
 			</td>
 			
 		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_LOAI_VB %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLoaiVanBan()) %>" />
+				<input name="<portlet:namespace/><%=LoaiVanBanDisplayTerms.TEN_LOAI_VB %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLoaiVanBan()) %>" />
 			</td>
 			
 			<td align="right">
@@ -26,7 +26,7 @@
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=LoaiVanBanDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		

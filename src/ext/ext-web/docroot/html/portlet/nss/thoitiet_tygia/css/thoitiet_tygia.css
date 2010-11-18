@@ -15,9 +15,7 @@
     background:url("/html/portlet/nss/thoitiet_tygia/images/thoitiet.png");
     background-repeat: no-repeat;
     background-position: center;
-    
 }
-
 .weather div h4{
     color: #292929;
     text-align: left;
@@ -27,7 +25,12 @@
     font-size: 11px !important;
     color: #647983;
 }
-
+.content_weather{
+	text-align:left;
+    font-size: 12px !important;
+    color: #647983;
+    padding-left: 25px;
+}
 .weather span{
     color: #06478C;
     font-size: 15px !important;

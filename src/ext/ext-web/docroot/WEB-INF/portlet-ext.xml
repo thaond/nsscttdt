@@ -1199,4 +1199,58 @@
             <role-name>user</role-name>
         </security-role-ref>
     </portlet>
+        <!-- Meeting Calendar -->
+    <portlet>
+        <portlet-name>EXT_M_CAL</portlet-name>
+        <display-name>meeting_calendar</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/ext/meeting_calendar/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <!-- Meeting Calendar View -->
+    <portlet>
+        <portlet-name>EXT_M_CAL_VIEW</portlet-name>
+        <display-name>meeting_calendar_view</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/ext/meeting_calendar_view/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
 </portlet-app>

@@ -130,10 +130,7 @@ boolean showAddFolderButton = IGFolderPermission.contains(permissionChecker, sco
 	</div>
 
 	<c:if test="<%= results.size() > 0 %>">
-		<br />
 	</c:if>
 </c:if>
-
 <liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-
 </form>

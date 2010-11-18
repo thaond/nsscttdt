@@ -266,5 +266,41 @@
         <action path="/nss/media_library_display/view" type="com.nss.portlet.media_library_display.action.ViewAction">
             <forward name="portlet.nss.media_library_display.view" path="portlet.nss.media_library_display.view"/>
         </action>
+         <!--Meeting Calenar  -->
+        <action path="/ext/meeting_calendar/edit_event" type="com.ext.portlet.meetingcalendar.action.EditMeetingCalendarAction">
+            <forward name="portlet.ext.meeting_calendar.edit_event" path="portlet.ext.meeting_calendar.edit_event"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action path="/ext/meeting_calendar/edit_focus_week" type="com.ext.portlet.meetingcalendar.action.EditMeetingDetailWeekAction">
+            <forward name="portlet.ext.meeting_calendar.view_focus_week" path="portlet.ext.meeting_calendar.view_focus_week"/>
+            <forward name="portlet.ext.meeting_calendar.edit_focus_week" path="portlet.ext.meeting_calendar.edit_focus_week"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action forward="portlet.ext.meeting_calendar.week_view" path="/ext/meeting_calendar/week_view"/>
+        <action forward="portlet.ext.meeting_calendar.view_focus_week" path="/ext/meeting_calendar/view_focus_week"/>
+        <action forward="portlet.ext.meeting_calendar.search" path="/ext/meeting_calendar/search"/>
+        <action path="/ext/meeting_calendar/export_events" type="com.ext.portlet.meetingcalendar.action.ExportEventsAction"/>
+        <action path="/ext/meeting_calendar/find_event" type="com.ext.portlet.meetingcalendar.action.FindEventAction"/>
+        <action path="/ext/meeting_calendar/import_events" type="com.ext.portlet.calendar.action.ImportEventsAction">
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action forward="portlet.ext.meeting_calendar.view" path="/ext/meeting_calendar/view"/>
+        <action path="/ext/meeting_calendar/view_event" type="com.ext.portlet.meeting_calendar.action.EditEventAction">
+            <forward name="portlet.ext.meeting_calendar.edit_event" path="portlet.ext.meeting_calendar.view_event"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action path="/ext/meeting_calendar/print_cal" type="com.ext.portlet.meetingcalendar.action.PrintCalAction"/>
+        <action forward="portlet.ext.meeting_calendar.print" path="/ext/meeting_calendar/print"/>
+        <action forward="portlet.ext.meeting_calendar.print_DK" path="/ext/meeting_calendar/print_DK"/>
+        <action path="/ext/meeting_calendar/download" type="com.ext.portlet.meetingcalendar.action.GetMCalAttachmentAction"/>
+        <action forward="portlet.ext.meeting_calendar.select_organization" path="/ext/meeting_calendar/select_organization"/>
+        
+         <!-- Meeting Calendar View -->
+        <action path="/ext/meeting_calendar_view/view" type="com.ext.portlet.meetingcalendarview.action.ViewAction">
+            <forward name="portlet.ext.meetingcalendarview.view" path="portlet.ext.meetingcalendarview.view"/>
+        </action>
+        <action path="/ext/meeting_calendar_view/edit_view" type="com.ext.portlet.meetingcalendarview.action.EditViewAction">
+            <forward name="portlet.ext.meetingcalendarview.edit_view" path="portlet.ext.meetingcalendarview.edit_view"/>
+        </action>
     </action-mappings>
 </struts-config>
