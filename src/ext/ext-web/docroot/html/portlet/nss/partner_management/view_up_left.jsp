@@ -1,5 +1,7 @@
 
 <br/>
+<!--  MoNT start 16/11/2010  -->	
+<div id="<portlet:namespace/>partner_management" style="display: none"> 
 <div id="<portlet:namespace/>boxpartner">
 	<%
 	if ("horizontal".equals(displayStylePartner) || "vertical".equals(displayStylePartner)) {
@@ -51,3 +53,5 @@
 	<% }  %>
 	
 </div>
+</div>
+ <!-- MoNT end 16/11/2010 --> 

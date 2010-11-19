@@ -27,8 +27,6 @@
 				: (List<QuangCao>)renderRequest.getAttribute("quangCaoList");
 %>
 
-<!-- MoNT start 16/11/2010 -->
-<div id="<portlet:namespace/>adv_display" style="display: none">
 <div class="toptitleright">
     <h3><liferay-ui:message key="nss-quang-cao" /></h3>
     <div class="btmtitleright">
@@ -54,6 +52,7 @@
        	}
        	else if ("image".equals(displayStyleAdv)) {
        	%>
+       	<div id="<portlet:namespace/>boximage">
        	<table align="center">
        	<%
        	for( int i=0; i < quangCaoList.size(); i++) {
@@ -74,10 +73,12 @@
         	}
        	%>
        	</table>
-       	
+       	</div>
 	    <%
        	} else if ("up".equals(displayStyleAdv) || "right".equals(displayStyleAdv)) {
 		%>
+<!-- MoNT start 16/11/2010 -->
+		<div id="<portlet:namespace/>adv_display" style="display: none">
 		<div id="<portlet:namespace/>boxadv">
 			<table>
 			    <tr>
@@ -99,21 +100,14 @@
 				</tr>
 			</table>
 		</div>
-		<% }  %>
-		
-   			</form>
-    	</div>
-    </div>
-</div>
-</div>
-
-
-<script type="text/javascript">
+		</div>
+		<script type="text/javascript">
 			window.addEvent('load', function() {
 				var hVI = null;
 				if ('<%= displayStyleAdv %>' == "right") {
 					hVI = 'horizontal';
-				} else {
+				} 
+				else {
 					hVI = 'vertical';
 				}
 				//slider variables for making things easier below
@@ -135,6 +129,12 @@
 					mySliderI.start();
 								 
 			});
-</script>
+		</script>
+		<% } %>
+		
+   			</form>
+    	</div>
+    </div>
+</div>
 
 <!-- MoNT end 16/11/2010 -->
