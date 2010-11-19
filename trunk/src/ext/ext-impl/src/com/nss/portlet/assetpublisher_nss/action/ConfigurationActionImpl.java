@@ -346,6 +346,17 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 					String.valueOf(tagsEntrys.get(i).getEntryId()),
 					ParamUtil.getString(actionRequest,
 							String.valueOf(tagsEntrys.get(i).getEntryId())));
+			// MoNT start 19/11/2010
+			String valueAbstractEntry = ParamUtil.getString(actionRequest,
+					"valueAbstractEntry" + tagsEntrys.get(i).getEntryId());
+			preferences.setValue("valueAbstractEntry"
+					+ tagsEntrys.get(i).getEntryId(), valueAbstractEntry);
+
+			String valueChildrenEntry = ParamUtil.getString(actionRequest,
+					"valueChildrenEntry" + tagsEntrys.get(i).getEntryId());
+			preferences.setValue("valueChildrenEntry"
+					+ tagsEntrys.get(i).getEntryId(), valueChildrenEntry);
+			// MoNT end 19/11/2010
 		}
 
 		// end minh 20100713
@@ -361,8 +372,11 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				"valueAbstract");
 		preferences.setValue("valueAbstract", valueAbstract);
 		String valueChildren = ParamUtil.getString(actionRequest,
-		"valueChildren");
+				"valueChildren");
 		preferences.setValue("valueChildren", valueChildren);
+		// String valueChildrenEntry = ParamUtil.getString(actionRequest,
+		// "valueChildrenEntry");
+		// preferences.setValue("valueChildrenEntry", valueChildrenEntry);
 		// MoNT end 17/11/2010
 	}
 
