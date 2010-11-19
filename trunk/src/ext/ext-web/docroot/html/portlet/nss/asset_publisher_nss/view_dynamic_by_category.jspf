@@ -128,7 +128,7 @@ if(listTagAsset.size()>0){
 %>
 
 <!-- MoNT end 18/11/2010 -->
----------------------------------------------------------------------------------------------------
+
 	<div class="asset-tag-entries">
 		<%
 		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {

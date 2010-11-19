@@ -35,12 +35,6 @@
 			    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentId);
 			    	%>
 			    	
-			    	<!-- MoNT start 18/11/2010 -->
-			    	<%=categoryParentId %>
-			    	<%=tagsEntrys.size() %>
-			    	<%=tagsCategoriesHelp.length %>
-			    	<!-- MoNT start 18/11/2010 -->
-			    	
 			    	<%
 			    } catch (Exception e) {}
 			    
@@ -52,9 +46,9 @@
 		  		
 		  		if (tagsEntryId == 0) {
 			%>
-		    	<li class="leftact"><a  class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %>1.1</a></li>
+		    	<li class="leftact"><a  class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %></a></li>
 		    <%} else {%>	
-		    	<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %>1.2</a></li>
+		    	<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL.toString() %>');"><%=category %></a></li>
 		   <%}
 		  		if (tagsEntrys.size() >1 ) {
 		  		String name  = "";
@@ -70,9 +64,9 @@
 							  	   name = tagsEntry.getName();
 							  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 			%>
-										<li class="leftact"><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.3</a></li>
+										<li class="leftact"><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
 			<% 						} else { %>
-										<li><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.4</a></li>
+										<li><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
 			<%	
 									}
 							   }
@@ -86,9 +80,9 @@
 					  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 					  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 			%>				   
-						   <li class="leftact" ><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %>1.5</a></li>
+						   <li class="leftact" ><a class="rightact" href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>')"><%=tagsEntry.getName() %></a></li>
 			<%				} else { %>
-							<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>');" ><%=tagsEntry.getName() %>1.6</a></li>
+							<li ><a  href="javascript:<portlet:namespace/>ajaxpaginate('<%= viewCategoryURL %>');" ><%=tagsEntry.getName() %></a></li>
 			<%				}	
 					   }
 				   }
