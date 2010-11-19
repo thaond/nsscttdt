@@ -27,9 +27,6 @@
 				: (List<ThongTinCanThiet>)renderRequest.getAttribute("thongTinCanThietList");
 %>
 
-<!-- MoNT start 16/11/2010 -->
-
-<div  id="<portlet:namespace/>necessary_info_display" style="display: none">
 <div class="toptitleleft">
     <h3><liferay-ui:message key="nss-thong-tin-can-biet" /></h3>
     <div class="btmtitleleft">
@@ -78,6 +75,8 @@
 	    <%
        	} else if ("up".equals(displayStyleInfo) || "right".equals(displayStyleInfo)) {
 		%>
+		<!-- MoNT start 16/11/2010 -->
+		<div  id="<portlet:namespace/>necessary_info_display" style="display: none">
 		<div id="<portlet:namespace/>boxinfo">
 			<table cellspacing="0" height="50%" width="100%">
 			    
@@ -101,16 +100,8 @@
 				
 			</table>
 		</div>
-		
-		<% }  %>
-		
-   			</form>
-    	</div>
-    </div>
-</div>
-</div>
-
-<script type="text/javascript">
+		</div>
+		<script type="text/javascript">
 			window.addEvent('load', function() {
 				var hVI = null;
 				if ('<%= displayStyleInfo %>' == "right") {
@@ -138,5 +129,12 @@
 					mySliderI.start();	
 			});
 </script>
+		<% }  %>
+		
+<!-- MoNT end 16/11/2010 -->		
+   			</form>
+    	</div>
+    </div>
+</div>
 
-<!-- MoNT end 16/11/2010 -->
+
