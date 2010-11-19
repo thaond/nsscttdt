@@ -1,3 +1,5 @@
+
+<%@page import="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -203,6 +205,33 @@ if (0 != tagsEntryId) {
 //MoNT start 17/11/2010
 String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","2"));
 String valueChildren = GetterUtil.getString(preferences.getValue("valueChildren","5"));
+
+long categoryParentIdAbstractEntry = 0;
+List<TagsEntry> tagsAbstractEntrys = new ArrayList<TagsEntry>();
+List<TagsVocabulary> vocabulariesTest = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
+for (TagsVocabulary vocabulary : vocabulariesTest) {
+	if (vocabulary.getName().equals(category)) {
+		categoryParentIdAbstractEntry = vocabulary.getVocabularyId();	
+	}
+}
+try {
+	tagsAbstractEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentIdAbstractEntry);
+
+} catch (Exception e) {
+	
+}
+Map<String,String> mapValueAbstractEntry= new HashMap<String,String>();
+ for(int i=0;i<tagsAbstractEntrys.size();i++){
+	 long tagsAbstractEntryId=tagsAbstractEntrys.get(i).getEntryId();
+	 String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagsAbstractEntryId,"2"));
+     mapValueAbstractEntry.put(""+tagsAbstractEntryId,valueAbstractEntry);
+ } 
+Map<String,String> mapValueChildrenEntry= new HashMap<String,String>(); 
+ for(int i=0;i<tagsAbstractEntrys.size();i++){
+	 long tagsChildrenEntryId=tagsAbstractEntrys.get(i).getEntryId();
+	 String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagsChildrenEntryId,"3"));
+	 mapValueChildrenEntry.put(""+tagsChildrenEntryId,valueChildrenEntry); 
+ } 
 //MoNT end 17/11/2010
 
 

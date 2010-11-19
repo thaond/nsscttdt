@@ -1,3 +1,4 @@
+<%@page import="java.util.Iterator"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -434,7 +435,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						}
 					%>
 					
-					<!-- MoNT start 17/11/2010 -->
+				<!-- MoNT start 17/11/2010 -->
 					Tin abstract 
 					<% int countAbstract = Integer.parseInt(valueAbstract); %>
 					<select name="valueAbstract">
@@ -446,7 +447,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						<%}%>			
 					<%}%>
 					</select>
-					Tin con
+					Tin lien quan
 					<% int countChildren = Integer.parseInt(valueChildren); %>
 					<select name="valueChildren">
 					<%for(int i=1;i<=10;i++){%>
@@ -457,12 +458,13 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						<%}%>			
 					<%}%>
 					</select>
-					<!-- MoNT end 17/11/2010 -->	
-						
+				<!-- MoNT end 17/11/2010 -->	
+					
 					 <br/> <br/>
 					<%
 					//List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
 				    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
+				   
 				    for (TagsVocabulary vocabulary : vocabularies) {
 				    	try {
 					    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabulary.getVocabularyId());
@@ -476,14 +478,16 @@ configurationActionURL.setParameter("portletResource", portletResource);
 					<div id="<%= vocabulary.getVocabularyId()%>" style="display: none">
 					<%
 					 }
-						for (TagsEntry tE: tagsEntrys) {
+					 for(int j=0;j<tagsEntrys.size();j++){
+						 TagsEntry tE=tagsEntrys.get(j);
+						//for (TagsEntry tE: tagsEntrys) {
 					%>		
 						<label><%= tE.getName().concat(":        ") %></label>
 						<liferay-ui:message key="chon-trang-hien-thi" />: 
 						<%
 						long  tEPreferences = GetterUtil.getLong(preferences.getValue(String.valueOf(tE.getEntryId()), StringPool.BLANK));
 						
-						sb = new StringBuilder();
+						sb = new StringBuilder(); 
 						sb.append("<select name=\"");
 						sb.append(tE.getEntryId());
 						sb.append("\" ");
@@ -492,6 +496,55 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						sb.append("</select>");	
 						%>
 						<%= sb.toString() %>
+						
+				<!-- MoNT start 19/11/2010 -->
+						Tin abstract Entry
+						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
+						while(iteratorAbstractEntry.hasNext()){
+							Map.Entry<String,String> entry = iteratorAbstractEntry.next();
+							String key= entry.getKey();
+							int entryId= Integer.parseInt(key);
+							String value= entry.getValue();
+							int entryValue= Integer.parseInt(value);
+						%>
+							
+						<% if(entryId==tE.getEntryId()){ %>
+							<select name="valueAbstractEntry<%=tE.getEntryId() %>">
+							<% for(int i=1;i<=5;i++){ %>
+							<% if(entryValue==i){ %>
+								<option value="<%=i %>" selected="selected"><%=i %></option>
+						<% }else{ %>
+								<option value="<%=i %>" ><%=i %></option>	
+								<%}%>
+							<%}%>
+							</select>
+							<%}%>
+						<%}%>
+						
+						
+						Tin lien quan Entry
+						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();%>
+						<%=mapValueChildrenEntry.size() %>
+						<% while(iteratorChildrenEntry.hasNext()){ 
+							Map.Entry<String,String> entry = iteratorChildrenEntry.next();
+							String key= entry.getKey();
+							//int entryId= Integer.parseInt(key);
+							String value= entry.getValue();
+							//int entryValue= Integer.parseInt(value);
+							%>
+							<%=key %>-<%=value %>
+							
+							<select name="valueChildrenEntry<%=tE.getEntryId() %>">
+							<% for(int i=1;i<=5;i++){ %>
+								<option value="<%=i %>" ><%=i %></option>	
+							<%}%>
+							</select>
+							
+						<%}%>
+					
+					
+				<!-- MoNT end 19/11/2010 -->
+				
 						 <br/> <br/>
 					<%	
 						}
@@ -505,28 +558,6 @@ configurationActionURL.setParameter("portletResource", portletResource);
 					
 					%>		
 				
-				<!-- start 16/11/2010 MoNT -->
-					vocabularies <%= vocabularies.size() %> 
-					<%
-					for(int i=0;i<vocabularies.size();i++){%>
-						<%= vocabularies.get(i).getName() %>
-					<%}
-					%><br>
-					tagsEntrys <%= tagsEntrys.size() %> <br>
-					<%
-					TagsEntry entry=null;
-					for(int i=0;i<tagsEntrys.size();i++){
-						entry = tagsEntrys.get(i);
-						%>
-						<%= entry.getName() %><br>
-					<%}%>
-					entry <%= entry.getVocabulary().getName() %><br>
-					<% for(int i=0;i<tagsCategories.length;i++){%>
-						tagsCategories<%=i %> <%=tagsCategories[i] %><br>
-					<%}%>
-					-----------------------<br>
-				<!-- end 16/11/2010 MoNT -->	
-							
 				<!-- end minhnv 20100813 -->			
 
 						<liferay-ui:message key="displayed-content-must-contain-the-following-categories" />

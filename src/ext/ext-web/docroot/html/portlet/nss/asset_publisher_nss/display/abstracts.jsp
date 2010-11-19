@@ -216,14 +216,14 @@ else if (className.equals(JournalArticle.class.getName())) {
 		}
 		
 		//MoNT start 18/11/2010
-		//if (abstractNumber == 1) {
-			//sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + " --1--"+categoryParentId +"---"+abstractNumber+ "</a></h5>");
-		//} else {
-			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + " --2--" +categoryParentId +"-"+valueAbstract+"--"+"---"+abstractNumber+"</a></h5>");
-		//}
+		if (abstractNumber == 1) {
+			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+		} else {
+			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title +"</a></h5>");
+		}
 		//MoNT end 18/11/2010
 		
-		sb.append("<h1>" + df.format(asset.getPublishDate())+"--"+vocabularyId +"--"+vocabularyName+ "</h1>");
+		sb.append("<h1>" + df.format(asset.getPublishDate())+ "</h1>");
 		
 		sb.append("<span>" + articleDisplay.getDescription() + "</span>");
 
@@ -289,8 +289,6 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 		
 		<div class="asset-content">
 			<p class="asset-summary">
-			categoryParentId -<%= categoryParentId %>++ valueAbstract
-			-<%= valueAbstract %>
 				<%= summary %>
 			</p>
 
