@@ -221,16 +221,13 @@ try {
 	
 }
 Map<String,String> mapValueAbstractEntry= new HashMap<String,String>();
- for(int i=0;i<tagsAbstractEntrys.size();i++){
-	 long tagsAbstractEntryId=tagsAbstractEntrys.get(i).getEntryId();
-	 String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagsAbstractEntryId,"2"));
-     mapValueAbstractEntry.put(""+tagsAbstractEntryId,valueAbstractEntry);
- } 
 Map<String,String> mapValueChildrenEntry= new HashMap<String,String>(); 
  for(int i=0;i<tagsAbstractEntrys.size();i++){
-	 long tagsChildrenEntryId=tagsAbstractEntrys.get(i).getEntryId();
-	 String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagsChildrenEntryId,"3"));
-	 mapValueChildrenEntry.put(""+tagsChildrenEntryId,valueChildrenEntry); 
+	 long tagEntryId=tagsAbstractEntrys.get(i).getEntryId();
+	 String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagEntryId,"2"));
+     mapValueAbstractEntry.put(""+tagEntryId,valueAbstractEntry);
+     String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagEntryId,"3"));
+	 mapValueChildrenEntry.put(""+tagEntryId,valueChildrenEntry); 
  } 
 //MoNT end 17/11/2010
 

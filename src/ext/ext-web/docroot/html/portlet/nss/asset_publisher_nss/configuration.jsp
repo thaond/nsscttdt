@@ -524,22 +524,24 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 						Tin lien quan Entry
 						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();%>
-						<%=mapValueChildrenEntry.size() %>
 						<% while(iteratorChildrenEntry.hasNext()){ 
 							Map.Entry<String,String> entry = iteratorChildrenEntry.next();
 							String key= entry.getKey();
-							//int entryId= Integer.parseInt(key);
+							int entryId= Integer.parseInt(key);
 							String value= entry.getValue();
-							//int entryValue= Integer.parseInt(value);
+							int entryValue= Integer.parseInt(value);
 							%>
-							<%=key %>-<%=value %>
-							
+							<% if(entryId==tE.getEntryId()){ %>
 							<select name="valueChildrenEntry<%=tE.getEntryId() %>">
 							<% for(int i=1;i<=5;i++){ %>
+								<% if(entryValue==i){ %>
+								<option value="<%=i %>" selected="selected"><%=i %></option>
+						<% }else{ %>
 								<option value="<%=i %>" ><%=i %></option>	
+								<%}%>	
 							<%}%>
 							</select>
-							
+							<%}%>
 						<%}%>
 					
 					

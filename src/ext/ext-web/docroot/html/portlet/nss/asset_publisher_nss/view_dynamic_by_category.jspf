@@ -1,3 +1,4 @@
+<%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%
 /**
@@ -105,30 +106,51 @@ int countChildren=Integer.parseInt(valueChildren);
 List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetAbstract = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetChildren = new ArrayList<TagsAsset>();
-//List<String> listTagLabel = new ArrayList<String>();
 while(itr.hasNext()){
 	Map.Entry<String, List<TagsAsset>> entry = itr.next();
 	List<TagsAsset> tagAsset = entry.getValue();
 	String tagLabel = entry.getKey();
 	listTagAsset.addAll(tagAsset);
-	//listTagLabel.add(tagLabel);
 }
 if(countAbstract<listTagAsset.size()&&tagsEntryId==0){
-	listTagAssetAbstract= listTagAsset.subList(0,countAbstract);
-	listTagAssetChildren=listTagAsset.subList(countAbstract,listTagAsset.size());
-	//listTagLabel=listTagLabel.subList(0,countAbstract);
-}else{
-	listTagAssetAbstract=listTagAsset;
+	listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
+	listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
+}else if(tagsEntryId!=0){
+	Iterator<Map.Entry<String,String>> iterator = mapValueAbstractEntry.entrySet().iterator();
+	while(iterator.hasNext()){
+		Map.Entry<String,String> entry = iterator.next();
+		String key = entry.getKey();
+		int entryId = Integer.parseInt(key);
+		if(entryId == tagsEntryId){
+			countAbstract = Integer.parseInt(entry.getValue());
+			if(countAbstract<listTagAsset.size()){
+				listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
+				listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
+			}else{
+				listTagAssetAbstract = listTagAsset;
+			}
+		}
+	}
+	Iterator<Map.Entry<String,String>> iteratorEntry = mapValueChildrenEntry.entrySet().iterator();
+	while(iteratorEntry.hasNext()){
+		Map.Entry<String,String> entry = iteratorEntry.next();
+		String key = entry.getKey();
+		int entryId = Integer.parseInt(key);
+		if(entryId == tagsEntryId){
+			countChildren = Integer.parseInt(entry.getValue());
+		}
+	}
 }
 if(listTagAsset.size()>0){
-//for(int k=0;k<listTagAsset.size();k++){
-	//String tagLabel = listTagLabel.get(k);
+	//chi de test
 	List<TagsAsset> results = listTagAsset;
-	request.setAttribute("view.jsp-results", results);
 %>
 
 <!-- MoNT end 18/11/2010 -->
-
+ tagsEntryId <%=tagsEntryId %><br>
+ listTagAsset<%=listTagAsset.size() %><br>
+ countAbstract<%=countAbstract %><br>
+ countChildren<%=countChildren %>
 	<div class="asset-tag-entries">
 		<%
 		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {
