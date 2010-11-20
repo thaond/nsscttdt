@@ -29,8 +29,6 @@
 
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 
-List<TagsAsset> results = (List<TagsAsset>)request.getAttribute("view.jsp-results");
-
 int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
 
 TagsAsset asset = (TagsAsset)request.getAttribute("view.jsp-asset");
@@ -49,10 +47,10 @@ boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 request.setAttribute("view.jsp-showIconLabel", true);
 
 // MoNT start 18/11/2010
-String categoryParentId = (String)request.getAttribute("categoryParentId");
+//String categoryParentId = (String)request.getAttribute("categoryParentId");
 //String tagLabel = (String) request.getAttribute("tagLabel");
-String vocabularyId = (String) request.getAttribute("vocabularyId");
-String vocabularyName = (String) request.getAttribute("vocabularyName");
+//String vocabularyId = (String) request.getAttribute("vocabularyId");
+//String vocabularyName = (String) request.getAttribute("vocabularyName");
 // MoNT end 18/11/2010
 
 // minh 20100713
@@ -215,13 +213,11 @@ else if (className.equals(JournalArticle.class.getName())) {
 			sb.append("\" /></a>");
 		}
 		
-		//MoNT start 18/11/2010
 		if (abstractNumber == 1) {
 			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
 		} else {
 			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title +"</a></h5>");
 		}
-		//MoNT end 18/11/2010
 		
 		sb.append("<h1>" + df.format(asset.getPublishDate())+ "</h1>");
 		
@@ -301,8 +297,4 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 
 		
 	</div>
-
-	<c:if test="<%= (assetIndex + 1) == results.size() %>">
-	 <%--<div class="final-separator"><!-- --></div> --%>
-	</c:if>
 </c:if>
