@@ -112,9 +112,13 @@ while(itr.hasNext()){
 	String tagLabel = entry.getKey();
 	listTagAsset.addAll(tagAsset);
 }
-if(countAbstract<listTagAsset.size()&&tagsEntryId==0){
-	listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
-	listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
+if(tagsEntryId==0){
+	if(countAbstract<listTagAsset.size()){
+		listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
+		listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
+	}else{
+		listTagAssetAbstract = listTagAsset;
+	}
 }else if(tagsEntryId!=0){
 	Iterator<Map.Entry<String,String>> iterator = mapValueAbstractEntry.entrySet().iterator();
 	while(iterator.hasNext()){
