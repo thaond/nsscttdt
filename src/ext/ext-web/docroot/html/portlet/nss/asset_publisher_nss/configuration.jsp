@@ -436,7 +436,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 					%>
 					
 				<!-- MoNT start 17/11/2010 -->
-					Tin abstract 
+					<liferay-ui:message key="tin-abstract" />
 					<% int countAbstract = Integer.parseInt(valueAbstract); %>
 					<select name="valueAbstract">
 					<%for(int i=1;i<=5;i++){%>
@@ -447,7 +447,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						<%}%>			
 					<%}%>
 					</select>
-					Tin lien quan
+					<liferay-ui:message key="tin-lien-quan" />
 					<% int countChildren = Integer.parseInt(valueChildren); %>
 					<select name="valueChildren">
 					<%for(int i=1;i<=10;i++){%>
@@ -499,30 +499,24 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 				<!-- MoNT start 19/11/2010 -->
 						Tin abstract Entry
+						<select name="valueAbstractEntry<%=tE.getEntryId() %>">
 						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
-						while(iteratorAbstractEntry.hasNext()){
-							Map.Entry<String,String> entry = iteratorAbstractEntry.next();
-							String key= entry.getKey();
-							int entryId= Integer.parseInt(key);
-							String value= entry.getValue();
-							int entryValue= Integer.parseInt(value);
+							while(iteratorAbstractEntry.hasNext()){
+								Map.Entry<String,String> entry = iteratorAbstractEntry.next();
+								String key= entry.getKey();
+								int entryId= Integer.parseInt(key);
+								String value= entry.getValue();
+								int entryValue= Integer.parseInt(value);
 						%>
-							
-						<% if(entryId==tE.getEntryId()){ %>
-							<select name="valueAbstractEntry<%=tE.getEntryId() %>">
-							<% for(int i=1;i<=5;i++){ %>
-							<% if(entryValue==i){ %>
-								<option value="<%=i %>" selected="selected"><%=i %></option>
-						<% }else{ %>
-								<option value="<%=i %>" ><%=i %></option>	
+								<% for(int i=1;i<=5;i++){ %>
+									<option value="<%=i %>" <%= entryValue == i ? "selected" :" " %>> <%=i %></option>
 								<%}%>
-							<%}%>
-							</select>
-							<%}%>
 						<%}%>
-						
+					
+						</select>
 						
 						Tin lien quan Entry
+						<select name="valueChildrenEntry<%=tE.getEntryId() %>">
 						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();%>
 						<% while(iteratorChildrenEntry.hasNext()){ 
 							Map.Entry<String,String> entry = iteratorChildrenEntry.next();
@@ -531,19 +525,11 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							String value= entry.getValue();
 							int entryValue= Integer.parseInt(value);
 							%>
-							<% if(entryId==tE.getEntryId()){ %>
-							<select name="valueChildrenEntry<%=tE.getEntryId() %>">
-							<% for(int i=1;i<=5;i++){ %>
-								<% if(entryValue==i){ %>
-								<option value="<%=i %>" selected="selected"><%=i %></option>
-						<% }else{ %>
-								<option value="<%=i %>" ><%=i %></option>	
-								<%}%>	
-							<%}%>
-							</select>
-							<%}%>
+								<% for(int i=1;i<=5;i++){ %>
+									<option value="<%=i %>" <%= entryValue == i ? "selected" :" " %>> <%=i %></option>
+								<%}%>
 						<%}%>
-					
+						</select>
 					
 				<!-- MoNT end 19/11/2010 -->
 				
