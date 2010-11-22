@@ -422,42 +422,6 @@
 		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
 		<property name="serviceInterface" value="com.nss.portlet.media_library.service.MediaLibraryService" />
 	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_DigitalSignatureService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.DigitalSignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_DigitalSignatureService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.DigitalSignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_DigitalSignatureService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.DigitalSignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_SignatureService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.SignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.SignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_SignatureService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.SignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.SignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_SignatureService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.SignatureService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.SignatureService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_CertificateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.CertificateService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_CertificateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.CertificateService" />
-	</bean>
-	<bean name="/com_nss_portlet_digitalsignature_service_spring_CertificateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
-		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
-		<property name="serviceInterface" value="com.nss.portlet.digitalsignature.service.CertificateService" />
-	</bean>
 	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
 		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
 		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
@@ -493,5 +457,17 @@
 	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
 		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
 		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
 	</bean>
 </beans>
