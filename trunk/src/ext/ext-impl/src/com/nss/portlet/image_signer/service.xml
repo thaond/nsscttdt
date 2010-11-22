@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.nss.portlet.image_signer">
+	<namespace>ImageSigner</namespace>
+	<entity name="ImageSigner" local-service="true" remote-service="true" table="nss_image_signer">
+		<column name="imageSignerId" type="long" primary="true"></column>
+		<column name="imagePath" type="String"></column>
+		<column name="imageExtend" type="String"></column>
+		<column name="imageSize" type="double"></column>
+		<column name="userId" type="long"></column>
+	</entity>
+</service-builder>
