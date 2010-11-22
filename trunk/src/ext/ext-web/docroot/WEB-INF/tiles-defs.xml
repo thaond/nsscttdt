@@ -251,7 +251,7 @@
     <definition extends="portlet" name="portlet.nss.media_library_display.view">
         <put name="portlet_content" value="/portlet/nss/media_library_display/view.jsp"/>
     </definition>
-        <!-- Meeting Calendar -->
+    <!-- Meeting Calendar -->
     <definition extends="portlet" name="portlet.ext.meeting_calendar"/>
     <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_event">
         <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_event.jsp"/>
@@ -286,12 +286,15 @@
     <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.select_organization">
         <put name="portlet_content" value="/portlet/ext/meeting_calendar/select_organization.jsp"/>
     </definition>
-      <!-- Meeting Calendar View -->
+    <!-- Meeting Calendar View -->
     <definition extends="portlet" name="portlet.ext.meetingcalendarview"/>
     <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.view">
         <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/view.jsp"/>
     </definition>
     <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.edit_view">
         <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/edit_view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.image_signer.view">
+        <put name="portlet_content" value="/portlet/nss/image_signer/view.jsp"/>
     </definition>
 </tiles-definitions>

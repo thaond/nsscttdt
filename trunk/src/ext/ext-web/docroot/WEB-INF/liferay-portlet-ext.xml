@@ -886,4 +886,9 @@
         <instanceable>false</instanceable>
     </portlet>
     <!-- #### end ######## -->
+    <portlet>
+        <portlet-name>NSS_IMAGE_SIGNER</portlet-name>
+        <struts-path>nss/image_signer</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
 </liferay-portlet-app>
