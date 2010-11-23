@@ -1,0 +1,337 @@
+/******************** Start ********************/
+/***** a style sheet *****/ 
+a {
+  color: #003366;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#content-wrapper {
+background:transparent none repeat scroll 0 0;
+max-width:100%;
+min-width:400px;
+width:100%;
+}
+/*
+.columns-1 #column-1, .columns-max #column-1 {
+clear:both;
+display:table;
+padding-left:0;
+padding-right:0;
+min-width:450px;
+width:450px;
+max-width:90%;
+}
+*/
+/***** div style sheet *****/ 
+.div { /* dung cho khung nhap du lieu tim kiem hoac them moi/hieu chinh nhanh */
+	align: center;
+	border: 1px solid #BFBFBF; 
+	padding: 5px 4px 5px 4px;
+	width: 98%;
+	background-color:  #DBE8FA;
+	margin: auto;
+}
+
+.div_result {
+	align: left;
+	background-color:  #E3E7E8;
+	background:#F4FDEF url(../images/messages/success.gif) no-repeat scroll 0.5em 50%;
+	border:1px solid #3F9305;
+	display:block;
+	margin:0.15em auto 1.2em;
+	padding:0.5em 0.5em 0.5em 2.8em;
+	text-align:left;
+}
+.div_result_fail {
+	align: left;
+	background-color:  #FFDDDD;
+	background:#FFDDDD url(../images/messages/error.png) no-repeat scroll 6px 50%;
+	border:1px solid #FF0000;
+	display:block;
+	font-weight:bold;
+	margin:2px auto 14px;
+	padding:6px 6px 6px 30px;
+	text-align:left;
+}
+.div_content_scroll_popup { /* dung de hien thi noi dung cua popup co thanh cuon */ 
+	align: left;
+	background-color:  #FFFDFC;
+	border: 1px solid #B0F3FF;
+	display: block;
+	margin: 0px;
+	padding: 0em 0em 0em 0em;
+	text-align: left;
+	/*xuancong height: 100%;*/
+	width: 99.5%;
+	/*xuancong overflow: scroll;*/
+	overflow-x: hidden; 
+	overflow-y: auto;
+	position: inline; 
+	/*xuancong z-index: 1;*/
+}
+
+/***** form style sheet *****/ 
+.frmSearch tr {
+	height: 27px;	
+}
+
+.frmSearch img:hover {
+	cursor: pointer;
+}
+
+.frmSearch a {
+	color: #003366;
+}
+
+.frmSearch a:hover {
+	color: #0066CC;
+	text-decoration: none;
+}
+
+.frmSearch img:hover {
+	cursor: pointer;
+}
+
+.frmUpload tr {
+	height: 27px;	
+}
+
+/***** h style sheet *****/ 
+h1, h2 {
+	color: #000033;
+}
+
+h3, h4, h5, h6 {
+	color: #006699;
+}
+
+/***** image style sheet *****/ 
+img:hover {
+	cursor: pointer;
+}
+
+/***** table style sheet *****/ 
+.table_custom {
+	border-collapse: collapse;
+}
+
+.table_custom img:hover {
+	cursor: pointer;
+}
+
+.table {
+	background-color: #EBEADB;
+	border : 0;
+	width : 100%; 
+	cellspacing : 0; 
+	border-style: collapse; 
+}
+
+.table_detail {
+	/*background-color: #E3E7E8;
+	border : 0;
+	cellspacing : 0; 
+	border-style: collapse; */
+	border:1px solid #7794CB;
+}
+
+.table_popup {
+	background-color: #B0F3FF;
+	min-width:300px;
+	width: 100%;
+	max-width:100%;
+	border : 0;
+	cellspacing : 0; 
+	border-style: collapse; 
+}
+
+.table_popup_RelKeyword
+{
+background-color:#B0F3FF;
+min-width:300px;
+width: 100%;
+max-width:100%;
+border:0 none;
+}
+.table_search {
+	background-color:#DBE8FA;
+	border:0;
+	width:100%; 
+	cellspacing:0; 
+	border-style: collapse; 
+}
+
+/***** td style sheet *****/ 
+.td_header {
+	border-bottom: 1px solid #CCCCCC;
+	color: #0033FF;
+	font-weight: bold;
+	padding: 0.3em 0.5em;	
+}
+
+.td_le {
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 0.5em;	
+}
+
+.td_chan {
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 1px solid #BFBFBF;
+	padding: 0.3em 0.5em;
+}
+
+.td_base {
+	padding: 1px 5px 1px 0px;
+	background-color: #DBE8FA;
+}
+
+.td_detail_title {
+/*
+	background-color: #3399CC;
+	border-bottom: 1px solid #BFBFBF;
+	border-top: 1px solid #BFBFBF;
+	color: #FFFFFF;
+*/
+	padding: 0.3em 0.5em;	
+	text-align: right;
+	background-color:#FFFFE6;
+	border:1px solid #7794CB;
+	color:#378AD0;
+	font-weight:bold;
+}
+
+.td_detail_content {
+	/*border-bottom: 1px solid rgb(212, 212, 212);
+	border-top: 1px solid #BFBFBF;
+	background-color: #FFFFE5;*/
+	padding: 0.3em 0.5em;	
+	text-align: left;
+	background-color:#FFFFE6;
+	border:1px solid #7794CB;
+}
+
+.tdLeft {
+	text-align: right;
+}
+
+.tdRight {
+	text-align: left;
+	padding-left: 5px;
+}
+
+.td_table {
+	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px; 
+	font-weight: normal;
+	color: black;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 25px;
+}
+
+.td_color {
+	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px; 
+	font-weight: normal;
+	color: black;
+	background-color: #D5EAFF;
+}
+
+.td_attach_table_1 {
+	background:#3A7D8C none repeat scroll 0 0;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding:8px 8px 8px 15px;
+}
+
+.td_attach_table_2 {
+	background: #EAF5F5 none repeat scroll 0 0;
+}
+
+.td_attach_table_2 a{
+font-weight:normal;
+}
+
+.td_attach_table_2 ul{
+list-next-style-type:none;
+/*padding-left:10px;*/
+margin-left:1em;
+}
+
+.td_attach_table_2 li{
+background-image:url(/images/custom/icon_links.gif);
+background-repeat:no-repeat;
+background-position:20px 12px;
+margin-left:-25px;
+padding-left:40px;
+margin-bottom:-10px;
+background-color:#EAF5F5;
+padding-top:8px;
+padding-bottom:8px;
+color:#666;
+font-size:11px;
+}
+
+.td_attach_table_2 ul li a{
+color:#000;
+font-size:12px;
+}
+
+.td_attach_table_2 img{
+padding-right:10px;
+}
+
+/***** text style sheet *****/ 
+.text_div_result {
+	color: #0066FF;
+}
+.text_div_result_fail {
+	color: #000000;
+	font-weight:bold;
+}
+.text_title_popup {
+	font-family: Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	color: #0066FF;
+	font-size: 16pt;
+}
+/***** portlet title *****/ 
+/***** tr style sheet *****/ 
+.tr_header {
+	background: #DBE8FA none repeat scroll 0%;
+	/*xuancong padding: 1px 0pt 0pt;*/
+}
+
+.tr_le {
+	background: #FFFFFF none repeat scroll 0 0;
+	color: #000000;
+	padding: 1px 0px 0px 1px;
+}
+
+.tr_le:hover {
+	background: #A8D6ED;
+}
+
+.tr_chan {
+	background: #E9F5FF none repeat scroll 0%;
+	color: #000000;
+	padding: 1px 0px 0px 1px;
+}
+
+.tr_chan:hover {
+	background: #A8D6ED;	
+}
+
+.tr_hover {
+	background: #A8D6ED;
+}
+
+.tr_title {
+	background-color: #CCCCFF;
+	font-weight: bold;
+	border-bottom: solid 1px #D4D4D4;
+	height: 30px;
+}
+
+/******************** End ********************/

@@ -1,0 +1,118 @@
+body {
+	font-family: Arial, Verdana, tahoma, Helvetica, sans-serif;
+	font-size: 9pt;
+	background-color: #0185d0;
+	background-image: url(../images/cttdt/bgbody.jpg);
+	background-repeat: repeat-x;
+	background-position: top;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #0090ed;
+	text-decoration: none;
+}
+a:hover {
+	color: #006aed;
+	text-decoration: none;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+li {
+	list-style-type: none !important;
+}
+
+a img {
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+h1 {
+	font-size: 8.5pt;
+	color: #777;
+	font-weight: normal;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+h2 {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #fffc00;
+	background-image: url(../images/cttdt/iconh2.png);
+	background-repeat: no-repeat;
+	background-position: left 3px;
+	padding-left: 15px;
+	padding-bottom: 3px;
+	margin-top: 10px;
+}
+h3 {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	display: block;
+	height: 22px;
+	padding-top: 6px;
+	padding-left: 35px;
+}
+h5 {
+	font-size: 15px;
+	font-weight: normal;
+	color: #FF6600;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	clear: both;
+	padding: 0;
+	margin: 0;
+}
+td,th {padding: 4px;margin: 0;vertical-align: top;text-align: left;}
+.nopadd,.top-left,.back-top,.top-right,.back-left,.back-right {padding: 0 !important;}
+fieldset, img {	border: 0;}
+.current-community {display: none;}
+.portal-tool-tip {
+	background: #FFF url(../images/forms/button.png) repeat-x 0 100%;
+	border: 1px solid;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	color: #1E2529;
+	max-width: 200px;
+	padding: 6px 4px;
+}
+
+/* ---------- Loading animation ---------- */
+
+.loading-animation {
+	background: url(../images/progress_bar/loading_animation.gif) no-repeat top center;
+	margin-top: 10px;
+	padding-top: 40px;
+	text-align: left;
+}
+
+/* ---------- Separator ---------- */
+
+hr, .separator {
+	border-top: 1px dotted #BFBFBF;
+}
+
+/* ---------- Update Manager ---------- */
+
+.update-available {
+	margin-top: 10px;
+	padding: 2px;
+	text-align: left;
+}
+
+/* ---------- Text highlighting ---------- */
+
+.highlight {
+	background: #FFC;
+	font-weight: bold;
+	padding: 0 1px;
+}
