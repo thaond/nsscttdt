@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.linh_vuc_van_ban">
+	<namespace>LoaiVanBan</namespace>
+	<entity name="LinhVucVanBan" local-service="true" remote-service="true" table="nss_linh_vuc_van_ban">
+		<column name="maLinhVucVanBan" type="long" db-name="ma_linh_vuc_van_ban" primary="true" />
+		
+		<column name="tenLinhVucVanBan" type="String" db-name="ten_linh_vuc_van_ban" />
+		<column name="parentid" type="long" db-name="parentid" />
+		
+		<column name="companyid" type="long" db-name="companyid" />
+	  	<column name="userid" type="long" db-name="userid" />
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="modifieddate" type="Date" db-name="modifieddate" />
+		
+		<column name="active" type="int" db-name="active" />
+		<column name="description" type="String" db-name="description" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="tenLinhVucVanBan" case-sensitive="false" />
+	    </order>
+	    
+	    <!-- Finder methods -->
+	    <finder name="ParentId" return-type="Collection">
+	   		<finder-column name="parentid"/>
+	    </finder>
+	    <finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	</entity>
+</service-builder>
