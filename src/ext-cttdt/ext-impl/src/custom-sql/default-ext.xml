@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+  
+  <custom-sql>    
+	<sql file="custom-sql/vanbanphapquy.xml" />	
+	<sql file="custom-sql/chat.xml" />	
+	<sql file="custom-sql/loaivanban.xml" />	
+	<sql file="custom-sql/linhvucvanban.xml" />	
+	<sql file="custom-sql/lienketwebsite.xml" />	
+	<sql file="custom-sql/loaiwebsite.xml" />	
+	<sql file="custom-sql/coquanbanhanh.xml" />	
+	<sql file="custom-sql/partner.xml" />	
+	<sql file="custom-sql/thongtincanthiet.xml" />	
+	<sql file="custom-sql/quangcao.xml" />	
+	<sql file="custom-sql/donvithutuc.xml" />	
+	<sql file="custom-sql/loaithutuchanhchinh.xml" />	
+	<sql file="custom-sql/linhvucthutuchanhchinh.xml" />	
+	<sql file="custom-sql/meeting_calendar.xml" />
+</custom-sql>
