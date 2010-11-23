@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.van_ban_phap_quy">
+	<namespace>VanBanPhapQuy</namespace>
+	
+	<entity name="VanBanPhapQuy" local-service="true" remote-service="true" table="nss_van_ban_phap_quy">
+		<column name="maVanBanPhapQuy" type="long" db-name="ma_van_ban_phap_quy" primary="true" />
+		
+		<column name="kyHieuVanBan" type="String" db-name="ky_hieu_van_ban" />
+		<column name="maLoaiVanBan" type="long" db-name="ma_loai_van_ban" />
+		<column name="maLinhVucVanBan" type="long" db-name="ma_linh_vuc_van_ban" />
+		<column name="tomTat" type="String" db-name="tom_tat" />
+		<column name="nguon" type="String" db-name="nguon" />
+		<column name="noiDung" type="String" db-name="noi_dung" />
+		<column name="ngayKy" type="Date" db-name="ngay_ky" />
+		<column name="ngayCoHieuLuc" type="Date" db-name="ngay_co_hieu_luc" />
+		<column name="nguoiKy" type="String" db-name="nguoi_ky" />
+		<column name="ngayBanHanh" type="Date" db-name="ngay_ban_hanh" />
+		<column name="ngayHetHieuLuc" type="Date" db-name="ngay_het_hieu_luc" />
+		<column name="maCoQuanBanHanh" type="long" db-name="ma_co_quan_ban_hanh" />
+		<column name="tag_" type="String" db-name="tag_" />
+		
+		<column name="companyid" type="long" db-name="companyid" />
+	  	<column name="userid" type="long" db-name="userid" />
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="modifieddate" type="Date" db-name="modifieddate" />
+		
+		<column name="active" type="int" db-name="active" />
+		<column name="description" type="String" db-name="description" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="kyHieuVanBan" case-sensitive="false" />
+	    </order>
+		
+		<!-- Finder methods -->
+	    <finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	    <finder name="MaLoaiVanBan" return-type="Collection">
+	   		<finder-column name="maLoaiVanBan"/>
+	    </finder>
+	    <finder name="MaLinhVucVanBan" return-type="Collection">
+	   		<finder-column name="maLinhVucVanBan"/>
+	    </finder>
+	    <finder name="MaCoQuanBanHanh" return-type="Collection">
+	   		<finder-column name="maCoQuanBanHanh"/>
+	    </finder>
+	</entity>
+	
+	<entity name="FileDinhKem" local-service="true" remote-service="true" table="nss_file_dinh_kem">
+		<column name="maFileDinhKem" type="long" db-name="ma_file_dinh_kem" primary="true" />		
+		<column name="maVanBanPhapQuy" type="long" db-name="ma_van_ban_phap_quy" />
+		<column name="tenFile" type="String" db-name="ten_file" />
+		<column name="moTa" type="String" db-name="mo_ta" />
+		<column name="kichThuoc" type="long" db-name="kich_thuoc" />		
+		<column name="duongDan" type="String" db-name="duong_dan" />
+		<column name="phienBan" type="int" db-name="phien_ban" />	
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="maFileDinhKem" case-sensitive="false" />
+	    </order>
+		
+		<!-- Finder methods -->
+	    <finder name="maVanBanPhapQuy_PhienBan" return-type="Collection">
+	   		<finder-column name="maVanBanPhapQuy"/>
+	   		<finder-column name="phienBan"/>
+	    </finder>
+	    
+	     <finder name="maVanBanPhapQuy" return-type="Collection">
+	   		<finder-column name="maVanBanPhapQuy"/>
+	    </finder>
+	</entity>
+	
+</service-builder>
