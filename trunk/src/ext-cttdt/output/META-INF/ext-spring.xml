@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="com.ext.portlet.reports.service.ReportsEntryService.impl" class="com.ext.portlet.reports.service.impl.ReportsEntryServiceImpl" />
+	<bean id="com.ext.portlet.reports.service.ReportsEntryService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.reports.service.ReportsEntryService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.reports.service.ReportsEntryServiceUtil" class="com.ext.portlet.reports.service.ReportsEntryServiceUtil">
+		<property name="service" ref="com.ext.portlet.reports.service.ReportsEntryService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.reports.service.persistence.ReportsEntryPersistence.impl" class="com.ext.portlet.reports.service.persistence.ReportsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.reports.service.persistence.ReportsEntryUtil" class="com.ext.portlet.reports.service.persistence.ReportsEntryUtil">
+		<property name="persistence" ref="com.ext.portlet.reports.service.persistence.ReportsEntryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalArticleLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalArticleLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalArticleLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleService.impl" class="com.liferay.portlet.journal.service.impl.JournalArticleServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalArticleService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalArticleService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleServiceUtil" class="com.liferay.portlet.journal.service.JournalArticleServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticlePersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalArticlePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleUtil" class="com.liferay.portlet.journal.service.persistence.JournalArticleUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalArticlePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleFinder.impl" class="com.liferay.portlet.journal.service.persistence.JournalArticleFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleFinderUtil" class="com.liferay.portlet.journal.service.persistence.JournalArticleFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.journal.service.persistence.JournalArticleFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleImageLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalArticleImageLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalArticleImageLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalArticleImageLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleImageLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalArticleImageLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleImageLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleImageUtil" class="com.liferay.portlet.journal.service.persistence.JournalArticleImageUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleResourceLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalArticleResourceLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalArticleResourceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalArticleResourceLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleResourceLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalArticleResourceUtil" class="com.liferay.portlet.journal.service.persistence.JournalArticleResourceUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalContentSearchLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalContentSearchLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalContentSearchLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalContentSearchLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalContentSearchLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalContentSearchUtil" class="com.liferay.portlet.journal.service.persistence.JournalContentSearchUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalFeedLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalFeedLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalFeedLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalFeedLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalFeedLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalFeedLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalFeedLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalFeedService.impl" class="com.liferay.portlet.journal.service.impl.JournalFeedServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalFeedService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalFeedService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalFeedServiceUtil" class="com.liferay.portlet.journal.service.JournalFeedServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalFeedService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalFeedPersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalFeedPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalFeedUtil" class="com.liferay.portlet.journal.service.persistence.JournalFeedUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalFeedPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalFeedFinder.impl" class="com.liferay.portlet.journal.service.persistence.JournalFeedFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalFeedFinderUtil" class="com.liferay.portlet.journal.service.persistence.JournalFeedFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.journal.service.persistence.JournalFeedFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalStructureLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalStructureLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalStructureLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalStructureLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalStructureLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalStructureService.impl" class="com.liferay.portlet.journal.service.impl.JournalStructureServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalStructureService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalStructureService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalStructureServiceUtil" class="com.liferay.portlet.journal.service.JournalStructureServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalStructureService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalStructurePersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalStructurePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalStructureUtil" class="com.liferay.portlet.journal.service.persistence.JournalStructureUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalStructurePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalStructureFinder.impl" class="com.liferay.portlet.journal.service.persistence.JournalStructureFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalStructureFinderUtil" class="com.liferay.portlet.journal.service.persistence.JournalStructureFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.journal.service.persistence.JournalStructureFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateLocalService.impl" class="com.liferay.portlet.journal.service.impl.JournalTemplateLocalServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalTemplateLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil" class="com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalTemplateLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateService.impl" class="com.liferay.portlet.journal.service.impl.JournalTemplateServiceImpl" />
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.journal.service.JournalTemplateService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.JournalTemplateServiceUtil" class="com.liferay.portlet.journal.service.JournalTemplateServiceUtil">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalTemplateService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence.impl" class="com.liferay.portlet.journal.service.persistence.JournalTemplatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalTemplateUtil" class="com.liferay.portlet.journal.service.persistence.JournalTemplateUtil">
+		<property name="persistence" ref="com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalTemplateFinder.impl" class="com.liferay.portlet.journal.service.persistence.JournalTemplateFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.journal.service.persistence.JournalTemplateFinderUtil" class="com.liferay.portlet.journal.service.persistence.JournalTemplateFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.journal.service.persistence.JournalTemplateFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalService.impl" class="com.nss.portlet.journalworkflow.service.impl.JournalProcessDefinitionLocalServiceImpl" />
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil" class="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" class="com.nss.portlet.journalworkflow.service.impl.JournalProcessDefinitionServiceImpl" />
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionServiceUtil" class="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionServiceUtil">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionPersistence.impl" class="com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionUtil" class="com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionUtil">
+		<property name="persistence" ref="com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanLocalService.impl" class="com.nss.portlet.journalworkflow.service.impl.InstanceBeanLocalServiceImpl" />
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journalworkflow.service.InstanceBeanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanLocalServiceUtil" class="com.nss.portlet.journalworkflow.service.InstanceBeanLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.InstanceBeanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" class="com.nss.portlet.journalworkflow.service.impl.InstanceBeanServiceImpl" />
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.InstanceBeanServiceUtil" class="com.nss.portlet.journalworkflow.service.InstanceBeanServiceUtil">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journalworkflow.service.persistence.InstanceBeanPersistence.impl" class="com.nss.portlet.journalworkflow.service.persistence.InstanceBeanPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journalworkflow.service.persistence.InstanceBeanUtil" class="com.nss.portlet.journalworkflow.service.persistence.InstanceBeanUtil">
+		<property name="persistence" ref="com.nss.portlet.journalworkflow.service.persistence.InstanceBeanPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalService.impl" class="com.nss.portlet.van_ban_phap_quy.service.impl.VanBanPhapQuyLocalServiceImpl" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalServiceUtil" class="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" class="com.nss.portlet.van_ban_phap_quy.service.impl.VanBanPhapQuyServiceImpl" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyServiceUtil" class="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyServiceUtil">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyPersistence.impl" class="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyUtil" class="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyUtil">
+		<property name="persistence" ref="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinder.impl" class="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinderUtil" class="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinderUtil">
+		<property name="finder" ref="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalService.impl" class="com.nss.portlet.van_ban_phap_quy.service.impl.FileDinhKemLocalServiceImpl" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalServiceUtil" class="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" class="com.nss.portlet.van_ban_phap_quy.service.impl.FileDinhKemServiceImpl" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemServiceUtil" class="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemServiceUtil">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemPersistence.impl" class="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemUtil" class="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemUtil">
+		<property name="persistence" ref="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemFinder.impl" class="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemFinderUtil" class="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemFinderUtil">
+		<property name="finder" ref="com.nss.portlet.van_ban_phap_quy.service.persistence.FileDinhKemFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.EntryLocalService.impl" class="com.nss.portlet.chat.service.impl.EntryLocalServiceImpl" />
+	<bean id="com.nss.portlet.chat.service.EntryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.chat.service.EntryLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.EntryLocalServiceUtil" class="com.nss.portlet.chat.service.EntryLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.chat.service.EntryLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.persistence.EntryPersistence.impl" class="com.nss.portlet.chat.service.persistence.EntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.chat.service.persistence.EntryUtil" class="com.nss.portlet.chat.service.persistence.EntryUtil">
+		<property name="persistence" ref="com.nss.portlet.chat.service.persistence.EntryPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.persistence.EntryFinder.impl" class="com.nss.portlet.chat.service.persistence.EntryFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.chat.service.persistence.EntryFinderUtil" class="com.nss.portlet.chat.service.persistence.EntryFinderUtil">
+		<property name="finder" ref="com.nss.portlet.chat.service.persistence.EntryFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.StatusLocalService.impl" class="com.nss.portlet.chat.service.impl.StatusLocalServiceImpl" />
+	<bean id="com.nss.portlet.chat.service.StatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.chat.service.StatusLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.StatusLocalServiceUtil" class="com.nss.portlet.chat.service.StatusLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.chat.service.StatusLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.persistence.StatusPersistence.impl" class="com.nss.portlet.chat.service.persistence.StatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.chat.service.persistence.StatusUtil" class="com.nss.portlet.chat.service.persistence.StatusUtil">
+		<property name="persistence" ref="com.nss.portlet.chat.service.persistence.StatusPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.chat.service.persistence.StatusFinder.impl" class="com.nss.portlet.chat.service.persistence.StatusFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.chat.service.persistence.StatusFinderUtil" class="com.nss.portlet.chat.service.persistence.StatusFinderUtil">
+		<property name="finder" ref="com.nss.portlet.chat.service.persistence.StatusFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalService.impl" class="com.nss.portlet.loai_van_ban.service.impl.LoaiVanBanLocalServiceImpl" />
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalServiceUtil" class="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" class="com.nss.portlet.loai_van_ban.service.impl.LoaiVanBanServiceImpl" />
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.LoaiVanBanServiceUtil" class="com.nss.portlet.loai_van_ban.service.LoaiVanBanServiceUtil">
+		<property name="service" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanPersistence.impl" class="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanUtil" class="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanUtil">
+		<property name="persistence" ref="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanFinder.impl" class="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanFinderUtil" class="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanFinderUtil">
+		<property name="finder" ref="com.nss.portlet.loai_van_ban.service.persistence.LoaiVanBanFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalService.impl" class="com.nss.portlet.linh_vuc_van_ban.service.impl.LinhVucVanBanLocalServiceImpl" />
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalServiceUtil" class="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" class="com.nss.portlet.linh_vuc_van_ban.service.impl.LinhVucVanBanServiceImpl" />
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanServiceUtil" class="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanServiceUtil">
+		<property name="service" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanPersistence.impl" class="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanUtil" class="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanUtil">
+		<property name="persistence" ref="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanFinder.impl" class="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanFinderUtil" class="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanFinderUtil">
+		<property name="finder" ref="com.nss.portlet.linh_vuc_van_ban.service.persistence.LinhVucVanBanFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteLocalService.impl" class="com.nss.portlet.link.service.impl.LienKetWebsiteLocalServiceImpl" />
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.link.service.LienKetWebsiteLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteLocalServiceUtil" class="com.nss.portlet.link.service.LienKetWebsiteLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.link.service.LienKetWebsiteLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteService.impl" class="com.nss.portlet.link.service.impl.LienKetWebsiteServiceImpl" />
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.link.service.LienKetWebsiteService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LienKetWebsiteServiceUtil" class="com.nss.portlet.link.service.LienKetWebsiteServiceUtil">
+		<property name="service" ref="com.nss.portlet.link.service.LienKetWebsiteService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.persistence.LienKetWebsitePersistence.impl" class="com.nss.portlet.link.service.persistence.LienKetWebsitePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.link.service.persistence.LienKetWebsiteUtil" class="com.nss.portlet.link.service.persistence.LienKetWebsiteUtil">
+		<property name="persistence" ref="com.nss.portlet.link.service.persistence.LienKetWebsitePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.persistence.LienKetWebsiteFinder.impl" class="com.nss.portlet.link.service.persistence.LienKetWebsiteFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.link.service.persistence.LienKetWebsiteFinderUtil" class="com.nss.portlet.link.service.persistence.LienKetWebsiteFinderUtil">
+		<property name="finder" ref="com.nss.portlet.link.service.persistence.LienKetWebsiteFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteLocalService.impl" class="com.nss.portlet.link.service.impl.LoaiWebsiteLocalServiceImpl" />
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.link.service.LoaiWebsiteLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteLocalServiceUtil" class="com.nss.portlet.link.service.LoaiWebsiteLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.link.service.LoaiWebsiteLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteService.impl" class="com.nss.portlet.link.service.impl.LoaiWebsiteServiceImpl" />
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.link.service.LoaiWebsiteService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.LoaiWebsiteServiceUtil" class="com.nss.portlet.link.service.LoaiWebsiteServiceUtil">
+		<property name="service" ref="com.nss.portlet.link.service.LoaiWebsiteService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.persistence.LoaiWebsitePersistence.impl" class="com.nss.portlet.link.service.persistence.LoaiWebsitePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.link.service.persistence.LoaiWebsiteUtil" class="com.nss.portlet.link.service.persistence.LoaiWebsiteUtil">
+		<property name="persistence" ref="com.nss.portlet.link.service.persistence.LoaiWebsitePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.link.service.persistence.LoaiWebsiteFinder.impl" class="com.nss.portlet.link.service.persistence.LoaiWebsiteFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.link.service.persistence.LoaiWebsiteFinderUtil" class="com.nss.portlet.link.service.persistence.LoaiWebsiteFinderUtil">
+		<property name="finder" ref="com.nss.portlet.link.service.persistence.LoaiWebsiteFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalService.impl" class="com.nss.portlet.co_quan_ban_hanh.service.impl.CoQuanBanHanhLocalServiceImpl" />
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalServiceUtil" class="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" class="com.nss.portlet.co_quan_ban_hanh.service.impl.CoQuanBanHanhServiceImpl" />
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhServiceUtil" class="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhServiceUtil">
+		<property name="service" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhPersistence.impl" class="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhUtil" class="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhUtil">
+		<property name="persistence" ref="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhFinder.impl" class="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhFinderUtil" class="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhFinderUtil">
+		<property name="finder" ref="com.nss.portlet.co_quan_ban_hanh.service.persistence.CoQuanBanHanhFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.PartnerLocalService.impl" class="com.nss.portlet.partner.service.impl.PartnerLocalServiceImpl" />
+	<bean id="com.nss.portlet.partner.service.PartnerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.partner.service.PartnerLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.PartnerLocalServiceUtil" class="com.nss.portlet.partner.service.PartnerLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.partner.service.PartnerLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.PartnerService.impl" class="com.nss.portlet.partner.service.impl.PartnerServiceImpl" />
+	<bean id="com.nss.portlet.partner.service.PartnerService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.partner.service.PartnerService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.PartnerServiceUtil" class="com.nss.portlet.partner.service.PartnerServiceUtil">
+		<property name="service" ref="com.nss.portlet.partner.service.PartnerService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.persistence.PartnerPersistence.impl" class="com.nss.portlet.partner.service.persistence.PartnerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.partner.service.persistence.PartnerUtil" class="com.nss.portlet.partner.service.persistence.PartnerUtil">
+		<property name="persistence" ref="com.nss.portlet.partner.service.persistence.PartnerPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.partner.service.persistence.PartnerFinder.impl" class="com.nss.portlet.partner.service.persistence.PartnerFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.partner.service.persistence.PartnerFinderUtil" class="com.nss.portlet.partner.service.persistence.PartnerFinderUtil">
+		<property name="finder" ref="com.nss.portlet.partner.service.persistence.PartnerFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalService.impl" class="com.nss.portlet.necessary_info.service.impl.ThongTinCanThietLocalServiceImpl" />
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalServiceUtil" class="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" class="com.nss.portlet.necessary_info.service.impl.ThongTinCanThietServiceImpl" />
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.ThongTinCanThietServiceUtil" class="com.nss.portlet.necessary_info.service.ThongTinCanThietServiceUtil">
+		<property name="service" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietPersistence.impl" class="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietUtil" class="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietUtil">
+		<property name="persistence" ref="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietFinder.impl" class="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietFinderUtil" class="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietFinderUtil">
+		<property name="finder" ref="com.nss.portlet.necessary_info.service.persistence.ThongTinCanThietFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.QuangCaoLocalService.impl" class="com.nss.portlet.adv.service.impl.QuangCaoLocalServiceImpl" />
+	<bean id="com.nss.portlet.adv.service.QuangCaoLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.adv.service.QuangCaoLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.QuangCaoLocalServiceUtil" class="com.nss.portlet.adv.service.QuangCaoLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.adv.service.QuangCaoLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.QuangCaoService.impl" class="com.nss.portlet.adv.service.impl.QuangCaoServiceImpl" />
+	<bean id="com.nss.portlet.adv.service.QuangCaoService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.adv.service.QuangCaoService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.QuangCaoServiceUtil" class="com.nss.portlet.adv.service.QuangCaoServiceUtil">
+		<property name="service" ref="com.nss.portlet.adv.service.QuangCaoService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.persistence.QuangCaoPersistence.impl" class="com.nss.portlet.adv.service.persistence.QuangCaoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.adv.service.persistence.QuangCaoUtil" class="com.nss.portlet.adv.service.persistence.QuangCaoUtil">
+		<property name="persistence" ref="com.nss.portlet.adv.service.persistence.QuangCaoPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.adv.service.persistence.QuangCaoFinder.impl" class="com.nss.portlet.adv.service.persistence.QuangCaoFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.adv.service.persistence.QuangCaoFinderUtil" class="com.nss.portlet.adv.service.persistence.QuangCaoFinderUtil">
+		<property name="finder" ref="com.nss.portlet.adv.service.persistence.QuangCaoFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalService.impl" class="com.nss.portlet.nss_don_vi_thu_tuc.service.impl.DonViThuTucLocalServiceImpl" />
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalServiceUtil" class="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" class="com.nss.portlet.nss_don_vi_thu_tuc.service.impl.DonViThuTucServiceImpl" />
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucServiceUtil" class="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucServiceUtil">
+		<property name="service" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucPersistence.impl" class="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucUtil" class="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucUtil">
+		<property name="persistence" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucFinder.impl" class="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucFinderUtil" class="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucFinderUtil">
+		<property name="finder" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.persistence.DonViThuTucFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalService.impl" class="com.nss.portlet.loai_thu_tuc.service.impl.LoaiThuTucHanhChinhLocalServiceImpl" />
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalServiceUtil" class="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" class="com.nss.portlet.loai_thu_tuc.service.impl.LoaiThuTucHanhChinhServiceImpl" />
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhServiceUtil" class="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhServiceUtil">
+		<property name="service" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhPersistence.impl" class="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhUtil" class="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhUtil">
+		<property name="persistence" ref="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhFinder.impl" class="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhFinderUtil" class="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhFinderUtil">
+		<property name="finder" ref="com.nss.portlet.loai_thu_tuc.service.persistence.LoaiThuTucHanhChinhFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalService.impl" class="com.nss.portlet.linh_vuc_thu_tuc.service.impl.LinhVucThuTucHanhChinhLocalServiceImpl" />
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalServiceUtil" class="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" class="com.nss.portlet.linh_vuc_thu_tuc.service.impl.LinhVucThuTucHanhChinhServiceImpl" />
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhServiceUtil" class="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhServiceUtil">
+		<property name="service" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhPersistence.impl" class="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhUtil" class="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhUtil">
+		<property name="persistence" ref="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhFinder.impl" class="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhFinderUtil" class="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhFinderUtil">
+		<property name="finder" ref="com.nss.portlet.linh_vuc_thu_tuc.service.persistence.LinhVucThuTucHanhChinhFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalService.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.impl.ThuTucHanhChinhLocalServiceImpl" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalServiceUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.impl.ThuTucHanhChinhServiceImpl" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhServiceUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhServiceUtil">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhPersistence.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhUtil">
+		<property name="persistence" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhFinder.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhFinderUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhFinderUtil">
+		<property name="finder" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.ThuTucHanhChinhFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalService.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.impl.FileDinhKemTTHCLocalServiceImpl" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalServiceUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.impl.FileDinhKemTTHCServiceImpl" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCServiceUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCServiceUtil">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCPersistence.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCUtil">
+		<property name="persistence" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCFinder.impl" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCFinderUtil" class="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCFinderUtil">
+		<property name="finder" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.persistence.FileDinhKemTTHCFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenLocalService.impl" class="com.nss.portlet.contact.service.impl.HoTroTrucTuyenLocalServiceImpl" />
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.contact.service.HoTroTrucTuyenLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenLocalServiceUtil" class="com.nss.portlet.contact.service.HoTroTrucTuyenLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.contact.service.HoTroTrucTuyenLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" class="com.nss.portlet.contact.service.impl.HoTroTrucTuyenServiceImpl" />
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.contact.service.HoTroTrucTuyenServiceUtil" class="com.nss.portlet.contact.service.HoTroTrucTuyenServiceUtil">
+		<property name="service" ref="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.contact.service.persistence.HoTroTrucTuyenPersistence.impl" class="com.nss.portlet.contact.service.persistence.HoTroTrucTuyenPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.contact.service.persistence.HoTroTrucTuyenUtil" class="com.nss.portlet.contact.service.persistence.HoTroTrucTuyenUtil">
+		<property name="persistence" ref="com.nss.portlet.contact.service.persistence.HoTroTrucTuyenPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalService.impl" class="com.nss.portlet.qa_cau_hoi.service.impl.CauHoiQALocalServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalServiceUtil" class="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" class="com.nss.portlet.qa_cau_hoi.service.impl.CauHoiQAServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.CauHoiQAServiceUtil" class="com.nss.portlet.qa_cau_hoi.service.CauHoiQAServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAPersistence.impl" class="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAUtil" class="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAUtil">
+		<property name="persistence" ref="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAFinder.impl" class="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAFinderUtil" class="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAFinderUtil">
+		<property name="finder" ref="com.nss.portlet.qa_cau_hoi.service.persistence.CauHoiQAFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalService.impl" class="com.nss.portlet.qa_cau_hoi.service.impl.FileDinhKemQALocalServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalServiceUtil" class="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" class="com.nss.portlet.qa_cau_hoi.service.impl.FileDinhKemQAServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAServiceUtil" class="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.FileDinhKemQAPersistence.impl" class="com.nss.portlet.qa_cau_hoi.service.persistence.FileDinhKemQAPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_cau_hoi.service.persistence.FileDinhKemQAUtil" class="com.nss.portlet.qa_cau_hoi.service.persistence.FileDinhKemQAUtil">
+		<property name="persistence" ref="com.nss.portlet.qa_cau_hoi.service.persistence.FileDinhKemQAPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalService.impl" class="com.nss.portlet.qa_chu_de.service.impl.QAChuDeCauHoiLocalServiceImpl" />
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalServiceUtil" class="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" class="com.nss.portlet.qa_chu_de.service.impl.QAChuDeCauHoiServiceImpl" />
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiServiceUtil" class="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiPersistence.impl" class="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiUtil" class="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiUtil">
+		<property name="persistence" ref="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiFinder.impl" class="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiFinderUtil" class="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiFinderUtil">
+		<property name="finder" ref="com.nss.portlet.qa_chu_de.service.persistence.QAChuDeCauHoiFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalService.impl" class="com.nss.portlet.qa_phan_quyen.service.impl.QAPhanQuyenLocalServiceImpl" />
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalServiceUtil" class="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" class="com.nss.portlet.qa_phan_quyen.service.impl.QAPhanQuyenServiceImpl" />
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenServiceUtil" class="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_phan_quyen.service.persistence.QAPhanQuyenPersistence.impl" class="com.nss.portlet.qa_phan_quyen.service.persistence.QAPhanQuyenPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_phan_quyen.service.persistence.QAPhanQuyenUtil" class="com.nss.portlet.qa_phan_quyen.service.persistence.QAPhanQuyenUtil">
+		<property name="persistence" ref="com.nss.portlet.qa_phan_quyen.service.persistence.QAPhanQuyenPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalService.impl" class="com.nss.portlet.qa_cau_tra_loi.service.impl.CauTraLoiQALocalServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalServiceUtil" class="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQALocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" class="com.nss.portlet.qa_cau_tra_loi.service.impl.CauTraLoiQAServiceImpl" />
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAServiceUtil" class="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAServiceUtil">
+		<property name="service" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.persistence.CauTraLoiQAPersistence.impl" class="com.nss.portlet.qa_cau_tra_loi.service.persistence.CauTraLoiQAPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.qa_cau_tra_loi.service.persistence.CauTraLoiQAUtil" class="com.nss.portlet.qa_cau_tra_loi.service.persistence.CauTraLoiQAUtil">
+		<property name="persistence" ref="com.nss.portlet.qa_cau_tra_loi.service.persistence.CauTraLoiQAPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBCategoryLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBCategoryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBCategoryLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryService.impl" class="com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBCategoryService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBCategoryServiceUtil" class="com.liferay.portlet.messageboards.service.MBCategoryServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBCategoryService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBCategoryPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBCategoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBCategoryUtil" class="com.liferay.portlet.messageboards.service.persistence.MBCategoryUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBCategoryPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBCategoryFinder.impl" class="com.liferay.portlet.messageboards.service.persistence.MBCategoryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBCategoryFinderUtil" class="com.liferay.portlet.messageboards.service.persistence.MBCategoryFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.messageboards.service.persistence.MBCategoryFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMailingListLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBMailingListLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBMailingListLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBMailingListLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMailingListLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBMailingListLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMailingListLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMailingListPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBMailingListPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMailingListUtil" class="com.liferay.portlet.messageboards.service.persistence.MBMailingListUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBMailingListPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBMessageLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBMessageLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageService.impl" class="com.liferay.portlet.messageboards.service.impl.MBMessageServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageServiceUtil" class="com.liferay.portlet.messageboards.service.MBMessageServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBMessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessageUtil" class="com.liferay.portlet.messageboards.service.persistence.MBMessageUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessageFinder.impl" class="com.liferay.portlet.messageboards.service.persistence.MBMessageFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessageFinderUtil" class="com.liferay.portlet.messageboards.service.persistence.MBMessageFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.messageboards.service.persistence.MBMessageFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBThreadLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBThreadLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBThreadLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadService.impl" class="com.liferay.portlet.messageboards.service.impl.MBThreadServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBThreadService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBThreadServiceUtil" class="com.liferay.portlet.messageboards.service.MBThreadServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBThreadService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBThreadPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBThreadPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBThreadUtil" class="com.liferay.portlet.messageboards.service.persistence.MBThreadUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBThreadPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBThreadFinder.impl" class="com.liferay.portlet.messageboards.service.persistence.MBThreadFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBThreadFinderUtil" class="com.liferay.portlet.messageboards.service.persistence.MBThreadFinderUtil">
+		<property name="finder" ref="com.liferay.portlet.messageboards.service.persistence.MBThreadFinder.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBBanLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBBanLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBBanLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBBanLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBBanLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBBanLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBBanLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBBanService.impl" class="com.liferay.portlet.messageboards.service.impl.MBBanServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBBanService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBBanService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBBanServiceUtil" class="com.liferay.portlet.messageboards.service.MBBanServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBBanService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBBanPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBBanPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBBanUtil" class="com.liferay.portlet.messageboards.service.persistence.MBBanUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBBanPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBDiscussionLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBDiscussionLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBDiscussionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBDiscussionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBDiscussionLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBDiscussionLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBDiscussionPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBDiscussionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBDiscussionUtil" class="com.liferay.portlet.messageboards.service.persistence.MBDiscussionUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBDiscussionPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBMessageFlagLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBMessageFlagLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBMessageFlagLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageFlagLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" class="com.liferay.portlet.messageboards.service.impl.MBMessageFlagServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBMessageFlagServiceUtil" class="com.liferay.portlet.messageboards.service.MBMessageFlagServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessageFlagPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBMessageFlagPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBMessageFlagUtil" class="com.liferay.portlet.messageboards.service.persistence.MBMessageFlagUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBMessageFlagPersistence.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBStatsUserLocalService.impl" class="com.liferay.portlet.messageboards.service.impl.MBStatsUserLocalServiceImpl" />
+	<bean id="com.liferay.portlet.messageboards.service.MBStatsUserLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.liferay.portlet.messageboards.service.MBStatsUserLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil" class="com.liferay.portlet.messageboards.service.MBStatsUserLocalServiceUtil">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBStatsUserLocalService.impl" />
+	</bean>
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBStatsUserPersistence.impl" class="com.liferay.portlet.messageboards.service.persistence.MBStatsUserPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portlet.messageboards.service.persistence.MBStatsUserUtil" class="com.liferay.portlet.messageboards.service.persistence.MBStatsUserUtil">
+		<property name="persistence" ref="com.liferay.portlet.messageboards.service.persistence.MBStatsUserPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeLocalService.impl" class="com.nss.portlet.media_chu_de.service.impl.MediaChuDeLocalServiceImpl" />
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.media_chu_de.service.MediaChuDeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeLocalServiceUtil" class="com.nss.portlet.media_chu_de.service.MediaChuDeLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.media_chu_de.service.MediaChuDeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" class="com.nss.portlet.media_chu_de.service.impl.MediaChuDeServiceImpl" />
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.MediaChuDeServiceUtil" class="com.nss.portlet.media_chu_de.service.MediaChuDeServiceUtil">
+		<property name="service" ref="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.persistence.MediaChuDePersistence.impl" class="com.nss.portlet.media_chu_de.service.persistence.MediaChuDePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeUtil" class="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeUtil">
+		<property name="persistence" ref="com.nss.portlet.media_chu_de.service.persistence.MediaChuDePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeFinder.impl" class="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeFinderUtil" class="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeFinderUtil">
+		<property name="finder" ref="com.nss.portlet.media_chu_de.service.persistence.MediaChuDeFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryLocalService.impl" class="com.nss.portlet.media_library.service.impl.MediaLibraryLocalServiceImpl" />
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.media_library.service.MediaLibraryLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryLocalServiceUtil" class="com.nss.portlet.media_library.service.MediaLibraryLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryService.impl" class="com.nss.portlet.media_library.service.impl.MediaLibraryServiceImpl" />
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.MediaLibraryServiceUtil" class="com.nss.portlet.media_library.service.MediaLibraryServiceUtil">
+		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.persistence.MediaLibraryPersistence.impl" class="com.nss.portlet.media_library.service.persistence.MediaLibraryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.media_library.service.persistence.MediaLibraryUtil" class="com.nss.portlet.media_library.service.persistence.MediaLibraryUtil">
+		<property name="persistence" ref="com.nss.portlet.media_library.service.persistence.MediaLibraryPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.media_library.service.persistence.MediaLibraryFinder.impl" class="com.nss.portlet.media_library.service.persistence.MediaLibraryFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.media_library.service.persistence.MediaLibraryFinderUtil" class="com.nss.portlet.media_library.service.persistence.MediaLibraryFinderUtil">
+		<property name="finder" ref="com.nss.portlet.media_library.service.persistence.MediaLibraryFinder.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalendarLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalendarServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalendarServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalendarServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarPersistence.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinderUtil">
+		<property name="finder" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalComponentLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingCalComponentServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingCalComponentServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingCalComponentServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentPersistence.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinder.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinderUtil">
+		<property name="finder" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinder.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingDetailWeekLocalServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekLocalService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" class="com.ext.portlet.meetingcalendar.service.impl.MeetingDetailWeekServiceImpl" />
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekServiceUtil" class="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekServiceUtil">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+	</bean>
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistence.impl" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistenceImpl" parent="basePersistence" />
+	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil">
+		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistence.impl" />
+	</bean>
+</beans>
