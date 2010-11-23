@@ -1,0 +1,183 @@
+<%
+int total = manualEntries.length;
+
+searchContainer.setTotal(total);
+
+List results = ListUtil.fromArray(manualEntries);
+
+int end = (manualEntries.length < searchContainer.getEnd()) ? manualEntries.length : searchContainer.getEnd();
+
+results = results.subList(searchContainer.getStart(), end);
+
+searchContainer.setResults(results);
+
+request.setAttribute("view.jsp-results", results);
+
+if (results.size() < abstractDelta) {
+	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {
+		String assetEntry = (String)results.get(assetIndex);
+
+		Document assetDoc = SAXReaderUtil.read(assetEntry);
+
+		Element root = assetDoc.getRootElement();
+
+		long assetId = GetterUtil.getLong(root.element("asset-id").getText());
+
+		TagsAsset asset = null;
+
+		try {
+			asset = TagsAssetLocalServiceUtil.getAsset(assetId);
+		}
+		catch (NoSuchAssetException nsae) {
+			continue;
+		}
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+	%>
+
+			<%@ include file="/html/portlet/nss/tinmoi/view_display.jspf" %>
+
+	<%
+		}
+		catch (Exception e) {
+			_log.error(e.getMessage());
+		}
+	}
+} else {
+	for (int assetIndex = 0; assetIndex < abstractDelta; assetIndex++) {
+		String assetEntry = (String)results.get(assetIndex);
+
+		Document assetDoc = SAXReaderUtil.read(assetEntry);
+
+		Element root = assetDoc.getRootElement();
+
+		long assetId = GetterUtil.getLong(root.element("asset-id").getText());
+
+		TagsAsset asset = null;
+
+		try {
+			asset = TagsAssetLocalServiceUtil.getAsset(assetId);
+		}
+		catch (NoSuchAssetException nsae) {
+			continue;
+		}
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+	%>
+
+			<%@ include file="/html/portlet/nss/tinmoi/view_display.jspf" %>
+			
+	<%
+		}
+		catch (Exception e) {
+			_log.error(e.getMessage());
+		}
+	}
+	for (int assetIndex = abstractDelta; assetIndex < results.size(); assetIndex++) {
+		String assetEntry = (String)results.get(assetIndex);
+
+		Document assetDoc = SAXReaderUtil.read(assetEntry);
+
+		Element root = assetDoc.getRootElement();
+
+		long assetId = GetterUtil.getLong(root.element("asset-id").getText());
+
+		TagsAsset asset = null;
+
+		try {
+			asset = TagsAssetLocalServiceUtil.getAsset(assetId);
+		}
+		catch (NoSuchAssetException nsae) {
+			continue;
+		}
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+	%>
+
+			<%@ include file="/html/portlet/nss/tinmoi/display/nss_title_list.jsp" %>
+			<%=dateFormatDate.format(asset.getPublishDate()) %>
+
+	<%
+		}
+		catch (Exception e) {
+			_log.error(e.getMessage());
+		}
+	}
+}
+
+%>
