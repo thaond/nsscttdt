@@ -15,4 +15,5 @@
 	<sql file="custom-sql/loaithutuchanhchinh.xml" />	
 	<sql file="custom-sql/linhvucthutuchanhchinh.xml" />	
 	<sql file="custom-sql/meeting_calendar.xml" />
+	<sql file="custom-sql/image_signer.xml" />
 </custom-sql>

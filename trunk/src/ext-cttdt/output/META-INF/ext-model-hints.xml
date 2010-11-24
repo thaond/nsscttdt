@@ -615,4 +615,10 @@
 		<field name="week" type="int" />
 		<field name="year" type="int" />
 	</model>
+	<model name="com.nss.portlet.image_signer.model.ImageSigner">
+		<field name="imageSignerId" type="long" />
+		<field name="imageIdSign" type="long" />
+		<field name="imageIdUnSign" type="long" />
+		<field name="userId" type="long" />
+	</model>
 </model-hints>

@@ -951,3 +951,7 @@ create index IX_895462F4 on nss_signature (articleId)
 go
 create index IX_55D889C4 on nss_signature (articlePrimKey)
 go
+create index IX_4B61DDFE on nss_signature (articlePrimKey, userId)
+go
+create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId)
+go

@@ -458,4 +458,16 @@
 		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
 		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
 	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
 </beans>

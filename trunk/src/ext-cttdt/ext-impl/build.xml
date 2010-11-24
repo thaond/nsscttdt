@@ -134,4 +134,9 @@
 			<param name="service.file" value="src/com/nss/portlet/digitalsignature/service.xml" />
 		</antcall>
 	</target>
+	<target name="build-service-portlet-image_signer">
+				<antcall target="build-service">
+					<param name="service.file" value="src/com/nss/portlet/image_signer/service.xml" />
+				</antcall>
+	</target>
 </project>

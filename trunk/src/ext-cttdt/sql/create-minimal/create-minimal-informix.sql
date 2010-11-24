@@ -1948,6 +1948,15 @@ create table nss_certificate (
 extent size 16 next size 16
 lock mode row;
 
+create table nss_image_signer (
+	imageSignerId int8 not null primary key,
+	imageIdSign int8,
+	imageIdUnSign int8,
+	userId int8
+)
+extent size 16 next size 16
+lock mode row;
+
 create table nss_signature (
 	signatureId int8 not null primary key,
 	groupId int8,
@@ -3280,5 +3289,7 @@ create index IX_A8355678 on instancebean (status, finish);
 
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
+create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
+create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
 
 
