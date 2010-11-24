@@ -11,75 +11,41 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.UserImpl;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
+import com.nss.portlet.image_signer.model.ImageSigner;
+import com.nss.portlet.image_signer.model.impl.ImageSignerImpl;
 
 public class ImageSignerFinderImpl extends BasePersistenceImpl implements
 		ImageSignerFinder {
-	public static String FIND_BY_NAME = ImageSignerFinder.class.getName()
-			+ ".FIND_BY_NAME";
-	public static String COUNT_BY_NAME = ImageSignerFinder.class.getName()
-			+ ".COUNT_BY_NAME";
 	public static String COUNT_USER_IMAGE = ImageSignerFinder.class.getName()
 			+ ".COUNT_USER_IMAGE";
 	public static String FIND_USER_IMAGE = ImageSignerFinder.class.getName()
 			+ ".FIND_USER_IMAGE";
+	public static String FIND_IMAGE_SIGNER_BY_USERID = ImageSignerFinder.class
+			.getName() + ".FIND_IMAGE_SIGNER_BY_USERID";
 
+	public int countByKeywords(String keywords) throws SystemException {
+		String[] firstnames = null;
+		String[] middlenames = null;
+		String[] lastnames = null;
 
-	public int countByName(String name) throws SystemException {
-		name = StringUtil.lowerCase(name);
-		Session session = null;
-		try {
-			session = openSession();
-			String sql = CustomSQLUtil.get(COUNT_BY_NAME);
-			SQLQuery q = session.createSQLQuery(sql);
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-			QueryPos qPos = QueryPos.getInstance(q);
-			qPos.add(name);
-			qPos.add(name);
-			Iterator<Long> it = q.list().iterator();
-			if (it.hasNext()) {
-				Long count = it.next();
-				if (count != null) {
-					return count.intValue();
-				}
-			}
-			return 0;
-		} catch (Exception e) {
-			throw new SystemException();
-		} finally {
-			closeSession(session);
+		boolean andOperator = false;
+		if (Validator.isNotNull(keywords)) {
+			firstnames = CustomSQLUtil.keywords(keywords);
+			middlenames = CustomSQLUtil.keywords(keywords);
+			lastnames = CustomSQLUtil.keywords(keywords);
+		} else {
+			andOperator = true;
 		}
+
+		return count_User_Image(firstnames, middlenames, lastnames, andOperator);
 
 	}
 
-	public List<User> findByName(String name, int start, int end,
-			OrderByComparator obc) throws SystemException {
-		name = StringUtil.lowerCase(name);
-		Session session = null;
-		try {
-			session = openSession();
-			String sql = CustomSQLUtil.get(FIND_BY_NAME);
-			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
-			SQLQuery q = session.createSQLQuery(sql);
-			q.addEntity("user_", UserImpl.class);
-			QueryPos qPos = QueryPos.getInstance(q);
-			qPos.add(name);
-			qPos.add(name);
-			List<User> products = (List<User>) QueryUtil.list(q,
-					getDialect(), start, end);
-			return products;
-		} catch (Exception e) {
-			throw new SystemException();
-		} finally {
-			closeSession(session);
-		}
-	}
-
-	// --------------------------------------------------------
 	public int count_User_Image(String firstnames, String middlenames,
 			String lastnames, boolean andOperator) throws SystemException {
 		return count_User_Image(new String[] { firstnames },
@@ -87,7 +53,7 @@ public class ImageSignerFinderImpl extends BasePersistenceImpl implements
 				andOperator);
 
 	}
-	
+
 	public int count_User_Image(String[] firstnames, String[] middlenames,
 			String[] lastnames, boolean andOperator) throws SystemException {
 		firstnames = CustomSQLUtil.keywords(firstnames);
@@ -125,6 +91,26 @@ public class ImageSignerFinderImpl extends BasePersistenceImpl implements
 			closeSession(session);
 		}
 
+	}
+
+	public List<User> findByKeywords(String keywords, int start, int end,
+			OrderByComparator obc) throws SystemException {
+
+		String[] firstnames = null;
+		String[] middlenames = null;
+		String[] lastnames = null;
+
+		boolean andOperator = false;
+		if (Validator.isNotNull(keywords)) {
+			firstnames = CustomSQLUtil.keywords(keywords, true);
+			middlenames = CustomSQLUtil.keywords(keywords, true);
+			lastnames = CustomSQLUtil.keywords(keywords, true);
+		} else {
+			andOperator = true;
+		}
+
+		return find_user_Image(firstnames, middlenames, lastnames, andOperator,
+				start, end, obc);
 	}
 
 	public List<User> find_user_Image(String firstnames, String middlenames,
@@ -168,4 +154,26 @@ public class ImageSignerFinderImpl extends BasePersistenceImpl implements
 		}
 	}
 
+	public ImageSigner getImageSignerByUserId(long userId, int start, int end) throws SystemException {
+		ImageSigner imageSigner = null;
+		Session session = null;
+		try {
+			session = openSession();
+			String sql = CustomSQLUtil.get(FIND_IMAGE_SIGNER_BY_USERID);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("nss_image_signer", ImageSignerImpl.class);
+			QueryPos qPos = QueryPos.getInstance(q);
+			qPos.add(userId);
+			List<ImageSigner> imageSigners = (List<ImageSigner>) QueryUtil
+					.list(q, getDialect(), start, end);
+			if (imageSigners.size() > 0) {
+				imageSigner = imageSigners.get(0);
+			}
+			return imageSigner;
+		} catch (Exception e) {
+			throw new SystemException();
+		} finally {
+			closeSession(session);
+		}
+	}
 }

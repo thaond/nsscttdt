@@ -15,13 +15,13 @@ public class UserUtil {
 			orderByAsc = true;
 		}
 		OrderByComparator orderByComparator = null;
-		if (orderByCol.equals("orderFirstName")) {
+		if (orderByCol.equals("FirstName")) {
 			orderByComparator = new UserFirstNameComparator(orderByAsc);
 
-		} else if (orderByCol.equals("orderMiddleName")) {
+		} else if (orderByCol.equals("MiddleName")) {
 			orderByComparator = new UserMiddleNameComparator(orderByAsc);
 
-		} else if (orderByCol.equals("orderLastName")) {
+		} else if (orderByCol.equals("LastName")) {
 			orderByComparator = new UserLastNameComparator(orderByAsc);
 		} 
 		return orderByComparator;

@@ -26,21 +26,11 @@
 	</sql>
 	
 	<sql
-		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.FIND_BY_NAME">
+		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.FIND_IMAGE_SIGNER_BY_USERID">
 		<![CDATA[
 		SELECT *
-		FROM user_ 
-		WHERE (lastname LIKE ? OR ? IS NULL)
-		ORDER BY lastname ASC
-		]]>
-	</sql>
-	
-	<sql
-		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.COUNT_BY_NAME">
-		<![CDATA[
-		SELECT COUNT (*) AS COUNT_VALUE
-		FROM user_ 
-		WHERE (lastname LIKE ? OR ? IS NULL)
+		FROM nss_image_signer 
+		WHERE userid = ? 
 		]]>
 	</sql>		
 </custom-sql>

@@ -115,3 +115,21 @@ showing-x-results=Hiển thị {0} kết quả.
 showing-x-x-of-x-results=Hiển thị {0} - {1} của {2} kết quả.
 items-per-page=Hiển thị/trang
 no-pages-were-found-that-matched-the-keywords-x = Không tìm thấy kết quả nào với từ khoá: {0}.
+##
+##nss_journal
+##
+nss-journal-use-sign = sử dụng chữ ký
+##
+##sign
+##
+sign-kiem-duyet = bài viết này đã được kiểm duyệt
+sign-thay-doi = bài viết này đã bị thay đổi
+sign-nguoi-ky = người ký
+##
+##image_signer
+##
+upload-image = upload ảnh
+upload-image-signer = upload ảnh chữ ký
+image-Sign = ảnh đã ký
+image-UnSign = ảnh chưa ký
+upload = up ảnh

@@ -28,9 +28,13 @@ public class UserSearch extends SearchContainer<User> {
 		headerNames.add("FirstName"); // ten tieu de cua cot
 		headerNames.add("MiddleName");
 		headerNames.add("LastName");
-		orderableHeaders.put("FirstName", "orderFirstName");
-		orderableHeaders.put("MiddleName", "orderMiddleName");
-		orderableHeaders.put("LastName", "orderLastName");
+		headerNames.add("ImageSigner");
+		headerNames.add("ImageUnSigner");
+		headerNames.add("");
+		
+		orderableHeaders.put("FirstName", "FirstName");
+		orderableHeaders.put("MiddleName", "MiddleName");
+		orderableHeaders.put("LastName", "LastName");
 	}
 	public static final String EMPTY_RESULTs_MESSAGE = "khong tim thay";
 
@@ -40,9 +44,8 @@ public class UserSearch extends SearchContainer<User> {
 				new UserSearchTerms(portletRequest), DEFAULT_CUR_PARAM, 5,
 				iteratorURL, headerNames, EMPTY_RESULTs_MESSAGE);
 
-		// setOrderableHeaders(orderableHeaders);
-		PortletConfig portletConfig = (PortletConfig) portletRequest
-				.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
+		PortletConfig portletConfig = (PortletConfig) portletRequest.getAttribute(JavaConstants.JAVAX_PORTLET_CONFIG);
+		
 		UserDisplayTerms displayTerms = (UserDisplayTerms) getDisplayTerms();
 		iteratorURL.setParameter(UserDisplayTerms.FIRSTNAME,
 				displayTerms.getFirstName());
@@ -54,22 +57,22 @@ public class UserSearch extends SearchContainer<User> {
 			PortalPreferences preferences = PortletPreferencesFactoryUtil
 					.getPortalPreferences(portletRequest);
 
-			String orderByCol = ParamUtil.getString(portletRequest,
-					"orderByCol");
-			String orderByType = ParamUtil.getString(portletRequest,
-					"orderByType");
+			String orderByCol = ParamUtil.getString(portletRequest,	"orderByCol");
+			String orderByType = ParamUtil.getString(portletRequest, "orderByType");
+			String portletName = "NSS_IMAGE_SIGNER";
+			
 			if (Validator.isNotNull(orderByCol)
 					&& Validator.isNotNull(orderByType)) {
 
-				preferences.setValue("NSS_IMAGE_SIGNER", "product-order-by-col",
+				preferences.setValue(portletName, "imagesigner-order-by-col",
 						orderByCol);
-				preferences.setValue("NSS_IMAGE_SIGNER", "product-order-by-type",
+				preferences.setValue(portletName, "imagesigner-order-by-type",
 						orderByType);
 			} else {
-				orderByCol = preferences.getValue("NSS_IMAGE_SIGNER",
-						"product-order-by-col", "id");
-				orderByType = preferences.getValue("NSS_IMAGE_SIGNER",
-						"product-order-by-type", "asc");
+				orderByCol = preferences.getValue(portletName,
+						"imagesigner-order-by-col", "FirstName");
+				orderByType = preferences.getValue(portletName,
+						"imagesigner-order-by-type", "asc");
 			}
 			OrderByComparator orderByComparator = UserUtil.getUserOrderByComparator(orderByCol, orderByType);
 			setOrderableHeaders(orderableHeaders);
