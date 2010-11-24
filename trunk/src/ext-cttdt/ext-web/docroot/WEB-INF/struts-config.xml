@@ -305,5 +305,8 @@
         <action path="/nss/image_signer/view" type="com.nss.portlet.image_signer.action.ViewAction">
             <forward name="portlet.nss.image_signer.view" path="portlet.nss.image_signer.view"/>
         </action>
+        <action path="/nss/image_signer/upload" type="com.nss.portlet.image_signer.action.UpLoadAction">
+            <forward name="portlet.nss.image_signer.upload" path="portlet.nss.image_signer.upload"/>
+        </action>
     </action-mappings>
 </struts-config>

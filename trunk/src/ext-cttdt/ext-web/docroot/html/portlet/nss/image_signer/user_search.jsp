@@ -19,15 +19,15 @@
 		</tr>
 		<tr>
 			<td><input
-				name="<portlet:namespace /><%=displayTerms.FIRSTNAME%>" size="20"
+				name="<portlet:namespace /><%=UserDisplayTerms.FIRSTNAME%>" size="20"
 				type="text"
 				value="<%=HtmlUtil.escape(displayTerms.getFirstName())%>" /></td>
 			<td><input
-				name="<portlet:namespace /><%=displayTerms.MIDDLENAME%>" size="20"
+				name="<portlet:namespace /><%=UserDisplayTerms.MIDDLENAME%>" size="20"
 				type="text"
 				value="<%=HtmlUtil.escape(displayTerms.getMiddleName())%>" /></td>
 			<td><input
-				name="<portlet:namespace /><%=displayTerms.LASTNAME%>" size="20"
+				name="<portlet:namespace /><%=UserDisplayTerms.LASTNAME%>" size="20"
 				type="text" value="<%=HtmlUtil.escape(displayTerms.getLastName())%>" />
 			</td>
 		</tr>

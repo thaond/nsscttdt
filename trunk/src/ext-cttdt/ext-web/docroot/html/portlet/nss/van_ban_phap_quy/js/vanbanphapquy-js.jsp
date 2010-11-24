@@ -1,11 +1,5 @@
 <%@ include file="/html/portlet/nss/van_ban_phap_quy/init.jsp" %>
 
-<%@page import="com.liferay.portal.model.User"%>
-
-<script type='text/javascript' src='/dwr/engine.js'></script>
-<script type='text/javascript' src='/dwr/util.js'></script>
-<script type='text/javascript'src='/dwr/interface/VanBanPhapQuyIndexUtil.js'></script>
-
 <script type="text/javascript">
 var incstt = 0; // add row
 
@@ -60,18 +54,6 @@ function deleteVanBanPhapQuy(url){
 		document.<portlet:namespace />fm.method = "post";
 		submitForm(document.<portlet:namespace />fm, url);
 	}
-}
-
-function <portlet:namespace/>reIndexVanBanPhapQuy(msg) {
-	dwr.util.useLoadingMessage(msg);
-	var companyId = '<%=String.valueOf(user.getCompanyId())%>';
-	VanBanPhapQuyIndexUtil.reIndexVanBanPhapQuy(companyId, function(data){
-		if (data) {
-			alert('<liferay-ui:message key="success"/>');
-		} else {
-			alert('<liferay-ui:message key="fail"/>');
-		}
-	});
 }
 
 function uploadVanBanPhapQuyFile()

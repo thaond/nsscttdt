@@ -297,4 +297,7 @@
     <definition extends="portlet" name="portlet.nss.image_signer.view">
         <put name="portlet_content" value="/portlet/nss/image_signer/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.image_signer.upload">
+        <put name="portlet_content" value="/portlet/nss/image_signer/upload_image_signer.jsp"/>
+    </definition>
 </tiles-definitions>

@@ -688,6 +688,7 @@
         <portlet-name>NSS_VAN_BAN_PHAP_QUY</portlet-name>
         <struts-path>nss/van_ban_phap_quy</struts-path>
         <use-default-template>false</use-default-template>
+        <indexer-class>com.nss.portlet.van_ban_phap_quy.util.VanBanPhapQuyIndexer</indexer-class>
     </portlet>
     <portlet>
         <portlet-name>NSS_TINMOI</portlet-name>

@@ -10,6 +10,7 @@
 <%@page import="com.liferay.portal.kernel.util.GetterUtil"%>
 <%@page import="com.liferay.portal.kernel.search.Field"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="java.io.File"%>
 
@@ -45,11 +46,6 @@
 		%>
 	<div class="commom-form">
 		<div class="parent-title"><liferay-ui:message key="nss-van-ban-phap-quy" /></div>
-		<div class="titlecateg">
-	    <ul>
-	    	<li class="leftact"><a class="rightact" href="#" onclick="<portlet:namespace/>reIndexVanBanPhapQuy('<liferay-ui:message key="loading"/>');"><liferay-ui:message key="reindex-van-ban-phap-quy" /></a></li>
-	    </ul>
-	    </div>
 		<liferay-ui:search-form
 			page="/html/portlet/nss/van_ban_phap_quy/search_form.jsp"
 			searchContainer="<%= vanBanPhapQuySearch %>" />
@@ -124,7 +120,7 @@
 					for (int i = 0; i < hits.getDocs().length; i ++) {
 						maVanBanPhapQuy = GetterUtil.getInteger(hits.doc(i).get(Field.ENTRY_CLASS_PK));
 						vanBanPhapQuy  = VanBanPhapQuyLocalServiceUtil.getVanBanPhapQuy(maVanBanPhapQuy);
-						vanBanPhapQuy = vanBanPhapQuy.toEscapedModel();
+						//vanBanPhapQuy = vanBanPhapQuy.toEscapedModel();
 							
 						row = new ResultRow(vanBanPhapQuy, vanBanPhapQuy.getMaVanBanPhapQuy(), i);
 						
@@ -164,12 +160,12 @@
 								String patthFile = getServletContext().getRealPath("")+ fileDinhKemPath;
 								File file = new File(patthFile);
 								if (file.exists()) {
-									download = "<a href='" + fileDinhKemPath+ "'>" + "<img src='/html/images/icon_download.png' title='" + fileDinhKem.getTenFile() + "'></a>";
+									download = "<a href='" + fileDinhKemPath+ "'>" + "<img src='/html/images/icon_download.png' title='" + LanguageUtil.get(pageContext, "van-ban-di-kem")  + "'></a>";
 								} else {
 									download = "";
 								}
 							} else {
-								download = "<img src='/html/images/fulldownload.png' title='" + fileDinhKem.getTenFile() + "'>";
+								download = "<img src='/html/images/fulldownload.png' title='" + LanguageUtil.get(pageContext, "van-ban-di-kem") + "'>";
 							}
 						} else {
 							download = "";
