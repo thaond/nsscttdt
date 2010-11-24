@@ -887,4 +887,26 @@
 	<bean id="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil" class="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekUtil">
 		<property name="persistence" ref="com.ext.portlet.meetingcalendar.service.persistence.MeetingDetailWeekPersistence.impl" />
 	</bean>
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerLocalService.impl" class="com.nss.portlet.image_signer.service.impl.ImageSignerLocalServiceImpl" />
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.image_signer.service.ImageSignerLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil" class="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerService.impl" class="com.nss.portlet.image_signer.service.impl.ImageSignerServiceImpl" />
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.image_signer.service.ImageSignerServiceUtil" class="com.nss.portlet.image_signer.service.ImageSignerServiceUtil">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.image_signer.service.persistence.ImageSignerPersistence.impl" class="com.nss.portlet.image_signer.service.persistence.ImageSignerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.image_signer.service.persistence.ImageSignerUtil" class="com.nss.portlet.image_signer.service.persistence.ImageSignerUtil">
+		<property name="persistence" ref="com.nss.portlet.image_signer.service.persistence.ImageSignerPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.impl" class="com.nss.portlet.image_signer.service.persistence.ImageSignerFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinderUtil" class="com.nss.portlet.image_signer.service.persistence.ImageSignerFinderUtil">
+		<property name="finder" ref="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.impl" />
+	</bean>
 </beans>

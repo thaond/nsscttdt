@@ -1934,6 +1934,15 @@ create table nss_certificate (
 extent size 16 next size 16
 lock mode row;
 
+create table nss_image_signer (
+	imageSignerId int8 not null primary key,
+	imageIdSign int8,
+	imageIdUnSign int8,
+	userId int8
+)
+extent size 16 next size 16
+lock mode row;
+
 create table nss_signature (
 	signatureId int8 not null primary key,
 	groupId int8,

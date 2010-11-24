@@ -132,6 +132,7 @@ create table WikiPage (uuid_ varchar(75),pageId int64 not null primary key,resou
 create table WikiPageResource (resourcePrimKey int64 not null primary key,nodeId int64,title varchar(75));
 create table instancebean (processInstanceId int64 not null primary key,businessProcessId int64,articleId int64,categoryId int64,previousNode varchar(75),status varchar(75),createUserId int64,finish smallint);
 create table nss_certificate (userId int64 not null primary key,x509Certificate varchar(75));
+create table nss_image_signer (imageSignerId int64 not null primary key,imageIdSign int64,imageIdUnSign int64,userId int64);
 create table nss_signature (signatureId int64 not null primary key,groupId int64,companyId int64,userId int64,userName varchar(75),createDate timestamp,articlePrimKey int64,articleId varchar(75),version double precision,signData varchar(75));
 create table processdefinition (journalProcessDefinitionId int64 not null primary key,name varchar(75),version varchar(75),content varchar(75));
 create table QUARTZ_JOB_DETAILS (JOB_NAME varchar(80) not null,JOB_GROUP varchar(80) not null,DESCRIPTION varchar(120),JOB_CLASS_NAME varchar(128) not null,IS_DURABLE smallint not null,IS_VOLATILE smallint not null,IS_STATEFUL smallint not null,REQUESTS_RECOVERY smallint not null,JOB_DATA blob,primary key (JOB_NAME, JOB_GROUP));

@@ -87,3 +87,5 @@ Liferay.Service.register("Liferay.Service.MediaChuDe", "com.nss.portlet.media_ch
 Liferay.Service.register("Liferay.Service.MediaLibrary", "com.nss.portlet.media_library.service");
 
 Liferay.Service.register("Liferay.Service.DigitalSignature", "com.nss.portlet.digitalsignature.service");
+
+Liferay.Service.register("Liferay.Service.ImageSigner", "com.nss.portlet.image_signer.service");

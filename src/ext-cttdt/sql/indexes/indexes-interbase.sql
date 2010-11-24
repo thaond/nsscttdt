@@ -588,3 +588,5 @@ create index IX_A8355678 on instancebean (status, finish);
 
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
+create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
+create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);

@@ -1802,6 +1802,14 @@ create table nss_certificate (
 )
 go
 
+create table nss_image_signer (
+	imageSignerId decimal(20,0) not null primary key,
+	imageIdSign decimal(20,0),
+	imageIdUnSign decimal(20,0),
+	userId decimal(20,0)
+)
+go
+
 create table nss_signature (
 	signatureId decimal(20,0) not null primary key,
 	groupId decimal(20,0),

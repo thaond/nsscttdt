@@ -1670,6 +1670,13 @@ create table nss_certificate (
 	x509Certificate varchar(75)
 );
 
+create table nss_image_signer (
+	imageSignerId int64 not null primary key,
+	imageIdSign int64,
+	imageIdUnSign int64,
+	userId int64
+);
+
 create table nss_signature (
 	signatureId int64 not null primary key,
 	groupId int64,

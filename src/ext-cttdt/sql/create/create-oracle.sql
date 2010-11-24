@@ -1676,6 +1676,13 @@ create table nss_certificate (
 	x509Certificate varchar2(75) null
 );
 
+create table nss_image_signer (
+	imageSignerId number(30,0) not null primary key,
+	imageIdSign number(30,0),
+	imageIdUnSign number(30,0),
+	userId number(30,0)
+);
+
 create table nss_signature (
 	signatureId number(30,0) not null primary key,
 	groupId number(30,0),
@@ -5797,6 +5804,8 @@ create index IX_A8355678 on instancebean (status, finish);
 
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
+create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
+create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
 
 
 

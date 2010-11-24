@@ -1811,6 +1811,14 @@ create table nss_certificate (
 )
 go
 
+create table nss_image_signer (
+	imageSignerId decimal(20,0) not null primary key,
+	imageIdSign decimal(20,0),
+	imageIdUnSign decimal(20,0),
+	userId decimal(20,0)
+)
+go
+
 create table nss_signature (
 	signatureId decimal(20,0) not null primary key,
 	groupId decimal(20,0),
@@ -8680,6 +8688,10 @@ go
 create index IX_895462F4 on nss_signature (articleId)
 go
 create index IX_55D889C4 on nss_signature (articlePrimKey)
+go
+create index IX_4B61DDFE on nss_signature (articlePrimKey, userId)
+go
+create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId)
 go
 
 
