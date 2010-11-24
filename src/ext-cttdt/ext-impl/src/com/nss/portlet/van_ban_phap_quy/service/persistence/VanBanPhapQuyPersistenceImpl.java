@@ -104,6 +104,23 @@ public class VanBanPhapQuyPersistenceImpl extends BasePersistenceImpl
             VanBanPhapQuyModelImpl.FINDER_CACHE_ENABLED,
             FINDER_CLASS_NAME_LIST, "countByMaCoQuanBanHanh",
             new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(VanBanPhapQuyModelImpl.ENTITY_CACHE_ENABLED,
+            VanBanPhapQuyModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByCompanyid",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(VanBanPhapQuyModelImpl.ENTITY_CACHE_ENABLED,
+            VanBanPhapQuyModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByCompanyid",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(VanBanPhapQuyModelImpl.ENTITY_CACHE_ENABLED,
+            VanBanPhapQuyModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByCompanyid",
+            new String[] { Long.class.getName() });
     public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(VanBanPhapQuyModelImpl.ENTITY_CACHE_ENABLED,
             VanBanPhapQuyModelImpl.FINDER_CACHE_ENABLED,
             FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
@@ -1217,6 +1234,223 @@ public class VanBanPhapQuyPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public List<VanBanPhapQuy> findByCompanyid(long companyid)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyid) };
+
+        List<VanBanPhapQuy> list = (List<VanBanPhapQuy>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("ky_hieu_van_ban ASC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<VanBanPhapQuy>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<VanBanPhapQuy> findByCompanyid(long companyid, int start,
+        int end) throws SystemException {
+        return findByCompanyid(companyid, start, end, null);
+    }
+
+    public List<VanBanPhapQuy> findByCompanyid(long companyid, int start,
+        int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(companyid),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<VanBanPhapQuy> list = (List<VanBanPhapQuy>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("ky_hieu_van_ban ASC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                list = (List<VanBanPhapQuy>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<VanBanPhapQuy>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public VanBanPhapQuy findByCompanyid_First(long companyid,
+        OrderByComparator obc)
+        throws NoSuchVanBanPhapQuyException, SystemException {
+        List<VanBanPhapQuy> list = findByCompanyid(companyid, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No VanBanPhapQuy exists with the key {");
+
+            msg.append("companyid=" + companyid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchVanBanPhapQuyException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public VanBanPhapQuy findByCompanyid_Last(long companyid,
+        OrderByComparator obc)
+        throws NoSuchVanBanPhapQuyException, SystemException {
+        int count = countByCompanyid(companyid);
+
+        List<VanBanPhapQuy> list = findByCompanyid(companyid, count - 1, count,
+                obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No VanBanPhapQuy exists with the key {");
+
+            msg.append("companyid=" + companyid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchVanBanPhapQuyException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public VanBanPhapQuy[] findByCompanyid_PrevAndNext(long maVanBanPhapQuy,
+        long companyid, OrderByComparator obc)
+        throws NoSuchVanBanPhapQuyException, SystemException {
+        VanBanPhapQuy vanBanPhapQuy = findByPrimaryKey(maVanBanPhapQuy);
+
+        int count = countByCompanyid(companyid);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy WHERE ");
+
+            query.append("companyid = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("ky_hieu_van_ban ASC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(companyid);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    vanBanPhapQuy);
+
+            VanBanPhapQuy[] array = new VanBanPhapQuyImpl[3];
+
+            array[0] = (VanBanPhapQuy) objArray[0];
+            array[1] = (VanBanPhapQuy) objArray[1];
+            array[2] = (VanBanPhapQuy) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
         Session session = null;
@@ -1346,6 +1580,12 @@ public class VanBanPhapQuyPersistenceImpl extends BasePersistenceImpl
         throws SystemException {
         for (VanBanPhapQuy vanBanPhapQuy : findByMaCoQuanBanHanh(
                 maCoQuanBanHanh)) {
+            remove(vanBanPhapQuy);
+        }
+    }
+
+    public void removeByCompanyid(long companyid) throws SystemException {
+        for (VanBanPhapQuy vanBanPhapQuy : findByCompanyid(companyid)) {
             remove(vanBanPhapQuy);
         }
     }
@@ -1533,6 +1773,52 @@ public class VanBanPhapQuyPersistenceImpl extends BasePersistenceImpl
                 }
 
                 FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MACOQUANBANHANH,
+                    finderArgs, count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    public int countByCompanyid(long companyid) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyid) };
+
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
+                finderArgs, this);
+
+        if (count == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
                     finderArgs, count);
 
                 closeSession(session);

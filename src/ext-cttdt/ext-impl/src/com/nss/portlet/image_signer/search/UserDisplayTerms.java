@@ -9,6 +9,7 @@ public class UserDisplayTerms extends DisplayTerms {
 	protected String firstname;
 	protected String middlename;
 	protected String lastname;
+	
 	public static final String FIRSTNAME = "firstName";
 	public static final String MIDDLENAME = "middleName";
 	public static final String LASTNAME = "lastName";

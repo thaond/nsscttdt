@@ -20,10 +20,14 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.journal.util.Indexer;
 import com.nss.portlet.van_ban_phap_quy.NoSuchVanBanPhapQuyException;
 import com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy;
 import com.nss.portlet.van_ban_phap_quy.search.VanBanPhapQuyDisplayTerms;
+import com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalServiceUtil;
 import com.nss.portlet.van_ban_phap_quy.service.base.VanBanPhapQuyLocalServiceBaseImpl;
+import com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyUtil;
 import com.nss.portlet.van_ban_phap_quy.util.VanBanPhapQuyIndexer;
 
 public class VanBanPhapQuyLocalServiceImpl
@@ -58,13 +62,59 @@ public class VanBanPhapQuyLocalServiceImpl
 		}
 	}
 	
-	public void reIndex(String[] ids) throws SystemException, SearchException {
+	public void reIndex(String[] ids) throws SystemException {
+		if (SearchEngineUtil.isIndexReadOnly()) {
+			return;
+		}
+
 		long companyId = GetterUtil.getLong(ids[0]);
 
-		for (VanBanPhapQuy vanBanPhapQuy : vanBanPhapQuyPersistence.findAll()) {
-			reIndex(companyId, vanBanPhapQuy);
+		try {
+			reIndexVanBanPhapQuy(companyId);
+		}
+		catch (SystemException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
 		}
 	}
+	
+	protected void reIndexVanBanPhapQuy(long companyId) throws SystemException {
+		int count = vanBanPhapQuyPersistence.countByCompanyid(companyId);
+
+		int pages = count / Indexer.DEFAULT_INTERVAL;
+
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
+			
+			reIndexVanBanPhapQuy(companyId, start, end);
+		}
+	}
+
+	protected void reIndexVanBanPhapQuy(long companyId, int start, int end)
+		throws SystemException {
+
+		List<VanBanPhapQuy> vanBanPhapQuyList = vanBanPhapQuyPersistence.findByCompanyid(companyId, start, end);
+		for (VanBanPhapQuy vanBanPhapQuy : vanBanPhapQuyList) {
+			try {
+				VanBanPhapQuyIndexer.updateVanBanPhapQuy(companyId,vanBanPhapQuy);
+			} catch (SearchException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+//	public void reIndex(String[] ids) throws SystemException, SearchException {
+//		long companyId = GetterUtil.getLong(ids[0]);
+//
+//		for (VanBanPhapQuy vanBanPhapQuy : vanBanPhapQuyPersistence.findAll()) {
+//			reIndex(companyId, vanBanPhapQuy);
+//		}
+//	}
 	
 	public Hits search(long companyId, String kyHieuVanBan, String tomTat, String nguoiKy, long maLoaiVanBan, long maLinhVucVanBan, long maCoQuanBanHanh,
 			 Date tuNgay, Date denNgay, String sortField, int sortType, boolean reverse, int start, int end) throws SystemException {
@@ -142,12 +192,7 @@ public class VanBanPhapQuyLocalServiceImpl
 			}
 
 			Sort sort;
-
-			if (sortField.equals("ngayBanHanh")) {
-				sort = new Sort(sortField, sortType, reverse);
-			} else {
-				sort = new Sort(sortField, sortType, reverse);
-			}
+			sort = new Sort(sortField, sortType, reverse);
 			
 			return SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
 		} catch (Exception e) {
@@ -193,12 +238,7 @@ public class VanBanPhapQuyLocalServiceImpl
 			}
 
 			Sort sort;
-
-			if (sortField.equals("ngayBanHanh")) {
-				sort = new Sort(sortField, sortType, reverse);
-			} else {
-				sort = new Sort(sortField, sortType, reverse);
-			}
+			sort = new Sort(sortField, sortType, reverse);
 			
 			return SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
 		} catch (Exception e) {
@@ -239,12 +279,7 @@ public class VanBanPhapQuyLocalServiceImpl
 			}
 
 			Sort sort;
-
-			if (sortField.equals("ngayBanHanh")) {
-				sort = new Sort(sortField, sortType, reverse);
-			} else {
-				sort = new Sort(sortField, sortType, reverse);
-			}
+			sort = new Sort(sortField, sortType, reverse);
 			
 			return SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
 			

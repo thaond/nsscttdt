@@ -74,17 +74,17 @@ public class VanBanPhapQuySearch extends SearchContainer<VanBanPhapQuy>{
 				Validator.isNotNull(orderByType)) {
 
 				preferences.setValue(
-						portletName, "vanbanphapquys-order-by-col",
+						portletName, "vanbanphapquydisplay-order-by-col",
 					orderByCol);
 				preferences.setValue(
-						portletName, "vanbanphapquys-order-by-type",
+						portletName, "vanbanphapquydisplay-order-by-type",
 					orderByType);
 			}
 			else {
 				orderByCol = preferences.getValue(
-						portletName, "vanbanphapquys-order-by-col", "kyHieuVanBan");
+						portletName, "vanbanphapquydisplay-order-by-col", "ngayBanHanh");
 				orderByType = preferences.getValue(
-						portletName, "vanbanphapquys-order-by-type", "asc");
+						portletName, "vanbanphapquydisplay-order-by-type", "asc");
 			}
 
 			OrderByComparator orderByComparator = 

@@ -5,16 +5,17 @@ import java.util.List;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.User;
+import com.nss.portlet.image_signer.model.ImageSigner;
 import com.nss.portlet.image_signer.service.base.ImageSignerLocalServiceBaseImpl;
 
 
 public class ImageSignerLocalServiceImpl extends ImageSignerLocalServiceBaseImpl {
 	public int countByName(String name) throws SystemException{
-		return imageSignerFinder.countByName(name);
+		return imageSignerFinder.countByKeywords(name);
 	}
 	public List<User> findByName(String name, int start, int end,
 			OrderByComparator obc) throws SystemException{
-		return imageSignerFinder.findByName(name, start, end, obc);
+		return imageSignerFinder.findByKeywords(name, start, end, obc);
 	}
 	public int count_User_Image(String firstnames, String middlenames,
 			String lastnames, boolean andOperator) throws SystemException{
@@ -24,5 +25,8 @@ public class ImageSignerLocalServiceImpl extends ImageSignerLocalServiceBaseImpl
 			String lastnames, int start, int end, boolean andOperator,
 			OrderByComparator obc) throws SystemException{
 		return imageSignerFinder.find_user_Image(firstnames, middlenames, lastnames, start, end, andOperator, obc);
+	}
+	public ImageSigner getImageSignerByUserId(long userId, int start, int end) throws SystemException{
+		return imageSignerFinder.getImageSignerByUserId(userId, start, end);
 	}
 }

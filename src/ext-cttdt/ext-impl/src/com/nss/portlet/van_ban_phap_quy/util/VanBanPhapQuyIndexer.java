@@ -14,6 +14,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portlet.journal.model.JournalArticle;
 import com.nss.portlet.co_quan_ban_hanh.model.CoQuanBanHanh;
 import com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhLocalServiceUtil;
 import com.nss.portlet.linh_vuc_van_ban.model.LinhVucVanBan;
@@ -148,17 +149,14 @@ public class VanBanPhapQuyIndexer implements Indexer{
 		SearchEngineUtil.deletePortletDocuments(companyId, PORTLET_ID);
 	}
 	
-//	@Override
 	public String[] getClassNames() {
-		return null;
+		return _CLASS_NAMES;
 	}
 
-//	@Override
 	public DocumentSummary getDocumentSummary(Document arg0, PortletURL arg1) {
 		return null;
 	}
 
-//	@Override
 	public void reIndex(String[] ids) throws SearchException {
 		try {
 			VanBanPhapQuyLocalServiceUtil.reIndex(ids);
@@ -167,8 +165,11 @@ public class VanBanPhapQuyIndexer implements Indexer{
 		}
 	}
 
-	@Override
 	public void reIndex(String className, long classPK) throws SearchException {
 	}
+	
+	private static final String[] _CLASS_NAMES = new String[] {
+		VanBanPhapQuy.class.getName()
+	};
 
 }

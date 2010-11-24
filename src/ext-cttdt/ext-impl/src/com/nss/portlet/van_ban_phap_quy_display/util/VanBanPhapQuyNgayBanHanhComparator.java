@@ -4,9 +4,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy;
 
 public class VanBanPhapQuyNgayBanHanhComparator extends OrderByComparator{
-	public static String ORDER_BY_ASC = "ngay_ban_hanh ASC";
+	public static String ORDER_BY_ASC = "nss_van_ban_phap_quy.ngay_ban_hanh ASC";
 
-	public static String ORDER_BY_DESC = "ngay_ban_hanh DESC";
+	public static String ORDER_BY_DESC = "nss_van_ban_phap_quy.ngay_ban_hanh DESC";
 
 	public VanBanPhapQuyNgayBanHanhComparator() {
 		this(false);

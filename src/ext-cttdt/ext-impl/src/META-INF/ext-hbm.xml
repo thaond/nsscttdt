@@ -2,6 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.nss.portlet.image_signer.model.impl.ImageSignerImpl" table="nss_image_signer">
+		<cache usage="read-write" />
+		<id name="imageSignerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="imageIdSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageIdUnSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalendarImpl" table="MeetingCalendar">
 		<cache usage="read-write" />
 		<id name="mcalId" type="long">
@@ -564,14 +573,5 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.nss.portlet.image_signer.model.impl.ImageSignerImpl" table="nss_image_signer">
-		<cache usage="read-write" />
-		<id name="imageSignerId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="imageIdSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="imageIdUnSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

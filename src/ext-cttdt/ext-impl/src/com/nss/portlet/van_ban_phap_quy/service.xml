@@ -47,6 +47,9 @@
 	    <finder name="MaCoQuanBanHanh" return-type="Collection">
 	   		<finder-column name="maCoQuanBanHanh"/>
 	    </finder>
+	    <finder name="Companyid" return-type="Collection">
+	   		<finder-column name="companyid"/>
+	    </finder>
 	</entity>
 	
 	<entity name="FileDinhKem" local-service="true" remote-service="true" table="nss_file_dinh_kem">
