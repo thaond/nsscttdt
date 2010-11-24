@@ -1,4 +1,10 @@
+<%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.model.Signature"%>
+<%@page import="java.util.List"%>
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -22,11 +28,25 @@
  * SOFTWARE.
  */
 %>
-
 <%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
-
+<!-- Tu update 20101124 -->
+<style type="text/css">#dhtmltooltip{
+position: absolute;
+width: 150px;
+padding: 2px;
+color: white;
+background-color: #cccccc;
+visibility: hidden;
+z-index: 100;
+/*Remove below line to remove shadow. Below line should always appear last within this CSS*/
+filter: progid:DXImageTransform.Microsoft.Shadow(color=red,direction=200);
+}</style>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/tooltip.jsp" %>
+<!-- end Tu update -->
 <%
-
+//Tu update 20101122
+long articleSignId = 0;
+//end Tu update
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 
 int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
@@ -172,7 +192,9 @@ else if (className.equals(IGImage.class.getName())) {
 }
 else if (className.equals(JournalArticle.class.getName())) {
 	JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(classPK);
-
+	//Tu update 20101122
+	articleSignId =  JournalArticleLocalServiceUtil.getArticle(articleResource.getGroupId(),articleResource.getArticleId()).getPrimaryKey();
+	//end Tu update
 	String languageId = LanguageUtil.getLanguageId(request);
 
 	JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(articleResource.getGroupId(), articleResource.getArticleId(), null, null, languageId, themeDisplay);
@@ -278,7 +300,6 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 	margin: 5px 0 !important;
 }
 </style>
-
 <c:if test="<%= show %>">
 	<div class="asset-abstract">
 		
@@ -296,4 +317,46 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 		</div>
 		
 	</div>
+
+	<!-- Tu them vao-->
+		<%
+				int checkSign = ArticleSignUtil.veriSign(articleSignId);
+				List<Signature> signature = SignatureLocalServiceUtil.findByArticlePrimKey(articleSignId);
+				long userSignId = 0;
+				String infoSign = "";
+				if(signature.size()>0){
+					userSignId = signature.get(0).getUserId();
+					infoSign = UserLocalServiceUtil.getUser(userSignId).getFullName();
+				}
+				%>
+				<div id="dhtmltooltip"></div>
+				<c:choose>
+					<c:when test="<%= checkSign == 1 %>">
+						<div style="float: right;padding-right: 50px;">
+								<c:choose>
+									<c:when test="<%= userSignId != 0 %>">
+										<img  onMouseover="ddrivetip('<%= UnicodeLanguageUtil.get(pageContext, "sign-kiem-duyet") %> \n<%= UnicodeLanguageUtil.get(pageContext, "sign-nguoi-ky") %>: <%= infoSign %>','#0EAAF4', 200)" onMouseout="hideddrivetip()" style="width: 40px;border: 0px solid;" width="60" alt="certificate" src="/html/images/Certificate.jpg">
+									</c:when>
+									<c:when test="<%= userSignId == 0 %>">
+										<img onMouseover="ddrivetip('<%= UnicodeLanguageUtil.get(pageContext, "sign-kiem-duyet") %> \n<%= UnicodeLanguageUtil.get(pageContext, "sign-nguoi-ky") %>: <%= infoSign %>','#0EAAF4', 200)" onMouseout="hideddrivetip()" style="width: 40px;border: 0px solid;" width="60" alt="certificate" src="/html/images/Certificate.jpg">
+									</c:when>
+								</c:choose>
+							
+						</div>
+					</c:when>
+					<c:when test="<%= checkSign == 2 %>">
+						<div style="float: right;padding-right: 50px;">
+								<c:choose>
+									<c:when test="<%= userSignId != 0 %>">
+										<img onMouseover="ddrivetip('<%= UnicodeLanguageUtil.get(pageContext, "sign-thay-doi") %>','#0EAAF4', 200)" onMouseout="hideddrivetip()" style="width: 40px;border: 0px solid;" width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
+									</c:when>
+									<c:when test="<%= userSignId == 0 %>">
+										<img onMouseover="ddrivetip('<%= UnicodeLanguageUtil.get(pageContext, "sign-thay-doi") %>','#0EAAF4', 200)" onMouseout="hideddrivetip()" style="width: 40px;border: 0px solid;" width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
+									</c:when>
+								</c:choose>
+						</div>
+					</c:when>
+				</c:choose>
+	<!-- end Tu -->
+
 </c:if>

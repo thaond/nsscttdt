@@ -625,7 +625,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		if (cmd == null) {
 			cmd = "<%= article == null ? Constants.ADD : Constants.UPDATE %>";
 		}
-
 		document.<portlet:namespace />fm1.<portlet:namespace /><%= Constants.CMD %>.value = cmd;
 
 		<c:if test="<%= article == null %>">
@@ -986,12 +985,42 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</c:if>
 
 		<br />
+		<%
+			boolean hasSavePermission = false;
 
+			if (article != null) {
+				hasSavePermission = JournalArticlePermission.contains(permissionChecker, groupId, articleId, ActionKeys.UPDATE);
+			}
+			else {
+				hasSavePermission = JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE);
+			}
+			%>
 		<%
 		String abstractId = portletDisplay.getNamespace() + "abstract";
 		String abstractTitle = LanguageUtil.get(pageContext, "abstract");
+		String signId = portletDisplay.getNamespace() + "sign";
+		String signTitle = LanguageUtil.get(pageContext, "sign");
 		%>
-
+		<!-- Tu them vao 18/11/2010 -->
+		<div>
+			<c:if test="<%= hasSavePermission %>">
+				<c:if test="<%= ((article == null) || ((article != null) && !article.isApproved())) && JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.APPROVE_ARTICLE) %>">
+					<liferay-ui:panel id="<%= signId %>" title="<%= signTitle %>" defaultState="closed" persistState="<%= true %>" extended="<%= false %>">
+						<table class="lfr-table">
+						<tr>
+							<td>
+								<liferay-ui:message key="nss-journal-use-sign" />
+							</td>
+							<td>
+								<input type="checkbox" name="<portlet:namespace />signArticle"  checked="checked"/>
+							</td>
+						</tr>
+						</table>
+				</liferay-ui:panel>
+				</c:if>
+			</c:if>
+		</div>
+		<!-- Tu ket thuc -->
 		<liferay-ui:panel id="<%= abstractId %>" title="<%= abstractTitle %>" defaultState="closed" persistState="<%= true %>" extended="<%= false %>">
 			<liferay-ui:error exception="<%= ArticleSmallImageNameException.class %>">
 
@@ -1048,16 +1077,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		<br />
 
 		<div>
-			<%
-			boolean hasSavePermission = false;
-
-			if (article != null) {
-				hasSavePermission = JournalArticlePermission.contains(permissionChecker, groupId, articleId, ActionKeys.UPDATE);
-			}
-			else {
-				hasSavePermission = JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE);
-			}
-			%>
 
 			<c:if test="<%= hasSavePermission %>">
 				<input type="submit" value="<liferay-ui:message key="save" />" />

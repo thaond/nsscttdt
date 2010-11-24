@@ -217,12 +217,12 @@
 								String patthFile = getServletContext().getRealPath("")+ fileDinhKemPath;
 								File file = new File(patthFile);
 								if (file.exists()) {
-									download = "<a href='" + fileDinhKemPath+ "'>" + "<img src='/html/images/icon_download.png' title='" + fileDinhKem.getTenFile() + "'></a>";
+									download = "<a href='" + fileDinhKemPath+ "'>" + "<img src='/html/images/icon_download.png' title='" + LanguageUtil.get(pageContext, "van-ban-di-kem") + "'></a>";
 								} else {
 									download = "";
 								}
 							} else {
-								download = "<img src='/html/images/fulldownload.png' title='" + fileDinhKem.getTenFile() + "'>";
+								download = "<img src='/html/images/fulldownload.png' title='" + LanguageUtil.get(pageContext, "van-ban-di-kem") + "'>";
 							}
 						} else {
 							download = "";
