@@ -107,8 +107,7 @@ public interface VanBanPhapQuyLocalService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public void reIndex(java.lang.String[] ids)
-        throws com.liferay.portal.SystemException,
-            com.liferay.portal.kernel.search.SearchException;
+        throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.liferay.portal.kernel.search.Hits search(long companyId,

@@ -120,8 +120,7 @@ public class VanBanPhapQuyLocalServiceUtil {
     }
 
     public static void reIndex(java.lang.String[] ids)
-        throws com.liferay.portal.SystemException,
-            com.liferay.portal.kernel.search.SearchException {
+        throws com.liferay.portal.SystemException {
         getService().reIndex(ids);
     }
 

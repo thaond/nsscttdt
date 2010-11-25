@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.media_library">
+	<namespace>MediaLibrary</namespace>
+	<entity name="MediaLibrary" local-service="true" remote-service="true" table="nss_media_library">
+		<column name="maMediaLibrary" type="long" primary="true" />
+		<column name="maMediaChuDe" type="long" />
+		
+		<column name="tieuDeMediaLibrary" type="String" />
+		<column name="tenMediaLibrary" type="String" />
+		<column name="kichThuoc" type="long" />		
+		<column name="duongDan" type="String" />
+		
+		<column name="userId" type="long" />		
+		<column name="luotXem" type="long" />		
+		<column name="createdate" type="Date" db-name="createdate" />
+		<column name="modifieddate" type="Date" db-name="modifieddate" />
+		<column name="active" type="boolean" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="maMediaChuDe"/>
+	    	<order-column name="tieuDeMediaLibrary"/>
+	    </order>
+	    
+	    <!-- Finder methods -->
+	    <finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	    <finder name="MaMediaChuDe_Active" return-type="Collection">
+	   		<finder-column name="maMediaChuDe"/>
+	   		<finder-column name="active"/>
+	    </finder>
+	</entity>
+</service-builder>

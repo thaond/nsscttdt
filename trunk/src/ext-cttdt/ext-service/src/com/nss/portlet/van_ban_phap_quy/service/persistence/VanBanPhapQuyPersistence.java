@@ -176,6 +176,34 @@ public interface VanBanPhapQuyPersistence extends BasePersistence {
         throws com.liferay.portal.SystemException,
             com.nss.portlet.van_ban_phap_quy.NoSuchVanBanPhapQuyException;
 
+    public java.util.List<com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy> findByCompanyid(
+        long companyid) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy> findByCompanyid(
+        long companyid, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy> findByCompanyid(
+        long companyid, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy findByCompanyid_First(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.van_ban_phap_quy.NoSuchVanBanPhapQuyException;
+
+    public com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy findByCompanyid_Last(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.van_ban_phap_quy.NoSuchVanBanPhapQuyException;
+
+    public com.nss.portlet.van_ban_phap_quy.model.VanBanPhapQuy[] findByCompanyid_PrevAndNext(
+        long maVanBanPhapQuy, long companyid,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.van_ban_phap_quy.NoSuchVanBanPhapQuyException;
+
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException;
@@ -206,6 +234,9 @@ public interface VanBanPhapQuyPersistence extends BasePersistence {
     public void removeByMaCoQuanBanHanh(long maCoQuanBanHanh)
         throws com.liferay.portal.SystemException;
 
+    public void removeByCompanyid(long companyid)
+        throws com.liferay.portal.SystemException;
+
     public void removeAll() throws com.liferay.portal.SystemException;
 
     public int countByActive(int active)
@@ -218,6 +249,9 @@ public interface VanBanPhapQuyPersistence extends BasePersistence {
         throws com.liferay.portal.SystemException;
 
     public int countByMaCoQuanBanHanh(long maCoQuanBanHanh)
+        throws com.liferay.portal.SystemException;
+
+    public int countByCompanyid(long companyid)
         throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;
