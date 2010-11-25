@@ -232,6 +232,7 @@
 	<classpathentry kind="lib" path="lib/development/jtds.jar"/>
 	<classpathentry kind="lib" path="lib/development/support-tomcat.jar"/>
 	<classpathentry kind="lib" path="lib/portal/sgs-rtftemplate.jar"/>
+	<classpathentry kind="lib" path="ext-lib/global/digitalsignature-portlet-service.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="ext-lib/portal/bsh.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/dwr.jar"/>

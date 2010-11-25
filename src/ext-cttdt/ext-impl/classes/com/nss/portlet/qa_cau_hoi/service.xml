@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.qa_cau_hoi">
+	<namespace>CauHoiQA</namespace>
+	<entity name="CauHoiQA" local-service="true" remote-service="true" table="nss_qa_cau_hoi">
+		<column name="maCauHoiQA" type="long" primary="true" />
+		<column name="maChuDeCauHoi" type="long" />
+		
+		<column name="tieuDe" type="String" />
+		<column name="tenNguoiHoi" type="String" />
+		<column name="email" type="String" />
+		<column name="noiDungHoi" type="String" />
+		
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="publishdate" type="Date" />
+	  	<column name="publish" type="boolean" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="tieuDe" case-sensitive="false" />
+	    </order>
+	    <!-- Finder methods -->
+	    <finder name="MaChuDeCauHoi" return-type="Collection">
+	   		<finder-column name="maChuDeCauHoi"/>
+	    </finder>
+	    <finder name="MaChuDeCauHoi_Publish" return-type="Collection">
+	   		<finder-column name="maChuDeCauHoi"/>
+	   		<finder-column name="publish"/>
+	    </finder>
+	</entity>
+	<entity name="FileDinhKemQA" local-service="true" remote-service="true" table="nss_qa_file_dinh_kem">
+		<column name="maFileDinhKemQA" type="long" primary="true" />		
+		<column name="maCauHoi" type="long" />
+		<column name="maCauTraLoi" type="long" />
+		<column name="tenFile" type="String" />
+		<column name="kichThuoc" type="long" />		
+		<column name="duongDan" type="String" />
+		
+		<!-- Order -->
+		<!-- Finder methods -->
+	    <finder name="MaCauHoi" return-type="Collection">
+	   		<finder-column name="maCauHoi"/>
+	    </finder>
+	    <finder name="MaCauTraLoi" return-type="Collection">
+	   		<finder-column name="maCauTraLoi"/>
+	    </finder>
+	</entity>
+</service-builder>

@@ -1,0 +1,25 @@
+<%
+	// Hai Trieu
+	// Add 2009/10/19
+ %>
+
+<%
+	PortletURL portletURL_R = renderResponse.createRenderURL();
+	
+	portletURL_R.setWindowState(WindowState.NORMAL);
+
+	portletURL_R.setParameter("struts_action", "/ext/meeting_calendar/view_focus_week");
+	//portletURL_R.setParameter("tabs1", tabs1);
+	portletURL_R.setParameter("tabs1", "focus-week");
+	portletURL_R.setParameter("redirect", redirect);
+	portletURL_R.setParameter("month", String.valueOf(selMonth));
+	portletURL_R.setParameter("day", String.valueOf(selDay));
+	portletURL_R.setParameter("year", String.valueOf(selYear));
+	
+ %>
+<form method="post" name="<portlet:namespace />fm_E"> 
+	<script type="text/javascript">
+		self.location = '<%= portletURL_R.toString() %>';
+	</script>
+</form>
+

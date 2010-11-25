@@ -1,0 +1,59 @@
+	ul, li{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+	#screen2 #buttons{
+		width:200px;
+	}
+	
+	#screen2 #buttons a{
+		color:red;
+	}
+	#screen2 .prev{
+		float:left;
+	}
+	#screen2 .next{
+		float:right;
+	}
+
+#slideshow{
+	overflow:hidden;
+	width:555px;
+}
+
+	#slideshow ul{
+		width:3900px;
+	}
+
+		#slideshow li{
+			float:left;
+		}
+
+	#screen2help #buttonshelp{
+		width:200px;
+	}
+	
+	#screen2help #buttonshelp a{
+		color:blue;
+	}
+	#screen2help .prev{
+		float:left;
+	}
+	#screen2help .next{
+		float:right;
+	}
+
+#slideshowhelp{
+	overflow:hidden;
+	width:555px;
+}
+
+	#slideshowhelp ul{
+		width:3900px;
+	}
+
+		#slideshowhelp li{
+			float:left;
+		}
+		
