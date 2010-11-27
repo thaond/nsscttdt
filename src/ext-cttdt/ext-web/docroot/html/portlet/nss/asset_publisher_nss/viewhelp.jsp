@@ -31,9 +31,10 @@
 <%@page import="javax.portlet.RenderRequest"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
-<link href="/html/portlet/nss/asset_publisher_nss/style.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="/html/portlet/nss/asset_publisher_nss/jquery.js"></script>
-<script type="text/javascript" src="/html/portlet/nss/asset_publisher_nss/init.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.serialScroll-min.js"></script>
 
 
 <style type="text/css">
@@ -50,9 +51,36 @@
 
 <div id="<portlet:namespace/>divTab" >
 
+<!-- MoNT start 27/11/2010 -->
+<script>
+	jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+			return -c * ((t=t/d-1)*t*t*t - 1) + b;
+	};
+
+	jQuery(function( $ ){
+		<portlet:namespace/>scrollviewhelp();
+	});
+
+	function <portlet:namespace/>scrollviewhelp() {
+		jQuery('#<portlet:namespace/>slideshowhelp').serialScroll({
+			items:'li',
+			prev:'#<portlet:namespace/>screenhelp a.prevbt',
+			next:'#<portlet:namespace/>screenhelp a.nextbt',
+			start:0, //as we are centering it, start at the 2nd
+			step:1,
+			force:true,
+			stop:true,
+			lock:false,
+			cycle:false, //don't pull back once you reach the end
+			easing:'easeOutQuart', //use this easing equation for a funny effect
+		});
+	}
+</script>
+<!-- MoNT end 27/11/2010 -->
+
 	<div class="toplist" >
 	    <div class="titlecateg">
-	    <div id="slideshowhelp">
+	    <div id="<portlet:namespace/>slideshowhelp" class="bgtabtle">
 	    <ul>    
 	    <%
 	    	long categoryParentId = 0;
@@ -69,7 +97,7 @@
 		    
 	    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
 	    	PortletURL viewCategoryURL = renderResponse.createRenderURL();
-	    	viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+	    	viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
 	  		viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 	  		viewCategoryURL.setParameter("tagsEntryId", "0");
 	  		
@@ -88,7 +116,7 @@
 					   for (int i=0; i < tagsCategoriesHelp.length; i++ ) {
 						   if (tagsEntry.getName().equals(tagsCategoriesHelp[i])) {
 							   viewCategoryURL = renderResponse.createRenderURL();
-							   viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+							   viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
 						  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 						  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 						  	   
@@ -106,7 +134,7 @@
 				   
 				   else {
 					   viewCategoryURL = renderResponse.createRenderURL();
-					   viewCategoryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+					   viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
 				  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 				  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 				  	   if (tagsEntryId == tagsEntry.getEntryId()) {
@@ -122,13 +150,15 @@
 	   %>    	
 	    </ul>
 	    </div>
-	    </div>
-<div id="screen2help">
-	<div id="buttonshelp">
-		<a class="prev" href="#">Previous1</a>
-		<a class="next" href="#">Next1</a>
-	</div>
-</div>		
+	    <!-- MoNT start 27/11/2010 -->
+	    <div id="<portlet:namespace/>screenhelp" class="btnextpre">
+			<div id="<portlet:namespace/>buttonhelp">
+				<a class="prevbt" onclick="<portlet:namespace/>scrollviewhelp()" href="#"></a>
+				<a class="nextbt" onclick="<portlet:namespace/>scrollviewhelp()" href="#"></a>
+			</div>	
+		</div>
+	    </div>			
+		<!-- MoNT end 27/11/2010 -->
 	    <div class="btmlist">
 	    <div class="ctrlist">
 	    <div class="shownew">
@@ -271,3 +301,5 @@
 	</div>
 </div>
 <div id="<portlet:namespace/>end"></div>
+
+
