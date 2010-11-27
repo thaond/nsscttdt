@@ -501,33 +501,38 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						<liferay-ui:message key="tin-abstract-entry" />
 						<select name="valueAbstractEntry<%=tE.getEntryId() %>">
 						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
+						int valueSelect = 0;
 							while(iteratorAbstractEntry.hasNext()){
 								Map.Entry<String,String> entry = iteratorAbstractEntry.next();
 								String key= entry.getKey();
 								int entryId= Integer.parseInt(key);
 								String value= entry.getValue();
 								int entryValue= Integer.parseInt(value);
-						%>
-								<% for(int i=1;i<=5;i++){ %>
-									<option value="<%=i %>" <%= entryValue == i ? "selected" :" " %>> <%=i %></option>
-								<%}%>
+								if(entryId == tE.getEntryId()){
+									valueSelect = entryValue;
+								}
+							}%>
+						<% for(int i=1;i<=5;i++){ %>
+								<option value="<%=i %>" <%= valueSelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
-					
 						</select>
 						
 						<liferay-ui:message key="tin-lien-quan-entry" />
 						<select name="valueChildrenEntry<%=tE.getEntryId() %>">
-						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();%>
-						<% while(iteratorChildrenEntry.hasNext()){ 
-							Map.Entry<String,String> entry = iteratorChildrenEntry.next();
-							String key= entry.getKey();
-							int entryId= Integer.parseInt(key);
-							String value= entry.getValue();
-							int entryValue= Integer.parseInt(value);
-							%>
-								<% for(int i=1;i<=5;i++){ %>
-									<option value="<%=i %>" <%= entryValue == i ? "selected" :" " %>> <%=i %></option>
-								<%}%>
+						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();
+						int valueEntrySelect = 0;
+							 while(iteratorChildrenEntry.hasNext()){ 
+								Map.Entry<String,String> entry = iteratorChildrenEntry.next();
+								String key= entry.getKey();
+								int entryId= Integer.parseInt(key);
+								String value= entry.getValue();
+								int entryValue= Integer.parseInt(value);
+								if(entryId == tE.getEntryId()){
+									valueEntrySelect = entryValue;
+								}
+							}%>
+						<% for(int i=1;i<=10;i++){ %>
+							<option value="<%=i %>" <%= valueEntrySelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
 						</select>
 					
@@ -545,7 +550,17 @@ configurationActionURL.setParameter("portletResource", portletResource);
 				    
 					
 					%>		
-				
+					<!-- Tu update 20101122 -->
+							<liferay-ui:message key="Hien-Thi-Bai-Viet" /> : 
+						<select name="<portlet:namespace />c_view_sign_type">
+							<option  <%= b1 ? "selected" : "" %> value="all"> <liferay-ui:message key="Tat-Ca" /> </option>
+							<option <%= b2 ? "selected" : "" %> value="sign"> <liferay-ui:message key="Bai-Da-Ky" /> </option>
+							<option <%= b3 ? "selected" : "" %> value="changesign"> <liferay-ui:message key="Bai-Ky-Bi-Doi" /> </option>
+							<option <%= b4 ? "selected" : "" %> value="notsign"> <liferay-ui:message key="Bai-Chua-Ky" /> </option>
+						</select>
+						<br>
+						<br>
+					<!--  End Tu update -->
 				<!-- end minhnv 20100813 -->			
 
 						<liferay-ui:message key="displayed-content-must-contain-the-following-categories" />
