@@ -67,11 +67,11 @@
 			prev:'#<portlet:namespace/>screenhelp a.prevbt',
 			next:'#<portlet:namespace/>screenhelp a.nextbt',
 			start:0, //as we are centering it, start at the 2nd
-			step:1,
-			force:true,
+			//step:1,
+			//force:true,
 			stop:true,
-			lock:false,
-			cycle:false, //don't pull back once you reach the end
+			//lock:false,
+			//cycle:false, //don't pull back once you reach the end
 			easing:'easeOutQuart', //use this easing equation for a funny effect
 		});
 	}
