@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="workflowjournal" width="703" height="463">
+  <node name="bat-dau" x="166" y="-6" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="bien-tap-tin" x="165" y="164" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="duyet-tin" x="168" y="286" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="119" h1="9" w2="122" h2="131"/>
+      <bendpoint w1="118" h1="-127" w2="121" h2="-5"/>
+    </edge>
+  </node>
+  <node name="soan-tin" x="168" y="68" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-141" h1="-3" w2="-152" h2="-88"/>
+      <bendpoint w1="-137" h1="93" w2="-134" h2="-3"/>
+    </edge>
+  </node>
+  <node name="hoan-thanh" x="160" y="419" width="132" height="36"/>
+</root-container>
