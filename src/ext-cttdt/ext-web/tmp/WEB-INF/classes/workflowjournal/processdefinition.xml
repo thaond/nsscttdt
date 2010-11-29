@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns=""  name="workflowjournal">
+
+
+	<start-state name="bat-dau">
+		<transition to="soan-tin" name="soan-tin"></transition>
+	</start-state>
+
+
+	<task-node name="bien-tap-tin">
+		<task name="none:xoatin:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="chuyenduyettin:chuyenduyettin:duyet-tin">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<name>
+					Tổng biên tập
+				</name>
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="tralai:tralai:soan-tin">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="duyet-tin" name="duyet-tin"></transition>
+		<transition to="soan-tin" name="soan-tin"></transition>
+	</task-node>
+
+	<task-node name="duyet-tin">
+		<task name="none:xoatin:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="duyettin:duyettin:hoan-thanh">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<name>
+					
+				</name>
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="tralai:tralai:bien-tap-tin">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="hoan-thanh" name="hoan-thanh"></transition>
+		<transition to="bien-tap-tin" name="bien-tap-tin"></transition>
+	</task-node>
+
+	<task-node name="soan-tin">
+		<task name="none:xoatin:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="chuyenbientaptin:chuyenbientaptin:bien-tap-tin">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<name>
+					Biên tập viên
+				</name>
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="bien-tap-tin" name="bien-tap-tin"></transition>
+	</task-node>
+	<end-state name="hoan-thanh"></end-state>
+
+
+</process-definition>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.COUNT_USER_IMAGE">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM user_ 
+		WHERE 
+		(lower(firstname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(middlename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(lastname) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.FIND_USER_IMAGE">
+		<![CDATA[
+		SELECT *
+		FROM user_ 
+		WHERE 
+		(lower(firstname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(middlename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(lastname) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY firstname ASC
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.image_signer.service.persistence.ImageSignerFinder.FIND_IMAGE_SIGNER_BY_USERID">
+		<![CDATA[
+		SELECT *
+		FROM nss_image_signer 
+		WHERE userid = ? 
+		]]>
+	</sql>		
+</custom-sql>
