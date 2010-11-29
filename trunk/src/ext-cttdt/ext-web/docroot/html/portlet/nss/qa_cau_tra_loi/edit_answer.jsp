@@ -6,6 +6,9 @@
 <%@page import="com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA"%>
 <%@page import="com.nss.portlet.qa_cau_hoi.model.CauHoiQA"%>
 <%@page import="com.nss.portlet.qa_cau_hoi.model.FileDinhKemQA"%>
+<%@page import="com.nss.portlet.qa_chu_de.model.QAChuDeCauHoi"%>
+<%@page import="com.nss.portlet.qa_cau_hoi.search.CauHoiQADisplayTerms"%>
+<%@page import="com.nss.portlet.qa_cau_tra_loi.searchCauHoi.QACauHoiDisplayTerms"%>
 
 <liferay-util:include page="/html/portlet/nss/qa_cau_tra_loi/js/qacautraloi-js.jsp"></liferay-util:include>
 
@@ -29,8 +32,37 @@
 	portletURL.setParameter("redirect", redirect);
 	portletURL.setParameter(Constants.CMD, Constants.UPDATE);
 	
+	List<QAChuDeCauHoi> qAChuDeCauHoilList = (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList") == null ? new ArrayList<QAChuDeCauHoi>() 
+			: (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList");
+			
+	PortletURL portletURL_ = renderResponse.createRenderURL();
+	portletURL_.setWindowState(WindowState.NORMAL);
+	portletURL_.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
+	portletURL_.setParameter("redirect", redirect);
+	String portletURLDisplayString = portletURL_.toString();
 %>
-
+<div id="boxcontainer-vbpq">
+	<div id="bttomcontainer-vbpq">
+		<div id="container-vbpq">
+  
+	<div id="main">
+    <div id="leftmenu">
+    <div id="topmnl">
+    <div id="vbpq">
+	    <ul>
+	    	<h2><liferay-ui:message key="chuyen-muc" /></h2>
+	    	<%
+	    		for (int i = 0; i < qAChuDeCauHoilList.size(); i ++) {
+	    			QAChuDeCauHoi chuDeCauHoi = (QAChuDeCauHoi) qAChuDeCauHoilList.get(i);
+	    	%>
+		        <li><a href="<%= portletURLDisplayString + "&" + renderResponse.getNamespace() + QACauHoiDisplayTerms.MA_CHU_DE_CAU_HOI + "=" + chuDeCauHoi.getMaChuDeCauHoi() %>"><%= chuDeCauHoi.getTenChuDeCauHoi() %></a></li>
+	        <%
+	    		}
+	        %>
+	    </ul>
+       </div>
+    </div>
+    </div>  
 <div id="divparent">
     <form action="<%= portletURL.toString() %>" method="post" enctype="multipart/form-data" name="<portlet:namespace />fm" onsubmit="return checkFormAddCauTraLoi();">
 		<fieldset>
@@ -135,4 +167,8 @@
 			
 		</fieldset>
 	</form>
+</div>
+</div>
+</div>
+</div>
 </div>

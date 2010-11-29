@@ -31,10 +31,6 @@
 	String portletURLDisplayString = portletURL.toString();
 %>
 
-<div id="boxcontainer-vbpq">
-	<div id="bttomcontainer-vbpq">
-		<div id="container-vbpq">
-  
 	<div id="main">
     <div id="leftmenu">
     <div id="topmnl">
@@ -54,10 +50,9 @@
     </div>
     </div>  
     
-	<div id="divparent">
     <form action="<%= portletURLDisplayString %>"  method="post" name="<portlet:namespace />fm" >
+    <fieldset>
     <input type="hidden" name="cauTraLoiURL" value="<%= portletURLDisplayString %>">
-		<fieldset>
 		<div class="parent-title"><liferay-ui:message key="hoi-dap-truc-tuyen" /></div>
     	<%
 	    	QACauHoiSearch cauHoiQASearch =  new QACauHoiSearch(renderRequest, portletURL);
@@ -157,9 +152,4 @@
 		<liferay-ui:search-iterator searchContainer="<%= cauHoiQASearch %>" /> 
 		</fieldset>
 	</form>
-</div>
-
-</div>
-</div>
-</div>  
 </div>

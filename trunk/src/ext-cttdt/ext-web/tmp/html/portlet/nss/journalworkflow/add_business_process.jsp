@@ -18,12 +18,13 @@
 	<portlet:param name="<%=Constants.CMD %>" value="addBusinessProcess"/>
 </portlet:actionURL>
 
-<div>
-	<form method="post" action="<%=addBusinessProcessURL %>">
+<form method="post" action="<%=addBusinessProcessURL %>">
+<div class="parent-title"><liferay-ui:message key="Them-quy-trinh"/></div>
 		<input name="<portlet:namespace />originalRedirect"	type="hidden" value="<%=HtmlUtil.escape(originalRedirect)%>" />
 		<liferay-ui:tabs names="process-definition" formName="fm1" backURL="<%= redirect %>" />
-		<liferay-ui:input-textarea param="bpdText"></liferay-ui:input-textarea><br/>
+		<div class="borderendTab">
+		<liferay-ui:input-textarea param="bpdText"></liferay-ui:input-textarea><br><br>
 		<input type="submit" value="<liferay-ui:message key="add"/>" />
 		<input type="button" value="<liferay-ui:message key="cancel"/>" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';"/>
-	</form>
-</div>
+		</div>
+</form>

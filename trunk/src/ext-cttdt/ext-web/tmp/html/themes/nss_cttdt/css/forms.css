@@ -10,6 +10,15 @@ input,select,textarea,button,keygen,isindex {
 	font-size: 11px;
 }
 
+input[type="text"],textarea,input[type="file"],textarea[type="textarea"],input[type="password"] {
+	font-family: arial, sans-serif;padding: 3px 3px 2px;background: #fff; border-style: solid solid; border-color: #7bd5eb #96e0f0 #d4fbfd #96e0f0; border-width: 1px 1px;
+}
+input[type="text"].focus,textarea.focus,input[type="file"].focus,textarea[type="textarea"].focus,input[type="password"].focus {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
+input[type="text"]:hover,textarea:hover,input[type="file"]:hover,textarea[type="textarea"]:hover,input[type="password"]:hover {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
 input[type="image"] {
 	background: transparent none;
 	border: none;

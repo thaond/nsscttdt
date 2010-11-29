@@ -1,22 +1,18 @@
 <%@ include file="/html/portlet/nss/link/init.jsp" %>
-
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.util.List"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-
 <%@page import="com.nss.portlet.link.searchLoaiWebsite.LoaiWebsiteSearch"%>
 <%@page import="com.nss.portlet.link.searchLoaiWebsite.LoaiWebsiteSearchTerms"%>
 <%@page import="com.nss.portlet.link.model.LoaiWebsite"%>
 <%@page import="com.nss.portlet.link.service.LoaiWebsiteLocalServiceUtil"%>
-
 <liferay-util:include page="/html/portlet/nss/link/js/lienketwebsiste-js.jsp"></liferay-util:include>
 
 <%
 	String tabLoai = ParamUtil.getString(request, "tabLoai","display_loai");
 	String tabs = ParamUtil.getString(renderRequest,"tabs","view_loaiWebsite");
-
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/link/view");
@@ -30,10 +26,7 @@
 		LoaiWebsiteSearch loaiWebsiteSearch = new LoaiWebsiteSearch(renderRequest, portletURL);
 		LoaiWebsiteSearchTerms loaiWebsiteSearchTerms = (LoaiWebsiteSearchTerms)loaiWebsiteSearch.getSearchTerms();
 	%>
-	
 	<liferay-ui:search-form page="/html/portlet/nss/link/search_form_loaiwebsite.jsp" searchContainer="<%= loaiWebsiteSearch %>" />
-	
-	<div id="separator"></div>
 		<%
 			PortletURL addURL = renderResponse.createRenderURL();
 			addURL.setWindowState(WindowState.NORMAL);
@@ -42,9 +35,8 @@
 			addURL.setParameter("tabs", tabs);
 			addURL.setParameter("redirect", loaiWebsiteSearch.getIteratorURL().toString());
 		%>
-	<br/>
 	<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-	<br/>
+	<br><br>
 	
 	<%
 		List<LoaiWebsite> results = null;

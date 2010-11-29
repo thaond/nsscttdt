@@ -49,8 +49,6 @@
 		<liferay-ui:search-form
 			page="/html/portlet/nss/van_ban_phap_quy/search_form.jsp"
 			searchContainer="<%= vanBanPhapQuySearch %>" />
-			
-		<div id="separator"></div>
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
 				addURL.setWindowState(WindowState.NORMAL);
@@ -59,11 +57,8 @@
 				addURL.setParameter("redirect", vanBanPhapQuySearch.getIteratorURL().toString());
 			
 			%>
-			<br/>
 			<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-			<br/>
-			<br/>
-				
+			<br><br>
 			<%
 				DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
 				DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");

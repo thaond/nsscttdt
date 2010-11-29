@@ -2,6 +2,67 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.nss.portlet.managementworkflowjournal.model.impl.ManagementWorkflowJournalImpl" table="nss_quan_ly_quy_trinh_duyet_tin">
+		<cache usage="read-write" />
+		<id name="managementWorkflowJournalId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="processDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="workflowname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dateFrom" type="org.hibernate.type.TimestampType" />
+		<property name="dateTo" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.nss.portlet.managementworkflowjournal.model.impl.WorkflowJournalArticleImpl" table="nss_workflow_journal_article">
+		<cache usage="read-write" />
+		<id name="workflowJournalArticleId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="processDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="processInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="resourcePrimkey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="journalType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="countImageOfArticle" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.nss.portlet.managementworkflowjournal.model.impl.LogWorkflowJournalArticleImpl" table="log_workflow_journal_article">
+		<cache usage="read-write" />
+		<id name="logWorkflowJournalArticleId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="resourcePrimkey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="transition" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dateReceiptOfUserReceipt" type="org.hibernate.type.TimestampType" />
+		<property name="dateProcessOfUserReceipt" type="org.hibernate.type.TimestampType" />
+		<property name="dateSendOfUserReceipt" type="org.hibernate.type.TimestampType" />
+		<property name="useridProcess" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="roleIdProcess" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dateReceiptOfUserProcess" type="org.hibernate.type.TimestampType" />
+		<property name="dateProcessOfUserProcess" type="org.hibernate.type.TimestampType" />
+		<property name="processInformation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowStatusBefore" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="workflowStatusAfter" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.image_signer.model.impl.ImageSignerImpl" table="nss_image_signer">
+		<cache usage="read-write" />
+		<id name="imageSignerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="imageIdSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="imageIdUnSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalendarImpl" table="MeetingCalendar">
 		<cache usage="read-write" />
 		<id name="mcalId" type="long">
@@ -434,6 +495,24 @@
 		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
 		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
+	<class name="com.nss.portlet.generatetemplateid.model.impl.IdTemplateImpl" table="pml_idtemplate">
+		<cache usage="read-write" />
+		<id name="templateId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="format" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="startNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="len" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.generatetemplateid.model.impl.IdGeneratedImpl" table="pml_idgenerated">
+		<cache usage="read-write" />
+		<id name="id" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="year" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="curValue" column="curvalue" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.liferay.portlet.messageboards.model.impl.MBCategoryImpl" table="MBCategory">
 		<cache usage="read-write" />
 		<id name="categoryId" type="long">
@@ -564,14 +643,5 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.nss.portlet.image_signer.model.impl.ImageSignerImpl" table="nss_image_signer">
-		<cache usage="read-write" />
-		<id name="imageSignerId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="imageIdSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="imageIdUnSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

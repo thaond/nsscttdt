@@ -403,7 +403,17 @@ configurationActionURL.setParameter("portletResource", portletResource);
 				    }
 					%>
 					</table>
-											
+					<br>
+					<!-- Tu update 20101122 -->
+							<liferay-ui:message key="Hien-Thi-Bai-Viet" /> : 
+						<select name="<portlet:namespace />tth_view_sign_type">
+							<option  <%= b1 ? "selected" : "" %> value="all"> <liferay-ui:message key="Tat-Ca" /> </option>
+							<option <%= b2 ? "selected" : "" %> value="sign"> <liferay-ui:message key="Bai-Da-Ky" /> </option>
+							<option <%= b3 ? "selected" : "" %> value="changesign"> <liferay-ui:message key="Bai-Ky-Bi-Doi" /> </option>
+							<option <%= b4 ? "selected" : "" %> value="notsign"> <liferay-ui:message key="Bai-Chua-Ky" /> </option>
+						</select>
+						
+					<!--  End Tu update -->						
 						<!-- end -->
 						
 						<br /><br />

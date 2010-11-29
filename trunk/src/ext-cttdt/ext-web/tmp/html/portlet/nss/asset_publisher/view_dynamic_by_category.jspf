@@ -1,3 +1,6 @@
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
+<%@page import="com.liferay.portlet.journal.model.JournalArticle"%>
+<%@page import="com.liferay.portlet.journal.model.JournalArticleResource"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -40,12 +43,29 @@ int total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, classNameIds,
 searchContainer.setTotal(total);
 
 List<TagsAsset> results = new ArrayList<TagsAsset>();
+//TuNV update 20101127
+JournalArticleResource articleResource1 = null;
+JournalArticle article = null;
 
 List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), total);
 
 for (TagsAsset asset : assets) {
 	List<TagsEntry> assetEntries = TagsEntryLocalServiceUtil.getAssetEntries(asset.getAssetId(), TagsEntryConstants.FOLKSONOMY_CATEGORY);
-
+	
+	//TuNV update 20101127
+	articleResource1 = JournalArticleResourceLocalServiceUtil.getArticleResource(asset.getClassPK());
+	article = JournalArticleLocalServiceUtil.getArticle(articleResource1.getGroupId(),articleResource1.getArticleId());
+	if(b2){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 1)
+			continue;
+	}else if(b3){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 2)
+			continue;
+	}else if(b4){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 0)
+			continue;
+	}
+	//End TuNV
 	for (TagsEntry assetEntry : assetEntries) {
 		TagsVocabulary vocabulary = assetEntry.getVocabulary();
 
@@ -56,7 +76,6 @@ for (TagsAsset asset : assets) {
 		}
 	}
 }
-
 
 if (results == null) {
 	if (!showPortletWithNoResults) {

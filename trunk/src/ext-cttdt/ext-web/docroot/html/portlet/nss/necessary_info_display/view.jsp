@@ -3,34 +3,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.nss.portlet.necessary_info.model.ThongTinCanThiet"%>
 <%@page import="java.util.List"%>
-<style type="text/css">
-#<portlet:namespace/>boxinfo{
-	position: relative; 
-	/*float: left;*/ 
-	width: 190px; 
-	height: 150px;
-}
-
-.<portlet:namespace />info {
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 0px;
-	padding-left: 0px;
-	/*float: left;*/
-	width: 190px;
-}
-</style>
-
 <%
 	List<ThongTinCanThiet> thongTinCanThietList = (List<ThongTinCanThiet>)renderRequest.getAttribute("thongTinCanThietList") == null ? new ArrayList<ThongTinCanThiet>() 
 				: (List<ThongTinCanThiet>)renderRequest.getAttribute("thongTinCanThietList");
 %>
-
-<div class="toptitleleft">
-    <h3><liferay-ui:message key="nss-thong-tin-can-biet" /></h3>
-    <div class="btmtitleleft">
-    	<div class="ctrtitleleft">
-    		<form  name="<portlet:namespace/>fm" action="" method="get">
+<div class="toptitleleft_no">
+<form  name="<portlet:namespace/>fm" action="" method="get">
         <%
        	if ("select".equals(displayStyleInfo)) {
        	%>
@@ -51,53 +29,36 @@
        	}
        	else if ("image".equals(displayStyleInfo)) {
        	%>
-       	<table cellspacing="0" width="100%">
        	<%
        	for( int i=0; i < thongTinCanThietList.size(); i++) {
     		ThongTinCanThiet thongTinCanThiet = thongTinCanThietList.get(i);
         %>
-		
-     		<tr>
-				<td>
 					<div class="<portlet:namespace />info">
 						<a href="<%= thongTinCanThiet.getUrlWebsite() %>"  target="<%= thongTinCanThiet.getTarget() %>">
 							<img src='<%= themeDisplay.getPathImage() %>/necessary_info?img_id=<%= thongTinCanThiet.getImageId_liferay() %>' />
 						</a>
 					</div>
-				</td>
-			</tr>
         <%
         	}
        	%>
-       	</table>
-       	
 	    <%
        	} else if ("up".equals(displayStyleInfo) || "right".equals(displayStyleInfo)) {
 		%>
 		<!-- MoNT start 16/11/2010 -->
 		<div  id="<portlet:namespace/>necessary_info_display" style="display: none">
 		<div id="<portlet:namespace/>boxinfo">
-			<table cellspacing="0" height="50%" width="100%">
-			    
 				<%
 				for( int i=0; i < thongTinCanThietList.size(); i++) {
 		    		ThongTinCanThiet thongTinCanThiet = thongTinCanThietList.get(i);
 		    	%>
-		    	<tr>
-					<td>
 						<div class="<portlet:namespace />info" style="display: none">
 							<a href="<%= thongTinCanThiet.getUrlWebsite() %>"  target="<%= thongTinCanThiet.getTarget() %>">
 								<img width="200px" src='<%= themeDisplay.getPathImage() %>/necessary_info?img_id=<%= thongTinCanThiet.getImageId_liferay() %>' />
 							</a>
-							
 						</div>
-					</td>
-				</tr>
 				<%
 				}
 				%>
-				
-			</table>
 		</div>
 		</div>
 		<script type="text/javascript">
@@ -131,9 +92,5 @@
 		<% }  %>
 		
 <!-- MoNT end 16/11/2010 -->		
-   			</form>
-    	</div>
-    </div>
+</form>
 </div>
-
-

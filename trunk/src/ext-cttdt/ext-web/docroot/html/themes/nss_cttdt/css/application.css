@@ -940,3 +940,6 @@ img.ui-datepicker-trigger {
 .filetree span.file {
 	background: url(../images/trees/page.png) 0 0 no-repeat;
 }
+.ui-tabs li.toggle.last,.ui-tabs li.toggle.last a, .ui-tabs li.toggle.last span,.ui-tabs li.toggle.last:hover, .ui-tabs li.toggle.last a:hover {
+	float: right; background: none;font-weight: bold;font-size: 11px;color: #00c1f9;
+}

@@ -89,3 +89,5 @@ Liferay.Service.register("Liferay.Service.MediaLibrary", "com.nss.portlet.media_
 Liferay.Service.register("Liferay.Service.DigitalSignature", "com.nss.portlet.digitalsignature.service");
 
 Liferay.Service.register("Liferay.Service.ImageSigner", "com.nss.portlet.image_signer.service");
+
+Liferay.Service.register("Liferay.Service.managementworkflowjournal", "com.nss.portlet.managementworkflowjournal.service");

@@ -8,7 +8,6 @@
 			<param name="class" value="com.nss.portlet.journalworkflow.ajax.JWFA"></param>
 		</create>
 		
-		<!-- user for reIndex van ban phap quy Yenlt 14072010 -->
 		<create creator="new" javascript="VanBanPhapQuyIndexUtil"> 
 			<param name="class" value="com.nss.portlet.van_ban_phap_quy.util.VanBanPhapQuyIndexUtil" />
 		</create>
@@ -16,9 +15,11 @@
 			<param name="class" value="com.nss.portlet.nss_don_vi_thu_tuc.util.DonViThuTucDWRUtil" />
 		</create>
 		<convert converter="bean" match="com.nss.portlet.nss_don_vi_thu_tuc.model.DonViThuTuc" />
-		<!-- user for parenId linh vuc van ban Yenlt 07082010 -->
 		<create creator="new" javascript="LinhVucVanBanDWRClient"> 
 			<param name="class" value="com.nss.portlet.linh_vuc_van_ban.util.LinhVucVanBanDWR" />
+		</create>
+		<create creator="new" javascript="pmlTemplateIdDwrClient"> 
+			<param name="class" value="com.nss.portlet.generatetemplateid.util.PmlTemplateIdDwr" />
 		</create>
 	</allow>
 

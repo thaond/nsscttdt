@@ -34,49 +34,41 @@
 %>
 
 <form action="<%= portletURL.toString() %>"  enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" >
-	<fieldset>
-	<table width="100%" border="0" class="table-border-pml">
-	<liferay-ui:message key="thu-tuc-hanh-chinh" />
-	
+<div class="parent-title">	<liferay-ui:message key="thu-tuc-hanh-chinh" /></div>
+	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
-				<label><liferay-ui:message key="ten-thu-tuc-hanh-chinh" /></label>
+			<td width="20%">
+				<label><liferay-ui:message key="ten-thu-tuc-hanh-chinh" /></label>:
 			</td>
 			<td><%= thuTucHanhChinh.getTenThuTucHanhChinh() %></td>
-			<td>&nbsp;</td>
 		</tr>
-		
-		<tr height="10"></tr>
 		<tr>
 			<td>
-				<label><liferay-ui:message key="dia-chi-lien-he" /></label>
+				<label><liferay-ui:message key="dia-chi-lien-he" /></label>:
 			</td>
 			<td><%= thuTucHanhChinh.getDiaChiLienHe() %></td>
-			<td>&nbsp;</td>
 		</tr>
 		
-		<tr height="10"></tr>
 		<tr>
-			<td class="minlabel">
-				<label><liferay-ui:message key="linh-vuc" /></label>
+			<td>
+				<label><liferay-ui:message key="linh-vuc" /></label>:
 			</td>
-		    <td align="left">
+		    <td>
 		    <%= linhVucThuTucHanhChinh.getTenLinhVucThuTucHanhChinh()%>
 		    </td>
 		</tr>
-		<tr height="10"></tr>
 		<tr>
-			<td class="minlabel">
-				<label><liferay-ui:message key="co-quan-thuc-hien" /></label>
+			<td>
+				<label><liferay-ui:message key="co-quan-thuc-hien" /></label>:
 			</td>
-		    <td align="left">
+		    <td >
 		    <%= donViThuTuc.getTenDonViThuTuc()%>
 		    </td>
 		</tr>
-		<tr height="10"></tr>
 	</table>
 	<br/>
-	<div id="div-head-title"><liferay-ui:message key="van-ban-di-kem"/></div>
+	<fieldset class="filborder">
+	<label class="laborder"><liferay-ui:message key="van-ban-di-kem"/></label>
 	<%
 		FileDinhKemTTHCSearch fileDinhKemTTHCSearch = new FileDinhKemTTHCSearch(renderRequest, portletURL);
 		
@@ -116,9 +108,9 @@
 		}
 	%>
 	<liferay-ui:search-iterator searchContainer="<%= fileDinhKemTTHCSearch %>" />
-	<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');">
-		<input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' />
-	</span>
 	</fieldset>
+	<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');">
+		<input class="button-width" type="button" value='<liferay-ui:message key="back"/>' />
+	</span>
 </form>
 	

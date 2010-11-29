@@ -1805,6 +1805,27 @@ create table instancebean (
 )
 go
 
+create table log_workflow_journal_article (
+	logWorkflowJournalArticleId decimal(20,0) not null primary key,
+	resourcePrimkey decimal(20,0),
+	transition int,
+	groupId decimal(20,0),
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	roleId decimal(20,0),
+	dateReceiptOfUserReceipt datetime null,
+	dateProcessOfUserReceipt datetime null,
+	dateSendOfUserReceipt datetime null,
+	useridProcess decimal(20,0),
+	roleIdProcess decimal(20,0),
+	dateReceiptOfUserProcess datetime null,
+	dateProcessOfUserProcess datetime null,
+	processInformation varchar(75) null,
+	workflowStatusBefore varchar(75) null,
+	workflowStatusAfter varchar(75) null
+)
+go
+
 create table nss_certificate (
 	userId decimal(20,0) not null primary key,
 	x509Certificate varchar(75) null
@@ -1819,6 +1840,20 @@ create table nss_image_signer (
 )
 go
 
+create table nss_quan_ly_quy_trinh_duyet_tin (
+	managementWorkflowJournalId decimal(20,0) not null primary key,
+	groupId decimal(20,0),
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	processDefinitionId decimal(20,0),
+	workflowname varchar(75) null,
+	version_ int,
+	description varchar(75) null,
+	dateFrom datetime null,
+	dateTo datetime null
+)
+go
+
 create table nss_signature (
 	signatureId decimal(20,0) not null primary key,
 	groupId decimal(20,0),
@@ -1830,6 +1865,20 @@ create table nss_signature (
 	articleId varchar(75) null,
 	version float,
 	signData varchar(75) null
+)
+go
+
+create table nss_workflow_journal_article (
+	workflowJournalArticleId decimal(20,0) not null primary key,
+	groupId decimal(20,0),
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	roleId decimal(20,0),
+	processDefinitionId decimal(20,0),
+	processInstanceId decimal(20,0),
+	resourcePrimkey decimal(20,0),
+	journalType varchar(75) null,
+	countImageOfArticle int
 )
 go
 
@@ -8685,6 +8734,12 @@ go
 create index IX_205EC031 on instancebean (status)
 go
 
+create index IX_6B798ECC on log_workflow_journal_article (resourcePrimkey)
+go
+
+create index IX_E9CED857 on nss_quan_ly_quy_trinh_duyet_tin (workflowname, version_)
+go
+
 create index IX_895462F4 on nss_signature (articleId)
 go
 create index IX_55D889C4 on nss_signature (articlePrimKey)
@@ -8692,6 +8747,9 @@ go
 create index IX_4B61DDFE on nss_signature (articlePrimKey, userId)
 go
 create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId)
+go
+
+create index IX_7BD52FD6 on nss_workflow_journal_article (resourcePrimkey)
 go
 
 

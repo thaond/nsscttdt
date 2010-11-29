@@ -72,8 +72,20 @@
 		<input class="lfr-input-text" <%= showListed ? "disabled" : "" %> name="<portlet:namespace />targetPortletId" type="text" value="<%= targetPortletId %>" />
 	</td>
 </tr>
+<!-- Tu update 20101122 -->
+<tr >
+	<td style="padding-top: 10px;">
+		<liferay-ui:message key="Cai-Dat-Tim-Kiem" />
+	</td>
+	<td style="padding-top: 10px;">
+		<input <%= b1 ? "checked" : "" %> type="radio" name="<portlet:namespace />c_search_type" value="all" > <liferay-ui:message key="Tat-Ca" /><br>
+		<input <%= b2 ? "checked" : "" %> type="radio" name="<portlet:namespace />c_search_type" value="sign"> <liferay-ui:message key="Bai-Da-Ky" /><br>
+		<input <%= b3 ? "checked" : "" %> type="radio" name="<portlet:namespace />c_search_type" value="changesign" > <liferay-ui:message key="Bai-Ky-Bi-Doi" /><br>
+		<input <%= b4 ? "checked" : "" %> type="radio" name="<portlet:namespace />c_search_type" value="notsign" > <liferay-ui:message key="Bai-Chua-Ky" /><br>
+	</td>
+</tr>
+<!-- end Tu update -->
 </table>
-
 <br />
 
 <input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />

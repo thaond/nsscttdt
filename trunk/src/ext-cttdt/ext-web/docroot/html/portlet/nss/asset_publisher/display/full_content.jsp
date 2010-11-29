@@ -1,3 +1,5 @@
+<%@page import="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil"%>
+<%@page import="com.nss.portlet.image_signer.model.ImageSigner"%>
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="java.util.List"%>
@@ -426,6 +428,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					userSignId = signature.get(0).getUserId();
 					infoSign = UserLocalServiceUtil.getUser(userSignId).getFullName();
 				}
+				ImageSigner image = ImageSignerLocalServiceUtil.getImageSignerByUserId(userSignId,0,ImageSignerLocalServiceUtil.getImageSigners(-1,-1).size());
 				%>
 				<c:choose>
 					<c:when test="<%= checkSign == 1 %>">
@@ -434,10 +437,10 @@ request.setAttribute("view.jsp-showIconLabel", true);
 							<tr>
 								<td>
 								<c:choose>
-									<c:when test="<%= userSignId != 0 %>">
-										<img width="60" alt="certificate" src="/html/images/Certificate.jpg">
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdSign()%>">
 									</c:when>
-									<c:when test="<%= userSignId == 0 %>">
+									<c:when test="<%= image == null %>">
 										<img width="60" alt="certificate" src="/html/images/Certificate.jpg">
 									</c:when>
 								</c:choose>
@@ -453,10 +456,10 @@ request.setAttribute("view.jsp-showIconLabel", true);
 							<tr>
 								<td>
 								<c:choose>
-									<c:when test="<%= userSignId != 0 %>">
-										<img width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdUnSign()%>">
 									</c:when>
-									<c:when test="<%= userSignId == 0 %>">
+									<c:when test="<%= image == null %>">
 										<img width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
 									</c:when>
 								</c:choose>

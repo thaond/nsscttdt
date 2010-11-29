@@ -44,30 +44,28 @@
 %>
 
 <liferay-ui:search-toggle displayTerms="<%= displayTerms %>" id="toogle_id_vanbanphapquy" >
-	<table class="vanbanphapquy-table">
-	
+<table cellspacing="0" width="100%">
 		<tr>
-			<td align="right"><liferay-ui:message key="ky-hieu-van-ban" />:&nbsp;</td>
-			<td align="left">
-				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.KY_HIEU_VAN_BAN %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getKyHieuVanBan()) %>" />
+			<td width="20%"><liferay-ui:message key="ky-hieu-van-ban" />:&nbsp;</td>
+			<td width="30%">
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.KY_HIEU_VAN_BAN %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getKyHieuVanBan()) %>" />
 			</td>
 					
-			<td align="right"><liferay-ui:message key="tom-tat" />:&nbsp;</td>
-			<td align="left">
-				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.TOM_TAT %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTomTat()) %>" />
+			<td width="20%"><liferay-ui:message key="tom-tat" />:&nbsp;</td>
+			<td>
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.TOM_TAT %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getTomTat()) %>" />
 			</td>		
 			
 		</tr>
-		<tr height="10"></tr>
 		<tr>
-			<td align="right"><liferay-ui:message key="nguoi-ky" />:&nbsp;</td>
-			<td align="left">
-				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.NGUOI_KY %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getNguoiKy()) %>" />
+			<td><liferay-ui:message key="nguoi-ky" />:&nbsp;</td>
+			<td>
+				<input name="<portlet:namespace/><%=VanBanPhapQuyDisplayTerms.NGUOI_KY %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getNguoiKy()) %>" />
 			</td>
 					
-			<td align="right"><liferay-ui:message key="co-quan-ban-hanh" />:&nbsp;</td>
-			<td align="left">
-				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_CO_QUAN_BAN_HANH%>" id="select2" style="width: 89%;">
+			<td><liferay-ui:message key="co-quan-ban-hanh" />:&nbsp;</td>
+			<td>
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_CO_QUAN_BAN_HANH%>" id="select2" style="width: 93%;">
 		    		<option <%=(displayTerms.getMaCoQuanBanHanh() == 0  ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!coQuanBanHanhList.isEmpty()) { 
@@ -81,11 +79,10 @@
 		    	</select>
 			</td>		
 		</tr>
-		<tr height="10"></tr>
 		<tr>
-		 	<td align="right" class="minlabel"><liferay-ui:message key="loai-van-ban" /></td>
-		    <td align="left" >
-				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LOAI_VAN_BAN%>" id="select2" style="width: 89%;">
+		 	<td class="minlabel"><liferay-ui:message key="loai-van-ban" /> :</td>
+		    <td >
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LOAI_VAN_BAN%>" id="select2" style="width: 93%;">
 		    		<option <%=(displayTerms.getMaLoaiVanBan() == 0 ? "selected" : "" )%> value="0"><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!loaiVBList.isEmpty()) { 
@@ -100,8 +97,8 @@
 		    </td>
 					
 			<td class="minlabel"><liferay-ui:message key="linh-vuc-van-ban" />:&nbsp;</td>
-			<td align="left">
-				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LINH_VUC_VAN_BAN%>" id="select2" style="width: 89%;">
+			<td>
+				<select name="<portlet:namespace /><%= VanBanPhapQuyDisplayTerms.MA_LINH_VUC_VAN_BAN%>" id="select2" style="width: 93%;">
 		    		<option <%=(displayTerms.getMaLinhVucVanBan() == 0 ? "selected" : "" )%> value=""><liferay-ui:message key="tat-ca" /></option>
 					<%
 						if (!linhVucVBList.isEmpty()) { 
@@ -115,7 +112,6 @@
 		    	</select>
 			</td>		
 		</tr>
-		<tr height="10"></tr>
 		<tr>
 			<%
 				Calendar calendar = Calendar.getInstance();
@@ -125,21 +121,20 @@
 				String tuNgay = "01/01/" + year;
 				String denNgay = "31/12/" + year;
 			%>
-			<td align="right"><liferay-ui:message key="ngay-ban-hanh" /><liferay-ui:message key="tu-ngay" />:&nbsp;</td>
-			<td align="left">
-				<input type="text"  name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.TU_NGAY %>" id="<portlet:namespace />fromDate" value="<%= (!"".equals(displayTerms.getTuNgay()) ? displayTerms.getTuNgay(): tuNgay)  %>" style="width: 125px" />
-				<img src="/html/images/cal.gif" style="cursor: pointer;" id="cal-button-FromDate" onClick="callCalendar('<portlet:namespace/>fromDate','cal-button-FromDate')" />
+			<td><liferay-ui:message key="ngay-ban-hanh" /><liferay-ui:message key="tu-ngay" />:&nbsp;</td>
+			<td>
+				<input type="text"  name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.TU_NGAY %>" id="<portlet:namespace />fromDate" value="<%= (!"".equals(displayTerms.getTuNgay()) ? displayTerms.getTuNgay(): tuNgay)  %>" style="width: 78%" />
+				<img align="top" src="/html/images/cal.gif" style="cursor: pointer;" id="cal-button-FromDate" onClick="callCalendar('<portlet:namespace/>fromDate','cal-button-FromDate')" />
 			</td>
 			
-			<td align="right"><liferay-ui:message key="den-ngay" />:&nbsp;</td>
-			<td align="left">
-				<input type="text" name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.DEN_NGAY %>" id="<portlet:namespace />toDate" value="<%= (!"".equals(displayTerms.getDenNgay()) ? displayTerms.getDenNgay(): denNgay)  %>" style="width: 125px" />
-				<img src="/html/images/cal.gif" id="cal-button-ToDate" style="cursor: pointer;" onClick="callCalendar('<portlet:namespace/>toDate','cal-button-ToDate')" />
+			<td><liferay-ui:message key="den-ngay" />:&nbsp;</td>
+			<td>
+				<input type="text" name="<portlet:namespace/><%= VanBanPhapQuyDisplayTerms.DEN_NGAY %>" id="<portlet:namespace />toDate" value="<%= (!"".equals(displayTerms.getDenNgay()) ? displayTerms.getDenNgay(): denNgay)  %>" style="width: 78%" />
+				<img align="top" src="/html/images/cal.gif" id="cal-button-ToDate" style="cursor: pointer;" onClick="callCalendar('<portlet:namespace/>toDate','cal-button-ToDate')" />
 			</td>		
 		</tr>
-		<tr height="10"></tr>
 	</table>	
 </liferay-ui:search-toggle>
-<br/>
+<br><br>
 <input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>
 

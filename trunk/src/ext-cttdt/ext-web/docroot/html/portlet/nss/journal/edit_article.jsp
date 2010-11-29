@@ -1,3 +1,6 @@
+<%@page import="javax.portlet.PortletURL"%>
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
+<%@page import="com.nss.workflow.JournalLiferayPortletAction"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -222,6 +225,9 @@ if (PropsValues.JOURNAL_ARTICLE_FORCE_INCREMENT_VERSION) {
 
 boolean smallImage = BeanParamUtil.getBoolean(article, request, "smallImage");
 String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL");
+//TuNV Update 20101129
+String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_PREFIX + ".AddWorkflowJournalArticleCommand"; 
+//End TuNv
 %>
 
 <script type="text/javascript">
@@ -629,6 +635,8 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 
 		<c:if test="<%= article == null %>">
 			document.<portlet:namespace />fm1.<portlet:namespace />articleId.value = document.<portlet:namespace />fm1.<portlet:namespace />newArticleId.value;
+			submitForm(document.<portlet:namespace />fm1,"<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="workflowAction" value="true"/><portlet:param name="workflowActionName" value="<%= addWorkflowJournalArticleCommand%>"/><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:actionURL>");
+			return;
 		</c:if>
 
 		document.<portlet:namespace />fm1.<portlet:namespace />content.value = <portlet:namespace />getArticleContent();
@@ -694,7 +702,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 <input name="xml" type="hidden" value="" />
 </form>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveArticle(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /> </portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveArticle(); return false;">
 <input name="<portlet:namespace />portletResource" type="hidden" value="<%= HtmlUtil.escape(portletResource) %>" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
@@ -714,25 +722,21 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 <input name="<portlet:namespace />instanceId" type="hidden" value="<%= instanceId %>" />
 <input name="<portlet:namespace />workflowAction" type="hidden" value="" />
 
-<liferay-ui:tabs
-	names="web-content"
-	formName="fm1"
-	backURL="<%= redirect %>"
-/>
-
-<table class="lfr-table" width="100%">
+<liferay-ui:tabs names="web-content" formName="fm1" backURL="<%= redirect %>"/>
+<div class="borderendTab">
+<table cellspacing="0" width="100%">
 <tr>
-	<td valign="top">
+	<td valign="top" width="60%">
 		<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 		<liferay-ui:error exception="<%= ArticleIdException.class %>" message="please-enter-a-valid-id" />
 		<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-name" />
 		<liferay-ui:error exception="<%= DuplicateArticleIdException.class %>" message="please-enter-a-unique-id" />
 		<liferay-ui:tags-error />
 
-		<table class="lfr-table">
+		<table cellspacing="0" width="100%">
 		<tr>
-			<td>
-				<liferay-ui:message key="id" />
+			<td width="15%">
+				<liferay-ui:message key="id" />&nbsp;:
 			</td>
 			<td>
 				<c:choose>
@@ -750,7 +754,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<table class="lfr-table">
+						<table cellspacing="0" width="100%">
 						<tr>
 							<td>
 								<c:choose>
@@ -765,7 +769,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 							<td>
 								<c:if test="<%= article == null %>">
 									<liferay-ui:input-checkbox param="autoArticleId" />
-
 									<liferay-ui:message key="autogenerate-id" />
 								</c:if>
 							</td>
@@ -777,7 +780,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</tr>
 		<tr>
 			<td>
-				<liferay-ui:message key="name" />
+				<liferay-ui:message key="name" />&nbsp;:
 			</td>
 			<td>
 				<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="title" />
@@ -785,19 +788,13 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</tr>
 		<tr>
 			<td>
-				<liferay-ui:message key="language" />
+				<liferay-ui:message key="language" />&nbsp;:
 			</td>
 			<td>
 				<input name="<portlet:namespace />lastLanguageId" type="hidden" value="<%= languageId %>" />
-
-				<table class="lfr-table">
-				<tr>
-					<td>
 						<select <%= (article == null) ? "disabled" : "" %> name="<portlet:namespace />languageId" onChange="<portlet:namespace />changeLanguageView();">
-
 							<%
 							Locale[] locales = LanguageUtil.getAvailableLocales();
-
 							for (int i = 0; i < locales.length; i++) {
 							%>
 
@@ -806,20 +803,11 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 							<%
 							}
 							%>
-
 						</select>
-
 						<c:if test="<%= (article != null) && !languageId.equals(defaultLanguageId) %>">
 							<input type="button" name="<portlet:namespace />removeArticleLocaleButton" value="<liferay-ui:message key="remove" />" onClick="<portlet:namespace />removeArticleLocale();" />
 						</c:if>
-					</td>
-					<td>
-						<table class="lfr-table">
-						<tr>
-							<td>
 								<liferay-ui:message key="default-language" />
-							</td>
-							<td>
 								<select
 									<c:choose>
 										<c:when test="<%= article == null %>">
@@ -873,18 +861,10 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 								<c:if test="<%= article == null %>">
 									<input name="<portlet:namespace />defaultLanguageId" type="hidden" value="<%= HtmlUtil.escape(defaultLanguageId) %>" />
 								</c:if>
-							</td>
-						</tr>
-						</table>
-					</td>
-				</tr>
-				</table>
 			</td>
 		</tr>
 		</table>
-
 		<br />
-
 		<c:choose>
 			<c:when test="<%= structure == null %>">
 				<div>
@@ -892,8 +872,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 				</div>
 			</c:when>
 			<c:otherwise>
-				<table border="0" cellpadding="0" cellspacing="0" width="100%">
-
 				<input name="<portlet:namespace />available_locales" type="hidden" value="" />
 
 				<%
@@ -959,21 +937,14 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 
 				_format(groupId, contentDoc.getRootElement(), xsdDoc.getRootElement(), new IntegerWrapper(0), new Integer(-1), pageContext, request);
 				%>
-
-				</table>
 			</c:otherwise>
 		</c:choose>
 
 		<c:if test="<%= article == null %>">
-			<table class="lfr-table">
-			<tr>
-				<td colspan="2">
-					<br />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<liferay-ui:message key="permissions" />
+			<table cellspacing="0" width="100%">
+			<tr >
+				<td width="15%">
+					<liferay-ui:message key="permissions" /> :
 				</td>
 				<td>
 					<liferay-ui:input-permissions
@@ -1006,10 +977,10 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 			<c:if test="<%= hasSavePermission %>">
 				<c:if test="<%= ((article == null) || ((article != null) && !article.isApproved())) && JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.APPROVE_ARTICLE) %>">
 					<liferay-ui:panel id="<%= signId %>" title="<%= signTitle %>" defaultState="closed" persistState="<%= true %>" extended="<%= false %>">
-						<table class="lfr-table">
+						<table cellspacing="0" width="100%">
 						<tr>
-							<td>
-								<liferay-ui:message key="nss-journal-use-sign" />
+							<td width="15%">
+								<liferay-ui:message key="nss-journal-use-sign" /> :
 							</td>
 							<td>
 								<input type="checkbox" name="<portlet:namespace />signArticle"  checked="checked"/>
@@ -1033,23 +1004,18 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 
 			<liferay-ui:error exception="<%= ArticleSmallImageSizeException.class %>" message="please-enter-a-small-image-with-a-valid-file-size" />
 
-			<table class="lfr-table">
+			<table cellspacing="0" width="100%">
 			<tr>
-				<td>
-					<liferay-ui:message key="description" />
+				<td width="15%">
+					<liferay-ui:message key="description" /> :
 				</td>
 				<td>
 					<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="description" />
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2">
-					<br />
-				</td>
-			</tr>
-			<tr>
 				<td>
-					<liferay-ui:message key="small-image-url" />
+					<liferay-ui:message key="small-image-url" /> :
 				</td>
 				<td>
 					<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="smallImageURL" />
@@ -1065,7 +1031,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 			</tr>
 			<tr>
 				<td>
-					<liferay-ui:message key="use-small-image" />
+					<liferay-ui:message key="use-small-image" /> :
 				</td>
 				<td>
 					<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="smallImage" />
@@ -1075,9 +1041,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</liferay-ui:panel>
 
 		<br />
-
-		<div>
-
 			<c:if test="<%= hasSavePermission %>">
 				<input type="submit" value="<liferay-ui:message key="save" />" />
 
@@ -1086,6 +1049,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 				<c:if test="<%= ((article == null) || ((article != null) && !article.isApproved())) && JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.APPROVE_ARTICLE) %>">
 					<input type="button" value="<liferay-ui:message key="save-and-approve" />" onClick="<portlet:namespace />saveAndApproveArticle();" />
 				</c:if>
+				<%@ include file="/html/portlet/nss/journal/common/workflowAction.jsp" %>
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(structureId) %>">
@@ -1097,18 +1061,17 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 			</c:if>
 
 			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-		</div>
-		<div style="visibility: <%= ((workflow > 0) || (instanceId > 0)) ? "visible" : "hidden"%>;">
+		<span style="visibility: <%= ((workflow > 0) || (instanceId > 0)) ? "visible" : "hidden"%>;">
 			<input type="button" value="<liferay-ui:message key="accept" />" onclick="<portlet:namespace />acceptArticle()"/>
 			<input type="button" value="<liferay-ui:message key="reject" />" onclick="<portlet:namespace />rejectArticle()"/>
-		</div>
+		</span>
 	</td>
 	<td valign="top">
 		<%@ include file="edit_article_extra.jspf" %>
 	</td>
 </tr>
 </table>
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">

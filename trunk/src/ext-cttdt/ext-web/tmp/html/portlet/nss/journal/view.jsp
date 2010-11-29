@@ -84,12 +84,8 @@ portletURL.setParameter("tabs1", tabs1);
 
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
-
-<liferay-ui:tabs
-	names="web-content,structures,templates,feeds,recent"
-	url="<%= portletURL.toString() %>"
-/>
-
+<liferay-ui:tabs names="web-content,structures,templates,feeds,recent" url="<%= portletURL.toString() %>"/>
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs1.equals("web-content") %>'>
 		<input name="<portlet:namespace />groupId" type="hidden" value="" />
@@ -147,6 +143,8 @@ portletURL.setParameter("tabs1", tabs1);
 				rowURL.setParameter("groupId", String.valueOf(article.getGroupId()));
 				rowURL.setParameter("articleId", article.getArticleId());
 				rowURL.setParameter("version", String.valueOf(article.getVersion()));
+				rowURL.setParameter("resourcePrimkey", String.valueOf(article.getResourcePrimKey()));
+				rowURL.setParameter(com.sgs.liferay.jbpm.util.Constants.WORKFLOW_RENDER, "true");	
 
 				// Article id
 
@@ -607,5 +605,5 @@ portletURL.setParameter("tabs1", tabs1);
 		</table>
 	</c:when>
 </c:choose>
-
+</div>
 </form>

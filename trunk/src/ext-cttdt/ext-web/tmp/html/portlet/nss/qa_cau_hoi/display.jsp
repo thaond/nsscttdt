@@ -1,12 +1,10 @@
 <%@ include file="/html/portlet/nss/qa_cau_hoi/init.jsp" %>
-
 <%@page import="java.util.List"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
-
 <%@page import="com.nss.portlet.qa_cau_hoi.service.CauHoiQALocalServiceUtil"%>
 <%@page import="com.nss.portlet.qa_cau_hoi.search.CauHoiQASearchTerms"%>
 <%@page import="com.nss.portlet.qa_cau_hoi.search.CauHoiQASearch"%>

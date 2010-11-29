@@ -22,12 +22,6 @@
 
 package com.liferay.portlet.journalcontentsearch.action;
 
-import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
@@ -35,18 +29,23 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
+import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
+
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Richard Beatty
  * @author Raymond Augé
- *
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 	public void processAction(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse)
+		PortletConfig portletConfig, ActionRequest actionRequest,
+		ActionResponse actionResponse)
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
@@ -55,14 +54,15 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			return;
 		}
 
-		boolean showListed = ParamUtil.getBoolean(
-			actionRequest, "showListed");
-		String targetPortletId = ParamUtil.getString(
-			actionRequest, "targetPortletId");
+		boolean showListed = ParamUtil.getBoolean(actionRequest, "showListed");
+		String targetPortletId =
+			ParamUtil.getString(actionRequest, "targetPortletId");
 		String type = ParamUtil.getString(actionRequest, "type");
 
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
+		String portletResource =
+			ParamUtil.getString(actionRequest, "portletResource");
+		String search_type =
+			ParamUtil.getString(actionRequest, "c_search_type");
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
@@ -71,16 +71,17 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue("show-listed", String.valueOf(showListed));
 		preferences.setValue("target-portlet-id", targetPortletId);
 		preferences.setValue("type", type);
+		preferences.setValue("c_search_type", search_type);
 
 		preferences.store();
 
-		SessionMessages.add(
-			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+		SessionMessages.add(actionRequest, portletConfig.getPortletName() +
+			".doConfigure");
 	}
 
 	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
+		PortletConfig portletConfig, RenderRequest renderRequest,
+		RenderResponse renderResponse)
 		throws Exception {
 
 		return "/html/portlet/journal_content_search/configuration.jsp";

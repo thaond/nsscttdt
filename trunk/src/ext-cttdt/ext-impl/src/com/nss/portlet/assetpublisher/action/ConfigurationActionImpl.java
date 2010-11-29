@@ -22,6 +22,13 @@
 
 package com.nss.portlet.assetpublisher.action;
 
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
+import javax.portlet.PortletPreferences;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
+
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -35,31 +42,65 @@ import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
 import com.liferay.portlet.tags.TagsEntryException;
 import com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletConfig;
-import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
 /**
  * <a href="ConfigurationActionImpl.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
 
+	protected void moveSelectionDown(
+		ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		int assetOrder = ParamUtil.getInteger(actionRequest, "assetOrder");
+
+		String[] manualEntries =
+			preferences.getValues("manual-entries", new String[0]);
+
+		if ((assetOrder >= (manualEntries.length - 1)) || (assetOrder < 0)) {
+			return;
+		}
+
+		String temp = manualEntries[assetOrder + 1];
+
+		manualEntries[assetOrder + 1] = manualEntries[assetOrder];
+		manualEntries[assetOrder] = temp;
+
+		preferences.setValues("manual-entries", manualEntries);
+	}
+
+	protected void moveSelectionUp(
+		ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		int assetOrder = ParamUtil.getInteger(actionRequest, "assetOrder");
+
+		String[] manualEntries =
+			preferences.getValues("manual-entries", new String[0]);
+
+		if ((assetOrder >= manualEntries.length) || (assetOrder <= 0)) {
+			return;
+		}
+
+		String temp = manualEntries[assetOrder - 1];
+
+		manualEntries[assetOrder - 1] = manualEntries[assetOrder];
+		manualEntries[assetOrder] = temp;
+
+		preferences.setValues("manual-entries", manualEntries);
+	}
+
 	public void processAction(
-			PortletConfig portletConfig, ActionRequest actionRequest,
-			ActionResponse actionResponse)
+		PortletConfig portletConfig, ActionRequest actionRequest,
+		ActionResponse actionResponse)
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		try {
-			String portletResource = ParamUtil.getString(
-				actionRequest, "portletResource");
+			String portletResource =
+				ParamUtil.getString(actionRequest, "portletResource");
 
 			PortletPreferences preferences =
 				PortletPreferencesFactoryUtil.getPortletSetup(
@@ -81,8 +122,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				setSelectionStyle(actionRequest, preferences);
 			}
 			else if (cmd.equals(Constants.UPDATE)) {
-				String selectionStyle = preferences.getValue(
-					"selection-style", "dynamic");
+				String selectionStyle =
+					preferences.getValue("selection-style", "dynamic");
 
 				if (selectionStyle.equals("dynamic")) {
 					updateDynamicSettings(actionRequest, preferences);
@@ -96,8 +137,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				preferences.store();
 
 				SessionMessages.add(
-					actionRequest,
-					portletConfig.getPortletName() + ".doConfigure");
+					actionRequest, portletConfig.getPortletName() +
+						".doConfigure");
 			}
 		}
 		catch (Exception e) {
@@ -110,70 +151,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 	}
 
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/html/portlet/nss/asset_publisher/configuration.jsp";
-	}
-
-	protected void moveSelectionDown(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int assetOrder = ParamUtil.getInteger(actionRequest, "assetOrder");
-
-		String[] manualEntries = preferences.getValues(
-			"manual-entries", new String[0]);
-
-		if ((assetOrder >= (manualEntries.length - 1)) || (assetOrder < 0)) {
-			return;
-		}
-
-		String temp = manualEntries[assetOrder + 1];
-
-		manualEntries[assetOrder + 1] = manualEntries[assetOrder];
-		manualEntries[assetOrder] = temp;
-
-		preferences.setValues("manual-entries", manualEntries);
-	}
-
-	protected void moveSelectionUp(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int assetOrder = ParamUtil.getInteger(actionRequest, "assetOrder");
-
-		String[] manualEntries = preferences.getValues(
-			"manual-entries", new String[0]);
-
-		if ((assetOrder >= manualEntries.length) || (assetOrder <= 0)) {
-			return;
-		}
-
-		String temp = manualEntries[assetOrder - 1];
-
-		manualEntries[assetOrder - 1] = manualEntries[assetOrder];
-		manualEntries[assetOrder] = temp;
-
-		preferences.setValues("manual-entries", manualEntries);
-	}
-
 	protected void removeSelection(
-			ActionRequest actionRequest, PortletPreferences preferences)
+		ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
 		int assetOrder = ParamUtil.getInteger(actionRequest, "assetOrder");
 
-		String[] manualEntries = preferences.getValues(
-			"manual-entries", new String[0]);
+		String[] manualEntries =
+			preferences.getValues("manual-entries", new String[0]);
 
 		if (assetOrder >= manualEntries.length) {
 			return;
 		}
 
-		String[] newEntries = new String[manualEntries.length -1];
+		String[] newEntries = new String[manualEntries.length - 1];
 
 		int i = 0;
 		int j = 0;
@@ -187,14 +178,22 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValues("manual-entries", newEntries);
 	}
 
-	protected void setSelectionStyle(
-			ActionRequest actionRequest, PortletPreferences preferences)
+	public String render(
+		PortletConfig portletConfig, RenderRequest renderRequest,
+		RenderResponse renderResponse)
 		throws Exception {
 
-		String selectionStyle = ParamUtil.getString(
-			actionRequest, "selectionStyle");
-		String displayStyle = ParamUtil.getString(
-			actionRequest, "displayStyle");
+		return "/html/portlet/nss/asset_publisher/configuration.jsp";
+	}
+
+	protected void setSelectionStyle(
+		ActionRequest actionRequest, PortletPreferences preferences)
+		throws Exception {
+
+		String selectionStyle =
+			ParamUtil.getString(actionRequest, "selectionStyle");
+		String displayStyle =
+			ParamUtil.getString(actionRequest, "displayStyle");
 
 		preferences.setValue("selection-style", selectionStyle);
 
@@ -212,74 +211,83 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 	}
 
 	protected void updateDynamicSettings(
-			ActionRequest actionRequest, PortletPreferences preferences)
+		ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay) actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 		long userId = themeDisplay.getUserId();
 		long groupId = themeDisplay.getScopeGroupId();
 
-		String[] entries = StringUtil.split(
-			ParamUtil.getString(actionRequest, "entries"));
-		String[] notEntries = StringUtil.split(
-			ParamUtil.getString(actionRequest, "notEntries"));
-		boolean mergeUrlTags = ParamUtil.getBoolean(
-			actionRequest, "mergeUrlTags");
-		boolean andOperator = ParamUtil.getBoolean(
-			actionRequest, "andOperator");
+		String[] entries =
+			StringUtil.split(ParamUtil.getString(actionRequest, "entries"));
+		String[] notEntries =
+			StringUtil.split(ParamUtil.getString(actionRequest, "notEntries"));
+		boolean mergeUrlTags =
+			ParamUtil.getBoolean(actionRequest, "mergeUrlTags");
+		boolean andOperator =
+			ParamUtil.getBoolean(actionRequest, "andOperator");
 
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		String category = ParamUtil.getString(actionRequest, "category");
-		String displayStyle = ParamUtil.getString(
-			actionRequest, "displayStyle");
-		boolean showAssetTitle = ParamUtil.getBoolean(
-			actionRequest, "showAssetTitle");
-		boolean showContextLink = ParamUtil.getBoolean(
-			actionRequest, "showContextLink");
-		int abstractLength = ParamUtil.getInteger(
-			actionRequest, "abstractLength");
-		String assetLinkBehaviour = ParamUtil.getString(
-			actionRequest, "assetLinkBehaviour");
-		String orderByColumn1 = ParamUtil.getString(
-			actionRequest, "orderByColumn1");
-		String orderByColumn2 = ParamUtil.getString(
-			actionRequest, "orderByColumn2");
-		String orderByType1 = ParamUtil.getString(
-			actionRequest, "orderByType1");
-		String orderByType2 = ParamUtil.getString(
-			actionRequest, "orderByType2");
-		boolean excludeZeroViewCount = ParamUtil.getBoolean(
-			actionRequest, "excludeZeroViewCount");
-		boolean showQueryLogic = ParamUtil.getBoolean(
-			actionRequest, "showQueryLogic");
+		String displayStyle =
+			ParamUtil.getString(actionRequest, "displayStyle");
+		boolean showAssetTitle =
+			ParamUtil.getBoolean(actionRequest, "showAssetTitle");
+		boolean showContextLink =
+			ParamUtil.getBoolean(actionRequest, "showContextLink");
+		int abstractLength =
+			ParamUtil.getInteger(actionRequest, "abstractLength");
+		String assetLinkBehaviour =
+			ParamUtil.getString(actionRequest, "assetLinkBehaviour");
+		String orderByColumn1 =
+			ParamUtil.getString(actionRequest, "orderByColumn1");
+		String orderByColumn2 =
+			ParamUtil.getString(actionRequest, "orderByColumn2");
+		String orderByType1 =
+			ParamUtil.getString(actionRequest, "orderByType1");
+		String orderByType2 =
+			ParamUtil.getString(actionRequest, "orderByType2");
+		boolean excludeZeroViewCount =
+			ParamUtil.getBoolean(actionRequest, "excludeZeroViewCount");
+		boolean showQueryLogic =
+			ParamUtil.getBoolean(actionRequest, "showQueryLogic");
 		int delta = ParamUtil.getInteger(actionRequest, "delta");
-		String paginationType = ParamUtil.getString(
-			actionRequest, "paginationType");
-		boolean showAvailableLocales = ParamUtil.getBoolean(
-			actionRequest, "showAvailableLocales");
-		boolean enableComments = ParamUtil.getBoolean(
-			actionRequest, "enableComments");
-		boolean enableCommentRatings = ParamUtil.getBoolean(
-			actionRequest, "enableCommentRatings");
-		boolean enableRatings = ParamUtil.getBoolean(
-			actionRequest, "enableRatings");
-		String medatadaFields = ParamUtil.getString(
-			actionRequest, "metadataFields");
-		
-		//by triltm
-		int abstractDelta = ParamUtil.getInteger(actionRequest, "abstractDelta");
-		
+		String paginationType =
+			ParamUtil.getString(actionRequest, "paginationType");
+		boolean showAvailableLocales =
+			ParamUtil.getBoolean(actionRequest, "showAvailableLocales");
+		boolean enableComments =
+			ParamUtil.getBoolean(actionRequest, "enableComments");
+		boolean enableCommentRatings =
+			ParamUtil.getBoolean(actionRequest, "enableCommentRatings");
+		boolean enableRatings =
+			ParamUtil.getBoolean(actionRequest, "enableRatings");
+		String medatadaFields =
+			ParamUtil.getString(actionRequest, "metadataFields");
+
+		// by triltm
+		int abstractDelta =
+			ParamUtil.getInteger(actionRequest, "abstractDelta");
+		// TuNV update 20101126
+		String nss_view_sign_type =
+			ParamUtil.getString(actionRequest, "nss_view_sign_type");
+		preferences.setValue("nss_view_sign_type", nss_view_sign_type);
+		// End Tu update
 		// kich thuoc anh
-		String dimensionHeight = ParamUtil.getString(actionRequest, "dimensionHeight");
-		String dimensionWidth = ParamUtil.getString(actionRequest, "dimensionWidth");
-		
-		String[] tagsCategories = StringUtil.split(
-				ParamUtil.getString(actionRequest, "tagsCategories"));
-		String[] notTagsCategories = StringUtil.split(
-				ParamUtil.getString(actionRequest, "notTagsCategories"));
-		
+		String dimensionHeight =
+			ParamUtil.getString(actionRequest, "dimensionHeight");
+		String dimensionWidth =
+			ParamUtil.getString(actionRequest, "dimensionWidth");
+
+		String[] tagsCategories =
+			StringUtil.split(ParamUtil.getString(
+				actionRequest, "tagsCategories"));
+		String[] notTagsCategories =
+			StringUtil.split(ParamUtil.getString(
+				actionRequest, "notTagsCategories"));
+
 		preferences.setValue("selection-style", "dynamic");
 
 		preferences.setValues("entries", entries);
@@ -290,8 +298,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue("class-name-id", String.valueOf(classNameId));
 		preferences.setValue("category", category);
 		preferences.setValue("display-style", displayStyle);
-		preferences.setValue(
-			"show-asset-title", String.valueOf(showAssetTitle));
+		preferences.setValue("show-asset-title", String.valueOf(showAssetTitle));
 		preferences.setValue(
 			"show-context-link", String.valueOf(showContextLink));
 		preferences.setValue("abstract-length", String.valueOf(abstractLength));
@@ -302,8 +309,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue("order-by-type-2", orderByType2);
 		preferences.setValue(
 			"exclude-zero-view-count", String.valueOf(excludeZeroViewCount));
-		preferences.setValue(
-			"show-query-logic", String.valueOf(showQueryLogic));
+		preferences.setValue("show-query-logic", String.valueOf(showQueryLogic));
 		preferences.setValue("delta", String.valueOf(delta));
 		preferences.setValue("pagination-type", paginationType);
 		preferences.setValue(
@@ -313,8 +319,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-comment-ratings", String.valueOf(enableCommentRatings));
 		preferences.setValue("metadata-fields", medatadaFields);
-		
-		//by triltm
+
+		// by triltm
 		preferences.setValue("abstractDelta", String.valueOf(abstractDelta));
 		preferences.setValue("dimensionHeight", dimensionHeight);
 		preferences.setValue("dimensionWidth", dimensionWidth);
@@ -326,36 +332,35 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 	}
 
 	protected void updateManualSettings(
-			ActionRequest actionRequest, PortletPreferences preferences)
+		ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
-		String displayStyle = ParamUtil.getString(
-			actionRequest, "displayStyle");
-		boolean showAssetTitle = ParamUtil.getBoolean(
-			actionRequest, "showAssetTitle");
-		boolean showContextLink = ParamUtil.getBoolean(
-			actionRequest, "showContextLink");
-		int abstractLength = ParamUtil.getInteger(
-			actionRequest, "abstractLength");
-		String assetLinkBehaviour = ParamUtil.getString(
-			actionRequest, "assetLinkBehaviour");
-		boolean showAvailableLocales = ParamUtil.getBoolean(
-			actionRequest, "showAvailableLocales");
-		boolean enableComments = ParamUtil.getBoolean(
-			actionRequest, "enableComments");
-		boolean enableCommentRatings = ParamUtil.getBoolean(
-			actionRequest, "enableCommentRatings");
-		boolean enableRatings = ParamUtil.getBoolean(
-			actionRequest, "enableRatings");
-		boolean enableTagBasedNavigation = ParamUtil.getBoolean(
-			actionRequest, "enableTagBasedNavigation");
-		String medatadaFields = ParamUtil.getString(
-			actionRequest, "metadataFields");
+		String displayStyle =
+			ParamUtil.getString(actionRequest, "displayStyle");
+		boolean showAssetTitle =
+			ParamUtil.getBoolean(actionRequest, "showAssetTitle");
+		boolean showContextLink =
+			ParamUtil.getBoolean(actionRequest, "showContextLink");
+		int abstractLength =
+			ParamUtil.getInteger(actionRequest, "abstractLength");
+		String assetLinkBehaviour =
+			ParamUtil.getString(actionRequest, "assetLinkBehaviour");
+		boolean showAvailableLocales =
+			ParamUtil.getBoolean(actionRequest, "showAvailableLocales");
+		boolean enableComments =
+			ParamUtil.getBoolean(actionRequest, "enableComments");
+		boolean enableCommentRatings =
+			ParamUtil.getBoolean(actionRequest, "enableCommentRatings");
+		boolean enableRatings =
+			ParamUtil.getBoolean(actionRequest, "enableRatings");
+		boolean enableTagBasedNavigation =
+			ParamUtil.getBoolean(actionRequest, "enableTagBasedNavigation");
+		String medatadaFields =
+			ParamUtil.getString(actionRequest, "metadataFields");
 
 		preferences.setValue("selection-style", "manual");
 		preferences.setValue("display-style", displayStyle);
-		preferences.setValue(
-			"show-asset-title", String.valueOf(showAssetTitle));
+		preferences.setValue("show-asset-title", String.valueOf(showAssetTitle));
 		preferences.setValue(
 			"show-context-link", String.valueOf(showContextLink));
 		preferences.setValue("abstract-length", String.valueOf(abstractLength));

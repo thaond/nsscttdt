@@ -1,8 +1,5 @@
 <%@ include file="/html/portlet/nss/journalworkflow/init.jsp" %>
 <%@ include file="/html/portlet/nss/journalworkflow/workflow_action.jspf" %>
-
-
-<div>
 	<%	
 		String defaultTab = "";
 		if (userTaskNodeList.size() > 0) {
@@ -21,6 +18,7 @@
 	%>
 <form action="<%=portletURL.toString() %>" method="post" name="<portlet:namespace/>fm1">
 	<liferay-ui:tabs portletURL="<%=portletURL %>" names="<%=prepareForTabs(userTaskNodeList) %>"  >
+	<div class="borderendTab">
 		<% //for (int i = 0; i < userTaskNodeList.size(); i++) {
 			if (!tabs1.equals("")) {
 		%>
@@ -126,6 +124,6 @@
 		<%
 			}
 		//} %>
+		</div>
 	</liferay-ui:tabs>
 </form>
-</div>

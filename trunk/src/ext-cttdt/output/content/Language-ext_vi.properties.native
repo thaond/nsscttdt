@@ -63,6 +63,7 @@ nss-dang-nhap=Đăng nhập
 nss-thoi-tiet-ty-gia=Thời tiết - Tỷ giá
 nss-lich-cong-tac-tuan=Lịch công tác tuần
 nss-ty-le-%=Tỷ lệ %
+nss-cap-nhat=Cập nhật
 
 stt=STT
 ky-hieu-van-ban=Ký hiệu văn bản
@@ -115,3 +116,32 @@ showing-x-results=Hiển thị {0} kết quả.
 showing-x-x-of-x-results=Hiển thị {0} - {1} của {2} kết quả.
 items-per-page=Hiển thị/trang
 no-pages-were-found-that-matched-the-keywords-x = Không tìm thấy kết quả nào với từ khoá: {0}.
+##
+##nss_journal
+##
+nss-journal-use-sign = sử dụng chữ ký
+##
+##sign
+##
+sign-kiem-duyet = bài viết này đã được kiểm duyệt
+sign-thay-doi = bài viết này đã bị thay đổi
+sign-nguoi-ky = người ký
+##
+##image_signer
+##
+upload-image = upload ảnh
+upload-image-signer = upload ảnh chữ ký
+image-Sign = ảnh đã ký
+image-UnSign = ảnh chưa ký
+upload = up ảnh
+##
+##asset_publisher_nss
+##
+tin-abstract = Tin abstract
+tin-lien-quan = Tin liên quan
+tin-abstract-entry = Tin abstract entry
+tin-lien-quan-entry = Tin liên quan entry
+##
+##managementworkflowjournal
+##
+error_delete_workflowjounal = Không xóa được workflow này

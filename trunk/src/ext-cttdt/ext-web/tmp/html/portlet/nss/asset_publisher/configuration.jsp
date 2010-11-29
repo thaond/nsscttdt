@@ -305,11 +305,10 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							%>
 
 						</select>
-
+		
 						<br /><br />
 						 
 						<!-- add category by triltm -->
-						
 						<liferay-ui:message key="group-by-tags-within-tags-set" />
 
 						<select name="<portlet:namespace />category">
@@ -330,7 +329,17 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						</select>
 
 						<br /><br />
-
+						<!-- Tu update 20101122 -->
+							<liferay-ui:message key="Hien-Thi-Bai-Viet" /> : 
+						<select name="<portlet:namespace />nss_view_sign_type">
+							<option  <%= b1 ? "selected" : "" %> value="all"> <liferay-ui:message key="Tat-Ca" /> </option>
+							<option <%= b2 ? "selected" : "" %> value="sign"> <liferay-ui:message key="Bai-Da-Ky" /> </option>
+							<option <%= b3 ? "selected" : "" %> value="changesign"> <liferay-ui:message key="Bai-Ky-Bi-Doi" /> </option>
+							<option <%= b4 ? "selected" : "" %> value="notsign"> <liferay-ui:message key="Bai-Chua-Ky" /> </option>
+						</select>
+						<br>
+						<br>
+						<!--  End Tu update -->
 						<liferay-ui:message key="displayed-content-must-contain-the-following-categories" />
 
 						<br /><br />

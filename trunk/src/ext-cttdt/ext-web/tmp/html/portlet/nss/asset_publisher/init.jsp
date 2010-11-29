@@ -207,6 +207,15 @@ boolean allowEmptyResults = false;
 DateFormat dateFormatDate = DateFormats.getDate(locale, timeZone);
 
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
+
+//TuNV update 20101126
+String nss_view_sign_type = GetterUtil.getString(preferences.getValue("nss_view_sign_type", "all"));
+boolean b1,b2,b3,b4;
+b1 = (nss_view_sign_type.equalsIgnoreCase("all") ? true : false);
+b2 = (nss_view_sign_type.equalsIgnoreCase("sign") ? true : false);
+b3 = (nss_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
+b4 = (nss_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
+//end TuNV update
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher/init-ext.jsp" %>

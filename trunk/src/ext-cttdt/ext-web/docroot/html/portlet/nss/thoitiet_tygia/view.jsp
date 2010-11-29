@@ -47,7 +47,7 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		</div>
 		<div class="ui-tabs-panel">
 		<div id="box_leftpane_1" >
-		<div class="weather" style="height:269px;overflow: auto;overflow-x: hidden">
+		<div class="weather">
 				 <h3></h3>
 				 <div class="divlist">
 				 <!-- Tu Da sua doi 17/11/2010 -->
@@ -55,14 +55,14 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 					 <%
 					List<Weather> list = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/HaNoi.xml");
 					if(list.size()>0){
-						String img = "<img src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg()+"'/>";
-						String img1 = "<img src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg1()+"'/>";
-						String img2 = "<img src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg2()+"'/>";
+						String img = "<img class='w1' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg()+"'/>";
+						String img1 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg1()+"'/>";
+						String img2 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list.get(0).getAdImg2()+"'/>";
 					%>
 					<%= img + img1 + img2 %>
-					<img src='http://vnexpress.net/Images/Weather/c.gif'/>
+					<img class='w2' src='http://vnexpress.net/Images/Weather/c.gif'/>
 					<br>
-					<div class="content_weather" style="padding-left: 25px;">
+					<div class="content_weather" style="padding-left: 15px;">
 					<%= list.get(0).getWeather()  %>
 					</div>
 					<%
@@ -74,14 +74,14 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 					 <%
 					List<Weather> list1 = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/DaNang.xml");
 					if(list1.size()>0){
-						String img = "<img src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg()+"'/>";
-						String img1 = "<img src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg1()+"'/>";
-						String img2 = "<img src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg2()+"'/>";
+						String img = "<img class='w1' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg()+"'/>";
+						String img1 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg1()+"'/>";
+						String img2 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list1.get(0).getAdImg2()+"'/>";
 					%>
 					<%= img + img1 + img2 %>
-					<img src='http://vnexpress.net/Images/Weather/c.gif'/>
+					<img class='w2' src='http://vnexpress.net/Images/Weather/c.gif'/>
 					<br>
-					<div class="content_weather" style="padding-left: 25px;">
+					<div class="content_weather" style="padding-left: 15px;">
 					<%= list1.get(0).getWeather()  %>
 					</div>
 					<%
@@ -93,14 +93,14 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 					 <%
 					List<Weather> list2 = WeatherUtil.getWeather("http://vnexpress.net/ListFile/Weather/HCM.xml");
 					if(list.size()>0){
-						String img = "<img src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg()+"'/>";
-						String img1 = "<img src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg1()+"'/>";
-						String img2 = "<img src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg2()+"'/>";
+						String img = "<img class='w1' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg()+"'/>";
+						String img1 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg1()+"'/>";
+						String img2 = "<img class='w2' src='http://vnexpress.net/Images/Weather/" + list2.get(0).getAdImg2()+"'/>";
 					%>
 					<%= img + img1 + img2 %>
-					<img src='http://vnexpress.net/Images/Weather/c.gif'/>
+					<img class='w2' src='http://vnexpress.net/Images/Weather/c.gif'/>
 					<br>
-					<div class="content_weather" style="padding-left: 25px;">
+					<div class="content_weather" style="padding-left: 15px;">
 					<%= list2.get(0).getWeather()  %>
 					</div>
 					<%
@@ -113,7 +113,7 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		<div  id="box_leftpane_2" style="display:none;">
 		  <!-- Ty gia -->
 		  <span id="timeField_"><liferay-ui:message key="cap-nhat-luc" />&nbsp;:<%=df.format(new Date()) %></span><br>
-		  <div class="tygia" style="height:115px;overflow: auto;overflow-x: hidden">
+		  <div class="tygia">
 		    <span class="textred textbold">
 		    	<img src="/html/images/vang.png" hspace="5" vspace="1" align="middle"/><liferay-ui:message key="gia-vang" />
 		    </span><br>

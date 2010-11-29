@@ -181,6 +181,15 @@ boolean allowEmptyResults = false;
 DateFormat dateFormatDate = DateFormats.getDate(locale, timeZone);
 
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
+
+//TuNV update 20101127
+String tinmoi_view_sign_type = preferences.getValue("tinmoi_view_sign_type","all");
+boolean b1,b2,b3,b4;
+b1 = (tinmoi_view_sign_type.equalsIgnoreCase("all") ? true : false);
+b2 = (tinmoi_view_sign_type.equalsIgnoreCase("sign") ? true : false);
+b3 = (tinmoi_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
+b4 = (tinmoi_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
+//TuNV end update
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher_nss/init-ext.jsp" %>
