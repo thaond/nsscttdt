@@ -621,4 +621,59 @@
 		<field name="imageIdUnSign" type="long" />
 		<field name="userId" type="long" />
 	</model>
+	<model name="com.nss.portlet.managementworkflowjournal.model.ManagementWorkflowJournal">
+		<field name="managementWorkflowJournalId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="processDefinitionId" type="long" />
+		<field name="workflowname" type="String" />
+		<field name="version_" type="int" />
+		<field name="description" type="String" />
+		<field name="dateFrom" type="Date" />
+		<field name="dateTo" type="Date" />
+	</model>
+	<model name="com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle">
+		<field name="workflowJournalArticleId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="roleId" type="long" />
+		<field name="processDefinitionId" type="long" />
+		<field name="processInstanceId" type="long" />
+		<field name="resourcePrimkey" type="long" />
+		<field name="journalType" type="String" />
+		<field name="countImageOfArticle" type="int" />
+	</model>
+	<model name="com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle">
+		<field name="logWorkflowJournalArticleId" type="long" />
+		<field name="resourcePrimkey" type="long" />
+		<field name="transition" type="int" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="roleId" type="long" />
+		<field name="dateReceiptOfUserReceipt" type="Date" />
+		<field name="dateProcessOfUserReceipt" type="Date" />
+		<field name="dateSendOfUserReceipt" type="Date" />
+		<field name="useridProcess" type="long" />
+		<field name="roleIdProcess" type="long" />
+		<field name="dateReceiptOfUserProcess" type="Date" />
+		<field name="dateProcessOfUserProcess" type="Date" />
+		<field name="processInformation" type="String" />
+		<field name="workflowStatusBefore" type="String" />
+		<field name="workflowStatusAfter" type="String" />
+	</model>
+	<model name="com.nss.portlet.generatetemplateid.model.IdTemplate">
+		<field name="templateId" type="long" />
+		<field name="format" type="String" />
+		<field name="startNumber" type="String" />
+		<field name="len" type="long" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.nss.portlet.generatetemplateid.model.IdGenerated">
+		<field name="id" type="long" />
+		<field name="year" type="String" />
+		<field name="curValue" type="long" />
+	</model>
 </model-hints>

@@ -23,111 +23,84 @@
 <form action="<%=portletURL.toString()%>" method="post" onSubmit="return checkFromLoaiVanBan();"
 	name="<portlet:namespace />fm" >
 	<div class="commom-form">
-		
 	 <%
  		if (Validator.isNull(loaiVanBan)) {
  	%>
 	<div class="parent-title"><liferay-ui:message key="them-moi"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
+			<td width="15%">
 			<label><liferay-ui:message key="ten-loai-van-ban" /></label>
-			<span style="color: rgb(255, 0, 0);"> *</span>
+			<span style="color: rgb(255, 0, 0);"> *</span>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenLoaiVanBan" class="form-input-box" id="<portlet:namespace/>tenLoaiVanBan" /></td>
-			<td>&nbsp;</td>
+			<td><input style="width: 90%" type="text" name="<portlet:namespace />tenLoaiVanBan" id="<portlet:namespace/>tenLoaiVanBan" /></td>
 		</tr>
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" class="input-pml" id="description" cols="45" rows="5"></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea name="<portlet:namespace />description" id="description" style="width: 90%" rows="3"></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" checked="checked"/></td>
-			<td></td>
 		</tr>
-	     
-		<tr>
-			<td>
-			</td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
-				<td>
-					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
+	     <tr>
+	     	<td></td>
+	     	<td>
+	     		<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
 					<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="save" />' />
 					<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' />
 	    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-			 	</td>
-			</tr>
-		</tbody>
-	</table>
+	     	</td>
+	     </tr>
+</table>
+<br/>
  	<%
  		} else {
  	%>
  	<input type="hidden" name="<portlet:namespace />maLoaiVanBan" value="<%=  loaiVanBan.getMaLoaiVanBan()%>">
 	<div class="parent-title"><liferay-ui:message key="cap-nhat"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
-			<label><liferay-ui:message key="ten-loai-van-ban" /></label>
+			<td width="15%">
+			<label><liferay-ui:message key="ten-loai-van-ban" /></label>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenLoaiVanBan" class="input-pml" id="<portlet:namespace/>tenLoaiVanBan" value="<%= loaiVanBan.getTenLoaiVanBan()%>" /></td>
-			<td>&nbsp;</td>
+			<td><input style="width: 90%" type="text" name="<portlet:namespace />tenLoaiVanBan" id="<portlet:namespace/>tenLoaiVanBan" value="<%= loaiVanBan.getTenLoaiVanBan()%>" /></td>
 		</tr>
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" id="description" ><%= loaiVanBan.getDescription() %></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea name="<portlet:namespace />description" id="description" style="width: 90%" rows="3"><%= loaiVanBan.getDescription() %></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" 
 				<%= loaiVanBan.getActive() == 1 ? "checked=checked" : ""%> /></td>
-			<td></td>
 		</tr>
-	     
 		<tr>
-			<td>
-			</td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
-				<td>
-					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.UPDATE%>" />
+	     	<td></td>
+	     	<td>
+	     		<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.UPDATE%>" />
 					<input type="submit" class="button"	name="button" id="button" value='<liferay-ui:message key="update" />' />
 					<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' />
     				<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-		 		</td>
-			</tr>
-		</tbody>
+	     	</td>
+	     </tr>
 	</table>
+<br/>
  	<%
  		}
  	%>
- 	</div>
+ </div>
  </form>
  

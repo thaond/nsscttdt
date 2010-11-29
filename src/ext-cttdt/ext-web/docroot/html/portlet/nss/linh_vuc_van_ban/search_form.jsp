@@ -8,29 +8,27 @@
 	LinhVucVanBanSearch searchContainer = (LinhVucVanBanSearch)request.getAttribute("liferay-ui:search:searchContainer");
 	LinhVucVanBanDisplayTerms displayTerms = (LinhVucVanBanDisplayTerms)searchContainer.getDisplayTerms();
 %>
-
-
 <liferay-ui:search-toggle displayTerms="<%=displayTerms%>" id="toogle_id_linhvucvanban" >
-	<table class="linhvucvanban-table">
+<table cellspacing="0" width="100%">
 		<tr>
-			<td align="right">
+			<td width="18%">
 				<liferay-ui:message key="ten-linh-vuc-van-ban"/>:&nbsp;
 			</td>
 			
-		 	<td align="left">
-				<input name="<portlet:namespace/><%=LinhVucVanBanDisplayTerms.TEN_LINH_VUC_VB %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLinhVucVanBan()) %>" />
+		 	<td  width="20%">
+				<input name="<portlet:namespace/><%=LinhVucVanBanDisplayTerms.TEN_LINH_VUC_VB %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenLinhVucVanBan()) %>" />
 			</td>
 			
-			<td align="right">
+			<td  width="10%">
 				<liferay-ui:message key="description"/>:&nbsp;
 			</td>
 			
-			<td align="left">
-				<input name="<portlet:namespace/><%=LinhVucVanBanDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+			<td>
+				<input name="<portlet:namespace/><%=LinhVucVanBanDisplayTerms.MO_TA %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		
 	</table>	
 </liferay-ui:search-toggle>
-<br/>
-	&nbsp;&nbsp;&nbsp;<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>
+<br>
+<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>

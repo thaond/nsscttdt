@@ -101,6 +101,8 @@ import com.nss.portlet.digitalsignature.service.CertificateLocalServiceUtil;
 import com.nss.portlet.digitalsignature.util.ArticleSignUtil;
 import com.nss.portlet.digitalsignature.util.DigitalSignatureKeys;
 import com.nss.portlet.journalworkflow.util.SAWWorkflowUtil;
+import com.nss.workflow.JournalLiferayPortletAction;
+import com.sgs.liferay.jbpm.param.WorkflowParam;
 import com.sun.saw.vo.BusinessProcessInstanceVO;
 import com.sun.saw.vo.OutputVO;
 import com.sun.saw.vo.TokenVO;
@@ -111,7 +113,8 @@ import com.sun.saw.vo.TokenVO;
  * @author Brian Wing Shun Chan
  * @author Raymond Augé
  */
-public class EditArticleAction extends PortletAction {
+//public class EditArticleAction extends PortletAction {
+public class EditArticleAction extends JournalLiferayPortletAction {
 
 	public static final String VERSION_SEPARATOR = "_version_";
 
@@ -306,7 +309,7 @@ public class EditArticleAction extends PortletAction {
 	}
 
 	@Override
-	public void processAction(
+	public void processStrutsAction(
 		ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 		ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -317,6 +320,8 @@ public class EditArticleAction extends PortletAction {
 		try {
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
 				article = updateArticle(actionRequest);
+				addWorkflowParameter(actionRequest, "userId", WorkflowParam.TRANSIENT, "" + PortalUtil.getUserId(actionRequest));
+				addWorkflowParameter(actionRequest, "resourcePrimey", WorkflowParam.TRANSIENT, "" + article.getResourcePrimKey());
 			}
 			else if (cmd.equals(Constants.APPROVE)) {
 				approveArticle(actionRequest);
@@ -348,6 +353,8 @@ public class EditArticleAction extends PortletAction {
 
 				sendRedirect(actionRequest, actionResponse, redirect);
 			}
+			
+			
 		}
 		catch (Exception e) {
 			if ((e instanceof NoSuchArticleException) ||
@@ -405,7 +412,7 @@ public class EditArticleAction extends PortletAction {
 	}
 
 	@Override
-	public ActionForward render(
+	public ActionForward renderStruts(
 		ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
 		RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
@@ -744,7 +751,7 @@ public class EditArticleAction extends PortletAction {
 
 			if (signArticle) {
 				// lay keyPair de co privateKey va publicKey de ky
-				KeyPair keyPair = getKeyPair("D://keypair.txt");
+				KeyPair keyPair = getKeyPair("G://keypair.txt");
 				// kiem tra co certificate chua neu chua co dung ham
 				// updateCertificate de tao
 				try {
@@ -782,5 +789,8 @@ public class EditArticleAction extends PortletAction {
 			layout.getGroupId(), layout.isPrivateLayout(),
 			layout.getLayoutId(), portletResource, articleId);
 	}
+
+
+	
 
 }

@@ -139,4 +139,14 @@
 					<param name="service.file" value="src/com/nss/portlet/image_signer/service.xml" />
 				</antcall>
 	</target>
+	<target name="build-service-portlet-managementworkflowjournal">
+				<antcall target="build-service">
+					<param name="service.file" value="src/com/nss/portlet/managementworkflowjournal/service.xml" />
+				</antcall>
+	</target>
+	<target name="build-service-portlet-generatetemplateid">
+				<antcall target="build-service">
+					<param name="service.file" value="src/com/nss/portlet/generatetemplateid/service.xml" />
+				</antcall>
+	</target>
 </project>

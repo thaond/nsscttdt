@@ -7,16 +7,77 @@
 <%@page import="javax.portlet.RenderRequest"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
-<link href="/html/portlet/nss/asset_publisher_nss/style.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="/html/portlet/nss/asset_publisher_nss/jquery.js"></script>
-<script type="text/javascript" src="/html/portlet/nss/asset_publisher_nss/init.js"></script>
+<!-- MoNT start 26/11/2010 -->
+<script type="text/javascript" src="/html/js/scroll/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.serialScroll.js"></script>
+<script type="text/javascript" src="/html/js/scroll/jquery.serialScroll-min.js"></script>
 
+<script>
+jQuery.easing.easeOutQuart = function (x, t, b, c, d) {
+	return -c * ((t=t/d-1)*t*t*t - 1) + b;
+};
+
+jQuery(function( $ ){
+	<portlet:namespace/>scrollview();
+});
+
+function <portlet:namespace/>scrollview() {
+	jQuery('#<portlet:namespace/>slideshow').serialScroll({
+		items:'li',
+		prev:'#<portlet:namespace/>screen a.prevbt',
+		next:'#<portlet:namespace/>screen a.nextbt',
+		start:0, //as we are centering it, start at the 2nd
+		step:1,
+		force:true,
+		stop:true,
+		lock:false,
+		cycle:false, //don't pull back once you reach the end
+		easing:'easeOutQuart', //use this easing equation for a funny effect
+	});
+}
+</script>
+<style>
+	#<portlet:namespace/>screen .prev{
+		float:left;
+	}
+	#<portlet:namespace/>screen .next{
+		float:right;
+	}
+	#<portlet:namespace/>slideshow{
+		overflow:hidden;
+		width:500px;
+	}	
+	#<portlet:namespace/>slideshow ul{
+		width:3900px;
+	}
+	#<portlet:namespace/>slideshow li{
+		float:left;
+	}
+	#<portlet:namespace/>screenhelp .prevbt{
+		float:left;
+	}
+	#<portlet:namespace/>screenhelp .nextbt{
+		float:right;
+	}
+	#<portlet:namespace/>slideshowhelp{
+		overflow:hidden;
+		width:500px;
+	}
+	#<portlet:namespace/>slideshowhelp ul{
+		width:3900px;
+	}
+	#<portlet:namespace/>slideshowhelp li{
+		float:left;
+	}
+</style>
+<!-- MoNT end 26/11/2010 -->
 
 <div id="<portlet:namespace/>bodyTab" >
 <div id="<portlet:namespace/>divTab" >
 <div class="toplist"  >
 <div class="titlecateg">
-	<div id="slideshow">
+	<div id="<portlet:namespace/>slideshow" class="bgtabtle">
 		    <ul>    
 		    <%
 		    	long categoryParentId = 0;
@@ -87,13 +148,15 @@
 		   %>    	
 		    </ul>
 		    </div>
+		    <!-- MoNT start 26/11/2010 -->
+			<div id="<portlet:namespace/>screen" class="btnextpre">
+				<div id="<portlet:namespace/>button">
+					<a class="prevbt" onclick=" <portlet:namespace/>scrollview()" href="#"></a>
+					<a class="nextbt" onclick=" <portlet:namespace/>scrollview()" href="#"></a>
+				</div>
+			</div>	
 		    </div>
-	<div id="screen2">
-	<div id="buttons">
-		<a class="prev" href="#">Previous</a>
-		<a class="next" href="#">Next</a>
-	</div>
-</div>		
+			<!-- MoNT end 26/11/2010 -->
 		    <div class="btmlist">
 		    <div class="ctrlist">
 		    <div class="shownew">

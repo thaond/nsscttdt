@@ -30,7 +30,6 @@
 		portletURL.setWindowState(WindowState.NORMAL);
 		portletURL.setParameter("struts_action", "/nss/thu_tuc_hanh_chinh/view");
 	%> 
-	<div id="separator"></div>
     <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
     	<%
 	    	ThuTucHanhChinhSearch searchContainer = new ThuTucHanhChinhSearch(renderRequest, portletURL);
@@ -43,7 +42,6 @@
 				page="/html/portlet/nss/thu_tuc_hanh_chinh/search_form.jsp"
 				searchContainer="<%= searchContainer %>" />
 			
-			<div id="separator"></div>
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
 				addURL.setWindowState(WindowState.NORMAL);
@@ -52,10 +50,8 @@
 				addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 			
 			%>
-			<br/>
-			<div style="padding-top: 5px;padding-bottom: 10px;">
 				<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-			</div>
+				<br><br>
 			<%
 				List<ThuTucHanhChinh> results = null;
 				int total = 0;

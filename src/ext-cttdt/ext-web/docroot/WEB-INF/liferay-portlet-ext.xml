@@ -892,4 +892,39 @@
         <struts-path>nss/image_signer</struts-path>
         <use-default-template>false</use-default-template>
     </portlet>
+    <portlet>
+        <portlet-name>NSS_MANAGEMENTWORKFLOWJOURNAL</portlet-name>
+        <struts-path>nss/managementworkflowjournal</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>15</portlet-name>
+        <icon>/html/icons/default.png</icon>
+        <struts-path>journal</struts-path>
+        <configuration-action-class>com.liferay.portlet.journal.action.ConfigurationActionImpl</configuration-action-class>
+        <indexer-class>com.liferay.portlet.journal.util.Indexer</indexer-class>
+        <open-search-class>com.liferay.portlet.journal.util.JournalOpenSearchImpl</open-search-class>
+        <scheduler-class>com.liferay.portlet.journal.job.JournalScheduler</scheduler-class>
+        <friendly-url-mapper-class>com.liferay.portlet.journal.JournalFriendlyURLMapper</friendly-url-mapper-class>
+        <portlet-data-handler-class>com.liferay.portlet.journal.lar.JournalPortletDataHandlerImpl</portlet-data-handler-class>
+        <webdav-storage-token>journal</webdav-storage-token>
+        <webdav-storage-class>com.liferay.portlet.journal.webdav.JournalWebDAVStorageImpl</webdav-storage-class>
+        <control-panel-entry-category>content</control-panel-entry-category>
+        <control-panel-entry-weight>1.0</control-panel-entry-weight>
+        <preferences-unique-per-layout>true</preferences-unique-per-layout>
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <scopeable>true</scopeable>
+        <private-request-attributes>false</private-request-attributes>
+        <private-session-attributes>false</private-session-attributes>
+        <render-weight>50</render-weight>
+        <header-portlet-css>/html/portlet/journal/css.jsp</header-portlet-css>
+        <css-class-wrapper>portlet-journal</css-class-wrapper>
+        <add-default-resource>true</add-default-resource>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_GENERATETEMPLATEID</portlet-name>
+        <struts-path>nss/generatetemplateid</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
 </liferay-portlet-app>

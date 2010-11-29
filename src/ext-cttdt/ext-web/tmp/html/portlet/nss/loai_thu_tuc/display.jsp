@@ -1,25 +1,17 @@
 <%@ include file="/html/portlet/nss/loai_thu_tuc/init.jsp" %>
-
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.util.List"%>
-
-
-
 <%@page import="com.nss.portlet.loai_thu_tuc.search.LoaiThuTucHanhChinhSearch"%>
 <%@page import="com.nss.portlet.loai_thu_tuc.search.LoaiThuTucHanhChinhSearchTerms"%>
 <%@page import="com.nss.portlet.loai_thu_tuc.model.LoaiThuTucHanhChinh"%>
 <%@page import="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhLocalServiceUtil"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%><liferay-util:include page="/html/portlet/nss/loai_thu_tuc/js/loaithutuchanhchinh-js.jsp"></liferay-util:include>
-
 <%
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/loai_thu_tuc/view");
-
 %>
-
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
-
 	<%
 		LoaiThuTucHanhChinhSearch searchContainer = new LoaiThuTucHanhChinhSearch(renderRequest, portletURL);
 		LoaiThuTucHanhChinhSearchTerms searchTerms = (LoaiThuTucHanhChinhSearchTerms)searchContainer.getSearchTerms();
@@ -29,7 +21,6 @@
 	<liferay-ui:search-form
 		page="/html/portlet/nss/loai_thu_tuc/search_form.jsp"
 		searchContainer="<%= searchContainer %>" />
-	<div id="separator"></div>
 	
 		<%
 			PortletURL addURL = renderResponse.createRenderURL();
@@ -38,10 +29,9 @@
 			addURL.setParameter("tabs", "add");
 			addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 		%>
-	<br/>
 	<span onclick="javascript:submitForm(document.hrefFm,'<%= addURL.toString() %>');">
 	<input type="button" value='<liferay-ui:message key="them-moi"/>' /></span>
-	<br/><br/>
+	<br><br>
 	<%
 		List<LoaiThuTucHanhChinh> results = null;
 		int total = 0;

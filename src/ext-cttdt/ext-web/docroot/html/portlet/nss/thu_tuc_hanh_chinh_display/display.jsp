@@ -79,10 +79,6 @@
 	String portletURLString = portletURL.toString();
 	renderRequest.setAttribute("portletURLString", portletURLString);
 %>
-<div id="boxcontainer-vbpq">
-<div id="bttomcontainer-vbpq">
-<div id="container-vbpq">
-  
 	<div id="main">
     <div id="leftmenu">
     <div id="topmnl">
@@ -236,9 +232,4 @@
 		</div>
     </form>
     </div>
-    	
  </div>
-</div>
-</div>  
-</div>
-

@@ -63,6 +63,7 @@ nss-dang-nhap=Đăng nhập
 nss-thoi-tiet-ty-gia=Thời tiết - Tỷ giá
 nss-lich-cong-tac-tuan=Lịch công tác tuần
 nss-ty-le-%=Tỷ lệ %
+nss-cap-nhat=Cập nhật
 
 stt=STT
 ky-hieu-van-ban=Ký hiệu văn bản
@@ -140,3 +141,7 @@ tin-abstract = Tin abstract
 tin-lien-quan = Tin liên quan
 tin-abstract-entry = Tin abstract entry
 tin-lien-quan-entry = Tin liên quan entry
+##
+##managementworkflowjournal
+##
+error_delete_workflowjounal = Không xóa được workflow này

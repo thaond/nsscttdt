@@ -41,56 +41,43 @@
  	%>
  	
 	<div class="parent-title"><liferay-ui:message key="them-moi"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table cellspacing="0" width="100%">
 		<tr>
-			<td>
+			<td width="20%">
 			<label><liferay-ui:message key="ten-don-vi-thu-tuc" /></label>
-			<span style="color: rgb(255, 0, 0);"> *</span>
+			<span style="color: rgb(255, 0, 0);"> *</span>:
 			</td>
-			<td><input type="text" size="40px" name="<portlet:namespace />tenDonViThuTuc" class="form-input-box" id="<portlet:namespace/>tenDonViThuTuc" /></td>
-			<td>&nbsp;</td>
+			<td><input type="text"  name="<portlet:namespace />tenDonViThuTuc" style="width: 90%;" id="<portlet:namespace/>tenDonViThuTuc" /></td>
 		</tr>
 	    
 	    <tr>
 			<td>
-			<label><liferay-ui:message key="cap-don-vi-thu-tuc" /></label>
+			<label><liferay-ui:message key="cap-don-vi-thu-tuc" /></label>:
 			</td>
 			<td>
-				<select name="<portlet:namespace />capDonVi" id="capDonVi" style="width: 29%;">
+				<select name="<portlet:namespace />capDonVi" id="capDonVi" style="width: 92%;">
 					<option value="1" ><liferay-ui:message key="cap-thanh-pho" /></option>
 					<option value="2" ><liferay-ui:message key="cap-quan-huyen" /></option>
 					<option value="3" ><liferay-ui:message key="cap-phuong-xa" /></option>
 		    	</select>
 			</td>			
-			<td>&nbsp;</td>
 		</tr>
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" class="form-input-box" id="description" cols="45" rows="4"></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea name="<portlet:namespace />description" id="description"  style="width: 90%;" rows="3"></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" checked="checked"/></td>
-			<td></td>
 		</tr>
 	     
 		<tr>
-			<td>
-			</td>
 			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
 				<td>
 					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
 					<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="save" />' />
@@ -98,65 +85,51 @@
 	    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
 			 	</td>
 			</tr>
-		</tbody>
 	</table>
  	<%
  		} else {
  	%>
  	<input type="hidden" name="<portlet:namespace />maDonViThuTuc" value="<%= donViThuTuc.getMaDonViThuTuc()%>">
 	<div class="parent-title"><liferay-ui:message key="cap-nhat"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table cellspacing="0" width="100%">
 		<tr>
-			<td>
-			<label><liferay-ui:message key="ten-don-vi-thu-tuc" /></label>
+			<td width="20%">
+			<label><liferay-ui:message key="ten-don-vi-thu-tuc" /></label>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenDonViThuTuc" class="form-input-box" id="<portlet:namespace/>tenDonViThuTuc" value="<%= donViThuTuc.getTenDonViThuTuc()%>" /></td>
-			<td>&nbsp;</td>
+			<td><input type="text" name="<portlet:namespace />tenDonViThuTuc" style="width: 90%;" id="<portlet:namespace/>tenDonViThuTuc" value="<%= donViThuTuc.getTenDonViThuTuc()%>" /></td>
 		</tr>
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="cap-don-vi-thu-tuc" /></label>
+			<label><liferay-ui:message key="cap-don-vi-thu-tuc" /></label>:
 			</td>
 			<td>
-				<select name="<portlet:namespace />capDonVi" id="capDonVi" style="width: 29%;">
+				<select name="<portlet:namespace />capDonVi" id="capDonVi" style="width: 92%;">
 		    		<option value="0"><liferay-ui:message key="khong-chon" /></option>
 					<option value="1" <%= donViThuTuc.getCapDonVi() == 1 ? "selected" : "" %>><liferay-ui:message key="cap-thanh-pho" /></option>
 					<option value="2" <%= donViThuTuc.getCapDonVi() == 2 ? "selected" : "" %>><liferay-ui:message key="cap-quan-huyen" /></option>
 					<option value="3" <%= donViThuTuc.getCapDonVi() == 3 ? "selected" : "" %>><liferay-ui:message key="cap-phuong-xa" /></option>
 		    	</select>
 			</td>			
-			<td>&nbsp;</td>
 		</tr>
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" id="description" cols="45" rows="4"><%= donViThuTuc.getDescription() %></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea name="<portlet:namespace />description" id="description" style="width: 90%;" rows="3"><%= donViThuTuc.getDescription() %></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" 
 				<%= donViThuTuc.getActive() == 1 ? "checked=checked" : ""%> /></td>
 			<td></td>
 		</tr>
-	     
 		<tr>
-			<td>
-			</td>
 			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
 				<td>
 					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.UPDATE%>" />
 					<input type="submit" class="button"	name="button" id="button" value='<liferay-ui:message key="update" />' />
@@ -164,7 +137,6 @@
     				<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
 		 		</td>
 			</tr>
-		</tbody>
 	</table>
  	<%
  		}

@@ -30,23 +30,21 @@
  	%>
  	<input type="hidden" name="tabs" id="tabs" value="add">
 	<div class="parent-title"><liferay-ui:message key="them-moi"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
+			<td width="15%">
 			<label><liferay-ui:message key="ten-linh-vuc-van-ban" /></label>
-			<span style="color: rgb(255, 0, 0);"> *</span>
+			<span style="color: rgb(255, 0, 0);"> *</span>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenLinhVucVanBan" class="input-pml" id="<portlet:namespace/>tenLinhVucVanBan" /></td>
-			<td>&nbsp;</td>
+			<td><input style="width: 90%" type="text" name="<portlet:namespace />tenLinhVucVanBan" id="<portlet:namespace/>tenLinhVucVanBan" /></td>
 		</tr>
 	    
 	    <tr>
 	    	<td ><label><liferay-ui:message key="linh-vuc-van-ban" /></label>
-	    	<span style="color: rgb(255, 0, 0);"> *</span>
+	    	<span style="color: rgb(255, 0, 0);"> *</span>:
 	    	</td>
 		    <td align="left">
-				<select name="<portlet:namespace />parentId" id="<portlet:namespace/>parentId" style="width: 71%;">
+				<select name="<portlet:namespace />parentId" id="<portlet:namespace/>parentId" style="width: 92%;">
 		    		<option value="0"><liferay-ui:message key="khong-chon" /></option>
 					<%
 						for (int i = 0; i < linhVucVanBanListParent.size(); i ++) {
@@ -60,59 +58,46 @@
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" class="input-pml" id="description" cols="45" rows="5"></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea name="<portlet:namespace />description" id="description" style="width: 90%" rows="3"></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" checked="checked"/></td>
-			<td></td>
 		</tr>
-	     
 		<tr>
+			<td></td>
 			<td>
-			</td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
-				<td>
 					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
 					<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="save" />' />
 					<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' />
 	    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-			 	</td>
-			</tr>
-		</tbody>
+			</td>
+		</tr>
 	</table>
+<br/>
  	<%
  		} else {
  	%>
  	<input type="hidden" name="tabs" id="tabs" value="edit">
  	<input type="hidden" name="<portlet:namespace />maLinhVucVanBan" id="<portlet:namespace />maLinhVucVanBan" value="<%=  linhVucVanBan.getMaLinhVucVanBan()%>">
 	<div class="parent-title"><liferay-ui:message key="cap-nhat"/></div>
- 	<table width="100%" border="0" class="common-table">
-		
+ 	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
-			<label><liferay-ui:message key="ten-linh-vuc-van-ban" /></label>
+			<td width="15%">
+			<label><liferay-ui:message key="ten-linh-vuc-van-ban" /></label>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenLinhVucVanBan" class="input-pml" id="<portlet:namespace/>tenLinhVucVanBan" value="<%= linhVucVanBan.getTenLinhVucVanBan()%>" /></td>
-			<td>&nbsp;</td>
+			<td><input style="width: 90%" type="text" name="<portlet:namespace />tenLinhVucVanBan" id="<portlet:namespace/>tenLinhVucVanBan" value="<%= linhVucVanBan.getTenLinhVucVanBan()%>" /></td>
 		</tr>
 	    
 	    <tr>
 	    	<td ><label><liferay-ui:message key="linh-vuc-van-ban" /></label></td>
 		    <td align="left">
-				<select name="<portlet:namespace />parentId" id="<portlet:namespace/>parentId" style="width: 71%;">
+				<select name="<portlet:namespace />parentId" id="<portlet:namespace/>parentId" style="width: 90%;">
 		    		<option value="0"><liferay-ui:message key="khong-chon" /></option>
 					<%
 						for (int i = 0; i < linhVucVanBanListParent.size(); i ++) {
@@ -127,40 +112,29 @@
 	    
 		<tr>
 			<td>
-			<label><liferay-ui:message key="description" /></label>
+			<label><liferay-ui:message key="description" /></label>:
 			</td>
-			<td><textarea name="<portlet:namespace />description" id="description" ><%= linhVucVanBan.getDescription() %></textarea></td>
-			<td>&nbsp;</td>
+			<td><textarea style="width: 90%" rows="3" name="<portlet:namespace />description" id="description" ><%= linhVucVanBan.getDescription() %></textarea></td>
 		</tr>
 	      
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" 
 				<%= linhVucVanBan.getActive() == 1 ? "checked=checked" : ""%> /></td>
-			<td></td>
 		</tr>
-	     
 		<tr>
+			<td></td>
 			<td>
-			</td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
-				<td>
-					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.UPDATE%>" />
+				<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.UPDATE%>" />
 					<input type="submit" class="button"	name="button" id="button" value='<liferay-ui:message key="update" />' />
 					<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' /></a>
     				<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-		 		</td>
-			</tr>
-		</tbody>
+			</td>
+		</tr>
 	</table>
+<br/>
  	<%
  		}
  	%>

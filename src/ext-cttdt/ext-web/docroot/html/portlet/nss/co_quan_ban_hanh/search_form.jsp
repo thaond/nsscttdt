@@ -11,27 +11,26 @@
 
 
 <liferay-ui:search-toggle displayTerms="<%=displayTerms%>" id="toogle_id_coquanbanhanh" >
-
-	<table class="coquanbanhanh-table">
+<table cellspacing="0" width="100%">
 		<tr>
-			<td align="right">
+			<td width="20%">
 				<liferay-ui:message key="ten-co-quan-ban-hanh"/>:&nbsp;
 			</td>
 			
-		 	<td align="left">
-				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.TEN_CO_QUAN_BAN_HANH %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenCoQuanBanHanh()) %>" />
+		 	<td width="20%">
+				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.TEN_CO_QUAN_BAN_HANH %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenCoQuanBanHanh()) %>" />
 			</td>
 			
-			<td align="right">
+			<td width="10%">
 				<liferay-ui:message key="description"/>:&nbsp;
 			</td>
 			
-			<td align="left">
-				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+			<td >
+				<input name="<portlet:namespace/><%=CoQuanBanHanhDisplayTerms.MO_TA %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
 		
 	</table>	
 </liferay-ui:search-toggle>
 <br/>
-	&nbsp;&nbsp;&nbsp;<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>
+<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>

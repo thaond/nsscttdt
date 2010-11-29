@@ -16,18 +16,16 @@
 %>
 
 
-<div class="commom-form">
-		<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_LINK" /></div>
+<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_LINK" /></div>
 <liferay-ui:tabs names="view_link,view_loaiWebsite " param="tabs" url="<%= portletURLTabs.toString()%>" value="<%= tabs %>"></liferay-ui:tabs>
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%=tabs.equals("view_link")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/link/view_link.jsp" /></div>
+		<liferay-util:include page="/html/portlet/nss/link/view_link.jsp" />
 	</c:when>
 
 	<c:when test='<%=tabs.equals("view_loaiWebsite")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/link/view_loaiwebsite.jsp" /></div>
+		<liferay-util:include page="/html/portlet/nss/link/view_loaiwebsite.jsp" />
 	</c:when>
 </c:choose>
 </div>

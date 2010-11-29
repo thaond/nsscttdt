@@ -29,7 +29,6 @@
 		<liferay-ui:search-form
 			page="/html/portlet/nss/adv/search_form.jsp"
 			searchContainer="<%= searchContainer %>" />
-		<div id="separator"></div>
 		
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
@@ -38,9 +37,8 @@
 				addURL.setParameter("tabs", "add");
 				addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 			%>
-		<br/>
 		<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-		<br/>
+		<br><br>
 		<%
 			List<QuangCao> results = null;
 			int total = 0;
@@ -87,7 +85,7 @@
 				if (0 == quangCao.getImageId_liferay()) {
 					row.addText("");
 				} else {
-					row.addText("<img width='120px' height='90px' src='"+  themeDisplay.getPathImage()+ "/adv?img_id="+ quangCao.getImageId_liferay() +"' />");
+					row.addText("<img style='width: 60px; height: auto;' src='"+  themeDisplay.getPathImage()+ "/adv?img_id="+ quangCao.getImageId_liferay() +"' />");
 				}
 				
 				// mo ta

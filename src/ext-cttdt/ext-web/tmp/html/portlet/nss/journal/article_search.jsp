@@ -21,7 +21,6 @@
  * SOFTWARE.
  */
 %>
-
 <%@ include file="/html/portlet/nss/journal/init.jsp" %>
 
 <%
@@ -154,16 +153,14 @@ ArticleDisplayTerms displayTerms = (ArticleDisplayTerms)searchContainer.getDispl
 <%
 boolean showAddArticleButtonButton = false;
 boolean showPermissionsButton = false;
-
-if (portletName.equals(PortletKeys.JOURNAL)) {
+String NSS_JOURNAL = "NSS_JOURNAL";
+if (portletName.equals(NSS_JOURNAL)) {
 	showAddArticleButtonButton = JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE);
 	showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 }
 %>
-
 <c:if test="<%= showAddArticleButtonButton || showPermissionsButton %>">
 	<br />
-
 	<div>
 		<c:if test="<%= showAddArticleButtonButton %>">
 			<input type="button" value="<liferay-ui:message key="add-web-content" />" onClick="<portlet:namespace />addArticle();" />
@@ -198,9 +195,11 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 	<liferay-ui:message key="filter-by-template" />: <%= displayTerms.getTemplateId() %><br />
 </c:if>
 
+
 <script type="text/javascript">
 	function <portlet:namespace />addArticle() {
-		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.JOURNAL %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
+		
+		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= NSS_JOURNAL %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
 
 		if (toggle_id_journal_article_searchcurClickValue == 'basic') {
 			url += '&<portlet:namespace /><%= displayTerms.TITLE %>=' + document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.KEYWORDS %>.value;

@@ -19,13 +19,11 @@
 
 <c:choose>
 	<c:when test='<%=tabDisplay.equals("display_link")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/link/display.jsp" /></div>
+		<liferay-util:include page="/html/portlet/nss/link/display.jsp" />
 	</c:when>
 
 	<c:when test='<%=tabDisplay.equals("add_link")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/link/add_edit.jsp" /></div>
+		<liferay-util:include page="/html/portlet/nss/link/add_edit.jsp" />
 	</c:when>
 </c:choose>
 

@@ -1,39 +1,30 @@
 <%@ include file="/html/portlet/nss/link/init.jsp" %>
-
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.util.List"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-
 <%@page import="com.nss.portlet.link.model.LienKetWebsite"%>
 <%@page import="com.nss.portlet.link.search.LienKetWebsiteSearchTerms"%>
 <%@page import="com.nss.portlet.link.service.LienKetWebsiteLocalServiceUtil"%>
 <%@page import="com.nss.portlet.link.search.LienKetWebsiteSearch"%>
 <%@page import="com.nss.portlet.link.model.LoaiWebsite"%>
 <%@page import="com.nss.portlet.link.service.LoaiWebsiteLocalServiceUtil"%>
-
-
 <%@page import="com.liferay.portal.kernel.util.Base64"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="java.io.OutputStream"%>
 <%@page import="javax.portlet.PortletSession"%>
-
 <%@page import="java.io.File"%>
 <%@page import="com.liferay.portal.kernel.upload.UploadPortletRequest"%>
-
 <liferay-util:include page="/html/portlet/nss/link/js/lienketwebsiste-js.jsp"></liferay-util:include>
-
 <%
 	String tabDisplay = ParamUtil.getString(request, "tabDisplay","display_link");
 	String tabs = ParamUtil.getString(renderRequest,"tabs","view_link");
-
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/link/view");
 	portletURL.setParameter("tabDisplay", tabDisplay);
 	portletURL.setParameter("tabs", tabs);
-
 %>
 
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
@@ -41,10 +32,7 @@
 		LienKetWebsiteSearch searchContainer = new LienKetWebsiteSearch(renderRequest, portletURL);
 		LienKetWebsiteSearchTerms searchTerms = (LienKetWebsiteSearchTerms)searchContainer.getSearchTerms();
 	%>
-	
 	<liferay-ui:search-form page="/html/portlet/nss/link/search_form.jsp" searchContainer="<%= searchContainer %>" />
-		
-	<div id="separator"></div>
 		<%
 			PortletURL addURL = renderResponse.createRenderURL();
 			addURL.setWindowState(WindowState.NORMAL);
@@ -53,9 +41,8 @@
 			addURL.setParameter("tabs", tabs);
 			addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 		%>
-	<br/>
 	<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-	<br/>
+	<br><br>
 	<%
 		List<LienKetWebsite> results = null;
 		int total = 0;
@@ -105,7 +92,7 @@
 			if (0 == lienKetWebsite.getImageId_liferay()) {
 				row.addText("");
 			} else {
-				row.addText("<img width='120px' height='90px' src='"+  themeDisplay.getPathImage()+ "/link?img_id="+ lienKetWebsite.getImageId_liferay() +"' />");
+				row.addText("<img style='width: 100px;height: auto;' src='"+  themeDisplay.getPathImage()+ "/link?img_id="+ lienKetWebsite.getImageId_liferay() +"' />");
 			}
 			
 			// mo ta

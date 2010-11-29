@@ -11,28 +11,28 @@
 
 <c:choose>
 	<c:when test='<%=tabs.equals("display")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/qa_cau_tra_loi/display.jsp" /></div>
+		<liferay-util:include
+			page="/html/portlet/nss/qa_cau_tra_loi/display.jsp" />
 	</c:when>
 
 	<c:when test='<%=tabs.equals("answer")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/qa_cau_tra_loi/answer.jsp" /></div>
+		<liferay-util:include
+			page="/html/portlet/nss/qa_cau_tra_loi/answer.jsp" />
 	</c:when>
 	
 	<c:when test='<%=tabs.equals("detail")%>'>
 		<div><liferay-util:include
-			page="/html/portlet/nss/qa_cau_tra_loi/detail.jsp" /></div>
+			page="/html/portlet/nss/qa_cau_tra_loi/detail.jsp" />
 	</c:when>
 	
 	<c:when test='<%=tabs.equals("edit_question")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/qa_cau_tra_loi/edit_question.jsp" /></div>
+		<liferay-util:include
+			page="/html/portlet/nss/qa_cau_tra_loi/edit_question.jsp" />
 	</c:when>
 	
 	<c:when test='<%=tabs.equals("edit_answer")%>'>
-		<div><liferay-util:include
-			page="/html/portlet/nss/qa_cau_tra_loi/edit_answer.jsp" /></div>
+		<liferay-util:include
+			page="/html/portlet/nss/qa_cau_tra_loi/edit_answer.jsp" />
 	</c:when>
 	
 </c:choose>

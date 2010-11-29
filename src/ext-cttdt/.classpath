@@ -209,7 +209,7 @@
 	<classpathentry kind="lib" path="lib/portal/unoil.jar"/>
 	<classpathentry kind="lib" path="lib/portal/urlrewrite.jar"/>
 	<classpathentry kind="lib" path="lib/portal/util-bridges.jar"/>
-	<classpathentry kind="lib" path="lib/portal/util-java.jar"/>
+	<classpathentry kind="lib" path="lib/portal/util-java.jar" sourcepath="/portal"/>
 	<classpathentry kind="lib" path="lib/portal/util-taglib.jar"/>
 	<classpathentry kind="lib" path="lib/portal/util-wsrp.jar"/>
 	<classpathentry kind="lib" path="lib/portal/velocity.jar"/>
@@ -224,15 +224,25 @@
 	<classpathentry kind="lib" path="lib/portal/xpp3.jar"/>
 	<classpathentry kind="lib" path="lib/portal/xstream.jar"/>
 	<classpathentry kind="lib" path="modules/portal-impl.jar" sourcepath="/portal"/>
-	<classpathentry kind="lib" path="ext-lib/global/bouncycastle-jdk1.6.jar"/>
+	<classpathentry kind="lib" path="lib/portal/sgs-rtftemplate.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/httpclient-4.0.3.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/httpcore-4.0.1.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/httpcore-nio-4.0.1.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/httpmime-4.0.3.jar"/>
+	<classpathentry kind="lib" path="ext-lib/global/digitalsignature-portlet-service.jar" sourcepath="/digitalsignature-portlet"/>
+	<classpathentry kind="lib" path="ext-lib/portal/bootstrap.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/bsh-1.3.0.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/hibernate-tools.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/jbpm-service.jar" sourcepath="/ext5.2.3"/>
+	<classpathentry kind="lib" path="ext-lib/portal/jta.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/persistence.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/spring-modules-jbpm31.jar"/>
+	<classpathentry kind="lib" path="ext-lib/global/bouncycastle-jdk1.6.jar"/>
 	<classpathentry kind="lib" path="lib/development/jtds.jar"/>
 	<classpathentry kind="lib" path="lib/development/support-tomcat.jar"/>
-	<classpathentry kind="lib" path="lib/portal/sgs-rtftemplate.jar"/>
-	<classpathentry kind="lib" path="ext-lib/global/digitalsignature-portlet-service.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="ext-lib/portal/bsh.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/dwr.jar"/>

@@ -32,28 +32,26 @@
 	<div class="commom-form">
 	<div class="parent-title"><liferay-ui:message key="them-moi"/></div>
 		
-	<table width="100%" border="0" class="common-table">
+	<table width="100%" cellspacing="0">
 		<tr>
-			<td>
+			<td width="20%">
 			<label><liferay-ui:message key="ten-thu-tuc-hanh-chinh" /></label>
-			<span style="color: rgb(255, 0, 0);"> *</span>
+			<span style="color: rgb(255, 0, 0);"> *</span>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />tenThuTucHanhChinh" class="form-input-box" id="tenThuTucHanhChinh" value=""/></td>
-			<td>&nbsp;</td>
+			<td><input type="text" name="<portlet:namespace />tenThuTucHanhChinh" style="width: 90%" id="tenThuTucHanhChinh" value=""/></td>
 		</tr>
 		<tr>
 			<td>
-			<label><liferay-ui:message key="dia-chi-lien-he" /></label>
+			<label><liferay-ui:message key="dia-chi-lien-he" /></label>:
 			</td>
-			<td><input type="text" name="<portlet:namespace />diaChiLienHe" class="form-input-box" id="diaChiLienHe" value=""/></td>
-			<td>&nbsp;</td>
+			<td><input type="text" name="<portlet:namespace />diaChiLienHe" style="width: 90%" id="diaChiLienHe" value=""/></td>
 		</tr>
 	    <tr>
 	    	<td class="minlabel"><label><liferay-ui:message key="linh-vuc" /></label>
-	    	<span style="color: rgb(255, 0, 0);"> *</span>
+	    	<span style="color: rgb(255, 0, 0);"> *</span>:
 	    	</td>
 		    <td align="left">
-				<select name="<portlet:namespace />maLinhVucThuTuc" id="maLinhVucThuTuc" style="width: 18%;">
+				<select name="<portlet:namespace />maLinhVucThuTuc" id="maLinhVucThuTuc" style="width: 92%;">
 		    		<option value="0"><liferay-ui:message key="khong-chon" /></option>
 					<%
 						for (int i = 0; i < linhVucThuTucHanhChinhList.size(); i ++) {
@@ -73,15 +71,14 @@
 				<input onclick="selectRadioCapDonVi(this.value)" name="<portlet:namespace />capDonVi" type="radio" id="capDonVi" <%= radioCapDonVi == 2 ? "checked" : "" %> value="2"/><liferay-ui:message key="cap-quan-huyen" />&nbsp;
 				<input onclick="selectRadioCapDonVi(this.value)" name="<portlet:namespace />capDonVi" type="radio" id="capDonVi" <%= radioCapDonVi == 3 ? "checked" : "" %> value="3"/><liferay-ui:message key="cap-phuong-xa" />&nbsp;
 			</td>
-			<td></td>
 		</tr>
 	    <tr>
-	    	<td class="minlabel"><label><liferay-ui:message key="co-quan-thuc-hien" /></label>
+	    	<td class="minlabel"><label><liferay-ui:message key="co-quan-thuc-hien" /></label>:
 	    	<span style="color: rgb(255, 0, 0);"> *</span>
 	    	</td>
 		    <td align="left">
 		    	<div id="donViOnChange">
-		    		<select name="<portlet:namespace />maDonViThuTuc" id='maDonViThuTuc' style="width: 18%;">
+		    		<select name="<portlet:namespace />maDonViThuTuc" id='maDonViThuTuc' style="width: 92%;">
 						<option value="0"><liferay-ui:message key="khong-chon" /></option>
 						<%
 							if (1 == radioCapDonVi) {
@@ -97,48 +94,35 @@
 						%>
 			    	</select>
 		    	</div>
-			    	
 		    </td>
 	    </tr>
 		<tr>
 			<td>
-			<label><liferay-ui:message key="active" /></label>
+			<label><liferay-ui:message key="active" /></label>:
 			</td>
 			<td><input name="<portlet:namespace />active" type="checkbox" id="active" checked="checked"/></td>
-			<td></td>
 		</tr>
-	   
 	</table>
-	<table style="width:100%">
-	  <tr>
-	    <td valign="top"><div align="right"></div></td>
-	    <td colspan="3" align="center">
-	    <fieldset>
-			<legend class="legend-noborder"><liferay-ui:message key="toan-van"/></legend>
-			<table id="addfileupload" style="width: 98%" align="center" cellpadding="0" cellspacing="0">
-			  <tr class="bgtitlecvddetails" align="center">
-			   <td width="30%" ><liferay-ui:message key="tieu-de-tap-tin" /></td>
+<fieldset class="filborder">
+<label class="laborder"><liferay-ui:message key="toan-van"/></label>
+<div class="results-grid">
+	<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
+		<tr class="portlet-section-header results-header" >
+			   	<td width="35%" ><liferay-ui:message key="tieu-de-tap-tin" /></td>
 			    <td width="50%" ><liferay-ui:message key="ten-tap-tin" /></td>
-					<td width="20%" ><input type="button" value='<liferay-ui:message key="upload-file" />' onclick="uploadThuTucHanhChinhFile()"></td>
+				<td align="center" ><input style="width: 80%" type="button" value='<liferay-ui:message key="upload-file" />' onclick="uploadThuTucHanhChinhFile()"></td>
 				</tr>
 			 </table>
-			
-		</fieldset>
-	    </td>
-	  </tr>
-	</table>
-	<table id="table-button">
-		<tbody>
-			<tr>
-				<td>
+</div>
+</fieldset>
+<br/>
+
+<div id ="table-button" align="right">
 					<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
 					<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="save" />' />
 					<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' />
 	    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-			 	</td>
-			</tr>
-		</tbody>
-	</table>
-	</div>
+</div>
+</div>
 </form>
 	

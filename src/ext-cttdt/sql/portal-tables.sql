@@ -1665,6 +1665,26 @@ create table instancebean (
 	finish BOOLEAN
 );
 
+create table log_workflow_journal_article (
+	logWorkflowJournalArticleId LONG not null primary key,
+	resourcePrimkey LONG,
+	transition INTEGER,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	roleId LONG,
+	dateReceiptOfUserReceipt DATE null,
+	dateProcessOfUserReceipt DATE null,
+	dateSendOfUserReceipt DATE null,
+	useridProcess LONG,
+	roleIdProcess LONG,
+	dateReceiptOfUserProcess DATE null,
+	dateProcessOfUserProcess DATE null,
+	processInformation VARCHAR(75) null,
+	workflowStatusBefore VARCHAR(75) null,
+	workflowStatusAfter VARCHAR(75) null
+);
+
 create table nss_certificate (
 	userId LONG not null primary key,
 	x509Certificate VARCHAR(75) null
@@ -1675,6 +1695,19 @@ create table nss_image_signer (
 	imageIdSign LONG,
 	imageIdUnSign LONG,
 	userId LONG
+);
+
+create table nss_quan_ly_quy_trinh_duyet_tin (
+	managementWorkflowJournalId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	processDefinitionId LONG,
+	workflowname VARCHAR(75) null,
+	version_ INTEGER,
+	description VARCHAR(75) null,
+	dateFrom DATE null,
+	dateTo DATE null
 );
 
 create table nss_signature (
@@ -1688,6 +1721,19 @@ create table nss_signature (
 	articleId VARCHAR(75) null,
 	version DOUBLE,
 	signData VARCHAR(75) null
+);
+
+create table nss_workflow_journal_article (
+	workflowJournalArticleId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	roleId LONG,
+	processDefinitionId LONG,
+	processInstanceId LONG,
+	resourcePrimkey LONG,
+	journalType VARCHAR(75) null,
+	countImageOfArticle INTEGER
 );
 
 create table processdefinition (

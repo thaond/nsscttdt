@@ -1,3 +1,9 @@
+<%@page import="com.liferay.portlet.journal.model.JournalArticleResource"%>
+<%@page import="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil"%>
+<%@page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil"%>
+<%@page import="com.liferay.portlet.journal.model.JournalArticle"%>
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%
@@ -106,11 +112,36 @@ int countChildren=Integer.parseInt(valueChildren);
 List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetAbstract = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetChildren = new ArrayList<TagsAsset>();
+JournalArticleResource articleResource1 = null;
+JournalArticle article = null;
 while(itr.hasNext()){
 	Map.Entry<String, List<TagsAsset>> entry = itr.next();
 	List<TagsAsset> tagAsset = entry.getValue();
+	List<TagsAsset> tagAsset_temp = new ArrayList<TagsAsset>();
+	for(TagsAsset ta : tagAsset){
+		articleResource1 = JournalArticleResourceLocalServiceUtil.getArticleResource(ta.getClassPK());
+		article = JournalArticleLocalServiceUtil.getArticle(articleResource1.getGroupId(),articleResource1.getArticleId());
+		if(b1){
+			tagAsset_temp.add(ta);
+		}else if(b2){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 1)
+				tagAsset_temp.add(ta);
+			else
+				continue;
+		}else if(b3){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 2)
+				tagAsset_temp.add(ta);
+			else
+				continue;
+		}else if(b4){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 0)
+				tagAsset_temp.add(ta);
+			else
+				continue;
+		}
+	}
 	String tagLabel = entry.getKey();
-	listTagAsset.addAll(tagAsset);
+	listTagAsset.addAll(tagAsset_temp);
 }
 if(tagsEntryId==0){
 	if(countAbstract<listTagAsset.size()){
@@ -148,7 +179,6 @@ if(tagsEntryId==0){
 if(listTagAsset.size()>0){
 	List<TagsAsset> results = listTagAsset;
 %>
-
 	<div class="asset-tag-entries">
 		<%
 		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {
@@ -248,5 +278,4 @@ if(listTagAsset.size()>0){
 	}
 
 %>
-
 

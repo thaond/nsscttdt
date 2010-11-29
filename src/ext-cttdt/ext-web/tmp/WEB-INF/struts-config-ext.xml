@@ -104,6 +104,28 @@
             <forward name="portlet.nss.journal.raw_article_content" path="/portlet/nss/journal/raw_article_content.jsp"/>
             <forward name="portlet.nss.journal.view_article_content" path="/portlet/nss/journal/view_article_content.jsp"/>
         </action>
+        
+        
+        <action path="/nss/journal/deletejournalarticle" type="com.nss.portlet.journal.action.DeleteJournalArticle">
+        	<forward name="portlet.nss.journal.deletejournalarticle" path="portlet.nss.journal.deletejournalarticle"/>
+        </action>
+        
+        <action path="/nss/journal/transitionreviewjournalarticle" type="com.nss.portlet.journal.action.TransitionReviewJournalArticle">
+        	<forward name="portlet.nss.journal.transitionreviewjournalarticle" path="portlet.nss.journal.transitionreviewjournalarticle"/>
+        </action>
+        
+        <action path="/nss/journal/transitionapprovejournalarticle" type="com.nss.portlet.journal.action.TransitionApproveJournalArticle">
+        	<forward name="portlet.nss.journal.transitionapprovejournalarticle" path="portlet.nss.journal.transitionapprovejournalarticle"/>
+        </action>
+        
+         <action path="/nss/journal/approvejournalarticle" type="com.nss.portlet.journal.action.ApproveJournalArticle">
+        	<forward name="portlet.nss.journal.approvejournalarticle" path="portlet.nss.journal.approvejournalarticle"/>
+        </action>
+        
+        <action path="/nss/journal/backjournalarticle" type="com.nss.portlet.journal.action.BackJournalArticle">
+        	<forward name="portlet.nss.journal.backjournalarticle" path="portlet.nss.journal.backjournalarticle"/>
+        </action>
+        
         <!-- Journal Articles -->
         <action path="/nss/journal_articles/view" type="com.nss.portlet.journalarticles.action.ViewAction">
             <forward name="portlet.journal_articles.view" path="portlet.journal_articles.view"/>
@@ -307,6 +329,12 @@
         </action>
         <action path="/nss/image_signer/upload" type="com.nss.portlet.image_signer.action.UpLoadAction">
             <forward name="portlet.nss.image_signer.upload" path="portlet.nss.image_signer.upload"/>
+        </action>
+        <action path="/nss/managementworkflowjournal/view" type="com.nss.portlet.managementworkflowjournal.action.ViewAction">
+            <forward name="portlet.nss.managementworkflowjournal.view" path="portlet.nss.managementworkflowjournal.view"/>
+        </action>
+        <action path="/nss/generatetemplateid/view" type="com.nss.portlet.generatetemplateid.action.ViewAction">
+            <forward name="portlet.nss.generatetemplateid.view" path="portlet.nss.generatetemplateid.view"/>
         </action>
     </action-mappings>
 </struts-config>

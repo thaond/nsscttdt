@@ -81,6 +81,20 @@
     <definition extends="portlet.nss.journal" name="portlet.nss.journal.view_article_content">
         <put name="portlet_content" value="/portlet/nss/journal/view_article_content.jsp"/>
     </definition>
+    
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.transitionreviewjournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/transitionreviewjournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.transitionapprovejournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/transitionapprovejournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.approvejournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/journal.approvejournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.backjournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/backjournalarticle.jsp"/>
+    </definition>
+    
     <!-- Journal Articles -->
     <definition extends="portlet" name="portlet.nss.journal_articles"/>
     <definition extends="portlet.nss.journal_articles" name="portlet.nss.journal_articles.view">
@@ -299,5 +313,11 @@
     </definition>
     <definition extends="portlet" name="portlet.nss.image_signer.upload">
         <put name="portlet_content" value="/portlet/nss/image_signer/upload_image_signer.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.managementworkflowjournal.view">
+        <put name="portlet_content" value="/portlet/nss/managementworkflowjournal/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.generatetemplateid.view">
+        <put name="portlet_content" value="/portlet/nss/generatetemplateid/view.jsp"/>
     </definition>
 </tiles-definitions>

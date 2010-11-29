@@ -1,7 +1,5 @@
 <%@ include file="/html/portlet/nss/partner/init.jsp" %>
-
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-
 <%
 	String tabDisplay = ParamUtil.getString(request, "tabDisplay");
 	

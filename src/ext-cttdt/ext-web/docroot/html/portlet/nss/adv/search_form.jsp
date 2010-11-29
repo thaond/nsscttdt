@@ -11,26 +11,25 @@
 
 <liferay-ui:search-toggle displayTerms="<%=displayTerms%>" id="toogle_id_quangcao" >
 
-	<table class="quangcao-table">
+<table width="100%" cellspacing="0">
 		<tr>
-			<td align="right">
+			<td width="15%">
 				<liferay-ui:message key="ten-quang-cao"/>:&nbsp;
 			</td>
 			
-		 	<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.TEN_QUANG_CAO %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenQuangCao()) %>" />
+		 	<td width="20%">
+				<input name="<portlet:namespace/><%=displayTerms.TEN_QUANG_CAO %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getTenQuangCao()) %>" />
 			</td>
 			
-			<td align="right">
+			<td width="10%">
 				<liferay-ui:message key="description"/>:&nbsp;
 			</td>
 			
 			<td align="left">
-				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
+				<input name="<portlet:namespace/><%=displayTerms.MO_TA %>" style="width: 90%" type="text" value="<%= HtmlUtil.escape(displayTerms.getMoTa()) %>" />
 			</td>
 		</tr>
-		
 	</table>	
 </liferay-ui:search-toggle>
-<br/>
-	&nbsp;&nbsp;&nbsp;<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>
+<br>
+<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>

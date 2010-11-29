@@ -1,3 +1,5 @@
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil"%>
 
 <%
@@ -12,13 +14,43 @@ int total = 0;
 
 Date now = new Date();
 
+JournalArticleResource articleResource1 = null;
+JournalArticle article = null;
+
 if (!groupByClass) {
 	total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, excludeZeroViewCount, now, now);
 
 	searchContainer.setTotal(total);
 
-	List results = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), searchContainer.getEnd());
-
+	List<TagsAsset> results = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), searchContainer.getEnd());
+	
+	//TuNV update 20101127
+	List<TagsAsset> results_temp = new ArrayList<TagsAsset>();
+	for (TagsAsset asset : results) {
+		
+		articleResource1 = JournalArticleResourceLocalServiceUtil.getArticleResource(asset.getClassPK());
+		article = JournalArticleLocalServiceUtil.getArticle(articleResource1.getGroupId(),articleResource1.getArticleId());
+		if(b1){
+			results_temp.add(asset);
+		}else if(b2){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 1)
+				results_temp.add(asset);
+			else
+				continue;
+		}else if(b3){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 2)
+				results_temp.add(asset);
+			else
+				continue;
+		}else if(b4){
+			if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 0)
+				results_temp.add(asset);
+			else
+				continue;
+		}
+	}
+	results = results_temp;
+	//End TuNV
 	searchContainer.setResults(results);
 
 	request.setAttribute("view.jsp-results", results);
@@ -37,8 +69,34 @@ else {
 
 		searchContainer.setTotal(groupTotal);
 
-		List results = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, groupClassNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), searchContainer.getEnd());
-
+		List<TagsAsset> results = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, groupClassNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), searchContainer.getEnd());
+		//TuNV update 20101127
+		List<TagsAsset> results_temp = new ArrayList<TagsAsset>();
+		for (TagsAsset asset : results) {
+			
+			articleResource1 = JournalArticleResourceLocalServiceUtil.getArticleResource(asset.getClassPK());
+			article = JournalArticleLocalServiceUtil.getArticle(articleResource1.getGroupId(),articleResource1.getArticleId());
+			if(b1){
+				results_temp.add(asset);
+			}else if(b2){
+				if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 1)
+					results_temp.add(asset);
+				else
+					continue;
+			}else if(b3){
+				if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 2)
+					results_temp.add(asset);
+				else
+					continue;
+			}else if(b4){
+				if(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 0)
+					results_temp.add(asset);
+				else
+					continue;
+			}
+		}
+		results = results_temp;
+		//End TuNV
 		searchContainer.setResults(results);
 
 		request.setAttribute("view.jsp-results", results);

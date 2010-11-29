@@ -52,4 +52,12 @@ boolean showListed = GetterUtil.getBoolean(preferences.getValue("show-listed", n
 
 String targetPortletId = preferences.getValue("target-portlet-id", StringPool.BLANK);
 String type = preferences.getValue("type", StringPool.BLANK);
+//TuNV update 20101126
+String c_search_type = preferences.getValue("c_search_type","sign");
+boolean b1,b2,b3,b4;
+b1 = (c_search_type.equalsIgnoreCase("all") ? true : false);
+b2 = (c_search_type.equalsIgnoreCase("sign") ? true : false);
+b3 = (c_search_type.equalsIgnoreCase("changesign") ? true : false);
+b4 = (c_search_type.equalsIgnoreCase("notsign") ? true : false);
+//End TuNV
 %>

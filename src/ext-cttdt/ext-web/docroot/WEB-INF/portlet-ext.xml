@@ -1279,4 +1279,56 @@
             <role-name>user</role-name>
         </security-role-ref>
     </portlet>
+    <portlet>
+        <portlet-name>NSS_MANAGEMENTWORKFLOWJOURNAL</portlet-name>
+        <display-name>managementworkflowjournal</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/nss/managementworkflowjournal/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_GENERATETEMPLATEID</portlet-name>
+        <display-name>generatetemplateid</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/nss/generatetemplateid/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
 </portlet-app>

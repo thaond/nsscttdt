@@ -113,6 +113,9 @@
 
 <%@ page import="java.io.StringReader" %>
 
+<%@ taglib uri="http://liferay.com/tld/theme" prefix="theme" %>
+<theme:defineObjects/>
+
 <%
 DateFormat df = new SimpleDateFormat("hh'h' mm - dd/MM/yyyy");
 DateFormat df1 = new SimpleDateFormat("(dd/MM/yyyy)");
@@ -185,6 +188,14 @@ boolean enableRatings = GetterUtil.getBoolean(preferences.getValue("enable-ratin
 boolean enableComments = GetterUtil.getBoolean(preferences.getValue("enable-comments", null));
 boolean enableCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-comment-ratings", null));
 boolean enableTagBasedNavigation = GetterUtil.getBoolean(preferences.getValue("enable-tag-based-navigation", null));
+//TuNV update 20101126
+String c_view_sign_type = GetterUtil.getString(preferences.getValue("c_view_sign_type", "all"));
+boolean b1,b2,b3,b4;
+b1 = (c_view_sign_type.equalsIgnoreCase("all") ? true : false);
+b2 = (c_view_sign_type.equalsIgnoreCase("sign") ? true : false);
+b3 = (c_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
+b4 = (c_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
+//end TuNV update
 
 //by triltm
 
@@ -225,6 +236,9 @@ Map<String,String> mapValueChildrenEntry= new HashMap<String,String>();
  for(int i=0;i<tagsAbstractEntrys.size();i++){
 	 long tagEntryId=tagsAbstractEntrys.get(i).getEntryId();
 	 String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagEntryId,"2"));
+	 if(valueAbstractEntry.equals("")||valueAbstractEntry==null){
+		 valueAbstractEntry="2";
+     }
      mapValueAbstractEntry.put(""+tagEntryId,valueAbstractEntry);
      String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagEntryId,"2"));
      if(valueChildrenEntry.equals("")||valueChildrenEntry==null){

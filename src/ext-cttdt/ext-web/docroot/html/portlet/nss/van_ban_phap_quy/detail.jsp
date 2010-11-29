@@ -36,82 +36,53 @@
 %>
 
 <form action="<%= portletURL.toString() %>"  enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" >
-	<fieldset>
-	
-	<div class="parent-title"><liferay-ui:message key="van-ban-phap-quy"/></div>
-	<table width="100%" border="0" class="table-border-pml">
-		
+<div class="parent-title"><liferay-ui:message key="van-ban-phap-quy"/></div>
+<table cellspacing="0" width="100%">
 		<tr>
-			<td>
-			<label><liferay-ui:message key="ky-hieu-van-ban" /></label>
-			</td>
-			<td><%= vanBanPhapQuy.getKyHieuVanBan() %></td>
-			<td>&nbsp;</td>
-			
-			<td>
-			<label><liferay-ui:message key="nguoi-ky" /></label>
-			</td>
+			<td width="20%"><label><liferay-ui:message key="ky-hieu-van-ban" /></label>:</td>
+			<td width="30%"><%= vanBanPhapQuy.getKyHieuVanBan() %></td>
+			<td width="20%"><label><liferay-ui:message key="nguoi-ky" /></label>:</td>
 			<td><%= vanBanPhapQuy.getNguoiKy() %></td>
-			<td>&nbsp;</td>
 		</tr>
-		<tr height="10"></tr>
-		
 		<tr>
 			<td>
-			<label><liferay-ui:message key="ngay-ky" /></label>
+			<label><liferay-ui:message key="ngay-ky" /></label>:
 			</td>
 			<td><%= vanBanPhapQuy.getNgayKy() == null ? "" : df.format(vanBanPhapQuy.getNgayKy()) %></td>
-			<td>&nbsp;</td>
-			
 			<td>
-			<label><liferay-ui:message key="ngay-ban-hanh" /></label>
+			<label><liferay-ui:message key="ngay-ban-hanh" /></label>:
 			</td>
 			<td><%= vanBanPhapQuy.getNgayBanHanh() == null ? "" : df.format(vanBanPhapQuy.getNgayBanHanh()) %></td>
-			<td>&nbsp;</td>
 		</tr>
-		<tr height="10"></tr>
-		
 		<tr>
 			<td>
-			<label><liferay-ui:message key="ngay-co-hieu-luc" /></label>
+			<label><liferay-ui:message key="ngay-co-hieu-luc" /></label>:
 			</td>
 			<td><%= vanBanPhapQuy.getNgayCoHieuLuc() == null ? "" : df.format(vanBanPhapQuy.getNgayCoHieuLuc()) %></td>
-			<td>&nbsp;</td>
-			
 			<td>
-			<label><liferay-ui:message key="ngay-het-hieu-luc" /></label>
+			<label><liferay-ui:message key="ngay-het-hieu-luc" /></label>:
 			</td>
 			<td><%= vanBanPhapQuy.getNgayHetHieuLuc() == null ? "" : df.format(vanBanPhapQuy.getNgayHetHieuLuc()) %></td>
-			<td>&nbsp;</td>
 		</tr>
-		<tr height="10"></tr>
-
 		<tr>
 			<td>
-			<label><liferay-ui:message key="nguon" /></label>
+			<label><liferay-ui:message key="nguon" /></label>:
 			</td>
 			<td><%= vanBanPhapQuy.getNguon()%></td>
-			<td>&nbsp;</td>
-			
 			<td>
-			<label><liferay-ui:message key="co-quan-ban-hanh" /></label>
+			<label><liferay-ui:message key="co-quan-ban-hanh" /></label>:
 			</td>
 			<td><%= tenCoQuanBanHanh %></td>
-			<td>&nbsp;</td>
 		</tr>
-		<tr height="10"></tr>
-
 		<tr>
 			<td>
-			<label><liferay-ui:message key="noi-dung" /></label>
+			<label><liferay-ui:message key="noi-dung" /></label>:
 			</td>
-			<td><%= vanBanPhapQuy.getNoiDung()%></td>
-			<td>&nbsp;</td>
+			<td colspan="3"><%= vanBanPhapQuy.getNoiDung()%></td>
 		</tr>
-		<tr height="10"></tr>
-	</table>
-	<br/>
-	<div id="div-head-title"><liferay-ui:message key="van-ban-di-kem"/></div>
+</table>
+<br/>
+<div id="div-head-title"><liferay-ui:message key="van-ban-di-kem"/></div>
 	<%
 		FileDinhKemSearch fileDinhKemSearch = new FileDinhKemSearch(renderRequest, portletURL);
 		FileDinhKemSearchTerms searchTerms = (FileDinhKemSearchTerms)fileDinhKemSearch.getSearchTerms();
@@ -162,5 +133,4 @@
 	<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');">
 		<input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' />
 	</span>
-	</fieldset>
 </form>

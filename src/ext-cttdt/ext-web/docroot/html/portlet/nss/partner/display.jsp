@@ -1,21 +1,16 @@
 <%@ include file="/html/portlet/nss/partner/init.jsp" %>
-
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.util.List"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-
 <%@page import="com.nss.portlet.partner.search.PartnerSearch"%>
 <%@page import="com.nss.portlet.partner.search.PartnerSearchTerms"%>
 <%@page import="com.nss.portlet.partner.model.Partner"%>
 <%@page import="com.nss.portlet.partner.service.PartnerLocalServiceUtil"%>
-
 <liferay-util:include page="/html/portlet/nss/partner/js/partner-js.jsp"></liferay-util:include>
-
 <%
 	String tabDisplay = ParamUtil.getString(request, "tabDisplay", "display_partner");
-
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/partner/view");
@@ -28,11 +23,8 @@
 		PartnerSearch searchContainer = new PartnerSearch(renderRequest, portletURL);
 		PartnerSearchTerms searchTerms = (PartnerSearchTerms)searchContainer.getSearchTerms();
 	%>
-	<fieldset>
 	<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_PARTNER" /></div>
 	<liferay-ui:search-form page="/html/portlet/nss/partner/search_form.jsp" searchContainer="<%= searchContainer %>" />
-		
-	<div id="separator"></div>
 		<%
 			PortletURL addURL = renderResponse.createRenderURL();
 			addURL.setWindowState(WindowState.NORMAL);
@@ -40,9 +32,8 @@
 			addURL.setParameter("tabDisplay", "add_partner");
 			addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 		%>
-	<br/>
 	<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-	<br/><br/>
+	<br><br>
 	
 	<%
 		List<Partner> results = null;
@@ -93,7 +84,7 @@
 			if ("".equals(partner.getImageId_liferay())) {
 				row.addText("");
 			} else {
-				row.addText("<img width='120px' height='90px' src='"+  themeDisplay.getPathImage()+ "/partner?img_id="+ partner.getImageId_liferay() +"' />");
+				row.addText("<img style='width: 100px; height: auto;' src='"+  themeDisplay.getPathImage()+ "/partner?img_id="+ partner.getImageId_liferay() +"' />");
 			}
 			
 			// mo ta partner
@@ -151,7 +142,6 @@
 		
 	%>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer %>" />
-	</fieldset>
 </form>
 <% 
 boolean delete = (Boolean)renderRequest.getAttribute("delete") == null ? true : (Boolean)renderRequest.getAttribute("delete");
