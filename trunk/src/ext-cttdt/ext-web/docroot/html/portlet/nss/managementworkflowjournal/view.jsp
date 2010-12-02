@@ -18,7 +18,7 @@
 <script type="text/javascript"	src="/html/js/calendar-en.js"></script>
 <script type="text/javascript"	src="/html/js/dateFormat.js"></script>
 <link type="text/css" rel="stylesheet"	href="/html/css/calendar-system.css" />
-
+ 
 
 <%
 	PortletURL portletURL = renderResponse.createRenderURL();
