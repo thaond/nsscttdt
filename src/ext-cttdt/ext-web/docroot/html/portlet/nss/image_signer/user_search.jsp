@@ -11,23 +11,21 @@
 
 <liferay-ui:search-toggle id="toggle_id_journal_article_search"
 	displayTerms="<%= displayTerms %>" buttonLabel="search">
-	<table class="lfr-table">
-		<tr>
-			<td><liferay-ui:message key="first-name" /></td>
-			<td><liferay-ui:message key="middle-name" /></td>
-			<td><liferay-ui:message key="last-name" /></td>
-		</tr>
-		<tr>
-			<td><input
-				name="<portlet:namespace /><%=UserDisplayTerms.FIRSTNAME%>" size="20"
+	<table cellspacing="0" width="100%">
+			<tr>
+				<td width="5%"><liferay-ui:message key="first-name" />:</td>
+			<td width="20%"><input
+				name="<portlet:namespace /><%=UserDisplayTerms.FIRSTNAME%>" style="width: 95%"
 				type="text"
 				value="<%=HtmlUtil.escape(displayTerms.getFirstName())%>" /></td>
-			<td><input
-				name="<portlet:namespace /><%=UserDisplayTerms.MIDDLENAME%>" size="20"
+			<td width="10%"><liferay-ui:message key="middle-name" />:</td>
+			<td width="30%"><input
+				name="<portlet:namespace /><%=UserDisplayTerms.MIDDLENAME%>" style="width: 95%"
 				type="text"
 				value="<%=HtmlUtil.escape(displayTerms.getMiddleName())%>" /></td>
+			<td width="5%"><liferay-ui:message key="last-name" />:</td>
 			<td><input
-				name="<portlet:namespace /><%=UserDisplayTerms.LASTNAME%>" size="20"
+				name="<portlet:namespace /><%=UserDisplayTerms.LASTNAME%>" style="width: 95%"
 				type="text" value="<%=HtmlUtil.escape(displayTerms.getLastName())%>" />
 			</td>
 		</tr>

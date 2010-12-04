@@ -65,9 +65,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <liferay-ui:tabs names="folders-listing" />
 
-<table class="lfr-table">
+<table>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="root-folder" />
 	</td>
 	<td>
@@ -85,7 +85,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-breadcrumbs" />
 	</td>
 	<td>
@@ -93,7 +93,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-search" />
 	</td>
 	<td>
@@ -101,7 +101,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-subfolders" />
 	</td>
 	<td>
@@ -109,7 +109,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="folders-per-page" />
 	</td>
 	<td>
@@ -122,7 +122,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-columns" />
 	</td>
 	<td>
@@ -177,9 +177,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <liferay-ui:tabs names="documents-listing" />
 
-<table class="lfr-table">
+<table>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-search" />
 	</td>
 	<td>
@@ -187,7 +187,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="documents-per-page" />
 	</td>
 	<td>
@@ -200,7 +200,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="show-columns" />
 	</td>
 	<td>
@@ -255,9 +255,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <liferay-ui:tabs names="ratings" />
 
-<table class="lfr-table">
+<table>
 <tr>
-	<td class="lfr-label">
+	<td>
 		<liferay-ui:message key="enable-comment-ratings" />
 	</td>
 	<td>

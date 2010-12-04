@@ -74,68 +74,71 @@
 		<fieldset>
 		<div class="parent-title"><liferay-ui:message key="hoi-dap-truc-tuyen" /></div>
 		
-		<table width="100%" border="0" class="table-border-pml">
+		<table width="60%" border="0" class="table-border-pml">
 			<tr height="10"></tr>
 			<tr>
 				<td>
-					<label><liferay-ui:message key="cau-hoi" /></label>
+					<label><b><liferay-ui:message key="cau-hoi" /></b>: <%= cauHoiQA.getTieuDe() %></label>
 				</td>
-				<td>
-					<label><%= cauHoiQA.getTieuDe() %></label>
-				</td>
-				<td>&nbsp;</td>
 			</tr>
-			 <tr height="10"></tr>
+			
+			<tr height="10"></tr>
 			<tr>
 				<td><%= cauHoiQA.getNoiDungHoi() %></td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
 			</tr>
+			
 			<tr height="10"></tr>
 			<tr align="right">
 				<td><font size="2%"><liferay-ui:message key="gui-boi" />&nbsp;<%= cauHoiQA.getTenNguoiHoi() %> ( <%= ngayHoi %> )</font></td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
 			</tr>
-			<tr height="10"></tr>				
 		</table>
+		<br/>
+		
 		<table width="100%" border="0" class="table-border-pml">
 			<tr height="10"></tr>
 			<tr>
-				<td><label><liferay-ui:message key="noi-dung" /><font color="red">*</font></label></td>
-				<td><textarea name="<portlet:namespace />noiDungTraLoi" class="input-pml" id="noiDungTraLoi" cols="45" rows="5" ></textarea></td>
-				<td>&nbsp;</td>
+				<td width="15%"><label><liferay-ui:message key="noi-dung-tra-loi" />&nbsp;<font color="red">*</font></label></td>
+				<td width="45%"><textarea name="<portlet:namespace />noiDungTraLoi" style="width: 90%" class="input-pml" id="noiDungTraLoi" cols="45" rows="3" ></textarea></td>
 			</tr>
-			<tr height="10"></tr>
+
 			<tr height="10"></tr>
 			<tr>
 				<td>
 					<label><liferay-ui:message key="tap-tin-dinh-kem" /></label>
 				</td>
 				<td>
-					<input type="file" name="<portlet:namespace />file" class="input-pml" id="file" onchange="getFileName(this.value)" /></td>
-					<input type="hidden" name="<portlet:namespace />fileName" id="fileName"> 
-				<td>&nbsp;</td>
+					<input type="file" name="<portlet:namespace />file" class="input-pml" id="file" onchange="getFileName(this.value)" />
+					<input type="hidden" name="<portlet:namespace />fileName" id="fileName" /> 
+				</td>
 			</tr>
 		    <tr height="10"></tr>
+		    <tr>
+				<td>
+					<label><liferay-ui:message key="tra-loi-cau-hoi-thong-qua" /></label>
+					<span style="color: rgb(255, 0, 0);"> *</span>
+				</td>
+				<td>
+					<input type="checkbox" name="<portlet:namespace />answerThroughWeb" id="answerThroughWeb" checked="checked"/>&nbsp;
+					<label>Web</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="checkbox" name="<portlet:namespace />answerThroughEmail" id="answerThroughEmail"/>&nbsp;
+					<label>Email</label>
+				</td>
+			</tr>
 		</table>
 		<br/>
+		
 		<table id="table-button">
 			<tbody>
 				<tr>
 					<td>
 						<input name="<portlet:namespace /><%=Constants.CMD%>" type="hidden" value="<%=Constants.ADD%>" /> 
-						<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="save" />' />
+						<input type="submit" class="button" name="button" id="button" value='<liferay-ui:message key="tra-loi" />' />
 						<input type="reset" class="button" value='<liferay-ui:message key="cancel" />' />
-		    			<span onclick="window.history.back()" ><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
+		    			<span onclick="window.history.back()" ><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span>
 				 	</td>
 				</tr>
 			</tbody>
 		</table>
 		</fieldset>
 	</form>
-</div>
-</div>
-</div>
-</div>
 </div>

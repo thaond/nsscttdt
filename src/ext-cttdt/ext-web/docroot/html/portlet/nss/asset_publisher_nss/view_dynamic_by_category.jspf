@@ -1,3 +1,4 @@
+<%@page import="java.util.StringTokenizer"%>
 <%@page import="com.liferay.portlet.journal.model.JournalArticleResource"%>
 <%@page import="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil"%>
@@ -30,6 +31,10 @@
  */
 %>
 
+<% 
+	long idVo = 0;
+%>
+
 <%
 long[] entryIds = TagsEntryLocalServiceUtil.getEntryIds(scopeGroupId, tagsCategories, TagsEntryConstants.FOLKSONOMY_CATEGORY);
 long[] notEntryIds = TagsEntryLocalServiceUtil.getEntryIds(scopeGroupId, notTagsCategories, TagsEntryConstants.FOLKSONOMY_CATEGORY);
@@ -47,17 +52,16 @@ searchContainer.setTotal(total);
 Map<String, List<TagsAsset>> assetsByCategory = new TreeMap<String, List<TagsAsset>>();
 
 List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), total);
-
 for (TagsAsset asset : assets) {
 	List<TagsEntry> assetEntries = TagsEntryLocalServiceUtil.getAssetEntries(asset.getAssetId(), TagsEntryConstants.FOLKSONOMY_CATEGORY);
 
 	for (TagsEntry assetEntry : assetEntries) {
 		TagsVocabulary vocabulary = assetEntry.getVocabulary();
 		String vocabularyId=""+vocabulary.getVocabularyId();
+		idVo = vocabulary.getVocabularyId();
 		String vocabularyName = vocabulary.getName();
 		request.setAttribute("vocabularyId",vocabularyId);
 		request.setAttribute("vocabularyName",vocabularyName);
-		
 		if (vocabulary.getName().equals(category)) {
 			String tagLabel = null;
 
@@ -76,17 +80,14 @@ for (TagsAsset asset : assets) {
 					tagLabel = StringUtil.upperCaseFirstLetter(assetEntry.getName());
 				}
 			}
-
 			List assetsList = assetsByCategory.get(tagLabel);
-
+			
 			if (assetsList == null) {
 				assetsList = new ArrayList();
 
 				assetsByCategory.put(tagLabel, assetsList);
 			}
-
 			assetsList.add(asset);
-
 			break;
 		}
 	}
@@ -143,14 +144,44 @@ while(itr.hasNext()){
 	String tagLabel = entry.getKey();
 	listTagAsset.addAll(tagAsset_temp);
 }
+
 if(tagsEntryId==0){
+	if(idVo > 0){
+		Iterator<Map.Entry<Long,String>> iteratorValueAbstract = mapValueAbstract.entrySet().iterator();
+		while(iteratorValueAbstract.hasNext()){
+			Map.Entry<Long,String> entry = iteratorValueAbstract.next();
+			long key = entry.getKey();
+			String value = entry.getValue();
+			if(idVo == key){
+				countAbstract = Integer.parseInt(value);
+				break;
+			}
+		}
+		
+		Iterator<Map.Entry<Long,String>> iteratorValueChildren = mapValueChildren.entrySet().iterator();
+		while(iteratorValueChildren.hasNext()){
+			Map.Entry<Long,String> entry = iteratorValueChildren.next();
+			long key = entry.getKey();
+			String value = entry.getValue();
+			if(idVo == key){
+				countChildren = Integer.parseInt(value);
+				break;
+			}
+		}
+	}else{
+		countAbstract = 1;	
+		countChildren = 1;
+	}
+	
 	if(countAbstract<listTagAsset.size()){
 		listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
 		listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
 	}else{
 		listTagAssetAbstract = listTagAsset;
 	}
-}else if(tagsEntryId!=0){
+}
+
+if(tagsEntryId!=0){
 	Iterator<Map.Entry<String,String>> iterator = mapValueAbstractEntry.entrySet().iterator();
 	while(iterator.hasNext()){
 		Map.Entry<String,String> entry = iterator.next();
@@ -176,9 +207,12 @@ if(tagsEntryId==0){
 		}
 	}
 }
+
 if(listTagAsset.size()>0){
 	List<TagsAsset> results = listTagAsset;
 %>
+<!--  MoNT end 18/11/2010 -->
+
 	<div class="asset-tag-entries">
 		<%
 		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {

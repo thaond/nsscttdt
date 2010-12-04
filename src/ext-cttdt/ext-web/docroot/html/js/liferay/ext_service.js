@@ -91,3 +91,9 @@ Liferay.Service.register("Liferay.Service.DigitalSignature", "com.nss.portlet.di
 Liferay.Service.register("Liferay.Service.ImageSigner", "com.nss.portlet.image_signer.service");
 
 Liferay.Service.register("Liferay.Service.managementworkflowjournal", "com.nss.portlet.managementworkflowjournal.service");
+
+Liferay.Service.register("Liferay.Service.department", "com.nss.portlet.department.service");
+
+Liferay.Service.register("Liferay.Service.position", "com.nss.portlet.position.service");
+
+Liferay.Service.register("Liferay.Service.Field", "com.nss.portlet.documentfield.service");

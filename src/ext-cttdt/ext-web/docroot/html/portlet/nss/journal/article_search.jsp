@@ -199,7 +199,7 @@ if (portletName.equals(NSS_JOURNAL)) {
 <script type="text/javascript">
 	function <portlet:namespace />addArticle() {
 		
-		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= NSS_JOURNAL %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
+		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= NSS_JOURNAL %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
 
 		if (toggle_id_journal_article_searchcurClickValue == 'basic') {
 			url += '&<portlet:namespace /><%= displayTerms.TITLE %>=' + document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.KEYWORDS %>.value;
@@ -212,7 +212,7 @@ if (portletName.equals(NSS_JOURNAL)) {
 		}
 	}
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.ARTICLE_ID %>);
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.KEYWORDS %>);
 	</c:if>

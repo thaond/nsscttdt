@@ -436,28 +436,54 @@ configurationActionURL.setParameter("portletResource", portletResource);
 					%>
 					
 				<!-- MoNT start 17/11/2010 -->
+				
+				<% for (int m=0; m<vocabularies.size();m++) { %>
+				<% TagsVocabulary vocabulary = vocabularies.get(m); %>
+				<%if (category.equals(vocabulary.getName())) { %>
+				<span id="<portlet:namespace/>displayValue<%=vocabulary.getVocabularyId() %>" style="display: inline">
+				<%}else{ %>
+				<span id="<portlet:namespace/>displayValue<%=vocabulary.getVocabularyId() %>" style="display: none">
+				<%} %>
 					<liferay-ui:message key="tin-abstract" />
-					<% int countAbstract = Integer.parseInt(valueAbstract); %>
-					<select name="valueAbstract">
+					<% int countAbstract = 0; %>
+						<% Iterator<Map.Entry<Long,String>> iteratorValueAbstract = mapValueAbstract.entrySet().iterator();%>
+						<% while(iteratorValueAbstract.hasNext()){ 
+							Map.Entry<Long,String> entry = iteratorValueAbstract.next();
+							long key= entry.getKey();
+							String value= entry.getValue();
+							if(key == vocabulary.getVocabularyId()){
+								countAbstract = Integer.parseInt(value);
+							}
+						%>
+<!--						(<%=key %>-<%=value %>)-->
+						<%} %>
+					<select name="valueAbstract<%=vocabulary.getVocabularyId() %>">
 					<%for(int i=1;i<=5;i++){%>
-						<% if(countAbstract==i){ %>
-						<option value="<%=i %>" selected="selected"><%=i %></option>		
-						<%}else{%>
-						<option value="<%=i %>" ><%=i %></option>	
-						<%}%>			
+						<option value="<%=i %>" <%= countAbstract == i ? "selected" :" " %>> <%=i %></option>
 					<%}%>
 					</select>
+					
 					<liferay-ui:message key="tin-lien-quan" />
 					<% int countChildren = Integer.parseInt(valueChildren); %>
-					<select name="valueChildren">
+						<% Iterator<Map.Entry<Long,String>> iteratorValueChildren = mapValueChildren.entrySet().iterator();%>
+						<% while(iteratorValueChildren.hasNext()){ 
+							Map.Entry<Long,String> entry = iteratorValueChildren.next();
+							long key= entry.getKey();
+							String value= entry.getValue();
+							if(key == vocabulary.getVocabularyId()){
+								countChildren = Integer.parseInt(value);
+							}
+						%>
+<!--						(<%=key %>-<%=value %>)-->
+						<%} %>
+					<select name="valueChildren<%=vocabulary.getVocabularyId() %>">
 					<%for(int i=1;i<=10;i++){%>
-						<% if(countChildren==i){ %>
-						<option value="<%=i %>" selected="selected"><%=i %></option>		
-						<%}else{%>
-						<option value="<%=i %>" ><%=i %></option>	
-						<%}%>			
+						<option value="<%=i %>" <%= countChildren == i ? "selected" :" " %>> <%=i %></option>			
 					<%}%>
 					</select>
+				</span>
+				<%} %>
+				
 				<!-- MoNT end 17/11/2010 -->	
 					
 					 <br/> <br/>
@@ -499,7 +525,6 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 				<!-- MoNT start 19/11/2010 -->
 						<liferay-ui:message key="tin-abstract-entry" />
-						<select name="valueAbstractEntry<%=tE.getEntryId() %>">
 						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
 						int valueSelect = 0;
 							while(iteratorAbstractEntry.hasNext()){
@@ -510,15 +535,15 @@ configurationActionURL.setParameter("portletResource", portletResource);
 								int entryValue= Integer.parseInt(value);
 								if(entryId == tE.getEntryId()){
 									valueSelect = entryValue;
-								}
-							}%>
+								}%>
+							<%}%>
+						<select name="valueAbstractEntry<%=tE.getEntryId() %>">
 						<% for(int i=1;i<=5;i++){ %>
 								<option value="<%=i %>" <%= valueSelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
 						</select>
 						
 						<liferay-ui:message key="tin-lien-quan-entry" />
-						<select name="valueChildrenEntry<%=tE.getEntryId() %>">
 						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();
 						int valueEntrySelect = 0;
 							 while(iteratorChildrenEntry.hasNext()){ 
@@ -529,17 +554,17 @@ configurationActionURL.setParameter("portletResource", portletResource);
 								int entryValue= Integer.parseInt(value);
 								if(entryId == tE.getEntryId()){
 									valueEntrySelect = entryValue;
-								}
-							}%>
+								}%>
+							<%}%>
+						<select name="valueChildrenEntry<%=tE.getEntryId() %>">
 						<% for(int i=1;i<=10;i++){ %>
 							<option value="<%=i %>" <%= valueEntrySelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
 						</select>
-					
 				<!-- MoNT end 19/11/2010 -->
 				
 						 <br/> <br/>
-					<%	
+					<%
 						}
 					%>
 					</div>
@@ -692,5 +717,15 @@ configurationActionURL.setParameter("portletResource", portletResource);
 		 document.getElementById(lVArray[i]).style.display = "none";
 	 } 
 	 document.getElementById(idVocabularieId).style.display = "inline";
+	 //alert(idVocabularieId);
+	 displayHiddenValue(listVocabularieIds,idVocabularieId);
+	}
+	
+	function displayHiddenValue(listVocabularieIds,idVocabularieId){
+		var lVArray = listVocabularieIds.split("_");
+		for (i = 0; i < lVArray.length; i++) {
+			jQuery("#<portlet:namespace/>displayValue"+lVArray[i]).hide();
+		 } 
+		jQuery("#<portlet:namespace/>displayValue"+idVocabularieId).show();
 	}
 </script>

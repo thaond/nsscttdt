@@ -69,18 +69,17 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 <liferay-ui:error exception="<%= DuplicateFolderNameException.class %>" message="please-enter-a-unique-folder-name" />
 <liferay-ui:error exception="<%= FolderNameException.class %>" message="please-enter-a-valid-name" />
 
-<div class="breadcrumbs">
+<div class="parent-title">
 	<%= BreadcrumbsUtil.removeLastClass(DLUtil.getBreadcrumbs(parentFolderId, null, rootFolderId, pageContext, renderRequest, renderResponse)) %> &raquo;
-
 	<span class="last"><liferay-ui:message key='<%= ((folder == null) ? Constants.ADD : Constants.UPDATE) + "-folder" %>' /></span>
 </div>
 
-<table class="lfr-table">
+<table width="100%" cellspacing="0">
 
 <c:if test="<%= folder != null %>">
 	<tr>
-		<td class="lfr-label">
-			<liferay-ui:message key="parent-folder" />
+		<td width="15%">
+			<liferay-ui:message key="parent-folder" />:
 		</td>
 		<td>
 
@@ -98,30 +97,24 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 
 			<a href="<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/document_library/view" /><portlet:param name="folderId" value="<%= String.valueOf(parentFolderId) %>" /></portlet:renderURL>" id="<portlet:namespace />parentFolderName">
 			<%= parentFolderName %></a>
-
 			<input type="button" value="<liferay-ui:message key="select" />" onClick="var folderWindow = window.open('<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/document_library/select_folder" /><portlet:param name="folderId" value="<%= String.valueOf(parentFolderId) %>" /></portlet:renderURL>', 'folder', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); folderWindow.focus();" />
-
 			<input id="<portlet:namespace />removeFolderButton" type="button" value="<liferay-ui:message key="remove" />" onClick="<portlet:namespace />removeFolder();" />
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
+	
 </c:if>
 
 <tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="name" />
+	<td>
+		<liferay-ui:message key="name" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= DLFolder.class %>" bean="<%= folder %>" field="name" />
 	</td>
 </tr>
 <tr>
-	<td class="lfr-label">
-		<liferay-ui:message key="description" />
+	<td>
+		<liferay-ui:message key="description" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= DLFolder.class %>" bean="<%= folder %>" field="description" />
@@ -129,14 +122,10 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 </tr>
 
 <c:if test="<%= folder != null %>">
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
+	
 	<tr>
 		<td>
-			<liferay-ui:message key="webdav-url" />
+			<liferay-ui:message key="webdav-url" />:
 		</td>
 		<td>
 
@@ -171,13 +160,8 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 
 <c:if test="<%= folder == null %>">
 	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td class="lfr-label">
-			<liferay-ui:message key="permissions" />
+		<td>
+			<liferay-ui:message key="permissions" />:
 		</td>
 		<td>
 			<liferay-ui:input-permissions
@@ -186,15 +170,15 @@ long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", D
 		</td>
 	</tr>
 </c:if>
-
+	<tr>
+		<td></td>
+		<td>
+			<input type="submit" value="<liferay-ui:message key="save" />" />
+			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+		</td>
+	</tr>
 </table>
-
 <br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) || windowState.equals(LiferayWindowState.POP_UP) %>">
