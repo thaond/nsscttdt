@@ -43,7 +43,7 @@ ArticleSearch searchContainer = new ArticleSearch(renderRequest, portletURL);
 %>
 
 <liferay-ui:search-form
-	page="/html/portlet/nss/asset_publisher/article_search.jsp"
+	page="/html/portlet/nss/asset_publisher_nss/article_search.jsp"
 	searchContainer="<%= searchContainer %>"
 />
 
@@ -51,7 +51,7 @@ ArticleSearch searchContainer = new ArticleSearch(renderRequest, portletURL);
 ArticleSearchTerms searchTerms = (ArticleSearchTerms)searchContainer.getSearchTerms();
 %>
 
-<%@ include file="/html/portlet/nss/journal/article_search_results.jspf" %>
+<%@ include file="/html/portlet/journal/article_search_results.jspf" %>
 
 <div class="separator"><!-- --></div>
 

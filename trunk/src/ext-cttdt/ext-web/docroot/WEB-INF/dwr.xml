@@ -21,6 +21,13 @@
 		<create creator="new" javascript="pmlTemplateIdDwrClient"> 
 			<param name="class" value="com.nss.portlet.generatetemplateid.util.PmlTemplateIdDwr" />
 		</create>
+		<create creator="new" javascript="holidayDWRClient">
+			<param name="class" value="com.nss.portlet.holidaymanagement.service.impl.PmlHolidayLocalServiceImpl" />
+		</create>
+		<create creator="new" javascript="pmlUserUtilClient">
+			<param name="class" value="com.nss.portlet.department.util.PmlUserUtil" />
+		</create>
+		<convert match="com.nss.portlet.department.model.PmlUser" converter="bean" />
 	</allow>
 
 </dwr>

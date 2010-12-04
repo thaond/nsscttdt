@@ -1,3 +1,4 @@
+<%@page import="com.nss.portlet.journal.service.JournalArticleLocalServiceUtil"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.

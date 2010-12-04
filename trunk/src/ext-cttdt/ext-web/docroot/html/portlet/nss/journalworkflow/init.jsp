@@ -16,7 +16,7 @@
 <%@ page import="com.nss.portlet.journalworkflow.util.XmlRead"%>
 <%@ page import="javax.portlet.PortletPreferences"%>
 <%@page import="com.liferay.portal.model.Role"%>
-<%@page import="com.liferay.portlet.journal.service.permission.JournalArticlePermission"%>
+<%@page import="com.nss.portlet.journal.service.permission.JournalArticlePermission"%>
 <%@page import="com.liferay.portlet.RenderRequestImpl"%>
 <%@page import="com.liferay.portal.theme.ThemeDisplay"%>
 <%@page import="com.liferay.portal.util.WebKeys"%>
@@ -29,17 +29,17 @@
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
 <%@page import="com.liferay.portal.kernel.util.StringPool"%>
-<%@page import="com.liferay.portlet.journal.service.permission.JournalPermission"%>
+<%@page import="com.nss.portlet.journal.service.permission.JournalPermission"%>
 <%@page import="com.liferay.portlet.PortletPreferencesFactoryUtil"%>
 <%@page import="com.liferay.portal.SystemException"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
-<%@page import="com.liferay.portlet.journal.search.ArticleSearchTerms"%>
+<%@page import="com.nss.portlet.journal.search.ArticleSearchTerms"%>
 <%@page import="com.liferay.portal.kernel.util.OrderByComparator"%>
-<%@page import="com.liferay.portlet.journal.util.JournalUtil"%>
-<%@page import="com.liferay.portlet.journal.model.JournalArticle"%>
+<%@page import="com.nss.portlet.journal.util.JournalUtil"%>
+<%@page import="com.nss.portlet.journal.model.JournalArticle"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 <%@page import="com.liferay.portal.kernel.portlet.DynamicRenderRequest"%>
-<%@page import="com.liferay.portlet.journal.search.ArticleSearch"%>
+<%@page import="com.nss.portlet.journal.search.ArticleSearch"%>
 
 
 <%@page import="com.liferay.portal.kernel.dao.search.RowChecker"%>

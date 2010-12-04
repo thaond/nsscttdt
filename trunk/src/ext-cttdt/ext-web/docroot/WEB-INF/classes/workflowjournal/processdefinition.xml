@@ -27,6 +27,9 @@
 				<name>
 					Tổng biên tập
 				</name>
+				<nameHelp>
+					Biên tập tin
+				</nameHelp>
 			</assignment>
 			<event type="task-end">
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
@@ -39,8 +42,22 @@
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
 			</event>
 		</task>
+		<task name="duyettin:duyettin:hoan-thanh">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<nameHelp>
+					Biên tập viên
+				</nameHelp>
+			</assignment>
+		</task>
 		<transition to="duyet-tin" name="duyet-tin"></transition>
 		<transition to="soan-tin" name="soan-tin"></transition>
+		<transition to="hoan-thanh" name="hoan-thanh"></transition>
 	</task-node>
 
 	<task-node name="duyet-tin">
@@ -59,9 +76,9 @@
 				<companyId>
 					10113
 				</companyId>
-				<name>
-					
-				</name>
+				<nameHelp>
+					Tổng biên tập
+				</nameHelp>
 			</assignment>
 			<event type="task-end">
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
@@ -76,6 +93,7 @@
 		</task>
 		<transition to="hoan-thanh" name="hoan-thanh"></transition>
 		<transition to="bien-tap-tin" name="bien-tap-tin"></transition>
+		<transition to="soan-tin" name="soan-tin"></transition>
 	</task-node>
 
 	<task-node name="soan-tin">
@@ -97,12 +115,46 @@
 				<name>
 					Biên tập viên
 				</name>
+				<nameHelp>
+					Soạn tin
+				</nameHelp>
 			</assignment>
 			<event type="task-end">
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
 			</event>
 		</task>
+		<task name="chuyenduyettin:chuyenduyettin:duyet-tin">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<name>
+					Tổng biên tập
+				</name>
+				<nameHelp>
+					Biên tập viên
+				</nameHelp>
+			</assignment>
+		</task>
+		<task name="duyettin:duyettin:hoan-thanh">
+			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+				<type>
+					role
+				</type>
+				<companyId>
+					10113
+				</companyId>
+				<nameHelp>
+					Tổng biên tập
+				</nameHelp>
+			</assignment>
+		</task>
 		<transition to="bien-tap-tin" name="bien-tap-tin"></transition>
+		<transition to="hoan-thanh" name="hoan-thanh"></transition>
+		<transition to="duyet-tin" name="duyet-tin"></transition>
 	</task-node>
 	<end-state name="hoan-thanh"></end-state>
 

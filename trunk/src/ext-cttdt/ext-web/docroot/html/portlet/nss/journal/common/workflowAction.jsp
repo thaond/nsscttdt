@@ -31,14 +31,17 @@
 		
 %>
 
-
 <c:if test="<%= ! TaskAction.NONE_FORM.equals(taskAction.getForm())%>">
-	<portlet:renderURL var="form" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+	<portlet:renderURL var="form" windowState="<%= WindowState.NORMAL.toString() %>">
 		<portlet:param name="struts_action" value="<%=taskAction.getStrutsAction()%>" />
 		<portlet:param name='<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "resourcePrimey"%>' value='<%= ParamUtil.getString(renderRequest,"resourcePrimey","") %>' />
 		<portlet:param name='<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "taskId"%>' value='<%= String.valueOf(taskAction.getTaskInstanceId())%>' />
 		<portlet:param 	name="<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_RENDER%>" value="true" />
 		<portlet:param name="redirect" value="<%= redirectWF %>" />
+		<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
+		<portlet:param name="articleId" value="<%= articleId %>" />
+		<portlet:param name="version" value="<%= String.valueOf(version) %>" />
+		<portlet:param name="articleURL" value='<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:renderURL>' />
 	</portlet:renderURL>
 	
 	<span onclick="javascript:submitForm(document.hrefFm,'<%= form%>');">

@@ -28,7 +28,6 @@
 	<liferay-ui:search-form
 		page="/html/portlet/nss/necessary_info/search_form.jsp"
 		searchContainer="<%= searchContainer %>" />
-	<div id="separator"></div>
 		<%
 			PortletURL addURL = renderResponse.createRenderURL();
 			addURL.setWindowState(WindowState.NORMAL);
@@ -36,9 +35,8 @@
 			addURL.setParameter("tabs", "add");
 			addURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
 		%>
-	<br/>
 	<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
-	<br/>
+	<br><br>
 	<%
 		List<ThongTinCanThiet> results = null;
 		int total = 0;
@@ -85,7 +83,7 @@
 			if (0 == thongTinCanThiet.getImageId_liferay()) {
 				row.addText("");
 			} else {
-				row.addText("<img width='120px' height='90px' src='"+  themeDisplay.getPathImage()+ "/necessary_info?img_id="+ thongTinCanThiet.getImageId_liferay() +"' />");
+				row.addText("<img style='width: 120px; height: auto;' src='"+  themeDisplay.getPathImage()+ "/necessary_info?img_id="+ thongTinCanThiet.getImageId_liferay() +"' />");
 			}
 			
 			// mo ta

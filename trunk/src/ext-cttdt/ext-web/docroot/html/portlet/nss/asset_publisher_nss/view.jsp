@@ -90,9 +90,6 @@ function <portlet:namespace/>scrollview() {
 			    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
 			    try {
 			    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentId);
-			    	%>
-			    	
-			    	<%
 			    } catch (Exception e) {}
 			    
 		    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
