@@ -68,7 +68,6 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
@@ -76,31 +75,33 @@ import com.liferay.portlet.ActionRequestImpl;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLImpl;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
-import com.liferay.portlet.journal.ArticleContentException;
-import com.liferay.portlet.journal.ArticleDisplayDateException;
-import com.liferay.portlet.journal.ArticleExpirationDateException;
-import com.liferay.portlet.journal.ArticleIdException;
-import com.liferay.portlet.journal.ArticleSmallImageNameException;
-import com.liferay.portlet.journal.ArticleSmallImageSizeException;
-import com.liferay.portlet.journal.ArticleTitleException;
-import com.liferay.portlet.journal.ArticleTypeException;
-import com.liferay.portlet.journal.DuplicateArticleIdException;
-import com.liferay.portlet.journal.NoSuchArticleException;
-import com.liferay.portlet.journal.NoSuchStructureException;
-import com.liferay.portlet.journal.NoSuchTemplateException;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
-import com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
-import com.liferay.portlet.journal.util.JournalUtil;
 import com.liferay.portlet.tags.TagsEntryException;
 import com.liferay.util.LocalizationUtil;
 import com.nss.portal.util.NSSHtmlUtil;
 import com.nss.portlet.digitalsignature.service.CertificateLocalServiceUtil;
 import com.nss.portlet.digitalsignature.util.ArticleSignUtil;
 import com.nss.portlet.digitalsignature.util.DigitalSignatureKeys;
+import com.nss.portlet.journal.ArticleContentException;
+import com.nss.portlet.journal.ArticleDisplayDateException;
+import com.nss.portlet.journal.ArticleExpirationDateException;
+import com.nss.portlet.journal.ArticleIdException;
+import com.nss.portlet.journal.ArticleSmallImageNameException;
+import com.nss.portlet.journal.ArticleSmallImageSizeException;
+import com.nss.portlet.journal.ArticleTitleException;
+import com.nss.portlet.journal.ArticleTypeException;
+import com.nss.portlet.journal.DuplicateArticleIdException;
+import com.nss.portlet.journal.NoSuchArticleException;
+import com.nss.portlet.journal.NoSuchStructureException;
+import com.nss.portlet.journal.NoSuchTemplateException;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.service.JournalArticleServiceUtil;
+import com.nss.portlet.journal.service.JournalContentSearchLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalStructureLocalServiceUtil;
+import com.nss.portlet.journal.util.JournalUtil;
 import com.nss.portlet.journalworkflow.util.SAWWorkflowUtil;
+import com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle;
+import com.nss.portlet.managementworkflowjournal.service.WorkflowJournalArticleLocalServiceUtil;
 import com.nss.workflow.JournalLiferayPortletAction;
 import com.sgs.liferay.jbpm.param.WorkflowParam;
 import com.sun.saw.vo.BusinessProcessInstanceVO;
@@ -113,7 +114,7 @@ import com.sun.saw.vo.TokenVO;
  * @author Brian Wing Shun Chan
  * @author Raymond Augé
  */
-//public class EditArticleAction extends PortletAction {
+// public class EditArticleAction extends PortletAction {
 public class EditArticleAction extends JournalLiferayPortletAction {
 
 	public static final String VERSION_SEPARATOR = "_version_";
@@ -131,8 +132,42 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 			ServiceContextFactory.getInstance(
 				JournalArticle.class.getName(), actionRequest);
 
-		JournalArticleServiceUtil.approveArticle(
-			groupId, articleId, version, articleURL, serviceContext);
+		JournalArticle article =
+			JournalArticleServiceUtil.approveArticle(
+				groupId, articleId, version, articleURL, serviceContext);
+		/**
+		 * ky o day-- cong viec ky: kiem tra ky chua neu chua ky thi ky tiep tuc
+		 * kiem tra co certificate chua neu chua thi tao neu co roi thi dung no
+		 * de ky neu ky roi phai thong bao cho nguoi dung biet va khong dc ky
+		 * lai
+		 */
+		// kiem tra nguoi dung co check chon ky k?
+		User user = PortalUtil.getUser(actionRequest);
+
+		boolean signArticle =
+			ParamUtil.getBoolean(actionRequest, "signArticle");
+		int checkSign = ArticleSignUtil.veriSign(article.getResourcePrimKey());
+		if (signArticle && (checkSign == 0)) {
+			// lay keyPair de co privateKey va publicKey de ky
+			KeyPair keyPair = getKeyPair("D://keypair.txt");
+			// kiem tra co certificate chua neu chua co dung ham
+			// updateCertificate de tao
+			try {
+				CertificateLocalServiceUtil.getCertificate(user.getUserId());
+			}
+			catch (Exception e) {
+				// tao certificate
+				CertificateLocalServiceUtil.updateCertificate(
+					user.getUserId(), DigitalSignatureKeys.SHA1WITHRSA,
+					keyPair.getPrivate(), keyPair.getPublic(),
+					"CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US",
+					"CN=Duke, OU=JavaSoft, O=Sun Microsystems, C=US", null,
+					null, user.getEmailAddress());
+			}
+			// ky len bai viet
+			ArticleSignUtil.sign(
+				user.getUserId(), article.getPrimaryKey(), keyPair.getPrivate());
+		}
 	}
 
 	protected void deleteArticles(ActionRequest actionRequest)
@@ -320,8 +355,18 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		try {
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
 				article = updateArticle(actionRequest);
-				addWorkflowParameter(actionRequest, "userId", WorkflowParam.TRANSIENT, "" + PortalUtil.getUserId(actionRequest));
-				addWorkflowParameter(actionRequest, "resourcePrimey", WorkflowParam.TRANSIENT, "" + article.getResourcePrimKey());
+				addWorkflowParameter(
+					actionRequest, "userId", WorkflowParam.TRANSIENT,
+					String.valueOf(PortalUtil.getUserId(actionRequest)));
+				addWorkflowParameter(
+					actionRequest, "type", WorkflowParam.TRANSIENT,
+					String.valueOf(article.getType()));
+				addWorkflowParameter(
+					actionRequest, "resourcePrimey", WorkflowParam.TRANSIENT,
+					String.valueOf(article.getResourcePrimKey()));
+				addWorkflowParameter(
+					actionRequest, "groundId", WorkflowParam.TRANSIENT,
+					String.valueOf(article.getGroupId()));
 			}
 			else if (cmd.equals(Constants.APPROVE)) {
 				approveArticle(actionRequest);
@@ -353,8 +398,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 
 				sendRedirect(actionRequest, actionResponse, redirect);
 			}
-			
-			
+
 		}
 		catch (Exception e) {
 			if ((e instanceof NoSuchArticleException) ||
@@ -471,6 +515,10 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		// Tu edit 20101122
 		// lay ra danh sach String
 		List<String> listImage = NSSHtmlUtil.getAllImageLinks(content, null);
+		// set lai so image dung trong bai viet
+		addWorkflowParameter(
+			actionRequest, "countImage", WorkflowParam.TRANSIENT, "" +
+				listImage.size());
 		for (String img : listImage) {
 			if (img.indexOf("://") < 0) { // kiem tra co phai la anh tren mang
 											// k?
@@ -588,6 +636,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		JournalArticle article = null;
 
 		if (cmd.equals(Constants.ADD)) {
+
 			if (Validator.isNull(structureId)) {
 				content =
 					LocalizationUtil.updateLocalization(
@@ -659,6 +708,12 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 					reviewDateMinute, neverReview, indexable, smallImage,
 					smallImageURL, smallFile, images, articleURL,
 					serviceContext);
+			// update count image in table workflow_journal_articl
+			WorkflowJournalArticle workflowJournalArticle =
+				WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(article.getResourcePrimKey());
+			workflowJournalArticle.setCountImageOfArticle(listImage.size());
+			WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
+			// update complete
 		}
 
 		boolean approve = ParamUtil.getBoolean(uploadRequest, "approve");
@@ -680,7 +735,6 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 
 		String portletResource =
 			ParamUtil.getString(uploadRequest, "portletResource");
-		System.out.println("portlet Resource: " + portletResource);
 		if (Validator.isNotNull(portletResource)) {
 			PortletPreferences preferences =
 				PortletPreferencesFactoryUtil.getPortletSetup(
@@ -717,7 +771,6 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 			businessProcessInstanceVO =
 				outputVO.getBusinessProcessInstanceVOList().get(0);
 			TokenVO tokenVO = businessProcessInstanceVO.getToken();
-			System.out.println(tokenVO.getNode().getName());
 			if (workflowAction.equals("accept")) {
 				SAWWorkflowUtil.checkoutTasks(
 					Long.valueOf(businessProcessInstanceVO.getId()),
@@ -749,9 +802,10 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 			boolean signArticle =
 				ParamUtil.getBoolean(uploadRequest, "signArticle");
 
-			if (signArticle) {
+			if (signArticle &&
+				(ArticleSignUtil.veriSign(article.getPrimaryKey()) == 0)) {
 				// lay keyPair de co privateKey va publicKey de ky
-				KeyPair keyPair = getKeyPair("G://keypair.txt");
+				KeyPair keyPair = getKeyPair("D://keypair.txt");
 				// kiem tra co certificate chua neu chua co dung ham
 				// updateCertificate de tao
 				try {
@@ -789,8 +843,5 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 			layout.getGroupId(), layout.isPrivateLayout(),
 			layout.getLayoutId(), portletResource, articleId);
 	}
-
-
-	
 
 }

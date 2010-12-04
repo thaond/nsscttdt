@@ -18,4 +18,11 @@
 	<sql file="custom-sql/image_signer.xml" />
 	<sql file="custom-sql/managementworkflowjournal.xml" />
 	<sql file="custom-sql/idtemplate.xml" />
+	<sql file="custom-sql/agency.xml" />
+	<sql file="custom-sql/position.xml" />
+	<sql file="custom-sql/nss_journal.xml" />
+	<sql file="custom-sql/pmldepartment.xml" />
+	<sql file="custom-sql/pmlfield.xml" />
+	<sql file="custom-sql/pmlfiletype.xml" />
+	<sql file="custom-sql/attachedfile.xml" />
 </custom-sql>

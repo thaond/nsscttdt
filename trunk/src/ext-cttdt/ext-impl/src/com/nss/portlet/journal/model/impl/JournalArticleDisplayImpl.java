@@ -22,7 +22,7 @@
 
 package com.nss.portlet.journal.model.impl;
 
-import com.liferay.portlet.journal.model.JournalArticleDisplay;
+import com.nss.portlet.journal.model.JournalArticleDisplay;
 
 /**
  * <a href="JournalArticleDisplayImpl.java.html"><b><i>View Source</i></b></a>

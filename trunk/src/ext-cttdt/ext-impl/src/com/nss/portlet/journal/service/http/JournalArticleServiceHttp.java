@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.http;
 
 import com.liferay.portal.kernel.log.Log;
@@ -33,7 +11,8 @@ import com.liferay.portal.kernel.util.NullWrapper;
 import com.liferay.portal.security.auth.HttpPrincipal;
 import com.liferay.portal.service.http.TunnelUtil;
 
-import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
+import com.nss.portlet.journal.service.JournalArticleServiceUtil;
+
 
 /**
  * <a href="JournalArticleServiceHttp.java.html"><b><i>View Source</i></b></a>
@@ -45,7 +24,7 @@ import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
  *
  * <p>
  * This class provides a HTTP utility for the
- * <code>com.liferay.portlet.journal.service.JournalArticleServiceUtil</code> service
+ * <code>com.nss.portlet.journal.service.JournalArticleServiceUtil</code> service
  * utility. The static methods of this class calls the same methods of the
  * service utility. However, the signatures are different because it requires an
  * additional <code>com.liferay.portal.security.auth.HttpPrincipal</code>
@@ -70,1189 +49,1157 @@ import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
  * @author Brian Wing Shun Chan
  *
  * @see com.liferay.portal.security.auth.HttpPrincipal
- * @see com.liferay.portlet.journal.service.JournalArticleServiceUtil
- * @see com.liferay.portlet.journal.service.http.JournalArticleServiceSoap
+ * @see com.nss.portlet.journal.service.JournalArticleServiceUtil
+ * @see com.nss.portlet.journal.service.http.JournalArticleServiceSoap
  *
  */
 public class JournalArticleServiceHttp {
-	public static com.liferay.portlet.journal.model.JournalArticle addArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		boolean autoArticleId, java.lang.String title,
-		java.lang.String description, java.lang.String content,
-		java.lang.String type, java.lang.String structureId,
-		java.lang.String templateId, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
-		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
-		int reviewDateMonth, int reviewDateDay, int reviewDateYear,
-		int reviewDateHour, int reviewDateMinute, boolean neverReview,
-		boolean indexable, java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+    private static Log _log = LogFactoryUtil.getLog(JournalArticleServiceHttp.class);
 
-			Object paramObj1 = articleId;
+    public static com.nss.portlet.journal.model.JournalArticle addArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        boolean autoArticleId, java.lang.String title,
+        java.lang.String description, java.lang.String content,
+        java.lang.String type, java.lang.String structureId,
+        java.lang.String templateId, int displayDateMonth, int displayDateDay,
+        int displayDateYear, int displayDateHour, int displayDateMinute,
+        int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+        int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+        int reviewDateMonth, int reviewDateDay, int reviewDateYear,
+        int reviewDateHour, int reviewDateMinute, boolean neverReview,
+        boolean indexable, java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = new BooleanWrapper(autoArticleId);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj3 = title;
+            Object paramObj2 = new BooleanWrapper(autoArticleId);
 
-			if (title == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj3 = title;
 
-			Object paramObj4 = description;
+            if (title == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (description == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj4 = description;
 
-			Object paramObj5 = content;
+            if (description == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			if (content == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj5 = content;
 
-			Object paramObj6 = type;
+            if (content == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			if (type == null) {
-				paramObj6 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj6 = type;
 
-			Object paramObj7 = structureId;
+            if (type == null) {
+                paramObj6 = new NullWrapper("java.lang.String");
+            }
 
-			if (structureId == null) {
-				paramObj7 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj7 = structureId;
 
-			Object paramObj8 = templateId;
+            if (structureId == null) {
+                paramObj7 = new NullWrapper("java.lang.String");
+            }
 
-			if (templateId == null) {
-				paramObj8 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj8 = templateId;
 
-			Object paramObj9 = new IntegerWrapper(displayDateMonth);
+            if (templateId == null) {
+                paramObj8 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj10 = new IntegerWrapper(displayDateDay);
+            Object paramObj9 = new IntegerWrapper(displayDateMonth);
 
-			Object paramObj11 = new IntegerWrapper(displayDateYear);
+            Object paramObj10 = new IntegerWrapper(displayDateDay);
 
-			Object paramObj12 = new IntegerWrapper(displayDateHour);
+            Object paramObj11 = new IntegerWrapper(displayDateYear);
 
-			Object paramObj13 = new IntegerWrapper(displayDateMinute);
+            Object paramObj12 = new IntegerWrapper(displayDateHour);
 
-			Object paramObj14 = new IntegerWrapper(expirationDateMonth);
+            Object paramObj13 = new IntegerWrapper(displayDateMinute);
 
-			Object paramObj15 = new IntegerWrapper(expirationDateDay);
+            Object paramObj14 = new IntegerWrapper(expirationDateMonth);
 
-			Object paramObj16 = new IntegerWrapper(expirationDateYear);
+            Object paramObj15 = new IntegerWrapper(expirationDateDay);
 
-			Object paramObj17 = new IntegerWrapper(expirationDateHour);
+            Object paramObj16 = new IntegerWrapper(expirationDateYear);
 
-			Object paramObj18 = new IntegerWrapper(expirationDateMinute);
+            Object paramObj17 = new IntegerWrapper(expirationDateHour);
 
-			Object paramObj19 = new BooleanWrapper(neverExpire);
+            Object paramObj18 = new IntegerWrapper(expirationDateMinute);
 
-			Object paramObj20 = new IntegerWrapper(reviewDateMonth);
+            Object paramObj19 = new BooleanWrapper(neverExpire);
 
-			Object paramObj21 = new IntegerWrapper(reviewDateDay);
+            Object paramObj20 = new IntegerWrapper(reviewDateMonth);
 
-			Object paramObj22 = new IntegerWrapper(reviewDateYear);
+            Object paramObj21 = new IntegerWrapper(reviewDateDay);
 
-			Object paramObj23 = new IntegerWrapper(reviewDateHour);
+            Object paramObj22 = new IntegerWrapper(reviewDateYear);
 
-			Object paramObj24 = new IntegerWrapper(reviewDateMinute);
+            Object paramObj23 = new IntegerWrapper(reviewDateHour);
 
-			Object paramObj25 = new BooleanWrapper(neverReview);
+            Object paramObj24 = new IntegerWrapper(reviewDateMinute);
 
-			Object paramObj26 = new BooleanWrapper(indexable);
+            Object paramObj25 = new BooleanWrapper(neverReview);
 
-			Object paramObj27 = articleURL;
+            Object paramObj26 = new BooleanWrapper(indexable);
 
-			if (articleURL == null) {
-				paramObj27 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj28 = serviceContext;
-
-			if (serviceContext == null) {
-				paramObj28 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
-
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"addArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13,
-						paramObj14, paramObj15, paramObj16, paramObj17,
-						paramObj18, paramObj19, paramObj20, paramObj21,
-						paramObj22, paramObj23, paramObj24, paramObj25,
-						paramObj26, paramObj27, paramObj28
-					});
-
-			Object returnObj = null;
+            Object paramObj27 = articleURL;
+
+            if (articleURL == null) {
+                paramObj27 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj28 = serviceContext;
+
+            if (serviceContext == null) {
+                paramObj28 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "addArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10, paramObj11, paramObj12, paramObj13,
+                        paramObj14, paramObj15, paramObj16, paramObj17,
+                        paramObj18, paramObj19, paramObj20, paramObj21,
+                        paramObj22, paramObj23, paramObj24, paramObj25,
+                        paramObj26, paramObj27, paramObj28
+                    });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle addArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		boolean autoArticleId, java.lang.String title,
-		java.lang.String description, java.lang.String content,
-		java.lang.String type, java.lang.String structureId,
-		java.lang.String templateId, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
-		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
-		int reviewDateMonth, int reviewDateDay, int reviewDateYear,
-		int reviewDateHour, int reviewDateMinute, boolean neverReview,
-		boolean indexable, boolean smallImage, java.lang.String smallImageURL,
-		java.io.File smallFile, java.util.Map<String, byte[]> images,
-		java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static com.nss.portlet.journal.model.JournalArticle addArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        boolean autoArticleId, java.lang.String title,
+        java.lang.String description, java.lang.String content,
+        java.lang.String type, java.lang.String structureId,
+        java.lang.String templateId, int displayDateMonth, int displayDateDay,
+        int displayDateYear, int displayDateHour, int displayDateMinute,
+        int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+        int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+        int reviewDateMonth, int reviewDateDay, int reviewDateYear,
+        int reviewDateHour, int reviewDateMinute, boolean neverReview,
+        boolean indexable, boolean smallImage, java.lang.String smallImageURL,
+        java.io.File smallFile, java.util.Map<String, byte[]> images,
+        java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = new BooleanWrapper(autoArticleId);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj3 = title;
+            Object paramObj2 = new BooleanWrapper(autoArticleId);
 
-			if (title == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj3 = title;
 
-			Object paramObj4 = description;
+            if (title == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (description == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj4 = description;
 
-			Object paramObj5 = content;
+            if (description == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			if (content == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj5 = content;
 
-			Object paramObj6 = type;
+            if (content == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			if (type == null) {
-				paramObj6 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj6 = type;
 
-			Object paramObj7 = structureId;
+            if (type == null) {
+                paramObj6 = new NullWrapper("java.lang.String");
+            }
 
-			if (structureId == null) {
-				paramObj7 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj7 = structureId;
 
-			Object paramObj8 = templateId;
+            if (structureId == null) {
+                paramObj7 = new NullWrapper("java.lang.String");
+            }
 
-			if (templateId == null) {
-				paramObj8 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj8 = templateId;
 
-			Object paramObj9 = new IntegerWrapper(displayDateMonth);
+            if (templateId == null) {
+                paramObj8 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj10 = new IntegerWrapper(displayDateDay);
+            Object paramObj9 = new IntegerWrapper(displayDateMonth);
 
-			Object paramObj11 = new IntegerWrapper(displayDateYear);
+            Object paramObj10 = new IntegerWrapper(displayDateDay);
 
-			Object paramObj12 = new IntegerWrapper(displayDateHour);
+            Object paramObj11 = new IntegerWrapper(displayDateYear);
 
-			Object paramObj13 = new IntegerWrapper(displayDateMinute);
+            Object paramObj12 = new IntegerWrapper(displayDateHour);
 
-			Object paramObj14 = new IntegerWrapper(expirationDateMonth);
+            Object paramObj13 = new IntegerWrapper(displayDateMinute);
 
-			Object paramObj15 = new IntegerWrapper(expirationDateDay);
+            Object paramObj14 = new IntegerWrapper(expirationDateMonth);
 
-			Object paramObj16 = new IntegerWrapper(expirationDateYear);
+            Object paramObj15 = new IntegerWrapper(expirationDateDay);
 
-			Object paramObj17 = new IntegerWrapper(expirationDateHour);
+            Object paramObj16 = new IntegerWrapper(expirationDateYear);
 
-			Object paramObj18 = new IntegerWrapper(expirationDateMinute);
+            Object paramObj17 = new IntegerWrapper(expirationDateHour);
 
-			Object paramObj19 = new BooleanWrapper(neverExpire);
+            Object paramObj18 = new IntegerWrapper(expirationDateMinute);
 
-			Object paramObj20 = new IntegerWrapper(reviewDateMonth);
+            Object paramObj19 = new BooleanWrapper(neverExpire);
 
-			Object paramObj21 = new IntegerWrapper(reviewDateDay);
+            Object paramObj20 = new IntegerWrapper(reviewDateMonth);
 
-			Object paramObj22 = new IntegerWrapper(reviewDateYear);
+            Object paramObj21 = new IntegerWrapper(reviewDateDay);
 
-			Object paramObj23 = new IntegerWrapper(reviewDateHour);
+            Object paramObj22 = new IntegerWrapper(reviewDateYear);
 
-			Object paramObj24 = new IntegerWrapper(reviewDateMinute);
+            Object paramObj23 = new IntegerWrapper(reviewDateHour);
 
-			Object paramObj25 = new BooleanWrapper(neverReview);
+            Object paramObj24 = new IntegerWrapper(reviewDateMinute);
 
-			Object paramObj26 = new BooleanWrapper(indexable);
+            Object paramObj25 = new BooleanWrapper(neverReview);
 
-			Object paramObj27 = new BooleanWrapper(smallImage);
+            Object paramObj26 = new BooleanWrapper(indexable);
 
-			Object paramObj28 = smallImageURL;
+            Object paramObj27 = new BooleanWrapper(smallImage);
 
-			if (smallImageURL == null) {
-				paramObj28 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj28 = smallImageURL;
 
-			Object paramObj29 = smallFile;
+            if (smallImageURL == null) {
+                paramObj28 = new NullWrapper("java.lang.String");
+            }
 
-			if (smallFile == null) {
-				paramObj29 = new NullWrapper("java.io.File");
-			}
+            Object paramObj29 = smallFile;
 
-			Object paramObj30 = images;
+            if (smallFile == null) {
+                paramObj29 = new NullWrapper("java.io.File");
+            }
 
-			if (images == null) {
-				paramObj30 = new NullWrapper("java.util.Map");
-			}
+            Object paramObj30 = images;
 
-			Object paramObj31 = articleURL;
+            if (images == null) {
+                paramObj30 = new NullWrapper("java.util.Map");
+            }
 
-			if (articleURL == null) {
-				paramObj31 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj31 = articleURL;
 
-			Object paramObj32 = serviceContext;
+            if (articleURL == null) {
+                paramObj31 = new NullWrapper("java.lang.String");
+            }
 
-			if (serviceContext == null) {
-				paramObj32 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj32 = serviceContext;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"addArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13,
-						paramObj14, paramObj15, paramObj16, paramObj17,
-						paramObj18, paramObj19, paramObj20, paramObj21,
-						paramObj22, paramObj23, paramObj24, paramObj25,
-						paramObj26, paramObj27, paramObj28, paramObj29,
-						paramObj30, paramObj31, paramObj32
-					});
+            if (serviceContext == null) {
+                paramObj32 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "addArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10, paramObj11, paramObj12, paramObj13,
+                        paramObj14, paramObj15, paramObj16, paramObj17,
+                        paramObj18, paramObj19, paramObj20, paramObj21,
+                        paramObj22, paramObj23, paramObj24, paramObj25,
+                        paramObj26, paramObj27, paramObj28, paramObj29,
+                        paramObj30, paramObj31, paramObj32
+                    });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle approveArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static com.nss.portlet.journal.model.JournalArticle approveArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = new DoubleWrapper(version);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj3 = articleURL;
+            Object paramObj2 = new DoubleWrapper(version);
 
-			if (articleURL == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj3 = articleURL;
 
-			Object paramObj4 = serviceContext;
+            if (articleURL == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (serviceContext == null) {
-				paramObj4 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj4 = serviceContext;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"approveArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+            if (serviceContext == null) {
+                paramObj4 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "approveArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle copyArticle(
-		HttpPrincipal httpPrincipal, long groupId,
-		java.lang.String oldArticleId, java.lang.String newArticleId,
-		boolean autoArticleId, double version)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = oldArticleId;
+    public static com.nss.portlet.journal.model.JournalArticle copyArticle(
+        HttpPrincipal httpPrincipal, long groupId,
+        java.lang.String oldArticleId, java.lang.String newArticleId,
+        boolean autoArticleId, double version)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (oldArticleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = oldArticleId;
 
-			Object paramObj2 = newArticleId;
+            if (oldArticleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (newArticleId == null) {
-				paramObj2 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj2 = newArticleId;
 
-			Object paramObj3 = new BooleanWrapper(autoArticleId);
+            if (newArticleId == null) {
+                paramObj2 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj4 = new DoubleWrapper(version);
+            Object paramObj3 = new BooleanWrapper(autoArticleId);
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"copyArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+            Object paramObj4 = new DoubleWrapper(version);
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "copyArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle getArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static com.nss.portlet.journal.model.JournalArticle getArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"getArticle", new Object[] { paramObj0, paramObj1 });
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "getArticle", new Object[] { paramObj0, paramObj1 });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle getArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static com.nss.portlet.journal.model.JournalArticle getArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = new DoubleWrapper(version);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"getArticle",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+            Object paramObj2 = new DoubleWrapper(version);
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "getArticle",
+                    new Object[] { paramObj0, paramObj1, paramObj2 });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static com.liferay.portlet.journal.model.JournalArticle getArticleByUrlTitle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String urlTitle)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = urlTitle;
+    public static com.nss.portlet.journal.model.JournalArticle getArticleByUrlTitle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String urlTitle)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (urlTitle == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = urlTitle;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"getArticleByUrlTitle",
-					new Object[] { paramObj0, paramObj1 });
+            if (urlTitle == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "getArticleByUrlTitle",
+                    new Object[] { paramObj0, paramObj1 });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static java.lang.String getArticleContent(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static java.lang.String getArticleContent(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = languageId;
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (languageId == null) {
-				paramObj2 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj2 = languageId;
 
-			Object paramObj3 = themeDisplay;
+            if (languageId == null) {
+                paramObj2 = new NullWrapper("java.lang.String");
+            }
 
-			if (themeDisplay == null) {
-				paramObj3 = new NullWrapper(
-						"com.liferay.portal.theme.ThemeDisplay");
-			}
+            Object paramObj3 = themeDisplay;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"getArticleContent",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+            if (themeDisplay == null) {
+                paramObj3 = new NullWrapper(
+                        "com.liferay.portal.theme.ThemeDisplay");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "getArticleContent",
+                    new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (java.lang.String)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (java.lang.String) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static java.lang.String getArticleContent(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
+    public static java.lang.String getArticleContent(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj2 = new DoubleWrapper(version);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj3 = languageId;
+            Object paramObj2 = new DoubleWrapper(version);
 
-			if (languageId == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj3 = languageId;
 
-			Object paramObj4 = themeDisplay;
+            if (languageId == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (themeDisplay == null) {
-				paramObj4 = new NullWrapper(
-						"com.liferay.portal.theme.ThemeDisplay");
-			}
+            Object paramObj4 = themeDisplay;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"getArticleContent",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+            if (themeDisplay == null) {
+                paramObj4 = new NullWrapper(
+                        "com.liferay.portal.theme.ThemeDisplay");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "getArticleContent",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object returnObj = null;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			return (java.lang.String)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			throw se;
-		}
-	}
+            return (java.lang.String) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-	public static void deleteArticle(HttpPrincipal httpPrincipal, long groupId,
-		java.lang.String articleId, double version,
-		java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            throw se;
+        }
+    }
 
-			Object paramObj1 = articleId;
-
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj2 = new DoubleWrapper(version);
+    public static void deleteArticle(HttpPrincipal httpPrincipal, long groupId,
+        java.lang.String articleId, double version,
+        java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			Object paramObj3 = articleURL;
-
-			if (articleURL == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj4 = serviceContext;
-
-			if (serviceContext == null) {
-				paramObj4 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj1 = articleId;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"deleteArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
-
-			try {
-				TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
-
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static void expireArticle(HttpPrincipal httpPrincipal, long groupId,
-		java.lang.String articleId, double version,
-		java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
-
-			Object paramObj1 = articleId;
-
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj2 = new DoubleWrapper(version);
-
-			Object paramObj3 = articleURL;
-
-			if (articleURL == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj4 = serviceContext;
-
-			if (serviceContext == null) {
-				paramObj4 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
-
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"expireArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
-
-			try {
-				TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
-
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static void removeArticleLocale(HttpPrincipal httpPrincipal,
-		long companyId, java.lang.String languageId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(companyId);
-
-			Object paramObj1 = languageId;
-
-			if (languageId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"removeArticleLocale", new Object[] { paramObj0, paramObj1 });
-
-			try {
-				TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
-
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static com.liferay.portlet.journal.model.JournalArticle removeArticleLocale(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, java.lang.String languageId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
-
-			Object paramObj1 = articleId;
-
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj2 = new DoubleWrapper(version);
-
-			Object paramObj3 = languageId;
-
-			if (languageId == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
-
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"removeArticleLocale",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
-
-			Object returnObj = null;
-
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
-
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
-
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static com.liferay.portlet.journal.model.JournalArticle updateArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, boolean incrementVersion, java.lang.String content)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
-
-			Object paramObj1 = articleId;
-
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj2 = new DoubleWrapper(version);
-
-			Object paramObj3 = new BooleanWrapper(incrementVersion);
-
-			Object paramObj4 = content;
-
-			if (content == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
-
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"updateArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            Object paramObj2 = new DoubleWrapper(version);
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object paramObj3 = articleURL;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            if (articleURL == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            Object paramObj4 = serviceContext;
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            if (serviceContext == null) {
+                paramObj4 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-			throw se;
-		}
-	}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "deleteArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-	public static com.liferay.portlet.journal.model.JournalArticle updateArticle(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, boolean incrementVersion, java.lang.String title,
-		java.lang.String description, java.lang.String content,
-		java.lang.String type, java.lang.String structureId,
-		java.lang.String templateId, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
-		int expirationDateHour, int expirationDateMinute, boolean neverExpire,
-		int reviewDateMonth, int reviewDateDay, int reviewDateYear,
-		int reviewDateHour, int reviewDateMinute, boolean neverReview,
-		boolean indexable, boolean smallImage, java.lang.String smallImageURL,
-		java.io.File smallFile, java.util.Map<String, byte[]> images,
-		java.lang.String articleURL,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            try {
+                TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj1 = articleId;
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+                throw new com.liferay.portal.SystemException(e);
+            }
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			Object paramObj2 = new DoubleWrapper(version);
+            throw se;
+        }
+    }
 
-			Object paramObj3 = new BooleanWrapper(incrementVersion);
+    public static void expireArticle(HttpPrincipal httpPrincipal, long groupId,
+        java.lang.String articleId, double version,
+        java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			Object paramObj4 = title;
+            Object paramObj1 = articleId;
 
-			if (title == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj5 = description;
+            Object paramObj2 = new DoubleWrapper(version);
 
-			if (description == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj3 = articleURL;
 
-			Object paramObj6 = content;
+            if (articleURL == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (content == null) {
-				paramObj6 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj4 = serviceContext;
 
-			Object paramObj7 = type;
+            if (serviceContext == null) {
+                paramObj4 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-			if (type == null) {
-				paramObj7 = new NullWrapper("java.lang.String");
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "expireArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-			Object paramObj8 = structureId;
+            try {
+                TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			if (structureId == null) {
-				paramObj8 = new NullWrapper("java.lang.String");
-			}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			Object paramObj9 = templateId;
+                throw new com.liferay.portal.SystemException(e);
+            }
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			if (templateId == null) {
-				paramObj9 = new NullWrapper("java.lang.String");
-			}
+            throw se;
+        }
+    }
 
-			Object paramObj10 = new IntegerWrapper(displayDateMonth);
+    public static void removeArticleLocale(HttpPrincipal httpPrincipal,
+        long companyId, java.lang.String languageId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(companyId);
 
-			Object paramObj11 = new IntegerWrapper(displayDateDay);
+            Object paramObj1 = languageId;
 
-			Object paramObj12 = new IntegerWrapper(displayDateYear);
+            if (languageId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj13 = new IntegerWrapper(displayDateHour);
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "removeArticleLocale", new Object[] { paramObj0, paramObj1 });
 
-			Object paramObj14 = new IntegerWrapper(displayDateMinute);
+            try {
+                TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj15 = new IntegerWrapper(expirationDateMonth);
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			Object paramObj16 = new IntegerWrapper(expirationDateDay);
+                throw new com.liferay.portal.SystemException(e);
+            }
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			Object paramObj17 = new IntegerWrapper(expirationDateYear);
+            throw se;
+        }
+    }
 
-			Object paramObj18 = new IntegerWrapper(expirationDateHour);
+    public static com.nss.portlet.journal.model.JournalArticle removeArticleLocale(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, java.lang.String languageId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			Object paramObj19 = new IntegerWrapper(expirationDateMinute);
+            Object paramObj1 = articleId;
 
-			Object paramObj20 = new BooleanWrapper(neverExpire);
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj21 = new IntegerWrapper(reviewDateMonth);
+            Object paramObj2 = new DoubleWrapper(version);
 
-			Object paramObj22 = new IntegerWrapper(reviewDateDay);
+            Object paramObj3 = languageId;
 
-			Object paramObj23 = new IntegerWrapper(reviewDateYear);
+            if (languageId == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj24 = new IntegerWrapper(reviewDateHour);
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "removeArticleLocale",
+                    new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 
-			Object paramObj25 = new IntegerWrapper(reviewDateMinute);
+            Object returnObj = null;
 
-			Object paramObj26 = new BooleanWrapper(neverReview);
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj27 = new BooleanWrapper(indexable);
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			Object paramObj28 = new BooleanWrapper(smallImage);
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			Object paramObj29 = smallImageURL;
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			if (smallImageURL == null) {
-				paramObj29 = new NullWrapper("java.lang.String");
-			}
+            throw se;
+        }
+    }
 
-			Object paramObj30 = smallFile;
+    public static com.nss.portlet.journal.model.JournalArticle updateArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, boolean incrementVersion, java.lang.String content)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (smallFile == null) {
-				paramObj30 = new NullWrapper("java.io.File");
-			}
+            Object paramObj1 = articleId;
 
-			Object paramObj31 = images;
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (images == null) {
-				paramObj31 = new NullWrapper("java.util.Map");
-			}
+            Object paramObj2 = new DoubleWrapper(version);
 
-			Object paramObj32 = articleURL;
+            Object paramObj3 = new BooleanWrapper(incrementVersion);
 
-			if (articleURL == null) {
-				paramObj32 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj4 = content;
 
-			Object paramObj33 = serviceContext;
+            if (content == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			if (serviceContext == null) {
-				paramObj33 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "updateArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+                    });
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"updateArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13,
-						paramObj14, paramObj15, paramObj16, paramObj17,
-						paramObj18, paramObj19, paramObj20, paramObj21,
-						paramObj22, paramObj23, paramObj24, paramObj25,
-						paramObj26, paramObj27, paramObj28, paramObj29,
-						paramObj30, paramObj31, paramObj32, paramObj33
-					});
+            Object returnObj = null;
 
-			Object returnObj = null;
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            throw se;
+        }
+    }
 
-			throw se;
-		}
-	}
+    public static com.nss.portlet.journal.model.JournalArticle updateArticle(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, boolean incrementVersion, java.lang.String title,
+        java.lang.String description, java.lang.String content,
+        java.lang.String type, java.lang.String structureId,
+        java.lang.String templateId, int displayDateMonth, int displayDateDay,
+        int displayDateYear, int displayDateHour, int displayDateMinute,
+        int expirationDateMonth, int expirationDateDay, int expirationDateYear,
+        int expirationDateHour, int expirationDateMinute, boolean neverExpire,
+        int reviewDateMonth, int reviewDateDay, int reviewDateYear,
+        int reviewDateHour, int reviewDateMinute, boolean neverReview,
+        boolean indexable, boolean smallImage, java.lang.String smallImageURL,
+        java.io.File smallFile, java.util.Map<String, byte[]> images,
+        java.lang.String articleURL,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-	public static com.liferay.portlet.journal.model.JournalArticle updateContent(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
-		double version, java.lang.String content)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            Object paramObj1 = articleId;
 
-			Object paramObj1 = articleId;
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (articleId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj2 = new DoubleWrapper(version);
 
-			Object paramObj2 = new DoubleWrapper(version);
+            Object paramObj3 = new BooleanWrapper(incrementVersion);
 
-			Object paramObj3 = content;
+            Object paramObj4 = title;
 
-			if (content == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            if (title == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
-					"updateContent",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+            Object paramObj5 = description;
 
-			Object returnObj = null;
+            if (description == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object paramObj6 = content;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            if (content == null) {
+                paramObj6 = new NullWrapper("java.lang.String");
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            Object paramObj7 = type;
 
-			return (com.liferay.portlet.journal.model.JournalArticle)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            if (type == null) {
+                paramObj7 = new NullWrapper("java.lang.String");
+            }
 
-			throw se;
-		}
-	}
+            Object paramObj8 = structureId;
 
-	private static Log _log = LogFactoryUtil.getLog(JournalArticleServiceHttp.class);
+            if (structureId == null) {
+                paramObj8 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj9 = templateId;
+
+            if (templateId == null) {
+                paramObj9 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj10 = new IntegerWrapper(displayDateMonth);
+
+            Object paramObj11 = new IntegerWrapper(displayDateDay);
+
+            Object paramObj12 = new IntegerWrapper(displayDateYear);
+
+            Object paramObj13 = new IntegerWrapper(displayDateHour);
+
+            Object paramObj14 = new IntegerWrapper(displayDateMinute);
+
+            Object paramObj15 = new IntegerWrapper(expirationDateMonth);
+
+            Object paramObj16 = new IntegerWrapper(expirationDateDay);
+
+            Object paramObj17 = new IntegerWrapper(expirationDateYear);
+
+            Object paramObj18 = new IntegerWrapper(expirationDateHour);
+
+            Object paramObj19 = new IntegerWrapper(expirationDateMinute);
+
+            Object paramObj20 = new BooleanWrapper(neverExpire);
+
+            Object paramObj21 = new IntegerWrapper(reviewDateMonth);
+
+            Object paramObj22 = new IntegerWrapper(reviewDateDay);
+
+            Object paramObj23 = new IntegerWrapper(reviewDateYear);
+
+            Object paramObj24 = new IntegerWrapper(reviewDateHour);
+
+            Object paramObj25 = new IntegerWrapper(reviewDateMinute);
+
+            Object paramObj26 = new BooleanWrapper(neverReview);
+
+            Object paramObj27 = new BooleanWrapper(indexable);
+
+            Object paramObj28 = new BooleanWrapper(smallImage);
+
+            Object paramObj29 = smallImageURL;
+
+            if (smallImageURL == null) {
+                paramObj29 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj30 = smallFile;
+
+            if (smallFile == null) {
+                paramObj30 = new NullWrapper("java.io.File");
+            }
+
+            Object paramObj31 = images;
+
+            if (images == null) {
+                paramObj31 = new NullWrapper("java.util.Map");
+            }
+
+            Object paramObj32 = articleURL;
+
+            if (articleURL == null) {
+                paramObj32 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj33 = serviceContext;
+
+            if (serviceContext == null) {
+                paramObj33 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "updateArticle",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10, paramObj11, paramObj12, paramObj13,
+                        paramObj14, paramObj15, paramObj16, paramObj17,
+                        paramObj18, paramObj19, paramObj20, paramObj21,
+                        paramObj22, paramObj23, paramObj24, paramObj25,
+                        paramObj26, paramObj27, paramObj28, paramObj29,
+                        paramObj30, paramObj31, paramObj32, paramObj33
+                    });
+
+            Object returnObj = null;
+
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
+
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
+
+                throw new com.liferay.portal.SystemException(e);
+            }
+
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
+
+            throw se;
+        }
+    }
+
+    public static com.nss.portlet.journal.model.JournalArticle updateContent(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
+        double version, java.lang.String content)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
+
+            Object paramObj1 = articleId;
+
+            if (articleId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
+
+            Object paramObj2 = new DoubleWrapper(version);
+
+            Object paramObj3 = content;
+
+            if (content == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(JournalArticleServiceUtil.class.getName(),
+                    "updateContent",
+                    new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+
+            Object returnObj = null;
+
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
+
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
+
+                throw new com.liferay.portal.SystemException(e);
+            }
+
+            return (com.nss.portlet.journal.model.JournalArticle) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
+
+            throw se;
+        }
+    }
 }

@@ -32,8 +32,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.util.JournalUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.util.JournalUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,7 +89,8 @@ public class ArticleSearch extends SearchContainer<JournalArticle> {
 			(ArticleDisplayTerms)getDisplayTerms();
 		ArticleSearchTerms searchTerms = (ArticleSearchTerms)getSearchTerms();
 
-		if (!portletConfig.getPortletName().equals(PortletKeys.JOURNAL)) {
+		String namePortlet = "NSS_JOURNAL";
+		if (!portletConfig.getPortletName().equals(namePortlet)) {
 			displayTerms.setStatus("approved");
 			searchTerms.setStatus("approved");
 		}
@@ -131,15 +132,15 @@ public class ArticleSearch extends SearchContainer<JournalArticle> {
 				Validator.isNotNull(orderByType)) {
 
 				preferences.setValue(
-					PortletKeys.JOURNAL, "articles-order-by-col", orderByCol);
+						namePortlet, "articles-order-by-col", orderByCol);
 				preferences.setValue(
-					PortletKeys.JOURNAL, "articles-order-by-type", orderByType);
+						namePortlet, "articles-order-by-type", orderByType);
 			}
 			else {
 				orderByCol = preferences.getValue(
-					PortletKeys.JOURNAL, "articles-order-by-col", "id");
+						namePortlet, "articles-order-by-col", "id");
 				orderByType = preferences.getValue(
-					PortletKeys.JOURNAL, "articles-order-by-type", "asc");
+						namePortlet, "articles-order-by-type", "asc");
 			}
 
 			OrderByComparator orderByComparator =

@@ -1,33 +1,12 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.http;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateServiceUtil;
 
 import java.rmi.RemoteException;
+
 
 /**
  * <a href="JournalTemplateServiceSoap.java.html"><b><i>View Source</i></b></a>
@@ -39,7 +18,7 @@ import java.rmi.RemoteException;
  *
  * <p>
  * This class provides a SOAP utility for the
- * <code>com.liferay.portlet.journal.service.JournalTemplateServiceUtil</code> service
+ * <code>com.nss.portlet.journal.service.JournalTemplateServiceUtil</code> service
  * utility. The static methods of this class calls the same methods of the
  * service utility. However, the signatures are different because it is
  * difficult for SOAP to support certain types.
@@ -49,9 +28,9 @@ import java.rmi.RemoteException;
  * ServiceBuilder follows certain rules in translating the methods. For example,
  * if the method in the service utility returns a <code>java.util.List</code>,
  * that is translated to an array of
- * <code>com.liferay.portlet.journal.model.JournalTemplateSoap</code>. If the method in the
- * service utility returns a <code>com.liferay.portlet.journal.model.JournalTemplate</code>,
- * that is translated to a <code>com.liferay.portlet.journal.model.JournalTemplateSoap</code>.
+ * <code>com.nss.portlet.journal.model.JournalTemplateSoap</code>. If the method in the
+ * service utility returns a <code>com.nss.portlet.journal.model.JournalTemplate</code>,
+ * that is translated to a <code>com.nss.portlet.journal.model.JournalTemplateSoap</code>.
  * Methods that SOAP cannot safely wire are skipped.
  * </p>
  *
@@ -75,113 +54,107 @@ import java.rmi.RemoteException;
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.liferay.portlet.journal.model.JournalTemplateSoap
- * @see com.liferay.portlet.journal.service.JournalTemplateServiceUtil
- * @see com.liferay.portlet.journal.service.http.JournalTemplateServiceHttp
+ * @see com.nss.portlet.journal.model.JournalTemplateSoap
+ * @see com.nss.portlet.journal.service.JournalTemplateServiceUtil
+ * @see com.nss.portlet.journal.service.http.JournalTemplateServiceHttp
  *
  */
 public class JournalTemplateServiceSoap {
-	public static com.liferay.portlet.journal.model.JournalTemplateSoap addTemplate(
-		long groupId, java.lang.String templateId, boolean autoTemplateId,
-		java.lang.String structureId, java.lang.String name,
-		java.lang.String description, java.lang.String xsl, boolean formatXsl,
-		java.lang.String langType, boolean cacheable,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.addTemplate(groupId,
-					templateId, autoTemplateId, structureId, name, description,
-					xsl, formatXsl, langType, cacheable, serviceContext);
+    private static Log _log = LogFactoryUtil.getLog(JournalTemplateServiceSoap.class);
 
-			return com.liferay.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+    public static com.nss.portlet.journal.model.JournalTemplateSoap addTemplate(
+        long groupId, java.lang.String templateId, boolean autoTemplateId,
+        java.lang.String structureId, java.lang.String name,
+        java.lang.String description, java.lang.String xsl, boolean formatXsl,
+        java.lang.String langType, boolean cacheable,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws RemoteException {
+        try {
+            com.nss.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.addTemplate(groupId,
+                    templateId, autoTemplateId, structureId, name, description,
+                    xsl, formatXsl, langType, cacheable, serviceContext);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+            return com.nss.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	public static com.liferay.portlet.journal.model.JournalTemplateSoap copyTemplate(
-		long groupId, java.lang.String oldTemplateId,
-		java.lang.String newTemplateId, boolean autoTemplateId)
-		throws RemoteException {
-		try {
-			com.liferay.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.copyTemplate(groupId,
-					oldTemplateId, newTemplateId, autoTemplateId);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 
-			return com.liferay.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+    public static com.nss.portlet.journal.model.JournalTemplateSoap copyTemplate(
+        long groupId, java.lang.String oldTemplateId,
+        java.lang.String newTemplateId, boolean autoTemplateId)
+        throws RemoteException {
+        try {
+            com.nss.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.copyTemplate(groupId,
+                    oldTemplateId, newTemplateId, autoTemplateId);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+            return com.nss.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	public static void deleteTemplate(long groupId, java.lang.String templateId)
-		throws RemoteException {
-		try {
-			JournalTemplateServiceUtil.deleteTemplate(groupId, templateId);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+    public static void deleteTemplate(long groupId, java.lang.String templateId)
+        throws RemoteException {
+        try {
+            JournalTemplateServiceUtil.deleteTemplate(groupId, templateId);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	public static com.liferay.portlet.journal.model.JournalTemplateSoap[] getStructureTemplates(
-		long groupId, java.lang.String structureId) throws RemoteException {
-		try {
-			java.util.List<com.liferay.portlet.journal.model.JournalTemplate> returnValue =
-				JournalTemplateServiceUtil.getStructureTemplates(groupId,
-					structureId);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 
-			return com.liferay.portlet.journal.model.JournalTemplateSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+    public static com.nss.portlet.journal.model.JournalTemplateSoap[] getStructureTemplates(
+        long groupId, java.lang.String structureId) throws RemoteException {
+        try {
+            java.util.List<com.nss.portlet.journal.model.JournalTemplate> returnValue =
+                JournalTemplateServiceUtil.getStructureTemplates(groupId,
+                    structureId);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+            return com.nss.portlet.journal.model.JournalTemplateSoap.toSoapModels(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	public static com.liferay.portlet.journal.model.JournalTemplateSoap getTemplate(
-		long groupId, java.lang.String templateId) throws RemoteException {
-		try {
-			com.liferay.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.getTemplate(groupId,
-					templateId);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 
-			return com.liferay.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+    public static com.nss.portlet.journal.model.JournalTemplateSoap getTemplate(
+        long groupId, java.lang.String templateId) throws RemoteException {
+        try {
+            com.nss.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.getTemplate(groupId,
+                    templateId);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+            return com.nss.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	public static com.liferay.portlet.journal.model.JournalTemplateSoap updateTemplate(
-		long groupId, java.lang.String templateId,
-		java.lang.String structureId, java.lang.String name,
-		java.lang.String description, java.lang.String xsl, boolean formatXsl,
-		java.lang.String langType, boolean cacheable,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.updateTemplate(groupId,
-					templateId, structureId, name, description, xsl, formatXsl,
-					langType, cacheable, serviceContext);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 
-			return com.liferay.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
+    public static com.nss.portlet.journal.model.JournalTemplateSoap updateTemplate(
+        long groupId, java.lang.String templateId,
+        java.lang.String structureId, java.lang.String name,
+        java.lang.String description, java.lang.String xsl, boolean formatXsl,
+        java.lang.String langType, boolean cacheable,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws RemoteException {
+        try {
+            com.nss.portlet.journal.model.JournalTemplate returnValue = JournalTemplateServiceUtil.updateTemplate(groupId,
+                    templateId, structureId, name, description, xsl, formatXsl,
+                    langType, cacheable, serviceContext);
 
-			throw new RemoteException(e.getMessage());
-		}
-	}
+            return com.nss.portlet.journal.model.JournalTemplateSoap.toSoapModel(returnValue);
+        } catch (Exception e) {
+            _log.error(e, e);
 
-	private static Log _log = LogFactoryUtil.getLog(JournalTemplateServiceSoap.class);
+            throw new RemoteException(e.getMessage());
+        }
+    }
 }

@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.util.PropsKeys;
 import com.liferay.portal.util.PropsUtil;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
 
 /**
  * <a href="CheckArticleJob.java.html"><b><i>View Source</i></b></a>

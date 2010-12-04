@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalArticle;
 import com.nss.portlet.journalworkflow.service.base.InstanceBeanLocalServiceBaseImpl;
 import com.nss.portlet.journalworkflow.model.InstanceBean;
 

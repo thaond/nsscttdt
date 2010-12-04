@@ -28,8 +28,8 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.service.JournalStructureLocalServiceUtil;
 
 /**
  * <a href="JournalStructureImpl.java.html"><b><i>View Source</i></b></a>

@@ -60,21 +60,21 @@ import com.liferay.portlet.imagegallery.lar.IGPortletDataHandlerImpl;
 import com.liferay.portlet.imagegallery.model.IGFolder;
 import com.liferay.portlet.imagegallery.model.IGImage;
 import com.liferay.portlet.imagegallery.service.IGImageLocalServiceUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.JournalArticleImage;
-import com.liferay.portlet.journal.model.JournalFeed;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.model.impl.JournalArticleImpl;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalFeedLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
-import com.liferay.portlet.journal.service.persistence.JournalArticleImageUtil;
-import com.liferay.portlet.journal.service.persistence.JournalArticleUtil;
-import com.liferay.portlet.journal.service.persistence.JournalFeedUtil;
-import com.liferay.portlet.journal.service.persistence.JournalStructureUtil;
-import com.liferay.portlet.journal.service.persistence.JournalTemplateUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalArticleImage;
+import com.nss.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.model.impl.JournalArticleImpl;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalFeedLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalStructureLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil;
+import com.nss.portlet.journal.service.persistence.JournalArticleImageUtil;
+import com.nss.portlet.journal.service.persistence.JournalArticleUtil;
+import com.nss.portlet.journal.service.persistence.JournalFeedUtil;
+import com.nss.portlet.journal.service.persistence.JournalStructureUtil;
+import com.nss.portlet.journal.service.persistence.JournalTemplateUtil;
 
 import java.io.File;
 
@@ -115,8 +115,8 @@ import javax.portlet.PortletPreferences;
  * @author Karthik Sudarshan
  *
  * @see com.liferay.portal.lar.PortletDataHandler
- * @see com.liferay.portlet.journal.lar.JournalContentPortletDataHandlerImpl
- * @see com.liferay.portlet.journal.lar.JournalCreationStrategy
+ * @see com.nss.portlet.journal.lar.JournalContentPortletDataHandlerImpl
+ * @see com.nss.portlet.journal.lar.JournalCreationStrategy
  *
  */
 public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {

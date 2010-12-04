@@ -68,6 +68,36 @@ public class CauTraLoiQAPersistenceImpl extends BasePersistenceImpl
             CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
             "countByMaCauHoiQA_Publish",
             new String[] { Long.class.getName(), Boolean.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_ANSWERTHROUGHWEB = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByAnswerThroughWeb", new String[] { Boolean.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHWEB = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByAnswerThroughWeb",
+            new String[] {
+                Boolean.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_ANSWERTHROUGHWEB = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByAnswerThroughWeb", new String[] { Boolean.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_ANSWERTHROUGHEMAIL = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByAnswerThroughEmail", new String[] { String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHEMAIL = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByAnswerThroughEmail",
+            new String[] {
+                String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_ANSWERTHROUGHEMAIL = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
+            CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByAnswerThroughEmail", new String[] { String.class.getName() });
     public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(CauTraLoiQAModelImpl.ENTITY_CACHE_ENABLED,
             CauTraLoiQAModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
             "findAll", new String[0]);
@@ -743,6 +773,434 @@ public class CauTraLoiQAPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public List<CauTraLoiQA> findByAnswerThroughWeb(boolean answerThroughWeb)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { Boolean.valueOf(answerThroughWeb) };
+
+        List<CauTraLoiQA> list = (List<CauTraLoiQA>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ANSWERTHROUGHWEB,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                query.append("answerThroughWeb = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(answerThroughWeb);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<CauTraLoiQA>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ANSWERTHROUGHWEB,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<CauTraLoiQA> findByAnswerThroughWeb(boolean answerThroughWeb,
+        int start, int end) throws SystemException {
+        return findByAnswerThroughWeb(answerThroughWeb, start, end, null);
+    }
+
+    public List<CauTraLoiQA> findByAnswerThroughWeb(boolean answerThroughWeb,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                Boolean.valueOf(answerThroughWeb),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<CauTraLoiQA> list = (List<CauTraLoiQA>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHWEB,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                query.append("answerThroughWeb = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(answerThroughWeb);
+
+                list = (List<CauTraLoiQA>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<CauTraLoiQA>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHWEB,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public CauTraLoiQA findByAnswerThroughWeb_First(boolean answerThroughWeb,
+        OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        List<CauTraLoiQA> list = findByAnswerThroughWeb(answerThroughWeb, 0, 1,
+                obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No CauTraLoiQA exists with the key {");
+
+            msg.append("answerThroughWeb=" + answerThroughWeb);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchCauTraLoiQAException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public CauTraLoiQA findByAnswerThroughWeb_Last(boolean answerThroughWeb,
+        OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        int count = countByAnswerThroughWeb(answerThroughWeb);
+
+        List<CauTraLoiQA> list = findByAnswerThroughWeb(answerThroughWeb,
+                count - 1, count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No CauTraLoiQA exists with the key {");
+
+            msg.append("answerThroughWeb=" + answerThroughWeb);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchCauTraLoiQAException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public CauTraLoiQA[] findByAnswerThroughWeb_PrevAndNext(
+        long maCauTraLoiQA, boolean answerThroughWeb, OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        CauTraLoiQA cauTraLoiQA = findByPrimaryKey(maCauTraLoiQA);
+
+        int count = countByAnswerThroughWeb(answerThroughWeb);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+            query.append("answerThroughWeb = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(answerThroughWeb);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    cauTraLoiQA);
+
+            CauTraLoiQA[] array = new CauTraLoiQAImpl[3];
+
+            array[0] = (CauTraLoiQA) objArray[0];
+            array[1] = (CauTraLoiQA) objArray[1];
+            array[2] = (CauTraLoiQA) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public List<CauTraLoiQA> findByAnswerThroughEmail(String answerThroughEmail)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { answerThroughEmail };
+
+        List<CauTraLoiQA> list = (List<CauTraLoiQA>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_ANSWERTHROUGHEMAIL,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                if (answerThroughEmail == null) {
+                    query.append("answerThroughEmail IS NULL");
+                } else {
+                    query.append("answerThroughEmail = ?");
+                }
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (answerThroughEmail != null) {
+                    qPos.add(answerThroughEmail);
+                }
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<CauTraLoiQA>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ANSWERTHROUGHEMAIL,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<CauTraLoiQA> findByAnswerThroughEmail(
+        String answerThroughEmail, int start, int end)
+        throws SystemException {
+        return findByAnswerThroughEmail(answerThroughEmail, start, end, null);
+    }
+
+    public List<CauTraLoiQA> findByAnswerThroughEmail(
+        String answerThroughEmail, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                answerThroughEmail,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<CauTraLoiQA> list = (List<CauTraLoiQA>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHEMAIL,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                if (answerThroughEmail == null) {
+                    query.append("answerThroughEmail IS NULL");
+                } else {
+                    query.append("answerThroughEmail = ?");
+                }
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (answerThroughEmail != null) {
+                    qPos.add(answerThroughEmail);
+                }
+
+                list = (List<CauTraLoiQA>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<CauTraLoiQA>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_ANSWERTHROUGHEMAIL,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public CauTraLoiQA findByAnswerThroughEmail_First(
+        String answerThroughEmail, OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        List<CauTraLoiQA> list = findByAnswerThroughEmail(answerThroughEmail,
+                0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No CauTraLoiQA exists with the key {");
+
+            msg.append("answerThroughEmail=" + answerThroughEmail);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchCauTraLoiQAException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public CauTraLoiQA findByAnswerThroughEmail_Last(
+        String answerThroughEmail, OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        int count = countByAnswerThroughEmail(answerThroughEmail);
+
+        List<CauTraLoiQA> list = findByAnswerThroughEmail(answerThroughEmail,
+                count - 1, count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No CauTraLoiQA exists with the key {");
+
+            msg.append("answerThroughEmail=" + answerThroughEmail);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchCauTraLoiQAException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public CauTraLoiQA[] findByAnswerThroughEmail_PrevAndNext(
+        long maCauTraLoiQA, String answerThroughEmail, OrderByComparator obc)
+        throws NoSuchCauTraLoiQAException, SystemException {
+        CauTraLoiQA cauTraLoiQA = findByPrimaryKey(maCauTraLoiQA);
+
+        int count = countByAnswerThroughEmail(answerThroughEmail);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+            if (answerThroughEmail == null) {
+                query.append("answerThroughEmail IS NULL");
+            } else {
+                query.append("answerThroughEmail = ?");
+            }
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            if (answerThroughEmail != null) {
+                qPos.add(answerThroughEmail);
+            }
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    cauTraLoiQA);
+
+            CauTraLoiQA[] array = new CauTraLoiQAImpl[3];
+
+            array[0] = (CauTraLoiQA) objArray[0];
+            array[1] = (CauTraLoiQA) objArray[1];
+            array[2] = (CauTraLoiQA) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
         Session session = null;
@@ -856,6 +1314,21 @@ public class CauTraLoiQAPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public void removeByAnswerThroughWeb(boolean answerThroughWeb)
+        throws SystemException {
+        for (CauTraLoiQA cauTraLoiQA : findByAnswerThroughWeb(answerThroughWeb)) {
+            remove(cauTraLoiQA);
+        }
+    }
+
+    public void removeByAnswerThroughEmail(String answerThroughEmail)
+        throws SystemException {
+        for (CauTraLoiQA cauTraLoiQA : findByAnswerThroughEmail(
+                answerThroughEmail)) {
+            remove(cauTraLoiQA);
+        }
+    }
+
     public void removeAll() throws SystemException {
         for (CauTraLoiQA cauTraLoiQA : findAll()) {
             remove(cauTraLoiQA);
@@ -954,6 +1427,106 @@ public class CauTraLoiQAPersistenceImpl extends BasePersistenceImpl
                 }
 
                 FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_MACAUHOIQA_PUBLISH,
+                    finderArgs, count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    public int countByAnswerThroughWeb(boolean answerThroughWeb)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { Boolean.valueOf(answerThroughWeb) };
+
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ANSWERTHROUGHWEB,
+                finderArgs, this);
+
+        if (count == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                query.append("answerThroughWeb = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(answerThroughWeb);
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ANSWERTHROUGHWEB,
+                    finderArgs, count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    public int countByAnswerThroughEmail(String answerThroughEmail)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { answerThroughEmail };
+
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_ANSWERTHROUGHEMAIL,
+                finderArgs, this);
+
+        if (count == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA WHERE ");
+
+                if (answerThroughEmail == null) {
+                    query.append("answerThroughEmail IS NULL");
+                } else {
+                    query.append("answerThroughEmail = ?");
+                }
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (answerThroughEmail != null) {
+                    qPos.add(answerThroughEmail);
+                }
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_ANSWERTHROUGHEMAIL,
                     finderArgs, count);
 
                 closeSession(session);

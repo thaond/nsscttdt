@@ -26,10 +26,10 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.journal.model.JournalFeed;
-import com.liferay.portlet.journal.service.base.JournalFeedServiceBaseImpl;
-import com.liferay.portlet.journal.service.permission.JournalFeedPermission;
-import com.liferay.portlet.journal.service.permission.JournalPermission;
+import com.nss.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.service.base.JournalFeedServiceBaseImpl;
+import com.nss.portlet.journal.service.permission.JournalFeedPermission;
+import com.nss.portlet.journal.service.permission.JournalPermission;
 
 /**
  * <a href="JournalFeedServiceImpl.java.html"><b><i>View Source</i></b></a>

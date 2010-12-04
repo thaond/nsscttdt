@@ -145,3 +145,11 @@ tin-lien-quan-entry = Tin liên quan entry
 ##managementworkflowjournal
 ##
 error_delete_workflowjounal = Không xóa được workflow này
+input-date-validate-dd-mm-yyyy = Nhập một ngày hợp lệ theo định dạng dd/mm/yyyy
+input-date-validate = Nhập một ngày hợp lệ
+input-month-validate = Nhập một tháng hợp lệ
+input-year-validate = Nhập một năm hợp lệ
+date-from-must-be-greater-than-date-now = Ngày bắt đầu phải lớn hơn ngày hiện tại
+date-from-new-must-be-greater-than-date-from-old = Ngày bắt đầu của quy trình sau phải lớn hơn ngày bắt đầu của quy trình trước
+date-to-must-be-greater-than-date-from = Ngày kết thúc phải lớn hơn ngày bắt đầu
+update-work-flow-old = Bạn có muốn cập nhật lại ngày kết thúc của quy trình trước không

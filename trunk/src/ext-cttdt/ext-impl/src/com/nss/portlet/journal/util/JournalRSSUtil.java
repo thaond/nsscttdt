@@ -36,11 +36,11 @@ import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.imagegallery.model.IGImage;
 import com.liferay.portlet.imagegallery.service.IGImageLocalServiceUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.JournalFeed;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.util.comparator.ArticleDisplayDateComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleModifiedDateComparator;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.util.comparator.ArticleDisplayDateComparator;
+import com.nss.portlet.journal.util.comparator.ArticleModifiedDateComparator;
 
 import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEnclosureImpl;

@@ -30,8 +30,8 @@ import com.liferay.portal.search.HitsOpenSearchImpl;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalContentSearchLocalServiceUtil;
 
 import java.util.List;
 

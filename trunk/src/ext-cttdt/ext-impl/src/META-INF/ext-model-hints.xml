@@ -440,6 +440,8 @@
 		<field name="createdate" type="Date" />
 		<field name="publishdate" type="Date" />
 		<field name="publish" type="boolean" />
+		<field name="answerThroughWeb" type="boolean" />
+		<field name="answerThroughEmail" type="String" />
 	</model>
 	<model name="com.liferay.portlet.messageboards.model.MBCategory">
 		<field name="uuid" type="String" />
@@ -638,12 +640,12 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="roleId" type="long" />
+		<field name="userIds" type="String" />
 		<field name="processDefinitionId" type="long" />
 		<field name="processInstanceId" type="long" />
 		<field name="resourcePrimkey" type="long" />
-		<field name="journalType" type="String" />
 		<field name="countImageOfArticle" type="int" />
+		<field name="datecomplete" type="Date" />
 	</model>
 	<model name="com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle">
 		<field name="logWorkflowJournalArticleId" type="long" />
@@ -652,14 +654,12 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="roleId" type="long" />
+		<field name="userIds" type="String" />
 		<field name="dateReceiptOfUserReceipt" type="Date" />
 		<field name="dateProcessOfUserReceipt" type="Date" />
 		<field name="dateSendOfUserReceipt" type="Date" />
 		<field name="useridProcess" type="long" />
-		<field name="roleIdProcess" type="long" />
-		<field name="dateReceiptOfUserProcess" type="Date" />
-		<field name="dateProcessOfUserProcess" type="Date" />
+		<field name="userIdsProcess" type="String" />
 		<field name="processInformation" type="String" />
 		<field name="workflowStatusBefore" type="String" />
 		<field name="workflowStatusAfter" type="String" />
@@ -675,5 +675,229 @@
 		<field name="id" type="long" />
 		<field name="year" type="String" />
 		<field name="curValue" type="long" />
+	</model>
+	<model name="com.nss.portlet.agency.model.Agency">
+		<field name="agencyId" type="String" />
+		<field name="agencyCode" type="String" />
+		<field name="agencyName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.nss.portlet.agency.model.PmlAgencyLeader">
+		<field name="agencyId" type="String" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="com.nss.portlet.position.model.Position">
+		<field name="positionId" type="String" />
+		<field name="positionCode" type="String" />
+		<field name="positionName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalArticle">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="resourcePrimKey" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="articleId" type="String" />
+		<field name="version" type="double" />
+		<field name="title" type="String" />
+		<field name="urlTitle" type="String" />
+		<field name="description" type="String" />
+		<field name="content" type="String" />
+		<field name="type" type="String" />
+		<field name="structureId" type="String" />
+		<field name="templateId" type="String" />
+		<field name="displayDate" type="Date" />
+		<field name="approved" type="boolean" />
+		<field name="approvedByUserId" type="long" />
+		<field name="approvedByUserName" type="String" />
+		<field name="approvedDate" type="Date" />
+		<field name="expired" type="boolean" />
+		<field name="expirationDate" type="Date" />
+		<field name="reviewDate" type="Date" />
+		<field name="indexable" type="boolean" />
+		<field name="smallImage" type="boolean" />
+		<field name="smallImageId" type="long" />
+		<field name="smallImageURL" type="String" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalArticleImage">
+		<field name="articleImageId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="articleId" type="String" />
+		<field name="version" type="double" />
+		<field name="elInstanceId" type="String" />
+		<field name="elName" type="String" />
+		<field name="languageId" type="String" />
+		<field name="tempImage" type="boolean" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalArticleResource">
+		<field name="resourcePrimKey" type="long" />
+		<field name="groupId" type="long" />
+		<field name="articleId" type="String" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalContentSearch">
+		<field name="contentSearchId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="privateLayout" type="boolean" />
+		<field name="layoutId" type="long" />
+		<field name="portletId" type="String" />
+		<field name="articleId" type="String" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalFeed">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="feedId" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="type" type="String" />
+		<field name="structureId" type="String" />
+		<field name="templateId" type="String" />
+		<field name="rendererTemplateId" type="String" />
+		<field name="delta" type="int" />
+		<field name="orderByCol" type="String" />
+		<field name="orderByType" type="String" />
+		<field name="targetLayoutFriendlyUrl" type="String" />
+		<field name="targetPortletId" type="String" />
+		<field name="contentField" type="String" />
+		<field name="feedType" type="String" />
+		<field name="feedVersion" type="double" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalStructure">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="structureId" type="String" />
+		<field name="parentStructureId" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="xsd" type="String" />
+	</model>
+	<model name="com.nss.portlet.journal.model.JournalTemplate">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="templateId" type="String" />
+		<field name="structureId" type="String" />
+		<field name="name" type="String" />
+		<field name="description" type="String" />
+		<field name="xsl" type="String" />
+		<field name="langType" type="String" />
+		<field name="cacheable" type="boolean" />
+		<field name="smallImage" type="boolean" />
+		<field name="smallImageId" type="long" />
+		<field name="smallImageURL" type="String" />
+	</model>
+	<model name="com.nss.portlet.holidaymanagement.model.PmlHoliday">
+		<field name="holidayId" type="long" />
+		<field name="holiday_type" type="String" />
+		<field name="holiday_value" type="String" />
+		<field name="from_date" type="Date" />
+		<field name="to_date" type="Date" />
+	</model>
+	<model name="com.nss.portlet.department.model.Department">
+		<field name="departmentsId" type="String" />
+		<field name="departmentsParentId" type="String" />
+		<field name="departmentsCode" type="String" />
+		<field name="departmentsName" type="String" />
+		<field name="abbreviateName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="agencyId" type="String" />
+		<field name="roleId" type="long" />
+		<field name="hasTeam" type="String" />
+	</model>
+	<model name="com.nss.portlet.department.model.PmlUser">
+		<field name="userId" type="long" />
+		<field name="departmentsId" type="String" />
+		<field name="positionId" type="String" />
+		<field name="active" type="Boolean" />
+	</model>
+	<model name="com.nss.portlet.department.model.PmlDepartmentsLeader">
+		<field name="departmentsId" type="String" />
+		<field name="userId" type="long" />
+		<field name="main" type="boolean" />
+	</model>
+	<model name="com.nss.portlet.documentfield.model.PmlField">
+		<field name="fieldId" type="String" />
+		<field name="fieldCode" type="String" />
+		<field name="fieldName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="departmentsId" type="String" />
+	</model>
+	<model name="com.nss.portlet.filetype.model.PmlFileType">
+		<field name="fileTypeId" type="String" />
+		<field name="fileTypeCode" type="String" />
+		<field name="fileTypeName" type="String" />
+		<field name="fieldId" type="String" />
+		<field name="templateId" type="String" />
+		<field name="processTime" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="currentReceiptNumber" type="String" />
+		<field name="receiptTemplate" type="String" />
+	</model>
+	<model name="com.nss.portlet.filetype.model.PmlFileTypeAttachedFile">
+		<field name="filetypeAttachedFileId" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="original" type="int" />
+		<field name="copy_" type="int" />
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.nss.portlet.filetype.model.PmlFileAttachedFile">
+		<field name="fileAttachedFileId" type="String" />
+		<field name="fileId" type="String" />
+		<field name="original" type="int" />
+		<field name="copy_" type="int" />
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.nss.portlet.attachedfile.model.AttachedFile">
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileCode" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.nss.portlet.delegate.model.PmlDelegate">
+		<field name="delegateId" type="long" />
+		<field name="assigner" type="long" />
+		<field name="receiver" type="long" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="cancelDate" type="Date" />
+		<field name="cancelDelegate" type="String" />
+		<field name="dateCreated" type="Date" />
+	</model>
+	<model name="com.nss.portlet.delegate.model.PmlFileTypeDelegate">
+		<field name="fileTypeDelegateId" type="long" />
+		<field name="fileTypeId" type="String" />
+		<field name="delegateId" type="long" />
 	</model>
 </model-hints>

@@ -24,7 +24,7 @@ package com.nss.portlet.journal.model;
 
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.servlet.filters.cache.CacheUtil;
-import com.liferay.portlet.journalcontent.util.JournalContentUtil;
+import com.nss.portlet.journalcontent.util.JournalContentUtil;
 
 /**
  * <a href="JournalArticleListener.java.html"><b><i>View Source</i></b></a>

@@ -8,6 +8,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.nss.portlet.generatetemplateid.service.IdGeneratedLocalService;
 import com.nss.portlet.generatetemplateid.service.IdGeneratedService;
 import com.nss.portlet.generatetemplateid.service.IdTemplateLocalService;
+import com.nss.portlet.generatetemplateid.service.IdTemplateService;
 import com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedPersistence;
 import com.nss.portlet.generatetemplateid.service.persistence.IdTemplateFinder;
 import com.nss.portlet.generatetemplateid.service.persistence.IdTemplatePersistence;
@@ -17,6 +18,8 @@ public abstract class IdGeneratedServiceBaseImpl extends PrincipalBean
     implements IdGeneratedService {
     @BeanReference(name = "com.nss.portlet.generatetemplateid.service.IdTemplateLocalService.impl")
     protected IdTemplateLocalService idTemplateLocalService;
+    @BeanReference(name = "com.nss.portlet.generatetemplateid.service.IdTemplateService.impl")
+    protected IdTemplateService idTemplateService;
     @BeanReference(name = "com.nss.portlet.generatetemplateid.service.persistence.IdTemplatePersistence.impl")
     protected IdTemplatePersistence idTemplatePersistence;
     @BeanReference(name = "com.nss.portlet.generatetemplateid.service.persistence.IdTemplateFinder.impl")
@@ -35,6 +38,14 @@ public abstract class IdGeneratedServiceBaseImpl extends PrincipalBean
     public void setIdTemplateLocalService(
         IdTemplateLocalService idTemplateLocalService) {
         this.idTemplateLocalService = idTemplateLocalService;
+    }
+
+    public IdTemplateService getIdTemplateService() {
+        return idTemplateService;
+    }
+
+    public void setIdTemplateService(IdTemplateService idTemplateService) {
+        this.idTemplateService = idTemplateService;
     }
 
     public IdTemplatePersistence getIdTemplatePersistence() {

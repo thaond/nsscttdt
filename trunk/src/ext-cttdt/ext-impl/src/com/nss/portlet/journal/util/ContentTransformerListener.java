@@ -31,8 +31,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
 
 import java.util.Map;
 

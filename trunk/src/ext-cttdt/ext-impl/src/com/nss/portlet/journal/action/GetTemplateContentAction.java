@@ -25,8 +25,8 @@ package com.nss.portlet.journal.action;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.model.impl.JournalTemplateImpl;
-import com.liferay.portlet.journal.util.JournalUtil;
+import com.nss.portlet.journal.model.impl.JournalTemplateImpl;
+import com.nss.portlet.journal.util.JournalUtil;
 import com.liferay.util.JS;
 import com.liferay.util.servlet.ServletResponseUtil;
 

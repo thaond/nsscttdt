@@ -31,14 +31,14 @@ import com.liferay.portal.webdav.BaseWebDAVStorageImpl;
 import com.liferay.portal.webdav.Resource;
 import com.liferay.portal.webdav.WebDAVException;
 import com.liferay.portal.webdav.WebDAVRequest;
-import com.liferay.portlet.journal.NoSuchStructureException;
-import com.liferay.portlet.journal.NoSuchTemplateException;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalStructureServiceUtil;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
+import com.nss.portlet.journal.NoSuchStructureException;
+import com.nss.portlet.journal.NoSuchTemplateException;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.service.JournalStructureLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalStructureServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateServiceUtil;
 
 import java.io.File;
 

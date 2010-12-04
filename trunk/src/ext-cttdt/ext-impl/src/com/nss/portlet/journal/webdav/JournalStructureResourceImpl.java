@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.webdav.BaseResourceImpl;
 import com.liferay.portal.webdav.WebDAVException;
-import com.liferay.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalStructure;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

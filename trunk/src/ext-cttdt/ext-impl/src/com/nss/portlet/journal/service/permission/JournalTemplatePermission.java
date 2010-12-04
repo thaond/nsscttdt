@@ -26,8 +26,8 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil;
 
 /**
  * <a href="JournalTemplatePermission.java.html"><b><i>View Source</i></b></a>

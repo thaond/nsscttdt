@@ -13,6 +13,10 @@
 	  	<column name="createdate" type="Date" db-name="createdate" />
 	  	<column name="publishdate" type="Date" />
 	  	<column name="publish" type="boolean" />
+	  	
+	  	<column name="answerThroughWeb" type="boolean" />
+	  	<column name="answerThroughEmail" type="String" />
+	  	
 		<!-- Order -->
 	    <!-- Finder methods -->
 	    <finder name="MaCauHoiQA" return-type="Collection">
@@ -21,6 +25,14 @@
 	    <finder name="MaCauHoiQA_Publish" return-type="Collection">
 	   		<finder-column name="maCauHoiQA"/>
 	   		<finder-column name="publish"/>
+	    </finder>
+	    
+	    <finder name="AnswerThroughWeb" return-type="Collection">
+	   		<finder-column name="answerThroughWeb"/>
+	    </finder>
+	    
+	    <finder name="AnswerThroughEmail" return-type="Collection">
+	   		<finder-column name="answerThroughEmail"/>
 	    </finder>
 	</entity>
 </service-builder>

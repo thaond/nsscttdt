@@ -23,7 +23,7 @@
 package com.nss.portlet.journal.search;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalStructure;
 
 import java.util.ArrayList;
 import java.util.List;

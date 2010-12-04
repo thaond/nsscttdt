@@ -27,11 +27,11 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.service.base.JournalTemplateServiceBaseImpl;
-import com.liferay.portlet.journal.service.permission.JournalPermission;
-import com.liferay.portlet.journal.service.permission.JournalStructurePermission;
-import com.liferay.portlet.journal.service.permission.JournalTemplatePermission;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.service.base.JournalTemplateServiceBaseImpl;
+import com.nss.portlet.journal.service.permission.JournalPermission;
+import com.nss.portlet.journal.service.permission.JournalStructurePermission;
+import com.nss.portlet.journal.service.permission.JournalTemplatePermission;
 
 import java.io.File;
 

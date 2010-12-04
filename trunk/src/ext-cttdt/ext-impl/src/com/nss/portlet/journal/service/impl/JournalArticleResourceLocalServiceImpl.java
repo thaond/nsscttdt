@@ -24,8 +24,8 @@ package com.nss.portlet.journal.service.impl;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.journal.model.JournalArticleResource;
-import com.liferay.portlet.journal.service.base.JournalArticleResourceLocalServiceBaseImpl;
+import com.nss.portlet.journal.model.JournalArticleResource;
+import com.nss.portlet.journal.service.base.JournalArticleResourceLocalServiceBaseImpl;
 
 import java.util.List;
 

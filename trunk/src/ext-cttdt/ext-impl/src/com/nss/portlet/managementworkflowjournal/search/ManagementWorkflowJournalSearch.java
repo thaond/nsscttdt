@@ -29,6 +29,7 @@ public class ManagementWorkflowJournalSearch extends SearchContainer<ManagementW
 		headerNames.add("description");
 		headerNames.add("dateFrom");
 		headerNames.add("dateTo");
+		headerNames.add("");
 		
 		
 		orderableHeaders.put("version", "version");

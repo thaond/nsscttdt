@@ -24,7 +24,7 @@ package com.nss.portlet.journal.model.impl;
 
 import com.liferay.portal.SystemException;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.model.JournalFeed;
 
 /**
  * <a href="JournalFeedImpl.java.html"><b><i>View Source</i></b></a>

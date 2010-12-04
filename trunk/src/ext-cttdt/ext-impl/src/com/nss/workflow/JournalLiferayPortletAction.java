@@ -36,7 +36,7 @@ public abstract class JournalLiferayPortletAction extends WorkflowPortletAction 
 	@Override
 	protected long getProcessInstanceId(PortletRequest req) {
 		// get documentReceiptId from request.
-		long articleId = ParamUtil.getLong(req,"resourcePrimkey", -1);
+		long articleId = ParamUtil.getLong(req,com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "resourcePrimkey", -1);
 		
 		if (articleId == -1) {
 			return articleId;
@@ -60,7 +60,7 @@ public abstract class JournalLiferayPortletAction extends WorkflowPortletAction 
 
 	@Override
 	protected long getTaskInstanceId(PortletRequest req) {
-		return ParamUtil.getLong(req, "taskId", -1);
+		return ParamUtil.getLong(req, com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "taskId", -1);
 	}
 
 

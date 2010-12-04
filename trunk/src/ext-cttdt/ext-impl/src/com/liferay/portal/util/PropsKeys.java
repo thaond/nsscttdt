@@ -569,7 +569,9 @@ public interface PropsKeys {
 	public static final String JOURNAL_IMAGE_SMALL_MAX_SIZE = "journal.image.small.max.size";
 
 	public static final String JOURNAL_LAR_CREATION_STRATEGY = "journal.lar.creation.strategy";
-
+//	minh update 20101130
+	public static final String NSS_JOURNAL_LAR_CREATION_STRATEGY = "journal.lar.creation.strategy";
+//	end minh update 20101130
 	public static final String JOURNAL_PUBLISH_TO_LIVE_BY_DEFAULT = "journal.publish.to.live.by.default";
 
 	public static final String JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID = "journal.structure.force.autogenerate.id";
@@ -581,6 +583,10 @@ public interface PropsKeys {
 	public static final String JOURNAL_TEMPLATE_VELOCITY_RESTRICTED_VARIABLES = "journal.template.velocity.restricted.variables";
 
 	public static final String JOURNAL_TRANSFORMER_LISTENER = "journal.transformer.listener";
+	
+	// minh update 20101130
+	public static final String NSS_JOURNAL_TRANSFORMER_LISTENER = "nss_journal.transformer.listener";
+	// end minh update 20101130
 
 	public static final String LAYOUT_CLONE_IMPL = "layout.clone.impl";
 

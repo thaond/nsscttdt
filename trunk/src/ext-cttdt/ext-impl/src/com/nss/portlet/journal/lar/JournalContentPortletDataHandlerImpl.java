@@ -45,14 +45,14 @@ import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.imagegallery.lar.IGPortletDataHandlerImpl;
 import com.liferay.portlet.imagegallery.model.IGFolder;
 import com.liferay.portlet.imagegallery.model.IGImage;
-import com.liferay.portlet.journal.NoSuchArticleException;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil;
-import com.liferay.portlet.journal.service.persistence.JournalStructureUtil;
-import com.liferay.portlet.journal.service.persistence.JournalTemplateUtil;
+import com.nss.portlet.journal.NoSuchArticleException;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalContentSearchLocalServiceUtil;
+import com.nss.portlet.journal.service.persistence.JournalStructureUtil;
+import com.nss.portlet.journal.service.persistence.JournalTemplateUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -87,8 +87,8 @@ import javax.portlet.PortletPreferences;
  * @author Bruno Farache
  *
  * @see com.liferay.portal.lar.PortletDataHandler
- * @see com.liferay.portlet.journal.lar.JournalCreationStrategy
- * @see com.liferay.portlet.journal.lar.JournalPortletDataHandlerImpl
+ * @see com.nss.portlet.journal.lar.JournalCreationStrategy
+ * @see com.nss.portlet.journal.lar.JournalPortletDataHandlerImpl
  *
  */
 public class JournalContentPortletDataHandlerImpl

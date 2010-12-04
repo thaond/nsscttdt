@@ -29,10 +29,10 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.model.impl.JournalTemplateImpl;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
-import com.liferay.portlet.journal.util.JournalUtil;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.model.impl.JournalTemplateImpl;
+import com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil;
+import com.nss.portlet.journal.util.JournalUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.util.Map;

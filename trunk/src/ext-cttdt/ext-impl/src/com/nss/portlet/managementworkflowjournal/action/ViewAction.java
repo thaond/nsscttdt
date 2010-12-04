@@ -18,17 +18,19 @@ import javax.portlet.RenderResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.nss.portlet.managementworkflowjournal.model.ManagementWorkflowJournal;
 import com.nss.portlet.managementworkflowjournal.service.ManagementWorkflowJournalLocalServiceUtil;
 import com.nss.workflow.JournalLiferayPortletAction;
 import com.nss.workflow.JournalLiferayWorkflowService;
-import com.sgs.liferay.jbpm.param.WorkflowParam;
 
 public class ViewAction extends JournalLiferayPortletAction {
 	private static Log _log = LogFactoryUtil.getLog(ViewAction.class);
@@ -38,11 +40,9 @@ public class ViewAction extends JournalLiferayPortletAction {
 			throws Exception {
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 		String redirect = ParamUtil.getString(req, "redirect");
-
 		try {
 			if (cmd.equals(Constants.ADD)) {
 				addProcessDefinitionJournal(req);
-				addWorkflowParameter(req, "userId", WorkflowParam.TRANSIENT, "" + PortalUtil.getUserId(req));
 			} else if (cmd.equals(Constants.DELETE)) {
 				boolean flag = deleteProcess(req);
 				if (flag) {
@@ -64,27 +64,40 @@ public class ViewAction extends JournalLiferayPortletAction {
 		String dateTo = ParamUtil.getString(req, "dateTo", "");
 		String description = ParamUtil.getString(req, "description", "");
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		long managementWorkflowJournalId = ParamUtil.getLong(req, "managementWorkflowJournalId", 0);
+		String dateSaveUpdate = ParamUtil.getString(req, "dateSaveUpdate");
 		Timestamp timesFrom = null;
 		Timestamp timesTo = null;
-		long userId = PortalUtil.getUserId(req);
+		long userId = 0;
+		long companyId = 0;
+		long groupId = 0 ;
 		try {
-			if (!"".equals(dateTo)) {
+			userId = PortalUtil.getUserId(req);
+			if(userId != 0){
+				User user = UserLocalServiceUtil.getUser(userId);
+				companyId = user.getCompanyId();
+				groupId = user.getGroup().getGroupId();
+			}
+		} catch (Exception e1) {
+			_log.error("ERROR: in method addProcessDefinitionJournal in class "	+ ViewAction.class + e1.getMessage());
+		} 
+		try {
+			if (!"".equals(dateFrom)) {
 				Date dFrom = dateFormat.parse(dateFrom);
 				timesFrom = new Timestamp(dFrom.getTime());
 			}
-			if (!"".equals(dateFrom)) {
+			if (!"".equals(dateTo)) {
 				Date dTo = dateFormat.parse(dateTo);
 				timesTo = new Timestamp(dTo.getTime());
 			}
 		} catch (ParseException e) {
-			timesFrom = new Timestamp(new Date().getTime());
-			timesTo = timesFrom;
+			timesTo = new Timestamp(0);
 		}
 		try {
 			if (fileWorkflow != null) {
 				InputStream is = new FileInputStream(fileWorkflow);
 				JournalLiferayWorkflowService documentReceiptLiferayWorkflowService = (JournalLiferayWorkflowService) getLiferayWorkflowService();
-				documentReceiptLiferayWorkflowService.deloyProcessSupport(is,description, timesFrom, timesTo,userId);
+				documentReceiptLiferayWorkflowService.deloyProcessSupport(is,description, timesFrom, timesTo, userId, companyId, groupId, managementWorkflowJournalId, dateSaveUpdate);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

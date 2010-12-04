@@ -52,7 +52,7 @@ public class GenerateTemplateIdSearch extends SearchContainer<IdTemplate>{
 			String orderByCol = ParamUtil.getString(renderRequest, "orderByCol");
 			String orderByType = ParamUtil.getString(renderRequest, "orderByType");
 
-			String portletName = "SGS_GENERATETEMPLATEID";
+			String portletName = "NSS_GENERATETEMPLATEID";
 			
 			if (Validator.isNotNull(orderByCol) &&
 				Validator.isNotNull(orderByType)) {
