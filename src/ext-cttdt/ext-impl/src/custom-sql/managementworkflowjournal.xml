@@ -45,4 +45,13 @@
 		WHERE processDefinitionId = ? 
 		]]>
 	</sql>	
+	<sql
+		id="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder.GET_LOG_WORKFLOW_JOURNAL_ARTICLE_BY_R_T">
+		<![CDATA[
+		SELECT *
+		FROM log_workflow_journal_article
+		WHERE resourceprimkey = ?
+		ORDER BY  transition DESC
+		]]>
+	</sql>	
 </custom-sql>

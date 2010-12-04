@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.filetype">
+	<namespace>FILETYPE</namespace>
+	<entity name="PmlFileType" local-service="true" remote-service="true"
+		table="pml_filetype">
+
+		<!-- PK fields -->
+
+		<column name="fileTypeId" type="String" primary="true" db-name="fileTypeId"/>
+
+		<!-- Other fields -->
+
+		<column name="fileTypeCode" type="String" db-name="fileTypeCode"/>
+		<column name="fileTypeName" type="String" db-name="fileTypeName"/>
+		<column name="fieldId" type="String" db-name="fieldId"/>
+		<column name="templateId" type="String" db-name="templateId"/>
+		<column name="processTime" type="String" db-name="processTime"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="currentReceiptNumber" type="String" db-name="currentReceiptNumber"/>
+		<column name="receiptTemplate" type="String" db-name="receiptTemplate"/>
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="fileTypeName" case-sensitive="false" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="FileTypeCode" return-type="Collection">
+			<finder-column name="fileTypeCode" comparator="LIKE" case-sensitive="false"/>
+		</finder>
+
+		<finder name="FileTypeName" return-type="Collection">
+			<finder-column name="fileTypeName" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+
+		<finder name="FieldId" return-type="Collection">
+			<finder-column name="fieldId" comparator="LIKE"/>
+		</finder>
+
+		<finder name="ReceiptTemplate" return-type="Collection">
+			<finder-column name="receiptTemplate" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="FileTypeCode_FileTypeName" return-type="Collection">
+			<finder-column name="fileTypeCode" comparator="LIKE"/>
+			<finder-column name="fileTypeName" comparator="LIKE"/>
+		</finder>
+
+	</entity>
+	
+	<entity name="PmlFileTypeAttachedFile" local-service="true" remote-service="true"
+		table="pml_filetype_attachedfile">
+
+		<!-- PK fields -->
+
+		<column name="filetypeAttachedFileId" type="String" primary="true" db-name="filetypeAttachedFileId"/>
+
+		<!-- Other fields -->
+
+		<column name="fileTypeId" type="String" db-name="fileTypeId"/>
+		<column name="original" type="int" db-name="original"/>
+		<column name="copy_" type="int" db-name="copy_"/>
+		<column name="attachedFileId" type="String" db-name="attachedFileId"/>
+		<column name="attachedFileName" type="String" db-name="attachedFileName"/>
+		<column name="note" type="String" db-name="note"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="filetypeAttachedFileId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="FileTypeId" return-type="Collection">
+			<finder-column name="fileTypeId" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileId" return-type="Collection">
+			<finder-column name="attachedFileId" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileName" return-type="Collection">
+			<finder-column name="attachedFileName" comparator="LIKE"/>
+		</finder>
+		<finder name="Original" return-type="Collection">
+			<finder-column name="original" comparator="="/>
+		</finder>
+		<finder name="Original_FT" return-type="Collection">
+			<finder-column name="original" comparator="="/>
+			<finder-column name="fileTypeId" comparator="="/>
+		</finder>
+		<finder name="Copy_" return-type="Collection">
+			<finder-column name="copy_" comparator="="/>
+		</finder>
+		<finder name="Copy_FT" return-type="Collection">
+			<finder-column name="copy_" comparator="="/>
+			<finder-column name="fileTypeId" comparator="="/>
+		</finder>
+		<finder name="Note" return-type="Collection">
+			<finder-column name="note" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		<finder name="Note_FT" return-type="Collection">
+			<finder-column name="note" case-sensitive="false" comparator="LIKE"/>
+			<finder-column name="fileTypeId" comparator="="/>
+		</finder>
+		<finder name="N_O_C_N" return-type="Collection">
+			<finder-column name="attachedFileName" case-sensitive="false" comparator="LIKE"/>
+			<finder-column name="original" comparator="="/>
+			<finder-column name="copy_" comparator="="/>
+			<finder-column name="note" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		<finder name="N_N" return-type="Collection">
+			<finder-column name="attachedFileName"  case-sensitive="false" comparator="LIKE"/>
+			<finder-column name="note" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+
+	</entity>
+	
+	<entity name="PmlFileAttachedFile" local-service="true" remote-service="true"
+		table="pml_file_attachedfile">
+
+		<!-- PK fields -->
+
+		<column name="fileAttachedFileId" type="String" primary="true" db-name="fileAttachedFileId"/>
+
+		<!-- Other fields -->
+
+		<column name="fileId" type="String" db-name="fileId"/>
+		<column name="original" type="int" db-name="original"/>
+		<column name="copy_" type="int" db-name="copy_"/>
+		<column name="attachedFileId" type="String" db-name="attachedFileId"/>
+		<column name="attachedFileName" type="String" db-name="attachedFileName"/>
+		<column name="note" type="String" db-name="note"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="fileAttachedFileId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="FileId" return-type="Collection">
+			<finder-column name="fileId" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileId" return-type="Collection">
+			<finder-column name="attachedFileId" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileName" return-type="Collection">
+			<finder-column name="attachedFileName" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+
+	</entity>
+	<exceptions>
+		<exception>FileTypeCanNotDelete</exception>
+		<exception>FileTypeCodeSameCode</exception>
+	</exceptions>
+</service-builder>

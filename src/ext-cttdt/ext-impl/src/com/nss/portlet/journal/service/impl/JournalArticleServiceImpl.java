@@ -28,10 +28,10 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.service.base.JournalArticleServiceBaseImpl;
-import com.liferay.portlet.journal.service.permission.JournalArticlePermission;
-import com.liferay.portlet.journal.service.permission.JournalPermission;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.service.base.JournalArticleServiceBaseImpl;
+import com.nss.portlet.journal.service.permission.JournalArticlePermission;
+import com.nss.portlet.journal.service.permission.JournalPermission;
 
 import java.io.File;
 

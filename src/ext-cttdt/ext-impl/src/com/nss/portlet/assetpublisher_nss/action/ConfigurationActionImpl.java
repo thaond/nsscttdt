@@ -367,19 +367,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				ParamUtil.getString(
 					actionRequest,
 					String.valueOf(tagsEntrys.get(i).getEntryId())));
-			// MoNT start 19/11/2010
-			String valueAbstractEntry =
-				ParamUtil.getString(actionRequest, "valueAbstractEntry" +
-					tagsEntrys.get(i).getEntryId());
-			preferences.setValue("valueAbstractEntry" +
-				tagsEntrys.get(i).getEntryId(), valueAbstractEntry);
-
-			String valueChildrenEntry =
-				ParamUtil.getString(actionRequest, "valueChildrenEntry" +
-					tagsEntrys.get(i).getEntryId());
-			preferences.setValue("valueChildrenEntry" +
-				tagsEntrys.get(i).getEntryId(), valueChildrenEntry);
-			// MoNT end 19/11/2010
 		}
 
 		// end minh 20100713
@@ -391,12 +378,31 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		TagsEntryLocalServiceUtil.checkEntries(userId, groupId, notEntries);
 
 		// MoNT start 17/11/2010
-		String valueAbstract =
-			ParamUtil.getString(actionRequest, "valueAbstract");
-		preferences.setValue("valueAbstract", valueAbstract);
-		String valueChildren =
-			ParamUtil.getString(actionRequest, "valueChildren");
-		preferences.setValue("valueChildren", valueChildren);
+		for(int i=0;i<vocabularies.size();i++){
+			long vocabularyId = vocabularies.get(i).getVocabularyId();
+			String vocabularyAbstractName = "valueAbstract"+vocabularyId;
+			String vocabularyChildrenName = "valueChildren"+vocabularyId;
+			String valueAbstract = ParamUtil.getString(actionRequest, vocabularyAbstractName);
+			String valueChildren = ParamUtil.getString(actionRequest, vocabularyChildrenName);
+			preferences.setValue(vocabularyAbstractName, valueAbstract);
+			preferences.setValue(vocabularyChildrenName, valueChildren);
+			List<TagsEntry> tagsEntryChildrens = new ArrayList<TagsEntry>();
+			try {
+				tagsEntryChildrens = JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyId);
+			}
+			catch (Exception e) {
+			}
+			if(tagsEntryChildrens.size()>0){
+				for (int j = 0; j < tagsEntryChildrens.size(); j++) {
+					String valueAbstractEntryName = "valueAbstractEntry" + tagsEntryChildrens.get(j).getEntryId();
+					String valueChildrenEntryName = "valueChildrenEntry" + tagsEntryChildrens.get(j).getEntryId();
+					String valueAbstractEntry =	ParamUtil.getString(actionRequest, valueAbstractEntryName);
+					String valueChildrenEntry = ParamUtil.getString(actionRequest, valueChildrenEntryName);
+					preferences.setValue(valueAbstractEntryName, valueAbstractEntry);
+					preferences.setValue(valueChildrenEntryName, valueChildrenEntry);
+				}
+			}
+		}
 		// MoNT end 17/11/2010
 
 		// TuNV update 20101126

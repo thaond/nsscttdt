@@ -38,12 +38,12 @@ import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.impl.JournalArticleImpl;
-import com.liferay.portlet.journal.service.JournalArticleImageLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalArticleServiceUtil;
-import com.liferay.portlet.journal.util.JournalUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.impl.JournalArticleImpl;
+import com.nss.portlet.journal.service.JournalArticleImageLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalArticleServiceUtil;
+import com.nss.portlet.journal.util.JournalUtil;
 import com.liferay.util.PwdGenerator;
 
 import java.io.File;

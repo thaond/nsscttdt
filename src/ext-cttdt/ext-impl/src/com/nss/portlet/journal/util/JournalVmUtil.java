@@ -40,7 +40,7 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.util.ContentUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.velocity.VelocityResourceListener;
-import com.liferay.portlet.journal.TransformException;
+import com.nss.portlet.journal.TransformException;
 import com.liferay.util.PwdGenerator;
 import com.liferay.util.xml.CDATAUtil;
 

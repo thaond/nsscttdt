@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.persistence;
 
 import com.liferay.portal.SystemException;
@@ -45,4432 +23,4242 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.portlet.journal.NoSuchArticleException;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.impl.JournalArticleImpl;
-import com.liferay.portlet.journal.model.impl.JournalArticleModelImpl;
+import com.nss.portlet.journal.NoSuchArticleException;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.impl.JournalArticleImpl;
+import com.nss.portlet.journal.model.impl.JournalArticleModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <a href="JournalArticlePersistenceImpl.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
+
 public class JournalArticlePersistenceImpl extends BasePersistenceImpl
-	implements JournalArticlePersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = JournalArticleImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByUuid",
-			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByUuid",
-			new String[] {
-				String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByUuid",
-			new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByGroupId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByGroupId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByCompanyId",
-			new String[] {
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByCompanyId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findBySmallImageId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findBySmallImageId",
-			new String[] {
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countBySmallImageId",
-			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByR_A",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByR_A",
-			new String[] {
-				Long.class.getName(), Boolean.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByR_A",
-			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_A",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_A",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_A",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_S",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_S",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_S",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_T",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_T",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_T",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_UT",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_UT",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_UT",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_G_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_A_V",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_A_V",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_A_A",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Boolean.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findByG_A_A",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Boolean.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByG_A_A",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				Boolean.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
-
-	public void cacheResult(JournalArticle journalArticle) {
-		EntityCacheUtil.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImpl.class, journalArticle.getPrimaryKey(),
-			journalArticle);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				journalArticle.getUuid(), new Long(journalArticle.getGroupId())
-			}, journalArticle);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
-			new Object[] {
-				new Long(journalArticle.getGroupId()),
-				
-			journalArticle.getArticleId(),
-				new Double(journalArticle.getVersion())
-			}, journalArticle);
-	}
-
-	public void cacheResult(List<JournalArticle> journalArticles) {
-		for (JournalArticle journalArticle : journalArticles) {
-			if (EntityCacheUtil.getResult(
-						JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-						JournalArticleImpl.class,
-						journalArticle.getPrimaryKey(), this) == null) {
-				cacheResult(journalArticle);
-			}
-		}
-	}
-
-	public void clearCache() {
-		CacheRegistry.clear(JournalArticleImpl.class.getName());
-		EntityCacheUtil.clearCache(JournalArticleImpl.class.getName());
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-	}
-
-	public JournalArticle create(long id) {
-		JournalArticle journalArticle = new JournalArticleImpl();
-
-		journalArticle.setNew(true);
-		journalArticle.setPrimaryKey(id);
-
-		String uuid = PortalUUIDUtil.generate();
-
-		journalArticle.setUuid(uuid);
-
-		return journalArticle;
-	}
-
-	public JournalArticle remove(long id)
-		throws NoSuchArticleException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			JournalArticle journalArticle = (JournalArticle)session.get(JournalArticleImpl.class,
-					new Long(id));
-
-			if (journalArticle == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("No JournalArticle exists with the primary key " +
-						id);
-				}
-
-				throw new NoSuchArticleException(
-					"No JournalArticle exists with the primary key " + id);
-			}
-
-			return remove(journalArticle);
-		}
-		catch (NoSuchArticleException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public JournalArticle remove(JournalArticle journalArticle)
-		throws SystemException {
-		for (ModelListener<JournalArticle> listener : listeners) {
-			listener.onBeforeRemove(journalArticle);
-		}
-
-		journalArticle = removeImpl(journalArticle);
-
-		for (ModelListener<JournalArticle> listener : listeners) {
-			listener.onAfterRemove(journalArticle);
-		}
-
-		return journalArticle;
-	}
-
-	protected JournalArticle removeImpl(JournalArticle journalArticle)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (journalArticle.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JournalArticleImpl.class,
-						journalArticle.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(journalArticle);
-
-			session.flush();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-
-		JournalArticleModelImpl journalArticleModelImpl = (JournalArticleModelImpl)journalArticle;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				journalArticleModelImpl.getOriginalUuid(),
-				new Long(journalArticleModelImpl.getOriginalGroupId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_A_V,
-			new Object[] {
-				new Long(journalArticleModelImpl.getOriginalGroupId()),
-				
-			journalArticleModelImpl.getOriginalArticleId(),
-				new Double(journalArticleModelImpl.getOriginalVersion())
-			});
-
-		EntityCacheUtil.removeResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImpl.class, journalArticle.getPrimaryKey());
-
-		return journalArticle;
-	}
-
-	/**
-	 * @deprecated Use <code>update(JournalArticle journalArticle, boolean merge)</code>.
-	 */
-	public JournalArticle update(JournalArticle journalArticle)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(JournalArticle journalArticle) method. Use update(JournalArticle journalArticle, boolean merge) instead.");
-		}
-
-		return update(journalArticle, false);
-	}
-
-	/**
-	 * Add, update, or merge, the entity. This method also calls the model
-	 * listeners to trigger the proper events associated with adding, deleting,
-	 * or updating an entity.
-	 *
-	 * @param        journalArticle the entity to add, update, or merge
-	 * @param        merge boolean value for whether to merge the entity. The
-	 *                default value is false. Setting merge to true is more
-	 *                expensive and should only be true when journalArticle is
-	 *                transient. See LEP-5473 for a detailed discussion of this
-	 *                method.
-	 * @return        true if the portlet can be displayed via Ajax
-	 */
-	public JournalArticle update(JournalArticle journalArticle, boolean merge)
-		throws SystemException {
-		boolean isNew = journalArticle.isNew();
-
-		for (ModelListener<JournalArticle> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(journalArticle);
-			}
-			else {
-				listener.onBeforeUpdate(journalArticle);
-			}
-		}
-
-		journalArticle = updateImpl(journalArticle, merge);
-
-		for (ModelListener<JournalArticle> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(journalArticle);
-			}
-			else {
-				listener.onAfterUpdate(journalArticle);
-			}
-		}
-
-		return journalArticle;
-	}
-
-	public JournalArticle updateImpl(
-		com.liferay.portlet.journal.model.JournalArticle journalArticle,
-		boolean merge) throws SystemException {
-		boolean isNew = journalArticle.isNew();
-
-		JournalArticleModelImpl journalArticleModelImpl = (JournalArticleModelImpl)journalArticle;
-
-		if (Validator.isNull(journalArticle.getUuid())) {
-			String uuid = PortalUUIDUtil.generate();
-
-			journalArticle.setUuid(uuid);
-		}
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			BatchSessionUtil.update(session, journalArticle, merge);
-
-			journalArticle.setNew(false);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-
-		EntityCacheUtil.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-			JournalArticleImpl.class, journalArticle.getPrimaryKey(),
-			journalArticle);
-
-		if (!isNew &&
-				(!Validator.equals(journalArticle.getUuid(),
-					journalArticleModelImpl.getOriginalUuid()) ||
-				(journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					journalArticleModelImpl.getOriginalUuid(),
-					new Long(journalArticleModelImpl.getOriginalGroupId())
-				});
-		}
-
-		if (isNew ||
-				(!Validator.equals(journalArticle.getUuid(),
-					journalArticleModelImpl.getOriginalUuid()) ||
-				(journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					journalArticle.getUuid(),
-					new Long(journalArticle.getGroupId())
-				}, journalArticle);
-		}
-
-		if (!isNew &&
-				((journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()) ||
-				!Validator.equals(journalArticle.getArticleId(),
-					journalArticleModelImpl.getOriginalArticleId()) ||
-				(journalArticle.getVersion() != journalArticleModelImpl.getOriginalVersion()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_A_V,
-				new Object[] {
-					new Long(journalArticleModelImpl.getOriginalGroupId()),
-					
-				journalArticleModelImpl.getOriginalArticleId(),
-					new Double(journalArticleModelImpl.getOriginalVersion())
-				});
-		}
-
-		if (isNew ||
-				((journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()) ||
-				!Validator.equals(journalArticle.getArticleId(),
-					journalArticleModelImpl.getOriginalArticleId()) ||
-				(journalArticle.getVersion() != journalArticleModelImpl.getOriginalVersion()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
-				new Object[] {
-					new Long(journalArticle.getGroupId()),
-					
-				journalArticle.getArticleId(),
-					new Double(journalArticle.getVersion())
-				}, journalArticle);
-		}
-
-		return journalArticle;
-	}
-
-	public JournalArticle findByPrimaryKey(long id)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = fetchByPrimaryKey(id);
-
-		if (journalArticle == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("No JournalArticle exists with the primary key " +
-					id);
-			}
-
-			throw new NoSuchArticleException(
-				"No JournalArticle exists with the primary key " + id);
-		}
-
-		return journalArticle;
-	}
-
-	public JournalArticle fetchByPrimaryKey(long id) throws SystemException {
-		JournalArticle journalArticle = (JournalArticle)EntityCacheUtil.getResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleImpl.class, id, this);
-
-		if (journalArticle == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				journalArticle = (JournalArticle)session.get(JournalArticleImpl.class,
-						new Long(id));
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (journalArticle != null) {
-					cacheResult(journalArticle);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return journalArticle;
-	}
-
-	public List<JournalArticle> findByUuid(String uuid)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public List<JournalArticle> findByUuid(String uuid, int start, int end)
-		throws SystemException {
-		return findByUuid(uuid, start, end, null);
-	}
-
-	public List<JournalArticle> findByUuid(String uuid, int start, int end,
-		OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_UUID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public JournalArticle findByUuid_First(String uuid, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByUuid(uuid, 0, 1, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("uuid=" + uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle findByUuid_Last(String uuid, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		int count = countByUuid(uuid);
-
-		List<JournalArticle> list = findByUuid(uuid, count - 1, count, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("uuid=" + uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle[] findByUuid_PrevAndNext(long id, String uuid,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
-
-		int count = countByUuid(uuid);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-			if (uuid == null) {
-				query.append("uuid_ IS NULL");
-			}
-			else {
-				query.append("uuid_ = ?");
-			}
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (uuid != null) {
-				qPos.add(uuid);
-			}
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
-
-			JournalArticle[] array = new JournalArticleImpl[3];
-
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public JournalArticle findByUUID_G(String uuid, long groupId)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = fetchByUUID_G(uuid, groupId);
-
-		if (journalArticle == null) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("uuid=" + uuid);
-
-			msg.append(", ");
-			msg.append("groupId=" + groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-
-		return journalArticle;
-	}
-
-	public JournalArticle fetchByUUID_G(String uuid, long groupId)
-		throws SystemException {
-		return fetchByUUID_G(uuid, groupId, true);
-	}
-
-	public JournalArticle fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
-					finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
-
-				query.append(" AND ");
-
-				query.append("groupId = ?");
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				qPos.add(groupId);
-
-				List<JournalArticle> list = q.list();
-
-				result = list;
-
-				JournalArticle journalArticle = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-						finderArgs, list);
-				}
-				else {
-					journalArticle = list.get(0);
-
-					cacheResult(journalArticle);
-
-					if ((journalArticle.getUuid() == null) ||
-							!journalArticle.getUuid().equals(uuid) ||
-							(journalArticle.getGroupId() != groupId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, journalArticle);
-					}
-				}
-
-				return journalArticle;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-						finderArgs, new ArrayList<JournalArticle>());
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List) {
-				return null;
-			}
-			else {
-				return (JournalArticle)result;
-			}
-		}
-	}
-
-	public List<JournalArticle> findByGroupId(long groupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("groupId = ?");
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public List<JournalArticle> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
-		return findByGroupId(groupId, start, end, null);
-	}
-
-	public List<JournalArticle> findByGroupId(long groupId, int start, int end,
-		OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("groupId = ?");
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public JournalArticle findByGroupId_First(long groupId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByGroupId(groupId, 0, 1, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("groupId=" + groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle findByGroupId_Last(long groupId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		int count = countByGroupId(groupId);
-
-		List<JournalArticle> list = findByGroupId(groupId, count - 1, count, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("groupId=" + groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle[] findByGroupId_PrevAndNext(long id, long groupId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
-
-		int count = countByGroupId(groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-			query.append("groupId = ?");
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
-
-			JournalArticle[] array = new JournalArticleImpl[3];
-
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<JournalArticle> findByCompanyId(long companyId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId) };
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("companyId = ?");
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public List<JournalArticle> findByCompanyId(long companyId, int start,
-		int end) throws SystemException {
-		return findByCompanyId(companyId, start, end, null);
-	}
-
-	public List<JournalArticle> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(companyId),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("companyId = ?");
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public JournalArticle findByCompanyId_First(long companyId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByCompanyId(companyId, 0, 1, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("companyId=" + companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle findByCompanyId_Last(long companyId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByCompanyId(companyId);
-
-		List<JournalArticle> list = findByCompanyId(companyId, count - 1,
-				count, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("companyId=" + companyId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalArticle[] findByCompanyId_PrevAndNext(long id,
-		long companyId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
-
-		int count = countByCompanyId(companyId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-			query.append("companyId = ?");
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
-
-			Query q = session.createQuery(query.toString());
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(companyId);
-
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
-
-			JournalArticle[] array = new JournalArticleImpl[3];
-
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<JournalArticle> findBySmallImageId(long smallImageId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(smallImageId) };
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_SMALLIMAGEID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("smallImageId = ?");
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(smallImageId);
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_SMALLIMAGEID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public List<JournalArticle> findBySmallImageId(long smallImageId,
-		int start, int end) throws SystemException {
-		return findBySmallImageId(smallImageId, start, end, null);
-	}
-
-	public List<JournalArticle> findBySmallImageId(long smallImageId,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(smallImageId),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
-
-				query.append("smallImageId = ?");
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(smallImageId);
-
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+    implements JournalArticlePersistence {
+    public static final String FINDER_CLASS_NAME_ENTITY = JournalArticleImpl.class.getName();
+    public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+        ".List";
+    public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByUuid",
+            new String[] { String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByUuid",
+            new String[] {
+                String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByUuid",
+            new String[] { String.class.getName() });
+    public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+            new String[] { String.class.getName(), Long.class.getName() });
+    public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByUUID_G",
+            new String[] { String.class.getName(), Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByGroupId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByGroupId",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByGroupId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByCompanyId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByCompanyId",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByCompanyId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findBySmallImageId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findBySmallImageId",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_SMALLIMAGEID = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countBySmallImageId",
+            new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByR_A",
+            new String[] { Long.class.getName(), Boolean.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByR_A",
+            new String[] {
+                Long.class.getName(), Boolean.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_R_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByR_A",
+            new String[] { Long.class.getName(), Boolean.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_A",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_A",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_A",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_S",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_S",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_S",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_T",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_T",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_T = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_T",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_UT",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_UT",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_UT",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FETCH_BY_G_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_ENTITY, "fetchByG_A_V",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                Double.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_A_V",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                Double.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_FIND_BY_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_A_A",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                Boolean.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findByG_A_A",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                Boolean.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_A_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countByG_A_A",
+            new String[] {
+                Long.class.getName(), String.class.getName(),
+                Boolean.class.getName()
+            });
+    public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "findAll", new String[0]);
+    public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
+    private static Log _log = LogFactoryUtil.getLog(JournalArticlePersistenceImpl.class);
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticlePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticlePersistence journalArticlePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence journalArticleImagePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence journalArticleResourcePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence journalContentSearchPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalFeedPersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalFeedPersistence journalFeedPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalStructurePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalStructurePersistence journalStructurePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalTemplatePersistence journalTemplatePersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.CompanyPersistence.impl")
+    protected com.liferay.portal.service.persistence.CompanyPersistence companyPersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.ImagePersistence.impl")
+    protected com.liferay.portal.service.persistence.ImagePersistence imagePersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.PortletPreferencesPersistence.impl")
+    protected com.liferay.portal.service.persistence.PortletPreferencesPersistence portletPreferencesPersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence.impl")
+    protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence.impl")
+    protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+    @BeanReference(name = "com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence.impl")
+    protected com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence expandoValuePersistence;
+    @BeanReference(name = "com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl")
+    protected com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence mbMessagePersistence;
+    @BeanReference(name = "com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence.impl")
+    protected com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence ratingsStatsPersistence;
+    @BeanReference(name = "com.liferay.portlet.tags.service.persistence.TagsAssetPersistence.impl")
+    protected com.liferay.portlet.tags.service.persistence.TagsAssetPersistence tagsAssetPersistence;
+    @BeanReference(name = "com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl")
+    protected com.liferay.portlet.tags.service.persistence.TagsEntryPersistence tagsEntryPersistence;
+
+    public void cacheResult(JournalArticle journalArticle) {
+        EntityCacheUtil.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleImpl.class, journalArticle.getPrimaryKey(),
+            journalArticle);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+            new Object[] {
+                journalArticle.getUuid(), new Long(journalArticle.getGroupId())
+            }, journalArticle);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
+            new Object[] {
+                new Long(journalArticle.getGroupId()),
+                
+            journalArticle.getArticleId(),
+                new Double(journalArticle.getVersion())
+            }, journalArticle);
+    }
+
+    public void cacheResult(List<JournalArticle> journalArticles) {
+        for (JournalArticle journalArticle : journalArticles) {
+            if (EntityCacheUtil.getResult(
+                        JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+                        JournalArticleImpl.class,
+                        journalArticle.getPrimaryKey(), this) == null) {
+                cacheResult(journalArticle);
+            }
+        }
+    }
+
+    public void clearCache() {
+        CacheRegistry.clear(JournalArticleImpl.class.getName());
+        EntityCacheUtil.clearCache(JournalArticleImpl.class.getName());
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+    }
+
+    public JournalArticle create(long id) {
+        JournalArticle journalArticle = new JournalArticleImpl();
+
+        journalArticle.setNew(true);
+        journalArticle.setPrimaryKey(id);
+
+        String uuid = PortalUUIDUtil.generate();
+
+        journalArticle.setUuid(uuid);
+
+        return journalArticle;
+    }
+
+    public JournalArticle remove(long id)
+        throws NoSuchArticleException, SystemException {
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            JournalArticle journalArticle = (JournalArticle) session.get(JournalArticleImpl.class,
+                    new Long(id));
+
+            if (journalArticle == null) {
+                if (_log.isWarnEnabled()) {
+                    _log.warn("No JournalArticle exists with the primary key " +
+                        id);
+                }
+
+                throw new NoSuchArticleException(
+                    "No JournalArticle exists with the primary key " + id);
+            }
+
+            return remove(journalArticle);
+        } catch (NoSuchArticleException nsee) {
+            throw nsee;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public JournalArticle remove(JournalArticle journalArticle)
+        throws SystemException {
+        for (ModelListener<JournalArticle> listener : listeners) {
+            listener.onBeforeRemove(journalArticle);
+        }
+
+        journalArticle = removeImpl(journalArticle);
+
+        for (ModelListener<JournalArticle> listener : listeners) {
+            listener.onAfterRemove(journalArticle);
+        }
+
+        return journalArticle;
+    }
+
+    protected JournalArticle removeImpl(JournalArticle journalArticle)
+        throws SystemException {
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            if (journalArticle.isCachedModel() || BatchSessionUtil.isEnabled()) {
+                Object staleObject = session.get(JournalArticleImpl.class,
+                        journalArticle.getPrimaryKeyObj());
+
+                if (staleObject != null) {
+                    session.evict(staleObject);
+                }
+            }
+
+            session.delete(journalArticle);
+
+            session.flush();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+        JournalArticleModelImpl journalArticleModelImpl = (JournalArticleModelImpl) journalArticle;
+
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+            new Object[] {
+                journalArticleModelImpl.getOriginalUuid(),
+                new Long(journalArticleModelImpl.getOriginalGroupId())
+            });
+
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_A_V,
+            new Object[] {
+                new Long(journalArticleModelImpl.getOriginalGroupId()),
+                
+            journalArticleModelImpl.getOriginalArticleId(),
+                new Double(journalArticleModelImpl.getOriginalVersion())
+            });
+
+        EntityCacheUtil.removeResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleImpl.class, journalArticle.getPrimaryKey());
+
+        return journalArticle;
+    }
+
+    /**
+     * @deprecated Use <code>update(JournalArticle journalArticle, boolean merge)</code>.
+     */
+    public JournalArticle update(JournalArticle journalArticle)
+        throws SystemException {
+        if (_log.isWarnEnabled()) {
+            _log.warn(
+                "Using the deprecated update(JournalArticle journalArticle) method. Use update(JournalArticle journalArticle, boolean merge) instead.");
+        }
+
+        return update(journalArticle, false);
+    }
+
+    /**
+     * Add, update, or merge, the entity. This method also calls the model
+     * listeners to trigger the proper events associated with adding, deleting,
+     * or updating an entity.
+     *
+     * @param                journalArticle the entity to add, update, or merge
+     * @param                merge boolean value for whether to merge the entity. The
+     *                                default value is false. Setting merge to true is more
+     *                                expensive and should only be true when journalArticle is
+     *                                transient. See LEP-5473 for a detailed discussion of this
+     *                                method.
+     * @return                true if the portlet can be displayed via Ajax
+     */
+    public JournalArticle update(JournalArticle journalArticle, boolean merge)
+        throws SystemException {
+        boolean isNew = journalArticle.isNew();
+
+        for (ModelListener<JournalArticle> listener : listeners) {
+            if (isNew) {
+                listener.onBeforeCreate(journalArticle);
+            } else {
+                listener.onBeforeUpdate(journalArticle);
+            }
+        }
+
+        journalArticle = updateImpl(journalArticle, merge);
+
+        for (ModelListener<JournalArticle> listener : listeners) {
+            if (isNew) {
+                listener.onAfterCreate(journalArticle);
+            } else {
+                listener.onAfterUpdate(journalArticle);
+            }
+        }
+
+        return journalArticle;
+    }
+
+    public JournalArticle updateImpl(
+        com.nss.portlet.journal.model.JournalArticle journalArticle,
+        boolean merge) throws SystemException {
+        boolean isNew = journalArticle.isNew();
+
+        JournalArticleModelImpl journalArticleModelImpl = (JournalArticleModelImpl) journalArticle;
+
+        if (Validator.isNull(journalArticle.getUuid())) {
+            String uuid = PortalUUIDUtil.generate();
+
+            journalArticle.setUuid(uuid);
+        }
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            BatchSessionUtil.update(session, journalArticle, merge);
+
+            journalArticle.setNew(false);
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+        EntityCacheUtil.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+            JournalArticleImpl.class, journalArticle.getPrimaryKey(),
+            journalArticle);
+
+        if (!isNew &&
+                (!Validator.equals(journalArticle.getUuid(),
+                    journalArticleModelImpl.getOriginalUuid()) ||
+                (journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()))) {
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+                new Object[] {
+                    journalArticleModelImpl.getOriginalUuid(),
+                    new Long(journalArticleModelImpl.getOriginalGroupId())
+                });
+        }
+
+        if (isNew ||
+                (!Validator.equals(journalArticle.getUuid(),
+                    journalArticleModelImpl.getOriginalUuid()) ||
+                (journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()))) {
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                new Object[] {
+                    journalArticle.getUuid(),
+                    new Long(journalArticle.getGroupId())
+                }, journalArticle);
+        }
+
+        if (!isNew &&
+                ((journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()) ||
+                !Validator.equals(journalArticle.getArticleId(),
+                    journalArticleModelImpl.getOriginalArticleId()) ||
+                (journalArticle.getVersion() != journalArticleModelImpl.getOriginalVersion()))) {
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_A_V,
+                new Object[] {
+                    new Long(journalArticleModelImpl.getOriginalGroupId()),
+                    
+                journalArticleModelImpl.getOriginalArticleId(),
+                    new Double(journalArticleModelImpl.getOriginalVersion())
+                });
+        }
+
+        if (isNew ||
+                ((journalArticle.getGroupId() != journalArticleModelImpl.getOriginalGroupId()) ||
+                !Validator.equals(journalArticle.getArticleId(),
+                    journalArticleModelImpl.getOriginalArticleId()) ||
+                (journalArticle.getVersion() != journalArticleModelImpl.getOriginalVersion()))) {
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
+                new Object[] {
+                    new Long(journalArticle.getGroupId()),
+                    
+                journalArticle.getArticleId(),
+                    new Double(journalArticle.getVersion())
+                }, journalArticle);
+        }
+
+        return journalArticle;
+    }
+
+    public JournalArticle findByPrimaryKey(long id)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = fetchByPrimaryKey(id);
+
+        if (journalArticle == null) {
+            if (_log.isWarnEnabled()) {
+                _log.warn("No JournalArticle exists with the primary key " +
+                    id);
+            }
+
+            throw new NoSuchArticleException(
+                "No JournalArticle exists with the primary key " + id);
+        }
+
+        return journalArticle;
+    }
+
+    public JournalArticle fetchByPrimaryKey(long id) throws SystemException {
+        JournalArticle journalArticle = (JournalArticle) EntityCacheUtil.getResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+                JournalArticleImpl.class, id, this);
+
+        if (journalArticle == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                journalArticle = (JournalArticle) session.get(JournalArticleImpl.class,
+                        new Long(id));
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (journalArticle != null) {
+                    cacheResult(journalArticle);
+                }
+
+                closeSession(session);
+            }
+        }
+
+        return journalArticle;
+    }
+
+    public List<JournalArticle> findByUuid(String uuid)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { uuid };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
+                    list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<JournalArticle> findByUuid(String uuid, int start, int end)
+        throws SystemException {
+        return findByUuid(uuid, start, end, null);
+    }
+
+    public List<JournalArticle> findByUuid(String uuid, int start, int end,
+        OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                uuid,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
+
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_UUID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public JournalArticle findByUuid_First(String uuid, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByUuid(uuid, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("uuid=" + uuid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle findByUuid_Last(String uuid, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        int count = countByUuid(uuid);
+
+        List<JournalArticle> list = findByUuid(uuid, count - 1, count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("uuid=" + uuid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle[] findByUuid_PrevAndNext(long id, String uuid,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
+
+        int count = countByUuid(uuid);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+            if (uuid == null) {
+                query.append("uuid_ IS NULL");
+            } else {
+                query.append("uuid_ = ?");
+            }
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            if (uuid != null) {
+                qPos.add(uuid);
+            }
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
+
+            JournalArticle[] array = new JournalArticleImpl[3];
+
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public JournalArticle findByUUID_G(String uuid, long groupId)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = fetchByUUID_G(uuid, groupId);
+
+        if (journalArticle == null) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("uuid=" + uuid);
+
+            msg.append(", ");
+            msg.append("groupId=" + groupId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
+
+            throw new NoSuchArticleException(msg.toString());
+        }
+
+        return journalArticle;
+    }
+
+    public JournalArticle fetchByUUID_G(String uuid, long groupId)
+        throws SystemException {
+        return fetchByUUID_G(uuid, groupId, true);
+    }
+
+    public JournalArticle fetchByUUID_G(String uuid, long groupId,
+        boolean retrieveFromCache) throws SystemException {
+        Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+
+        Object result = null;
+
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+                    finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
+
+                query.append(" AND ");
+
+                query.append("groupId = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
+
+                qPos.add(groupId);
+
+                List<JournalArticle> list = q.list();
+
+                result = list;
+
+                JournalArticle journalArticle = null;
+
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                        finderArgs, list);
+                } else {
+                    journalArticle = list.get(0);
+
+                    cacheResult(journalArticle);
+
+                    if ((journalArticle.getUuid() == null) ||
+                            !journalArticle.getUuid().equals(uuid) ||
+                            (journalArticle.getGroupId() != groupId)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                            finderArgs, journalArticle);
+                    }
+                }
+
+                return journalArticle;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (result == null) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                        finderArgs, new ArrayList<JournalArticle>());
+                }
+
+                closeSession(session);
+            }
+        } else {
+            if (result instanceof List) {
+                return null;
+            } else {
+                return (JournalArticle) result;
+            }
+        }
+    }
+
+    public List<JournalArticle> findByGroupId(long groupId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId) };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("groupId = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(groupId);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<JournalArticle> findByGroupId(long groupId, int start, int end)
+        throws SystemException {
+        return findByGroupId(groupId, start, end, null);
+    }
+
+    public List<JournalArticle> findByGroupId(long groupId, int start, int end,
+        OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("groupId = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(groupId);
+
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public JournalArticle findByGroupId_First(long groupId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByGroupId(groupId, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("groupId=" + groupId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle findByGroupId_Last(long groupId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        int count = countByGroupId(groupId);
+
+        List<JournalArticle> list = findByGroupId(groupId, count - 1, count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("groupId=" + groupId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle[] findByGroupId_PrevAndNext(long id, long groupId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
+
+        int count = countByGroupId(groupId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+            query.append("groupId = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(groupId);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
+
+            JournalArticle[] array = new JournalArticleImpl[3];
+
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public List<JournalArticle> findByCompanyId(long companyId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyId) };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("companyId = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyId);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<JournalArticle> findByCompanyId(long companyId, int start,
+        int end) throws SystemException {
+        return findByCompanyId(companyId, start, end, null);
+    }
+
+    public List<JournalArticle> findByCompanyId(long companyId, int start,
+        int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(companyId),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("companyId = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyId);
+
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public JournalArticle findByCompanyId_First(long companyId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByCompanyId(companyId, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("companyId=" + companyId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle findByCompanyId_Last(long companyId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countByCompanyId(companyId);
+
+        List<JournalArticle> list = findByCompanyId(companyId, count - 1,
+                count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("companyId=" + companyId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalArticle[] findByCompanyId_PrevAndNext(long id,
+        long companyId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
+
+        int count = countByCompanyId(companyId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+            query.append("companyId = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(companyId);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
+
+            JournalArticle[] array = new JournalArticleImpl[3];
+
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public List<JournalArticle> findBySmallImageId(long smallImageId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(smallImageId) };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_SMALLIMAGEID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("smallImageId = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(smallImageId);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_SMALLIMAGEID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<JournalArticle> findBySmallImageId(long smallImageId,
+        int start, int end) throws SystemException {
+        return findBySmallImageId(smallImageId, start, end, null);
+    }
+
+    public List<JournalArticle> findBySmallImageId(long smallImageId,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(smallImageId),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
+
+                query.append("smallImageId = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(smallImageId);
+
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public JournalArticle findBySmallImageId_First(long smallImageId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findBySmallImageId(smallImageId, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalArticle exists with the key {");
+
+            msg.append("smallImageId=" + smallImageId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				cacheResult(list);
+    public JournalArticle findBySmallImageId_Last(long smallImageId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countBySmallImageId(smallImageId);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_SMALLIMAGEID,
-					finderArgs, list);
+        List<JournalArticle> list = findBySmallImageId(smallImageId, count - 1,
+                count, obc);
 
-				closeSession(session);
-			}
-		}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-		return list;
-	}
+            msg.append("No JournalArticle exists with the key {");
 
-	public JournalArticle findBySmallImageId_First(long smallImageId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findBySmallImageId(smallImageId, 0, 1, obc);
+            msg.append("smallImageId=" + smallImageId);
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalArticle exists with the key {");
-
-			msg.append("smallImageId=" + smallImageId);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-	public JournalArticle findBySmallImageId_Last(long smallImageId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countBySmallImageId(smallImageId);
+    public JournalArticle[] findBySmallImageId_PrevAndNext(long id,
+        long smallImageId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-		List<JournalArticle> list = findBySmallImageId(smallImageId, count - 1,
-				count, obc);
+        int count = countBySmallImageId(smallImageId);
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        Session session = null;
 
-			msg.append("No JournalArticle exists with the key {");
+        try {
+            session = openSession();
 
-			msg.append("smallImageId=" + smallImageId);
+            StringBuilder query = new StringBuilder();
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            query.append("smallImageId = ?");
 
-	public JournalArticle[] findBySmallImageId_PrevAndNext(long id,
-		long smallImageId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            query.append(" ");
 
-		int count = countBySmallImageId(smallImageId);
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-		Session session = null;
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-		try {
-			session = openSession();
+            Query q = session.createQuery(query.toString());
 
-			StringBuilder query = new StringBuilder();
+            QueryPos qPos = QueryPos.getInstance(q);
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+            qPos.add(smallImageId);
 
-			query.append("smallImageId = ?");
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-			query.append(" ");
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-			else {
-				query.append("ORDER BY ");
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+    public List<JournalArticle> findByR_A(long resourcePrimKey, boolean approved)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(resourcePrimKey), Boolean.valueOf(approved)
+            };
 
-			Query q = session.createQuery(query.toString());
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_A,
+                finderArgs, this);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+        if (list == null) {
+            Session session = null;
 
-			qPos.add(smallImageId);
+            try {
+                session = openSession();
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                StringBuilder query = new StringBuilder();
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                query.append("resourcePrimKey = ?");
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                query.append(" AND ");
 
-	public List<JournalArticle> findByR_A(long resourcePrimKey, boolean approved)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), Boolean.valueOf(approved)
-			};
+                query.append("approved = ?");
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_A,
-				finderArgs, this);
+                query.append(" ");
 
-		if (list == null) {
-			Session session = null;
+                query.append("ORDER BY ");
 
-			try {
-				session = openSession();
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-				StringBuilder query = new StringBuilder();
+                Query q = session.createQuery(query.toString());
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append("resourcePrimKey = ?");
+                qPos.add(resourcePrimKey);
 
-				query.append(" AND ");
+                qPos.add(approved);
 
-				query.append("approved = ?");
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(" ");
+                cacheResult(list);
 
-				query.append("ORDER BY ");
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_A, finderArgs,
+                    list);
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+                closeSession(session);
+            }
+        }
 
-				Query q = session.createQuery(query.toString());
+        return list;
+    }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+    public List<JournalArticle> findByR_A(long resourcePrimKey,
+        boolean approved, int start, int end) throws SystemException {
+        return findByR_A(resourcePrimKey, approved, start, end, null);
+    }
 
-				qPos.add(resourcePrimKey);
+    public List<JournalArticle> findByR_A(long resourcePrimKey,
+        boolean approved, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(resourcePrimKey), Boolean.valueOf(approved),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				qPos.add(approved);
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_A,
+                finderArgs, this);
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+        if (list == null) {
+            Session session = null;
 
-				cacheResult(list);
+            try {
+                session = openSession();
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_A, finderArgs,
-					list);
+                StringBuilder query = new StringBuilder();
 
-				closeSession(session);
-			}
-		}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-		return list;
-	}
+                query.append("resourcePrimKey = ?");
 
-	public List<JournalArticle> findByR_A(long resourcePrimKey,
-		boolean approved, int start, int end) throws SystemException {
-		return findByR_A(resourcePrimKey, approved, start, end, null);
-	}
+                query.append(" AND ");
 
-	public List<JournalArticle> findByR_A(long resourcePrimKey,
-		boolean approved, int start, int end, OrderByComparator obc)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), Boolean.valueOf(approved),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                query.append("approved = ?");
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_R_A,
-				finderArgs, this);
+                query.append(" ");
 
-		if (list == null) {
-			Session session = null;
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-			try {
-				session = openSession();
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-				StringBuilder query = new StringBuilder();
+                Query q = session.createQuery(query.toString());
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append("resourcePrimKey = ?");
+                qPos.add(resourcePrimKey);
 
-				query.append(" AND ");
+                qPos.add(approved);
 
-				query.append("approved = ?");
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(" ");
+                cacheResult(list);
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_R_A,
+                    finderArgs, list);
 
-				else {
-					query.append("ORDER BY ");
+                closeSession(session);
+            }
+        }
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+        return list;
+    }
 
-				Query q = session.createQuery(query.toString());
+    public JournalArticle findByR_A_First(long resourcePrimKey,
+        boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByR_A(resourcePrimKey, approved, 0, 1,
+                obc);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				qPos.add(resourcePrimKey);
+            msg.append("No JournalArticle exists with the key {");
 
-				qPos.add(approved);
+            msg.append("resourcePrimKey=" + resourcePrimKey);
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+            msg.append(", ");
+            msg.append("approved=" + approved);
 
-				cacheResult(list);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_R_A,
-					finderArgs, list);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				closeSession(session);
-			}
-		}
+    public JournalArticle findByR_A_Last(long resourcePrimKey,
+        boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        int count = countByR_A(resourcePrimKey, approved);
 
-		return list;
-	}
+        List<JournalArticle> list = findByR_A(resourcePrimKey, approved,
+                count - 1, count, obc);
 
-	public JournalArticle findByR_A_First(long resourcePrimKey,
-		boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByR_A(resourcePrimKey, approved, 0, 1,
-				obc);
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            msg.append("No JournalArticle exists with the key {");
 
-			msg.append("No JournalArticle exists with the key {");
+            msg.append("resourcePrimKey=" + resourcePrimKey);
 
-			msg.append("resourcePrimKey=" + resourcePrimKey);
+            msg.append(", ");
+            msg.append("approved=" + approved);
 
-			msg.append(", ");
-			msg.append("approved=" + approved);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+    public JournalArticle[] findByR_A_PrevAndNext(long id,
+        long resourcePrimKey, boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-	public JournalArticle findByR_A_Last(long resourcePrimKey,
-		boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		int count = countByR_A(resourcePrimKey, approved);
+        int count = countByR_A(resourcePrimKey, approved);
 
-		List<JournalArticle> list = findByR_A(resourcePrimKey, approved,
-				count - 1, count, obc);
+        Session session = null;
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        try {
+            session = openSession();
 
-			msg.append("No JournalArticle exists with the key {");
+            StringBuilder query = new StringBuilder();
 
-			msg.append("resourcePrimKey=" + resourcePrimKey);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			msg.append(", ");
-			msg.append("approved=" + approved);
+            query.append("resourcePrimKey = ?");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            query.append(" AND ");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            query.append("approved = ?");
 
-	public JournalArticle[] findByR_A_PrevAndNext(long id,
-		long resourcePrimKey, boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            query.append(" ");
 
-		int count = countByR_A(resourcePrimKey, approved);
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-		Session session = null;
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-		try {
-			session = openSession();
+            Query q = session.createQuery(query.toString());
 
-			StringBuilder query = new StringBuilder();
+            QueryPos qPos = QueryPos.getInstance(q);
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+            qPos.add(resourcePrimKey);
 
-			query.append("resourcePrimKey = ?");
+            qPos.add(approved);
 
-			query.append(" AND ");
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-			query.append("approved = ?");
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-			query.append(" ");
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			else {
-				query.append("ORDER BY ");
+    public List<JournalArticle> findByG_A(long groupId, String articleId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), articleId };
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_A,
+                finderArgs, this);
 
-			Query q = session.createQuery(query.toString());
+        if (list == null) {
+            Session session = null;
 
-			QueryPos qPos = QueryPos.getInstance(q);
+            try {
+                session = openSession();
 
-			qPos.add(resourcePrimKey);
+                StringBuilder query = new StringBuilder();
 
-			qPos.add(approved);
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                query.append("groupId = ?");
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                query.append(" AND ");
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                query.append(" ");
 
-	public List<JournalArticle> findByG_A(long groupId, String articleId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), articleId };
+                query.append("ORDER BY ");
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_A,
-				finderArgs, this);
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-		if (list == null) {
-			Session session = null;
+                Query q = session.createQuery(query.toString());
 
-			try {
-				session = openSession();
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				StringBuilder query = new StringBuilder();
+                qPos.add(groupId);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-				query.append("groupId = ?");
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(" AND ");
+                cacheResult(list);
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_A, finderArgs,
+                    list);
 
-				query.append(" ");
+                closeSession(session);
+            }
+        }
 
-				query.append("ORDER BY ");
+        return list;
+    }
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+    public List<JournalArticle> findByG_A(long groupId, String articleId,
+        int start, int end) throws SystemException {
+        return findByG_A(groupId, articleId, start, end, null);
+    }
 
-				Query q = session.createQuery(query.toString());
+    public List<JournalArticle> findByG_A(long groupId, String articleId,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				QueryPos qPos = QueryPos.getInstance(q);
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_A,
+                finderArgs, this);
 
-				qPos.add(groupId);
+        if (list == null) {
+            Session session = null;
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+            try {
+                session = openSession();
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+                StringBuilder query = new StringBuilder();
 
-				cacheResult(list);
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_A, finderArgs,
-					list);
+                query.append("groupId = ?");
 
-				closeSession(session);
-			}
-		}
+                query.append(" AND ");
 
-		return list;
-	}
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-	public List<JournalArticle> findByG_A(long groupId, String articleId,
-		int start, int end) throws SystemException {
-		return findByG_A(groupId, articleId, start, end, null);
-	}
+                query.append(" ");
 
-	public List<JournalArticle> findByG_A(long groupId, String articleId,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_A,
-				finderArgs, this);
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-		if (list == null) {
-			Session session = null;
+                Query q = session.createQuery(query.toString());
 
-			try {
-				session = openSession();
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				StringBuilder query = new StringBuilder();
+                qPos.add(groupId);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-				query.append("groupId = ?");
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(" AND ");
+                cacheResult(list);
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_A,
+                    finderArgs, list);
 
-				query.append(" ");
+                closeSession(session);
+            }
+        }
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+        return list;
+    }
 
-				else {
-					query.append("ORDER BY ");
+    public JournalArticle findByG_A_First(long groupId, String articleId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByG_A(groupId, articleId, 0, 1, obc);
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				Query q = session.createQuery(query.toString());
+            msg.append("No JournalArticle exists with the key {");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+            msg.append("groupId=" + groupId);
 
-				qPos.add(groupId);
+            msg.append(", ");
+            msg.append("articleId=" + articleId);
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				cacheResult(list);
+    public JournalArticle findByG_A_Last(long groupId, String articleId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countByG_A(groupId, articleId);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_A,
-					finderArgs, list);
+        List<JournalArticle> list = findByG_A(groupId, articleId, count - 1,
+                count, obc);
 
-				closeSession(session);
-			}
-		}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-		return list;
-	}
+            msg.append("No JournalArticle exists with the key {");
 
-	public JournalArticle findByG_A_First(long groupId, String articleId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByG_A(groupId, articleId, 0, 1, obc);
+            msg.append("groupId=" + groupId);
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            msg.append(", ");
+            msg.append("articleId=" + articleId);
 
-			msg.append("No JournalArticle exists with the key {");
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			msg.append("groupId=" + groupId);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-			msg.append(", ");
-			msg.append("articleId=" + articleId);
+    public JournalArticle[] findByG_A_PrevAndNext(long id, long groupId,
+        String articleId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+        int count = countByG_A(groupId, articleId);
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+        Session session = null;
 
-	public JournalArticle findByG_A_Last(long groupId, String articleId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByG_A(groupId, articleId);
+        try {
+            session = openSession();
 
-		List<JournalArticle> list = findByG_A(groupId, articleId, count - 1,
-				count, obc);
+            StringBuilder query = new StringBuilder();
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			msg.append("No JournalArticle exists with the key {");
+            query.append("groupId = ?");
 
-			msg.append("groupId=" + groupId);
+            query.append(" AND ");
 
-			msg.append(", ");
-			msg.append("articleId=" + articleId);
+            if (articleId == null) {
+                query.append("articleId IS NULL");
+            } else {
+                query.append("articleId = ?");
+            }
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            query.append(" ");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-	public JournalArticle[] findByG_A_PrevAndNext(long id, long groupId,
-		String articleId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-		int count = countByG_A(groupId, articleId);
+            Query q = session.createQuery(query.toString());
 
-		Session session = null;
+            QueryPos qPos = QueryPos.getInstance(q);
 
-		try {
-			session = openSession();
+            qPos.add(groupId);
 
-			StringBuilder query = new StringBuilder();
+            if (articleId != null) {
+                qPos.add(articleId);
+            }
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-			query.append("groupId = ?");
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-			query.append(" AND ");
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-			if (articleId == null) {
-				query.append("articleId IS NULL");
-			}
-			else {
-				query.append("articleId = ?");
-			}
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			query.append(" ");
+    public List<JournalArticle> findByG_S(long groupId, String structureId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), structureId };
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
+                finderArgs, this);
 
-			else {
-				query.append("ORDER BY ");
+        if (list == null) {
+            Session session = null;
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+            try {
+                session = openSession();
 
-			Query q = session.createQuery(query.toString());
+                StringBuilder query = new StringBuilder();
 
-			QueryPos qPos = QueryPos.getInstance(q);
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			qPos.add(groupId);
+                query.append("groupId = ?");
 
-			if (articleId != null) {
-				qPos.add(articleId);
-			}
+                query.append(" AND ");
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                if (structureId == null) {
+                    query.append("structureId IS NULL");
+                } else {
+                    query.append("structureId = ?");
+                }
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                query.append(" ");
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                query.append("ORDER BY ");
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-	public List<JournalArticle> findByG_S(long groupId, String structureId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), structureId };
+                Query q = session.createQuery(query.toString());
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
-				finderArgs, this);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-		if (list == null) {
-			Session session = null;
+                qPos.add(groupId);
 
-			try {
-				session = openSession();
+                if (structureId != null) {
+                    qPos.add(structureId);
+                }
 
-				StringBuilder query = new StringBuilder();
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                cacheResult(list);
 
-				query.append("groupId = ?");
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_S, finderArgs,
+                    list);
 
-				query.append(" AND ");
+                closeSession(session);
+            }
+        }
 
-				if (structureId == null) {
-					query.append("structureId IS NULL");
-				}
-				else {
-					query.append("structureId = ?");
-				}
+        return list;
+    }
 
-				query.append(" ");
+    public List<JournalArticle> findByG_S(long groupId, String structureId,
+        int start, int end) throws SystemException {
+        return findByG_S(groupId, structureId, start, end, null);
+    }
 
-				query.append("ORDER BY ");
+    public List<JournalArticle> findByG_S(long groupId, String structureId,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                structureId,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_S,
+                finderArgs, this);
 
-				Query q = session.createQuery(query.toString());
+        if (list == null) {
+            Session session = null;
 
-				QueryPos qPos = QueryPos.getInstance(q);
+            try {
+                session = openSession();
 
-				qPos.add(groupId);
+                StringBuilder query = new StringBuilder();
 
-				if (structureId != null) {
-					qPos.add(structureId);
-				}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+                query.append("groupId = ?");
 
-				cacheResult(list);
+                query.append(" AND ");
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_S, finderArgs,
-					list);
+                if (structureId == null) {
+                    query.append("structureId IS NULL");
+                } else {
+                    query.append("structureId = ?");
+                }
 
-				closeSession(session);
-			}
-		}
+                query.append(" ");
 
-		return list;
-	}
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-	public List<JournalArticle> findByG_S(long groupId, String structureId,
-		int start, int end) throws SystemException {
-		return findByG_S(groupId, structureId, start, end, null);
-	}
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-	public List<JournalArticle> findByG_S(long groupId, String structureId,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				structureId,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                Query q = session.createQuery(query.toString());
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_S,
-				finderArgs, this);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-		if (list == null) {
-			Session session = null;
+                qPos.add(groupId);
 
-			try {
-				session = openSession();
+                if (structureId != null) {
+                    qPos.add(structureId);
+                }
 
-				StringBuilder query = new StringBuilder();
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                cacheResult(list);
 
-				query.append("groupId = ?");
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_S,
+                    finderArgs, list);
 
-				query.append(" AND ");
+                closeSession(session);
+            }
+        }
 
-				if (structureId == null) {
-					query.append("structureId IS NULL");
-				}
-				else {
-					query.append("structureId = ?");
-				}
+        return list;
+    }
 
-				query.append(" ");
+    public JournalArticle findByG_S_First(long groupId, String structureId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByG_S(groupId, structureId, 0, 1, obc);
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				else {
-					query.append("ORDER BY ");
+            msg.append("No JournalArticle exists with the key {");
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+            msg.append("groupId=" + groupId);
 
-				Query q = session.createQuery(query.toString());
+            msg.append(", ");
+            msg.append("structureId=" + structureId);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				qPos.add(groupId);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				if (structureId != null) {
-					qPos.add(structureId);
-				}
+    public JournalArticle findByG_S_Last(long groupId, String structureId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countByG_S(groupId, structureId);
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+        List<JournalArticle> list = findByG_S(groupId, structureId, count - 1,
+                count, obc);
 
-				cacheResult(list);
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_S,
-					finderArgs, list);
+            msg.append("No JournalArticle exists with the key {");
 
-				closeSession(session);
-			}
-		}
+            msg.append("groupId=" + groupId);
 
-		return list;
-	}
+            msg.append(", ");
+            msg.append("structureId=" + structureId);
 
-	public JournalArticle findByG_S_First(long groupId, String structureId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByG_S(groupId, structureId, 0, 1, obc);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-			msg.append("No JournalArticle exists with the key {");
+    public JournalArticle[] findByG_S_PrevAndNext(long id, long groupId,
+        String structureId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-			msg.append("groupId=" + groupId);
+        int count = countByG_S(groupId, structureId);
 
-			msg.append(", ");
-			msg.append("structureId=" + structureId);
+        Session session = null;
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+        try {
+            session = openSession();
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            StringBuilder query = new StringBuilder();
 
-	public JournalArticle findByG_S_Last(long groupId, String structureId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByG_S(groupId, structureId);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-		List<JournalArticle> list = findByG_S(groupId, structureId, count - 1,
-				count, obc);
+            query.append("groupId = ?");
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            query.append(" AND ");
 
-			msg.append("No JournalArticle exists with the key {");
+            if (structureId == null) {
+                query.append("structureId IS NULL");
+            } else {
+                query.append("structureId = ?");
+            }
 
-			msg.append("groupId=" + groupId);
+            query.append(" ");
 
-			msg.append(", ");
-			msg.append("structureId=" + structureId);
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            Query q = session.createQuery(query.toString());
 
-	public JournalArticle[] findByG_S_PrevAndNext(long id, long groupId,
-		String structureId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            QueryPos qPos = QueryPos.getInstance(q);
 
-		int count = countByG_S(groupId, structureId);
+            qPos.add(groupId);
 
-		Session session = null;
+            if (structureId != null) {
+                qPos.add(structureId);
+            }
 
-		try {
-			session = openSession();
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-			StringBuilder query = new StringBuilder();
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-			query.append("groupId = ?");
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			query.append(" AND ");
+    public List<JournalArticle> findByG_T(long groupId, String templateId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), templateId };
 
-			if (structureId == null) {
-				query.append("structureId IS NULL");
-			}
-			else {
-				query.append("structureId = ?");
-			}
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_T,
+                finderArgs, this);
 
-			query.append(" ");
+        if (list == null) {
+            Session session = null;
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+            try {
+                session = openSession();
 
-			else {
-				query.append("ORDER BY ");
+                StringBuilder query = new StringBuilder();
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			Query q = session.createQuery(query.toString());
+                query.append("groupId = ?");
 
-			QueryPos qPos = QueryPos.getInstance(q);
+                query.append(" AND ");
 
-			qPos.add(groupId);
+                if (templateId == null) {
+                    query.append("templateId IS NULL");
+                } else {
+                    query.append("templateId = ?");
+                }
 
-			if (structureId != null) {
-				qPos.add(structureId);
-			}
+                query.append(" ");
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                query.append("ORDER BY ");
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                Query q = session.createQuery(query.toString());
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	public List<JournalArticle> findByG_T(long groupId, String templateId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), templateId };
+                qPos.add(groupId);
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_T,
-				finderArgs, this);
+                if (templateId != null) {
+                    qPos.add(templateId);
+                }
 
-		if (list == null) {
-			Session session = null;
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-			try {
-				session = openSession();
+                cacheResult(list);
 
-				StringBuilder query = new StringBuilder();
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_T, finderArgs,
+                    list);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                closeSession(session);
+            }
+        }
 
-				query.append("groupId = ?");
+        return list;
+    }
 
-				query.append(" AND ");
+    public List<JournalArticle> findByG_T(long groupId, String templateId,
+        int start, int end) throws SystemException {
+        return findByG_T(groupId, templateId, start, end, null);
+    }
 
-				if (templateId == null) {
-					query.append("templateId IS NULL");
-				}
-				else {
-					query.append("templateId = ?");
-				}
+    public List<JournalArticle> findByG_T(long groupId, String templateId,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                templateId,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				query.append(" ");
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_T,
+                finderArgs, this);
 
-				query.append("ORDER BY ");
+        if (list == null) {
+            Session session = null;
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+            try {
+                session = openSession();
 
-				Query q = session.createQuery(query.toString());
+                StringBuilder query = new StringBuilder();
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				qPos.add(groupId);
+                query.append("groupId = ?");
 
-				if (templateId != null) {
-					qPos.add(templateId);
-				}
+                query.append(" AND ");
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+                if (templateId == null) {
+                    query.append("templateId IS NULL");
+                } else {
+                    query.append("templateId = ?");
+                }
 
-				cacheResult(list);
+                query.append(" ");
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_T, finderArgs,
-					list);
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-				closeSession(session);
-			}
-		}
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-		return list;
-	}
+                Query q = session.createQuery(query.toString());
 
-	public List<JournalArticle> findByG_T(long groupId, String templateId,
-		int start, int end) throws SystemException {
-		return findByG_T(groupId, templateId, start, end, null);
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	public List<JournalArticle> findByG_T(long groupId, String templateId,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				templateId,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                qPos.add(groupId);
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_T,
-				finderArgs, this);
+                if (templateId != null) {
+                    qPos.add(templateId);
+                }
 
-		if (list == null) {
-			Session session = null;
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-			try {
-				session = openSession();
+                cacheResult(list);
 
-				StringBuilder query = new StringBuilder();
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_T,
+                    finderArgs, list);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                closeSession(session);
+            }
+        }
 
-				query.append("groupId = ?");
+        return list;
+    }
 
-				query.append(" AND ");
+    public JournalArticle findByG_T_First(long groupId, String templateId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByG_T(groupId, templateId, 0, 1, obc);
 
-				if (templateId == null) {
-					query.append("templateId IS NULL");
-				}
-				else {
-					query.append("templateId = ?");
-				}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				query.append(" ");
+            msg.append("No JournalArticle exists with the key {");
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+            msg.append("groupId=" + groupId);
 
-				else {
-					query.append("ORDER BY ");
+            msg.append(", ");
+            msg.append("templateId=" + templateId);
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				Query q = session.createQuery(query.toString());
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+    public JournalArticle findByG_T_Last(long groupId, String templateId,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countByG_T(groupId, templateId);
 
-				qPos.add(groupId);
+        List<JournalArticle> list = findByG_T(groupId, templateId, count - 1,
+                count, obc);
 
-				if (templateId != null) {
-					qPos.add(templateId);
-				}
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+            msg.append("No JournalArticle exists with the key {");
 
-				cacheResult(list);
+            msg.append("groupId=" + groupId);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_T,
-					finderArgs, list);
+            msg.append(", ");
+            msg.append("templateId=" + templateId);
 
-				closeSession(session);
-			}
-		}
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		return list;
-	}
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-	public JournalArticle findByG_T_First(long groupId, String templateId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByG_T(groupId, templateId, 0, 1, obc);
+    public JournalArticle[] findByG_T_PrevAndNext(long id, long groupId,
+        String templateId, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        int count = countByG_T(groupId, templateId);
 
-			msg.append("No JournalArticle exists with the key {");
+        Session session = null;
 
-			msg.append("groupId=" + groupId);
+        try {
+            session = openSession();
 
-			msg.append(", ");
-			msg.append("templateId=" + templateId);
+            StringBuilder query = new StringBuilder();
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            query.append("groupId = ?");
 
-	public JournalArticle findByG_T_Last(long groupId, String templateId,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByG_T(groupId, templateId);
+            query.append(" AND ");
 
-		List<JournalArticle> list = findByG_T(groupId, templateId, count - 1,
-				count, obc);
+            if (templateId == null) {
+                query.append("templateId IS NULL");
+            } else {
+                query.append("templateId = ?");
+            }
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            query.append(" ");
 
-			msg.append("No JournalArticle exists with the key {");
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-			msg.append("groupId=" + groupId);
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-			msg.append(", ");
-			msg.append("templateId=" + templateId);
+            Query q = session.createQuery(query.toString());
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            QueryPos qPos = QueryPos.getInstance(q);
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            qPos.add(groupId);
 
-	public JournalArticle[] findByG_T_PrevAndNext(long id, long groupId,
-		String templateId, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            if (templateId != null) {
+                qPos.add(templateId);
+            }
 
-		int count = countByG_T(groupId, templateId);
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-		Session session = null;
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-		try {
-			session = openSession();
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-			StringBuilder query = new StringBuilder();
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+    public List<JournalArticle> findByG_UT(long groupId, String urlTitle)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), urlTitle };
 
-			query.append("groupId = ?");
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_UT,
+                finderArgs, this);
 
-			query.append(" AND ");
+        if (list == null) {
+            Session session = null;
 
-			if (templateId == null) {
-				query.append("templateId IS NULL");
-			}
-			else {
-				query.append("templateId = ?");
-			}
+            try {
+                session = openSession();
 
-			query.append(" ");
+                StringBuilder query = new StringBuilder();
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			else {
-				query.append("ORDER BY ");
+                query.append("groupId = ?");
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+                query.append(" AND ");
 
-			Query q = session.createQuery(query.toString());
+                if (urlTitle == null) {
+                    query.append("urlTitle IS NULL");
+                } else {
+                    query.append("urlTitle = ?");
+                }
 
-			QueryPos qPos = QueryPos.getInstance(q);
+                query.append(" ");
 
-			qPos.add(groupId);
+                query.append("ORDER BY ");
 
-			if (templateId != null) {
-				qPos.add(templateId);
-			}
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                Query q = session.createQuery(query.toString());
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                QueryPos qPos = QueryPos.getInstance(q);
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                qPos.add(groupId);
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                if (urlTitle != null) {
+                    qPos.add(urlTitle);
+                }
 
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), urlTitle };
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_UT,
-				finderArgs, this);
+                cacheResult(list);
 
-		if (list == null) {
-			Session session = null;
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_UT, finderArgs,
+                    list);
 
-			try {
-				session = openSession();
+                closeSession(session);
+            }
+        }
 
-				StringBuilder query = new StringBuilder();
+        return list;
+    }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+    public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
+        int start, int end) throws SystemException {
+        return findByG_UT(groupId, urlTitle, start, end, null);
+    }
 
-				query.append("groupId = ?");
+    public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
+        int start, int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                urlTitle,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				query.append(" AND ");
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_UT,
+                finderArgs, this);
 
-				if (urlTitle == null) {
-					query.append("urlTitle IS NULL");
-				}
-				else {
-					query.append("urlTitle = ?");
-				}
+        if (list == null) {
+            Session session = null;
 
-				query.append(" ");
+            try {
+                session = openSession();
 
-				query.append("ORDER BY ");
+                StringBuilder query = new StringBuilder();
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				Query q = session.createQuery(query.toString());
+                query.append("groupId = ?");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append(" AND ");
 
-				qPos.add(groupId);
+                if (urlTitle == null) {
+                    query.append("urlTitle IS NULL");
+                } else {
+                    query.append("urlTitle = ?");
+                }
 
-				if (urlTitle != null) {
-					qPos.add(urlTitle);
-				}
+                query.append(" ");
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-				cacheResult(list);
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_UT, finderArgs,
-					list);
+                Query q = session.createQuery(query.toString());
 
-				closeSession(session);
-			}
-		}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-		return list;
-	}
+                qPos.add(groupId);
 
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
-		int start, int end) throws SystemException {
-		return findByG_UT(groupId, urlTitle, start, end, null);
-	}
+                if (urlTitle != null) {
+                    qPos.add(urlTitle);
+                }
 
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
-		int start, int end, OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				urlTitle,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_UT,
-				finderArgs, this);
+                cacheResult(list);
 
-		if (list == null) {
-			Session session = null;
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_UT,
+                    finderArgs, list);
 
-			try {
-				session = openSession();
+                closeSession(session);
+            }
+        }
 
-				StringBuilder query = new StringBuilder();
+        return list;
+    }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+    public JournalArticle findByG_UT_First(long groupId, String urlTitle,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByG_UT(groupId, urlTitle, 0, 1, obc);
 
-				query.append("groupId = ?");
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				query.append(" AND ");
+            msg.append("No JournalArticle exists with the key {");
 
-				if (urlTitle == null) {
-					query.append("urlTitle IS NULL");
-				}
-				else {
-					query.append("urlTitle = ?");
-				}
+            msg.append("groupId=" + groupId);
 
-				query.append(" ");
+            msg.append(", ");
+            msg.append("urlTitle=" + urlTitle);
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				else {
-					query.append("ORDER BY ");
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+    public JournalArticle findByG_UT_Last(long groupId, String urlTitle,
+        OrderByComparator obc) throws NoSuchArticleException, SystemException {
+        int count = countByG_UT(groupId, urlTitle);
 
-				Query q = session.createQuery(query.toString());
+        List<JournalArticle> list = findByG_UT(groupId, urlTitle, count - 1,
+                count, obc);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				qPos.add(groupId);
+            msg.append("No JournalArticle exists with the key {");
 
-				if (urlTitle != null) {
-					qPos.add(urlTitle);
-				}
+            msg.append("groupId=" + groupId);
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+            msg.append(", ");
+            msg.append("urlTitle=" + urlTitle);
 
-				cacheResult(list);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_UT,
-					finderArgs, list);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				closeSession(session);
-			}
-		}
+    public JournalArticle[] findByG_UT_PrevAndNext(long id, long groupId,
+        String urlTitle, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-		return list;
-	}
+        int count = countByG_UT(groupId, urlTitle);
 
-	public JournalArticle findByG_UT_First(long groupId, String urlTitle,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByG_UT(groupId, urlTitle, 0, 1, obc);
+        Session session = null;
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        try {
+            session = openSession();
 
-			msg.append("No JournalArticle exists with the key {");
+            StringBuilder query = new StringBuilder();
 
-			msg.append("groupId=" + groupId);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			msg.append(", ");
-			msg.append("urlTitle=" + urlTitle);
+            query.append("groupId = ?");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            query.append(" AND ");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            if (urlTitle == null) {
+                query.append("urlTitle IS NULL");
+            } else {
+                query.append("urlTitle = ?");
+            }
 
-	public JournalArticle findByG_UT_Last(long groupId, String urlTitle,
-		OrderByComparator obc) throws NoSuchArticleException, SystemException {
-		int count = countByG_UT(groupId, urlTitle);
+            query.append(" ");
 
-		List<JournalArticle> list = findByG_UT(groupId, urlTitle, count - 1,
-				count, obc);
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-			msg.append("No JournalArticle exists with the key {");
+            Query q = session.createQuery(query.toString());
 
-			msg.append("groupId=" + groupId);
+            QueryPos qPos = QueryPos.getInstance(q);
 
-			msg.append(", ");
-			msg.append("urlTitle=" + urlTitle);
+            qPos.add(groupId);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            if (urlTitle != null) {
+                qPos.add(urlTitle);
+            }
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-	public JournalArticle[] findByG_UT_PrevAndNext(long id, long groupId,
-		String urlTitle, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-		int count = countByG_UT(groupId, urlTitle);
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-		Session session = null;
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-		try {
-			session = openSession();
+    public JournalArticle findByG_A_V(long groupId, String articleId,
+        double version) throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = fetchByG_A_V(groupId, articleId, version);
 
-			StringBuilder query = new StringBuilder();
+        if (journalArticle == null) {
+            StringBuilder msg = new StringBuilder();
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+            msg.append("No JournalArticle exists with the key {");
 
-			query.append("groupId = ?");
+            msg.append("groupId=" + groupId);
 
-			query.append(" AND ");
+            msg.append(", ");
+            msg.append("articleId=" + articleId);
 
-			if (urlTitle == null) {
-				query.append("urlTitle IS NULL");
-			}
-			else {
-				query.append("urlTitle = ?");
-			}
+            msg.append(", ");
+            msg.append("version=" + version);
 
-			query.append(" ");
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
 
-			else {
-				query.append("ORDER BY ");
+            throw new NoSuchArticleException(msg.toString());
+        }
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+        return journalArticle;
+    }
 
-			Query q = session.createQuery(query.toString());
+    public JournalArticle fetchByG_A_V(long groupId, String articleId,
+        double version) throws SystemException {
+        return fetchByG_A_V(groupId, articleId, version, true);
+    }
 
-			QueryPos qPos = QueryPos.getInstance(q);
+    public JournalArticle fetchByG_A_V(long groupId, String articleId,
+        double version, boolean retrieveFromCache) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId, new Double(version)
+            };
 
-			qPos.add(groupId);
+        Object result = null;
 
-			if (urlTitle != null) {
-				qPos.add(urlTitle);
-			}
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_A_V,
+                    finderArgs, this);
+        }
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+        if (result == null) {
+            Session session = null;
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+            try {
+                session = openSession();
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                StringBuilder query = new StringBuilder();
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public JournalArticle findByG_A_V(long groupId, String articleId,
-		double version) throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = fetchByG_A_V(groupId, articleId, version);
+                query.append("groupId = ?");
 
-		if (journalArticle == null) {
-			StringBuilder msg = new StringBuilder();
+                query.append(" AND ");
 
-			msg.append("No JournalArticle exists with the key {");
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-			msg.append("groupId=" + groupId);
+                query.append(" AND ");
 
-			msg.append(", ");
-			msg.append("articleId=" + articleId);
+                query.append("version = ?");
 
-			msg.append(", ");
-			msg.append("version=" + version);
+                query.append(" ");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+                query.append("ORDER BY ");
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-			throw new NoSuchArticleException(msg.toString());
-		}
+                Query q = session.createQuery(query.toString());
 
-		return journalArticle;
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	public JournalArticle fetchByG_A_V(long groupId, String articleId,
-		double version) throws SystemException {
-		return fetchByG_A_V(groupId, articleId, version, true);
-	}
+                qPos.add(groupId);
 
-	public JournalArticle fetchByG_A_V(long groupId, String articleId,
-		double version, boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId, new Double(version)
-			};
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-		Object result = null;
+                qPos.add(version);
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_A_V,
-					finderArgs, this);
-		}
+                List<JournalArticle> list = q.list();
 
-		if (result == null) {
-			Session session = null;
+                result = list;
 
-			try {
-				session = openSession();
+                JournalArticle journalArticle = null;
 
-				StringBuilder query = new StringBuilder();
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
+                        finderArgs, list);
+                } else {
+                    journalArticle = list.get(0);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                    cacheResult(journalArticle);
 
-				query.append("groupId = ?");
+                    if ((journalArticle.getGroupId() != groupId) ||
+                            (journalArticle.getArticleId() == null) ||
+                            !journalArticle.getArticleId().equals(articleId) ||
+                            (journalArticle.getVersion() != version)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
+                            finderArgs, journalArticle);
+                    }
+                }
 
-				query.append(" AND ");
+                return journalArticle;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (result == null) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
+                        finderArgs, new ArrayList<JournalArticle>());
+                }
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+                closeSession(session);
+            }
+        } else {
+            if (result instanceof List) {
+                return null;
+            } else {
+                return (JournalArticle) result;
+            }
+        }
+    }
 
-				query.append(" AND ");
+    public List<JournalArticle> findByG_A_A(long groupId, String articleId,
+        boolean approved) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId, Boolean.valueOf(approved)
+            };
 
-				query.append("version = ?");
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_A_A,
+                finderArgs, this);
 
-				query.append(" ");
+        if (list == null) {
+            Session session = null;
 
-				query.append("ORDER BY ");
+            try {
+                session = openSession();
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+                StringBuilder query = new StringBuilder();
 
-				Query q = session.createQuery(query.toString());
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append("groupId = ?");
 
-				qPos.add(groupId);
+                query.append(" AND ");
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-				qPos.add(version);
+                query.append(" AND ");
 
-				List<JournalArticle> list = q.list();
+                query.append("approved = ?");
 
-				result = list;
+                query.append(" ");
 
-				JournalArticle journalArticle = null;
+                query.append("ORDER BY ");
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
-						finderArgs, list);
-				}
-				else {
-					journalArticle = list.get(0);
+                query.append("articleId ASC, ");
+                query.append("version DESC");
 
-					cacheResult(journalArticle);
+                Query q = session.createQuery(query.toString());
 
-					if ((journalArticle.getGroupId() != groupId) ||
-							(journalArticle.getArticleId() == null) ||
-							!journalArticle.getArticleId().equals(articleId) ||
-							(journalArticle.getVersion() != version)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
-							finderArgs, journalArticle);
-					}
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				return journalArticle;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_A_V,
-						finderArgs, new ArrayList<JournalArticle>());
-				}
+                qPos.add(groupId);
 
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List) {
-				return null;
-			}
-			else {
-				return (JournalArticle)result;
-			}
-		}
-	}
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-	public List<JournalArticle> findByG_A_A(long groupId, String articleId,
-		boolean approved) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId, Boolean.valueOf(approved)
-			};
+                qPos.add(approved);
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_A_A,
-				finderArgs, this);
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-		if (list == null) {
-			Session session = null;
+                cacheResult(list);
 
-			try {
-				session = openSession();
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_A_A,
+                    finderArgs, list);
 
-				StringBuilder query = new StringBuilder();
+                closeSession(session);
+            }
+        }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+        return list;
+    }
 
-				query.append("groupId = ?");
+    public List<JournalArticle> findByG_A_A(long groupId, String articleId,
+        boolean approved, int start, int end) throws SystemException {
+        return findByG_A_A(groupId, articleId, approved, start, end, null);
+    }
 
-				query.append(" AND ");
+    public List<JournalArticle> findByG_A_A(long groupId, String articleId,
+        boolean approved, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId, Boolean.valueOf(approved),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_A_A,
+                finderArgs, this);
 
-				query.append(" AND ");
+        if (list == null) {
+            Session session = null;
 
-				query.append("approved = ?");
+            try {
+                session = openSession();
 
-				query.append(" ");
+                StringBuilder query = new StringBuilder();
 
-				query.append("ORDER BY ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
+                query.append("groupId = ?");
 
-				Query q = session.createQuery(query.toString());
+                query.append(" AND ");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-				qPos.add(groupId);
+                query.append(" AND ");
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+                query.append("approved = ?");
 
-				qPos.add(approved);
+                query.append(" ");
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-				cacheResult(list);
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_A_A,
-					finderArgs, list);
+                Query q = session.createQuery(query.toString());
 
-				closeSession(session);
-			}
-		}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-		return list;
-	}
+                qPos.add(groupId);
 
-	public List<JournalArticle> findByG_A_A(long groupId, String articleId,
-		boolean approved, int start, int end) throws SystemException {
-		return findByG_A_A(groupId, articleId, approved, start, end, null);
-	}
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-	public List<JournalArticle> findByG_A_A(long groupId, String articleId,
-		boolean approved, int start, int end, OrderByComparator obc)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId, Boolean.valueOf(approved),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                qPos.add(approved);
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_G_A_A,
-				finderArgs, this);
+                list = (List<JournalArticle>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-		if (list == null) {
-			Session session = null;
+                cacheResult(list);
 
-			try {
-				session = openSession();
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_A_A,
+                    finderArgs, list);
 
-				StringBuilder query = new StringBuilder();
+                closeSession(session);
+            }
+        }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+        return list;
+    }
 
-				query.append("groupId = ?");
+    public JournalArticle findByG_A_A_First(long groupId, String articleId,
+        boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        List<JournalArticle> list = findByG_A_A(groupId, articleId, approved,
+                0, 1, obc);
 
-				query.append(" AND ");
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+            msg.append("No JournalArticle exists with the key {");
 
-				query.append(" AND ");
+            msg.append("groupId=" + groupId);
 
-				query.append("approved = ?");
+            msg.append(", ");
+            msg.append("articleId=" + articleId);
 
-				query.append(" ");
+            msg.append(", ");
+            msg.append("approved=" + approved);
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				else {
-					query.append("ORDER BY ");
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+    public JournalArticle findByG_A_A_Last(long groupId, String articleId,
+        boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        int count = countByG_A_A(groupId, articleId, approved);
 
-				Query q = session.createQuery(query.toString());
+        List<JournalArticle> list = findByG_A_A(groupId, articleId, approved,
+                count - 1, count, obc);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				qPos.add(groupId);
+            msg.append("No JournalArticle exists with the key {");
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+            msg.append("groupId=" + groupId);
 
-				qPos.add(approved);
+            msg.append(", ");
+            msg.append("articleId=" + articleId);
 
-				list = (List<JournalArticle>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+            msg.append(", ");
+            msg.append("approved=" + approved);
 
-				cacheResult(list);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_G_A_A,
-					finderArgs, list);
+            throw new NoSuchArticleException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-				closeSession(session);
-			}
-		}
+    public JournalArticle[] findByG_A_A_PrevAndNext(long id, long groupId,
+        String articleId, boolean approved, OrderByComparator obc)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByPrimaryKey(id);
 
-		return list;
-	}
+        int count = countByG_A_A(groupId, articleId, approved);
 
-	public JournalArticle findByG_A_A_First(long groupId, String articleId,
-		boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		List<JournalArticle> list = findByG_A_A(groupId, articleId, approved,
-				0, 1, obc);
+        Session session = null;
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        try {
+            session = openSession();
 
-			msg.append("No JournalArticle exists with the key {");
+            StringBuilder query = new StringBuilder();
 
-			msg.append("groupId=" + groupId);
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			msg.append(", ");
-			msg.append("articleId=" + articleId);
+            query.append("groupId = ?");
 
-			msg.append(", ");
-			msg.append("approved=" + approved);
+            query.append(" AND ");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            if (articleId == null) {
+                query.append("articleId IS NULL");
+            } else {
+                query.append("articleId = ?");
+            }
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            query.append(" AND ");
 
-	public JournalArticle findByG_A_A_Last(long groupId, String articleId,
-		boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		int count = countByG_A_A(groupId, articleId, approved);
+            query.append("approved = ?");
 
-		List<JournalArticle> list = findByG_A_A(groupId, articleId, approved,
-				count - 1, count, obc);
+            query.append(" ");
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-			msg.append("No JournalArticle exists with the key {");
+                query.append("articleId ASC, ");
+                query.append("version DESC");
+            }
 
-			msg.append("groupId=" + groupId);
+            Query q = session.createQuery(query.toString());
 
-			msg.append(", ");
-			msg.append("articleId=" + articleId);
+            QueryPos qPos = QueryPos.getInstance(q);
 
-			msg.append(", ");
-			msg.append("approved=" + approved);
+            qPos.add(groupId);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+            if (articleId != null) {
+                qPos.add(articleId);
+            }
 
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+            qPos.add(approved);
 
-	public JournalArticle[] findByG_A_A_PrevAndNext(long id, long groupId,
-		String articleId, boolean approved, OrderByComparator obc)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByPrimaryKey(id);
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalArticle);
 
-		int count = countByG_A_A(groupId, articleId, approved);
+            JournalArticle[] array = new JournalArticleImpl[3];
 
-		Session session = null;
+            array[0] = (JournalArticle) objArray[0];
+            array[1] = (JournalArticle) objArray[1];
+            array[2] = (JournalArticle) objArray[2];
 
-		try {
-			session = openSession();
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			StringBuilder query = new StringBuilder();
+    public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+        throws SystemException {
+        Session session = null;
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+        try {
+            session = openSession();
 
-			query.append("groupId = ?");
+            dynamicQuery.compile(session);
 
-			query.append(" AND ");
+            return dynamicQuery.list();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			if (articleId == null) {
-				query.append("articleId IS NULL");
-			}
-			else {
-				query.append("articleId = ?");
-			}
+    public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+        int start, int end) throws SystemException {
+        Session session = null;
 
-			query.append(" AND ");
+        try {
+            session = openSession();
 
-			query.append("approved = ?");
+            dynamicQuery.setLimit(start, end);
 
-			query.append(" ");
+            dynamicQuery.compile(session);
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+            return dynamicQuery.list();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-			else {
-				query.append("ORDER BY ");
+    public List<JournalArticle> findAll() throws SystemException {
+        return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+    }
 
-				query.append("articleId ASC, ");
-				query.append("version DESC");
-			}
+    public List<JournalArticle> findAll(int start, int end)
+        throws SystemException {
+        return findAll(start, end, null);
+    }
 
-			Query q = session.createQuery(query.toString());
+    public List<JournalArticle> findAll(int start, int end,
+        OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-			QueryPos qPos = QueryPos.getInstance(q);
+        List<JournalArticle> list = (List<JournalArticle>) FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+                finderArgs, this);
 
-			qPos.add(groupId);
+        if (list == null) {
+            Session session = null;
 
-			if (articleId != null) {
-				qPos.add(articleId);
-			}
+            try {
+                session = openSession();
 
-			qPos.add(approved);
+                StringBuilder query = new StringBuilder();
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalArticle);
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle ");
 
-			JournalArticle[] array = new JournalArticleImpl[3];
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-			array[0] = (JournalArticle)objArray[0];
-			array[1] = (JournalArticle)objArray[1];
-			array[2] = (JournalArticle)objArray[2];
+                    query.append("articleId ASC, ");
+                    query.append("version DESC");
+                }
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                Query q = session.createQuery(query.toString());
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
+                if (obc == null) {
+                    list = (List<JournalArticle>) QueryUtil.list(q,
+                            getDialect(), start, end, false);
 
-		try {
-			session = openSession();
+                    Collections.sort(list);
+                } else {
+                    list = (List<JournalArticle>) QueryUtil.list(q,
+                            getDialect(), start, end);
+                }
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalArticle>();
+                }
 
-			dynamicQuery.compile(session);
+                cacheResult(list);
 
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
+                closeSession(session);
+            }
+        }
 
-		try {
-			session = openSession();
+        return list;
+    }
 
-			dynamicQuery.setLimit(start, end);
+    public void removeByUuid(String uuid) throws SystemException {
+        for (JournalArticle journalArticle : findByUuid(uuid)) {
+            remove(journalArticle);
+        }
+    }
 
-			dynamicQuery.compile(session);
+    public void removeByUUID_G(String uuid, long groupId)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByUUID_G(uuid, groupId);
 
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+        remove(journalArticle);
+    }
 
-	public List<JournalArticle> findAll() throws SystemException {
-		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
+    public void removeByGroupId(long groupId) throws SystemException {
+        for (JournalArticle journalArticle : findByGroupId(groupId)) {
+            remove(journalArticle);
+        }
+    }
 
-	public List<JournalArticle> findAll(int start, int end)
-		throws SystemException {
-		return findAll(start, end, null);
-	}
+    public void removeByCompanyId(long companyId) throws SystemException {
+        for (JournalArticle journalArticle : findByCompanyId(companyId)) {
+            remove(journalArticle);
+        }
+    }
 
-	public List<JournalArticle> findAll(int start, int end,
-		OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+    public void removeBySmallImageId(long smallImageId)
+        throws SystemException {
+        for (JournalArticle journalArticle : findBySmallImageId(smallImageId)) {
+            remove(journalArticle);
+        }
+    }
 
-		List<JournalArticle> list = (List<JournalArticle>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
-				finderArgs, this);
+    public void removeByR_A(long resourcePrimKey, boolean approved)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByR_A(resourcePrimKey, approved)) {
+            remove(journalArticle);
+        }
+    }
 
-		if (list == null) {
-			Session session = null;
+    public void removeByG_A(long groupId, String articleId)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByG_A(groupId, articleId)) {
+            remove(journalArticle);
+        }
+    }
 
-			try {
-				session = openSession();
+    public void removeByG_S(long groupId, String structureId)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByG_S(groupId, structureId)) {
+            remove(journalArticle);
+        }
+    }
 
-				StringBuilder query = new StringBuilder();
+    public void removeByG_T(long groupId, String templateId)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByG_T(groupId, templateId)) {
+            remove(journalArticle);
+        }
+    }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle ");
+    public void removeByG_UT(long groupId, String urlTitle)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByG_UT(groupId, urlTitle)) {
+            remove(journalArticle);
+        }
+    }
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+    public void removeByG_A_V(long groupId, String articleId, double version)
+        throws NoSuchArticleException, SystemException {
+        JournalArticle journalArticle = findByG_A_V(groupId, articleId, version);
 
-				else {
-					query.append("ORDER BY ");
+        remove(journalArticle);
+    }
 
-					query.append("articleId ASC, ");
-					query.append("version DESC");
-				}
+    public void removeByG_A_A(long groupId, String articleId, boolean approved)
+        throws SystemException {
+        for (JournalArticle journalArticle : findByG_A_A(groupId, articleId,
+                approved)) {
+            remove(journalArticle);
+        }
+    }
 
-				Query q = session.createQuery(query.toString());
+    public void removeAll() throws SystemException {
+        for (JournalArticle journalArticle : findAll()) {
+            remove(journalArticle);
+        }
+    }
 
-				if (obc == null) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+    public int countByUuid(String uuid) throws SystemException {
+        Object[] finderArgs = new Object[] { uuid };
 
-					Collections.sort(list);
-				}
-				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
-				}
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalArticle>();
-				}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+                finderArgs, this);
 
-				cacheResult(list);
+        if (count == null) {
+            Session session = null;
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+            try {
+                session = openSession();
 
-				closeSession(session);
-			}
-		}
+                StringBuilder query = new StringBuilder();
 
-		return list;
-	}
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public void removeByUuid(String uuid) throws SystemException {
-		for (JournalArticle journalArticle : findByUuid(uuid)) {
-			remove(journalArticle);
-		}
-	}
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
 
-	public void removeByUUID_G(String uuid, long groupId)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByUUID_G(uuid, groupId);
+                query.append(" ");
 
-		remove(journalArticle);
-	}
+                Query q = session.createQuery(query.toString());
 
-	public void removeByGroupId(long groupId) throws SystemException {
-		for (JournalArticle journalArticle : findByGroupId(groupId)) {
-			remove(journalArticle);
-		}
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	public void removeByCompanyId(long companyId) throws SystemException {
-		for (JournalArticle journalArticle : findByCompanyId(companyId)) {
-			remove(journalArticle);
-		}
-	}
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
 
-	public void removeBySmallImageId(long smallImageId)
-		throws SystemException {
-		for (JournalArticle journalArticle : findBySmallImageId(smallImageId)) {
-			remove(journalArticle);
-		}
-	}
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-	public void removeByR_A(long resourcePrimKey, boolean approved)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByR_A(resourcePrimKey, approved)) {
-			remove(journalArticle);
-		}
-	}
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+                    finderArgs, count);
 
-	public void removeByG_A(long groupId, String articleId)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByG_A(groupId, articleId)) {
-			remove(journalArticle);
-		}
-	}
+                closeSession(session);
+            }
+        }
 
-	public void removeByG_S(long groupId, String structureId)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByG_S(groupId, structureId)) {
-			remove(journalArticle);
-		}
-	}
+        return count.intValue();
+    }
 
-	public void removeByG_T(long groupId, String templateId)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByG_T(groupId, templateId)) {
-			remove(journalArticle);
-		}
-	}
+    public int countByUUID_G(String uuid, long groupId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
 
-	public void removeByG_UT(long groupId, String urlTitle)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByG_UT(groupId, urlTitle)) {
-			remove(journalArticle);
-		}
-	}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
+                finderArgs, this);
 
-	public void removeByG_A_V(long groupId, String articleId, double version)
-		throws NoSuchArticleException, SystemException {
-		JournalArticle journalArticle = findByG_A_V(groupId, articleId, version);
+        if (count == null) {
+            Session session = null;
 
-		remove(journalArticle);
-	}
+            try {
+                session = openSession();
 
-	public void removeByG_A_A(long groupId, String articleId, boolean approved)
-		throws SystemException {
-		for (JournalArticle journalArticle : findByG_A_A(groupId, articleId,
-				approved)) {
-			remove(journalArticle);
-		}
-	}
+                StringBuilder query = new StringBuilder();
 
-	public void removeAll() throws SystemException {
-		for (JournalArticle journalArticle : findAll()) {
-			remove(journalArticle);
-		}
-	}
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public int countByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
-				finderArgs, this);
+                query.append(" AND ");
 
-		if (count == null) {
-			Session session = null;
+                query.append("groupId = ?");
 
-			try {
-				session = openSession();
+                query.append(" ");
 
-				StringBuilder query = new StringBuilder();
+                Query q = session.createQuery(query.toString());
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
 
-				query.append(" ");
+                qPos.add(groupId);
 
-				Query q = session.createQuery(query.toString());
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
+                    finderArgs, count);
 
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
-					finderArgs, count);
+    public int countByGroupId(long groupId) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId) };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                Query q = session.createQuery(query.toString());
 
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append(" AND ");
+                qPos.add(groupId);
 
-				query.append("groupId = ?");
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				query.append(" ");
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
+                    finderArgs, count);
 
-				Query q = session.createQuery(query.toString());
+                closeSession(session);
+            }
+        }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+        return count.intValue();
+    }
 
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
+    public int countByCompanyId(long companyId) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyId) };
 
-				qPos.add(groupId);
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
+                finderArgs, this);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        if (count == null) {
+            Session session = null;
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
-					finderArgs, count);
+            try {
+                session = openSession();
 
-				closeSession(session);
-			}
-		}
+                StringBuilder query = new StringBuilder();
 
-		return count.intValue();
-	}
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public int countByGroupId(long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
+                query.append("companyId = ?");
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
-				finderArgs, this);
+                query.append(" ");
 
-		if (count == null) {
-			Session session = null;
+                Query q = session.createQuery(query.toString());
 
-			try {
-				session = openSession();
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				StringBuilder query = new StringBuilder();
+                qPos.add(companyId);
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				query.append("groupId = ?");
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+                    finderArgs, count);
 
-				query.append(" ");
+                closeSession(session);
+            }
+        }
 
-				Query q = session.createQuery(query.toString());
+        return count.intValue();
+    }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+    public int countBySmallImageId(long smallImageId) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(smallImageId) };
 
-				qPos.add(groupId);
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SMALLIMAGEID,
+                finderArgs, this);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        if (count == null) {
+            Session session = null;
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
-					finderArgs, count);
+            try {
+                session = openSession();
 
-				closeSession(session);
-			}
-		}
+                StringBuilder query = new StringBuilder();
 
-		return count.intValue();
-	}
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public int countByCompanyId(long companyId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(companyId) };
+                query.append("smallImageId = ?");
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
-				finderArgs, this);
+                query.append(" ");
 
-		if (count == null) {
-			Session session = null;
+                Query q = session.createQuery(query.toString());
 
-			try {
-				session = openSession();
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				StringBuilder query = new StringBuilder();
+                qPos.add(smallImageId);
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				query.append("companyId = ?");
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_SMALLIMAGEID,
+                    finderArgs, count);
 
-				query.append(" ");
+                closeSession(session);
+            }
+        }
 
-				Query q = session.createQuery(query.toString());
+        return count.intValue();
+    }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+    public int countByR_A(long resourcePrimKey, boolean approved)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(resourcePrimKey), Boolean.valueOf(approved)
+            };
 
-				qPos.add(companyId);
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_A,
+                finderArgs, this);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        if (count == null) {
+            Session session = null;
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
-					finderArgs, count);
+            try {
+                session = openSession();
 
-				closeSession(session);
-			}
-		}
+                StringBuilder query = new StringBuilder();
 
-		return count.intValue();
-	}
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-	public int countBySmallImageId(long smallImageId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(smallImageId) };
+                query.append("resourcePrimKey = ?");
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_SMALLIMAGEID,
-				finderArgs, this);
+                query.append(" AND ");
 
-		if (count == null) {
-			Session session = null;
+                query.append("approved = ?");
 
-			try {
-				session = openSession();
+                query.append(" ");
 
-				StringBuilder query = new StringBuilder();
+                Query q = session.createQuery(query.toString());
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append("smallImageId = ?");
+                qPos.add(resourcePrimKey);
 
-				query.append(" ");
+                qPos.add(approved);
 
-				Query q = session.createQuery(query.toString());
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_A, finderArgs,
+                    count);
 
-				qPos.add(smallImageId);
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_SMALLIMAGEID,
-					finderArgs, count);
+    public int countByG_A(long groupId, String articleId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), articleId };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByR_A(long resourcePrimKey, boolean approved)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(resourcePrimKey), Boolean.valueOf(approved)
-			};
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_A,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" AND ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-				query.append("resourcePrimKey = ?");
+                query.append(" ");
 
-				query.append(" AND ");
+                Query q = session.createQuery(query.toString());
 
-				query.append("approved = ?");
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append(" ");
+                qPos.add(groupId);
 
-				Query q = session.createQuery(query.toString());
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				qPos.add(resourcePrimKey);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A, finderArgs,
+                    count);
 
-				qPos.add(approved);
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_A, finderArgs,
-					count);
+    public int countByG_S(long groupId, String structureId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), structureId };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_S,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByG_A(long groupId, String articleId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), articleId };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" AND ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (structureId == null) {
+                    query.append("structureId IS NULL");
+                } else {
+                    query.append("structureId = ?");
+                }
 
-				query.append("groupId = ?");
+                query.append(" ");
 
-				query.append(" AND ");
+                Query q = session.createQuery(query.toString());
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append(" ");
+                qPos.add(groupId);
 
-				Query q = session.createQuery(query.toString());
+                if (structureId != null) {
+                    qPos.add(structureId);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				qPos.add(groupId);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, finderArgs,
+                    count);
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A, finderArgs,
-					count);
+    public int countByG_T(long groupId, String templateId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), templateId };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_T,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByG_S(long groupId, String structureId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), structureId };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_S,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" AND ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (templateId == null) {
+                    query.append("templateId IS NULL");
+                } else {
+                    query.append("templateId = ?");
+                }
 
-				query.append("groupId = ?");
+                query.append(" ");
 
-				query.append(" AND ");
+                Query q = session.createQuery(query.toString());
 
-				if (structureId == null) {
-					query.append("structureId IS NULL");
-				}
-				else {
-					query.append("structureId = ?");
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append(" ");
+                qPos.add(groupId);
 
-				Query q = session.createQuery(query.toString());
+                if (templateId != null) {
+                    qPos.add(templateId);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				qPos.add(groupId);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_T, finderArgs,
+                    count);
 
-				if (structureId != null) {
-					qPos.add(structureId);
-				}
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, finderArgs,
-					count);
+    public int countByG_UT(long groupId, String urlTitle)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), urlTitle };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_UT,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByG_T(long groupId, String templateId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), templateId };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_T,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" AND ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (urlTitle == null) {
+                    query.append("urlTitle IS NULL");
+                } else {
+                    query.append("urlTitle = ?");
+                }
 
-				query.append("groupId = ?");
+                query.append(" ");
 
-				query.append(" AND ");
+                Query q = session.createQuery(query.toString());
 
-				if (templateId == null) {
-					query.append("templateId IS NULL");
-				}
-				else {
-					query.append("templateId = ?");
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				query.append(" ");
+                qPos.add(groupId);
 
-				Query q = session.createQuery(query.toString());
+                if (urlTitle != null) {
+                    qPos.add(urlTitle);
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				qPos.add(groupId);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_UT,
+                    finderArgs, count);
 
-				if (templateId != null) {
-					qPos.add(templateId);
-				}
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return count.intValue();
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_T, finderArgs,
-					count);
+    public int countByG_A_V(long groupId, String articleId, double version)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId, new Double(version)
+            };
 
-				closeSession(session);
-			}
-		}
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A_V,
+                finderArgs, this);
 
-		return count.intValue();
-	}
+        if (count == null) {
+            Session session = null;
 
-	public int countByG_UT(long groupId, String urlTitle)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), urlTitle };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_UT,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-			try {
-				session = openSession();
+                query.append("groupId = ?");
 
-				StringBuilder query = new StringBuilder();
+                query.append(" AND ");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-				query.append("groupId = ?");
+                query.append(" AND ");
 
-				query.append(" AND ");
+                query.append("version = ?");
 
-				if (urlTitle == null) {
-					query.append("urlTitle IS NULL");
-				}
-				else {
-					query.append("urlTitle = ?");
-				}
+                query.append(" ");
 
-				query.append(" ");
+                Query q = session.createQuery(query.toString());
 
-				Query q = session.createQuery(query.toString());
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                qPos.add(groupId);
 
-				qPos.add(groupId);
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-				if (urlTitle != null) {
-					qPos.add(urlTitle);
-				}
+                qPos.add(version);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_UT,
-					finderArgs, count);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A_V,
+                    finderArgs, count);
 
-				closeSession(session);
-			}
-		}
+                closeSession(session);
+            }
+        }
 
-		return count.intValue();
-	}
+        return count.intValue();
+    }
 
-	public int countByG_A_V(long groupId, String articleId, double version)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId, new Double(version)
-			};
+    public int countByG_A_A(long groupId, String articleId, boolean approved)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                articleId, Boolean.valueOf(approved)
+            };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A_V,
-				finderArgs, this);
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A_A,
+                finderArgs, this);
 
-		if (count == null) {
-			Session session = null;
+        if (count == null) {
+            Session session = null;
 
-			try {
-				session = openSession();
+            try {
+                session = openSession();
 
-				StringBuilder query = new StringBuilder();
+                StringBuilder query = new StringBuilder();
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalArticle WHERE ");
 
-				query.append("groupId = ?");
+                query.append("groupId = ?");
 
-				query.append(" AND ");
+                query.append(" AND ");
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+                if (articleId == null) {
+                    query.append("articleId IS NULL");
+                } else {
+                    query.append("articleId = ?");
+                }
 
-				query.append(" AND ");
+                query.append(" AND ");
 
-				query.append("version = ?");
+                query.append("approved = ?");
 
-				query.append(" ");
+                query.append(" ");
 
-				Query q = session.createQuery(query.toString());
+                Query q = session.createQuery(query.toString());
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(groupId);
+                qPos.add(groupId);
 
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
+                if (articleId != null) {
+                    qPos.add(articleId);
+                }
 
-				qPos.add(version);
+                qPos.add(approved);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A_V,
-					finderArgs, count);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A_A,
+                    finderArgs, count);
 
-				closeSession(session);
-			}
-		}
+                closeSession(session);
+            }
+        }
 
-		return count.intValue();
-	}
+        return count.intValue();
+    }
 
-	public int countByG_A_A(long groupId, String articleId, boolean approved)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				articleId, Boolean.valueOf(approved)
-			};
+    public int countAll() throws SystemException {
+        Object[] finderArgs = new Object[0];
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_A_A,
-				finderArgs, this);
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+                finderArgs, this);
 
-		if (count == null) {
-			Session session = null;
+        if (count == null) {
+            Session session = null;
 
-			try {
-				session = openSession();
+            try {
+                session = openSession();
 
-				StringBuilder query = new StringBuilder();
+                Query q = session.createQuery(
+                        "SELECT COUNT(*) FROM com.nss.portlet.journal.model.JournalArticle");
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalArticle WHERE ");
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				query.append("groupId = ?");
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+                    count);
 
-				query.append(" AND ");
+                closeSession(session);
+            }
+        }
 
-				if (articleId == null) {
-					query.append("articleId IS NULL");
-				}
-				else {
-					query.append("articleId = ?");
-				}
+        return count.intValue();
+    }
 
-				query.append(" AND ");
+    public void afterPropertiesSet() {
+        String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
+                    com.liferay.portal.util.PropsUtil.get(
+                        "value.object.listener.com.nss.portlet.journal.model.JournalArticle")));
 
-				query.append("approved = ?");
+        if (listenerClassNames.length > 0) {
+            try {
+                List<ModelListener<JournalArticle>> listenersList = new ArrayList<ModelListener<JournalArticle>>();
 
-				query.append(" ");
+                for (String listenerClassName : listenerClassNames) {
+                    listenersList.add((ModelListener<JournalArticle>) Class.forName(
+                            listenerClassName).newInstance());
+                }
 
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (articleId != null) {
-					qPos.add(articleId);
-				}
-
-				qPos.add(approved);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_A_A,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
-
-		if (count == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.portlet.journal.model.JournalArticle");
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	public void afterPropertiesSet() {
-		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					com.liferay.portal.util.PropsUtil.get(
-						"value.object.listener.com.liferay.portlet.journal.model.JournalArticle")));
-
-		if (listenerClassNames.length > 0) {
-			try {
-				List<ModelListener<JournalArticle>> listenersList = new ArrayList<ModelListener<JournalArticle>>();
-
-				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<JournalArticle>)Class.forName(
-							listenerClassName).newInstance());
-				}
-
-				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
-			}
-			catch (Exception e) {
-				_log.error(e);
-			}
-		}
-	}
-
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticlePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticlePersistence journalArticlePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence journalArticleImagePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence journalArticleResourcePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence journalContentSearchPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalFeedPersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalFeedPersistence journalFeedPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalStructurePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalStructurePersistence journalStructurePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence journalTemplatePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.CompanyPersistence.impl")
-	protected com.liferay.portal.service.persistence.CompanyPersistence companyPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ImagePersistence.impl")
-	protected com.liferay.portal.service.persistence.ImagePersistence imagePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.PortletPreferencesPersistence.impl")
-	protected com.liferay.portal.service.persistence.PortletPreferencesPersistence portletPreferencesPersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence.impl")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence.impl")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
-	@BeanReference(name = "com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence.impl")
-	protected com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence expandoValuePersistence;
-	@BeanReference(name = "com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence.impl")
-	protected com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence mbMessagePersistence;
-	@BeanReference(name = "com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence.impl")
-	protected com.liferay.portlet.ratings.service.persistence.RatingsStatsPersistence ratingsStatsPersistence;
-	@BeanReference(name = "com.liferay.portlet.tags.service.persistence.TagsAssetPersistence.impl")
-	protected com.liferay.portlet.tags.service.persistence.TagsAssetPersistence tagsAssetPersistence;
-	@BeanReference(name = "com.liferay.portlet.tags.service.persistence.TagsEntryPersistence.impl")
-	protected com.liferay.portlet.tags.service.persistence.TagsEntryPersistence tagsEntryPersistence;
-	private static Log _log = LogFactoryUtil.getLog(JournalArticlePersistenceImpl.class);
+                listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
+            } catch (Exception e) {
+                _log.error(e);
+            }
+        }
+    }
 }

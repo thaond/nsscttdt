@@ -59,6 +59,8 @@ public class CauTraLoiQAJSONSerializer {
 
         jsonObj.put("publishdate", publishdateJSON);
         jsonObj.put("publish", model.getPublish());
+        jsonObj.put("answerThroughWeb", model.getAnswerThroughWeb());
+        jsonObj.put("answerThroughEmail", model.getAnswerThroughEmail());
 
         return jsonObj;
     }

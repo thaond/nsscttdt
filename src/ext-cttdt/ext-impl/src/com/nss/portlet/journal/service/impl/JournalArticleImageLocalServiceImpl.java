@@ -24,10 +24,10 @@ package com.nss.portlet.journal.service.impl;
 
 import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
-import com.liferay.portlet.journal.DuplicateArticleImageIdException;
-import com.liferay.portlet.journal.NoSuchArticleImageException;
-import com.liferay.portlet.journal.model.JournalArticleImage;
-import com.liferay.portlet.journal.service.base.JournalArticleImageLocalServiceBaseImpl;
+import com.nss.portlet.journal.DuplicateArticleImageIdException;
+import com.nss.portlet.journal.NoSuchArticleImageException;
+import com.nss.portlet.journal.model.JournalArticleImage;
+import com.nss.portlet.journal.service.base.JournalArticleImageLocalServiceBaseImpl;
 
 import java.util.List;
 

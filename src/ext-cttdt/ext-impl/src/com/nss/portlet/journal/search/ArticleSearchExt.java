@@ -31,10 +31,10 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.search.ArticleDisplayTerms;
-import com.liferay.portlet.journal.search.ArticleSearchTerms;
-import com.liferay.portlet.journal.util.JournalUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.search.ArticleDisplayTerms;
+import com.nss.portlet.journal.search.ArticleSearchTerms;
+import com.nss.portlet.journal.util.JournalUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

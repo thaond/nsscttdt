@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.http;
 
 import com.liferay.portal.kernel.log.Log;
@@ -31,7 +9,8 @@ import com.liferay.portal.kernel.util.NullWrapper;
 import com.liferay.portal.security.auth.HttpPrincipal;
 import com.liferay.portal.service.http.TunnelUtil;
 
-import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateServiceUtil;
+
 
 /**
  * <a href="JournalTemplateServiceHttp.java.html"><b><i>View Source</i></b></a>
@@ -43,7 +22,7 @@ import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
  *
  * <p>
  * This class provides a HTTP utility for the
- * <code>com.liferay.portlet.journal.service.JournalTemplateServiceUtil</code> service
+ * <code>com.nss.portlet.journal.service.JournalTemplateServiceUtil</code> service
  * utility. The static methods of this class calls the same methods of the
  * service utility. However, the signatures are different because it requires an
  * additional <code>com.liferay.portal.security.auth.HttpPrincipal</code>
@@ -68,589 +47,573 @@ import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
  * @author Brian Wing Shun Chan
  *
  * @see com.liferay.portal.security.auth.HttpPrincipal
- * @see com.liferay.portlet.journal.service.JournalTemplateServiceUtil
- * @see com.liferay.portlet.journal.service.http.JournalTemplateServiceSoap
+ * @see com.nss.portlet.journal.service.JournalTemplateServiceUtil
+ * @see com.nss.portlet.journal.service.http.JournalTemplateServiceSoap
  *
  */
 public class JournalTemplateServiceHttp {
-	public static com.liferay.portlet.journal.model.JournalTemplate addTemplate(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
-		boolean autoTemplateId, java.lang.String structureId,
-		java.lang.String name, java.lang.String description,
-		java.lang.String xsl, boolean formatXsl, java.lang.String langType,
-		boolean cacheable,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
-
-			Object paramObj1 = templateId;
-
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
-
-			Object paramObj2 = new BooleanWrapper(autoTemplateId);
+    private static Log _log = LogFactoryUtil.getLog(JournalTemplateServiceHttp.class);
 
-			Object paramObj3 = structureId;
-
-			if (structureId == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+    public static com.nss.portlet.journal.model.JournalTemplate addTemplate(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
+        boolean autoTemplateId, java.lang.String structureId,
+        java.lang.String name, java.lang.String description,
+        java.lang.String xsl, boolean formatXsl, java.lang.String langType,
+        boolean cacheable,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
+
+            Object paramObj1 = templateId;
 
-			Object paramObj4 = name;
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (name == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj2 = new BooleanWrapper(autoTemplateId);
 
-			Object paramObj5 = description;
+            Object paramObj3 = structureId;
 
-			if (description == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            if (structureId == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj6 = xsl;
+            Object paramObj4 = name;
 
-			if (xsl == null) {
-				paramObj6 = new NullWrapper("java.lang.String");
-			}
+            if (name == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj7 = new BooleanWrapper(formatXsl);
+            Object paramObj5 = description;
 
-			Object paramObj8 = langType;
+            if (description == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			if (langType == null) {
-				paramObj8 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj6 = xsl;
 
-			Object paramObj9 = new BooleanWrapper(cacheable);
+            if (xsl == null) {
+                paramObj6 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj10 = serviceContext;
+            Object paramObj7 = new BooleanWrapper(formatXsl);
 
-			if (serviceContext == null) {
-				paramObj10 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj8 = langType;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"addTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10
-					});
+            if (langType == null) {
+                paramObj8 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            Object paramObj9 = new BooleanWrapper(cacheable);
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object paramObj10 = serviceContext;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            if (serviceContext == null) {
+                paramObj10 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "addTemplate",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10
+                    });
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            Object returnObj = null;
 
-			throw se;
-		}
-	}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-	public static com.liferay.portlet.journal.model.JournalTemplate addTemplate(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
-		boolean autoTemplateId, java.lang.String structureId,
-		java.lang.String name, java.lang.String description,
-		java.lang.String xsl, boolean formatXsl, java.lang.String langType,
-		boolean cacheable, boolean smallImage, java.lang.String smallImageURL,
-		java.io.File smallFile,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			Object paramObj1 = templateId;
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			Object paramObj2 = new BooleanWrapper(autoTemplateId);
+            throw se;
+        }
+    }
 
-			Object paramObj3 = structureId;
+    public static com.nss.portlet.journal.model.JournalTemplate addTemplate(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
+        boolean autoTemplateId, java.lang.String structureId,
+        java.lang.String name, java.lang.String description,
+        java.lang.String xsl, boolean formatXsl, java.lang.String langType,
+        boolean cacheable, boolean smallImage, java.lang.String smallImageURL,
+        java.io.File smallFile,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (structureId == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = templateId;
 
-			Object paramObj4 = name;
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (name == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj2 = new BooleanWrapper(autoTemplateId);
 
-			Object paramObj5 = description;
+            Object paramObj3 = structureId;
 
-			if (description == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            if (structureId == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj6 = xsl;
+            Object paramObj4 = name;
 
-			if (xsl == null) {
-				paramObj6 = new NullWrapper("java.lang.String");
-			}
+            if (name == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj7 = new BooleanWrapper(formatXsl);
+            Object paramObj5 = description;
 
-			Object paramObj8 = langType;
+            if (description == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			if (langType == null) {
-				paramObj8 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj6 = xsl;
 
-			Object paramObj9 = new BooleanWrapper(cacheable);
+            if (xsl == null) {
+                paramObj6 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj10 = new BooleanWrapper(smallImage);
+            Object paramObj7 = new BooleanWrapper(formatXsl);
 
-			Object paramObj11 = smallImageURL;
+            Object paramObj8 = langType;
 
-			if (smallImageURL == null) {
-				paramObj11 = new NullWrapper("java.lang.String");
-			}
+            if (langType == null) {
+                paramObj8 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj12 = smallFile;
+            Object paramObj9 = new BooleanWrapper(cacheable);
 
-			if (smallFile == null) {
-				paramObj12 = new NullWrapper("java.io.File");
-			}
+            Object paramObj10 = new BooleanWrapper(smallImage);
 
-			Object paramObj13 = serviceContext;
+            Object paramObj11 = smallImageURL;
 
-			if (serviceContext == null) {
-				paramObj13 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            if (smallImageURL == null) {
+                paramObj11 = new NullWrapper("java.lang.String");
+            }
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"addTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13
-					});
+            Object paramObj12 = smallFile;
 
-			Object returnObj = null;
+            if (smallFile == null) {
+                paramObj12 = new NullWrapper("java.io.File");
+            }
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object paramObj13 = serviceContext;
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            if (serviceContext == null) {
+                paramObj13 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "addTemplate",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10, paramObj11, paramObj12, paramObj13
+                    });
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            Object returnObj = null;
 
-			throw se;
-		}
-	}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-	public static com.liferay.portlet.journal.model.JournalTemplate copyTemplate(
-		HttpPrincipal httpPrincipal, long groupId,
-		java.lang.String oldTemplateId, java.lang.String newTemplateId,
-		boolean autoTemplateId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			Object paramObj1 = oldTemplateId;
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			if (oldTemplateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			Object paramObj2 = newTemplateId;
+            throw se;
+        }
+    }
 
-			if (newTemplateId == null) {
-				paramObj2 = new NullWrapper("java.lang.String");
-			}
+    public static com.nss.portlet.journal.model.JournalTemplate copyTemplate(
+        HttpPrincipal httpPrincipal, long groupId,
+        java.lang.String oldTemplateId, java.lang.String newTemplateId,
+        boolean autoTemplateId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			Object paramObj3 = new BooleanWrapper(autoTemplateId);
+            Object paramObj1 = oldTemplateId;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"copyTemplate",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+            if (oldTemplateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            Object paramObj2 = newTemplateId;
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            if (newTemplateId == null) {
+                paramObj2 = new NullWrapper("java.lang.String");
+            }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
+            Object paramObj3 = new BooleanWrapper(autoTemplateId);
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "copyTemplate",
+                    new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 
-			throw se;
-		}
-	}
+            Object returnObj = null;
 
-	public static void deleteTemplate(HttpPrincipal httpPrincipal,
-		long groupId, java.lang.String templateId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj1 = templateId;
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"deleteTemplate", new Object[] { paramObj0, paramObj1 });
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			try {
-				TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            throw se;
+        }
+    }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
-
-				throw new com.liferay.portal.SystemException(e);
-			}
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
-	public static java.util.List<com.liferay.portlet.journal.model.JournalTemplate> getStructureTemplates(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String structureId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
-
-			Object paramObj1 = structureId;
+    public static void deleteTemplate(HttpPrincipal httpPrincipal,
+        long groupId, java.lang.String templateId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (structureId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = templateId;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"getStructureTemplates",
-					new Object[] { paramObj0, paramObj1 });
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "deleteTemplate", new Object[] { paramObj0, paramObj1 });
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            try {
+                TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+                throw new com.liferay.portal.SystemException(e);
+            }
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			return (java.util.List<com.liferay.portlet.journal.model.JournalTemplate>)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            throw se;
+        }
+    }
 
-			throw se;
-		}
-	}
+    public static java.util.List<com.nss.portlet.journal.model.JournalTemplate> getStructureTemplates(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String structureId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-	public static com.liferay.portlet.journal.model.JournalTemplate getTemplate(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            Object paramObj1 = structureId;
 
-			Object paramObj1 = templateId;
+            if (structureId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "getStructureTemplates",
+                    new Object[] { paramObj0, paramObj1 });
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"getTemplate", new Object[] { paramObj0, paramObj1 });
+            Object returnObj = null;
 
-			Object returnObj = null;
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            return (java.util.List<com.nss.portlet.journal.model.JournalTemplate>) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            throw se;
+        }
+    }
 
-			throw se;
-		}
-	}
+    public static com.nss.portlet.journal.model.JournalTemplate getTemplate(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-	public static com.liferay.portlet.journal.model.JournalTemplate updateTemplate(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
-		java.lang.String structureId, java.lang.String name,
-		java.lang.String description, java.lang.String xsl, boolean formatXsl,
-		java.lang.String langType, boolean cacheable,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            Object paramObj1 = templateId;
 
-			Object paramObj1 = templateId;
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "getTemplate", new Object[] { paramObj0, paramObj1 });
 
-			Object paramObj2 = structureId;
+            Object returnObj = null;
 
-			if (structureId == null) {
-				paramObj2 = new NullWrapper("java.lang.String");
-			}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj3 = name;
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			if (name == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			Object paramObj4 = description;
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			if (description == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            throw se;
+        }
+    }
 
-			Object paramObj5 = xsl;
+    public static com.nss.portlet.journal.model.JournalTemplate updateTemplate(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
+        java.lang.String structureId, java.lang.String name,
+        java.lang.String description, java.lang.String xsl, boolean formatXsl,
+        java.lang.String langType, boolean cacheable,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (xsl == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = templateId;
 
-			Object paramObj6 = new BooleanWrapper(formatXsl);
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj7 = langType;
+            Object paramObj2 = structureId;
 
-			if (langType == null) {
-				paramObj7 = new NullWrapper("java.lang.String");
-			}
+            if (structureId == null) {
+                paramObj2 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj8 = new BooleanWrapper(cacheable);
+            Object paramObj3 = name;
 
-			Object paramObj9 = serviceContext;
+            if (name == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			if (serviceContext == null) {
-				paramObj9 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj4 = description;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"updateTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9
-					});
+            if (description == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            Object paramObj5 = xsl;
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            if (xsl == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            Object paramObj6 = new BooleanWrapper(formatXsl);
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            Object paramObj7 = langType;
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            if (langType == null) {
+                paramObj7 = new NullWrapper("java.lang.String");
+            }
 
-			throw se;
-		}
-	}
+            Object paramObj8 = new BooleanWrapper(cacheable);
 
-	public static com.liferay.portlet.journal.model.JournalTemplate updateTemplate(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
-		java.lang.String structureId, java.lang.String name,
-		java.lang.String description, java.lang.String xsl, boolean formatXsl,
-		java.lang.String langType, boolean cacheable, boolean smallImage,
-		java.lang.String smallImageURL, java.io.File smallFile,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.PortalException,
-			com.liferay.portal.SystemException {
-		try {
-			Object paramObj0 = new LongWrapper(groupId);
+            Object paramObj9 = serviceContext;
 
-			Object paramObj1 = templateId;
+            if (serviceContext == null) {
+                paramObj9 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
 
-			if (templateId == null) {
-				paramObj1 = new NullWrapper("java.lang.String");
-			}
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "updateTemplate",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9
+                    });
 
-			Object paramObj2 = structureId;
+            Object returnObj = null;
 
-			if (structureId == null) {
-				paramObj2 = new NullWrapper("java.lang.String");
-			}
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
 
-			Object paramObj3 = name;
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
 
-			if (name == null) {
-				paramObj3 = new NullWrapper("java.lang.String");
-			}
+                throw new com.liferay.portal.SystemException(e);
+            }
 
-			Object paramObj4 = description;
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
 
-			if (description == null) {
-				paramObj4 = new NullWrapper("java.lang.String");
-			}
+            throw se;
+        }
+    }
 
-			Object paramObj5 = xsl;
+    public static com.nss.portlet.journal.model.JournalTemplate updateTemplate(
+        HttpPrincipal httpPrincipal, long groupId, java.lang.String templateId,
+        java.lang.String structureId, java.lang.String name,
+        java.lang.String description, java.lang.String xsl, boolean formatXsl,
+        java.lang.String langType, boolean cacheable, boolean smallImage,
+        java.lang.String smallImageURL, java.io.File smallFile,
+        com.liferay.portal.service.ServiceContext serviceContext)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        try {
+            Object paramObj0 = new LongWrapper(groupId);
 
-			if (xsl == null) {
-				paramObj5 = new NullWrapper("java.lang.String");
-			}
+            Object paramObj1 = templateId;
 
-			Object paramObj6 = new BooleanWrapper(formatXsl);
+            if (templateId == null) {
+                paramObj1 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj7 = langType;
+            Object paramObj2 = structureId;
 
-			if (langType == null) {
-				paramObj7 = new NullWrapper("java.lang.String");
-			}
+            if (structureId == null) {
+                paramObj2 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj8 = new BooleanWrapper(cacheable);
+            Object paramObj3 = name;
 
-			Object paramObj9 = new BooleanWrapper(smallImage);
+            if (name == null) {
+                paramObj3 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj10 = smallImageURL;
+            Object paramObj4 = description;
 
-			if (smallImageURL == null) {
-				paramObj10 = new NullWrapper("java.lang.String");
-			}
+            if (description == null) {
+                paramObj4 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj11 = smallFile;
+            Object paramObj5 = xsl;
 
-			if (smallFile == null) {
-				paramObj11 = new NullWrapper("java.io.File");
-			}
+            if (xsl == null) {
+                paramObj5 = new NullWrapper("java.lang.String");
+            }
 
-			Object paramObj12 = serviceContext;
+            Object paramObj6 = new BooleanWrapper(formatXsl);
 
-			if (serviceContext == null) {
-				paramObj12 = new NullWrapper(
-						"com.liferay.portal.service.ServiceContext");
-			}
+            Object paramObj7 = langType;
 
-			MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
-					"updateTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12
-					});
+            if (langType == null) {
+                paramObj7 = new NullWrapper("java.lang.String");
+            }
 
-			Object returnObj = null;
+            Object paramObj8 = new BooleanWrapper(cacheable);
 
-			try {
-				returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.PortalException) {
-					throw (com.liferay.portal.PortalException)e;
-				}
+            Object paramObj9 = new BooleanWrapper(smallImage);
 
-				if (e instanceof com.liferay.portal.SystemException) {
-					throw (com.liferay.portal.SystemException)e;
-				}
+            Object paramObj10 = smallImageURL;
 
-				throw new com.liferay.portal.SystemException(e);
-			}
+            if (smallImageURL == null) {
+                paramObj10 = new NullWrapper("java.lang.String");
+            }
 
-			return (com.liferay.portlet.journal.model.JournalTemplate)returnObj;
-		}
-		catch (com.liferay.portal.SystemException se) {
-			_log.error(se, se);
+            Object paramObj11 = smallFile;
 
-			throw se;
-		}
-	}
+            if (smallFile == null) {
+                paramObj11 = new NullWrapper("java.io.File");
+            }
 
-	private static Log _log = LogFactoryUtil.getLog(JournalTemplateServiceHttp.class);
+            Object paramObj12 = serviceContext;
+
+            if (serviceContext == null) {
+                paramObj12 = new NullWrapper(
+                        "com.liferay.portal.service.ServiceContext");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(JournalTemplateServiceUtil.class.getName(),
+                    "updateTemplate",
+                    new Object[] {
+                        paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+                        paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+                        paramObj10, paramObj11, paramObj12
+                    });
+
+            Object returnObj = null;
+
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.PortalException) {
+                    throw (com.liferay.portal.PortalException) e;
+                }
+
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
+
+                throw new com.liferay.portal.SystemException(e);
+            }
+
+            return (com.nss.portlet.journal.model.JournalTemplate) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
+
+            throw se;
+        }
+    }
 }

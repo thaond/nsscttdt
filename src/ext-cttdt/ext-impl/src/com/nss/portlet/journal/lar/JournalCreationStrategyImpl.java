@@ -23,7 +23,7 @@
 package com.nss.portlet.journal.lar;
 
 import com.liferay.portal.lar.PortletDataContext;
-import com.liferay.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalArticle;
 
 /**
  * <a href="JournalCreationStrategyImpl.java.html"><b><i>View Source</i></b></a>
@@ -38,8 +38,8 @@ import com.liferay.portlet.journal.model.JournalArticle;
  *
  * @author Joel Kozikowski
  *
- * @see com.liferay.portlet.journal.lar.JournalContentPortletDataHandlerImpl
- * @see com.liferay.portlet.journal.lar.JournalPortletDataHandlerImpl
+ * @see com.nss.portlet.journal.lar.JournalContentPortletDataHandlerImpl
+ * @see com.nss.portlet.journal.lar.JournalPortletDataHandlerImpl
  *
  */
 public class JournalCreationStrategyImpl implements JournalCreationStrategy {

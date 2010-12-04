@@ -36,8 +36,8 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
 
 import java.util.Date;
 

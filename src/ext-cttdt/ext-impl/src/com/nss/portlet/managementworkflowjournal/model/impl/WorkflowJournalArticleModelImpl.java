@@ -18,6 +18,7 @@ import java.lang.reflect.Proxy;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -56,7 +57,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
             { "userId", new Integer(Types.BIGINT) },
             
 
-            { "roleId", new Integer(Types.BIGINT) },
+            { "userIds", new Integer(Types.VARCHAR) },
             
 
             { "processDefinitionId", new Integer(Types.BIGINT) },
@@ -68,12 +69,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
             { "resourcePrimkey", new Integer(Types.BIGINT) },
             
 
-            { "journalType", new Integer(Types.VARCHAR) },
+            { "countImageOfArticle", new Integer(Types.INTEGER) },
             
 
-            { "countImageOfArticle", new Integer(Types.INTEGER) }
+            { "datecomplete", new Integer(Types.TIMESTAMP) }
         };
-    public static final String TABLE_SQL_CREATE = "create table nss_workflow_journal_article (workflowJournalArticleId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,roleId LONG,processDefinitionId LONG,processInstanceId LONG,resourcePrimkey LONG,journalType VARCHAR(75) null,countImageOfArticle INTEGER)";
+    public static final String TABLE_SQL_CREATE = "create table nss_workflow_journal_article (workflowJournalArticleId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userIds VARCHAR(75) null,processDefinitionId LONG,processInstanceId LONG,resourcePrimkey LONG,countImageOfArticle INTEGER,datecomplete DATE null)";
     public static final String TABLE_SQL_DROP = "drop table nss_workflow_journal_article";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -90,7 +91,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
     private long _groupId;
     private long _companyId;
     private long _userId;
-    private long _roleId;
+    private String _userIds;
     private long _processDefinitionId;
     private long _processInstanceId;
     private long _originalProcessInstanceId;
@@ -98,8 +99,8 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
     private long _resourcePrimkey;
     private long _originalResourcePrimkey;
     private boolean _setOriginalResourcePrimkey;
-    private String _journalType;
     private int _countImageOfArticle;
+    private Date _datecomplete;
     private transient ExpandoBridge _expandoBridge;
 
     public WorkflowJournalArticleModelImpl() {
@@ -113,12 +114,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         model.setGroupId(soapModel.getGroupId());
         model.setCompanyId(soapModel.getCompanyId());
         model.setUserId(soapModel.getUserId());
-        model.setRoleId(soapModel.getRoleId());
+        model.setUserIds(soapModel.getUserIds());
         model.setProcessDefinitionId(soapModel.getProcessDefinitionId());
         model.setProcessInstanceId(soapModel.getProcessInstanceId());
         model.setResourcePrimkey(soapModel.getResourcePrimkey());
-        model.setJournalType(soapModel.getJournalType());
         model.setCountImageOfArticle(soapModel.getCountImageOfArticle());
+        model.setDatecomplete(soapModel.getDatecomplete());
 
         return model;
     }
@@ -178,12 +179,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         _userId = userId;
     }
 
-    public long getRoleId() {
-        return _roleId;
+    public String getUserIds() {
+        return GetterUtil.getString(_userIds);
     }
 
-    public void setRoleId(long roleId) {
-        _roleId = roleId;
+    public void setUserIds(String userIds) {
+        _userIds = userIds;
     }
 
     public long getProcessDefinitionId() {
@@ -230,20 +231,20 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         return _originalResourcePrimkey;
     }
 
-    public String getJournalType() {
-        return GetterUtil.getString(_journalType);
-    }
-
-    public void setJournalType(String journalType) {
-        _journalType = journalType;
-    }
-
     public int getCountImageOfArticle() {
         return _countImageOfArticle;
     }
 
     public void setCountImageOfArticle(int countImageOfArticle) {
         _countImageOfArticle = countImageOfArticle;
+    }
+
+    public Date getDatecomplete() {
+        return _datecomplete;
+    }
+
+    public void setDatecomplete(Date datecomplete) {
+        _datecomplete = datecomplete;
     }
 
     public WorkflowJournalArticle toEscapedModel() {
@@ -259,12 +260,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
             model.setGroupId(getGroupId());
             model.setCompanyId(getCompanyId());
             model.setUserId(getUserId());
-            model.setRoleId(getRoleId());
+            model.setUserIds(HtmlUtil.escape(getUserIds()));
             model.setProcessDefinitionId(getProcessDefinitionId());
             model.setProcessInstanceId(getProcessInstanceId());
             model.setResourcePrimkey(getResourcePrimkey());
-            model.setJournalType(HtmlUtil.escape(getJournalType()));
             model.setCountImageOfArticle(getCountImageOfArticle());
+            model.setDatecomplete(getDatecomplete());
 
             model = (WorkflowJournalArticle) Proxy.newProxyInstance(WorkflowJournalArticle.class.getClassLoader(),
                     new Class[] { WorkflowJournalArticle.class },
@@ -290,12 +291,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         clone.setGroupId(getGroupId());
         clone.setCompanyId(getCompanyId());
         clone.setUserId(getUserId());
-        clone.setRoleId(getRoleId());
+        clone.setUserIds(getUserIds());
         clone.setProcessDefinitionId(getProcessDefinitionId());
         clone.setProcessInstanceId(getProcessInstanceId());
         clone.setResourcePrimkey(getResourcePrimkey());
-        clone.setJournalType(getJournalType());
         clone.setCountImageOfArticle(getCountImageOfArticle());
+        clone.setDatecomplete(getDatecomplete());
 
         return clone;
     }
@@ -355,18 +356,18 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         sb.append(getCompanyId());
         sb.append(", userId=");
         sb.append(getUserId());
-        sb.append(", roleId=");
-        sb.append(getRoleId());
+        sb.append(", userIds=");
+        sb.append(getUserIds());
         sb.append(", processDefinitionId=");
         sb.append(getProcessDefinitionId());
         sb.append(", processInstanceId=");
         sb.append(getProcessInstanceId());
         sb.append(", resourcePrimkey=");
         sb.append(getResourcePrimkey());
-        sb.append(", journalType=");
-        sb.append(getJournalType());
         sb.append(", countImageOfArticle=");
         sb.append(getCountImageOfArticle());
+        sb.append(", datecomplete=");
+        sb.append(getDatecomplete());
         sb.append("}");
 
         return sb.toString();
@@ -397,8 +398,8 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         sb.append(getUserId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>roleId</column-name><column-value><![CDATA[");
-        sb.append(getRoleId());
+            "<column><column-name>userIds</column-name><column-value><![CDATA[");
+        sb.append(getUserIds());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>processDefinitionId</column-name><column-value><![CDATA[");
@@ -413,12 +414,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         sb.append(getResourcePrimkey());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>journalType</column-name><column-value><![CDATA[");
-        sb.append(getJournalType());
-        sb.append("]]></column-value></column>");
-        sb.append(
             "<column><column-name>countImageOfArticle</column-name><column-value><![CDATA[");
         sb.append(getCountImageOfArticle());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>datecomplete</column-name><column-value><![CDATA[");
+        sb.append(getDatecomplete());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

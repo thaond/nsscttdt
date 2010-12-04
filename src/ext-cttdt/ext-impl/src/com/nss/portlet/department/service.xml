@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.department">
+	<namespace>department</namespace>
+	<entity name="Department" local-service="true" remote-service="true"
+		table="pml_departments">
+
+		<!-- PK fields -->
+
+		<column name="departmentsId" type="String" primary="true" db-name="departmentsid"/>
+
+		<!-- Other fields -->
+
+		<column name="departmentsParentId" type="String" db-name="departmentsparentid"/>
+		<column name="departmentsCode" type="String" db-name="departmentscode"/>
+		<column name="departmentsName" type="String" db-name="departmentsname"/>
+		<column name="abbreviateName" type="String" db-name="abbreviatename"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="agencyId" type="String" db-name="agencyid"/>
+		<column name="roleId" type="long" db-name="roleid"/>
+		<column name="hasTeam" type="String" db-name="hasteam"/>
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="departmentsName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+		
+		<finder name="DepartmentsParentId" return-type="Collection">
+			<finder-column name="departmentsParentId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartmentsCode_AgencyId" return-type="Collection">
+			<finder-column name="departmentsCode" comparator="LIKE"/>
+			<finder-column name="agencyId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartmentsCode" return-type="Collection">
+			<finder-column name="departmentsCode" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="RoleId" return-type="Collection">
+			<finder-column name="roleId" />
+		</finder>
+		
+		<finder name="DepartmentsName" return-type="Collection">
+			<finder-column name="departmentsName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="AbbreviateName" return-type="Collection">
+			<finder-column name="abbreviateName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="AgencyId" return-type="Collection">
+			<finder-column name="agencyId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="HasTeam" return-type="Collection">
+			<finder-column name="hasTeam" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="C_N_D" return-type="Collection">
+			<finder-column name="departmentsCode" comparator="LIKE"/>
+			<finder-column name="departmentsName" comparator="LIKE"/>
+			<finder-column name="abbreviateName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+	</entity>
+	
+	<entity name="PmlUser" local-service="true" remote-service="true"
+		table="pml_user">
+		<!-- PK fields -->
+
+		<column name="userId" type="long" primary="true" db-name="userid"/>
+		
+		<!-- Other fields -->
+		<column name="departmentsId" type="String" db-name="departmentsid"/>
+		<column name="positionId" type="String" db-name="positionid"/>
+		<column name="active" type="Boolean" db-name="active"/>
+		
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="PositionId" return-type="Collection">
+			<finder-column name="positionId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartmentsId_PositionId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="positionId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartmentsId_Active" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="active" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlDepartmentsLeader" local-service="true" remote-service="true"
+		table="pml_departmentleader">
+
+		<!-- PK fields -->
+
+		<column name="departmentsId" type="String" primary="true" db-name="departmentsId"/>
+		<column name="userId" type="long" primary="true" db-name="userId"/>
+		
+		<!-- Other fields -->
+
+		<column name="main" type="boolean" />
+		<!-- Order -->
+
+		<!-- finder -->
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" />
+		</finder>
+		
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		
+		<finder name="DepartmentsId_UserId" return-type="Collection">
+			<finder-column name="departmentsId" />
+			<finder-column name="userId" />
+		</finder>
+		
+		<finder name="DepartmentsId_Main" return-type="Collection">
+			<finder-column name="departmentsId" />
+			<finder-column name="main" />
+		</finder>
+		
+		<finder name="Main" return-type="Collection">
+			<finder-column name="main" />
+		</finder>
+		
+	</entity>
+	
+	<exceptions>
+		<exception>DepartmentCanNotDelete</exception>
+		<exception>DepartmentCodeSameCode</exception>
+	</exceptions>
+</service-builder>

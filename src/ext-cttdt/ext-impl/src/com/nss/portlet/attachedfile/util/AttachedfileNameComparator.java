@@ -1,0 +1,41 @@
+package com.nss.portlet.attachedfile.util;
+
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.nss.portlet.attachedfile.model.AttachedFile;
+
+public class AttachedfileNameComparator extends OrderByComparator{
+	public static String ORDER_BY_ASC = "attachedfilename ASC";
+	public static String ORDER_BY_DESC = "attachedfilename DESC";
+	
+	private boolean _asc;
+	
+	public AttachedfileNameComparator(){
+		this(false);
+	}
+	
+	public AttachedfileNameComparator(boolean asc){
+		this._asc = asc;
+	}
+	
+	public int compare(Object arg0, Object arg1) {
+		AttachedFile name1 = (AttachedFile)arg0;
+		AttachedFile name2 = (AttachedFile)arg1;
+		
+		int value = name1.getAttachedFileName().compareTo(name2.getAttachedFileName());
+		
+		if(this._asc){
+			return value;
+		}else{
+			return -value;
+		}
+	}
+	
+	public String getOrderBy() {
+		if (_asc) {
+			return ORDER_BY_ASC;
+		}
+		else {
+			return ORDER_BY_DESC;
+		}
+	}
+}

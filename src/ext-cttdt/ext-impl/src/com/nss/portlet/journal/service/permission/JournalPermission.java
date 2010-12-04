@@ -47,7 +47,7 @@ public class JournalPermission {
 		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, "com.liferay.portlet.journal", groupId, actionId);
+			groupId, "com.nss.portlet.journal", groupId, actionId);
 	}
 
 }

@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.struts.PortletAction;
-import com.liferay.portlet.journal.DuplicateTemplateIdException;
-import com.liferay.portlet.journal.NoSuchTemplateException;
-import com.liferay.portlet.journal.TemplateIdException;
-import com.liferay.portlet.journal.service.JournalTemplateServiceUtil;
+import com.nss.portlet.journal.DuplicateTemplateIdException;
+import com.nss.portlet.journal.NoSuchTemplateException;
+import com.nss.portlet.journal.TemplateIdException;
+import com.nss.portlet.journal.service.JournalTemplateServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

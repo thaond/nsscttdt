@@ -33,8 +33,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portlet.journal.model.JournalFeed;
-import com.liferay.portlet.journal.model.impl.JournalFeedImpl;
+import com.nss.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.model.impl.JournalFeedImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;

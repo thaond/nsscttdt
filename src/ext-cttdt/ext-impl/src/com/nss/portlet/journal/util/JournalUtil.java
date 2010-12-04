@@ -53,19 +53,19 @@ import com.liferay.portal.util.ContentUtil;
 import com.liferay.portal.util.PropsKeys;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.WebKeys;
-import com.liferay.portlet.journal.model.JournalArticle;
-import com.liferay.portlet.journal.model.JournalStructure;
-import com.liferay.portlet.journal.model.JournalTemplate;
-import com.liferay.portlet.journal.model.impl.JournalStructureImpl;
-import com.liferay.portlet.journal.model.impl.JournalTemplateImpl;
-import com.liferay.portlet.journal.service.JournalArticleImageLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalTemplateLocalServiceUtil;
-import com.liferay.portlet.journal.util.comparator.ArticleCreateDateComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleDisplayDateComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleIDComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleReviewDateComparator;
-import com.liferay.portlet.journal.util.comparator.ArticleTitleComparator;
+import com.nss.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalStructure;
+import com.nss.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.model.impl.JournalStructureImpl;
+import com.nss.portlet.journal.model.impl.JournalTemplateImpl;
+import com.nss.portlet.journal.service.JournalArticleImageLocalServiceUtil;
+import com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil;
+import com.nss.portlet.journal.util.comparator.ArticleCreateDateComparator;
+import com.nss.portlet.journal.util.comparator.ArticleDisplayDateComparator;
+import com.nss.portlet.journal.util.comparator.ArticleIDComparator;
+import com.nss.portlet.journal.util.comparator.ArticleModifiedDateComparator;
+import com.nss.portlet.journal.util.comparator.ArticleReviewDateComparator;
+import com.nss.portlet.journal.util.comparator.ArticleTitleComparator;
 import com.liferay.util.FiniteUniqueStack;
 import com.liferay.util.LocalizationUtil;
 import com.liferay.util.xml.XMLFormatter;
@@ -606,7 +606,7 @@ public class JournalUtil {
 			// Listeners
 
 			String[] listeners =
-				PropsUtil.getArray(PropsKeys.JOURNAL_TRANSFORMER_LISTENER);
+				PropsUtil.getArray(PropsKeys.NSS_JOURNAL_TRANSFORMER_LISTENER);
 
 			for (int i = 0; i < listeners.length; i++) {
 				TransformerListener listener = null;
@@ -859,7 +859,7 @@ public class JournalUtil {
 			new ArrayList<TransformerListener>();
 
 		String[] listeners = PropsUtil.getArray(
-			PropsKeys.JOURNAL_TRANSFORMER_LISTENER);
+			PropsKeys.NSS_JOURNAL_TRANSFORMER_LISTENER);
 
 		for (int i = 0; i < listeners.length; i++) {
 			TransformerListener listener = null;

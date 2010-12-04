@@ -15,7 +15,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.nss.portlet.journalworkflow.model.JournalProcessDefinition;
 import com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil;
-import com.nss.portlet.journalworkflow.service.persistence.JournalProcessDefinitionUtil;
 import com.nss.portlet.journalworkflow.util.XmlRead;
 
 public class ConfigurationActionImpl implements ConfigurationAction {

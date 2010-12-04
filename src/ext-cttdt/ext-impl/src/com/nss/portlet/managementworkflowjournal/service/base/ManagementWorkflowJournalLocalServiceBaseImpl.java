@@ -10,6 +10,7 @@ import com.nss.portlet.managementworkflowjournal.model.ManagementWorkflowJournal
 import com.nss.portlet.managementworkflowjournal.service.LogWorkflowJournalArticleLocalService;
 import com.nss.portlet.managementworkflowjournal.service.ManagementWorkflowJournalLocalService;
 import com.nss.portlet.managementworkflowjournal.service.WorkflowJournalArticleLocalService;
+import com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder;
 import com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticlePersistence;
 import com.nss.portlet.managementworkflowjournal.service.persistence.ManagementWorkflowJournalFinder;
 import com.nss.portlet.managementworkflowjournal.service.persistence.ManagementWorkflowJournalPersistence;
@@ -37,6 +38,8 @@ public abstract class ManagementWorkflowJournalLocalServiceBaseImpl
     protected LogWorkflowJournalArticleLocalService logWorkflowJournalArticleLocalService;
     @BeanReference(name = "com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticlePersistence.impl")
     protected LogWorkflowJournalArticlePersistence logWorkflowJournalArticlePersistence;
+    @BeanReference(name = "com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder.impl")
+    protected LogWorkflowJournalArticleFinder logWorkflowJournalArticleFinder;
 
     public ManagementWorkflowJournal addManagementWorkflowJournal(
         ManagementWorkflowJournal managementWorkflowJournal)
@@ -178,6 +181,15 @@ public abstract class ManagementWorkflowJournalLocalServiceBaseImpl
     public void setLogWorkflowJournalArticlePersistence(
         LogWorkflowJournalArticlePersistence logWorkflowJournalArticlePersistence) {
         this.logWorkflowJournalArticlePersistence = logWorkflowJournalArticlePersistence;
+    }
+
+    public LogWorkflowJournalArticleFinder getLogWorkflowJournalArticleFinder() {
+        return logWorkflowJournalArticleFinder;
+    }
+
+    public void setLogWorkflowJournalArticleFinder(
+        LogWorkflowJournalArticleFinder logWorkflowJournalArticleFinder) {
+        this.logWorkflowJournalArticleFinder = logWorkflowJournalArticleFinder;
     }
 
     protected void runSQL(String sql) throws SystemException {

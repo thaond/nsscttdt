@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.velocity.VelocityEngineUtil;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.servlet.filters.cache.CacheUtil;
 import com.liferay.portal.velocity.LiferayResourceCacheUtil;
-import com.liferay.portlet.journalcontent.util.JournalContentUtil;
+import com.nss.portlet.journalcontent.util.JournalContentUtil;
 
 /**
  * <a href="JournalTemplateListener.java.html"><b><i>View Source</i></b></a>

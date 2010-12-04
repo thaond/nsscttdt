@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.persistence;
 
 import com.liferay.portal.SystemException;
@@ -45,1570 +23,1495 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
-import com.liferay.portlet.journal.NoSuchFeedException;
-import com.liferay.portlet.journal.model.JournalFeed;
-import com.liferay.portlet.journal.model.impl.JournalFeedImpl;
-import com.liferay.portlet.journal.model.impl.JournalFeedModelImpl;
+import com.nss.portlet.journal.NoSuchFeedException;
+import com.nss.portlet.journal.model.JournalFeed;
+import com.nss.portlet.journal.model.impl.JournalFeedImpl;
+import com.nss.portlet.journal.model.impl.JournalFeedModelImpl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <a href="JournalFeedPersistenceImpl.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
+
 public class JournalFeedPersistenceImpl extends BasePersistenceImpl
-	implements JournalFeedPersistence {
-	public static final String FINDER_CLASS_NAME_ENTITY = JournalFeedImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
-		".List";
-	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByUuid",
-			new String[] {
-				String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUuid", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByUUID_G",
-			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByGroupId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByGroupId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_G_F = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_F",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_F = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_F",
-			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countAll", new String[0]);
-
-	public void cacheResult(JournalFeed journalFeed) {
-		EntityCacheUtil.putResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedImpl.class, journalFeed.getPrimaryKey(), journalFeed);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				journalFeed.getUuid(), new Long(journalFeed.getGroupId())
-			}, journalFeed);
-
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
-			new Object[] {
-				new Long(journalFeed.getGroupId()),
-				
-			journalFeed.getFeedId()
-			}, journalFeed);
-	}
-
-	public void cacheResult(List<JournalFeed> journalFeeds) {
-		for (JournalFeed journalFeed : journalFeeds) {
-			if (EntityCacheUtil.getResult(
-						JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-						JournalFeedImpl.class, journalFeed.getPrimaryKey(), this) == null) {
-				cacheResult(journalFeed);
-			}
-		}
-	}
-
-	public void clearCache() {
-		CacheRegistry.clear(JournalFeedImpl.class.getName());
-		EntityCacheUtil.clearCache(JournalFeedImpl.class.getName());
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-	}
-
-	public JournalFeed create(long id) {
-		JournalFeed journalFeed = new JournalFeedImpl();
-
-		journalFeed.setNew(true);
-		journalFeed.setPrimaryKey(id);
-
-		String uuid = PortalUUIDUtil.generate();
-
-		journalFeed.setUuid(uuid);
-
-		return journalFeed;
-	}
-
-	public JournalFeed remove(long id)
-		throws NoSuchFeedException, SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			JournalFeed journalFeed = (JournalFeed)session.get(JournalFeedImpl.class,
-					new Long(id));
-
-			if (journalFeed == null) {
-				if (_log.isWarnEnabled()) {
-					_log.warn("No JournalFeed exists with the primary key " +
-						id);
-				}
-
-				throw new NoSuchFeedException(
-					"No JournalFeed exists with the primary key " + id);
-			}
-
-			return remove(journalFeed);
-		}
-		catch (NoSuchFeedException nsee) {
-			throw nsee;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public JournalFeed remove(JournalFeed journalFeed)
-		throws SystemException {
-		for (ModelListener<JournalFeed> listener : listeners) {
-			listener.onBeforeRemove(journalFeed);
-		}
-
-		journalFeed = removeImpl(journalFeed);
-
-		for (ModelListener<JournalFeed> listener : listeners) {
-			listener.onAfterRemove(journalFeed);
-		}
-
-		return journalFeed;
-	}
-
-	protected JournalFeed removeImpl(JournalFeed journalFeed)
-		throws SystemException {
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			if (journalFeed.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JournalFeedImpl.class,
-						journalFeed.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(journalFeed);
-
-			session.flush();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-
-		JournalFeedModelImpl journalFeedModelImpl = (JournalFeedModelImpl)journalFeed;
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] {
-				journalFeedModelImpl.getOriginalUuid(),
-				new Long(journalFeedModelImpl.getOriginalGroupId())
-			});
-
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_F,
-			new Object[] {
-				new Long(journalFeedModelImpl.getOriginalGroupId()),
-				
-			journalFeedModelImpl.getOriginalFeedId()
-			});
-
-		EntityCacheUtil.removeResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedImpl.class, journalFeed.getPrimaryKey());
-
-		return journalFeed;
-	}
-
-	/**
-	 * @deprecated Use <code>update(JournalFeed journalFeed, boolean merge)</code>.
-	 */
-	public JournalFeed update(JournalFeed journalFeed)
-		throws SystemException {
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Using the deprecated update(JournalFeed journalFeed) method. Use update(JournalFeed journalFeed, boolean merge) instead.");
-		}
-
-		return update(journalFeed, false);
-	}
-
-	/**
-	 * Add, update, or merge, the entity. This method also calls the model
-	 * listeners to trigger the proper events associated with adding, deleting,
-	 * or updating an entity.
-	 *
-	 * @param        journalFeed the entity to add, update, or merge
-	 * @param        merge boolean value for whether to merge the entity. The
-	 *                default value is false. Setting merge to true is more
-	 *                expensive and should only be true when journalFeed is
-	 *                transient. See LEP-5473 for a detailed discussion of this
-	 *                method.
-	 * @return        true if the portlet can be displayed via Ajax
-	 */
-	public JournalFeed update(JournalFeed journalFeed, boolean merge)
-		throws SystemException {
-		boolean isNew = journalFeed.isNew();
-
-		for (ModelListener<JournalFeed> listener : listeners) {
-			if (isNew) {
-				listener.onBeforeCreate(journalFeed);
-			}
-			else {
-				listener.onBeforeUpdate(journalFeed);
-			}
-		}
-
-		journalFeed = updateImpl(journalFeed, merge);
-
-		for (ModelListener<JournalFeed> listener : listeners) {
-			if (isNew) {
-				listener.onAfterCreate(journalFeed);
-			}
-			else {
-				listener.onAfterUpdate(journalFeed);
-			}
-		}
-
-		return journalFeed;
-	}
-
-	public JournalFeed updateImpl(
-		com.liferay.portlet.journal.model.JournalFeed journalFeed, boolean merge)
-		throws SystemException {
-		boolean isNew = journalFeed.isNew();
-
-		JournalFeedModelImpl journalFeedModelImpl = (JournalFeedModelImpl)journalFeed;
-
-		if (Validator.isNull(journalFeed.getUuid())) {
-			String uuid = PortalUUIDUtil.generate();
-
-			journalFeed.setUuid(uuid);
-		}
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			BatchSessionUtil.update(session, journalFeed, merge);
-
-			journalFeed.setNew(false);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-
-		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
-
-		EntityCacheUtil.putResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-			JournalFeedImpl.class, journalFeed.getPrimaryKey(), journalFeed);
-
-		if (!isNew &&
-				(!Validator.equals(journalFeed.getUuid(),
-					journalFeedModelImpl.getOriginalUuid()) ||
-				(journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					journalFeedModelImpl.getOriginalUuid(),
-					new Long(journalFeedModelImpl.getOriginalGroupId())
-				});
-		}
-
-		if (isNew ||
-				(!Validator.equals(journalFeed.getUuid(),
-					journalFeedModelImpl.getOriginalUuid()) ||
-				(journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] {
-					journalFeed.getUuid(), new Long(journalFeed.getGroupId())
-				}, journalFeed);
-		}
-
-		if (!isNew &&
-				((journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()) ||
-				!Validator.equals(journalFeed.getFeedId(),
-					journalFeedModelImpl.getOriginalFeedId()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_F,
-				new Object[] {
-					new Long(journalFeedModelImpl.getOriginalGroupId()),
-					
-				journalFeedModelImpl.getOriginalFeedId()
-				});
-		}
-
-		if (isNew ||
-				((journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()) ||
-				!Validator.equals(journalFeed.getFeedId(),
-					journalFeedModelImpl.getOriginalFeedId()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
-				new Object[] {
-					new Long(journalFeed.getGroupId()),
-					
-				journalFeed.getFeedId()
-				}, journalFeed);
-		}
-
-		return journalFeed;
-	}
-
-	public JournalFeed findByPrimaryKey(long id)
-		throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = fetchByPrimaryKey(id);
-
-		if (journalFeed == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("No JournalFeed exists with the primary key " + id);
-			}
-
-			throw new NoSuchFeedException(
-				"No JournalFeed exists with the primary key " + id);
-		}
-
-		return journalFeed;
-	}
-
-	public JournalFeed fetchByPrimaryKey(long id) throws SystemException {
-		JournalFeed journalFeed = (JournalFeed)EntityCacheUtil.getResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
-				JournalFeedImpl.class, id, this);
-
-		if (journalFeed == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				journalFeed = (JournalFeed)session.get(JournalFeedImpl.class,
-						new Long(id));
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (journalFeed != null) {
-					cacheResult(journalFeed);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return journalFeed;
-	}
-
-	public List<JournalFeed> findByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
-
-		List<JournalFeed> list = (List<JournalFeed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
-
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
-
-				query.append(" ");
-
-				query.append("ORDER BY ");
-
-				query.append("feedId ASC");
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalFeed>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
-					list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public List<JournalFeed> findByUuid(String uuid, int start, int end)
-		throws SystemException {
-		return findByUuid(uuid, start, end, null);
-	}
-
-	public List<JournalFeed> findByUuid(String uuid, int start, int end,
-		OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				uuid,
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
-
-		List<JournalFeed> list = (List<JournalFeed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
-				finderArgs, this);
-
-		if (list == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
-
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
-
-				query.append(" ");
-
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
-
-				else {
-					query.append("ORDER BY ");
-
-					query.append("feedId ASC");
-				}
-
-				Query q = session.createQuery(query.toString());
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
-
-				list = (List<JournalFeed>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalFeed>();
-				}
-
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_UUID,
-					finderArgs, list);
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	public JournalFeed findByUuid_First(String uuid, OrderByComparator obc)
-		throws NoSuchFeedException, SystemException {
-		List<JournalFeed> list = findByUuid(uuid, 0, 1, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalFeed exists with the key {");
-
-			msg.append("uuid=" + uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFeedException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalFeed findByUuid_Last(String uuid, OrderByComparator obc)
-		throws NoSuchFeedException, SystemException {
-		int count = countByUuid(uuid);
-
-		List<JournalFeed> list = findByUuid(uuid, count - 1, count, obc);
-
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
-
-			msg.append("No JournalFeed exists with the key {");
-
-			msg.append("uuid=" + uuid);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchFeedException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	public JournalFeed[] findByUuid_PrevAndNext(long id, String uuid,
-		OrderByComparator obc) throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = findByPrimaryKey(id);
-
-		int count = countByUuid(uuid);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			StringBuilder query = new StringBuilder();
-
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
-
-			if (uuid == null) {
-				query.append("uuid_ IS NULL");
-			}
-			else {
-				query.append("uuid_ = ?");
-			}
-
-			query.append(" ");
-
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
-
-			else {
-				query.append("ORDER BY ");
-
-				query.append("feedId ASC");
-			}
+    implements JournalFeedPersistence {
+    public static final String FINDER_CLASS_NAME_ENTITY = JournalFeedImpl.class.getName();
+    public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+        ".List";
+    public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByUuid", new String[] { String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByUuid",
+            new String[] {
+                String.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByUuid", new String[] { String.class.getName() });
+    public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+            new String[] { String.class.getName(), Long.class.getName() });
+    public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByUUID_G",
+            new String[] { String.class.getName(), Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByGroupId", new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByGroupId",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByGroupId", new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FETCH_BY_G_F = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED,
+            FINDER_CLASS_NAME_ENTITY, "fetchByG_F",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_COUNT_BY_G_F = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByG_F",
+            new String[] { Long.class.getName(), String.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findAll", new String[0]);
+    public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countAll", new String[0]);
+    private static Log _log = LogFactoryUtil.getLog(JournalFeedPersistenceImpl.class);
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticlePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticlePersistence journalArticlePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence journalArticleImagePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence journalArticleResourcePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence journalContentSearchPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalFeedPersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalFeedPersistence journalFeedPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalStructurePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalStructurePersistence journalStructurePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
+    protected com.nss.portlet.journal.service.persistence.JournalTemplatePersistence journalTemplatePersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence.impl")
+    protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
+    @BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence.impl")
+    protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
+    @BeanReference(name = "com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence.impl")
+    protected com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence expandoValuePersistence;
+
+    public void cacheResult(JournalFeed journalFeed) {
+        EntityCacheUtil.putResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedImpl.class, journalFeed.getPrimaryKey(), journalFeed);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+            new Object[] {
+                journalFeed.getUuid(), new Long(journalFeed.getGroupId())
+            }, journalFeed);
+
+        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
+            new Object[] {
+                new Long(journalFeed.getGroupId()),
+                
+            journalFeed.getFeedId()
+            }, journalFeed);
+    }
+
+    public void cacheResult(List<JournalFeed> journalFeeds) {
+        for (JournalFeed journalFeed : journalFeeds) {
+            if (EntityCacheUtil.getResult(
+                        JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+                        JournalFeedImpl.class, journalFeed.getPrimaryKey(), this) == null) {
+                cacheResult(journalFeed);
+            }
+        }
+    }
+
+    public void clearCache() {
+        CacheRegistry.clear(JournalFeedImpl.class.getName());
+        EntityCacheUtil.clearCache(JournalFeedImpl.class.getName());
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+    }
+
+    public JournalFeed create(long id) {
+        JournalFeed journalFeed = new JournalFeedImpl();
+
+        journalFeed.setNew(true);
+        journalFeed.setPrimaryKey(id);
+
+        String uuid = PortalUUIDUtil.generate();
+
+        journalFeed.setUuid(uuid);
+
+        return journalFeed;
+    }
+
+    public JournalFeed remove(long id)
+        throws NoSuchFeedException, SystemException {
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            JournalFeed journalFeed = (JournalFeed) session.get(JournalFeedImpl.class,
+                    new Long(id));
+
+            if (journalFeed == null) {
+                if (_log.isWarnEnabled()) {
+                    _log.warn("No JournalFeed exists with the primary key " +
+                        id);
+                }
+
+                throw new NoSuchFeedException(
+                    "No JournalFeed exists with the primary key " + id);
+            }
+
+            return remove(journalFeed);
+        } catch (NoSuchFeedException nsee) {
+            throw nsee;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
+    public JournalFeed remove(JournalFeed journalFeed)
+        throws SystemException {
+        for (ModelListener<JournalFeed> listener : listeners) {
+            listener.onBeforeRemove(journalFeed);
+        }
+
+        journalFeed = removeImpl(journalFeed);
+
+        for (ModelListener<JournalFeed> listener : listeners) {
+            listener.onAfterRemove(journalFeed);
+        }
+
+        return journalFeed;
+    }
+
+    protected JournalFeed removeImpl(JournalFeed journalFeed)
+        throws SystemException {
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            if (journalFeed.isCachedModel() || BatchSessionUtil.isEnabled()) {
+                Object staleObject = session.get(JournalFeedImpl.class,
+                        journalFeed.getPrimaryKeyObj());
+
+                if (staleObject != null) {
+                    session.evict(staleObject);
+                }
+            }
+
+            session.delete(journalFeed);
+
+            session.flush();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+        JournalFeedModelImpl journalFeedModelImpl = (JournalFeedModelImpl) journalFeed;
+
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+            new Object[] {
+                journalFeedModelImpl.getOriginalUuid(),
+                new Long(journalFeedModelImpl.getOriginalGroupId())
+            });
+
+        FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_F,
+            new Object[] {
+                new Long(journalFeedModelImpl.getOriginalGroupId()),
+                
+            journalFeedModelImpl.getOriginalFeedId()
+            });
+
+        EntityCacheUtil.removeResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedImpl.class, journalFeed.getPrimaryKey());
+
+        return journalFeed;
+    }
+
+    /**
+     * @deprecated Use <code>update(JournalFeed journalFeed, boolean merge)</code>.
+     */
+    public JournalFeed update(JournalFeed journalFeed)
+        throws SystemException {
+        if (_log.isWarnEnabled()) {
+            _log.warn(
+                "Using the deprecated update(JournalFeed journalFeed) method. Use update(JournalFeed journalFeed, boolean merge) instead.");
+        }
+
+        return update(journalFeed, false);
+    }
+
+    /**
+     * Add, update, or merge, the entity. This method also calls the model
+     * listeners to trigger the proper events associated with adding, deleting,
+     * or updating an entity.
+     *
+     * @param                journalFeed the entity to add, update, or merge
+     * @param                merge boolean value for whether to merge the entity. The
+     *                                default value is false. Setting merge to true is more
+     *                                expensive and should only be true when journalFeed is
+     *                                transient. See LEP-5473 for a detailed discussion of this
+     *                                method.
+     * @return                true if the portlet can be displayed via Ajax
+     */
+    public JournalFeed update(JournalFeed journalFeed, boolean merge)
+        throws SystemException {
+        boolean isNew = journalFeed.isNew();
+
+        for (ModelListener<JournalFeed> listener : listeners) {
+            if (isNew) {
+                listener.onBeforeCreate(journalFeed);
+            } else {
+                listener.onBeforeUpdate(journalFeed);
+            }
+        }
+
+        journalFeed = updateImpl(journalFeed, merge);
+
+        for (ModelListener<JournalFeed> listener : listeners) {
+            if (isNew) {
+                listener.onAfterCreate(journalFeed);
+            } else {
+                listener.onAfterUpdate(journalFeed);
+            }
+        }
+
+        return journalFeed;
+    }
+
+    public JournalFeed updateImpl(
+        com.nss.portlet.journal.model.JournalFeed journalFeed, boolean merge)
+        throws SystemException {
+        boolean isNew = journalFeed.isNew();
+
+        JournalFeedModelImpl journalFeedModelImpl = (JournalFeedModelImpl) journalFeed;
+
+        if (Validator.isNull(journalFeed.getUuid())) {
+            String uuid = PortalUUIDUtil.generate();
+
+            journalFeed.setUuid(uuid);
+        }
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            BatchSessionUtil.update(session, journalFeed, merge);
+
+            journalFeed.setNew(false);
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+
+        FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+        EntityCacheUtil.putResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+            JournalFeedImpl.class, journalFeed.getPrimaryKey(), journalFeed);
+
+        if (!isNew &&
+                (!Validator.equals(journalFeed.getUuid(),
+                    journalFeedModelImpl.getOriginalUuid()) ||
+                (journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()))) {
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+                new Object[] {
+                    journalFeedModelImpl.getOriginalUuid(),
+                    new Long(journalFeedModelImpl.getOriginalGroupId())
+                });
+        }
+
+        if (isNew ||
+                (!Validator.equals(journalFeed.getUuid(),
+                    journalFeedModelImpl.getOriginalUuid()) ||
+                (journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()))) {
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                new Object[] {
+                    journalFeed.getUuid(), new Long(journalFeed.getGroupId())
+                }, journalFeed);
+        }
+
+        if (!isNew &&
+                ((journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()) ||
+                !Validator.equals(journalFeed.getFeedId(),
+                    journalFeedModelImpl.getOriginalFeedId()))) {
+            FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_F,
+                new Object[] {
+                    new Long(journalFeedModelImpl.getOriginalGroupId()),
+                    
+                journalFeedModelImpl.getOriginalFeedId()
+                });
+        }
+
+        if (isNew ||
+                ((journalFeed.getGroupId() != journalFeedModelImpl.getOriginalGroupId()) ||
+                !Validator.equals(journalFeed.getFeedId(),
+                    journalFeedModelImpl.getOriginalFeedId()))) {
+            FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
+                new Object[] {
+                    new Long(journalFeed.getGroupId()),
+                    
+                journalFeed.getFeedId()
+                }, journalFeed);
+        }
+
+        return journalFeed;
+    }
+
+    public JournalFeed findByPrimaryKey(long id)
+        throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = fetchByPrimaryKey(id);
+
+        if (journalFeed == null) {
+            if (_log.isWarnEnabled()) {
+                _log.warn("No JournalFeed exists with the primary key " + id);
+            }
+
+            throw new NoSuchFeedException(
+                "No JournalFeed exists with the primary key " + id);
+        }
+
+        return journalFeed;
+    }
+
+    public JournalFeed fetchByPrimaryKey(long id) throws SystemException {
+        JournalFeed journalFeed = (JournalFeed) EntityCacheUtil.getResult(JournalFeedModelImpl.ENTITY_CACHE_ENABLED,
+                JournalFeedImpl.class, id, this);
+
+        if (journalFeed == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                journalFeed = (JournalFeed) session.get(JournalFeedImpl.class,
+                        new Long(id));
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (journalFeed != null) {
+                    cacheResult(journalFeed);
+                }
+
+                closeSession(session);
+            }
+        }
+
+        return journalFeed;
+    }
+
+    public List<JournalFeed> findByUuid(String uuid) throws SystemException {
+        Object[] finderArgs = new Object[] { uuid };
+
+        List<JournalFeed> list = (List<JournalFeed>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
+
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("feedId ASC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalFeed>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID, finderArgs,
+                    list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<JournalFeed> findByUuid(String uuid, int start, int end)
+        throws SystemException {
+        return findByUuid(uuid, start, end, null);
+    }
+
+    public List<JournalFeed> findByUuid(String uuid, int start, int end,
+        OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                uuid,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<JournalFeed> list = (List<JournalFeed>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_UUID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
+
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("feedId ASC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
+
+                list = (List<JournalFeed>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalFeed>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_UUID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public JournalFeed findByUuid_First(String uuid, OrderByComparator obc)
+        throws NoSuchFeedException, SystemException {
+        List<JournalFeed> list = findByUuid(uuid, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalFeed exists with the key {");
+
+            msg.append("uuid=" + uuid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchFeedException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalFeed findByUuid_Last(String uuid, OrderByComparator obc)
+        throws NoSuchFeedException, SystemException {
+        int count = countByUuid(uuid);
 
-			Query q = session.createQuery(query.toString());
+        List<JournalFeed> list = findByUuid(uuid, count - 1, count, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No JournalFeed exists with the key {");
+
+            msg.append("uuid=" + uuid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchFeedException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public JournalFeed[] findByUuid_PrevAndNext(long id, String uuid,
+        OrderByComparator obc) throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = findByPrimaryKey(id);
+
+        int count = countByUuid(uuid);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+        Session session = null;
 
-			if (uuid != null) {
-				qPos.add(uuid);
-			}
+        try {
+            session = openSession();
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalFeed);
+            StringBuilder query = new StringBuilder();
 
-			JournalFeed[] array = new JournalFeedImpl[3];
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-			array[0] = (JournalFeed)objArray[0];
-			array[1] = (JournalFeed)objArray[1];
-			array[2] = (JournalFeed)objArray[2];
+            if (uuid == null) {
+                query.append("uuid_ IS NULL");
+            } else {
+                query.append("uuid_ = ?");
+            }
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+            query.append(" ");
 
-	public JournalFeed findByUUID_G(String uuid, long groupId)
-		throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = fetchByUUID_G(uuid, groupId);
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-		if (journalFeed == null) {
-			StringBuilder msg = new StringBuilder();
+                query.append("feedId ASC");
+            }
 
-			msg.append("No JournalFeed exists with the key {");
+            Query q = session.createQuery(query.toString());
 
-			msg.append("uuid=" + uuid);
-
-			msg.append(", ");
-			msg.append("groupId=" + groupId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchFeedException(msg.toString());
-		}
-
-		return journalFeed;
-	}
-
-	public JournalFeed fetchByUUID_G(String uuid, long groupId)
-		throws SystemException {
-		return fetchByUUID_G(uuid, groupId, true);
-	}
-
-	public JournalFeed fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
-					finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBuilder query = new StringBuilder();
-
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+            QueryPos qPos = QueryPos.getInstance(q);
 
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
+            if (uuid != null) {
+                qPos.add(uuid);
+            }
 
-				query.append(" AND ");
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalFeed);
 
-				query.append("groupId = ?");
+            JournalFeed[] array = new JournalFeedImpl[3];
 
-				query.append(" ");
+            array[0] = (JournalFeed) objArray[0];
+            array[1] = (JournalFeed) objArray[1];
+            array[2] = (JournalFeed) objArray[2];
 
-				query.append("ORDER BY ");
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-				query.append("feedId ASC");
+    public JournalFeed findByUUID_G(String uuid, long groupId)
+        throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = fetchByUUID_G(uuid, groupId);
 
-				Query q = session.createQuery(query.toString());
+        if (journalFeed == null) {
+            StringBuilder msg = new StringBuilder();
 
-				QueryPos qPos = QueryPos.getInstance(q);
+            msg.append("No JournalFeed exists with the key {");
 
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
+            msg.append("uuid=" + uuid);
 
-				qPos.add(groupId);
+            msg.append(", ");
+            msg.append("groupId=" + groupId);
 
-				List<JournalFeed> list = q.list();
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				result = list;
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
 
-				JournalFeed journalFeed = null;
+            throw new NoSuchFeedException(msg.toString());
+        }
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-						finderArgs, list);
-				}
-				else {
-					journalFeed = list.get(0);
+        return journalFeed;
+    }
 
-					cacheResult(journalFeed);
+    public JournalFeed fetchByUUID_G(String uuid, long groupId)
+        throws SystemException {
+        return fetchByUUID_G(uuid, groupId, true);
+    }
 
-					if ((journalFeed.getUuid() == null) ||
-							!journalFeed.getUuid().equals(uuid) ||
-							(journalFeed.getGroupId() != groupId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, journalFeed);
-					}
-				}
+    public JournalFeed fetchByUUID_G(String uuid, long groupId,
+        boolean retrieveFromCache) throws SystemException {
+        Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
 
-				return journalFeed;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-						finderArgs, new ArrayList<JournalFeed>());
-				}
+        Object result = null;
 
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List) {
-				return null;
-			}
-			else {
-				return (JournalFeed)result;
-			}
-		}
-	}
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+                    finderArgs, this);
+        }
 
-	public List<JournalFeed> findByGroupId(long groupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
+        if (result == null) {
+            Session session = null;
 
-		List<JournalFeed> list = (List<JournalFeed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
-				finderArgs, this);
+            try {
+                session = openSession();
 
-		if (list == null) {
-			Session session = null;
+                StringBuilder query = new StringBuilder();
 
-			try {
-				session = openSession();
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				StringBuilder query = new StringBuilder();
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+                query.append(" AND ");
 
-				query.append("groupId = ?");
+                query.append("groupId = ?");
 
-				query.append(" ");
+                query.append(" ");
 
-				query.append("ORDER BY ");
+                query.append("ORDER BY ");
 
-				query.append("feedId ASC");
+                query.append("feedId ASC");
 
-				Query q = session.createQuery(query.toString());
+                Query q = session.createQuery(query.toString());
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(groupId);
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
 
-				list = q.list();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalFeed>();
-				}
+                qPos.add(groupId);
 
-				cacheResult(list);
+                List<JournalFeed> list = q.list();
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
-					finderArgs, list);
+                result = list;
 
-				closeSession(session);
-			}
-		}
+                JournalFeed journalFeed = null;
 
-		return list;
-	}
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                        finderArgs, list);
+                } else {
+                    journalFeed = list.get(0);
 
-	public List<JournalFeed> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
-		return findByGroupId(groupId, start, end, null);
-	}
+                    cacheResult(journalFeed);
 
-	public List<JournalFeed> findByGroupId(long groupId, int start, int end,
-		OrderByComparator obc) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				new Long(groupId),
-				
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                    if ((journalFeed.getUuid() == null) ||
+                            !journalFeed.getUuid().equals(uuid) ||
+                            (journalFeed.getGroupId() != groupId)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                            finderArgs, journalFeed);
+                    }
+                }
 
-		List<JournalFeed> list = (List<JournalFeed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
-				finderArgs, this);
+                return journalFeed;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (result == null) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+                        finderArgs, new ArrayList<JournalFeed>());
+                }
 
-		if (list == null) {
-			Session session = null;
+                closeSession(session);
+            }
+        } else {
+            if (result instanceof List) {
+                return null;
+            } else {
+                return (JournalFeed) result;
+            }
+        }
+    }
 
-			try {
-				session = openSession();
+    public List<JournalFeed> findByGroupId(long groupId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId) };
 
-				StringBuilder query = new StringBuilder();
+        List<JournalFeed> list = (List<JournalFeed>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_GROUPID,
+                finderArgs, this);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+        if (list == null) {
+            Session session = null;
 
-				query.append("groupId = ?");
+            try {
+                session = openSession();
 
-				query.append(" ");
+                StringBuilder query = new StringBuilder();
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				else {
-					query.append("ORDER BY ");
+                query.append("groupId = ?");
 
-					query.append("feedId ASC");
-				}
+                query.append(" ");
 
-				Query q = session.createQuery(query.toString());
+                query.append("ORDER BY ");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append("feedId ASC");
 
-				qPos.add(groupId);
+                Query q = session.createQuery(query.toString());
 
-				list = (List<JournalFeed>)QueryUtil.list(q, getDialect(),
-						start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalFeed>();
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				cacheResult(list);
+                qPos.add(groupId);
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
-					finderArgs, list);
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalFeed>();
+                }
 
-				closeSession(session);
-			}
-		}
+                cacheResult(list);
 
-		return list;
-	}
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_GROUPID,
+                    finderArgs, list);
 
-	public JournalFeed findByGroupId_First(long groupId, OrderByComparator obc)
-		throws NoSuchFeedException, SystemException {
-		List<JournalFeed> list = findByGroupId(groupId, 0, 1, obc);
+                closeSession(session);
+            }
+        }
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+        return list;
+    }
 
-			msg.append("No JournalFeed exists with the key {");
+    public List<JournalFeed> findByGroupId(long groupId, int start, int end)
+        throws SystemException {
+        return findByGroupId(groupId, start, end, null);
+    }
 
-			msg.append("groupId=" + groupId);
+    public List<JournalFeed> findByGroupId(long groupId, int start, int end,
+        OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(groupId),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+        List<JournalFeed> list = (List<JournalFeed>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+                finderArgs, this);
 
-			throw new NoSuchFeedException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+        if (list == null) {
+            Session session = null;
 
-	public JournalFeed findByGroupId_Last(long groupId, OrderByComparator obc)
-		throws NoSuchFeedException, SystemException {
-		int count = countByGroupId(groupId);
+            try {
+                session = openSession();
 
-		List<JournalFeed> list = findByGroupId(groupId, count - 1, count, obc);
+                StringBuilder query = new StringBuilder();
 
-		if (list.isEmpty()) {
-			StringBuilder msg = new StringBuilder();
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-			msg.append("No JournalFeed exists with the key {");
+                query.append("groupId = ?");
 
-			msg.append("groupId=" + groupId);
+                query.append(" ");
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-			throw new NoSuchFeedException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
+                    query.append("feedId ASC");
+                }
 
-	public JournalFeed[] findByGroupId_PrevAndNext(long id, long groupId,
-		OrderByComparator obc) throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = findByPrimaryKey(id);
+                Query q = session.createQuery(query.toString());
 
-		int count = countByGroupId(groupId);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-		Session session = null;
+                qPos.add(groupId);
 
-		try {
-			session = openSession();
+                list = (List<JournalFeed>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalFeed>();
+                }
 
-			StringBuilder query = new StringBuilder();
+                cacheResult(list);
 
-			query.append(
-				"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_GROUPID,
+                    finderArgs, list);
 
-			query.append("groupId = ?");
+                closeSession(session);
+            }
+        }
 
-			query.append(" ");
+        return list;
+    }
 
-			if (obc != null) {
-				query.append("ORDER BY ");
-				query.append(obc.getOrderBy());
-			}
+    public JournalFeed findByGroupId_First(long groupId, OrderByComparator obc)
+        throws NoSuchFeedException, SystemException {
+        List<JournalFeed> list = findByGroupId(groupId, 0, 1, obc);
 
-			else {
-				query.append("ORDER BY ");
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-				query.append("feedId ASC");
-			}
+            msg.append("No JournalFeed exists with the key {");
 
-			Query q = session.createQuery(query.toString());
+            msg.append("groupId=" + groupId);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			qPos.add(groupId);
+            throw new NoSuchFeedException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-			Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
-					journalFeed);
+    public JournalFeed findByGroupId_Last(long groupId, OrderByComparator obc)
+        throws NoSuchFeedException, SystemException {
+        int count = countByGroupId(groupId);
 
-			JournalFeed[] array = new JournalFeedImpl[3];
+        List<JournalFeed> list = findByGroupId(groupId, count - 1, count, obc);
 
-			array[0] = (JournalFeed)objArray[0];
-			array[1] = (JournalFeed)objArray[1];
-			array[2] = (JournalFeed)objArray[2];
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
 
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+            msg.append("No JournalFeed exists with the key {");
 
-	public JournalFeed findByG_F(long groupId, String feedId)
-		throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = fetchByG_F(groupId, feedId);
+            msg.append("groupId=" + groupId);
 
-		if (journalFeed == null) {
-			StringBuilder msg = new StringBuilder();
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-			msg.append("No JournalFeed exists with the key {");
+            throw new NoSuchFeedException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
 
-			msg.append("groupId=" + groupId);
+    public JournalFeed[] findByGroupId_PrevAndNext(long id, long groupId,
+        OrderByComparator obc) throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = findByPrimaryKey(id);
 
-			msg.append(", ");
-			msg.append("feedId=" + feedId);
+        int count = countByGroupId(groupId);
 
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
+        Session session = null;
 
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
+        try {
+            session = openSession();
 
-			throw new NoSuchFeedException(msg.toString());
-		}
+            StringBuilder query = new StringBuilder();
 
-		return journalFeed;
-	}
+            query.append(
+                "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-	public JournalFeed fetchByG_F(long groupId, String feedId)
-		throws SystemException {
-		return fetchByG_F(groupId, feedId, true);
-	}
+            query.append("groupId = ?");
 
-	public JournalFeed fetchByG_F(long groupId, String feedId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), feedId };
+            query.append(" ");
 
-		Object result = null;
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
 
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_F,
-					finderArgs, this);
-		}
+                query.append("feedId ASC");
+            }
 
-		if (result == null) {
-			Session session = null;
+            Query q = session.createQuery(query.toString());
 
-			try {
-				session = openSession();
+            QueryPos qPos = QueryPos.getInstance(q);
 
-				StringBuilder query = new StringBuilder();
+            qPos.add(groupId);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    journalFeed);
 
-				query.append("groupId = ?");
+            JournalFeed[] array = new JournalFeedImpl[3];
 
-				query.append(" AND ");
+            array[0] = (JournalFeed) objArray[0];
+            array[1] = (JournalFeed) objArray[1];
+            array[2] = (JournalFeed) objArray[2];
 
-				if (feedId == null) {
-					query.append("feedId IS NULL");
-				}
-				else {
-					query.append("feedId = ?");
-				}
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-				query.append(" ");
+    public JournalFeed findByG_F(long groupId, String feedId)
+        throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = fetchByG_F(groupId, feedId);
 
-				query.append("ORDER BY ");
+        if (journalFeed == null) {
+            StringBuilder msg = new StringBuilder();
 
-				query.append("feedId ASC");
+            msg.append("No JournalFeed exists with the key {");
 
-				Query q = session.createQuery(query.toString());
+            msg.append("groupId=" + groupId);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+            msg.append(", ");
+            msg.append("feedId=" + feedId);
 
-				qPos.add(groupId);
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-				if (feedId != null) {
-					qPos.add(feedId);
-				}
+            if (_log.isWarnEnabled()) {
+                _log.warn(msg.toString());
+            }
 
-				List<JournalFeed> list = q.list();
+            throw new NoSuchFeedException(msg.toString());
+        }
 
-				result = list;
+        return journalFeed;
+    }
 
-				JournalFeed journalFeed = null;
+    public JournalFeed fetchByG_F(long groupId, String feedId)
+        throws SystemException {
+        return fetchByG_F(groupId, feedId, true);
+    }
 
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
-						finderArgs, list);
-				}
-				else {
-					journalFeed = list.get(0);
+    public JournalFeed fetchByG_F(long groupId, String feedId,
+        boolean retrieveFromCache) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), feedId };
 
-					cacheResult(journalFeed);
+        Object result = null;
 
-					if ((journalFeed.getGroupId() != groupId) ||
-							(journalFeed.getFeedId() == null) ||
-							!journalFeed.getFeedId().equals(feedId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
-							finderArgs, journalFeed);
-					}
-				}
+        if (retrieveFromCache) {
+            result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_F,
+                    finderArgs, this);
+        }
 
-				return journalFeed;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
-						finderArgs, new ArrayList<JournalFeed>());
-				}
+        if (result == null) {
+            Session session = null;
 
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List) {
-				return null;
-			}
-			else {
-				return (JournalFeed)result;
-			}
-		}
-	}
+            try {
+                session = openSession();
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		Session session = null;
+                StringBuilder query = new StringBuilder();
 
-		try {
-			session = openSession();
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-			dynamicQuery.compile(session);
+                query.append("groupId = ?");
 
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                query.append(" AND ");
 
-	public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
-		Session session = null;
+                if (feedId == null) {
+                    query.append("feedId IS NULL");
+                } else {
+                    query.append("feedId = ?");
+                }
 
-		try {
-			session = openSession();
+                query.append(" ");
 
-			dynamicQuery.setLimit(start, end);
+                query.append("ORDER BY ");
 
-			dynamicQuery.compile(session);
+                query.append("feedId ASC");
 
-			return dynamicQuery.list();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
+                Query q = session.createQuery(query.toString());
 
-	public List<JournalFeed> findAll() throws SystemException {
-		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	public List<JournalFeed> findAll(int start, int end)
-		throws SystemException {
-		return findAll(start, end, null);
-	}
+                qPos.add(groupId);
 
-	public List<JournalFeed> findAll(int start, int end, OrderByComparator obc)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				String.valueOf(start), String.valueOf(end), String.valueOf(obc)
-			};
+                if (feedId != null) {
+                    qPos.add(feedId);
+                }
 
-		List<JournalFeed> list = (List<JournalFeed>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
-				finderArgs, this);
+                List<JournalFeed> list = q.list();
 
-		if (list == null) {
-			Session session = null;
+                result = list;
 
-			try {
-				session = openSession();
+                JournalFeed journalFeed = null;
 
-				StringBuilder query = new StringBuilder();
+                if (list.isEmpty()) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
+                        finderArgs, list);
+                } else {
+                    journalFeed = list.get(0);
 
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed ");
+                    cacheResult(journalFeed);
 
-				if (obc != null) {
-					query.append("ORDER BY ");
-					query.append(obc.getOrderBy());
-				}
+                    if ((journalFeed.getGroupId() != groupId) ||
+                            (journalFeed.getFeedId() == null) ||
+                            !journalFeed.getFeedId().equals(feedId)) {
+                        FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
+                            finderArgs, journalFeed);
+                    }
+                }
 
-				else {
-					query.append("ORDER BY ");
+                return journalFeed;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (result == null) {
+                    FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_F,
+                        finderArgs, new ArrayList<JournalFeed>());
+                }
 
-					query.append("feedId ASC");
-				}
+                closeSession(session);
+            }
+        } else {
+            if (result instanceof List) {
+                return null;
+            } else {
+                return (JournalFeed) result;
+            }
+        }
+    }
 
-				Query q = session.createQuery(query.toString());
+    public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
+        throws SystemException {
+        Session session = null;
 
-				if (obc == null) {
-					list = (List<JournalFeed>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+        try {
+            session = openSession();
 
-					Collections.sort(list);
-				}
-				else {
-					list = (List<JournalFeed>)QueryUtil.list(q, getDialect(),
-							start, end);
-				}
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					list = new ArrayList<JournalFeed>();
-				}
+            dynamicQuery.compile(session);
 
-				cacheResult(list);
+            return dynamicQuery.list();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+    public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery,
+        int start, int end) throws SystemException {
+        Session session = null;
 
-				closeSession(session);
-			}
-		}
+        try {
+            session = openSession();
 
-		return list;
-	}
+            dynamicQuery.setLimit(start, end);
 
-	public void removeByUuid(String uuid) throws SystemException {
-		for (JournalFeed journalFeed : findByUuid(uuid)) {
-			remove(journalFeed);
-		}
-	}
+            dynamicQuery.compile(session);
 
-	public void removeByUUID_G(String uuid, long groupId)
-		throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = findByUUID_G(uuid, groupId);
+            return dynamicQuery.list();
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
 
-		remove(journalFeed);
-	}
+    public List<JournalFeed> findAll() throws SystemException {
+        return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+    }
 
-	public void removeByGroupId(long groupId) throws SystemException {
-		for (JournalFeed journalFeed : findByGroupId(groupId)) {
-			remove(journalFeed);
-		}
-	}
+    public List<JournalFeed> findAll(int start, int end)
+        throws SystemException {
+        return findAll(start, end, null);
+    }
 
-	public void removeByG_F(long groupId, String feedId)
-		throws NoSuchFeedException, SystemException {
-		JournalFeed journalFeed = findByG_F(groupId, feedId);
+    public List<JournalFeed> findAll(int start, int end, OrderByComparator obc)
+        throws SystemException {
+        Object[] finderArgs = new Object[] {
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
 
-		remove(journalFeed);
-	}
+        List<JournalFeed> list = (List<JournalFeed>) FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+                finderArgs, this);
 
-	public void removeAll() throws SystemException {
-		for (JournalFeed journalFeed : findAll()) {
-			remove(journalFeed);
-		}
-	}
+        if (list == null) {
+            Session session = null;
 
-	public int countByUuid(String uuid) throws SystemException {
-		Object[] finderArgs = new Object[] { uuid };
+            try {
+                session = openSession();
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
-				finderArgs, this);
+                StringBuilder query = new StringBuilder();
 
-		if (count == null) {
-			Session session = null;
+                query.append("FROM com.nss.portlet.journal.model.JournalFeed ");
 
-			try {
-				session = openSession();
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
 
-				StringBuilder query = new StringBuilder();
+                    query.append("feedId ASC");
+                }
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+                Query q = session.createQuery(query.toString());
 
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
+                if (obc == null) {
+                    list = (List<JournalFeed>) QueryUtil.list(q, getDialect(),
+                            start, end, false);
 
-				query.append(" ");
+                    Collections.sort(list);
+                } else {
+                    list = (List<JournalFeed>) QueryUtil.list(q, getDialect(),
+                            start, end);
+                }
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<JournalFeed>();
+                }
 
-				Query q = session.createQuery(query.toString());
+                cacheResult(list);
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
 
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
+                closeSession(session);
+            }
+        }
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+        return list;
+    }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
-					finderArgs, count);
+    public void removeByUuid(String uuid) throws SystemException {
+        for (JournalFeed journalFeed : findByUuid(uuid)) {
+            remove(journalFeed);
+        }
+    }
 
-				closeSession(session);
-			}
-		}
+    public void removeByUUID_G(String uuid, long groupId)
+        throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = findByUUID_G(uuid, groupId);
 
-		return count.intValue();
-	}
+        remove(journalFeed);
+    }
 
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
+    public void removeByGroupId(long groupId) throws SystemException {
+        for (JournalFeed journalFeed : findByGroupId(groupId)) {
+            remove(journalFeed);
+        }
+    }
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
-				finderArgs, this);
+    public void removeByG_F(long groupId, String feedId)
+        throws NoSuchFeedException, SystemException {
+        JournalFeed journalFeed = findByG_F(groupId, feedId);
 
-		if (count == null) {
-			Session session = null;
+        remove(journalFeed);
+    }
 
-			try {
-				session = openSession();
+    public void removeAll() throws SystemException {
+        for (JournalFeed journalFeed : findAll()) {
+            remove(journalFeed);
+        }
+    }
 
-				StringBuilder query = new StringBuilder();
+    public int countByUuid(String uuid) throws SystemException {
+        Object[] finderArgs = new Object[] { uuid };
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+                finderArgs, this);
 
-				if (uuid == null) {
-					query.append("uuid_ IS NULL");
-				}
-				else {
-					query.append("uuid_ = ?");
-				}
+        if (count == null) {
+            Session session = null;
 
-				query.append(" AND ");
+            try {
+                session = openSession();
 
-				query.append("groupId = ?");
+                StringBuilder query = new StringBuilder();
 
-				query.append(" ");
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				Query q = session.createQuery(query.toString());
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append(" ");
 
-				if (uuid != null) {
-					qPos.add(uuid);
-				}
+                Query q = session.createQuery(query.toString());
 
-				qPos.add(groupId);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
-					finderArgs, count);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				closeSession(session);
-			}
-		}
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+                    finderArgs, count);
 
-		return count.intValue();
-	}
+                closeSession(session);
+            }
+        }
 
-	public int countByGroupId(long groupId) throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId) };
+        return count.intValue();
+    }
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
-				finderArgs, this);
+    public int countByUUID_G(String uuid, long groupId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { uuid, new Long(groupId) };
 
-		if (count == null) {
-			Session session = null;
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID_G,
+                finderArgs, this);
 
-			try {
-				session = openSession();
+        if (count == null) {
+            Session session = null;
 
-				StringBuilder query = new StringBuilder();
+            try {
+                session = openSession();
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+                StringBuilder query = new StringBuilder();
 
-				query.append("groupId = ?");
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				query.append(" ");
+                if (uuid == null) {
+                    query.append("uuid_ IS NULL");
+                } else {
+                    query.append("uuid_ = ?");
+                }
 
-				Query q = session.createQuery(query.toString());
+                query.append(" AND ");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append("groupId = ?");
 
-				qPos.add(groupId);
+                query.append(" ");
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                Query q = session.createQuery(query.toString());
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
-					finderArgs, count);
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				closeSession(session);
-			}
-		}
+                if (uuid != null) {
+                    qPos.add(uuid);
+                }
 
-		return count.intValue();
-	}
+                qPos.add(groupId);
 
-	public int countByG_F(long groupId, String feedId)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { new Long(groupId), feedId };
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_F,
-				finderArgs, this);
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G,
+                    finderArgs, count);
 
-		if (count == null) {
-			Session session = null;
+                closeSession(session);
+            }
+        }
 
-			try {
-				session = openSession();
+        return count.intValue();
+    }
 
-				StringBuilder query = new StringBuilder();
+    public int countByGroupId(long groupId) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId) };
 
-				query.append("SELECT COUNT(*) ");
-				query.append(
-					"FROM com.liferay.portlet.journal.model.JournalFeed WHERE ");
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_GROUPID,
+                finderArgs, this);
 
-				query.append("groupId = ?");
+        if (count == null) {
+            Session session = null;
 
-				query.append(" AND ");
+            try {
+                session = openSession();
 
-				if (feedId == null) {
-					query.append("feedId IS NULL");
-				}
-				else {
-					query.append("feedId = ?");
-				}
+                StringBuilder query = new StringBuilder();
 
-				query.append(" ");
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				Query q = session.createQuery(query.toString());
+                query.append("groupId = ?");
 
-				QueryPos qPos = QueryPos.getInstance(q);
+                query.append(" ");
 
-				qPos.add(groupId);
+                Query q = session.createQuery(query.toString());
 
-				if (feedId != null) {
-					qPos.add(feedId);
-				}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                qPos.add(groupId);
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_F, finderArgs,
-					count);
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
 
-				closeSession(session);
-			}
-		}
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_GROUPID,
+                    finderArgs, count);
 
-		return count.intValue();
-	}
+                closeSession(session);
+            }
+        }
 
-	public int countAll() throws SystemException {
-		Object[] finderArgs = new Object[0];
+        return count.intValue();
+    }
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
-				finderArgs, this);
+    public int countByG_F(long groupId, String feedId)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(groupId), feedId };
 
-		if (count == null) {
-			Session session = null;
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_F,
+                finderArgs, this);
 
-			try {
-				session = openSession();
+        if (count == null) {
+            Session session = null;
 
-				Query q = session.createQuery(
-						"SELECT COUNT(*) FROM com.liferay.portlet.journal.model.JournalFeed");
+            try {
+                session = openSession();
 
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
+                StringBuilder query = new StringBuilder();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
-					count);
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.journal.model.JournalFeed WHERE ");
 
-				closeSession(session);
-			}
-		}
+                query.append("groupId = ?");
 
-		return count.intValue();
-	}
+                query.append(" AND ");
 
-	public void afterPropertiesSet() {
-		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
-					com.liferay.portal.util.PropsUtil.get(
-						"value.object.listener.com.liferay.portlet.journal.model.JournalFeed")));
+                if (feedId == null) {
+                    query.append("feedId IS NULL");
+                } else {
+                    query.append("feedId = ?");
+                }
 
-		if (listenerClassNames.length > 0) {
-			try {
-				List<ModelListener<JournalFeed>> listenersList = new ArrayList<ModelListener<JournalFeed>>();
+                query.append(" ");
 
-				for (String listenerClassName : listenerClassNames) {
-					listenersList.add((ModelListener<JournalFeed>)Class.forName(
-							listenerClassName).newInstance());
-				}
+                Query q = session.createQuery(query.toString());
 
-				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
-			}
-			catch (Exception e) {
-				_log.error(e);
-			}
-		}
-	}
+                QueryPos qPos = QueryPos.getInstance(q);
 
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticlePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticlePersistence journalArticlePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence journalArticleImagePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence journalArticleResourcePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence journalContentSearchPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalFeedPersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalFeedPersistence journalFeedPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalStructurePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalStructurePersistence journalStructurePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
-	protected com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence journalTemplatePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.ResourcePersistence.impl")
-	protected com.liferay.portal.service.persistence.ResourcePersistence resourcePersistence;
-	@BeanReference(name = "com.liferay.portal.service.persistence.UserPersistence.impl")
-	protected com.liferay.portal.service.persistence.UserPersistence userPersistence;
-	@BeanReference(name = "com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence.impl")
-	protected com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence expandoValuePersistence;
-	private static Log _log = LogFactoryUtil.getLog(JournalFeedPersistenceImpl.class);
+                qPos.add(groupId);
+
+                if (feedId != null) {
+                    qPos.add(feedId);
+                }
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_F, finderArgs,
+                    count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    public int countAll() throws SystemException {
+        Object[] finderArgs = new Object[0];
+
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+                finderArgs, this);
+
+        if (count == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                Query q = session.createQuery(
+                        "SELECT COUNT(*) FROM com.nss.portlet.journal.model.JournalFeed");
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+                    count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
+    }
+
+    public void afterPropertiesSet() {
+        String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
+                    com.liferay.portal.util.PropsUtil.get(
+                        "value.object.listener.com.nss.portlet.journal.model.JournalFeed")));
+
+        if (listenerClassNames.length > 0) {
+            try {
+                List<ModelListener<JournalFeed>> listenersList = new ArrayList<ModelListener<JournalFeed>>();
+
+                for (String listenerClassName : listenerClassNames) {
+                    listenersList.add((ModelListener<JournalFeed>) Class.forName(
+                            listenerClassName).newInstance());
+                }
+
+                listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
+            } catch (Exception e) {
+                _log.error(e);
+            }
+        }
+    }
 }

@@ -27,7 +27,7 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.model.Image;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.model.JournalTemplate;
+import com.nss.portlet.journal.model.JournalTemplate;
 
 /**
  * <a href="JournalTemplateImpl.java.html"><b><i>View Source</i></b></a>

@@ -63,9 +63,15 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
             { "publishdate", new Integer(Types.TIMESTAMP) },
             
 
-            { "publish", new Integer(Types.BOOLEAN) }
+            { "publish", new Integer(Types.BOOLEAN) },
+            
+
+            { "answerThroughWeb", new Integer(Types.BOOLEAN) },
+            
+
+            { "answerThroughEmail", new Integer(Types.VARCHAR) }
         };
-    public static final String TABLE_SQL_CREATE = "create table nss_qa_cau_tra_loi (maCauTraLoiQA LONG not null primary key,maCauHoiQA LONG,maNguoiTraLoi LONG,noiDungTraLoi VARCHAR(75) null,createdate DATE null,publishdate DATE null,publish BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table nss_qa_cau_tra_loi (maCauTraLoiQA LONG not null primary key,maCauHoiQA LONG,maNguoiTraLoi LONG,noiDungTraLoi VARCHAR(75) null,createdate DATE null,publishdate DATE null,publish BOOLEAN,answerThroughWeb BOOLEAN,answerThroughEmail VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table nss_qa_cau_tra_loi";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -85,6 +91,8 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
     private Date _createdate;
     private Date _publishdate;
     private boolean _publish;
+    private boolean _answerThroughWeb;
+    private String _answerThroughEmail;
     private transient ExpandoBridge _expandoBridge;
 
     public CauTraLoiQAModelImpl() {
@@ -100,6 +108,8 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
         model.setCreatedate(soapModel.getCreatedate());
         model.setPublishdate(soapModel.getPublishdate());
         model.setPublish(soapModel.getPublish());
+        model.setAnswerThroughWeb(soapModel.getAnswerThroughWeb());
+        model.setAnswerThroughEmail(soapModel.getAnswerThroughEmail());
 
         return model;
     }
@@ -186,6 +196,26 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
         _publish = publish;
     }
 
+    public boolean getAnswerThroughWeb() {
+        return _answerThroughWeb;
+    }
+
+    public boolean isAnswerThroughWeb() {
+        return _answerThroughWeb;
+    }
+
+    public void setAnswerThroughWeb(boolean answerThroughWeb) {
+        _answerThroughWeb = answerThroughWeb;
+    }
+
+    public String getAnswerThroughEmail() {
+        return GetterUtil.getString(_answerThroughEmail);
+    }
+
+    public void setAnswerThroughEmail(String answerThroughEmail) {
+        _answerThroughEmail = answerThroughEmail;
+    }
+
     public CauTraLoiQA toEscapedModel() {
         if (isEscapedModel()) {
             return (CauTraLoiQA) this;
@@ -202,6 +232,8 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
             model.setCreatedate(getCreatedate());
             model.setPublishdate(getPublishdate());
             model.setPublish(getPublish());
+            model.setAnswerThroughWeb(getAnswerThroughWeb());
+            model.setAnswerThroughEmail(HtmlUtil.escape(getAnswerThroughEmail()));
 
             model = (CauTraLoiQA) Proxy.newProxyInstance(CauTraLoiQA.class.getClassLoader(),
                     new Class[] { CauTraLoiQA.class },
@@ -230,6 +262,8 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
         clone.setCreatedate(getCreatedate());
         clone.setPublishdate(getPublishdate());
         clone.setPublish(getPublish());
+        clone.setAnswerThroughWeb(getAnswerThroughWeb());
+        clone.setAnswerThroughEmail(getAnswerThroughEmail());
 
         return clone;
     }
@@ -289,6 +323,10 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
         sb.append(getPublishdate());
         sb.append(", publish=");
         sb.append(getPublish());
+        sb.append(", answerThroughWeb=");
+        sb.append(getAnswerThroughWeb());
+        sb.append(", answerThroughEmail=");
+        sb.append(getAnswerThroughEmail());
         sb.append("}");
 
         return sb.toString();
@@ -328,6 +366,14 @@ public class CauTraLoiQAModelImpl extends BaseModelImpl<CauTraLoiQA> {
         sb.append(
             "<column><column-name>publish</column-name><column-value><![CDATA[");
         sb.append(getPublish());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>answerThroughWeb</column-name><column-value><![CDATA[");
+        sb.append(getAnswerThroughWeb());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>answerThroughEmail</column-name><column-value><![CDATA[");
+        sb.append(getAnswerThroughEmail());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

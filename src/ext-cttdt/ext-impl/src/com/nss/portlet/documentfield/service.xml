@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.documentfield">
+	<namespace>Field</namespace>
+	<entity name="PmlField" local-service="true" remote-service="true"
+		table="pml_field">
+
+		<!-- PK fields -->
+
+		<column name="fieldId" type="String" primary="true" db-name="fieldId"/>
+
+		<!-- Other fields -->
+
+		<column name="fieldCode" type="String" db-name="fieldCode"/>
+		<column name="fieldName" type="String" db-name="fieldName"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="departmentsId" type="String" db-name="departmentsId"/>
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="fieldName" case-sensitive="false" />
+		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="FieldCode" return-type="Collection">
+			<finder-column name="fieldCode" comparator="LIKE" case-sensitive="false"/>
+		</finder>
+		<finder name="FieldName" return-type="Collection">
+			<finder-column name="fieldName" comparator="LIKE"/>
+		</finder>
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+		<finder name="FieldCode_FieldName" return-type="Collection" >
+			<finder-column name="fieldCode" comparator="LIKE"/>
+			<finder-column name="fieldName" comparator="LIKE"/>
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>FieldCanNotDelete</exception>
+		<exception>FieldCodeSameCode</exception>
+	</exceptions>
+</service-builder>

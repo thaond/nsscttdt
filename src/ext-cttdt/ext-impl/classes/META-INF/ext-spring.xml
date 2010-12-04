@@ -950,12 +950,23 @@
 	<bean id="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleUtil" class="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleUtil">
 		<property name="persistence" ref="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticlePersistence.impl" />
 	</bean>
+	<bean id="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder.impl" class="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinderUtil" class="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinderUtil">
+		<property name="finder" ref="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder.impl" />
+	</bean>
 	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateLocalService.impl" class="com.nss.portlet.generatetemplateid.service.impl.IdTemplateLocalServiceImpl" />
 	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.nss.portlet.generatetemplateid.service.IdTemplateLocalService.impl" />
 	</bean>
 	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateLocalServiceUtil" class="com.nss.portlet.generatetemplateid.service.IdTemplateLocalServiceUtil">
 		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdTemplateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" class="com.nss.portlet.generatetemplateid.service.impl.IdTemplateServiceImpl" />
+	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.generatetemplateid.service.IdTemplateServiceUtil" class="com.nss.portlet.generatetemplateid.service.IdTemplateServiceUtil">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" />
 	</bean>
 	<bean id="com.nss.portlet.generatetemplateid.service.persistence.IdTemplatePersistence.impl" class="com.nss.portlet.generatetemplateid.service.persistence.IdTemplatePersistenceImpl" parent="basePersistence" />
 	<bean id="com.nss.portlet.generatetemplateid.service.persistence.IdTemplateUtil" class="com.nss.portlet.generatetemplateid.service.persistence.IdTemplateUtil">
@@ -982,5 +993,406 @@
 	<bean id="com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedPersistence.impl" class="com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedPersistenceImpl" parent="basePersistence" />
 	<bean id="com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedUtil" class="com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedUtil">
 		<property name="persistence" ref="com.nss.portlet.generatetemplateid.service.persistence.IdGeneratedPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.AgencyLocalService.impl" class="com.nss.portlet.agency.service.impl.AgencyLocalServiceImpl" />
+	<bean id="com.nss.portlet.agency.service.AgencyLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.agency.service.AgencyLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.AgencyLocalServiceUtil" class="com.nss.portlet.agency.service.AgencyLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.agency.service.AgencyLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.AgencyService.impl" class="com.nss.portlet.agency.service.impl.AgencyServiceImpl" />
+	<bean id="com.nss.portlet.agency.service.AgencyService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.agency.service.AgencyService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.AgencyServiceUtil" class="com.nss.portlet.agency.service.AgencyServiceUtil">
+		<property name="service" ref="com.nss.portlet.agency.service.AgencyService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.persistence.AgencyPersistence.impl" class="com.nss.portlet.agency.service.persistence.AgencyPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.agency.service.persistence.AgencyUtil" class="com.nss.portlet.agency.service.persistence.AgencyUtil">
+		<property name="persistence" ref="com.nss.portlet.agency.service.persistence.AgencyPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.persistence.AgencyFinder.impl" class="com.nss.portlet.agency.service.persistence.AgencyFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.agency.service.persistence.AgencyFinderUtil" class="com.nss.portlet.agency.service.persistence.AgencyFinderUtil">
+		<property name="finder" ref="com.nss.portlet.agency.service.persistence.AgencyFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderLocalService.impl" class="com.nss.portlet.agency.service.impl.PmlAgencyLeaderLocalServiceImpl" />
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.agency.service.PmlAgencyLeaderLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderLocalServiceUtil" class="com.nss.portlet.agency.service.PmlAgencyLeaderLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.agency.service.PmlAgencyLeaderLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" class="com.nss.portlet.agency.service.impl.PmlAgencyLeaderServiceImpl" />
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.PmlAgencyLeaderServiceUtil" class="com.nss.portlet.agency.service.PmlAgencyLeaderServiceUtil">
+		<property name="service" ref="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.agency.service.persistence.PmlAgencyLeaderPersistence.impl" class="com.nss.portlet.agency.service.persistence.PmlAgencyLeaderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.agency.service.persistence.PmlAgencyLeaderUtil" class="com.nss.portlet.agency.service.persistence.PmlAgencyLeaderUtil">
+		<property name="persistence" ref="com.nss.portlet.agency.service.persistence.PmlAgencyLeaderPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.PositionLocalService.impl" class="com.nss.portlet.position.service.impl.PositionLocalServiceImpl" />
+	<bean id="com.nss.portlet.position.service.PositionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.position.service.PositionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.PositionLocalServiceUtil" class="com.nss.portlet.position.service.PositionLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.position.service.PositionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.PositionService.impl" class="com.nss.portlet.position.service.impl.PositionServiceImpl" />
+	<bean id="com.nss.portlet.position.service.PositionService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.position.service.PositionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.PositionServiceUtil" class="com.nss.portlet.position.service.PositionServiceUtil">
+		<property name="service" ref="com.nss.portlet.position.service.PositionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.persistence.PositionPersistence.impl" class="com.nss.portlet.position.service.persistence.PositionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.position.service.persistence.PositionUtil" class="com.nss.portlet.position.service.persistence.PositionUtil">
+		<property name="persistence" ref="com.nss.portlet.position.service.persistence.PositionPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.position.service.persistence.PositionFinder.impl" class="com.nss.portlet.position.service.persistence.PositionFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.position.service.persistence.PositionFinderUtil" class="com.nss.portlet.position.service.persistence.PositionFinderUtil">
+		<property name="finder" ref="com.nss.portlet.position.service.persistence.PositionFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalArticleLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalArticleLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalArticleLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleLocalServiceUtil" class="com.nss.portlet.journal.service.JournalArticleLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleService.impl" class="com.nss.portlet.journal.service.impl.JournalArticleServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalArticleService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalArticleService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleServiceUtil" class="com.nss.portlet.journal.service.JournalArticleServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticlePersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalArticlePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleUtil" class="com.nss.portlet.journal.service.persistence.JournalArticleUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalArticlePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleFinder.impl" class="com.nss.portlet.journal.service.persistence.JournalArticleFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleFinderUtil" class="com.nss.portlet.journal.service.persistence.JournalArticleFinderUtil">
+		<property name="finder" ref="com.nss.portlet.journal.service.persistence.JournalArticleFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleImageLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalArticleImageLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalArticleImageLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalArticleImageLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleImageLocalServiceUtil" class="com.nss.portlet.journal.service.JournalArticleImageLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleImageLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalArticleImagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleImageUtil" class="com.nss.portlet.journal.service.persistence.JournalArticleImageUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleResourceLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalArticleResourceLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalArticleResourceLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalArticleResourceLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalArticleResourceLocalServiceUtil" class="com.nss.portlet.journal.service.JournalArticleResourceLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleResourceLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalArticleResourceUtil" class="com.nss.portlet.journal.service.persistence.JournalArticleResourceUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalContentSearchLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalContentSearchLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalContentSearchLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalContentSearchLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalContentSearchLocalServiceUtil" class="com.nss.portlet.journal.service.JournalContentSearchLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalContentSearchLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalContentSearchPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalContentSearchUtil" class="com.nss.portlet.journal.service.persistence.JournalContentSearchUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalFeedLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalFeedLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalFeedLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalFeedLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalFeedLocalServiceUtil" class="com.nss.portlet.journal.service.JournalFeedLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalFeedLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalFeedService.impl" class="com.nss.portlet.journal.service.impl.JournalFeedServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalFeedService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalFeedService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalFeedServiceUtil" class="com.nss.portlet.journal.service.JournalFeedServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalFeedService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalFeedPersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalFeedPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalFeedUtil" class="com.nss.portlet.journal.service.persistence.JournalFeedUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalFeedPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalFeedFinder.impl" class="com.nss.portlet.journal.service.persistence.JournalFeedFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalFeedFinderUtil" class="com.nss.portlet.journal.service.persistence.JournalFeedFinderUtil">
+		<property name="finder" ref="com.nss.portlet.journal.service.persistence.JournalFeedFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalStructureLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalStructureLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalStructureLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalStructureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalStructureLocalServiceUtil" class="com.nss.portlet.journal.service.JournalStructureLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalStructureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalStructureService.impl" class="com.nss.portlet.journal.service.impl.JournalStructureServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalStructureService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalStructureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalStructureServiceUtil" class="com.nss.portlet.journal.service.JournalStructureServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalStructureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalStructurePersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalStructurePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalStructureUtil" class="com.nss.portlet.journal.service.persistence.JournalStructureUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalStructurePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalStructureFinder.impl" class="com.nss.portlet.journal.service.persistence.JournalStructureFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalStructureFinderUtil" class="com.nss.portlet.journal.service.persistence.JournalStructureFinderUtil">
+		<property name="finder" ref="com.nss.portlet.journal.service.persistence.JournalStructureFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalTemplateLocalService.impl" class="com.nss.portlet.journal.service.impl.JournalTemplateLocalServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalTemplateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalTemplateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil" class="com.nss.portlet.journal.service.JournalTemplateLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalTemplateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalTemplateService.impl" class="com.nss.portlet.journal.service.impl.JournalTemplateServiceImpl" />
+	<bean id="com.nss.portlet.journal.service.JournalTemplateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.journal.service.JournalTemplateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.JournalTemplateServiceUtil" class="com.nss.portlet.journal.service.JournalTemplateServiceUtil">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalTemplateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalTemplatePersistence.impl" class="com.nss.portlet.journal.service.persistence.JournalTemplatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalTemplateUtil" class="com.nss.portlet.journal.service.persistence.JournalTemplateUtil">
+		<property name="persistence" ref="com.nss.portlet.journal.service.persistence.JournalTemplatePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.journal.service.persistence.JournalTemplateFinder.impl" class="com.nss.portlet.journal.service.persistence.JournalTemplateFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.journal.service.persistence.JournalTemplateFinderUtil" class="com.nss.portlet.journal.service.persistence.JournalTemplateFinderUtil">
+		<property name="finder" ref="com.nss.portlet.journal.service.persistence.JournalTemplateFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalService.impl" class="com.nss.portlet.holidaymanagement.service.impl.PmlHolidayLocalServiceImpl" />
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalServiceUtil" class="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" class="com.nss.portlet.holidaymanagement.service.impl.PmlHolidayServiceImpl" />
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.holidaymanagement.service.PmlHolidayServiceUtil" class="com.nss.portlet.holidaymanagement.service.PmlHolidayServiceUtil">
+		<property name="service" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayPersistence.impl" class="com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayUtil" class="com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayUtil">
+		<property name="persistence" ref="com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.DepartmentLocalService.impl" class="com.nss.portlet.department.service.impl.DepartmentLocalServiceImpl" />
+	<bean id="com.nss.portlet.department.service.DepartmentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.DepartmentLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.DepartmentLocalServiceUtil" class="com.nss.portlet.department.service.DepartmentLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.DepartmentLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.DepartmentService.impl" class="com.nss.portlet.department.service.impl.DepartmentServiceImpl" />
+	<bean id="com.nss.portlet.department.service.DepartmentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.DepartmentService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.DepartmentServiceUtil" class="com.nss.portlet.department.service.DepartmentServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.DepartmentService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.persistence.DepartmentPersistence.impl" class="com.nss.portlet.department.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.department.service.persistence.DepartmentUtil" class="com.nss.portlet.department.service.persistence.DepartmentUtil">
+		<property name="persistence" ref="com.nss.portlet.department.service.persistence.DepartmentPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.persistence.DepartmentFinder.impl" class="com.nss.portlet.department.service.persistence.DepartmentFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.department.service.persistence.DepartmentFinderUtil" class="com.nss.portlet.department.service.persistence.DepartmentFinderUtil">
+		<property name="finder" ref="com.nss.portlet.department.service.persistence.DepartmentFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlUserLocalService.impl" class="com.nss.portlet.department.service.impl.PmlUserLocalServiceImpl" />
+	<bean id="com.nss.portlet.department.service.PmlUserLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.PmlUserLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlUserLocalServiceUtil" class="com.nss.portlet.department.service.PmlUserLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.PmlUserLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlUserService.impl" class="com.nss.portlet.department.service.impl.PmlUserServiceImpl" />
+	<bean id="com.nss.portlet.department.service.PmlUserService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.PmlUserService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlUserServiceUtil" class="com.nss.portlet.department.service.PmlUserServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.PmlUserService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.persistence.PmlUserPersistence.impl" class="com.nss.portlet.department.service.persistence.PmlUserPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.department.service.persistence.PmlUserUtil" class="com.nss.portlet.department.service.persistence.PmlUserUtil">
+		<property name="persistence" ref="com.nss.portlet.department.service.persistence.PmlUserPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.persistence.PmlUserFinder.impl" class="com.nss.portlet.department.service.persistence.PmlUserFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.department.service.persistence.PmlUserFinderUtil" class="com.nss.portlet.department.service.persistence.PmlUserFinderUtil">
+		<property name="finder" ref="com.nss.portlet.department.service.persistence.PmlUserFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalService.impl" class="com.nss.portlet.department.service.impl.PmlDepartmentsLeaderLocalServiceImpl" />
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalServiceUtil" class="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" class="com.nss.portlet.department.service.impl.PmlDepartmentsLeaderServiceImpl" />
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.PmlDepartmentsLeaderServiceUtil" class="com.nss.portlet.department.service.PmlDepartmentsLeaderServiceUtil">
+		<property name="service" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderPersistence.impl" class="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderUtil" class="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderUtil">
+		<property name="persistence" ref="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldLocalService.impl" class="com.nss.portlet.documentfield.service.impl.PmlFieldLocalServiceImpl" />
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.documentfield.service.PmlFieldLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldLocalServiceUtil" class="com.nss.portlet.documentfield.service.PmlFieldLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.documentfield.service.PmlFieldLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldService.impl" class="com.nss.portlet.documentfield.service.impl.PmlFieldServiceImpl" />
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.documentfield.service.PmlFieldService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.PmlFieldServiceUtil" class="com.nss.portlet.documentfield.service.PmlFieldServiceUtil">
+		<property name="service" ref="com.nss.portlet.documentfield.service.PmlFieldService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.persistence.PmlFieldPersistence.impl" class="com.nss.portlet.documentfield.service.persistence.PmlFieldPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.documentfield.service.persistence.PmlFieldUtil" class="com.nss.portlet.documentfield.service.persistence.PmlFieldUtil">
+		<property name="persistence" ref="com.nss.portlet.documentfield.service.persistence.PmlFieldPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.documentfield.service.persistence.PmlFieldFinder.impl" class="com.nss.portlet.documentfield.service.persistence.PmlFieldFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.documentfield.service.persistence.PmlFieldFinderUtil" class="com.nss.portlet.documentfield.service.persistence.PmlFieldFinderUtil">
+		<property name="finder" ref="com.nss.portlet.documentfield.service.persistence.PmlFieldFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeLocalService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileTypeLocalServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileTypeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeLocalServiceUtil" class="com.nss.portlet.filetype.service.PmlFileTypeLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileTypeServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileTypeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeServiceUtil" class="com.nss.portlet.filetype.service.PmlFileTypeServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypePersistence.impl" class="com.nss.portlet.filetype.service.persistence.PmlFileTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypeUtil" class="com.nss.portlet.filetype.service.persistence.PmlFileTypeUtil">
+		<property name="persistence" ref="com.nss.portlet.filetype.service.persistence.PmlFileTypePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypeFinder.impl" class="com.nss.portlet.filetype.service.persistence.PmlFileTypeFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypeFinderUtil" class="com.nss.portlet.filetype.service.persistence.PmlFileTypeFinderUtil">
+		<property name="finder" ref="com.nss.portlet.filetype.service.persistence.PmlFileTypeFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileTypeAttachedFileLocalServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalServiceUtil" class="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileTypeAttachedFileServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileServiceUtil" class="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypeAttachedFilePersistence.impl" class="com.nss.portlet.filetype.service.persistence.PmlFileTypeAttachedFilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileTypeAttachedFileUtil" class="com.nss.portlet.filetype.service.persistence.PmlFileTypeAttachedFileUtil">
+		<property name="persistence" ref="com.nss.portlet.filetype.service.persistence.PmlFileTypeAttachedFilePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileAttachedFileLocalServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalServiceUtil" class="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" class="com.nss.portlet.filetype.service.impl.PmlFileAttachedFileServiceImpl" />
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.PmlFileAttachedFileServiceUtil" class="com.nss.portlet.filetype.service.PmlFileAttachedFileServiceUtil">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileAttachedFilePersistence.impl" class="com.nss.portlet.filetype.service.persistence.PmlFileAttachedFilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.filetype.service.persistence.PmlFileAttachedFileUtil" class="com.nss.portlet.filetype.service.persistence.PmlFileAttachedFileUtil">
+		<property name="persistence" ref="com.nss.portlet.filetype.service.persistence.PmlFileAttachedFilePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileLocalService.impl" class="com.nss.portlet.attachedfile.service.impl.AttachedFileLocalServiceImpl" />
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.attachedfile.service.AttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileLocalServiceUtil" class="com.nss.portlet.attachedfile.service.AttachedFileLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.attachedfile.service.AttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileService.impl" class="com.nss.portlet.attachedfile.service.impl.AttachedFileServiceImpl" />
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.attachedfile.service.AttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.AttachedFileServiceUtil" class="com.nss.portlet.attachedfile.service.AttachedFileServiceUtil">
+		<property name="service" ref="com.nss.portlet.attachedfile.service.AttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.persistence.AttachedFilePersistence.impl" class="com.nss.portlet.attachedfile.service.persistence.AttachedFilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.attachedfile.service.persistence.AttachedFileUtil" class="com.nss.portlet.attachedfile.service.persistence.AttachedFileUtil">
+		<property name="persistence" ref="com.nss.portlet.attachedfile.service.persistence.AttachedFilePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.attachedfile.service.persistence.AttachedFileFinder.impl" class="com.nss.portlet.attachedfile.service.persistence.AttachedFileFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.attachedfile.service.persistence.AttachedFileFinderUtil" class="com.nss.portlet.attachedfile.service.persistence.AttachedFileFinderUtil">
+		<property name="finder" ref="com.nss.portlet.attachedfile.service.persistence.AttachedFileFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateLocalService.impl" class="com.nss.portlet.delegate.service.impl.PmlDelegateLocalServiceImpl" />
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.delegate.service.PmlDelegateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateLocalServiceUtil" class="com.nss.portlet.delegate.service.PmlDelegateLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlDelegateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateService.impl" class="com.nss.portlet.delegate.service.impl.PmlDelegateServiceImpl" />
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.delegate.service.PmlDelegateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlDelegateServiceUtil" class="com.nss.portlet.delegate.service.PmlDelegateServiceUtil">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlDelegateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.persistence.PmlDelegatePersistence.impl" class="com.nss.portlet.delegate.service.persistence.PmlDelegatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.delegate.service.persistence.PmlDelegateUtil" class="com.nss.portlet.delegate.service.persistence.PmlDelegateUtil">
+		<property name="persistence" ref="com.nss.portlet.delegate.service.persistence.PmlDelegatePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalService.impl" class="com.nss.portlet.delegate.service.impl.PmlFileTypeDelegateLocalServiceImpl" />
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalServiceUtil" class="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" class="com.nss.portlet.delegate.service.impl.PmlFileTypeDelegateServiceImpl" />
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.PmlFileTypeDelegateServiceUtil" class="com.nss.portlet.delegate.service.PmlFileTypeDelegateServiceUtil">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegatePersistence.impl" class="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegateUtil" class="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegateUtil">
+		<property name="persistence" ref="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegatePersistence.impl" />
 	</bean>
 </beans>

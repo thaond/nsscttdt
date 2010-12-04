@@ -63,7 +63,7 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
             { "userId", new Integer(Types.BIGINT) },
             
 
-            { "roleId", new Integer(Types.BIGINT) },
+            { "userIds", new Integer(Types.VARCHAR) },
             
 
             { "dateReceiptOfUserReceipt", new Integer(Types.TIMESTAMP) },
@@ -78,13 +78,7 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
             { "useridProcess", new Integer(Types.BIGINT) },
             
 
-            { "roleIdProcess", new Integer(Types.BIGINT) },
-            
-
-            { "dateReceiptOfUserProcess", new Integer(Types.TIMESTAMP) },
-            
-
-            { "dateProcessOfUserProcess", new Integer(Types.TIMESTAMP) },
+            { "userIdsProcess", new Integer(Types.VARCHAR) },
             
 
             { "processInformation", new Integer(Types.VARCHAR) },
@@ -95,7 +89,7 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
 
             { "workflowStatusAfter", new Integer(Types.VARCHAR) }
         };
-    public static final String TABLE_SQL_CREATE = "create table log_workflow_journal_article (logWorkflowJournalArticleId LONG not null primary key,resourcePrimkey LONG,transition INTEGER,groupId LONG,companyId LONG,userId LONG,roleId LONG,dateReceiptOfUserReceipt DATE null,dateProcessOfUserReceipt DATE null,dateSendOfUserReceipt DATE null,useridProcess LONG,roleIdProcess LONG,dateReceiptOfUserProcess DATE null,dateProcessOfUserProcess DATE null,processInformation VARCHAR(75) null,workflowStatusBefore VARCHAR(75) null,workflowStatusAfter VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table log_workflow_journal_article (logWorkflowJournalArticleId LONG not null primary key,resourcePrimkey LONG,transition INTEGER,groupId LONG,companyId LONG,userId LONG,userIds VARCHAR(75) null,dateReceiptOfUserReceipt DATE null,dateProcessOfUserReceipt DATE null,dateSendOfUserReceipt DATE null,useridProcess LONG,userIdsProcess VARCHAR(75) null,processInformation VARCHAR(75) null,workflowStatusBefore VARCHAR(75) null,workflowStatusAfter VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table log_workflow_journal_article";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -114,14 +108,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
     private long _groupId;
     private long _companyId;
     private long _userId;
-    private long _roleId;
+    private String _userIds;
     private Date _dateReceiptOfUserReceipt;
     private Date _dateProcessOfUserReceipt;
     private Date _dateSendOfUserReceipt;
     private long _useridProcess;
-    private long _roleIdProcess;
-    private Date _dateReceiptOfUserProcess;
-    private Date _dateProcessOfUserProcess;
+    private String _userIdsProcess;
     private String _processInformation;
     private String _workflowStatusBefore;
     private String _workflowStatusAfter;
@@ -140,14 +132,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         model.setGroupId(soapModel.getGroupId());
         model.setCompanyId(soapModel.getCompanyId());
         model.setUserId(soapModel.getUserId());
-        model.setRoleId(soapModel.getRoleId());
+        model.setUserIds(soapModel.getUserIds());
         model.setDateReceiptOfUserReceipt(soapModel.getDateReceiptOfUserReceipt());
         model.setDateProcessOfUserReceipt(soapModel.getDateProcessOfUserReceipt());
         model.setDateSendOfUserReceipt(soapModel.getDateSendOfUserReceipt());
         model.setUseridProcess(soapModel.getUseridProcess());
-        model.setRoleIdProcess(soapModel.getRoleIdProcess());
-        model.setDateReceiptOfUserProcess(soapModel.getDateReceiptOfUserProcess());
-        model.setDateProcessOfUserProcess(soapModel.getDateProcessOfUserProcess());
+        model.setUserIdsProcess(soapModel.getUserIdsProcess());
         model.setProcessInformation(soapModel.getProcessInformation());
         model.setWorkflowStatusBefore(soapModel.getWorkflowStatusBefore());
         model.setWorkflowStatusAfter(soapModel.getWorkflowStatusAfter());
@@ -226,12 +216,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         _userId = userId;
     }
 
-    public long getRoleId() {
-        return _roleId;
+    public String getUserIds() {
+        return GetterUtil.getString(_userIds);
     }
 
-    public void setRoleId(long roleId) {
-        _roleId = roleId;
+    public void setUserIds(String userIds) {
+        _userIds = userIds;
     }
 
     public Date getDateReceiptOfUserReceipt() {
@@ -266,28 +256,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         _useridProcess = useridProcess;
     }
 
-    public long getRoleIdProcess() {
-        return _roleIdProcess;
+    public String getUserIdsProcess() {
+        return GetterUtil.getString(_userIdsProcess);
     }
 
-    public void setRoleIdProcess(long roleIdProcess) {
-        _roleIdProcess = roleIdProcess;
-    }
-
-    public Date getDateReceiptOfUserProcess() {
-        return _dateReceiptOfUserProcess;
-    }
-
-    public void setDateReceiptOfUserProcess(Date dateReceiptOfUserProcess) {
-        _dateReceiptOfUserProcess = dateReceiptOfUserProcess;
-    }
-
-    public Date getDateProcessOfUserProcess() {
-        return _dateProcessOfUserProcess;
-    }
-
-    public void setDateProcessOfUserProcess(Date dateProcessOfUserProcess) {
-        _dateProcessOfUserProcess = dateProcessOfUserProcess;
+    public void setUserIdsProcess(String userIdsProcess) {
+        _userIdsProcess = userIdsProcess;
     }
 
     public String getProcessInformation() {
@@ -329,14 +303,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
             model.setGroupId(getGroupId());
             model.setCompanyId(getCompanyId());
             model.setUserId(getUserId());
-            model.setRoleId(getRoleId());
+            model.setUserIds(HtmlUtil.escape(getUserIds()));
             model.setDateReceiptOfUserReceipt(getDateReceiptOfUserReceipt());
             model.setDateProcessOfUserReceipt(getDateProcessOfUserReceipt());
             model.setDateSendOfUserReceipt(getDateSendOfUserReceipt());
             model.setUseridProcess(getUseridProcess());
-            model.setRoleIdProcess(getRoleIdProcess());
-            model.setDateReceiptOfUserProcess(getDateReceiptOfUserProcess());
-            model.setDateProcessOfUserProcess(getDateProcessOfUserProcess());
+            model.setUserIdsProcess(HtmlUtil.escape(getUserIdsProcess()));
             model.setProcessInformation(HtmlUtil.escape(getProcessInformation()));
             model.setWorkflowStatusBefore(HtmlUtil.escape(
                     getWorkflowStatusBefore()));
@@ -369,14 +341,12 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         clone.setGroupId(getGroupId());
         clone.setCompanyId(getCompanyId());
         clone.setUserId(getUserId());
-        clone.setRoleId(getRoleId());
+        clone.setUserIds(getUserIds());
         clone.setDateReceiptOfUserReceipt(getDateReceiptOfUserReceipt());
         clone.setDateProcessOfUserReceipt(getDateProcessOfUserReceipt());
         clone.setDateSendOfUserReceipt(getDateSendOfUserReceipt());
         clone.setUseridProcess(getUseridProcess());
-        clone.setRoleIdProcess(getRoleIdProcess());
-        clone.setDateReceiptOfUserProcess(getDateReceiptOfUserProcess());
-        clone.setDateProcessOfUserProcess(getDateProcessOfUserProcess());
+        clone.setUserIdsProcess(getUserIdsProcess());
         clone.setProcessInformation(getProcessInformation());
         clone.setWorkflowStatusBefore(getWorkflowStatusBefore());
         clone.setWorkflowStatusAfter(getWorkflowStatusAfter());
@@ -443,8 +413,8 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         sb.append(getCompanyId());
         sb.append(", userId=");
         sb.append(getUserId());
-        sb.append(", roleId=");
-        sb.append(getRoleId());
+        sb.append(", userIds=");
+        sb.append(getUserIds());
         sb.append(", dateReceiptOfUserReceipt=");
         sb.append(getDateReceiptOfUserReceipt());
         sb.append(", dateProcessOfUserReceipt=");
@@ -453,12 +423,8 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         sb.append(getDateSendOfUserReceipt());
         sb.append(", useridProcess=");
         sb.append(getUseridProcess());
-        sb.append(", roleIdProcess=");
-        sb.append(getRoleIdProcess());
-        sb.append(", dateReceiptOfUserProcess=");
-        sb.append(getDateReceiptOfUserProcess());
-        sb.append(", dateProcessOfUserProcess=");
-        sb.append(getDateProcessOfUserProcess());
+        sb.append(", userIdsProcess=");
+        sb.append(getUserIdsProcess());
         sb.append(", processInformation=");
         sb.append(getProcessInformation());
         sb.append(", workflowStatusBefore=");
@@ -503,8 +469,8 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         sb.append(getUserId());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>roleId</column-name><column-value><![CDATA[");
-        sb.append(getRoleId());
+            "<column><column-name>userIds</column-name><column-value><![CDATA[");
+        sb.append(getUserIds());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>dateReceiptOfUserReceipt</column-name><column-value><![CDATA[");
@@ -523,16 +489,8 @@ public class LogWorkflowJournalArticleModelImpl extends BaseModelImpl<LogWorkflo
         sb.append(getUseridProcess());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>roleIdProcess</column-name><column-value><![CDATA[");
-        sb.append(getRoleIdProcess());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>dateReceiptOfUserProcess</column-name><column-value><![CDATA[");
-        sb.append(getDateReceiptOfUserProcess());
-        sb.append("]]></column-value></column>");
-        sb.append(
-            "<column><column-name>dateProcessOfUserProcess</column-name><column-value><![CDATA[");
-        sb.append(getDateProcessOfUserProcess());
+            "<column><column-name>userIdsProcess</column-name><column-value><![CDATA[");
+        sb.append(getUserIdsProcess());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>processInformation</column-name><column-value><![CDATA[");

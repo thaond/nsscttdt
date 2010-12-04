@@ -145,8 +145,58 @@
 				</antcall>
 	</target>
 	<target name="build-service-portlet-generatetemplateid">
-				<antcall target="build-service">
-					<param name="service.file" value="src/com/nss/portlet/generatetemplateid/service.xml" />
-				</antcall>
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/generatetemplateid/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-agency">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/agency/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-position">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/position/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-journal">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/nss/portlet/journal/service.xml" />
+			</antcall>
+	</target>
+	<target name="build-service-portlet-holidaymanagement">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/holidaymanagement/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portal">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/liferay/portal/service.xml" />
+			</antcall>
+	</target>
+	<target name="build-service-portlet-department">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/department/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-documentfield">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/documentfield/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-filetype">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/filetype/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-attachedfile">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/attachedfile/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-delegate">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/delegate/service.xml" />
+		</antcall>
 	</target>
 </project>

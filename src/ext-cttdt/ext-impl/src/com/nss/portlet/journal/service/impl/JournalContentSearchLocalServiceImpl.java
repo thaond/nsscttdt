@@ -34,8 +34,8 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.journal.model.JournalContentSearch;
-import com.liferay.portlet.journal.service.base.JournalContentSearchLocalServiceBaseImpl;
+import com.nss.portlet.journal.model.JournalContentSearch;
+import com.nss.portlet.journal.service.base.JournalContentSearchLocalServiceBaseImpl;
 
 import java.util.ArrayList;
 import java.util.List;

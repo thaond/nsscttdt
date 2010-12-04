@@ -2,6 +2,143 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.nss.portlet.journal.model.impl.JournalArticleImpl" table="JournalArticle">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="urlTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="structureId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="templateId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="displayDate" type="org.hibernate.type.TimestampType" />
+		<property name="approved" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="approvedByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="approvedByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="approvedDate" type="org.hibernate.type.TimestampType" />
+		<property name="expired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="expirationDate" type="org.hibernate.type.TimestampType" />
+		<property name="reviewDate" type="org.hibernate.type.TimestampType" />
+		<property name="indexable" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="smallImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="smallImageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="smallImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalArticleImageImpl" table="JournalArticleImage">
+		<cache usage="read-write" />
+		<id name="articleImageId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="elInstanceId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="elName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="languageId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tempImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalArticleResourceImpl" table="JournalArticleResource">
+		<cache usage="read-write" />
+		<id name="resourcePrimKey" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalContentSearchImpl" table="JournalContentSearch">
+		<cache usage="read-write" />
+		<id name="contentSearchId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="privateLayout" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="layoutId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="portletId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="articleId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalFeedImpl" table="JournalFeed">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="feedId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="structureId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="templateId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="rendererTemplateId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="delta" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="orderByCol" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="orderByType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="targetLayoutFriendlyUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="targetPortletId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contentField" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="feedType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="feedVersion" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalStructureImpl" table="JournalStructure">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="structureId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parentStructureId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="xsd" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.journal.model.impl.JournalTemplateImpl" table="JournalTemplate">
+		<cache usage="read-write" />
+		<id name="id" column="id_" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="templateId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="structureId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="xsl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="langType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="cacheable" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="smallImage" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="smallImageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="smallImageURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
 	<class name="com.nss.portlet.managementworkflowjournal.model.impl.ManagementWorkflowJournalImpl" table="nss_quan_ly_quy_trinh_duyet_tin">
 		<cache usage="read-write" />
 		<id name="managementWorkflowJournalId" type="long">
@@ -25,12 +162,12 @@
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="processDefinitionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="processInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="resourcePrimkey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="journalType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="countImageOfArticle" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="datecomplete" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.nss.portlet.managementworkflowjournal.model.impl.LogWorkflowJournalArticleImpl" table="log_workflow_journal_article">
 		<cache usage="read-write" />
@@ -42,14 +179,12 @@
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="roleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="dateReceiptOfUserReceipt" type="org.hibernate.type.TimestampType" />
 		<property name="dateProcessOfUserReceipt" type="org.hibernate.type.TimestampType" />
 		<property name="dateSendOfUserReceipt" type="org.hibernate.type.TimestampType" />
 		<property name="useridProcess" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="roleIdProcess" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="dateReceiptOfUserProcess" type="org.hibernate.type.TimestampType" />
-		<property name="dateProcessOfUserProcess" type="org.hibernate.type.TimestampType" />
+		<property name="userIdsProcess" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="processInformation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="workflowStatusBefore" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="workflowStatusAfter" type="com.liferay.portal.dao.orm.hibernate.StringType" />
@@ -62,6 +197,33 @@
 		<property name="imageIdSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="imageIdUnSign" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.nss.portlet.agency.model.impl.AgencyImpl" table="pml_agency">
+		<cache usage="read-write" />
+		<id name="agencyId" column="agencyid" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="agencyCode" column="agencycode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="agencyName" column="agencyname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.agency.model.impl.PmlAgencyLeaderImpl" table="pml_agencyleader">
+		<cache usage="read-write" />
+		<id name="agencyId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.nss.portlet.position.model.impl.PositionImpl" table="pml_position">
+		<cache usage="read-write" />
+		<id name="positionId" column="positionid" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="positionCode" column="positioncode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="positionName" column="positionname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalendarImpl" table="MeetingCalendar">
 		<cache usage="read-write" />
@@ -513,6 +675,108 @@
 		<property name="year" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="curValue" column="curvalue" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
+	<class name="com.nss.portlet.holidaymanagement.model.impl.PmlHolidayImpl" table="pml_holiday">
+		<cache usage="read-write" />
+		<id name="holidayId" column="holidayid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="holiday_type" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="holiday_value" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="from_date" type="org.hibernate.type.TimestampType" />
+		<property name="to_date" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.nss.portlet.department.model.impl.DepartmentImpl" table="pml_departments">
+		<cache usage="read-write" />
+		<id name="departmentsId" column="departmentsid" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="departmentsParentId" column="departmentsparentid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentsCode" column="departmentscode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentsName" column="departmentsname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="abbreviateName" column="abbreviatename" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="agencyId" column="agencyid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="roleId" column="roleid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="hasTeam" column="hasteam" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.department.model.impl.PmlUserImpl" table="pml_user">
+		<cache usage="read-write" />
+		<id name="userId" column="userid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="departmentsId" column="departmentsid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="positionId" column="positionid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" />
+	</class>
+	<class name="com.nss.portlet.department.model.impl.PmlDepartmentsLeaderImpl" table="pml_departmentleader">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.nss.portlet.department.service.persistence.PmlDepartmentsLeaderPK">
+			<key-property name="departmentsId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+			<key-property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+		<property name="main" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.nss.portlet.documentfield.model.impl.PmlFieldImpl" table="pml_field">
+		<cache usage="read-write" />
+		<id name="fieldId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="fieldCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fieldName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentsId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.filetype.model.impl.PmlFileTypeImpl" table="pml_filetype">
+		<cache usage="read-write" />
+		<id name="fileTypeId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="fileTypeCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fileTypeName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fieldId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="templateId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="processTime" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="currentReceiptNumber" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="receiptTemplate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.filetype.model.impl.PmlFileTypeAttachedFileImpl" table="pml_filetype_attachedfile">
+		<cache usage="read-write" />
+		<id name="filetypeAttachedFileId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="fileTypeId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="original" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="copy_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="attachedFileId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="attachedFileName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.filetype.model.impl.PmlFileAttachedFileImpl" table="pml_file_attachedfile">
+		<cache usage="read-write" />
+		<id name="fileAttachedFileId" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="fileId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="original" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="copy_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="attachedFileId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="attachedFileName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="note" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.attachedfile.model.impl.AttachedFileImpl" table="pml_attachedfile">
+		<cache usage="read-write" />
+		<id name="attachedFileId" column="attachedfileid" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="attachedFileCode" column="attachedfilecode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="attachedFileName" column="attachedfilename" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
 	<class name="com.liferay.portlet.messageboards.model.impl.MBCategoryImpl" table="MBCategory">
 		<cache usage="read-write" />
 		<id name="categoryId" type="long">
@@ -643,5 +907,26 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.nss.portlet.delegate.model.impl.PmlDelegateImpl" table="pml_delegate">
+		<cache usage="read-write" />
+		<id name="delegateId" column="delegateid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="assigner" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="receiver" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="startDate" column="startdate" type="org.hibernate.type.TimestampType" />
+		<property name="endDate" column="enddate" type="org.hibernate.type.TimestampType" />
+		<property name="cancelDate" column="canceldate" type="org.hibernate.type.TimestampType" />
+		<property name="cancelDelegate" column="canceldelegate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dateCreated" column="datecreated" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.nss.portlet.delegate.model.impl.PmlFileTypeDelegateImpl" table="pml_filetypedelegate">
+		<cache usage="read-write" />
+		<id name="fileTypeDelegateId" column="filetypedelegateid" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="fileTypeId" column="filetypeid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="delegateId" column="delegateid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

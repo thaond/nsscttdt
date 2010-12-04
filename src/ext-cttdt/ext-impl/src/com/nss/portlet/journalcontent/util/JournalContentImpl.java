@@ -32,9 +32,9 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.portlet.journal.model.JournalArticleDisplay;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
-import com.liferay.portlet.journal.service.permission.JournalArticlePermission;
+import com.nss.portlet.journal.model.JournalArticleDisplay;
+import com.nss.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.nss.portlet.journal.service.permission.JournalArticlePermission;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

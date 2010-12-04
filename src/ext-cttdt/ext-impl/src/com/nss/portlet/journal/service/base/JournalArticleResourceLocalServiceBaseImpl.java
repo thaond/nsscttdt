@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.service.base;
 
 import com.liferay.counter.service.CounterLocalService;
@@ -31,375 +9,369 @@ import com.liferay.portal.kernel.annotation.BeanReference;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.util.PortalUtil;
 
-import com.liferay.portlet.journal.model.JournalArticleResource;
-import com.liferay.portlet.journal.service.JournalArticleImageLocalService;
-import com.liferay.portlet.journal.service.JournalArticleLocalService;
-import com.liferay.portlet.journal.service.JournalArticleResourceLocalService;
-import com.liferay.portlet.journal.service.JournalArticleService;
-import com.liferay.portlet.journal.service.JournalContentSearchLocalService;
-import com.liferay.portlet.journal.service.JournalFeedLocalService;
-import com.liferay.portlet.journal.service.JournalFeedService;
-import com.liferay.portlet.journal.service.JournalStructureLocalService;
-import com.liferay.portlet.journal.service.JournalStructureService;
-import com.liferay.portlet.journal.service.JournalTemplateLocalService;
-import com.liferay.portlet.journal.service.JournalTemplateService;
-import com.liferay.portlet.journal.service.persistence.JournalArticleFinder;
-import com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence;
-import com.liferay.portlet.journal.service.persistence.JournalArticlePersistence;
-import com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence;
-import com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence;
-import com.liferay.portlet.journal.service.persistence.JournalFeedFinder;
-import com.liferay.portlet.journal.service.persistence.JournalFeedPersistence;
-import com.liferay.portlet.journal.service.persistence.JournalStructureFinder;
-import com.liferay.portlet.journal.service.persistence.JournalStructurePersistence;
-import com.liferay.portlet.journal.service.persistence.JournalTemplateFinder;
-import com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence;
+import com.nss.portlet.journal.model.JournalArticleResource;
+import com.nss.portlet.journal.service.JournalArticleImageLocalService;
+import com.nss.portlet.journal.service.JournalArticleLocalService;
+import com.nss.portlet.journal.service.JournalArticleResourceLocalService;
+import com.nss.portlet.journal.service.JournalArticleService;
+import com.nss.portlet.journal.service.JournalContentSearchLocalService;
+import com.nss.portlet.journal.service.JournalFeedLocalService;
+import com.nss.portlet.journal.service.JournalFeedService;
+import com.nss.portlet.journal.service.JournalStructureLocalService;
+import com.nss.portlet.journal.service.JournalStructureService;
+import com.nss.portlet.journal.service.JournalTemplateLocalService;
+import com.nss.portlet.journal.service.JournalTemplateService;
+import com.nss.portlet.journal.service.persistence.JournalArticleFinder;
+import com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence;
+import com.nss.portlet.journal.service.persistence.JournalArticlePersistence;
+import com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence;
+import com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence;
+import com.nss.portlet.journal.service.persistence.JournalFeedFinder;
+import com.nss.portlet.journal.service.persistence.JournalFeedPersistence;
+import com.nss.portlet.journal.service.persistence.JournalStructureFinder;
+import com.nss.portlet.journal.service.persistence.JournalStructurePersistence;
+import com.nss.portlet.journal.service.persistence.JournalTemplateFinder;
+import com.nss.portlet.journal.service.persistence.JournalTemplatePersistence;
 
 import java.util.List;
 
-/**
- * <a href="JournalArticleResourceLocalServiceBaseImpl.java.html"><b><i>View Source</i></b></a>
- *
- * @author Brian Wing Shun Chan
- *
- */
+
 public abstract class JournalArticleResourceLocalServiceBaseImpl
-	implements JournalArticleResourceLocalService {
-	public JournalArticleResource addJournalArticleResource(
-		JournalArticleResource journalArticleResource)
-		throws SystemException {
-		journalArticleResource.setNew(true);
+    implements JournalArticleResourceLocalService {
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalArticleLocalService.impl")
+    protected JournalArticleLocalService journalArticleLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalArticleService.impl")
+    protected JournalArticleService journalArticleService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticlePersistence.impl")
+    protected JournalArticlePersistence journalArticlePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleFinder.impl")
+    protected JournalArticleFinder journalArticleFinder;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalArticleImageLocalService.impl")
+    protected JournalArticleImageLocalService journalArticleImageLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
+    protected JournalArticleImagePersistence journalArticleImagePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalArticleResourceLocalService.impl")
+    protected JournalArticleResourceLocalService journalArticleResourceLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
+    protected JournalArticleResourcePersistence journalArticleResourcePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalContentSearchLocalService.impl")
+    protected JournalContentSearchLocalService journalContentSearchLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
+    protected JournalContentSearchPersistence journalContentSearchPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalFeedLocalService.impl")
+    protected JournalFeedLocalService journalFeedLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalFeedService.impl")
+    protected JournalFeedService journalFeedService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalFeedPersistence.impl")
+    protected JournalFeedPersistence journalFeedPersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalFeedFinder.impl")
+    protected JournalFeedFinder journalFeedFinder;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalStructureLocalService.impl")
+    protected JournalStructureLocalService journalStructureLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalStructureService.impl")
+    protected JournalStructureService journalStructureService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalStructurePersistence.impl")
+    protected JournalStructurePersistence journalStructurePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalStructureFinder.impl")
+    protected JournalStructureFinder journalStructureFinder;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalTemplateLocalService.impl")
+    protected JournalTemplateLocalService journalTemplateLocalService;
+    @BeanReference(name = "com.nss.portlet.journal.service.JournalTemplateService.impl")
+    protected JournalTemplateService journalTemplateService;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
+    protected JournalTemplatePersistence journalTemplatePersistence;
+    @BeanReference(name = "com.nss.portlet.journal.service.persistence.JournalTemplateFinder.impl")
+    protected JournalTemplateFinder journalTemplateFinder;
+    @BeanReference(name = "com.liferay.counter.service.CounterLocalService.impl")
+    protected CounterLocalService counterLocalService;
+    @BeanReference(name = "com.liferay.counter.service.CounterService.impl")
+    protected CounterService counterService;
 
-		return journalArticleResourcePersistence.update(journalArticleResource,
-			false);
-	}
+    public JournalArticleResource addJournalArticleResource(
+        JournalArticleResource journalArticleResource)
+        throws SystemException {
+        journalArticleResource.setNew(true);
 
-	public JournalArticleResource createJournalArticleResource(
-		long resourcePrimKey) {
-		return journalArticleResourcePersistence.create(resourcePrimKey);
-	}
+        return journalArticleResourcePersistence.update(journalArticleResource,
+            false);
+    }
 
-	public void deleteJournalArticleResource(long resourcePrimKey)
-		throws PortalException, SystemException {
-		journalArticleResourcePersistence.remove(resourcePrimKey);
-	}
+    public JournalArticleResource createJournalArticleResource(
+        long resourcePrimKey) {
+        return journalArticleResourcePersistence.create(resourcePrimKey);
+    }
 
-	public void deleteJournalArticleResource(
-		JournalArticleResource journalArticleResource)
-		throws SystemException {
-		journalArticleResourcePersistence.remove(journalArticleResource);
-	}
+    public void deleteJournalArticleResource(long resourcePrimKey)
+        throws PortalException, SystemException {
+        journalArticleResourcePersistence.remove(resourcePrimKey);
+    }
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
-		return journalArticleResourcePersistence.findWithDynamicQuery(dynamicQuery);
-	}
+    public void deleteJournalArticleResource(
+        JournalArticleResource journalArticleResource)
+        throws SystemException {
+        journalArticleResourcePersistence.remove(journalArticleResource);
+    }
 
-	public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) throws SystemException {
-		return journalArticleResourcePersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
-	}
+    public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
+        throws SystemException {
+        return journalArticleResourcePersistence.findWithDynamicQuery(dynamicQuery);
+    }
 
-	public JournalArticleResource getJournalArticleResource(
-		long resourcePrimKey) throws PortalException, SystemException {
-		return journalArticleResourcePersistence.findByPrimaryKey(resourcePrimKey);
-	}
+    public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
+        int end) throws SystemException {
+        return journalArticleResourcePersistence.findWithDynamicQuery(dynamicQuery,
+            start, end);
+    }
 
-	public List<JournalArticleResource> getJournalArticleResources(int start,
-		int end) throws SystemException {
-		return journalArticleResourcePersistence.findAll(start, end);
-	}
+    public JournalArticleResource getJournalArticleResource(
+        long resourcePrimKey) throws PortalException, SystemException {
+        return journalArticleResourcePersistence.findByPrimaryKey(resourcePrimKey);
+    }
 
-	public int getJournalArticleResourcesCount() throws SystemException {
-		return journalArticleResourcePersistence.countAll();
-	}
+    public List<JournalArticleResource> getJournalArticleResources(int start,
+        int end) throws SystemException {
+        return journalArticleResourcePersistence.findAll(start, end);
+    }
 
-	public JournalArticleResource updateJournalArticleResource(
-		JournalArticleResource journalArticleResource)
-		throws SystemException {
-		journalArticleResource.setNew(false);
+    public int getJournalArticleResourcesCount() throws SystemException {
+        return journalArticleResourcePersistence.countAll();
+    }
 
-		return journalArticleResourcePersistence.update(journalArticleResource,
-			true);
-	}
+    public JournalArticleResource updateJournalArticleResource(
+        JournalArticleResource journalArticleResource)
+        throws SystemException {
+        journalArticleResource.setNew(false);
 
-	public JournalArticleResource updateJournalArticleResource(
-		JournalArticleResource journalArticleResource, boolean merge)
-		throws SystemException {
-		journalArticleResource.setNew(false);
+        return journalArticleResourcePersistence.update(journalArticleResource,
+            true);
+    }
 
-		return journalArticleResourcePersistence.update(journalArticleResource,
-			merge);
-	}
+    public JournalArticleResource updateJournalArticleResource(
+        JournalArticleResource journalArticleResource, boolean merge)
+        throws SystemException {
+        journalArticleResource.setNew(false);
 
-	public JournalArticleLocalService getJournalArticleLocalService() {
-		return journalArticleLocalService;
-	}
+        return journalArticleResourcePersistence.update(journalArticleResource,
+            merge);
+    }
 
-	public void setJournalArticleLocalService(
-		JournalArticleLocalService journalArticleLocalService) {
-		this.journalArticleLocalService = journalArticleLocalService;
-	}
+    public JournalArticleLocalService getJournalArticleLocalService() {
+        return journalArticleLocalService;
+    }
 
-	public JournalArticleService getJournalArticleService() {
-		return journalArticleService;
-	}
+    public void setJournalArticleLocalService(
+        JournalArticleLocalService journalArticleLocalService) {
+        this.journalArticleLocalService = journalArticleLocalService;
+    }
 
-	public void setJournalArticleService(
-		JournalArticleService journalArticleService) {
-		this.journalArticleService = journalArticleService;
-	}
+    public JournalArticleService getJournalArticleService() {
+        return journalArticleService;
+    }
 
-	public JournalArticlePersistence getJournalArticlePersistence() {
-		return journalArticlePersistence;
-	}
+    public void setJournalArticleService(
+        JournalArticleService journalArticleService) {
+        this.journalArticleService = journalArticleService;
+    }
 
-	public void setJournalArticlePersistence(
-		JournalArticlePersistence journalArticlePersistence) {
-		this.journalArticlePersistence = journalArticlePersistence;
-	}
+    public JournalArticlePersistence getJournalArticlePersistence() {
+        return journalArticlePersistence;
+    }
 
-	public JournalArticleFinder getJournalArticleFinder() {
-		return journalArticleFinder;
-	}
+    public void setJournalArticlePersistence(
+        JournalArticlePersistence journalArticlePersistence) {
+        this.journalArticlePersistence = journalArticlePersistence;
+    }
 
-	public void setJournalArticleFinder(
-		JournalArticleFinder journalArticleFinder) {
-		this.journalArticleFinder = journalArticleFinder;
-	}
+    public JournalArticleFinder getJournalArticleFinder() {
+        return journalArticleFinder;
+    }
 
-	public JournalArticleImageLocalService getJournalArticleImageLocalService() {
-		return journalArticleImageLocalService;
-	}
+    public void setJournalArticleFinder(
+        JournalArticleFinder journalArticleFinder) {
+        this.journalArticleFinder = journalArticleFinder;
+    }
 
-	public void setJournalArticleImageLocalService(
-		JournalArticleImageLocalService journalArticleImageLocalService) {
-		this.journalArticleImageLocalService = journalArticleImageLocalService;
-	}
+    public JournalArticleImageLocalService getJournalArticleImageLocalService() {
+        return journalArticleImageLocalService;
+    }
 
-	public JournalArticleImagePersistence getJournalArticleImagePersistence() {
-		return journalArticleImagePersistence;
-	}
+    public void setJournalArticleImageLocalService(
+        JournalArticleImageLocalService journalArticleImageLocalService) {
+        this.journalArticleImageLocalService = journalArticleImageLocalService;
+    }
 
-	public void setJournalArticleImagePersistence(
-		JournalArticleImagePersistence journalArticleImagePersistence) {
-		this.journalArticleImagePersistence = journalArticleImagePersistence;
-	}
+    public JournalArticleImagePersistence getJournalArticleImagePersistence() {
+        return journalArticleImagePersistence;
+    }
 
-	public JournalArticleResourceLocalService getJournalArticleResourceLocalService() {
-		return journalArticleResourceLocalService;
-	}
+    public void setJournalArticleImagePersistence(
+        JournalArticleImagePersistence journalArticleImagePersistence) {
+        this.journalArticleImagePersistence = journalArticleImagePersistence;
+    }
 
-	public void setJournalArticleResourceLocalService(
-		JournalArticleResourceLocalService journalArticleResourceLocalService) {
-		this.journalArticleResourceLocalService = journalArticleResourceLocalService;
-	}
+    public JournalArticleResourceLocalService getJournalArticleResourceLocalService() {
+        return journalArticleResourceLocalService;
+    }
 
-	public JournalArticleResourcePersistence getJournalArticleResourcePersistence() {
-		return journalArticleResourcePersistence;
-	}
+    public void setJournalArticleResourceLocalService(
+        JournalArticleResourceLocalService journalArticleResourceLocalService) {
+        this.journalArticleResourceLocalService = journalArticleResourceLocalService;
+    }
 
-	public void setJournalArticleResourcePersistence(
-		JournalArticleResourcePersistence journalArticleResourcePersistence) {
-		this.journalArticleResourcePersistence = journalArticleResourcePersistence;
-	}
+    public JournalArticleResourcePersistence getJournalArticleResourcePersistence() {
+        return journalArticleResourcePersistence;
+    }
 
-	public JournalContentSearchLocalService getJournalContentSearchLocalService() {
-		return journalContentSearchLocalService;
-	}
+    public void setJournalArticleResourcePersistence(
+        JournalArticleResourcePersistence journalArticleResourcePersistence) {
+        this.journalArticleResourcePersistence = journalArticleResourcePersistence;
+    }
 
-	public void setJournalContentSearchLocalService(
-		JournalContentSearchLocalService journalContentSearchLocalService) {
-		this.journalContentSearchLocalService = journalContentSearchLocalService;
-	}
+    public JournalContentSearchLocalService getJournalContentSearchLocalService() {
+        return journalContentSearchLocalService;
+    }
 
-	public JournalContentSearchPersistence getJournalContentSearchPersistence() {
-		return journalContentSearchPersistence;
-	}
+    public void setJournalContentSearchLocalService(
+        JournalContentSearchLocalService journalContentSearchLocalService) {
+        this.journalContentSearchLocalService = journalContentSearchLocalService;
+    }
 
-	public void setJournalContentSearchPersistence(
-		JournalContentSearchPersistence journalContentSearchPersistence) {
-		this.journalContentSearchPersistence = journalContentSearchPersistence;
-	}
+    public JournalContentSearchPersistence getJournalContentSearchPersistence() {
+        return journalContentSearchPersistence;
+    }
 
-	public JournalFeedLocalService getJournalFeedLocalService() {
-		return journalFeedLocalService;
-	}
+    public void setJournalContentSearchPersistence(
+        JournalContentSearchPersistence journalContentSearchPersistence) {
+        this.journalContentSearchPersistence = journalContentSearchPersistence;
+    }
 
-	public void setJournalFeedLocalService(
-		JournalFeedLocalService journalFeedLocalService) {
-		this.journalFeedLocalService = journalFeedLocalService;
-	}
+    public JournalFeedLocalService getJournalFeedLocalService() {
+        return journalFeedLocalService;
+    }
 
-	public JournalFeedService getJournalFeedService() {
-		return journalFeedService;
-	}
+    public void setJournalFeedLocalService(
+        JournalFeedLocalService journalFeedLocalService) {
+        this.journalFeedLocalService = journalFeedLocalService;
+    }
 
-	public void setJournalFeedService(JournalFeedService journalFeedService) {
-		this.journalFeedService = journalFeedService;
-	}
+    public JournalFeedService getJournalFeedService() {
+        return journalFeedService;
+    }
 
-	public JournalFeedPersistence getJournalFeedPersistence() {
-		return journalFeedPersistence;
-	}
+    public void setJournalFeedService(JournalFeedService journalFeedService) {
+        this.journalFeedService = journalFeedService;
+    }
 
-	public void setJournalFeedPersistence(
-		JournalFeedPersistence journalFeedPersistence) {
-		this.journalFeedPersistence = journalFeedPersistence;
-	}
+    public JournalFeedPersistence getJournalFeedPersistence() {
+        return journalFeedPersistence;
+    }
 
-	public JournalFeedFinder getJournalFeedFinder() {
-		return journalFeedFinder;
-	}
+    public void setJournalFeedPersistence(
+        JournalFeedPersistence journalFeedPersistence) {
+        this.journalFeedPersistence = journalFeedPersistence;
+    }
 
-	public void setJournalFeedFinder(JournalFeedFinder journalFeedFinder) {
-		this.journalFeedFinder = journalFeedFinder;
-	}
+    public JournalFeedFinder getJournalFeedFinder() {
+        return journalFeedFinder;
+    }
 
-	public JournalStructureLocalService getJournalStructureLocalService() {
-		return journalStructureLocalService;
-	}
+    public void setJournalFeedFinder(JournalFeedFinder journalFeedFinder) {
+        this.journalFeedFinder = journalFeedFinder;
+    }
 
-	public void setJournalStructureLocalService(
-		JournalStructureLocalService journalStructureLocalService) {
-		this.journalStructureLocalService = journalStructureLocalService;
-	}
+    public JournalStructureLocalService getJournalStructureLocalService() {
+        return journalStructureLocalService;
+    }
 
-	public JournalStructureService getJournalStructureService() {
-		return journalStructureService;
-	}
+    public void setJournalStructureLocalService(
+        JournalStructureLocalService journalStructureLocalService) {
+        this.journalStructureLocalService = journalStructureLocalService;
+    }
 
-	public void setJournalStructureService(
-		JournalStructureService journalStructureService) {
-		this.journalStructureService = journalStructureService;
-	}
+    public JournalStructureService getJournalStructureService() {
+        return journalStructureService;
+    }
 
-	public JournalStructurePersistence getJournalStructurePersistence() {
-		return journalStructurePersistence;
-	}
+    public void setJournalStructureService(
+        JournalStructureService journalStructureService) {
+        this.journalStructureService = journalStructureService;
+    }
 
-	public void setJournalStructurePersistence(
-		JournalStructurePersistence journalStructurePersistence) {
-		this.journalStructurePersistence = journalStructurePersistence;
-	}
+    public JournalStructurePersistence getJournalStructurePersistence() {
+        return journalStructurePersistence;
+    }
 
-	public JournalStructureFinder getJournalStructureFinder() {
-		return journalStructureFinder;
-	}
+    public void setJournalStructurePersistence(
+        JournalStructurePersistence journalStructurePersistence) {
+        this.journalStructurePersistence = journalStructurePersistence;
+    }
 
-	public void setJournalStructureFinder(
-		JournalStructureFinder journalStructureFinder) {
-		this.journalStructureFinder = journalStructureFinder;
-	}
+    public JournalStructureFinder getJournalStructureFinder() {
+        return journalStructureFinder;
+    }
 
-	public JournalTemplateLocalService getJournalTemplateLocalService() {
-		return journalTemplateLocalService;
-	}
+    public void setJournalStructureFinder(
+        JournalStructureFinder journalStructureFinder) {
+        this.journalStructureFinder = journalStructureFinder;
+    }
 
-	public void setJournalTemplateLocalService(
-		JournalTemplateLocalService journalTemplateLocalService) {
-		this.journalTemplateLocalService = journalTemplateLocalService;
-	}
+    public JournalTemplateLocalService getJournalTemplateLocalService() {
+        return journalTemplateLocalService;
+    }
 
-	public JournalTemplateService getJournalTemplateService() {
-		return journalTemplateService;
-	}
+    public void setJournalTemplateLocalService(
+        JournalTemplateLocalService journalTemplateLocalService) {
+        this.journalTemplateLocalService = journalTemplateLocalService;
+    }
 
-	public void setJournalTemplateService(
-		JournalTemplateService journalTemplateService) {
-		this.journalTemplateService = journalTemplateService;
-	}
+    public JournalTemplateService getJournalTemplateService() {
+        return journalTemplateService;
+    }
 
-	public JournalTemplatePersistence getJournalTemplatePersistence() {
-		return journalTemplatePersistence;
-	}
+    public void setJournalTemplateService(
+        JournalTemplateService journalTemplateService) {
+        this.journalTemplateService = journalTemplateService;
+    }
 
-	public void setJournalTemplatePersistence(
-		JournalTemplatePersistence journalTemplatePersistence) {
-		this.journalTemplatePersistence = journalTemplatePersistence;
-	}
+    public JournalTemplatePersistence getJournalTemplatePersistence() {
+        return journalTemplatePersistence;
+    }
 
-	public JournalTemplateFinder getJournalTemplateFinder() {
-		return journalTemplateFinder;
-	}
+    public void setJournalTemplatePersistence(
+        JournalTemplatePersistence journalTemplatePersistence) {
+        this.journalTemplatePersistence = journalTemplatePersistence;
+    }
 
-	public void setJournalTemplateFinder(
-		JournalTemplateFinder journalTemplateFinder) {
-		this.journalTemplateFinder = journalTemplateFinder;
-	}
+    public JournalTemplateFinder getJournalTemplateFinder() {
+        return journalTemplateFinder;
+    }
 
-	public CounterLocalService getCounterLocalService() {
-		return counterLocalService;
-	}
+    public void setJournalTemplateFinder(
+        JournalTemplateFinder journalTemplateFinder) {
+        this.journalTemplateFinder = journalTemplateFinder;
+    }
 
-	public void setCounterLocalService(CounterLocalService counterLocalService) {
-		this.counterLocalService = counterLocalService;
-	}
+    public CounterLocalService getCounterLocalService() {
+        return counterLocalService;
+    }
 
-	public CounterService getCounterService() {
-		return counterService;
-	}
+    public void setCounterLocalService(CounterLocalService counterLocalService) {
+        this.counterLocalService = counterLocalService;
+    }
 
-	public void setCounterService(CounterService counterService) {
-		this.counterService = counterService;
-	}
+    public CounterService getCounterService() {
+        return counterService;
+    }
 
-	protected void runSQL(String sql) throws SystemException {
-		try {
-			PortalUtil.runSQL(sql);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-	}
+    public void setCounterService(CounterService counterService) {
+        this.counterService = counterService;
+    }
 
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalArticleLocalService.impl")
-	protected JournalArticleLocalService journalArticleLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalArticleService.impl")
-	protected JournalArticleService journalArticleService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticlePersistence.impl")
-	protected JournalArticlePersistence journalArticlePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleFinder.impl")
-	protected JournalArticleFinder journalArticleFinder;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalArticleImageLocalService.impl")
-	protected JournalArticleImageLocalService journalArticleImageLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleImagePersistence.impl")
-	protected JournalArticleImagePersistence journalArticleImagePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalArticleResourceLocalService.impl")
-	protected JournalArticleResourceLocalService journalArticleResourceLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalArticleResourcePersistence.impl")
-	protected JournalArticleResourcePersistence journalArticleResourcePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalContentSearchLocalService.impl")
-	protected JournalContentSearchLocalService journalContentSearchLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalContentSearchPersistence.impl")
-	protected JournalContentSearchPersistence journalContentSearchPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalFeedLocalService.impl")
-	protected JournalFeedLocalService journalFeedLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalFeedService.impl")
-	protected JournalFeedService journalFeedService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalFeedPersistence.impl")
-	protected JournalFeedPersistence journalFeedPersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalFeedFinder.impl")
-	protected JournalFeedFinder journalFeedFinder;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalStructureLocalService.impl")
-	protected JournalStructureLocalService journalStructureLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalStructureService.impl")
-	protected JournalStructureService journalStructureService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalStructurePersistence.impl")
-	protected JournalStructurePersistence journalStructurePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalStructureFinder.impl")
-	protected JournalStructureFinder journalStructureFinder;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalTemplateLocalService.impl")
-	protected JournalTemplateLocalService journalTemplateLocalService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.JournalTemplateService.impl")
-	protected JournalTemplateService journalTemplateService;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalTemplatePersistence.impl")
-	protected JournalTemplatePersistence journalTemplatePersistence;
-	@BeanReference(name = "com.liferay.portlet.journal.service.persistence.JournalTemplateFinder.impl")
-	protected JournalTemplateFinder journalTemplateFinder;
-	@BeanReference(name = "com.liferay.counter.service.CounterLocalService.impl")
-	protected CounterLocalService counterLocalService;
-	@BeanReference(name = "com.liferay.counter.service.CounterService.impl")
-	protected CounterService counterService;
+    protected void runSQL(String sql) throws SystemException {
+        try {
+            PortalUtil.runSQL(sql);
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
 }

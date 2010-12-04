@@ -23,7 +23,7 @@
 package com.nss.portlet.journal.lar;
 
 import com.liferay.portal.lar.PortletDataContext;
-import com.liferay.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalArticle;
 
 /**
  * <a href="JournalCreationStrategy.java.html"><b><i>View Source</i></b></a>

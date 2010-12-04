@@ -34,12 +34,12 @@
 		<column name="groupId" type="long" />
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
-		<column name="roleId" type="long" />
+		<column name="userIds" type="String" />
 		<column name="processDefinitionId" type="long" />
 		<column name="processInstanceId" type="long" />
 		<column name="resourcePrimkey" type="long" />
-		<column name="journalType" type="String" />
 		<column name="countImageOfArticle" type="int" />
+		<column name="datecomplete" type="Date" />
 		
 		<!-- Order -->
 	    <order by="ASC">
@@ -61,14 +61,12 @@
 		<column name="groupId" type="long" />
 		<column name="companyId" type="long" />
 		<column name="userId" type="long" />
-		<column name="roleId" type="long" />
+		<column name="userIds" type="String" />
 		<column name="dateReceiptOfUserReceipt" type="Date" />
 		<column name="dateProcessOfUserReceipt" type="Date" />
 		<column name="dateSendOfUserReceipt" type="Date" />
 		<column name="useridProcess" type="long" />
-		<column name="roleIdProcess" type="long" />
-		<column name="dateReceiptOfUserProcess" type="Date" />
-		<column name="dateProcessOfUserProcess" type="Date" />
+		<column name="userIdsProcess" type="String" />
 		<column name="processInformation" type="String" />
 		<column name="workflowStatusBefore" type="String" />
 		<column name="workflowStatusAfter" type="String" />
@@ -78,7 +76,7 @@
 	    </order>
 	    
 	    <finder name="ResourcePrimkey" return-type="Collection">
-	   		<finder-column name="resourcePrimkey" />
+	   		<finder-column name="resourcePrimkey"/>
 	    </finder> 
 	</entity>
 </service-builder>
