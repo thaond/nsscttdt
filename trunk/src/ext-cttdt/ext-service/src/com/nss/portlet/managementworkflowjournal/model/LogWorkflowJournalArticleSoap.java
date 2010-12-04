@@ -32,14 +32,12 @@ public class LogWorkflowJournalArticleSoap implements Serializable {
     private long _groupId;
     private long _companyId;
     private long _userId;
-    private long _roleId;
+    private String _userIds;
     private Date _dateReceiptOfUserReceipt;
     private Date _dateProcessOfUserReceipt;
     private Date _dateSendOfUserReceipt;
     private long _useridProcess;
-    private long _roleIdProcess;
-    private Date _dateReceiptOfUserProcess;
-    private Date _dateProcessOfUserProcess;
+    private String _userIdsProcess;
     private String _processInformation;
     private String _workflowStatusBefore;
     private String _workflowStatusAfter;
@@ -57,14 +55,12 @@ public class LogWorkflowJournalArticleSoap implements Serializable {
         soapModel.setGroupId(model.getGroupId());
         soapModel.setCompanyId(model.getCompanyId());
         soapModel.setUserId(model.getUserId());
-        soapModel.setRoleId(model.getRoleId());
+        soapModel.setUserIds(model.getUserIds());
         soapModel.setDateReceiptOfUserReceipt(model.getDateReceiptOfUserReceipt());
         soapModel.setDateProcessOfUserReceipt(model.getDateProcessOfUserReceipt());
         soapModel.setDateSendOfUserReceipt(model.getDateSendOfUserReceipt());
         soapModel.setUseridProcess(model.getUseridProcess());
-        soapModel.setRoleIdProcess(model.getRoleIdProcess());
-        soapModel.setDateReceiptOfUserProcess(model.getDateReceiptOfUserProcess());
-        soapModel.setDateProcessOfUserProcess(model.getDateProcessOfUserProcess());
+        soapModel.setUserIdsProcess(model.getUserIdsProcess());
         soapModel.setProcessInformation(model.getProcessInformation());
         soapModel.setWorkflowStatusBefore(model.getWorkflowStatusBefore());
         soapModel.setWorkflowStatusAfter(model.getWorkflowStatusAfter());
@@ -167,12 +163,12 @@ public class LogWorkflowJournalArticleSoap implements Serializable {
         _userId = userId;
     }
 
-    public long getRoleId() {
-        return _roleId;
+    public String getUserIds() {
+        return _userIds;
     }
 
-    public void setRoleId(long roleId) {
-        _roleId = roleId;
+    public void setUserIds(String userIds) {
+        _userIds = userIds;
     }
 
     public Date getDateReceiptOfUserReceipt() {
@@ -207,28 +203,12 @@ public class LogWorkflowJournalArticleSoap implements Serializable {
         _useridProcess = useridProcess;
     }
 
-    public long getRoleIdProcess() {
-        return _roleIdProcess;
+    public String getUserIdsProcess() {
+        return _userIdsProcess;
     }
 
-    public void setRoleIdProcess(long roleIdProcess) {
-        _roleIdProcess = roleIdProcess;
-    }
-
-    public Date getDateReceiptOfUserProcess() {
-        return _dateReceiptOfUserProcess;
-    }
-
-    public void setDateReceiptOfUserProcess(Date dateReceiptOfUserProcess) {
-        _dateReceiptOfUserProcess = dateReceiptOfUserProcess;
-    }
-
-    public Date getDateProcessOfUserProcess() {
-        return _dateProcessOfUserProcess;
-    }
-
-    public void setDateProcessOfUserProcess(Date dateProcessOfUserProcess) {
-        _dateProcessOfUserProcess = dateProcessOfUserProcess;
+    public void setUserIdsProcess(String userIdsProcess) {
+        _userIdsProcess = userIdsProcess;
     }
 
     public String getProcessInformation() {

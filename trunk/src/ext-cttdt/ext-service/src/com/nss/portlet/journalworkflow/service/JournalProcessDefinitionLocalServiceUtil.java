@@ -101,8 +101,8 @@ public class JournalProcessDefinitionLocalServiceUtil {
     }
 
     public static java.util.List<com.liferay.portlet.tags.model.TagsEntry> getListTagsEntry(
-        long categoryId) {
-        return getService().getListTagsEntry(categoryId);
+        long vocabularyId) {
+        return getService().getListTagsEntry(vocabularyId);
     }
 
     public static JournalProcessDefinitionLocalService getService() {

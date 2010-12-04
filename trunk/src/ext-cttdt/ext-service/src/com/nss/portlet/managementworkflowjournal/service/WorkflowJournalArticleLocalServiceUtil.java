@@ -92,19 +92,19 @@ public class WorkflowJournalArticleLocalServiceUtil {
                    .updateWorkflowJournalArticle(workflowJournalArticle, merge);
     }
 
+    public static com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleByProcessDefinition(
+        long processDefinitionId, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getWorkflowJournalArticleByProcessDefinition(processDefinitionId,
+            start, end);
+    }
+
     public static com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleFromPI(
         long processInstanceId) {
         return getService().getWorkflowJournalArticleFromPI(processInstanceId);
     }
-    
-    public static com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleByProcessDefinition(
-            long processDefinitionId, int start, int end)
-            throws com.liferay.portal.SystemException {
-            return getService()
-                       .getWorkflowJournalArticleByProcessDefinition(processDefinitionId,
-                start, end);
-        }
-    
+
     public static WorkflowJournalArticleLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

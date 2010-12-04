@@ -60,5 +60,15 @@ public interface CauTraLoiQAModel extends BaseModel<CauTraLoiQA> {
 
     public void setPublish(boolean publish);
 
+    public boolean getAnswerThroughWeb();
+
+    public boolean isAnswerThroughWeb();
+
+    public void setAnswerThroughWeb(boolean answerThroughWeb);
+
+    public String getAnswerThroughEmail();
+
+    public void setAnswerThroughEmail(String answerThroughEmail);
+
     public CauTraLoiQA toEscapedModel();
 }

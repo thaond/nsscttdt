@@ -81,11 +81,11 @@ public interface WorkflowJournalArticleLocalService {
         boolean merge) throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleFromPI(
-        long processInstanceId);
-    
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleByProcessDefinition(
         long processDefinitionId, int start, int end)
         throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle getWorkflowJournalArticleFromPI(
+        long processInstanceId);
 }

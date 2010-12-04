@@ -23,7 +23,7 @@
 package com.nss.portlet.journalcontent.util;
 
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.journal.model.JournalArticleDisplay;
+import com.nss.portlet.journal.model.JournalArticleDisplay;
 
 /**
  * <a href="JournalContentUtil.java.html"><b><i>View Source</i></b></a>

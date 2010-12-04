@@ -90,7 +90,7 @@ public class InstanceBeanLocalServiceUtil {
     }
 
     public static long getInstanceId(
-        com.liferay.portlet.journal.model.JournalArticle article) {
+        com.nss.portlet.journal.model.JournalArticle article) {
         return getService().getInstanceId(article);
     }
 

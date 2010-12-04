@@ -2,6 +2,8 @@ package com.nss.portlet.managementworkflowjournal.model;
 
 import com.liferay.portal.model.BaseModel;
 
+import java.util.Date;
+
 
 /**
  * <a href="WorkflowJournalArticleModel.java.html"><b><i>View Source</i></b></a>
@@ -44,9 +46,9 @@ public interface WorkflowJournalArticleModel extends BaseModel<WorkflowJournalAr
 
     public void setUserId(long userId);
 
-    public long getRoleId();
+    public String getUserIds();
 
-    public void setRoleId(long roleId);
+    public void setUserIds(String userIds);
 
     public long getProcessDefinitionId();
 
@@ -60,13 +62,13 @@ public interface WorkflowJournalArticleModel extends BaseModel<WorkflowJournalAr
 
     public void setResourcePrimkey(long resourcePrimkey);
 
-    public String getJournalType();
-
-    public void setJournalType(String journalType);
-
     public int getCountImageOfArticle();
 
     public void setCountImageOfArticle(int countImageOfArticle);
+
+    public Date getDatecomplete();
+
+    public void setDatecomplete(Date datecomplete);
 
     public WorkflowJournalArticle toEscapedModel();
 }

@@ -3,6 +3,7 @@ package com.nss.portlet.managementworkflowjournal.model;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -29,12 +30,12 @@ public class WorkflowJournalArticleSoap implements Serializable {
     private long _groupId;
     private long _companyId;
     private long _userId;
-    private long _roleId;
+    private String _userIds;
     private long _processDefinitionId;
     private long _processInstanceId;
     private long _resourcePrimkey;
-    private String _journalType;
     private int _countImageOfArticle;
+    private Date _datecomplete;
 
     public WorkflowJournalArticleSoap() {
     }
@@ -47,12 +48,12 @@ public class WorkflowJournalArticleSoap implements Serializable {
         soapModel.setGroupId(model.getGroupId());
         soapModel.setCompanyId(model.getCompanyId());
         soapModel.setUserId(model.getUserId());
-        soapModel.setRoleId(model.getRoleId());
+        soapModel.setUserIds(model.getUserIds());
         soapModel.setProcessDefinitionId(model.getProcessDefinitionId());
         soapModel.setProcessInstanceId(model.getProcessInstanceId());
         soapModel.setResourcePrimkey(model.getResourcePrimkey());
-        soapModel.setJournalType(model.getJournalType());
         soapModel.setCountImageOfArticle(model.getCountImageOfArticle());
+        soapModel.setDatecomplete(model.getDatecomplete());
 
         return soapModel;
     }
@@ -136,12 +137,12 @@ public class WorkflowJournalArticleSoap implements Serializable {
         _userId = userId;
     }
 
-    public long getRoleId() {
-        return _roleId;
+    public String getUserIds() {
+        return _userIds;
     }
 
-    public void setRoleId(long roleId) {
-        _roleId = roleId;
+    public void setUserIds(String userIds) {
+        _userIds = userIds;
     }
 
     public long getProcessDefinitionId() {
@@ -168,19 +169,19 @@ public class WorkflowJournalArticleSoap implements Serializable {
         _resourcePrimkey = resourcePrimkey;
     }
 
-    public String getJournalType() {
-        return _journalType;
-    }
-
-    public void setJournalType(String journalType) {
-        _journalType = journalType;
-    }
-
     public int getCountImageOfArticle() {
         return _countImageOfArticle;
     }
 
     public void setCountImageOfArticle(int countImageOfArticle) {
         _countImageOfArticle = countImageOfArticle;
+    }
+
+    public Date getDatecomplete() {
+        return _datecomplete;
+    }
+
+    public void setDatecomplete(Date datecomplete) {
+        _datecomplete = datecomplete;
     }
 }

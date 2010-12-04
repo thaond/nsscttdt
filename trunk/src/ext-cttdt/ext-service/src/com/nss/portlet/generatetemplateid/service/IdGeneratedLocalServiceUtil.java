@@ -89,6 +89,15 @@ public class IdGeneratedLocalServiceUtil {
         return getService().updateIdGenerated(idGenerated, merge);
     }
 
+    public static java.util.List<com.nss.portlet.generatetemplateid.model.IdGenerated> search(
+        int start, int end) throws com.liferay.portal.SystemException {
+        return getService().search(start, end);
+    }
+
+    public static int searchCount() throws com.liferay.portal.SystemException {
+        return getService().searchCount();
+    }
+
     public static IdGeneratedLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("IdGeneratedLocalService is not set");

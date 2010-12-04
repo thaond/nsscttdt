@@ -172,6 +172,103 @@ public class CauTraLoiQAUtil {
             maCauHoiQA, publish, obc);
     }
 
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughWeb(
+        boolean answerThroughWeb) throws com.liferay.portal.SystemException {
+        return getPersistence().findByAnswerThroughWeb(answerThroughWeb);
+    }
+
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughWeb(
+        boolean answerThroughWeb, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByAnswerThroughWeb(answerThroughWeb, start, end);
+    }
+
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughWeb(
+        boolean answerThroughWeb, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByAnswerThroughWeb(answerThroughWeb, start, end, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA findByAnswerThroughWeb_First(
+        boolean answerThroughWeb,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughWeb_First(answerThroughWeb, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA findByAnswerThroughWeb_Last(
+        boolean answerThroughWeb,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughWeb_Last(answerThroughWeb, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA[] findByAnswerThroughWeb_PrevAndNext(
+        long maCauTraLoiQA, boolean answerThroughWeb,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughWeb_PrevAndNext(maCauTraLoiQA,
+            answerThroughWeb, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughEmail(
+        java.lang.String answerThroughEmail)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByAnswerThroughEmail(answerThroughEmail);
+    }
+
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughEmail(
+        java.lang.String answerThroughEmail, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByAnswerThroughEmail(answerThroughEmail, start, end);
+    }
+
+    public static java.util.List<com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA> findByAnswerThroughEmail(
+        java.lang.String answerThroughEmail, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByAnswerThroughEmail(answerThroughEmail, start, end, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA findByAnswerThroughEmail_First(
+        java.lang.String answerThroughEmail,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughEmail_First(answerThroughEmail, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA findByAnswerThroughEmail_Last(
+        java.lang.String answerThroughEmail,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughEmail_Last(answerThroughEmail, obc);
+    }
+
+    public static com.nss.portlet.qa_cau_tra_loi.model.CauTraLoiQA[] findByAnswerThroughEmail_PrevAndNext(
+        long maCauTraLoiQA, java.lang.String answerThroughEmail,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.qa_cau_tra_loi.NoSuchCauTraLoiQAException {
+        return getPersistence()
+                   .findByAnswerThroughEmail_PrevAndNext(maCauTraLoiQA,
+            answerThroughEmail, obc);
+    }
+
     public static java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException {
@@ -210,6 +307,17 @@ public class CauTraLoiQAUtil {
         getPersistence().removeByMaCauHoiQA_Publish(maCauHoiQA, publish);
     }
 
+    public static void removeByAnswerThroughWeb(boolean answerThroughWeb)
+        throws com.liferay.portal.SystemException {
+        getPersistence().removeByAnswerThroughWeb(answerThroughWeb);
+    }
+
+    public static void removeByAnswerThroughEmail(
+        java.lang.String answerThroughEmail)
+        throws com.liferay.portal.SystemException {
+        getPersistence().removeByAnswerThroughEmail(answerThroughEmail);
+    }
+
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
     }
@@ -222,6 +330,17 @@ public class CauTraLoiQAUtil {
     public static int countByMaCauHoiQA_Publish(long maCauHoiQA, boolean publish)
         throws com.liferay.portal.SystemException {
         return getPersistence().countByMaCauHoiQA_Publish(maCauHoiQA, publish);
+    }
+
+    public static int countByAnswerThroughWeb(boolean answerThroughWeb)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().countByAnswerThroughWeb(answerThroughWeb);
+    }
+
+    public static int countByAnswerThroughEmail(
+        java.lang.String answerThroughEmail)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().countByAnswerThroughEmail(answerThroughEmail);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

@@ -100,6 +100,11 @@ public class LogWorkflowJournalArticleLocalServiceUtil {
         return getService().countLogWorkflowJournalArticle(resourcePrimkey);
     }
 
+    public static com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle getLogByResourceTrainsition(
+        long resourcePrimkey) throws com.liferay.portal.SystemException {
+        return getService().getLogByResourceTrainsition(resourcePrimkey);
+    }
+
     public static LogWorkflowJournalArticleLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

@@ -114,6 +114,18 @@ public class IdTemplateLocalServiceUtil {
         return getService().search(format, des, andOperator, start, end, obc);
     }
 
+    public static java.lang.String generatedId(java.lang.String template)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        return getService().generatedId(template);
+    }
+
+    public static java.lang.String generatedId(java.lang.Class clazz)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        return getService().generatedId(clazz);
+    }
+
     public static IdTemplateLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("IdTemplateLocalService is not set");

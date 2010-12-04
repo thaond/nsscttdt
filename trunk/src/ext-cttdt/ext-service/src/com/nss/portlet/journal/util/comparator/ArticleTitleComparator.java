@@ -23,7 +23,7 @@
 package com.nss.portlet.journal.util.comparator;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portlet.journal.model.JournalArticle;
+import com.nss.portlet.journal.model.JournalArticle;
 
 /**
  * <a href="ArticleTitleComparator.java.html"><b><i>View Source</i></b></a>

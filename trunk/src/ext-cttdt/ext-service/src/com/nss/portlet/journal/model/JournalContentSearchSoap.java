@@ -1,31 +1,10 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.model;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * <a href="JournalContentSearchSoap.java.html"><b><i>View Source</i></b></a>
@@ -37,146 +16,145 @@ import java.util.List;
  *
  * <p>
  * This class is used by
- * <code>com.liferay.portlet.journal.service.http.JournalContentSearchServiceSoap</code>.
+ * <code>com.nss.portlet.journal.service.http.JournalContentSearchServiceSoap</code>.
  * </p>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.liferay.portlet.journal.service.http.JournalContentSearchServiceSoap
+ * @see com.nss.portlet.journal.service.http.JournalContentSearchServiceSoap
  *
  */
 public class JournalContentSearchSoap implements Serializable {
-	public static JournalContentSearchSoap toSoapModel(
-		JournalContentSearch model) {
-		JournalContentSearchSoap soapModel = new JournalContentSearchSoap();
+    private long _contentSearchId;
+    private long _groupId;
+    private long _companyId;
+    private boolean _privateLayout;
+    private long _layoutId;
+    private String _portletId;
+    private String _articleId;
 
-		soapModel.setContentSearchId(model.getContentSearchId());
-		soapModel.setGroupId(model.getGroupId());
-		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setPrivateLayout(model.getPrivateLayout());
-		soapModel.setLayoutId(model.getLayoutId());
-		soapModel.setPortletId(model.getPortletId());
-		soapModel.setArticleId(model.getArticleId());
+    public JournalContentSearchSoap() {
+    }
 
-		return soapModel;
-	}
+    public static JournalContentSearchSoap toSoapModel(
+        JournalContentSearch model) {
+        JournalContentSearchSoap soapModel = new JournalContentSearchSoap();
 
-	public static JournalContentSearchSoap[] toSoapModels(
-		JournalContentSearch[] models) {
-		JournalContentSearchSoap[] soapModels = new JournalContentSearchSoap[models.length];
+        soapModel.setContentSearchId(model.getContentSearchId());
+        soapModel.setGroupId(model.getGroupId());
+        soapModel.setCompanyId(model.getCompanyId());
+        soapModel.setPrivateLayout(model.getPrivateLayout());
+        soapModel.setLayoutId(model.getLayoutId());
+        soapModel.setPortletId(model.getPortletId());
+        soapModel.setArticleId(model.getArticleId());
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModel(models[i]);
-		}
+        return soapModel;
+    }
 
-		return soapModels;
-	}
+    public static JournalContentSearchSoap[] toSoapModels(
+        JournalContentSearch[] models) {
+        JournalContentSearchSoap[] soapModels = new JournalContentSearchSoap[models.length];
 
-	public static JournalContentSearchSoap[][] toSoapModels(
-		JournalContentSearch[][] models) {
-		JournalContentSearchSoap[][] soapModels = null;
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModel(models[i]);
+        }
 
-		if (models.length > 0) {
-			soapModels = new JournalContentSearchSoap[models.length][models[0].length];
-		}
-		else {
-			soapModels = new JournalContentSearchSoap[0][0];
-		}
+        return soapModels;
+    }
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModels(models[i]);
-		}
+    public static JournalContentSearchSoap[][] toSoapModels(
+        JournalContentSearch[][] models) {
+        JournalContentSearchSoap[][] soapModels = null;
 
-		return soapModels;
-	}
+        if (models.length > 0) {
+            soapModels = new JournalContentSearchSoap[models.length][models[0].length];
+        } else {
+            soapModels = new JournalContentSearchSoap[0][0];
+        }
 
-	public static JournalContentSearchSoap[] toSoapModels(
-		List<JournalContentSearch> models) {
-		List<JournalContentSearchSoap> soapModels = new ArrayList<JournalContentSearchSoap>(models.size());
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModels(models[i]);
+        }
 
-		for (JournalContentSearch model : models) {
-			soapModels.add(toSoapModel(model));
-		}
+        return soapModels;
+    }
 
-		return soapModels.toArray(new JournalContentSearchSoap[soapModels.size()]);
-	}
+    public static JournalContentSearchSoap[] toSoapModels(
+        List<JournalContentSearch> models) {
+        List<JournalContentSearchSoap> soapModels = new ArrayList<JournalContentSearchSoap>(models.size());
 
-	public JournalContentSearchSoap() {
-	}
+        for (JournalContentSearch model : models) {
+            soapModels.add(toSoapModel(model));
+        }
 
-	public long getPrimaryKey() {
-		return _contentSearchId;
-	}
+        return soapModels.toArray(new JournalContentSearchSoap[soapModels.size()]);
+    }
 
-	public void setPrimaryKey(long pk) {
-		setContentSearchId(pk);
-	}
+    public long getPrimaryKey() {
+        return _contentSearchId;
+    }
 
-	public long getContentSearchId() {
-		return _contentSearchId;
-	}
+    public void setPrimaryKey(long pk) {
+        setContentSearchId(pk);
+    }
 
-	public void setContentSearchId(long contentSearchId) {
-		_contentSearchId = contentSearchId;
-	}
+    public long getContentSearchId() {
+        return _contentSearchId;
+    }
 
-	public long getGroupId() {
-		return _groupId;
-	}
+    public void setContentSearchId(long contentSearchId) {
+        _contentSearchId = contentSearchId;
+    }
 
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
+    public long getGroupId() {
+        return _groupId;
+    }
 
-	public long getCompanyId() {
-		return _companyId;
-	}
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
+    }
 
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
+    public long getCompanyId() {
+        return _companyId;
+    }
 
-	public boolean getPrivateLayout() {
-		return _privateLayout;
-	}
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
 
-	public boolean isPrivateLayout() {
-		return _privateLayout;
-	}
+    public boolean getPrivateLayout() {
+        return _privateLayout;
+    }
 
-	public void setPrivateLayout(boolean privateLayout) {
-		_privateLayout = privateLayout;
-	}
+    public boolean isPrivateLayout() {
+        return _privateLayout;
+    }
 
-	public long getLayoutId() {
-		return _layoutId;
-	}
+    public void setPrivateLayout(boolean privateLayout) {
+        _privateLayout = privateLayout;
+    }
 
-	public void setLayoutId(long layoutId) {
-		_layoutId = layoutId;
-	}
+    public long getLayoutId() {
+        return _layoutId;
+    }
 
-	public String getPortletId() {
-		return _portletId;
-	}
+    public void setLayoutId(long layoutId) {
+        _layoutId = layoutId;
+    }
 
-	public void setPortletId(String portletId) {
-		_portletId = portletId;
-	}
+    public String getPortletId() {
+        return _portletId;
+    }
 
-	public String getArticleId() {
-		return _articleId;
-	}
+    public void setPortletId(String portletId) {
+        _portletId = portletId;
+    }
 
-	public void setArticleId(String articleId) {
-		_articleId = articleId;
-	}
+    public String getArticleId() {
+        return _articleId;
+    }
 
-	private long _contentSearchId;
-	private long _groupId;
-	private long _companyId;
-	private boolean _privateLayout;
-	private long _layoutId;
-	private String _portletId;
-	private String _articleId;
+    public void setArticleId(String articleId) {
+        _articleId = articleId;
+    }
 }
