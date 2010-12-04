@@ -54,9 +54,9 @@ public interface LogWorkflowJournalArticleModel extends BaseModel<LogWorkflowJou
 
     public void setUserId(long userId);
 
-    public long getRoleId();
+    public String getUserIds();
 
-    public void setRoleId(long roleId);
+    public void setUserIds(String userIds);
 
     public Date getDateReceiptOfUserReceipt();
 
@@ -74,17 +74,9 @@ public interface LogWorkflowJournalArticleModel extends BaseModel<LogWorkflowJou
 
     public void setUseridProcess(long useridProcess);
 
-    public long getRoleIdProcess();
+    public String getUserIdsProcess();
 
-    public void setRoleIdProcess(long roleIdProcess);
-
-    public Date getDateReceiptOfUserProcess();
-
-    public void setDateReceiptOfUserProcess(Date dateReceiptOfUserProcess);
-
-    public Date getDateProcessOfUserProcess();
-
-    public void setDateProcessOfUserProcess(Date dateProcessOfUserProcess);
+    public void setUserIdsProcess(String userIdsProcess);
 
     public String getProcessInformation();
 

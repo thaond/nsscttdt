@@ -82,7 +82,7 @@ public interface InstanceBeanLocalService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public long getInstanceId(
-        com.liferay.portlet.journal.model.JournalArticle article);
+        com.nss.portlet.journal.model.JournalArticle article);
 
     public java.util.List<com.nss.portlet.journalworkflow.model.InstanceBean> findByStatus_Finish(
         java.lang.String status, boolean finish);

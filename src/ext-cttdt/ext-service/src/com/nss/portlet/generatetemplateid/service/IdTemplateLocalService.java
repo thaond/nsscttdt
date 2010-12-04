@@ -98,4 +98,12 @@ public interface IdTemplateLocalService {
         java.lang.String format, java.lang.String des, boolean andOperator,
         int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
+
+    public java.lang.String generatedId(java.lang.String template)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException;
+
+    public java.lang.String generatedId(java.lang.Class clazz)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException;
 }

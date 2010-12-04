@@ -78,4 +78,11 @@ public interface IdGeneratedLocalService {
     public com.nss.portlet.generatetemplateid.model.IdGenerated updateIdGenerated(
         com.nss.portlet.generatetemplateid.model.IdGenerated idGenerated,
         boolean merge) throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.generatetemplateid.model.IdGenerated> search(
+        int start, int end) throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int searchCount() throws com.liferay.portal.SystemException;
 }

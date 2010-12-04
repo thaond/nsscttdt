@@ -82,4 +82,8 @@ public interface LogWorkflowJournalArticleLocalService {
         boolean merge) throws com.liferay.portal.SystemException;
 
     public int countLogWorkflowJournalArticle(long resourcePrimkey);
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle getLogByResourceTrainsition(
+        long resourcePrimkey) throws com.liferay.portal.SystemException;
 }

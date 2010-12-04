@@ -1,25 +1,3 @@
-/**
- * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package com.nss.portlet.journal.model;
 
 import java.io.Serializable;
@@ -27,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 
 /**
  * <a href="JournalStructureSoap.java.html"><b><i>View Source</i></b></a>
@@ -38,200 +17,199 @@ import java.util.List;
  *
  * <p>
  * This class is used by
- * <code>com.liferay.portlet.journal.service.http.JournalStructureServiceSoap</code>.
+ * <code>com.nss.portlet.journal.service.http.JournalStructureServiceSoap</code>.
  * </p>
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.liferay.portlet.journal.service.http.JournalStructureServiceSoap
+ * @see com.nss.portlet.journal.service.http.JournalStructureServiceSoap
  *
  */
 public class JournalStructureSoap implements Serializable {
-	public static JournalStructureSoap toSoapModel(JournalStructure model) {
-		JournalStructureSoap soapModel = new JournalStructureSoap();
+    private String _uuid;
+    private long _id;
+    private long _groupId;
+    private long _companyId;
+    private long _userId;
+    private String _userName;
+    private Date _createDate;
+    private Date _modifiedDate;
+    private String _structureId;
+    private String _parentStructureId;
+    private String _name;
+    private String _description;
+    private String _xsd;
 
-		soapModel.setUuid(model.getUuid());
-		soapModel.setId(model.getId());
-		soapModel.setGroupId(model.getGroupId());
-		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setUserName(model.getUserName());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setStructureId(model.getStructureId());
-		soapModel.setParentStructureId(model.getParentStructureId());
-		soapModel.setName(model.getName());
-		soapModel.setDescription(model.getDescription());
-		soapModel.setXsd(model.getXsd());
+    public JournalStructureSoap() {
+    }
 
-		return soapModel;
-	}
+    public static JournalStructureSoap toSoapModel(JournalStructure model) {
+        JournalStructureSoap soapModel = new JournalStructureSoap();
 
-	public static JournalStructureSoap[] toSoapModels(JournalStructure[] models) {
-		JournalStructureSoap[] soapModels = new JournalStructureSoap[models.length];
+        soapModel.setUuid(model.getUuid());
+        soapModel.setId(model.getId());
+        soapModel.setGroupId(model.getGroupId());
+        soapModel.setCompanyId(model.getCompanyId());
+        soapModel.setUserId(model.getUserId());
+        soapModel.setUserName(model.getUserName());
+        soapModel.setCreateDate(model.getCreateDate());
+        soapModel.setModifiedDate(model.getModifiedDate());
+        soapModel.setStructureId(model.getStructureId());
+        soapModel.setParentStructureId(model.getParentStructureId());
+        soapModel.setName(model.getName());
+        soapModel.setDescription(model.getDescription());
+        soapModel.setXsd(model.getXsd());
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModel(models[i]);
-		}
+        return soapModel;
+    }
 
-		return soapModels;
-	}
+    public static JournalStructureSoap[] toSoapModels(JournalStructure[] models) {
+        JournalStructureSoap[] soapModels = new JournalStructureSoap[models.length];
 
-	public static JournalStructureSoap[][] toSoapModels(
-		JournalStructure[][] models) {
-		JournalStructureSoap[][] soapModels = null;
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModel(models[i]);
+        }
 
-		if (models.length > 0) {
-			soapModels = new JournalStructureSoap[models.length][models[0].length];
-		}
-		else {
-			soapModels = new JournalStructureSoap[0][0];
-		}
+        return soapModels;
+    }
 
-		for (int i = 0; i < models.length; i++) {
-			soapModels[i] = toSoapModels(models[i]);
-		}
+    public static JournalStructureSoap[][] toSoapModels(
+        JournalStructure[][] models) {
+        JournalStructureSoap[][] soapModels = null;
 
-		return soapModels;
-	}
+        if (models.length > 0) {
+            soapModels = new JournalStructureSoap[models.length][models[0].length];
+        } else {
+            soapModels = new JournalStructureSoap[0][0];
+        }
 
-	public static JournalStructureSoap[] toSoapModels(
-		List<JournalStructure> models) {
-		List<JournalStructureSoap> soapModels = new ArrayList<JournalStructureSoap>(models.size());
+        for (int i = 0; i < models.length; i++) {
+            soapModels[i] = toSoapModels(models[i]);
+        }
 
-		for (JournalStructure model : models) {
-			soapModels.add(toSoapModel(model));
-		}
+        return soapModels;
+    }
 
-		return soapModels.toArray(new JournalStructureSoap[soapModels.size()]);
-	}
+    public static JournalStructureSoap[] toSoapModels(
+        List<JournalStructure> models) {
+        List<JournalStructureSoap> soapModels = new ArrayList<JournalStructureSoap>(models.size());
 
-	public JournalStructureSoap() {
-	}
+        for (JournalStructure model : models) {
+            soapModels.add(toSoapModel(model));
+        }
 
-	public long getPrimaryKey() {
-		return _id;
-	}
+        return soapModels.toArray(new JournalStructureSoap[soapModels.size()]);
+    }
 
-	public void setPrimaryKey(long pk) {
-		setId(pk);
-	}
+    public long getPrimaryKey() {
+        return _id;
+    }
 
-	public String getUuid() {
-		return _uuid;
-	}
+    public void setPrimaryKey(long pk) {
+        setId(pk);
+    }
 
-	public void setUuid(String uuid) {
-		_uuid = uuid;
-	}
+    public String getUuid() {
+        return _uuid;
+    }
 
-	public long getId() {
-		return _id;
-	}
+    public void setUuid(String uuid) {
+        _uuid = uuid;
+    }
 
-	public void setId(long id) {
-		_id = id;
-	}
+    public long getId() {
+        return _id;
+    }
 
-	public long getGroupId() {
-		return _groupId;
-	}
+    public void setId(long id) {
+        _id = id;
+    }
 
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
+    public long getGroupId() {
+        return _groupId;
+    }
 
-	public long getCompanyId() {
-		return _companyId;
-	}
+    public void setGroupId(long groupId) {
+        _groupId = groupId;
+    }
 
-	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
+    public long getCompanyId() {
+        return _companyId;
+    }
 
-	public long getUserId() {
-		return _userId;
-	}
+    public void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
 
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
+    public long getUserId() {
+        return _userId;
+    }
 
-	public String getUserName() {
-		return _userName;
-	}
+    public void setUserId(long userId) {
+        _userId = userId;
+    }
 
-	public void setUserName(String userName) {
-		_userName = userName;
-	}
+    public String getUserName() {
+        return _userName;
+    }
 
-	public Date getCreateDate() {
-		return _createDate;
-	}
+    public void setUserName(String userName) {
+        _userName = userName;
+    }
 
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
+    public Date getCreateDate() {
+        return _createDate;
+    }
 
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
+    public void setCreateDate(Date createDate) {
+        _createDate = createDate;
+    }
 
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
+    public Date getModifiedDate() {
+        return _modifiedDate;
+    }
 
-	public String getStructureId() {
-		return _structureId;
-	}
+    public void setModifiedDate(Date modifiedDate) {
+        _modifiedDate = modifiedDate;
+    }
 
-	public void setStructureId(String structureId) {
-		_structureId = structureId;
-	}
+    public String getStructureId() {
+        return _structureId;
+    }
 
-	public String getParentStructureId() {
-		return _parentStructureId;
-	}
+    public void setStructureId(String structureId) {
+        _structureId = structureId;
+    }
 
-	public void setParentStructureId(String parentStructureId) {
-		_parentStructureId = parentStructureId;
-	}
+    public String getParentStructureId() {
+        return _parentStructureId;
+    }
 
-	public String getName() {
-		return _name;
-	}
+    public void setParentStructureId(String parentStructureId) {
+        _parentStructureId = parentStructureId;
+    }
 
-	public void setName(String name) {
-		_name = name;
-	}
+    public String getName() {
+        return _name;
+    }
 
-	public String getDescription() {
-		return _description;
-	}
+    public void setName(String name) {
+        _name = name;
+    }
 
-	public void setDescription(String description) {
-		_description = description;
-	}
+    public String getDescription() {
+        return _description;
+    }
 
-	public String getXsd() {
-		return _xsd;
-	}
+    public void setDescription(String description) {
+        _description = description;
+    }
 
-	public void setXsd(String xsd) {
-		_xsd = xsd;
-	}
+    public String getXsd() {
+        return _xsd;
+    }
 
-	private String _uuid;
-	private long _id;
-	private long _groupId;
-	private long _companyId;
-	private long _userId;
-	private String _userName;
-	private Date _createDate;
-	private Date _modifiedDate;
-	private String _structureId;
-	private String _parentStructureId;
-	private String _name;
-	private String _description;
-	private String _xsd;
+    public void setXsd(String xsd) {
+        _xsd = xsd;
+    }
 }

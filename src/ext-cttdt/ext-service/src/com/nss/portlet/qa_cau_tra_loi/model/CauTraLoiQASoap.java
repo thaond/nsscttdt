@@ -33,6 +33,8 @@ public class CauTraLoiQASoap implements Serializable {
     private Date _createdate;
     private Date _publishdate;
     private boolean _publish;
+    private boolean _answerThroughWeb;
+    private String _answerThroughEmail;
 
     public CauTraLoiQASoap() {
     }
@@ -47,6 +49,8 @@ public class CauTraLoiQASoap implements Serializable {
         soapModel.setCreatedate(model.getCreatedate());
         soapModel.setPublishdate(model.getPublishdate());
         soapModel.setPublish(model.getPublish());
+        soapModel.setAnswerThroughWeb(model.getAnswerThroughWeb());
+        soapModel.setAnswerThroughEmail(model.getAnswerThroughEmail());
 
         return soapModel;
     }
@@ -153,5 +157,25 @@ public class CauTraLoiQASoap implements Serializable {
 
     public void setPublish(boolean publish) {
         _publish = publish;
+    }
+
+    public boolean getAnswerThroughWeb() {
+        return _answerThroughWeb;
+    }
+
+    public boolean isAnswerThroughWeb() {
+        return _answerThroughWeb;
+    }
+
+    public void setAnswerThroughWeb(boolean answerThroughWeb) {
+        _answerThroughWeb = answerThroughWeb;
+    }
+
+    public String getAnswerThroughEmail() {
+        return _answerThroughEmail;
+    }
+
+    public void setAnswerThroughEmail(String answerThroughEmail) {
+        _answerThroughEmail = answerThroughEmail;
     }
 }

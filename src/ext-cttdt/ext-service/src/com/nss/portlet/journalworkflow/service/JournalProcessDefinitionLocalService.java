@@ -85,5 +85,5 @@ public interface JournalProcessDefinitionLocalService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public java.util.List<com.liferay.portlet.tags.model.TagsEntry> getListTagsEntry(
-        long categoryId);
+        long vocabularyId);
 }
