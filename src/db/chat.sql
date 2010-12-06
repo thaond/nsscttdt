@@ -483,3 +483,63 @@ CREATE TABLE nss_media_library
 )
 WITH (OIDS=FALSE);
 ALTER TABLE nss_media_library OWNER TO postgres;
+
+
+
+CREATE TABLE meetingcalcomponent
+(
+  mcalid bigint NOT NULL,
+  groupids character varying(75),
+  startdate timestamp without time zone,
+  CONSTRAINT meetingcalcomponent_pkey PRIMARY KEY (mcalid)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE meetingcalcomponent OWNER TO postgres;
+
+CREATE TABLE meetingcalendar
+(
+  uuid_ character varying(75),
+  mcalid bigint NOT NULL,
+  groupid bigint,
+  companyid bigint,
+  userid bigint,
+  username character varying(75),
+  state integer,
+  place character varying(75),
+  place_diff character varying(75),
+  sponsor character varying(75),
+  component character varying(75),
+  note character varying(75),
+  userapproved bigint,
+  dateapproved timestamp without time zone,
+  movemcalid bigint,
+  repeatweek boolean,
+  filename character varying(75),
+  morning boolean,
+  afternoon boolean,
+  evening boolean,
+  stt integer,
+  "prior" boolean,
+  CONSTRAINT meetingcalendar_pkey PRIMARY KEY (mcalid)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE meetingcalendar OWNER TO postgres;
+
+CREATE TABLE meetingdetailweek
+(
+  mdweekid bigint NOT NULL,
+  groupid bigint,
+  companyid bigint,
+  userid bigint,
+  username character varying(75),
+  focus text,
+  note character varying(500),
+  receive character varying(500),
+  week bigint,
+  "year" bigint,
+  CONSTRAINT meetingdetailweek_pkey PRIMARY KEY (mdweekid)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE meetingdetailweek OWNER TO postgres;
+
+
