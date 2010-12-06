@@ -1,0 +1,69 @@
+<project name="jbpm-service" default="deploy" basedir=".">
+	<property name="app.name" value="jbpm-service" />
+	<property name="app.path" value="/${app.name}" />
+	<property name="app.version" value="" />
+	<property name="build.home" value="${basedir}/build" />
+
+	<property name="dist.home" value="${basedir}/dist" />
+	<property name="docs.home" value="${basedir}/docs" />
+	<property name="conf.home" value="${basedir}/conf" />
+	<property name="src.home" value="${basedir}/src" />
+	<property file="build.properties" />
+	
+	<path id="compile.classpath">
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${liferay-ext.home}/ext-impl">
+			<include name="ext-impl.jar" />
+		</fileset>
+		<fileset dir="${liferay-ext.home}/ext-service">
+			<include name="ext-service.jar" />
+		</fileset>
+	</path>
+
+	<path id="execute.classpath">
+		<fileset dir="${build.home}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement location="${build.home}/classes" />
+	</path>
+
+	<target name="prepare">
+		<mkdir dir="${build.home}" />
+		<mkdir dir="${dist.home}" />
+	</target>
+
+	<target name="compile" depends="prepare">
+		<mkdir dir="${build.home}/classes" />
+		<javac srcdir="${src.home}" destdir="${build.home}/classes" debug="true" optimize="true">
+			<classpath refid="compile.classpath" />
+		</javac>
+
+		<!-- Copy application resources -->
+		<copy todir="${build.home}/classes">
+			<fileset dir="${src.home}" excludes="**/*.java" />
+		</copy>
+
+	</target>
+
+	<target name="dist" depends="compile">
+		<jar jarfile="${dist.home}/${app.name}.jar" basedir="${build.home}/classes" />
+	</target>
+
+	<target name="deploy" depends="dist">
+		<copy todir="${server.home}/webapps/ROOT/WEB-INF/lib">
+			<fileset file="${dist.home}/${app.name}.jar">
+			</fileset>
+		</copy>
+		<copy todir="${liferay-ext.home}/ext-lib/portal">
+			<fileset file="${dist.home}/${app.name}.jar">
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.home}" />
+		<delete dir="${dist.home}" />
+	</target>
+</project>
