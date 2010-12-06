@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<model name="com.nss.portlet.digitalsignature.model.Signature">
+		<field name="signatureId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="articlePrimKey" type="long" />
+		<field name="articleId" type="String" />
+		<field name="version" type="double" />
+		<field name="signData" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+	<model name="com.nss.portlet.digitalsignature.model.Certificate">
+		<field name="userId" type="long" />
+		<field name="x509Certificate" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+</model-hints>

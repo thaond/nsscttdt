@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-merge="true" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestLocalService.impl" class="com.nss.portlet.digitalsignature.service.impl.ArticleDigestLocalServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.ArticleDigestLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestLocalServiceUtil" class="com.nss.portlet.digitalsignature.service.ArticleDigestLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.ArticleDigestLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestService.impl" class="com.nss.portlet.digitalsignature.service.impl.ArticleDigestServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.ArticleDigestService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.ArticleDigestServiceUtil" class="com.nss.portlet.digitalsignature.service.ArticleDigestServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.ArticleDigestService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalService.impl" class="com.nss.portlet.digitalsignature.service.impl.DigitalSignatureLocalServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalServiceUtil" class="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" class="com.nss.portlet.digitalsignature.service.impl.DigitalSignatureServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.DigitalSignatureServiceUtil" class="com.nss.portlet.digitalsignature.service.DigitalSignatureServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.DigitalSignatureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureLocalService.impl" class="com.nss.portlet.digitalsignature.service.impl.SignatureLocalServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.SignatureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil" class="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.SignatureLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureService.impl" class="com.nss.portlet.digitalsignature.service.impl.SignatureServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.SignatureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.SignatureServiceUtil" class="com.nss.portlet.digitalsignature.service.SignatureServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.SignatureService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.persistence.SignaturePersistence.impl" class="com.nss.portlet.digitalsignature.service.persistence.SignaturePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.digitalsignature.service.persistence.SignatureUtil" class="com.nss.portlet.digitalsignature.service.persistence.SignatureUtil">
+		<property name="persistence" ref="com.nss.portlet.digitalsignature.service.persistence.SignaturePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateLocalService.impl" class="com.nss.portlet.digitalsignature.service.impl.CertificateLocalServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.CertificateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateLocalServiceUtil" class="com.nss.portlet.digitalsignature.service.CertificateLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateService.impl" class="com.nss.portlet.digitalsignature.service.impl.CertificateServiceImpl" />
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.CertificateServiceUtil" class="com.nss.portlet.digitalsignature.service.CertificateServiceUtil">
+		<property name="service" ref="com.nss.portlet.digitalsignature.service.CertificateService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.digitalsignature.service.persistence.CertificatePersistence.impl" class="com.nss.portlet.digitalsignature.service.persistence.CertificatePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.digitalsignature.service.persistence.CertificateUtil" class="com.nss.portlet.digitalsignature.service.persistence.CertificateUtil">
+		<property name="persistence" ref="com.nss.portlet.digitalsignature.service.persistence.CertificatePersistence.impl" />
+	</bean>
+</beans>
