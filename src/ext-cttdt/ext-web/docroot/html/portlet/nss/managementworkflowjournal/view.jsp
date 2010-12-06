@@ -220,6 +220,7 @@ function <portlet:namespace />check_filetype_upload(form) {
 				if(dateFromWorkFlow != ""){
 					confirmUpdateWorkFlow();
 					form.<portlet:namespace />dateSaveUpdate.value="saveAndUpdate";
+					return false;
 				}else{
 					form.<portlet:namespace />dateSaveUpdate.value="save";	
 				}
@@ -230,6 +231,7 @@ function <portlet:namespace />check_filetype_upload(form) {
 			}else if(compareFromNewToOld == false){
 				form.<portlet:namespace />dateSaveUpdate.value="saveAndUpdate";	
 				confirmUpdateWorkFlow();
+				return false;
 			}
 			return false;
 		// MoNT end 1/12/2010 
@@ -399,9 +401,6 @@ function <portlet:namespace />check_filetype_upload(form) {
 		    	<portlet:param name="struts_action" value="/nss/managementworkflowjournal/view" />
 		    	<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		    	</portlet:actionURL>");
-			return true;
-		}else{
-			return false;				
 		}
 	}
 	 // MoNT end 1/12/2010 

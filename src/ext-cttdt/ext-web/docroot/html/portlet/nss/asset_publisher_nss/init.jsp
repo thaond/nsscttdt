@@ -214,15 +214,6 @@ if (0 != tagsEntryId) {
 // end minh 20100713
 
 //MoNT start 17/11/2010
-String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","2"));
-if(valueAbstract.equals("") || valueAbstract == null){
-	valueAbstract = "2";
-}
-String valueChildren = GetterUtil.getString(preferences.getValue("valueChildren","5"));
-if(valueChildren.equals("") || valueChildren == null){
-	valueChildren = "5";
-}
-
 long categoryParentIdAbstractEntry = 0;
 List<TagsEntry> tagsAbstractEntrys = new ArrayList<TagsEntry>();
 List<TagsVocabulary> vocabulariesTest = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);

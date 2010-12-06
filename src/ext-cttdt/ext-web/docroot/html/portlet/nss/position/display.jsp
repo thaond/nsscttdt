@@ -43,7 +43,7 @@
 			<portlet:param name="redirect" value="<%= positionSearch.getIteratorURL().toString()%>" />
 		</portlet:renderURL>
 		<span onclick="javascript:submitForm(document.hrefFm,'<%= add %>');"><input  type="button" value='<liferay-ui:message key="add_new"/>' /></span>		
-		
+		<br><br>
 	<%
 		List<Position> results = new ArrayList<Position>();
 		int total = 0;		
@@ -60,7 +60,6 @@
 		positionSearch.setResults(results);		
 		portletURL.setParameter(positionSearch.getCurParam(), String.valueOf(positionSearch.getCurValue()));
 	%>	
-	<div id="separator"></div>
 	
 	<%
 		List resultRows = positionSearch.getResultRows();
