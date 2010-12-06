@@ -2,6 +2,8 @@
 
 <%@page import="com.nss.portlet.department.service.DepartmentLocalServiceUtil"%>
 <%@page import="com.nss.portlet.department.model.Department"%>
+
+<liferay-util:include page="/html/portlet/nss/department/js/edit_js.jsp"></liferay-util:include>
 <%
 	Department department = (Department) renderRequest.getAttribute("department");
 	List<Department> departmentParentIdList = DepartmentLocalServiceUtil.getDepartments(-1,-1);
@@ -116,18 +118,3 @@
 	</table>
 </div>
 </form>
-<script type="text/javascript">
-function validateEditForm() {
-	var departmentName = document.getElementById("departmentName");
-
-	if (departmentName.value.trim() == "") {
-		alert("<liferay-ui:message key='nhap-ten-phong-ban' />");
-		departmentName.focus()
-		return false;
-	}
-	
-	else {
-		return true;
-	}
-}
-</script>

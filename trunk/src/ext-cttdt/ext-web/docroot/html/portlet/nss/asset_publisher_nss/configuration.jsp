@@ -445,7 +445,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 				<span id="<portlet:namespace/>displayValue<%=vocabulary.getVocabularyId() %>" style="display: none">
 				<%} %>
 					<liferay-ui:message key="tin-abstract" />
-					<% int countAbstract = 0; %>
+					<% int countAbstract = 1; %>
 						<% Iterator<Map.Entry<Long,String>> iteratorValueAbstract = mapValueAbstract.entrySet().iterator();%>
 						<% while(iteratorValueAbstract.hasNext()){ 
 							Map.Entry<Long,String> entry = iteratorValueAbstract.next();
@@ -455,16 +455,15 @@ configurationActionURL.setParameter("portletResource", portletResource);
 								countAbstract = Integer.parseInt(value);
 							}
 						%>
-<!--						(<%=key %>-<%=value %>)-->
 						<%} %>
-					<select name="valueAbstract<%=vocabulary.getVocabularyId() %>">
+					<select name="<portlet:namespace/>valueAbstract<%=vocabulary.getVocabularyId() %>">
 					<%for(int i=1;i<=5;i++){%>
 						<option value="<%=i %>" <%= countAbstract == i ? "selected" :" " %>> <%=i %></option>
 					<%}%>
 					</select>
 					
 					<liferay-ui:message key="tin-lien-quan" />
-					<% int countChildren = Integer.parseInt(valueChildren); %>
+					<% int countChildren = 1; %>
 						<% Iterator<Map.Entry<Long,String>> iteratorValueChildren = mapValueChildren.entrySet().iterator();%>
 						<% while(iteratorValueChildren.hasNext()){ 
 							Map.Entry<Long,String> entry = iteratorValueChildren.next();
@@ -474,9 +473,8 @@ configurationActionURL.setParameter("portletResource", portletResource);
 								countChildren = Integer.parseInt(value);
 							}
 						%>
-<!--						(<%=key %>-<%=value %>)-->
 						<%} %>
-					<select name="valueChildren<%=vocabulary.getVocabularyId() %>">
+					<select name="<portlet:namespace/>valueChildren<%=vocabulary.getVocabularyId() %>">
 					<%for(int i=1;i<=10;i++){%>
 						<option value="<%=i %>" <%= countChildren == i ? "selected" :" " %>> <%=i %></option>			
 					<%}%>
@@ -526,7 +524,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 				<!-- MoNT start 19/11/2010 -->
 						<liferay-ui:message key="tin-abstract-entry" />
 						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
-						int valueSelect = 0;
+						int valueSelect = 1;
 							while(iteratorAbstractEntry.hasNext()){
 								Map.Entry<String,String> entry = iteratorAbstractEntry.next();
 								String key= entry.getKey();
@@ -537,7 +535,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 									valueSelect = entryValue;
 								}%>
 							<%}%>
-						<select name="valueAbstractEntry<%=tE.getEntryId() %>">
+						<select name="<portlet:namespace/>valueAbstractEntry<%=tE.getEntryId() %>">
 						<% for(int i=1;i<=5;i++){ %>
 								<option value="<%=i %>" <%= valueSelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
@@ -545,7 +543,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 						<liferay-ui:message key="tin-lien-quan-entry" />
 						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();
-						int valueEntrySelect = 0;
+						int valueEntrySelect = 1;
 							 while(iteratorChildrenEntry.hasNext()){ 
 								Map.Entry<String,String> entry = iteratorChildrenEntry.next();
 								String key= entry.getKey();
@@ -556,7 +554,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 									valueEntrySelect = entryValue;
 								}%>
 							<%}%>
-						<select name="valueChildrenEntry<%=tE.getEntryId() %>">
+						<select name="<portlet:namespace/>valueChildrenEntry<%=tE.getEntryId() %>">
 						<% for(int i=1;i<=10;i++){ %>
 							<option value="<%=i %>" <%= valueEntrySelect == i ? "selected" :" " %>> <%=i %></option>
 						<%}%>
@@ -717,10 +715,12 @@ configurationActionURL.setParameter("portletResource", portletResource);
 		 document.getElementById(lVArray[i]).style.display = "none";
 	 } 
 	 document.getElementById(idVocabularieId).style.display = "inline";
-	 //alert(idVocabularieId);
+	//MoNT start 3/12/2010 
 	 displayHiddenValue(listVocabularieIds,idVocabularieId);
+	//MoNT end 3/12/2010 
 	}
 	
+	//MoNT start 3/12/2010 
 	function displayHiddenValue(listVocabularieIds,idVocabularieId){
 		var lVArray = listVocabularieIds.split("_");
 		for (i = 0; i < lVArray.length; i++) {
@@ -728,4 +728,5 @@ configurationActionURL.setParameter("portletResource", portletResource);
 		 } 
 		jQuery("#<portlet:namespace/>displayValue"+idVocabularieId).show();
 	}
+	//MoNT end 3/12/2010
 </script>

@@ -17,6 +17,7 @@
 		userIds += users.get(users.size() - 1).getUserId();
 	}
 	%>
+	<%="nguyen van tu: "+ userIds %>
 	<br>
 	<input type="hidden" name="<portlet:namespace/>userIds" value="<%= userIds %>"/>
 	<div class="boxcontent">

@@ -108,8 +108,8 @@ if (!itr.hasNext()) {
 <!--  MoNT start 18/11/2010 -->
 
 <%}
-int countAbstract=Integer.parseInt(valueAbstract);
-int countChildren=Integer.parseInt(valueChildren);
+int countAbstract=1;
+int countChildren=3;
 List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetAbstract = new ArrayList<TagsAsset>();
 List<TagsAsset> listTagAssetChildren = new ArrayList<TagsAsset>();

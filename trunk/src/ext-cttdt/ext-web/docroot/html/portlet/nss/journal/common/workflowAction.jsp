@@ -52,23 +52,26 @@
 <c:if test="<%= TaskAction.NONE_FORM.equals(taskAction.getForm())%>">
 	
 	<portlet:actionURL var="form"  windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-		<portlet:param name="<portlet:namespace/>struts_action" value="<%=taskAction.getStrutsAction()%>" />
+		<portlet:param name="struts_action" value="<%=taskAction.getStrutsAction()%>" />
 		
-		<portlet:param name='<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "resourcePrimey"%>'
+		<portlet:param name='<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "resourcePrimey"%>'
 			value='<%=ParamUtil.getString(renderRequest,"resourcePrimey","") %>' />
 		
-		<portlet:param name='<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "taskId"%>'
+		<portlet:param name='<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "taskId"%>'
 			value='<%= String.valueOf(taskAction.getTaskInstanceId())%>' />
 			
-		<portlet:param name='<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "transition"%>'
+		<portlet:param name='<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "transition"%>'
 			value="<%=taskAction.getTransition()%>" />
 			
-		<portlet:param name="<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_ACTION%>" value="true" />
+		<portlet:param name="<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_ACTION%>" value="true" />
 		
-		<portlet:param name="<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_ACTION_NAME%>" 
+		<portlet:param name="<%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_ACTION_NAME%>" 
 		value='<%=JournalLiferayPortletAction.COMMAND_PREFIX + "." + taskAction.getTaskActionName()%>' />
 		
-		<portlet:param name="<portlet:namespace/>redirect" value="<%= redirectWF %>" />
+		<portlet:param name="redirect" value="<%= redirectWF %>" />
+		<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
+		<portlet:param name="articleId" value="<%= articleId %>" />
+		<portlet:param name="version" value="<%= String.valueOf(version) %>" />
 	</portlet:actionURL>
 	<%	
 	if ("xoatin".equalsIgnoreCase(taskAction.getTaskActionName())  )  {%>
@@ -79,7 +82,7 @@
 		<script type="text/javascript">
 			function resultSaveDodument(){				
 					if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this-journal-article") %>')) {
-						javascript:submitForm(document.hrefFm, '<%=form%>');
+						javascript:submitForm(document.hrefFm, '<%= form%>');
 					}
 					else {
 						document.getElementById('xoahoso').click = "#";

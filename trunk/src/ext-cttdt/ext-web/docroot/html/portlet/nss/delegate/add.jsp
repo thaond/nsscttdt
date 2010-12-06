@@ -4,7 +4,9 @@
 
 
 <%@page import="com.nss.portlet.department.model.Department"%>
-<%@page import="com.nss.portlet.department.service.DepartmentLocalServiceUtil"%><liferay-util:include page="/html/portlet/nss/delegate/js/delegate_add_js.jsp"></liferay-util:include>
+<%@page import="com.nss.portlet.department.service.DepartmentLocalServiceUtil"%>
+
+<liferay-util:include page="/html/portlet/nss/delegate/js/delegate_add_js.jsp"></liferay-util:include>
 
 <script type="text/javascript" src="/html/js/calendar.js"></script>
 <script type="text/javascript" src="/html/js/calendar-setup.js"></script>
