@@ -31,6 +31,7 @@ import java.io.ObjectInputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.KeyPair;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -103,6 +104,7 @@ import com.nss.portlet.journalworkflow.util.SAWWorkflowUtil;
 import com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle;
 import com.nss.portlet.managementworkflowjournal.service.WorkflowJournalArticleLocalServiceUtil;
 import com.nss.workflow.JournalLiferayPortletAction;
+import com.nss.workflow.JournalLiferayWorkflowService;
 import com.sgs.liferay.jbpm.param.WorkflowParam;
 import com.sun.saw.vo.BusinessProcessInstanceVO;
 import com.sun.saw.vo.OutputVO;
@@ -174,7 +176,6 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		throws Exception {
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-
 		String[] deleteArticleIds =
 			StringUtil.split(ParamUtil.getString(
 				actionRequest, "deleteArticleIds"));
@@ -182,7 +183,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		ServiceContext serviceContext =
 			ServiceContextFactory.getInstance(
 				JournalArticle.class.getName(), actionRequest);
-
+		// getLiferayWorkflowService().
 		for (int i = 0; i < deleteArticleIds.length; i++) {
 			int pos = deleteArticleIds[i].lastIndexOf(VERSION_SEPARATOR);
 
@@ -216,6 +217,14 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 				groupId, articleId, version, articleURL, serviceContext);
 
 			JournalUtil.removeRecentArticle(actionRequest, deleteArticleIds[i]);
+			// Tu update 20101203
+			// delete in table nss_workflow_journal_article
+			List<WorkflowParam> listWP = new ArrayList<WorkflowParam>();
+			listWP.add(new WorkflowParam(
+				WorkflowParam.TRANSIENT, "articleIds",
+				String.valueOf(article.getResourcePrimKey())));
+			((JournalLiferayWorkflowService) getLiferayWorkflowService()).deleteWorkflowJournalAritcle(listWP);
+			// Tu end
 		}
 	}
 
@@ -322,7 +331,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 				portletConfig.getPortletName(), themeDisplay.getPlid(),
 				PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		portletURL.setWindowState(WindowState.NORMAL);
 
 		portletURL.setParameter("struts_action", "/nss/journal/edit_article");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
@@ -338,6 +347,12 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		portletURL.setParameter("instanceId", String.valueOf(instanceId), false);
 		portletURL.setParameter(
 			"workflowAction", String.valueOf(workflowAction), false);
+		portletURL.setParameter(
+			com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX +
+				"resourcePrimkey", String.valueOf(article.getResourcePrimKey()));
+		portletURL.setParameter(
+			com.sgs.liferay.jbpm.util.Constants.WORKFLOW_RENDER, "true");
+
 		// end of Canh
 
 		return portletURL.toString();
@@ -351,22 +366,24 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 		JournalArticle article = null;
-
 		try {
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
 				article = updateArticle(actionRequest);
 				addWorkflowParameter(
 					actionRequest, "userId", WorkflowParam.TRANSIENT,
 					String.valueOf(PortalUtil.getUserId(actionRequest)));
-				addWorkflowParameter(
-					actionRequest, "type", WorkflowParam.TRANSIENT,
-					String.valueOf(article.getType()));
+
 				addWorkflowParameter(
 					actionRequest, "resourcePrimey", WorkflowParam.TRANSIENT,
 					String.valueOf(article.getResourcePrimKey()));
+
 				addWorkflowParameter(
 					actionRequest, "groundId", WorkflowParam.TRANSIENT,
 					String.valueOf(article.getGroupId()));
+
+				if (article != null) {
+					setForward(actionRequest, "");
+				}
 			}
 			else if (cmd.equals(Constants.APPROVE)) {
 				approveArticle(actionRequest);
@@ -382,6 +399,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 			}
 
 			if (Validator.isNotNull(cmd)) {
+
 				String redirect =
 					ParamUtil.getString(actionRequest, "redirect");
 
@@ -390,9 +408,15 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 						ParamUtil.getBoolean(actionRequest, "saveAndContinue");
 
 					if (saveAndContinue) {
+
 						redirect =
 							getSaveAndContinueRedirect(
 								portletConfig, actionRequest, article, redirect);
+
+						addWorkflowParameter(
+							actionRequest, "saveAndContinue",
+							WorkflowParam.TRANSIENT, redirect);
+
 					}
 				}
 
@@ -486,7 +510,6 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 				throw e;
 			}
 		}
-
 		return mapping.findForward(getForward(
 			renderRequest, "portlet.nss.journal.edit_article"));
 	}
@@ -636,7 +659,6 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		JournalArticle article = null;
 
 		if (cmd.equals(Constants.ADD)) {
-
 			if (Validator.isNull(structureId)) {
 				content =
 					LocalizationUtil.updateLocalization(
@@ -708,6 +730,7 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 					reviewDateMinute, neverReview, indexable, smallImage,
 					smallImageURL, smallFile, images, articleURL,
 					serviceContext);
+
 			// update count image in table workflow_journal_articl
 			WorkflowJournalArticle workflowJournalArticle =
 				WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(article.getResourcePrimKey());

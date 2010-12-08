@@ -378,4 +378,63 @@
     <definition extends="portlet" name="portlet.nss.delegate.view">
         <put name="portlet_content" value="/portlet/nss/delegate/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.managementworkflowonedoor.view">
+        <put name="portlet_content" value="/portlet/nss/managementworkflowonedoor/view.jsp"/>
+    </definition>
+    <!-- ho so -->
+    <definition extends="portlet" name="portlet.nss.onedoor.view">
+        <put name="portlet_content" value="/portlet/nss/onedoor/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoor.add">
+        <put name="portlet_content" value="/portlet/nss/onedoor/view.jsp"/>
+    </definition>
+    <!-- file status onedoor -->
+    <definition extends="portlet" name="portlet.nss.filestatus.view">
+        <put name="portlet_content" value="/portlet/nss/filestatus/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.display_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/display_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.add_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/add_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.add_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/add_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.edit_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/edit_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.edit_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/edit_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorprocess.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorprocess/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreturn.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreturn/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreturn.detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreturn/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorfileprocessed.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorfileprocessed/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorfileprocessed.detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorfileprocessed/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/searchresult.jsp"/>
+    </definition>
 </tiles-definitions>

@@ -28,8 +28,6 @@ public class TransitionReviewJournalArticle extends JournalLiferayPortletAction 
 		ActionRequest actionRequest, ActionResponse arg4)
 		throws Exception {
 
-		System.out.println("da vao processAction void taskId: ");
-
 		String resourcePrimey =
 			ParamUtil.getString(actionRequest, "resourcePrimey");
 

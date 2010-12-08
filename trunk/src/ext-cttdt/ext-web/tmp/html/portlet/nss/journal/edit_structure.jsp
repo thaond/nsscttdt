@@ -242,7 +242,7 @@ int tabIndex = 1;
 
 		var nameEl = document.getElementById("<portlet:namespace />parentStructureName");
 
-		nameEl.href = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /></portlet:renderURL>&<portlet:namespace />parentStructureId=" + parentStructureId;
+		nameEl.href = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /></portlet:renderURL>&<portlet:namespace />parentStructureId=" + parentStructureId;
 		nameEl.innerHTML = parentStructureName + "&nbsp;";
 
 		document.getElementById("<portlet:namespace />removeParentStructureButton").disabled = false;
@@ -253,7 +253,7 @@ int tabIndex = 1;
 <input name="xml" type="hidden" value="" />
 </form>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_structure" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveStructure(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_structure" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveStructure(); return false;">
 <input name="scroll" type="hidden" value="" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
@@ -357,7 +357,7 @@ int tabIndex = 1;
 
 		<c:choose>
 			<c:when test="<%= (structure == null) || (Validator.isNotNull(parentStructureId)) %>">
-				<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="parentStructureId" value="<%= parentStructureId %>" /></portlet:renderURL>" id="<portlet:namespace />parentStructureName">
+				<a href="<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="parentStructureId" value="<%= parentStructureId %>" /></portlet:renderURL>" id="<portlet:namespace />parentStructureName">
 				<%= parentStructureName %></a>
 			</c:when>
 			<c:otherwise>
@@ -479,7 +479,7 @@ tabIndex = tabIndexWrapper.getValue();
 		}
 	);
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 		<c:choose>
 			<c:when test="<%= PropsValues.JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID %>">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm1.<portlet:namespace />name);

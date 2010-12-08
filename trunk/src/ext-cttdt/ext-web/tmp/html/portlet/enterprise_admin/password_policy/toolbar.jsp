@@ -28,7 +28,7 @@
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 String backURL = ParamUtil.getString(request, "backURL");
 %>
-
+<div class="parent-title"><liferay-ui:message key="Password_policy"/></div>	
 <div class="lfr-portlet-toolbar">
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewPasswordPoliciesURL">
 		<portlet:param name="struts_action" value="/enterprise_admin/view" />

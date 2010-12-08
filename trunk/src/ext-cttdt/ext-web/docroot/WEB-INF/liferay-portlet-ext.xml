@@ -977,4 +977,39 @@
         <struts-path>nss/delegate</struts-path>
         <use-default-template>false</use-default-template>
     </portlet>
+    <portlet>
+        <portlet-name>NSS_MANAGEMENTWORKFLOWONEDOOR</portlet-name>
+        <struts-path>nss/managementworkflowonedoor</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOOR</portlet-name>
+        <struts-path>nss/onedoor</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>SGS_FILESTATUS</portlet-name>
+        <struts-path>nss/filestatus</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORPROCESS</portlet-name>
+        <struts-path>nss/onedoorprocess</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORRETURN</portlet-name>
+        <struts-path>nss/onedoorreturn</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORFILEPROCESSED</portlet-name>
+        <struts-path>nss/onedoorfileprocessed</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORREPORT_BAOCAOHOSOTHANG</portlet-name>
+        <struts-path>nss/onedoorreport_baocaohosothang</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
 </liferay-portlet-app>

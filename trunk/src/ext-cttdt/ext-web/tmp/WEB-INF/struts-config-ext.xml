@@ -104,28 +104,23 @@
             <forward name="portlet.nss.journal.raw_article_content" path="/portlet/nss/journal/raw_article_content.jsp"/>
             <forward name="portlet.nss.journal.view_article_content" path="/portlet/nss/journal/view_article_content.jsp"/>
         </action>
-        
-        
         <action path="/nss/journal/deletejournalarticle" type="com.nss.portlet.journal.action.DeleteJournalArticle">
-        	<forward name="portlet.nss.journal.deletejournalarticle" path="portlet.nss.journal.deletejournalarticle"/>
+            <forward name="portlet.nss.journal.deletejournalarticle" path="portlet.nss.journal.deletejournalarticle"/>
         </action>
-        
         <action path="/nss/journal/transitionreviewjournalarticle" type="com.nss.portlet.journal.action.TransitionReviewJournalArticle">
-        	<forward name="portlet.nss.journal.transitionreviewjournalarticle" path="portlet.nss.journal.transitionreviewjournalarticle"/>
+            <forward
+                name="portlet.nss.journal.transitionreviewjournalarticle" path="portlet.nss.journal.transitionreviewjournalarticle"/>
         </action>
-        
         <action path="/nss/journal/transitionapprovejournalarticle" type="com.nss.portlet.journal.action.TransitionApproveJournalArticle">
-        	<forward name="portlet.nss.journal.transitionapprovejournalarticle" path="portlet.nss.journal.transitionapprovejournalarticle"/>
+            <forward
+                name="portlet.nss.journal.transitionapprovejournalarticle" path="portlet.nss.journal.transitionapprovejournalarticle"/>
         </action>
-        
-         <action path="/nss/journal/approvejournalarticle" type="com.nss.portlet.journal.action.ApproveJournalArticle">
-        	<forward name="portlet.nss.journal.approvejournalarticle" path="portlet.nss.journal.approvejournalarticle"/>
+        <action path="/nss/journal/approvejournalarticle" type="com.nss.portlet.journal.action.ApproveJournalArticle">
+            <forward name="portlet.nss.journal.approvejournalarticle" path="portlet.nss.journal.approvejournalarticle"/>
         </action>
-        
         <action path="/nss/journal/backjournalarticle" type="com.nss.portlet.journal.action.BackJournalArticle">
-        	<forward name="portlet.nss.journal.backjournalarticle" path="portlet.nss.journal.backjournalarticle"/>
+            <forward name="portlet.nss.journal.backjournalarticle" path="portlet.nss.journal.backjournalarticle"/>
         </action>
-        
         <!-- Journal Articles -->
         <action path="/nss/journal_articles/view" type="com.nss.portlet.journalarticles.action.ViewAction">
             <forward name="portlet.journal_articles.view" path="portlet.journal_articles.view"/>
@@ -330,11 +325,128 @@
         <action path="/nss/image_signer/upload" type="com.nss.portlet.image_signer.action.UpLoadAction">
             <forward name="portlet.nss.image_signer.upload" path="portlet.nss.image_signer.upload"/>
         </action>
+        <action path="/nss/thong_ke_tin/view" type="com.nss.portlet.thong_ke_tin.action.ViewAction">
+            <forward name="portlet.nss.thong_ke_tin.view" path="portlet.nss.thong_ke_tin.view"/>
+        </action>
+        <action forward="portlet.nss.thong_ke_tin.view" path="/nss/thong_ke_tin/tab"/>
         <action path="/nss/managementworkflowjournal/view" type="com.nss.portlet.managementworkflowjournal.action.ViewAction">
             <forward name="portlet.nss.managementworkflowjournal.view" path="portlet.nss.managementworkflowjournal.view"/>
         </action>
         <action path="/nss/generatetemplateid/view" type="com.nss.portlet.generatetemplateid.action.ViewAction">
             <forward name="portlet.nss.generatetemplateid.view" path="portlet.nss.generatetemplateid.view"/>
+        </action>
+        <action path="/nss/geneatedocumentcode/view" type="com.nss.portlet.geneatedocumentcode.action.ViewAction">
+            <forward name="portlet.nss.geneatedocumentcode.view" path="portlet.nss.geneatedocumentcode.view"/>
+        </action>
+        <action path="/nss/agency/view" type="com.nss.portlet.agency.action.ViewAction">
+            <forward name="portlet.nss.agency.view" path="portlet.nss.agency.view"/>
+            <forward name="portlet.nss.agency.add" path="portlet.nss.agency.add"/>
+        </action>
+        <action path="/nss/position/view" type="com.nss.portlet.position.action.ViewAction">
+            <forward name="portlet.nss.position.view" path="portlet.nss.position.view"/>
+            <forward name="portlet.nss.position.add" path="portlet.nss.position.add"/>
+        </action>
+        <action path="/nss/documentfield/view" type="com.nss.portlet.documentfield.action.ViewAction">
+            <forward name="portlet.nss.documentfield.view" path="portlet.nss.documentfield.view"/>
+        </action>
+        <action path="/nss/documentfield/add" type="com.nss.portlet.documentfield.action.AddAction">
+            <forward name="portlet.nss.documentfield.add" path="portlet.nss.documentfield.add"/>
+        </action>
+        <action path="/nss/documentfield/edit" type="com.nss.portlet.documentfield.action.EditAction">
+            <forward name="portlet.nss.documentfield.edit" path="portlet.nss.documentfield.edit"/>
+        </action>
+        <action path="/nss/holidaymanagement/view" type="com.nss.portlet.holidaymanagement.action.ViewAction">
+            <forward name="portlet.nss.holidaymanagement.view" path="portlet.nss.holidaymanagement.view"/>
+        </action>
+        <action path="/nss/department/view" type="com.nss.portlet.department.action.ViewAction">
+            <forward name="portlet.nss.department.view" path="portlet.nss.department.view"/>
+        </action>
+        <action path="/nss/department/add" type="com.nss.portlet.department.action.AddAction">
+            <forward name="portlet.nss.department.add" path="portlet.nss.department.add"/>
+        </action>
+        <action path="/nss/department/edit" type="com.nss.portlet.department.action.EditAction">
+            <forward name="portlet.nss.department.edit" path="portlet.nss.department.edit"/>
+        </action>
+        <action path="/nss/department/setleader" type="com.nss.portlet.department.action.SetLeaderAction">
+            <forward name="portlet.nss.department.setleader" path="portlet.nss.department.setleader"/>
+        </action>
+        <action path="/nss/filetype/view" type="com.nss.portlet.filetype.action.ViewAction">
+            <forward name="portlet.nss.filetype.view" path="portlet.nss.filetype.view"/>
+            <forward name="portlet.nss.filetype.add" path="portlet.nss.filetype.add"/>
+            <forward name="portlet.nss.filetype.edit" path="portlet.nss.filetype.edit"/>
+        </action>
+        <action path="/nss/attachedfile/view" type="com.nss.portlet.attachedfile.action.ViewAction">
+            <forward name="portlet.nss.attachedfile.view" path="portlet.nss.attachedfile.view"/>
+            <forward name="portlet.nss.attachedfile.add" path="portlet.nss.attachedfile.add"/>
+        </action>
+        <action path="/nss/delegate/view" type="com.nss.portlet.delegate.action.ViewAction">
+            <forward name="portlet.nss.delegate.view" path="portlet.nss.delegate.view"/>
+        </action>
+        <action path="/nss/managementworkflowonedoor/view" type="com.nss.portlet.managementworkflowonedoor.action.ViewAction">
+            <forward name="portlet.nss.managementworkflowonedoor.view" path="portlet.nss.managementworkflowonedoor.view"/>
+        </action>
+        <!-- Ho So -->
+        <action path="/nss/onedoor/view" type="com.nss.portlet.onedoor.action.ViewAction">
+            <forward name="portlet.nss.onedoor.view" path="portlet.nss.onedoor.view"/>
+        </action>
+        <action path="/nss/onedoor/add" type="com.nss.portlet.onedoor.action.AddAction">
+            <forward name="portlet.nss.onedoor.add" path="portlet.nss.onedoor.add"/>
+        </action>
+        <!--  Trang Thai Ho so -->
+        <action path="/nss/filestatus/view" type="com.nss.portlet.filestatus.action.ViewAction">
+            <forward name="portlet.nss.filestatus.view" path="portlet.nss.filestatus.view"/>
+        </action>
+        <action path="/nss/filestatus/add_filestatus_onedoor" type="com.nss.portlet.filestatus.action.AddFileStatusOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.add_filestatus_onedoor" path="portlet.nss.filestatus.add_filestatus_onedoor"/>
+        </action>
+        <action path="/nss/filestatus/edit_filestatus_onedoor" type="com.nss.portlet.filestatus.action.EditFileStatusOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.edit_filestatus_onedoor" path="portlet.nss.filestatus.edit_filestatus_onedoor"/>
+            <forward name="portlet.nss.filestatus.view" path="portlet.nss.filestatus.view"/>
+        </action>
+        <action path="/nss/filestatus/display_stateprocess_onedoor" type="com.nss.portlet.filestatus.action.EditStateProcessOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.display_stateprocess_onedoor" path="portlet.nss.filestatus.display_stateprocess_onedoor"/>
+        </action>
+        <action
+            forward="portlet.nss.filestatus.add_stateprocess_onedoor" path="/nss/filestatus/add_stateprocess_onedoor"/>
+        <action
+            forward="portlet.nss.filestatus.edit_stateprocess_onedoor" path="/nss/filestatus/edit_stateprocess_onedoor"/>
+        <action path="/nss/onedoorprocess/view" type="com.nss.portlet.onedoorprocess.action.ViewAction">
+            <forward name="portlet.nss.onedoorprocess.view" path="portlet.nss.onedoorprocess.view"/>
+        </action>
+        <action path="/nss/onedoorreturn/view" type="com.nss.portlet.onedoorreturn.action.ViewAction">
+            <forward name="portlet.nss.onedoorreturn.view" path="portlet.nss.onedoorreturn.view"/>
+        </action>
+        <action path="/nss/onedoorreturn/detail" type="com.nss.portlet.onedoorreturn.action.DetailAction">
+            <forward name="portlet.nss.onedoorreturn.detail" path="portlet.nss.onedoorreturn.detail"/>
+        </action>
+        <action path="/nss/onedoorfileprocessed/view" type="com.nss.portlet.onedoorfileprocessed.action.ViewAction">
+            <forward name="portlet.nss.onedoorfileprocessed.view" path="portlet.nss.onedoorfileprocessed.view"/>
+        </action>
+        <action path="/nss/onedoorfileprocessed/detail" type="com.nss.portlet.onedoorfileprocessed.action.DetailAction">
+            <forward name="portlet.nss.onedoorfileprocessed.detail" path="portlet.nss.onedoorfileprocessed.detail"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/view" type="com.nss.portlet.onedoorreport_baocaohosothang.action.ViewAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.view" path="portlet.nss.onedoorreport_baocaohosothang.view"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/filedetails" type="com.nss.portlet.onedoorreport_baocaohosothang.action.FileDetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.filedetails" path="portlet.nss.onedoorreport_baocaohosothang.filedetails"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/filedetails_detail" type="com.nss.portlet.onedoorreport_baocaohosothang.action.DetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail" path="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/search" type="com.nss.portlet.onedoorreport_baocaohosothang.action.SearchAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.search" path="portlet.nss.onedoorreport_baocaohosothang.search"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/searchresult" type="com.nss.portlet.onedoorreport_baocaohosothang.action.SearchResultAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.searchresult" path="portlet.nss.onedoorreport_baocaohosothang.searchresult"/>
         </action>
     </action-mappings>
 </struts-config>

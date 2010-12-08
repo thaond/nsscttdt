@@ -27,8 +27,8 @@ jQuery(document).ready(function(){
 <!--
 
 //-->
-<div id="header">
 <div id="AVIMControl-panel"><script src="/html/js/avim.js"  type="text/javascript"></script></div>
+<div id="header">
 <div id="banner"><img src="/html/images/banner.jpg" /></div>
 <div id="menu">
     <div class="dmy">

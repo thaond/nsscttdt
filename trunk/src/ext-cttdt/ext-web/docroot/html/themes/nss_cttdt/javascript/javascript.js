@@ -83,3 +83,158 @@ var maxYear=2100;
 		}
 		return true
 	}
+	
+	var nss = function()
+	{
+	    var days = [ 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+	    var formatPhone = /(^\d{10,11}$)|(^\d{7,8}$)|(^\(\d{2}\)\d{8}$)|(^\(\d{3}\)\d{7}$)|(^\d{2}[\x20|\-]\d{8}$)|(^\d{3}[\x20|\-]\d{7}$)/;
+	    // private function
+	    // parse chuoi str theo format da dinh, tra ve
+	    // mang chua 3 thanh phan day, month, year
+	    parseDateElements = function(str, format)
+	    {
+	        var pattern; // regexp de test
+	        var dateElements = new Array(3); // array
+	        // dateElements[0]: day
+	        // dateElements[1]: month
+	        // dateElements[2]: year
+	    
+	        format = format.toString().toLowerCase();
+	        
+	        if (format == "dmy" || format == "mdy")
+	        {
+	            pattern = /^\d{1,2}([\-|\/])\d{1,2}\1\d{4}$/;
+	            if (str.search(pattern) == -1) return null;
+	            arr = str.match(/\d+/g);
+	            
+	            if (format.substring(0, 1) == "d")
+	            {
+	                dateElements[0] = parseInt(arr[0], 10);
+	                dateElements[1] = parseInt(arr[1], 10);
+	                dateElements[2] = parseInt(arr[2], 10);
+	            }
+	            else
+	            {
+	                dateElements[0] = parseInt(arr[1], 10);
+	                dateElements[1] = parseInt(arr[0], 10);
+	                dateElements[2] = parseInt(arr[2], 10);
+	            }
+	            return dateElements;
+	        }   
+	        else if (format == "dym" || format == "myd")
+	        {
+	            pattern = /^\d{1,2}([\-|\/])\d{4}\1\d{1,2}$/;
+	            if (str.search(pattern) == -1) return null;
+	            arr = str.match(/\d+/g);
+	            
+	            if (format.substring(0, 1) == "d")
+	            {
+	                dateElements[0] = parseInt(arr[0], 10);
+	                dateElements[1] = parseInt(arr[2], 10);
+	                dateElements[2] = parseInt(arr[1], 10);
+	            }
+	            else
+	            {
+	                dateElements[0] = parseInt(arr[2], 10);
+	                dateElements[1] = parseInt(arr[0], 10);
+	                dateElements[2] = parseInt(arr[1], 10);
+	            }
+	            return dateElements;
+	        }
+	        else if (format == "ydm" || format == "ymd")
+	        {
+	            pattern = /^\d{4}([\-|\/])\d{1,2}\1\d{1,2}$/;
+	            if (str.search(pattern) == -1) return null;
+	            arr = str.match(/\d+/g);
+	            if (format.substring(1, 2) == "d")
+	            {
+	                dateElements[0] = parseInt(arr[1], 10);
+	                dateElements[1] = parseInt(arr[2], 10);
+	                dateElements[2] = parseInt(arr[0], 10);
+	            }
+	            else
+	            {
+	                dateElements[0] = parseInt(arr[2], 10);
+	                dateElements[1] = parseInt(arr[1], 10);
+	                dateElements[2] = parseInt(arr[0], 10);
+	            }
+	            return dateElements;
+	        }
+	        else 
+	            return null; // malformat, return null;
+	    }
+	    
+	    var pub = 
+	    {
+	        /**
+	         * compares 2 dates date1, date2 for ordering
+	         *      d1, d2: JavaScript dates object to be compared
+	         * return:
+	         *          the value 0 if the argument date1 is equal to date2; 
+	         *          a value less than 0 if date1 is before date2 argument; 
+	         *          and a value greater than 0 if date1 is after date2 argument
+	        */
+	        compareDate : function(date1, date2)
+	        {
+	            var y1 = parseInt(date1.getFullYear(), 10);
+	            var y2 = parseInt(date2.getFullYear(), 10);
+	            if (y1 != y2) return y1 - y2;
+	    
+	            var m1 = parseInt(date1.getMonth(), 10);
+	            var m2 = parseInt(date2.getMonth(), 10);
+	            if (m1 != m2) return m1 - m2;
+	    
+	            return parseInt(date1.getDate(), 10) - parseInt(date2.getDate(), 10);
+	        },
+	        /**
+	         * Kiem tra (d, m, y) co la 1 ngay dung nghia. 
+	         * Vi du: 30/12/2007 khong co nghia
+	        */
+	        isValidDate : function(d, m, y)
+	        {
+	            d = parseInt(d, 10);
+	            m = parseInt(m, 10);
+	            y = parseInt(y, 10);
+	            
+	            if (m > 12 || m < 1) return false;
+	            
+	            var leapDay = 0;
+	            if ((y % 400 == 0) || ((y % 4 == 0) && (y % 100 != 0)))
+	                leapDay = 1; // nam nhuan
+	            return (d < 1 || d > days[m] + leapDay) ? false : true;
+	        },
+	        /**
+	         * tests whether format of a string is a valid date and converts this string 
+	         * to an JavaScript date object
+	         *
+	         * input:
+	         *          str: string to be tested
+	         *          format: format of a valid date string
+	         *              format must be element of { "dmy", "dym", "mdy", "myd", "ydm", "ymd" }
+	         *              
+	         * return:
+	         *          a JavaScript Date object or null (if there is something wrong)
+	         *
+	         * Quy dinh: 
+	         *          day, month: 1->2 digit(s)
+	         *          year: 4 digits
+	         *          separator: - or /
+	         *          
+	        */
+
+	        // format date: dmy, dym, mdy, myd, ydm, ymd
+	        stringToDate : function (str, format)
+	        {
+			var dateElements = parseDateElements(str, format); // array
+	            // kiem tra ngay OK?
+	            if (dateElements != null && pub.isValidDate(dateElements[0], dateElements[1], dateElements[2]))
+	                return new Date(dateElements[2], dateElements[1] - 1, dateElements[0]);
+	            
+				//alert("Error ....... Ngay: " + str + ", format: " + format);
+				//alert(dateElements.length + " " + dateElements[0] + " " + dateElements[1] + " " + dateElements[2]);
+				return null;
+	        },
+	        
+	    };
+	    return pub;
+	}();

@@ -103,6 +103,13 @@ public class PmlFileTypeAttachedFileLocalServiceUtil {
         return getService().findByFileTypeId(fileTypeId);
     }
 
+    public static com.nss.portlet.filetype.model.PmlFileTypeAttachedFile findByPrimaryKey(
+        java.lang.String pmlFileTypeAttachedFileId)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.filetype.NoSuchPmlFileTypeAttachedFileException {
+        return getService().findByPrimaryKey(pmlFileTypeAttachedFileId);
+    }
+
     public static PmlFileTypeAttachedFileLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

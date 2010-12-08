@@ -36,6 +36,7 @@ public class WorkflowJournalArticleSoap implements Serializable {
     private long _resourcePrimkey;
     private int _countImageOfArticle;
     private Date _datecomplete;
+    private String _statuscurrent;
 
     public WorkflowJournalArticleSoap() {
     }
@@ -54,6 +55,7 @@ public class WorkflowJournalArticleSoap implements Serializable {
         soapModel.setResourcePrimkey(model.getResourcePrimkey());
         soapModel.setCountImageOfArticle(model.getCountImageOfArticle());
         soapModel.setDatecomplete(model.getDatecomplete());
+        soapModel.setStatuscurrent(model.getStatuscurrent());
 
         return soapModel;
     }
@@ -183,5 +185,13 @@ public class WorkflowJournalArticleSoap implements Serializable {
 
     public void setDatecomplete(Date datecomplete) {
         _datecomplete = datecomplete;
+    }
+
+    public String getStatuscurrent() {
+        return _statuscurrent;
+    }
+
+    public void setStatuscurrent(String statuscurrent) {
+        _statuscurrent = statuscurrent;
     }
 }

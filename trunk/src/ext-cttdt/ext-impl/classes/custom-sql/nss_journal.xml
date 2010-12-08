@@ -29,6 +29,35 @@
 				)
 		]]>
 	</sql>
+	<sql id="com.nss.portlet.journal.service.persistence.JournalArticleFinder.countByU_C_G_A_V_T_D_C_T_S_T_D_A_E_R">
+		<![CDATA[
+			SELECT
+				COUNT(journalarticle.*) AS COUNT_VALUE
+			FROM
+				journalarticle INNER JOIN nss_workflow_journal_article ON journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey
+			WHERE
+				(journalarticle.companyId = ?) AND
+				(journalarticle.groupId = ?) AND
+				(nss_workflow_journal_article.userids like ?) AND
+				(
+					(journalarticle.articleId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.version = ?) [$AND_OR_CONNECTOR$]
+					(lower(journalarticle.title) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.content LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.type_ = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.structureId = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.templateId = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.displayDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.displayDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(
+						(journalarticle.approved = ?) AND
+						(journalarticle.expired = ?) AND
+						(journalarticle.reviewDate <= ? [$AND_OR_NULL_CHECK$])
+					)
+				)
+		]]>
+	</sql>
 	<sql id="com.nss.portlet.journal.service.persistence.JournalArticleFinder.findByExpirationDate">
 		<![CDATA[
 			SELECT
@@ -97,6 +126,38 @@
 			ORDER BY
 				articleId ASC,
 				version DESC
+		]]>
+	</sql>
+	<sql id="com.nss.portlet.journal.service.persistence.JournalArticleFinder.findByU_C_G_A_V_T_D_C_T_S_T_D_A_E_R">
+		<![CDATA[
+			SELECT
+				journalarticle.*
+			FROM
+				journalarticle INNER JOIN nss_workflow_journal_article ON journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey
+			WHERE
+				(journalarticle.companyId = ?) AND
+				(journalarticle.groupId = ?) AND
+				(nss_workflow_journal_article.userids like ?) AND
+				(
+					(journalarticle.articleId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.version = ?) [$AND_OR_CONNECTOR$]
+					(lower(journalarticle.title) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.content LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.type_ = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.structureId = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.templateId = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.displayDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(journalarticle.displayDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(
+						(journalarticle.approved = ?) AND
+						(journalarticle.expired = ?) AND
+						(journalarticle.reviewDate <= ? [$AND_OR_NULL_CHECK$])
+					)
+				)
+			ORDER BY
+				journalarticle.articleId ASC,
+				journalarticle.version DESC
 		]]>
 	</sql>
 	<sql id="com.nss.portlet.journal.service.persistence.JournalFeedFinder.countByC_G_F_N_D">

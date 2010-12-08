@@ -1671,26 +1671,6 @@ create table instancebean (
 	finish number(1, 0)
 );
 
-create table log_workflow_journal_article (
-	logWorkflowJournalArticleId number(30,0) not null primary key,
-	resourcePrimkey number(30,0),
-	transition number(30,0),
-	groupId number(30,0),
-	companyId number(30,0),
-	userId number(30,0),
-	roleId number(30,0),
-	dateReceiptOfUserReceipt timestamp null,
-	dateProcessOfUserReceipt timestamp null,
-	dateSendOfUserReceipt timestamp null,
-	useridProcess number(30,0),
-	roleIdProcess number(30,0),
-	dateReceiptOfUserProcess timestamp null,
-	dateProcessOfUserProcess timestamp null,
-	processInformation varchar2(75) null,
-	workflowStatusBefore varchar2(75) null,
-	workflowStatusAfter varchar2(75) null
-);
-
 create table nss_certificate (
 	userId number(30,0) not null primary key,
 	x509Certificate varchar2(75) null
@@ -1701,19 +1681,6 @@ create table nss_image_signer (
 	imageIdSign number(30,0),
 	imageIdUnSign number(30,0),
 	userId number(30,0)
-);
-
-create table nss_quan_ly_quy_trinh_duyet_tin (
-	managementWorkflowJournalId number(30,0) not null primary key,
-	groupId number(30,0),
-	companyId number(30,0),
-	userId number(30,0),
-	processDefinitionId number(30,0),
-	workflowname varchar2(75) null,
-	version_ number(30,0),
-	description varchar2(75) null,
-	dateFrom timestamp null,
-	dateTo timestamp null
 );
 
 create table nss_signature (
@@ -1727,19 +1694,6 @@ create table nss_signature (
 	articleId varchar2(75) null,
 	version number(30,20),
 	signData varchar2(75) null
-);
-
-create table nss_workflow_journal_article (
-	workflowJournalArticleId number(30,0) not null primary key,
-	groupId number(30,0),
-	companyId number(30,0),
-	userId number(30,0),
-	roleId number(30,0),
-	processDefinitionId number(30,0),
-	processInstanceId number(30,0),
-	resourcePrimkey number(30,0),
-	journalType varchar2(75) null,
-	countImageOfArticle number(30,0)
 );
 
 create table processdefinition (
@@ -3031,16 +2985,10 @@ create index IX_F27E8D9F on instancebean (previousNode, finish);
 create index IX_205EC031 on instancebean (status);
 create index IX_A8355678 on instancebean (status, finish);
 
-create index IX_6B798ECC on log_workflow_journal_article (resourcePrimkey);
-
-create index IX_E9CED857 on nss_quan_ly_quy_trinh_duyet_tin (workflowname, version_);
-
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
 create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
 create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
-
-create index IX_7BD52FD6 on nss_workflow_journal_article (resourcePrimkey);
 
 
 

@@ -15,6 +15,7 @@ import com.nss.portlet.department.model.PmlUser;
 import com.nss.portlet.department.service.PmlDepartmentsLeaderLocalServiceUtil;
 import com.nss.portlet.department.service.PmlUserLocalServiceUtil;
 import com.nss.portlet.department.service.base.DepartmentLocalServiceBaseImpl;
+import com.nss.portlet.department.service.persistence.DepartmentUtil;
 import com.nss.portlet.documentfield.model.PmlField;
 import com.nss.portlet.documentfield.service.PmlFieldLocalServiceUtil;
 import com.nss.portlet.generatetemplateid.service.IdTemplateLocalServiceUtil;
@@ -114,5 +115,9 @@ public class DepartmentLocalServiceImpl extends DepartmentLocalServiceBaseImpl {
 		if (pmlUserSize != 0) {
 			throw new DepartmentCanNotDeleteException();
 		} 
+	}
+	
+	public List<Department> findByDepartmentsCode(String departmentCode) throws SystemException{
+		return DepartmentUtil.findByDepartmentsCode(departmentCode);
 	}
 }

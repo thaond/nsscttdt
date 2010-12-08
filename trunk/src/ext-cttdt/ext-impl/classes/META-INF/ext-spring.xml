@@ -1395,4 +1395,247 @@
 	<bean id="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegateUtil" class="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegateUtil">
 		<property name="persistence" ref="com.nss.portlet.delegate.service.persistence.PmlFileTypeDelegatePersistence.impl" />
 	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlOneDoorReceiveFileLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" class="com.nss.portlet.onedoor.service.impl.PmlOneDoorReceiveFileServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileServiceUtil" class="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFilePersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileUtil" class="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFilePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileFinder.impl" class="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileFinderUtil" class="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileFinderUtil">
+		<property name="finder" ref="com.nss.portlet.onedoor.service.persistence.PmlOneDoorReceiveFileFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlWfOnedoorProcessLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWfOnedoorProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWfOnedoorProcessPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlWfOnedoorProcessPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWfOnedoorProcessUtil" class="com.nss.portlet.onedoor.service.persistence.PmlWfOnedoorProcessUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlWfOnedoorProcessPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlWorkflowLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlWorkflowLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlWorkflowLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" class="com.nss.portlet.onedoor.service.impl.PmlWorkflowServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlWorkflowServiceUtil" class="com.nss.portlet.onedoor.service.PmlWorkflowServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWorkflowPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlWorkflowPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWorkflowUtil" class="com.nss.portlet.onedoor.service.persistence.PmlWorkflowUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlWorkflowPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWorkflowFinder.impl" class="com.nss.portlet.onedoor.service.persistence.PmlWorkflowFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlWorkflowFinderUtil" class="com.nss.portlet.onedoor.service.persistence.PmlWorkflowFinderUtil">
+		<property name="finder" ref="com.nss.portlet.onedoor.service.persistence.PmlWorkflowFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlStateProcessLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlStateProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlStateProcessLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" class="com.nss.portlet.onedoor.service.impl.PmlStateProcessServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateProcessServiceUtil" class="com.nss.portlet.onedoor.service.PmlStateProcessServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateProcessPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlStateProcessPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateProcessUtil" class="com.nss.portlet.onedoor.service.persistence.PmlStateProcessUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlStateProcessPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateProcessFinder.impl" class="com.nss.portlet.onedoor.service.persistence.PmlStateProcessFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateProcessFinderUtil" class="com.nss.portlet.onedoor.service.persistence.PmlStateProcessFinderUtil">
+		<property name="finder" ref="com.nss.portlet.onedoor.service.persistence.PmlStateProcessFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlProcessDisposeLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" class="com.nss.portlet.onedoor.service.impl.PmlProcessDisposeServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlProcessDisposeServiceUtil" class="com.nss.portlet.onedoor.service.PmlProcessDisposeServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlProcessDisposePersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlProcessDisposePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlProcessDisposeUtil" class="com.nss.portlet.onedoor.service.persistence.PmlProcessDisposeUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlProcessDisposePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlStateWorkFlowLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" class="com.nss.portlet.onedoor.service.impl.PmlStateWorkFlowServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlStateWorkFlowServiceUtil" class="com.nss.portlet.onedoor.service.PmlStateWorkFlowServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateWorkFlowPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlStateWorkFlowPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlStateWorkFlowUtil" class="com.nss.portlet.onedoor.service.persistence.PmlStateWorkFlowUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlStateWorkFlowPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlTransitionLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlTransitionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlTransitionLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionService.impl" class="com.nss.portlet.onedoor.service.impl.PmlTransitionServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlTransitionServiceUtil" class="com.nss.portlet.onedoor.service.PmlTransitionServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlTransitionPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlTransitionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlTransitionUtil" class="com.nss.portlet.onedoor.service.persistence.PmlTransitionUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlTransitionPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFilePCCCLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFilePCCCLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlFilePCCCLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFilePCCCServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCServiceUtil" class="com.nss.portlet.onedoor.service.PmlFilePCCCServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFilePCCCAttachedFileLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFilePCCCAttachedFileServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileServiceUtil" class="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCAttachedFilePersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCAttachedFilePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCAttachedFileUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCAttachedFileUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlFilePCCCAttachedFilePersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileReturningInfoLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileReturningInfoServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileReturningInfoServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileReturningInfoServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileReturningInfoPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFileReturningInfoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileReturningInfoUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFileReturningInfoUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlFileReturningInfoPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileStatusLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileStatusLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileStatusLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileStatusServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileStatusServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlFileStatusPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusFinder.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusFinderUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusFinderUtil">
+		<property name="finder" ref="com.nss.portlet.onedoor.service.persistence.PmlFileStatusFinder.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileStatusStateProcessLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" class="com.nss.portlet.onedoor.service.impl.PmlFileStatusStateProcessServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessServiceUtil" class="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusStateProcessPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusStateProcessPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlFileStatusStateProcessUtil" class="com.nss.portlet.onedoor.service.persistence.PmlFileStatusStateProcessUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlFileStatusStateProcessPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalService.impl" class="com.nss.portlet.onedoor.service.impl.PmlPaintDocumentLocalServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalServiceUtil" class="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" class="com.nss.portlet.onedoor.service.impl.PmlPaintDocumentServiceImpl" />
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.PmlPaintDocumentServiceUtil" class="com.nss.portlet.onedoor.service.PmlPaintDocumentServiceUtil">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentPersistence.impl" class="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentUtil" class="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentUtil">
+		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentPersistence.impl" />
+	</bean>
 </beans>

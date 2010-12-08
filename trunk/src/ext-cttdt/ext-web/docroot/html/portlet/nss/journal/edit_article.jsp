@@ -1047,9 +1047,6 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 
 				<input name="save-and-continue" type="button" value="<liferay-ui:message key="save-and-continue" />" onClick="<portlet:namespace />saveAndContinueArticle();" />
 
-				<c:if test="<%= ((article == null) || ((article != null) && !article.isApproved())) && JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.APPROVE_ARTICLE) %>">
-					<input type="button" value="<liferay-ui:message key="save-and-approve" />" onClick="<portlet:namespace />saveAndApproveArticle();" />
-				</c:if>
 				<%@ include file="/html/portlet/nss/journal/common/workflowAction.jsp" %>
 			</c:if>
 
@@ -1062,7 +1059,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 			</c:if>
 
 			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-		<span style="visibility: <%= ((workflow > 0) || (instanceId > 0)) ? "visible" : "hidden"%>;">
+			<span style="visibility: <%= ((workflow > 0) || (instanceId > 0)) ? "visible" : "hidden"%>;">
 			<input type="button" value="<liferay-ui:message key="accept" />" onclick="<portlet:namespace />acceptArticle()"/>
 			<input type="button" value="<liferay-ui:message key="reject" />" onclick="<portlet:namespace />rejectArticle()"/>
 		</span>

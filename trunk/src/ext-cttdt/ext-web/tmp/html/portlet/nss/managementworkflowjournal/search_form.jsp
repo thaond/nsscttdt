@@ -25,11 +25,11 @@
 <liferay-ui:search-toggle displayTerms="<%= displayTerms %>" id="toogle_id_documentworkflow" >
 	<table class="documentworkflow-table" cellspacing="0" width="100%">
 			<tr>
-				<td width="7%"><liferay-ui:message key="workflow-name" />:&nbsp;</td>
+				<td width="15%"><liferay-ui:message key="workflow-name" />:&nbsp;</td>
 				<td width="30%">
-					<input style="width: 95%" name="<portlet:namespace/><%= ManagementWorkflowJournalDisplayTerms.WORKFLOW_NAME %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getWorkflowName()) %>" />
+					<input style="width: 95%" name="<portlet:namespace/><%= ManagementWorkflowJournalDisplayTerms.WORKFLOW_NAME %>" style="width: 95%" type="text" value="<%= HtmlUtil.escape(displayTerms.getWorkflowName()) %>" />
 				</td>
-				<td align="right" width="5%"><liferay-ui:message key="description" />:&nbsp;</td>
+				<td align="right" width="8%"><liferay-ui:message key="description" />:&nbsp;</td>
 				<td align="left">
 					<input style="width: 95%" name="<portlet:namespace/><%= ManagementWorkflowJournalDisplayTerms.VERSION %>" size="20" type="text" value="<%= HtmlUtil.escape(String.valueOf(displayTerms.getVersion())) %>" />
 				</td>

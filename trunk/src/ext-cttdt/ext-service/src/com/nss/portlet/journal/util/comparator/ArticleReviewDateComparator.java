@@ -29,30 +29,37 @@ import com.nss.portlet.journal.model.JournalArticle;
 /**
  * <a href="ArticleReviewDateComparator.java.html"><b><i>View Source</i></b>
  * </a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ArticleReviewDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "reviewDate ASC, version ASC";
+	public static String ORDER_BY_ASC =
+		"journalarticle.reviewDate ASC, journalarticle.version ASC";
 
-	public static String ORDER_BY_DESC = "reviewDate DESC, version DESC";
+	public static String ORDER_BY_DESC =
+		"journalarticle.reviewDate DESC, journalarticle.version DESC";
+
+	private boolean _asc;
 
 	public ArticleReviewDateComparator() {
+
 		this(false);
 	}
 
 	public ArticleReviewDateComparator(boolean asc) {
+
 		_asc = asc;
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		JournalArticle article1 = (JournalArticle)obj1;
-		JournalArticle article2 = (JournalArticle)obj2;
 
-		int value = DateUtil.compareTo(
-			article1.getReviewDate(), article2.getReviewDate());
+		JournalArticle article1 = (JournalArticle) obj1;
+		JournalArticle article2 = (JournalArticle) obj2;
+
+		int value =
+			DateUtil.compareTo(
+				article1.getReviewDate(), article2.getReviewDate());
 
 		if (value == 0) {
 			if (article1.getVersion() < article2.getVersion()) {
@@ -72,6 +79,7 @@ public class ArticleReviewDateComparator extends OrderByComparator {
 	}
 
 	public String getOrderBy() {
+
 		if (_asc) {
 			return ORDER_BY_ASC;
 		}
@@ -79,7 +87,5 @@ public class ArticleReviewDateComparator extends OrderByComparator {
 			return ORDER_BY_DESC;
 		}
 	}
-
-	private boolean _asc;
 
 }

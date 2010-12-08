@@ -21,17 +21,19 @@
 	portletURL.setParameter("struts_action", "/nss/image_signer/view");
 %>
 
-<form action="<%=portletURL.toString()%>" method="post"
-	name="<portlet:namespace />fm"><liferay-ui:error
+<form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm">
+<div class="parent-title"><liferay-ui:message key="Quan-ly-anh-ky"/></div>	
+	<liferay-ui:error
 	exception="<%=com.liferay.portal.RequiredRoleException.class %>"
 	message="you-can-not-delete-a-system-role">
 </liferay-ui:error> <%
  	UserSearch searchContainer = new UserSearch(renderRequest,
  			portletURL);
  	List<String> headerNames = searchContainer.getHeaderNames();
- %> <liferay-ui:search-form
-	page="/html/portlet/nss/image_signer/user_search.jsp"
-	searchContainer="<%=searchContainer %>" /> <%
+ %> 
+ <liferay-ui:search-form page="/html/portlet/nss/image_signer/user_search.jsp" searchContainer="<%=searchContainer %>" /> 
+ <br>
+ <%
  	UserSearchTerms searchTerms = (UserSearchTerms) searchContainer
  			.getSearchTerms();
  	int total = 0;

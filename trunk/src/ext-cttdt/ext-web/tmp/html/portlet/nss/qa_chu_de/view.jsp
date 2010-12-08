@@ -85,20 +85,27 @@
 		<div class="od-div-outer-box">
 			<table class="common-table" width="100%">
 				<tr>
-					<td width="50%">
-						<liferay-ui:message key="ten-chu-de-cau-hoi" />&nbsp;<span style="color:red;">(*)</span><br>
-						<input type="text" name="<portlet:namespace />tenChuDeCauHoi" value="<%= tenChuDeCauHoi %>" style="width:100%;" />
+					<td width="20%">
+					<liferay-ui:message key="ten-chu-de-cau-hoi" />&nbsp;<span style="color:red;">(*)</span>:
 					</td>
 					<td width="50%">
-						<liferay-ui:message key="is-add-new" /><br />
+						<input type="text" name="<portlet:namespace />tenChuDeCauHoi" value="<%= tenChuDeCauHoi %>" style="width:95%;" />
+					</td>
+					<td width="10%">
+					<liferay-ui:message key="is-add-new" />:
+					</td>
+					<td >
 						<input type="checkbox" name="<portlet:namespace />isAddNew" <%= isAddNew == true ? "checked" : "" %> disabled="disabled" />
 					</td>
 				</tr>
+				<tr>
+					<td></td>
+					<td colspan="3">
+					<input type="submit" value='<liferay-ui:message key="save" />' />
+					<br><br>
+					</td>
+				</tr>
 			</table>
-			<div class="separator"></div>
-			<div>
-				<input type="submit" value='<liferay-ui:message key="save" />' />
-			</div>
 		</div>
 		<%	
 			List resultRows = chuDeCauHoiSearch.getResultRows();

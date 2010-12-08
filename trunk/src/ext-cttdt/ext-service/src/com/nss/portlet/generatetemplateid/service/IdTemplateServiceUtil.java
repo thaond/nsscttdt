@@ -25,6 +25,18 @@ package com.nss.portlet.generatetemplateid.service;
 public class IdTemplateServiceUtil {
     private static IdTemplateService _service;
 
+    public static java.lang.String generatedId(java.lang.Class clazz)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        return getService().generatedId(clazz);
+    }
+
+    public static java.lang.String generatedId(java.lang.String template)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        return getService().generatedId(template);
+    }
+
     public static IdTemplateService getService() {
         if (_service == null) {
             throw new RuntimeException("IdTemplateService is not set");

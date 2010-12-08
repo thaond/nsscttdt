@@ -710,4 +710,148 @@
 		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
 		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlFileTypeDelegateService" />
 	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
 </beans>

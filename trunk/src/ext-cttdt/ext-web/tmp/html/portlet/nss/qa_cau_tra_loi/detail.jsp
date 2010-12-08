@@ -19,6 +19,7 @@
 <%
 	String redirect = renderRequest.getParameter("redirect");
 	long maChuDeCauHoi = ParamUtil.getLong(renderRequest,"maChuDeCauHoi");
+	boolean error = (Boolean)renderRequest.getAttribute("error");
 	
 	redirect += "&maChuDeCauHoi=" + maChuDeCauHoi;
 	CauHoiQA cauHoiQA = (CauHoiQA)renderRequest.getAttribute("cauHoiQA");
@@ -36,14 +37,10 @@
 		ngayHoi = sdf.format(cauHoiQA.getCreatedate());
 	}
 	
-	List<QAChuDeCauHoi> qAChuDeCauHoilList = (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList") == null ? new ArrayList<QAChuDeCauHoi>() 
-			: (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList");
-	
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
 	portletURL.setParameter("redirect", redirect);
-	String portletURLDisplayString = portletURL.toString();
 	
 	PortletURL addURL = renderResponse.createActionURL();
 	addURL.setWindowState(WindowState.NORMAL);
@@ -54,93 +51,96 @@
 	addURL.setParameter("redirect", redirect);
 	
 %>
-	<div id="main">
-    <div id="leftmenu">
-    <div id="topmnl">
-    <div id="vbpq">
-	    <ul>
-	    	<h2><liferay-ui:message key="chuyen-muc" /></h2>
-	    	<%
-	    		for (int i = 0; i < qAChuDeCauHoilList.size(); i ++) {
-	    			QAChuDeCauHoi chuDeCauHoi = (QAChuDeCauHoi) qAChuDeCauHoilList.get(i);
-	    	%>
-		        <li><a href="<%= portletURLDisplayString + "&" + renderResponse.getNamespace() + QACauHoiDisplayTerms.MA_CHU_DE_CAU_HOI + "=" + chuDeCauHoi.getMaChuDeCauHoi() %>"><%= chuDeCauHoi.getTenChuDeCauHoi() %></a></li>
-	        <%
-	    		}
-	        %>
-	    </ul>
-       </div>
-    </div>
-    </div>  
+
+<div id="divparent">
     <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm">
 		<fieldset>
 		<div class="parent-title"><liferay-ui:message key="hoi-dap-truc-tuyen" /></div>
 			<table width="100%" border="0" class="table-border-pml">
-				
-				<tr>
-					<td style="text-transform: capitalize;color: #ff8a00; font-size: 14px;">
-						<liferay-ui:message key="Cau-hoi" />&nbsp;:&nbsp;<label><%= cauHoiQA.getTieuDe() %></label>
-					</td>
-				</tr>
-				  
+				<tr height="10"></tr>
 				<tr>
 					<td>
-					<div class="borqa">
-							<p style="color: #222;padding-bottom: 8px;font-weight: bold;"><%= cauHoiQA.getNoiDungHoi() %>?</p>
-							<p style="color: #555;"><font style="font-size: 11px;"><liferay-ui:message key="gui-boi" />&nbsp;<%= cauHoiQA.getTenNguoiHoi() %> ( <%= ngayHoi %> )</font></p>
-			 				<%
-			 					if (phanQuyen.getQuyenCapNhat()) {
-			 						PortletURL editQuestionURL = renderResponse.createRenderURL();
-			 						editQuestionURL.setWindowState(WindowState.NORMAL);
-			 						editQuestionURL.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
-			 						editQuestionURL.setParameter("maCauHoi", String.valueOf(cauHoiQA.getMaCauHoiQA()));
-			 						editQuestionURL.setParameter("tabs", "edit_question");
-			 						editQuestionURL.setParameter("redirect", redirect);
-			 						
-			 						PortletURL deleteQuestionURL = renderResponse.createActionURL();
-			 						deleteQuestionURL.setWindowState(WindowState.NORMAL);
-			 						deleteQuestionURL.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
-			 						deleteQuestionURL.setParameter("maCauHoi", String.valueOf(cauHoiQA.getMaCauHoiQA()));
-			 						deleteQuestionURL.setParameter(Constants.CMD, "DELETE_CAUHOI");
-			 						deleteQuestionURL.setParameter("redirect", redirect);
-			 						
-			 				%>
-			 				<p>
-									<span onclick="javascript:submitForm(document.hrefFm,'<%= editQuestionURL.toString() %>');">
-										<img style="width: 16px;height: auto;" src='/html/themes/nss_cttdt/images/cttdt/forum/newest_thread.gif'/>
-									</span>
-									<span onclick="deleteCauHoi('<%= deleteQuestionURL.toString() %>'); ">
-										<img style="width: 16px;height: auto;" src='/html/images/xoa.gif'/>
-									</span>
-							</p>
-						</div>
-						</td>	
+						<label><%= cauHoiQA.getTieuDe() %></label>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				  <tr height="10"></tr>
+				<tr>
+					<td><%= cauHoiQA.getNoiDungHoi() %></td>
+					<td>&nbsp;</td>
+				</tr>
+				 <tr height="10"></tr>
+				<tr align="right">
+					<td><font size="2%"><liferay-ui:message key="gui-boi" />&nbsp;<%= cauHoiQA.getTenNguoiHoi() %> ( <%= ngayHoi %> )</font></td>
+					<td>&nbsp;</td>
+				</tr>
+ 				<tr height="10"></tr>
+ 				<%
+ 					if (phanQuyen.getQuyenCapNhat()) {
+ 						PortletURL editQuestionURL = renderResponse.createRenderURL();
+ 						editQuestionURL.setWindowState(WindowState.NORMAL);
+ 						editQuestionURL.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
+ 						editQuestionURL.setParameter("maCauHoi", String.valueOf(cauHoiQA.getMaCauHoiQA()));
+ 						editQuestionURL.setParameter("tabs", "edit_question");
+ 						editQuestionURL.setParameter("redirect", redirect);
+ 						
+ 						PortletURL deleteQuestionURL = renderResponse.createActionURL();
+ 						deleteQuestionURL.setWindowState(WindowState.NORMAL);
+ 						deleteQuestionURL.setParameter("struts_action", "/nss/qa_cau_tra_loi/view");
+ 						deleteQuestionURL.setParameter("maCauHoi", String.valueOf(cauHoiQA.getMaCauHoiQA()));
+ 						deleteQuestionURL.setParameter(Constants.CMD, "DELETE_CAUHOI");
+ 						deleteQuestionURL.setParameter("redirect", redirect);
+ 						
+ 				%>
+					<tr align="right">
+						<td>
+							<span onclick="javascript:submitForm(document.hrefFm,'<%= editQuestionURL.toString() %>');">
+								<img src='/html/themes/nss_cttdt/images/cttdt/forum/newest_thread.gif'/>
+							</span>
+							<span onclick="deleteCauHoi('<%= deleteQuestionURL.toString() %>'); ">
+								<img src='/html/images/xoa.gif'/>
+							</span>
+						</td>
+						
+						<td>&nbsp;</td>
 					</tr>
  				<%		
  					}
  				%>
  								
 			</table>
-			
-			<table width="100%" cellspacing="0">
+			<table width="100%" border="0" class="table-border-pml">
+				<tr height="10"></tr>
 				<tr>
 					<td>
-						<p style="text-transform: capitalize;color: #ff8a00; font-size: 14px;"><liferay-ui:message key="cau-tra-loi" /></td>
+						<label><liferay-ui:message key="cau-tra-loi" /></label>
+					</td>
+					<td>&nbsp;</td>
 				</tr>
-				
+				<tr height="10"></tr>
 				<% if (cauTraLoiQAList.size() > 0) { %>
 				<tr>
-					<td>
-					<div class="borqa">
-						<p><liferay-ui:message key="chao-ban-cam-on-ban-da-gui-cau-hoi-cho-chung-toi" /></p>
-				
+					<td><liferay-ui:message key="chao-ban-cam-on-ban-da-gui-cau-hoi-cho-chung-toi" /></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr height="10"></tr>
 				<%
 					for (int i = 0 ; i < cauTraLoiQAList.size(); i++) {
 						CauTraLoiQA cauTraLoiQA = cauTraLoiQAList.get(i);
 				%>
-						<p style="padding-top: 8px;"><%= cauTraLoiQA.getNoiDungTraLoi() %></p>
-						<p style="color: #555;padding: 8px 0;">(<%= sdf.format(cauTraLoiQA.getCreatedate()) %>)</p>
-						<p style="border-bottom: 1px dotted #a4e4f5;height: 1px;"></p>
+	 				<tr height="10"></tr>				
+	 				<tr height="10"></tr>
+					<tr>
+						<td><%= cauTraLoiQA.getNoiDungTraLoi() %></td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr height="10"></tr>
+					<tr align="left">
+							<td>(<%= sdf.format(cauTraLoiQA.getCreatedate()) %>)</td>
+						<td>&nbsp;</td>
+					</tr>
+	 				<tr height="10"></tr>				
+	 				<tr height="10"></tr>
 	 								
 				<%	
 						if (cauTraLoiQA.getMaNguoiTraLoi() == userId) {
@@ -175,28 +175,27 @@
 							deleteAnswerURL.setParameter("redirect", redirect);	
 							
 				%>
-							<p> 
+						<tr height="10">
+							<td> 
 				<%
 							if (phanQuyen.getQuyenCapNhat()) {
 								
 				%>
 								<span onclick="javascript:submitForm(document.hrefFm,'<%= editAnswerURL.toString() %>');">
-									<img style="width: 16px;height: auto;" src='/html/themes/nss_cttdt/images/cttdt/forum/newest_thread.gif'/>
+									<img src='/html/themes/nss_cttdt/images/cttdt/forum/newest_thread.gif'/>
 								</span>
 								<span onclick="deleteCauHoi('<%= deleteAnswerURL.toString() %>');">
-									<img style="width: 16px;height: auto;" src='/html/images/xoa.gif'/>
+									<img src='/html/images/xoa.gif'/>
 								</span>
 				<%
 							} if (phanQuyen.getQuyenDuyet()) {
 				%>
 								<span onclick="javascript:submitForm(document.hrefFm,'<%= publishURL.toString() %>');">
-									<img style="width: 16px;height: auto;" src='/html/themes/nss_cttdt/images/cttdt/forum/publish.gif'/>
+									<img src='/html/themes/nss_cttdt/images/cttdt/forum/publish.gif'/>
 								</span>
 				<%
 							}
 				%>
-							</p>
-							</div>
 							</td>
 						</tr>
 				<%
@@ -204,20 +203,25 @@
 					}
 				}
 				%>
- 								
+ 				<tr height="10"></tr>				
 			</table>
-			<div class="results-grid">	
-			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="tap-tin-dinh-kem"/></label>
-			<table cellspacing="0" width="100%" class="taglib-search-iterator">
-			<tr class="portlet-section-header results-header">
-					<td width="50%">
+			<table width="100%" border="0" class="table-border-pml">
+				<tr height="10"></tr>
+				<tr>
+					<td>
+						<label><liferay-ui:message key="tap-tin-dinh-kem" /></label>
+					</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
 						<label><liferay-ui:message key="ten-tap-tin" /></label>
 					</td>
-					<td >
+					<td>
 						<label><liferay-ui:message key="kich-thuoc" /></label>
 					</td>
-					<td width="10%" ></td>
+					<td>&nbsp;</td>
 				</tr>
 				<%
 					for (int j = 0; j < fileDinhKemQAList.size(); j++ )  {
@@ -234,21 +238,24 @@
 							download = "";
 						}
 				%>
-					
+					<tr height="10"></tr>
 					<tr>
 						<td><%= fileDinhKemQA.getTenFile() %></td>
 						<td><%= fileDinhKemQA.getKichThuoc()+ "kb" %></td>
-						<td align="center"><%= download %></td>
+						<td><%= download %></td>
 					</tr>
 				<%
 					}
 				%>
+ 				<tr height="10">
+ 					
+ 				</tr>
  								
 			</table>
-			</fieldset>
-			</div>
-			<br>
-			<div align="right" id="table-button">
+			<table id="table-button">
+				<tbody>
+					<tr>
+						<td>
 						<%
 							if (phanQuyen.getQuyenTraLoi()) {
 						%>
@@ -259,8 +266,22 @@
 							} 
 						%>
 			    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
-			</div>
-			<br><br>
+					 	</td>
+					</tr>
+				</tbody>
+			</table>
 		</fieldset>
 	</form>
 </div>
+
+<script type="text/javascript">
+/*
+	var errorMessage = document.getElementById('error').value;
+	if (errorMessage == 'true') {
+		alert('<liferay-ui:message key="dia-chi-email-khong-ton-tai" />');
+	}
+	else if (errorMessage == 'false') {
+		alert ('<liferay-ui:message key="gui-email-thanh-cong" />');
+	}
+*/
+</script>

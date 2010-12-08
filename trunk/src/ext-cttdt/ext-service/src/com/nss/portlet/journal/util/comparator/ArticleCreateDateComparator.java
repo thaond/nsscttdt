@@ -28,30 +28,35 @@ import com.nss.portlet.journal.model.JournalArticle;
 
 /**
  * <a href="ArticleCreateDateComparator.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ArticleCreateDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "createDate ASC";
+	public static String ORDER_BY_ASC = "journalarticle.createDate ASC";
 
-	public static String ORDER_BY_DESC = "createDate DESC";
+	public static String ORDER_BY_DESC = "journalarticle.createDate DESC";
+
+	private boolean _asc;
 
 	public ArticleCreateDateComparator() {
+
 		this(false);
 	}
 
 	public ArticleCreateDateComparator(boolean asc) {
+
 		_asc = asc;
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		JournalArticle article1 = (JournalArticle)obj1;
-		JournalArticle article2 = (JournalArticle)obj2;
 
-		int value = DateUtil.compareTo(
-			article1.getCreateDate(), article2.getCreateDate());
+		JournalArticle article1 = (JournalArticle) obj1;
+		JournalArticle article2 = (JournalArticle) obj2;
+
+		int value =
+			DateUtil.compareTo(
+				article1.getCreateDate(), article2.getCreateDate());
 
 		if (_asc) {
 			return value;
@@ -62,6 +67,7 @@ public class ArticleCreateDateComparator extends OrderByComparator {
 	}
 
 	public String getOrderBy() {
+
 		if (_asc) {
 			return ORDER_BY_ASC;
 		}
@@ -69,7 +75,5 @@ public class ArticleCreateDateComparator extends OrderByComparator {
 			return ORDER_BY_DESC;
 		}
 	}
-
-	private boolean _asc;
 
 }

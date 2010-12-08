@@ -84,6 +84,10 @@ public interface LogWorkflowJournalArticleLocalService {
     public int countLogWorkflowJournalArticle(long resourcePrimkey);
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle> getAllLog(
+        long resourcePrimkey) throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle getLogByResourceTrainsition(
         long resourcePrimkey) throws com.liferay.portal.SystemException;
 }

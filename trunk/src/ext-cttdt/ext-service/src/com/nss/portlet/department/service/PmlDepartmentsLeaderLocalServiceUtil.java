@@ -102,6 +102,10 @@ public class PmlDepartmentsLeaderLocalServiceUtil {
         return getService().findByDepartmentsId(departmentsId);
     }
 
+    public static boolean checkUserIsLeader(java.lang.String userIdString) {
+        return getService().checkUserIsLeader(userIdString);
+    }
+
     public static PmlDepartmentsLeaderLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

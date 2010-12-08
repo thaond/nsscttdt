@@ -81,4 +81,19 @@ public interface PmlDelegateLocalService {
 
     public java.util.List<com.nss.portlet.delegate.model.PmlDelegate> findByAssigner(
         long assignerId) throws com.liferay.portal.SystemException;
+
+    public boolean checkDelegatedByTime(long userId,
+        java.lang.String fileTypeId, java.util.Date date)
+        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.delegate.model.PmlDelegate> getByReceive_StartDate_EndDate(
+        long receiver, java.util.Date startDate, java.util.Date endDate)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.delegate.model.PmlDelegate> getByReceive_StartDate_CancelDate(
+        long receiver, java.util.Date startDate, java.util.Date cancelDate)
+        throws com.liferay.portal.SystemException;
 }

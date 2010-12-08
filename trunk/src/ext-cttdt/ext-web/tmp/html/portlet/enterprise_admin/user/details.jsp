@@ -24,14 +24,41 @@
 
 <%@ include file="/html/portlet/enterprise_admin/init.jsp" %>
 
+<%@page import="java.util.List"%>
+<%@page import="com.nss.portlet.position.model.Position"%>
+<%@page import="com.nss.portlet.position.service.PositionLocalServiceUtil"%>
+<%@page import="com.liferay.portal.kernel.bean.BeanParamUtil"%>
+<%@page import="com.nss.portlet.department.model.PmlUser"%>
+<%@page import="com.nss.portlet.department.service.PmlUserLocalServiceUtil"%>
+<%@page import="com.nss.portlet.department.model.Department"%>
+<%@page import="com.nss.portlet.department.service.DepartmentLocalServiceUtil"%>
+
 <%
 User selUser = (User)request.getAttribute("user.selUser");
 Contact selContact = (Contact)request.getAttribute("user.selContact");
-
+PmlUser selPmlUser = (PmlUser)request.getAttribute("user.pmlUser");
+/*
+String positionId = "";
+String departmentsId  ="";
+PmlUser selPmlUser = null;
+if (null != selUser) {
+	try {
+		selPmlUser = PmlUserLocalServiceUtil.getPmlUser(selUser.getUserId());
+		positionId = selPmlUser.getPositionId();
+		departmentsId = selPmlUser.getDepartmentsId();
+	} catch(Exception e) {
+		positionId = "";
+		departmentsId  ="";
+	}
+	
+}
+*/
 int prefixId = BeanParamUtil.getInteger(selContact, request, "prefixId");
 int suffixId = BeanParamUtil.getInteger(selContact, request, "suffixId");
 boolean male = BeanParamUtil.getBoolean(selContact, request, "male", true);
 
+String positionId = BeanParamUtil.getString(selPmlUser, request, "positionId");
+String departmentsId = BeanParamUtil.getString(selPmlUser, request, "departmentsId");
 Calendar birthday = CalendarFactoryUtil.getCalendar();
 
 birthday.set(Calendar.MONTH, Calendar.JANUARY);
@@ -44,6 +71,8 @@ if (selContact != null) {
 
 boolean deletePortrait = ParamUtil.getBoolean(request, "deletePortrait");
 %>
+
+
 
 <script type="text/javascript">
 	function <portlet:namespace />changePortrait(newPortraitURL) {
@@ -256,5 +285,46 @@ boolean deletePortrait = ParamUtil.getBoolean(request, "deletePortrait");
 		<label for="<portlet:namespace />jobTitle"><liferay-ui:message key="job-title" /></label>
 
 		<liferay-ui:input-field model="<%= Contact.class %>" bean="<%= selContact %>" field="jobTitle" />
+	</div>
+	
+	<div class="ctrl-holder">
+		<label for="title"><liferay-ui:message key="position_" /></label>
+
+		<select name="<portlet:namespace />positionId">
+			<option value=""><liferay-ui:message key="chon" /></option>
+
+			<%
+			List<Position> positionList = PositionLocalServiceUtil.getPositions(-1,-1);
+
+			for (Position position : positionList) {
+			%>
+
+				<option <%= (position.getPositionId().equalsIgnoreCase(positionId)) ? "selected" : "" %> value="<%= position.getPositionId() %>"><liferay-ui:message key="<%= position.getPositionName() %>" /></option>
+
+			<%
+			}
+			%>
+
+		</select>
+	</div>
+	<div class="ctrl-holder">
+		<label for="title"><liferay-ui:message key="department_name" /></label>
+
+		<select name="<portlet:namespace />departmentsId">
+			<option <%= (departmentsId.equalsIgnoreCase("")) ? "selected" : "" %> value=""><liferay-ui:message key="chon" /></option>
+
+			<%
+			List<Department> departmentList = DepartmentLocalServiceUtil.getDepartments(-1,-1);
+
+			for (Department department : departmentList) {
+			%>
+
+				<option <%= (department.getDepartmentsId().equalsIgnoreCase(departmentsId)) ? "selected" : "" %> value="<%= department.getDepartmentsId() %>"><liferay-ui:message key="<%= department.getDepartmentsName() %>" /></option>
+
+			<%
+			}
+			%>
+
+		</select>
 	</div>
 </fieldset>

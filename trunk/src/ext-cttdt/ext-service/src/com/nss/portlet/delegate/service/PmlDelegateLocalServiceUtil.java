@@ -94,6 +94,28 @@ public class PmlDelegateLocalServiceUtil {
         return getService().findByAssigner(assignerId);
     }
 
+    public static boolean checkDelegatedByTime(long userId,
+        java.lang.String fileTypeId, java.util.Date date)
+        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
+            com.liferay.portal.SystemException {
+        return getService().checkDelegatedByTime(userId, fileTypeId, date);
+    }
+
+    public static java.util.List<com.nss.portlet.delegate.model.PmlDelegate> getByReceive_StartDate_EndDate(
+        long receiver, java.util.Date startDate, java.util.Date endDate)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getByReceive_StartDate_EndDate(receiver, startDate, endDate);
+    }
+
+    public static java.util.List<com.nss.portlet.delegate.model.PmlDelegate> getByReceive_StartDate_CancelDate(
+        long receiver, java.util.Date startDate, java.util.Date cancelDate)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getByReceive_StartDate_CancelDate(receiver, startDate,
+            cancelDate);
+    }
+
     public static PmlDelegateLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("PmlDelegateLocalService is not set");

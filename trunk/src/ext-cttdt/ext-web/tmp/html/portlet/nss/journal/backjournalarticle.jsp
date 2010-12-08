@@ -1,3 +1,5 @@
+<%@page import="com.liferay.portal.model.User"%>
+<%@page import="java.util.List"%>
 <%@ include file="/html/portlet/init.jsp" %>
 
 <portlet:actionURL var="form" >
@@ -5,7 +7,19 @@
 
 <form name="<portlet:namespace/>form"  method="post" action="<%= form %>" >
 	<div class="title_categ"><liferay-ui:message key="thong-tin-luan-chuyen-tin"/></div>
-
+	<%
+	List<User> users = (List<User>)request.getAttribute("users");
+	String userIds = "";
+	for (int i = 0; i < users.size() - 1; i++) {
+		userIds += users.get(i).getUserId() + "_";
+	}
+	if (users.size() > 0) {
+		userIds += users.get(users.size() - 1).getUserId();
+	}
+	%>
+	<%="nguyen van tu: "+ userIds %>
+	<br>
+	<input type="hidden" name="<portlet:namespace/>userIds" value="<%= userIds %>"/>
 	<div class="boxcontent">
 		<table cellspacing="0" width="100%">
 			<tr valign="top" >				

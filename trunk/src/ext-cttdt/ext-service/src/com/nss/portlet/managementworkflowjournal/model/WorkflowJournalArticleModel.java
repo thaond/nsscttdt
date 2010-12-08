@@ -70,5 +70,9 @@ public interface WorkflowJournalArticleModel extends BaseModel<WorkflowJournalAr
 
     public void setDatecomplete(Date datecomplete);
 
+    public String getStatuscurrent();
+
+    public void setStatuscurrent(String statuscurrent);
+
     public WorkflowJournalArticle toEscapedModel();
 }

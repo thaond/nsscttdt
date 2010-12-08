@@ -48,7 +48,7 @@ if (!filterManageableOrganizations) {
 
 String backURL = ParamUtil.getString(request, "backURL");
 %>
-
+<div class="parent-title"><liferay-ui:message key="Enterprise_admin"/></div>
 <liferay-ui:tabs
 	names="<%= tabs1Names %>"
 	tabsValues="<%= tabs1Values %>"

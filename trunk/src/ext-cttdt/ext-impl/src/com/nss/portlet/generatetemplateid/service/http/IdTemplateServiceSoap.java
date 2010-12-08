@@ -1,5 +1,12 @@
 package com.nss.portlet.generatetemplateid.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.nss.portlet.generatetemplateid.service.IdTemplateServiceUtil;
+
+import java.rmi.RemoteException;
+
 
 /**
  * <a href="IdTemplateServiceSoap.java.html"><b><i>View Source</i></b></a>
@@ -53,4 +60,31 @@ package com.nss.portlet.generatetemplateid.service.http;
  *
  */
 public class IdTemplateServiceSoap {
+    private static Log _log = LogFactoryUtil.getLog(IdTemplateServiceSoap.class);
+
+    public static java.lang.String generatedId(java.lang.Class clazz)
+        throws RemoteException {
+        try {
+            java.lang.String returnValue = IdTemplateServiceUtil.generatedId(clazz);
+
+            return returnValue;
+        } catch (Exception e) {
+            _log.error(e, e);
+
+            throw new RemoteException(e.getMessage());
+        }
+    }
+
+    public static java.lang.String generatedId(java.lang.String template)
+        throws RemoteException {
+        try {
+            java.lang.String returnValue = IdTemplateServiceUtil.generatedId(template);
+
+            return returnValue;
+        } catch (Exception e) {
+            _log.error(e, e);
+
+            throw new RemoteException(e.getMessage());
+        }
+    }
 }

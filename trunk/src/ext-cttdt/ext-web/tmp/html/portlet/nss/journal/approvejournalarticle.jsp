@@ -5,7 +5,24 @@
 
 <form name="<portlet:namespace/>form"  method="post" action="<%= form %>" >
 	<div class="title_categ"><liferay-ui:message key="thong-tin-luan-chuyen-tin"/></div>
-
+	<%
+	List<User> users = (List<User>)request.getAttribute("users");
+	String userIds = "";
+	for (int i = 0; i < users.size() - 1; i++) {
+		userIds += users.get(i).getUserId() + "_";
+	}
+	if (users.size() > 0) {
+		userIds += users.get(users.size() - 1).getUserId();
+	}
+	%>
+	<br>
+	<input type="hidden" name="<portlet:namespace/>userIds" value="${userIds }"/>
+	<input type="hidden" name="<portlet:namespace/>groupId" value="${groupId }"/>
+	<input type="hidden" name="<portlet:namespace/>articleId" value="${articleId }"/>
+	<input type="hidden" name="<portlet:namespace/>version" value="${version }"/>
+	<div style="float: right;">
+	<liferay-ui:message key="nss-journal-use-sign" /> : <input type="checkbox" name="<portlet:namespace />signArticle"  checked="checked"/>
+	</div>
 	<div class="boxcontent">
 		<table cellspacing="0" width="100%">
 			<tr valign="top" >				

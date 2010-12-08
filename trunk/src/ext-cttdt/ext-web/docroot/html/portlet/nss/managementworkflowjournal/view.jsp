@@ -218,8 +218,8 @@ function <portlet:namespace />check_filetype_upload(form) {
 			}
 			if(dateToWorkFlow == ""){
 				if(dateFromWorkFlow != ""){
-					confirmUpdateWorkFlow();
 					form.<portlet:namespace />dateSaveUpdate.value="saveAndUpdate";
+					confirmUpdateWorkFlow();
 					return false;
 				}else{
 					form.<portlet:namespace />dateSaveUpdate.value="save";	

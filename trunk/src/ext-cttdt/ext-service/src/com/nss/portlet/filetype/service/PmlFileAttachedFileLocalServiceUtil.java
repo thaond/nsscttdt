@@ -96,6 +96,16 @@ public class PmlFileAttachedFileLocalServiceUtil {
         return getService().findByAttachedFileId(attachedFileId);
     }
 
+    public static void removeByFileId(java.lang.String fileId)
+        throws com.liferay.portal.SystemException {
+        getService().removeByFileId(fileId);
+    }
+
+    public static java.util.List<com.nss.portlet.filetype.model.PmlFileAttachedFile> findByFileId(
+        java.lang.String fileId) throws com.liferay.portal.SystemException {
+        return getService().findByFileId(fileId);
+    }
+
     public static PmlFileAttachedFileLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

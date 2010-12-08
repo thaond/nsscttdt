@@ -26,6 +26,34 @@ public class LogWorkflowJournalArticleFinderImpl extends BasePersistenceImpl
 		LogWorkflowJournalArticleFinder.class.getName() +
 			".GET_LOG_WORKFLOW_JOURNAL_ARTICLE_BY_R_T";
 
+	public List<LogWorkflowJournalArticle> getAllLog(long resourcePrimkey)
+		throws SystemException {
+
+		Session session = null;
+		try {
+			session = openSession();
+			String sql =
+				CustomSQLUtil.get(GET_LOG_WORKFLOW_JOURNAL_ARTICLE_BY_R_T);
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(
+				"log_workflow_journal_article",
+				LogWorkflowJournalArticleImpl.class);
+			QueryPos qPos = QueryPos.getInstance(query);
+			qPos.add(resourcePrimkey);
+			List<LogWorkflowJournalArticle> list =
+				(List<LogWorkflowJournalArticle>) QueryUtil.list(
+					query, getDialect(), -1, -1);
+
+			return list;
+		}
+		catch (Exception e) {
+			throw new SystemException();
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public LogWorkflowJournalArticle getLogBy_R_T(long resourcePrimkey)
 		throws SystemException {
 

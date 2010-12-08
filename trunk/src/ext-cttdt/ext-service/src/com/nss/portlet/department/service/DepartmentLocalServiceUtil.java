@@ -148,6 +148,12 @@ public class DepartmentLocalServiceUtil {
         getService().removeDepartment(departmentId);
     }
 
+    public static java.util.List<com.nss.portlet.department.model.Department> findByDepartmentsCode(
+        java.lang.String departmentCode)
+        throws com.liferay.portal.SystemException {
+        return getService().findByDepartmentsCode(departmentCode);
+    }
+
     public static DepartmentLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("DepartmentLocalService is not set");

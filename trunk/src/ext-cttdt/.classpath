@@ -235,10 +235,12 @@
 	<classpathentry kind="lib" path="ext-lib/portal/hibernate-annotations.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/hibernate-commons-annotations.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/hibernate-tools.jar"/>
-	<classpathentry kind="lib" path="ext-lib/portal/jbpm-service.jar" sourcepath="/ext5.2.3"/>
+	<classpathentry kind="lib" path="ext-lib/portal/jasperreports-3.1.2.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/jbpm-service.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/jta.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/jxl-2.6.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/persistence.jar"/>
+	<classpathentry kind="lib" path="ext-lib/portal/sgs-rtftemplate-1.0.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/spring-modules-jbpm31.jar"/>
 	<classpathentry kind="lib" path="ext-lib/global/bouncycastle-jdk1.6.jar"/>
 	<classpathentry kind="lib" path="lib/development/jtds.jar"/>

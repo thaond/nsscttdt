@@ -10,6 +10,8 @@
 	StrutsTaskAction taskAction = (StrutsTaskAction) renderRequest.getAttribute(com.sgs.liferay.jbpm.util.Constants.WORKFLOW_TASK_ACTION);
 	String redirect = ParamUtil.getString(renderRequest, "redirect");	
 	long resourcePrimey = ParamUtil.getLong(renderRequest, com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "resourcePrimey", 0); 
+	
+	if (taskAction != null) {
 %>
 
 <input type="hidden" name="<portlet:namespace/>struts_action" value="<%=taskAction.getStrutsAction() %>">
@@ -20,3 +22,5 @@
 <input type="hidden" name='<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "transition"%>' value="<%=taskAction.getTransition()%>">
 <input type="hidden" name='<portlet:namespace/><%=com.sgs.liferay.jbpm.util.Constants.WORKFLOW_PARAM_PREFIX + "taskId"%>' value='<%="" + taskAction.getTaskInstanceId()%>'>
 <input type="submit"  value="<%=LanguageUtil.get(pageContext, taskAction.getTaskActionName())%>">
+
+<% } %>

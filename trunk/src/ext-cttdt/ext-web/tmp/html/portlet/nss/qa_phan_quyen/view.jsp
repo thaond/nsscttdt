@@ -27,16 +27,13 @@
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" onsubmit="return checkMaChuDeCauHoiSelected();">
 	<div class="commom-form">
 		<div class="parent-title"><liferay-ui:message key="nss-qa-phan-quyen" /></div>
-		<table class="common-table">
-			<tr>
-				<td>
 					<%
 						PortletURL chuDeURL = renderResponse.createActionURL();
 						chuDeURL.setWindowState(WindowState.NORMAL);
 						chuDeURL.setParameter("struts_action","/nss/qa_phan_quyen/view");
 						chuDeURL.setParameter(Constants.CMD, Constants.VIEW);
 					%>
-					<select name="<portlet:namespace />maChuDeCauHoi" id="maChuDeCauHoi" onchange="reloadPhanQuyen('<%= chuDeURL.toString() %>')">
+		<select style="width: 250px" name="<portlet:namespace />maChuDeCauHoi" id="maChuDeCauHoi" onchange="reloadPhanQuyen('<%= chuDeURL.toString() %>')">
 					<option value="0" <%=  maChuDeCauHoi == 0 ? "" : "selected=selected" %>><liferay-ui:message key="chon-chu-de" /></option>
 					<%
 						for (int i = 0 ; i < qAChuDeCauHoiList.size(); i++) {
@@ -46,24 +43,24 @@
 					<%
 						}
 					%>
-					</select>
+		</select>
+		<br><br>		
+		<div class="results-grid">	
+		<table cellspacing="0" width="100%" class="taglib-search-iterator">
+			<tr class="portlet-section-header results-header">
+				<td >
+					<liferay-ui:message key="Ten-nguoi-phan-quyen" />
 				</td>
-			</tr>
-		</table>
-		<table class="common-table">
-			<tr>
-				<td>
-				</td>
-				<td  align="center">
+				<td style="text-align: center;">
 					<liferay-ui:message key="Xem" />
 				</td>
-				<td  align="center">
+				<td style="text-align: center;">
 					<liferay-ui:message key="cap-nhat" />
 				</td>
-				<td  align="center">
+				<td style="text-align: center;">
 					<liferay-ui:message key="tra-loi" />
 				</td>
-				<td  align="center">
+				<td style="text-align: center;">
 					<liferay-ui:message key="duyet" />
 				</td>
 			</tr>
@@ -89,20 +86,20 @@
 						}
 					}
 			%>
-			<tr width="21%">
-				<td width="21%" >
+			<tr>
+				<td >
 					<%= fullName %>
 				</td>
-				<td width="5%" align="center">
+				<td width="10%" style="text-align: center;">
 					<input type="checkbox" name="<portlet:namespace />xem" value="<%= String.valueOf(userId) %>" <%= quyenXem == true ? "checked=checked" : "" %>>
 				</td>
-				<td width="5%" align="center">
+				<td width="10%" style="text-align: center;">
 					<input type="checkbox" name="<portlet:namespace />capnhat" value="<%= String.valueOf(userId) %>" <%= quyenCapNhat == true ? "checked=checked" : "" %>>
 				</td>
-				<td width="5%" align="center">
+				<td width="10%" style="text-align: center;">
 					<input type="checkbox" name="<portlet:namespace />traloi" value="<%= String.valueOf(userId) %>" <%= quyenTraLoi == true ? "checked=checked" : "" %>>
 				</td>
-				<td width="5%" align="center">
+				<td width="10%" style="text-align: center;">
 					<input type="checkbox" name="<portlet:namespace />duyet" value="<%= String.valueOf(userId) %>" <%= quyenDuyet == true ? "checked=checked" : "" %>>
 				</td>
 			</tr>
@@ -111,6 +108,8 @@
 				}
 			%>
 		</table>
+	</div>
+	<br>
 		<input type="submit" value="<liferay-ui:message key="save" />" name="<portlet:namespace />save">
 	</div>
 </form>
