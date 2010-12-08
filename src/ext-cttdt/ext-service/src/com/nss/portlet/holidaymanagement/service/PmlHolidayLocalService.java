@@ -85,4 +85,7 @@ public interface PmlHolidayLocalService {
 
     public int countHolidayByValue(java.lang.String holidayValue)
         throws com.liferay.portal.SystemException;
+
+    public int checkDateHoliday(java.lang.String dateReceipt,
+        int fileProcessNumber);
 }

@@ -28,11 +28,11 @@ function <portlet:namespace/>scrollview() {
 		prev:'#<portlet:namespace/>screen a.prevbt',
 		next:'#<portlet:namespace/>screen a.nextbt',
 		start:0, //as we are centering it, start at the 2nd
-		step:1,
-		force:true,
+		//step:1,
+		//force:true,
 		stop:true,
-		lock:false,
-		cycle:false, //don't pull back once you reach the end
+		//lock:false,
+		//cycle:false, //don't pull back once you reach the end
 		easing:'easeOutQuart', //use this easing equation for a funny effect
 	});
 }
@@ -90,9 +90,6 @@ function <portlet:namespace/>scrollview() {
 			    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
 			    try {
 			    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentId);
-			    	%>
-			    	
-			    	<%
 			    } catch (Exception e) {}
 			    
 		    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );

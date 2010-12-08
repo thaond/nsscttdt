@@ -39,6 +39,7 @@ import com.sgs.liferay.jbpm.util.WorkflowParamUtil;
  */
 public class JournalLiferayWorkflowService
 	extends AbstractLiferayWorkflowService {
+
 	private final String START = "start";
 	private final String END = "end";
 	private final String ACTORID = "actorId";
@@ -95,13 +96,16 @@ public class JournalLiferayWorkflowService
 					user = UserLocalServiceUtil.getUser(userId);
 				}
 				catch (NumberFormatException e) {
-					log.error("ERROR LONG.PARSELONG(USERID) OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE "+e.getMessage());
+					log.error("ERROR LONG.PARSELONG(USERID) OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE " +
+						e.getMessage());
 				}
 				catch (PortalException e) {
-					log.error("ERROR PORTALEXCEPTION OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE "+e.getMessage());
+					log.error("ERROR PORTALEXCEPTION OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE " +
+						e.getMessage());
 				}
 				catch (SystemException e) {
-					log.error("ERROR SYSTEMEXCEPTION OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE "+e.getMessage());
+					log.error("ERROR SYSTEMEXCEPTION OF ADDWORKFLOWJOURNALARTICLE OF CLASS JOURNALLIFERAYWORKFLOWSERVICE " +
+						e.getMessage());
 				}
 				try {
 					workflowJournalArticle.setWorkflowJournalArticleId(CounterLocalServiceUtil.increment());
@@ -117,15 +121,16 @@ public class JournalLiferayWorkflowService
 					WorkflowJournalArticleLocalServiceUtil.addWorkflowJournalArticle(workflowJournalArticle);
 				}
 				catch (SystemException e) {
-					log.error("ERROR: ADD WORKFLOWJOURNALARTICLE OF ADDWORKFLOWINSTANCE "+e.getMessage());
+					log.error("ERROR: ADD WORKFLOWJOURNALARTICLE OF ADDWORKFLOWINSTANCE " +
+						e.getMessage());
 
 				}
 				// wire into table log_workflow_journal_article
 				LogWorkflowJournalArticle logW =
 					logNewNode(
 						0, articleId, userId, groudId, user.getCompanyId(),
-						String.valueOf(userId), userId, String.valueOf(userId), "",
-						now, now, now);
+						String.valueOf(userId), userId, String.valueOf(userId),
+						"", now, now, now);
 				logW.setWorkflowStatusAfter(getStateNode(processInstanceId));
 				try {
 					LogWorkflowJournalArticleLocalServiceUtil.updateLogWorkflowJournalArticle(logW);
@@ -136,8 +141,8 @@ public class JournalLiferayWorkflowService
 				}
 				logNewNode(
 					processInstanceId, articleId, userId, groudId,
-					user.getCompanyId(), String.valueOf(userId), userId, "", "",
-					now, now, now);
+					user.getCompanyId(), String.valueOf(userId), userId, "",
+					"", now, now, now);
 			}
 		}
 	}
@@ -175,15 +180,60 @@ public class JournalLiferayWorkflowService
 		}
 	}
 
+	public void deleteWorkflowJournalAritcle(List<WorkflowParam> params) {
+
+		String articleIdsTr =
+			WorkflowParamUtil.getString(params, "articleIds", "");
+		String[] articleIds = articleIdsTr.split("_");
+		try {
+			WorkflowJournalArticle workflowJournalArticle = null;
+			List<LogWorkflowJournalArticle> logWorkflowJournalArticles = null;
+			long processInstanceId = 0;
+
+			for (int i = 0; i < articleIds.length; i++) {
+				workflowJournalArticle =
+					WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(Long.parseLong(articleIds[i]));
+
+				if (workflowJournalArticle != null) {
+					processInstanceId =
+						workflowJournalArticle.getProcessInstanceId();
+				}
+				else {
+					return;
+				}
+				// delete processInstance
+				getJbpmService().deleteProcessInstance(processInstanceId);
+
+				// delete in table nss_workflow_journal_article
+
+				WorkflowJournalArticleLocalServiceUtil.deleteWorkflowJournalArticle(workflowJournalArticle);
+
+				// delete ing table log_workflow_journal_article;
+				logWorkflowJournalArticles =
+					LogWorkflowJournalArticleLocalServiceUtil.getAllLog(Long.parseLong(articleIds[i]));
+				for (int j = 0; j < logWorkflowJournalArticles.size(); j++) {
+					LogWorkflowJournalArticleLocalServiceUtil.deleteLogWorkflowJournalArticle(logWorkflowJournalArticles.get(j));
+				}
+
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void deloyProcessSupport(
-		InputStream is, String description, Timestamp dateFrom, Timestamp dateTo, long userId, long companyId, long groupId, long managementWorkflowJournalIdOld, String dateSaveUpdate) {
+		InputStream is, String description, Timestamp dateFrom,
+		Timestamp dateTo, long userId, long companyId, long groupId,
+		long managementWorkflowJournalIdOld, String dateSaveUpdate) {
 
 		ProcessDefinition processDefinition = deployWorkflow(is);
 		ManagementWorkflowJournal managementWorkflowJournal =
 			new ManagementWorkflowJournalImpl();
 		try {
-			if(dateSaveUpdate.equals("save")){
-				long managementWorkflowJournalId = CounterLocalServiceUtil.increment();
+			if (dateSaveUpdate.equals("save")) {
+				long managementWorkflowJournalId =
+					CounterLocalServiceUtil.increment();
 				managementWorkflowJournal.setManagementWorkflowJournalId(managementWorkflowJournalId);
 				managementWorkflowJournal.setUserId(userId);
 				managementWorkflowJournal.setGroupId(groupId);
@@ -195,8 +245,10 @@ public class JournalLiferayWorkflowService
 				managementWorkflowJournal.setDateFrom(dateFrom);
 				managementWorkflowJournal.setDateTo(dateTo);
 				ManagementWorkflowJournalLocalServiceUtil.addManagementWorkflowJournal(managementWorkflowJournal);
-			}else if(dateSaveUpdate.equals("saveAndUpdate")){
-				long managementWorkflowJournalId = CounterLocalServiceUtil.increment();
+			}
+			else if (dateSaveUpdate.equals("saveAndUpdate")) {
+				long managementWorkflowJournalId =
+					CounterLocalServiceUtil.increment();
 				managementWorkflowJournal.setManagementWorkflowJournalId(managementWorkflowJournalId);
 				managementWorkflowJournal.setUserId(userId);
 				managementWorkflowJournal.setGroupId(groupId);
@@ -209,16 +261,20 @@ public class JournalLiferayWorkflowService
 				managementWorkflowJournal.setDateTo(dateTo);
 				ManagementWorkflowJournalLocalServiceUtil.addManagementWorkflowJournal(managementWorkflowJournal);
 				try {
-					managementWorkflowJournal = ManagementWorkflowJournalLocalServiceUtil.getManagementWorkflowJournal(managementWorkflowJournalIdOld);
+					managementWorkflowJournal =
+						ManagementWorkflowJournalLocalServiceUtil.getManagementWorkflowJournal(managementWorkflowJournalIdOld);
 					managementWorkflowJournal.setDateTo(dateFrom);
 					ManagementWorkflowJournalLocalServiceUtil.updateManagementWorkflowJournal(managementWorkflowJournal);
-				} catch (PortalException e) {
-					log.equals("ERROR: GETMANAGEMENTWORKFLOWJOURNAL IN DELOYPROCESSSUPPORT OF JOURNALLIFERAYWORKFLOWSERVICE " +	e.getMessage());
+				}
+				catch (PortalException e) {
+					log.equals("ERROR: GETMANAGEMENTWORKFLOWJOURNAL IN DELOYPROCESSSUPPORT OF JOURNALLIFERAYWORKFLOWSERVICE " +
+						e.getMessage());
 				}
 			}
 		}
 		catch (SystemException e) {
-			log.equals("ERROR: CREATE MANAGEMENTWORKFLOWJOURNALID IN DELOYPROCESSSUPPORT OF JOURNALLIFERAYWORKFLOWSERVICE " + e.getMessage());
+			log.equals("ERROR: CREATE MANAGEMENTWORKFLOWJOURNALID IN DELOYPROCESSSUPPORT OF JOURNALLIFERAYWORKFLOWSERVICE " +
+				e.getMessage());
 		}
 	}
 
@@ -349,7 +405,6 @@ public class JournalLiferayWorkflowService
 
 		long userIdProcess =
 			WorkflowParamUtil.getLong(params, "userIdProcess", 0);
-
 		if ((taskId == -1) || "".equals(transition)) {
 			return;
 		}
@@ -357,10 +412,10 @@ public class JournalLiferayWorkflowService
 		try {
 
 			// get process instance
+
 			ProcessInstance pi =
 				getJbpmService().getProcessInstanceFromTaskInstance(taskId);
 			long processInstanceId = pi.getId();
-
 			// get article from processInstanceId
 			WorkflowJournalArticle workflowJournalArticle =
 				WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticleFromPI(processInstanceId);
@@ -374,46 +429,61 @@ public class JournalLiferayWorkflowService
 
 				getJbpmService().setContext(
 					processInstanceId, ACTORID, String.valueOf(userIds));
-				
-				
-				List<String> listNodeBack = (List<String>) getJbpmService().getContextVariable(processInstanceId, "listNodeBack");
-				List<Long> listUserNodeBack = (List<Long>) getJbpmService().getContextVariable(processInstanceId, "listUserNodeBack");
+
+				List<String> listNodeBack =
+					(List<String>) getJbpmService().getContextVariable(
+						processInstanceId, "listNodeBack");
+
+				List<Long> listUserNodeBack =
+					(List<Long>) getJbpmService().getContextVariable(
+						processInstanceId, "listUserNodeBack");
+
 				String nameNodeCurrent = getStateNode(processInstanceId);
-				if (listNodeBack !=null  ){
+				if (listNodeBack != null) {
 					listNodeBack.add(nameNodeCurrent);
-					getJbpmService().setContext(processInstanceId, "listNodeBack", listNodeBack);
+					getJbpmService().setContext(
+						processInstanceId, "listNodeBack", listNodeBack);
 				}
 				else {
 					listNodeBack = new ArrayList<String>();
 					listNodeBack.add(nameNodeCurrent);
-					getJbpmService().setContext(processInstanceId, "listNodeBack", listNodeBack);
+					getJbpmService().setContext(
+						processInstanceId, "listNodeBack", listNodeBack);
 				}
-				
-				if (listUserNodeBack !=null  ){
+
+				if (listUserNodeBack != null) {
 					listUserNodeBack.add(userIdProcess);
-					getJbpmService().setContext(processInstanceId, "listUserNodeBack", listUserNodeBack);
+					getJbpmService().setContext(
+						processInstanceId, "listUserNodeBack", listUserNodeBack);
 				}
 				else {
-					 listUserNodeBack = new ArrayList<Long>();
-					 listUserNodeBack.add(userIdProcess);
-					 getJbpmService().setContext(processInstanceId, "listUserNodeBack", listUserNodeBack);
-				}	
-				
-				getJbpmService().signalTask(taskId, transition);
+					listUserNodeBack = new ArrayList<Long>();
+					listUserNodeBack.add(userIdProcess);
+					getJbpmService().setContext(
+						processInstanceId, "listUserNodeBack", listUserNodeBack);
+				}
 
+				getJbpmService().signalTask(taskId, transition);
 				// update colum userIds of table nss_workflow_journal_article
 				workflowJournalArticle.setUserIds(userIds);
-				WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
+
 				// create a row log in table log_workflow_journal_article
 				LogWorkflowJournalArticle logWorkflowJournalArticle =
 					LogWorkflowJournalArticleLocalServiceUtil.getLogByResourceTrainsition(articleId);
 				Timestamp now = new Timestamp(new Date().getTime());
+
+				// update colum status current in table workflow_journal_article
+				// here
+				if (processInstanceId != 0) {
+					workflowJournalArticle.setStatuscurrent(getStateNode(processInstanceId));
+				}
 				if (getJbpmService().getProcessInstance(processInstanceId).getEnd() == null) {
 					logWorkflowJournalArticle.setUserIdsProcess(userIds);
 					logWorkflowJournalArticle.setDateReceiptOfUserReceipt(now);
 					logWorkflowJournalArticle.setDateProcessOfUserReceipt(now);
 					logWorkflowJournalArticle.setDateSendOfUserReceipt(now);
-					logWorkflowJournalArticle.setWorkflowStatusAfter(nameNodeCurrent);
+					logWorkflowJournalArticle.setWorkflowStatusAfter(getStateNode(processInstanceId));
+					logWorkflowJournalArticle.setUseridProcess(userIdProcess);
 					LogWorkflowJournalArticleLocalServiceUtil.updateLogWorkflowJournalArticle(logWorkflowJournalArticle);
 
 					logNewNode(
@@ -429,8 +499,19 @@ public class JournalLiferayWorkflowService
 					logWorkflowJournalArticle.setDateProcessOfUserReceipt(now);
 					logWorkflowJournalArticle.setDateSendOfUserReceipt(now);
 					logWorkflowJournalArticle.setWorkflowStatusAfter(END);
+					logWorkflowJournalArticle.setUseridProcess(userIdProcess);
 					LogWorkflowJournalArticleLocalServiceUtil.updateLogWorkflowJournalArticle(logWorkflowJournalArticle);
+
+					// update datecomplete in table workflow_journal_ariticle
+
+					workflowJournalArticle.setDatecomplete(now);
+					// delete processInstance
+					getJbpmService().deleteProcessInstance(processInstanceId);
+
 				}
+
+				// update table workflow_journal_article here
+				WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
 
 			}
 			else {
@@ -454,8 +535,9 @@ public class JournalLiferayWorkflowService
 		long taskId = WorkflowParamUtil.getLong(params, "taskId", -1);
 		String processInformation =
 			WorkflowParamUtil.getString(params, "processInformation", "");
-		long receiverId = WorkflowParamUtil.getLong(params, "receiverId", -1);
-		String processor = WorkflowParamUtil.getString(params, "processor", "");
+		long userIdProcess =
+			WorkflowParamUtil.getLong(params, "userIdProcess", 0);
+
 		try {
 
 			if ((taskId == -1) || "".equals(transition)) {
@@ -466,47 +548,71 @@ public class JournalLiferayWorkflowService
 			ProcessInstance pi =
 				getJbpmService().getProcessInstanceFromTaskInstance(taskId);
 			long processInstanceId = pi.getId();
-			getJbpmService().setContext(
-				processInstanceId, ACTORID, receiverId + "");
-
-			// get state process
-			String stateProcessCode = getStateNode(processInstanceId);
 
 			// get article from processInstanceId
 			WorkflowJournalArticle workflowJournalArticle =
 				WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticleFromPI(processInstanceId);
+
 			if (workflowJournalArticle != null) {
 				long articleId = workflowJournalArticle.getResourcePrimkey();
-
-				// write into row current of table log
-				// TODO
 
 				// signal Task
 				List<String> listNodeBack =
 					(List<String>) getJbpmService().getContextVariable(
 						processInstanceId, "listNodeBack");
+
 				List<Long> listUserNodeBack =
 					(List<Long>) getJbpmService().getContextVariable(
 						processInstanceId, "listUserNodeBack");
 
-				getJbpmService().signalTask(taskId, listNodeBack.get(listNodeBack.size() - 1));
+				getJbpmService().setContext(
+					processInstanceId,
+					ACTORID,
+					String.valueOf(listUserNodeBack.get(
+						listUserNodeBack.size() - 1).longValue()));
 
-				String nameNodeAfter = listNodeBack.remove(listNodeBack.size() - 1);
-				Long userRemove = listUserNodeBack.remove(listUserNodeBack.size() - 1);
-				
+				getJbpmService().signalTask(
+					taskId, listNodeBack.get(listNodeBack.size() - 1));
+
+				String nameNodeAfter =
+					listNodeBack.remove(listNodeBack.size() - 1);
+
+				Long userRemove =
+					listUserNodeBack.remove(listUserNodeBack.size() - 1);
+
 				getJbpmService().setContext(
 					processInstanceId, "listNodeBack", listNodeBack);
+
 				getJbpmService().setContext(
 					processInstanceId, "listUserNodeBack", listUserNodeBack);
 
 				// create a row log in table log_workflow_journal_article
-				// TODO
+				LogWorkflowJournalArticle logWorkflowJournalArticle =
+					LogWorkflowJournalArticleLocalServiceUtil.getLogByResourceTrainsition(articleId);
 
 				if (getJbpmService().getProcessInstance(processInstanceId).getEnd() == null) {
 					Timestamp now = new Timestamp(new Date().getTime());
-					// logNewNode(
-					// articleId, processInstanceId, receiverId, 0, 0, 0l, now);
+					// write into table log_workflow_journal_article
+					logWorkflowJournalArticle.setUserIdsProcess(String.valueOf(userRemove.longValue()));
+					logWorkflowJournalArticle.setDateReceiptOfUserReceipt(now);
+					logWorkflowJournalArticle.setDateProcessOfUserReceipt(now);
+					logWorkflowJournalArticle.setDateSendOfUserReceipt(now);
+					logWorkflowJournalArticle.setWorkflowStatusAfter(getStateNode(processInstanceId));
+					logWorkflowJournalArticle.setUseridProcess(userIdProcess);
+					LogWorkflowJournalArticleLocalServiceUtil.updateLogWorkflowJournalArticle(logWorkflowJournalArticle);
+
+					logNewNode(
+						processInstanceId, articleId,
+						logWorkflowJournalArticle.getUserId(),
+						logWorkflowJournalArticle.getGroupId(),
+						logWorkflowJournalArticle.getCompanyId(),
+						String.valueOf(userRemove.longValue()), userIdProcess,
+						"", processInformation, null, null, null);
 				}
+				// update table work_flow_journal_article
+				workflowJournalArticle.setUserIds(String.valueOf(userRemove.longValue()));
+				workflowJournalArticle.setStatuscurrent(nameNodeAfter);
+				WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
 
 			}
 			else {
@@ -516,6 +622,7 @@ public class JournalLiferayWorkflowService
 
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			log.error("ERROR: in method signalTaskBack() no signal task " +
 				taskId);
 		}

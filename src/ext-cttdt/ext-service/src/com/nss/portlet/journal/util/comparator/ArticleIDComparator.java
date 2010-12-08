@@ -27,30 +27,35 @@ import com.nss.portlet.journal.model.JournalArticle;
 
 /**
  * <a href="ArticleIDComparator.java.html"><b><i>View Source</i></b></a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ArticleIDComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "articleId ASC";
+	public static String ORDER_BY_ASC = "journalarticle.articleId ASC";
 
-	public static String ORDER_BY_DESC = "articleId DESC";
+	public static String ORDER_BY_DESC = "journalarticle.articleId DESC";
+
+	private boolean _asc;
 
 	public ArticleIDComparator() {
+
 		this(false);
 	}
 
 	public ArticleIDComparator(boolean asc) {
+
 		_asc = asc;
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		JournalArticle article1 = (JournalArticle)obj1;
-		JournalArticle article2 = (JournalArticle)obj2;
 
-		int value = article1.getArticleId().toLowerCase().compareTo(
-			article2.getArticleId().toLowerCase());
+		JournalArticle article1 = (JournalArticle) obj1;
+		JournalArticle article2 = (JournalArticle) obj2;
+
+		int value =
+			article1.getArticleId().toLowerCase().compareTo(
+				article2.getArticleId().toLowerCase());
 
 		if (_asc) {
 			return value;
@@ -61,6 +66,7 @@ public class ArticleIDComparator extends OrderByComparator {
 	}
 
 	public String getOrderBy() {
+
 		if (_asc) {
 			return ORDER_BY_ASC;
 		}
@@ -68,7 +74,5 @@ public class ArticleIDComparator extends OrderByComparator {
 			return ORDER_BY_DESC;
 		}
 	}
-
-	private boolean _asc;
 
 }

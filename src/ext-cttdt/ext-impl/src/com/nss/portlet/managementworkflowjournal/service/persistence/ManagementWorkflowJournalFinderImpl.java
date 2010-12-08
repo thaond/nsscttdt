@@ -33,7 +33,6 @@ public class ManagementWorkflowJournalFinderImpl extends BasePersistenceImpl imp
 			q.addEntity("nss_quan_ly_quy_trinh_duyet_tin", ManagementWorkflowJournalImpl.class);
 			QueryPos qpos = QueryPos.getInstance(q);
 			qpos.add(now);
-			qpos.add(now);
 			return (List<ManagementWorkflowJournal>) QueryUtil.list(q, getDialect(), -1, -1);
 		} catch (Exception e) {
 			throw new SystemException(e);

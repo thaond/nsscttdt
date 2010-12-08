@@ -382,5 +382,71 @@
         <action path="/nss/delegate/view" type="com.nss.portlet.delegate.action.ViewAction">
             <forward name="portlet.nss.delegate.view" path="portlet.nss.delegate.view"/>
         </action>
+        <action path="/nss/managementworkflowonedoor/view" type="com.nss.portlet.managementworkflowonedoor.action.ViewAction">
+            <forward name="portlet.nss.managementworkflowonedoor.view" path="portlet.nss.managementworkflowonedoor.view"/>
+        </action>
+        <!-- Ho So -->
+        <action path="/nss/onedoor/view" type="com.nss.portlet.onedoor.action.ViewAction">
+            <forward name="portlet.nss.onedoor.view" path="portlet.nss.onedoor.view"/>
+        </action>
+        <action path="/nss/onedoor/add" type="com.nss.portlet.onedoor.action.AddAction">
+            <forward name="portlet.nss.onedoor.add" path="portlet.nss.onedoor.add"/>
+        </action>
+        <!--  Trang Thai Ho so -->
+        <action path="/nss/filestatus/view" type="com.nss.portlet.filestatus.action.ViewAction">
+            <forward name="portlet.nss.filestatus.view" path="portlet.nss.filestatus.view"/>
+        </action>
+        <action path="/nss/filestatus/add_filestatus_onedoor" type="com.nss.portlet.filestatus.action.AddFileStatusOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.add_filestatus_onedoor" path="portlet.nss.filestatus.add_filestatus_onedoor"/>
+        </action>
+        <action path="/nss/filestatus/edit_filestatus_onedoor" type="com.nss.portlet.filestatus.action.EditFileStatusOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.edit_filestatus_onedoor" path="portlet.nss.filestatus.edit_filestatus_onedoor"/>
+            <forward name="portlet.nss.filestatus.view" path="portlet.nss.filestatus.view"/>
+        </action>
+        <action path="/nss/filestatus/display_stateprocess_onedoor" type="com.nss.portlet.filestatus.action.EditStateProcessOnedoorAction">
+            <forward
+                name="portlet.nss.filestatus.display_stateprocess_onedoor" path="portlet.nss.filestatus.display_stateprocess_onedoor"/>
+        </action>
+        <action
+            forward="portlet.nss.filestatus.add_stateprocess_onedoor" path="/nss/filestatus/add_stateprocess_onedoor"/>
+        <action
+            forward="portlet.nss.filestatus.edit_stateprocess_onedoor" path="/nss/filestatus/edit_stateprocess_onedoor"/>
+        <action path="/nss/onedoorprocess/view" type="com.nss.portlet.onedoorprocess.action.ViewAction">
+            <forward name="portlet.nss.onedoorprocess.view" path="portlet.nss.onedoorprocess.view"/>
+        </action>
+        <action path="/nss/onedoorreturn/view" type="com.nss.portlet.onedoorreturn.action.ViewAction">
+            <forward name="portlet.nss.onedoorreturn.view" path="portlet.nss.onedoorreturn.view"/>
+        </action>
+        <action path="/nss/onedoorreturn/detail" type="com.nss.portlet.onedoorreturn.action.DetailAction">
+            <forward name="portlet.nss.onedoorreturn.detail" path="portlet.nss.onedoorreturn.detail"/>
+        </action>
+        <action path="/nss/onedoorfileprocessed/view" type="com.nss.portlet.onedoorfileprocessed.action.ViewAction">
+            <forward name="portlet.nss.onedoorfileprocessed.view" path="portlet.nss.onedoorfileprocessed.view"/>
+        </action>
+        <action path="/nss/onedoorfileprocessed/detail" type="com.nss.portlet.onedoorfileprocessed.action.DetailAction">
+            <forward name="portlet.nss.onedoorfileprocessed.detail" path="portlet.nss.onedoorfileprocessed.detail"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/view" type="com.nss.portlet.onedoorreport_baocaohosothang.action.ViewAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.view" path="portlet.nss.onedoorreport_baocaohosothang.view"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/filedetails" type="com.nss.portlet.onedoorreport_baocaohosothang.action.FileDetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.filedetails" path="portlet.nss.onedoorreport_baocaohosothang.filedetails"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/filedetails_detail" type="com.nss.portlet.onedoorreport_baocaohosothang.action.DetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail" path="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/search" type="com.nss.portlet.onedoorreport_baocaohosothang.action.SearchAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.search" path="portlet.nss.onedoorreport_baocaohosothang.search"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothang/searchresult" type="com.nss.portlet.onedoorreport_baocaohosothang.action.SearchResultAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothang.searchresult" path="portlet.nss.onedoorreport_baocaohosothang.searchresult"/>
+        </action>
     </action-mappings>
 </struts-config>

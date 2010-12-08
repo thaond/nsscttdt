@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
 	<service name="Portlet_Reports_ReportsEntryService" provider="java:RPC" style="rpc" use="encoded">
@@ -7,6 +7,114 @@
 		<parameter name="wsdlServicePort" value="Portlet_Reports_ReportsEntryService"/>
 		<parameter name="className" value="com.ext.portlet.reports.service.http.ReportsEntryServiceSoap"/>
 		<parameter name="wsdlPortType" value="ReportsEntryServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlFilePCCCAttachedFileService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlFilePCCCAttachedFileServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlFilePCCCAttachedFileService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlFilePCCCAttachedFileServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlFilePCCCAttachedFileServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlFilePCCCService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlFilePCCCServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlFilePCCCService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlFilePCCCServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlFilePCCCServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlFileReturningInfoService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlFileReturningInfoServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlFileReturningInfoService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlFileReturningInfoServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlFileReturningInfoServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlFileStatusService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlFileStatusServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlFileStatusService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlFileStatusServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlFileStatusServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlFileStatusStateProcessService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlFileStatusStateProcessServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlFileStatusStateProcessService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlFileStatusStateProcessServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlFileStatusStateProcessServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlOneDoorReceiveFileService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlOneDoorReceiveFileServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlOneDoorReceiveFileService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlOneDoorReceiveFileServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlOneDoorReceiveFileServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlPaintDocumentService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlPaintDocumentServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlPaintDocumentService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlPaintDocumentServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlPaintDocumentServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlProcessDisposeService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlProcessDisposeServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlProcessDisposeService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlProcessDisposeServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlProcessDisposeServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlStateProcessService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlStateProcessServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlStateProcessService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlStateProcessServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlStateProcessServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlStateWorkFlowService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlStateWorkFlowServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlStateWorkFlowService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlStateWorkFlowServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlStateWorkFlowServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlTransitionService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlTransitionServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlTransitionService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlTransitionServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlTransitionServiceSoap"/>
+		<parameter name="typeMappingVersion" value="1.2"/>
+		<parameter name="allowedMethods" value="*"/>
+	</service>
+	<service name="Portlet_onedoor_PmlWorkflowService" provider="java:RPC" style="rpc" use="encoded">
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.onedoor.portlet.nss.com"/>
+		<parameter name="wsdlServiceElement" value="PmlWorkflowServiceSoapService"/>
+		<parameter name="wsdlServicePort" value="Portlet_onedoor_PmlWorkflowService"/>
+		<parameter name="className" value="com.nss.portlet.onedoor.service.http.PmlWorkflowServiceSoap"/>
+		<parameter name="wsdlPortType" value="PmlWorkflowServiceSoap"/>
 		<parameter name="typeMappingVersion" value="1.2"/>
 		<parameter name="allowedMethods" value="*"/>
 	</service>

@@ -37,27 +37,15 @@
 		</task>
 		<task name="tralai:tralai:soan-tin">
 			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
+			
+				<type></type>
 			</assignment>
 			<event type="task-end">
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
 			</event>
 		</task>
-		<task name="duyettin:duyettin:hoan-thanh">
-			<assignment class="com.sgs.liferay.jbpm.handler.IdentityAssignmentHandler">
-				<type>
-					role
-				</type>
-				<companyId>
-					10113
-				</companyId>
-				<nameHelp>
-					Biên tập viên
-				</nameHelp>
-			</assignment>
-		</task>
 		<transition to="duyet-tin" name="duyet-tin"></transition>
 		<transition to="soan-tin" name="soan-tin"></transition>
-		<transition to="hoan-thanh" name="hoan-thanh"></transition>
 	</task-node>
 
 	<task-node name="duyet-tin">

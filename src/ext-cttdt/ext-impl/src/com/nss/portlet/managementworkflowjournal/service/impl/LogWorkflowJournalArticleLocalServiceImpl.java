@@ -1,6 +1,8 @@
 
 package com.nss.portlet.managementworkflowjournal.service.impl;
 
+import java.util.List;
+
 import com.liferay.portal.SystemException;
 import com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle;
 import com.nss.portlet.managementworkflowjournal.service.base.LogWorkflowJournalArticleLocalServiceBaseImpl;
@@ -21,6 +23,12 @@ public class LogWorkflowJournalArticleLocalServiceImpl
 			res = 0;
 		}
 		return res;
+	}
+
+	public List<LogWorkflowJournalArticle> getAllLog(long resourcePrimkey)
+		throws SystemException {
+
+		return logWorkflowJournalArticleFinder.getAllLog(resourcePrimkey);
 	}
 
 	public LogWorkflowJournalArticle getLogByResourceTrainsition(

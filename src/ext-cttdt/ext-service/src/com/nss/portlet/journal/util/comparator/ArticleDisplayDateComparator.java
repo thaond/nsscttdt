@@ -29,30 +29,37 @@ import com.nss.portlet.journal.model.JournalArticle;
 /**
  * <a href="ArticleDisplayDateComparator.java.html"><b><i>View Source</i></b>
  * </a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ArticleDisplayDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "displayDate ASC, version ASC";
+	public static String ORDER_BY_ASC =
+		"journalarticle.displayDate ASC, journalarticle.version ASC";
 
-	public static String ORDER_BY_DESC = "displayDate DESC, version DESC";
+	public static String ORDER_BY_DESC =
+		"journalarticle.displayDate DESC, journalarticle.version DESC";
+
+	private boolean _asc;
 
 	public ArticleDisplayDateComparator() {
+
 		this(false);
 	}
 
 	public ArticleDisplayDateComparator(boolean asc) {
+
 		_asc = asc;
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		JournalArticle article1 = (JournalArticle)obj1;
-		JournalArticle article2 = (JournalArticle)obj2;
 
-		int value = DateUtil.compareTo(
-			article1.getDisplayDate(), article2.getDisplayDate());
+		JournalArticle article1 = (JournalArticle) obj1;
+		JournalArticle article2 = (JournalArticle) obj2;
+
+		int value =
+			DateUtil.compareTo(
+				article1.getDisplayDate(), article2.getDisplayDate());
 
 		if (value == 0) {
 			if (article1.getVersion() < article2.getVersion()) {
@@ -72,6 +79,7 @@ public class ArticleDisplayDateComparator extends OrderByComparator {
 	}
 
 	public String getOrderBy() {
+
 		if (_asc) {
 			return ORDER_BY_ASC;
 		}
@@ -79,7 +87,5 @@ public class ArticleDisplayDateComparator extends OrderByComparator {
 			return ORDER_BY_DESC;
 		}
 	}
-
-	private boolean _asc;
 
 }

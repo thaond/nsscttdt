@@ -13,10 +13,22 @@ import com.nss.portlet.filetype.model.PmlFileType;
 import com.nss.portlet.filetype.model.PmlFileTypeAttachedFile;
 import com.nss.portlet.filetype.service.PmlFileTypeAttachedFileLocalServiceUtil;
 import com.nss.portlet.filetype.service.base.PmlFileTypeLocalServiceBaseImpl;
+import com.nss.portlet.filetype.service.persistence.PmlFileTypeUtil;
 import com.nss.portlet.generatetemplateid.service.IdTemplateLocalServiceUtil;
+import com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile;
+import com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileLocalServiceUtil;
 
 
 public class PmlFileTypeLocalServiceImpl extends PmlFileTypeLocalServiceBaseImpl {
+	
+	public List<PmlFileType> findAll() {
+		try {
+			return PmlFileTypeUtil.findAll();
+		} catch (SystemException e) {
+			return new ArrayList<PmlFileType>();
+		}
+	}
+	
 	public int searchCount(String keywords) throws SystemException{
 		return pmlFileTypeFinder.countByKeywords(keywords);
 	}
@@ -45,19 +57,18 @@ public class PmlFileTypeLocalServiceImpl extends PmlFileTypeLocalServiceBaseImpl
 	}
 	
 	public void removePmlFileType(String fileTypeId) throws SystemException, PortalException {
-		// chu co doi tuong PmlOneDoorReceiveFile
-//		List<PmlOneDoorReceiveFile> pmlOneDoorReceiveFileList = new ArrayList<PmlOneDoorReceiveFile>();
+		List<PmlOneDoorReceiveFile> pmlOneDoorReceiveFileList = new ArrayList<PmlOneDoorReceiveFile>();
 		List<PmlFileTypeAttachedFile> pmlFileTypeAttachedFileList = new ArrayList<PmlFileTypeAttachedFile>();
-//		try {
-//			pmlOneDoorReceiveFileList = PmlOneDoorReceiveFileUtil.findByFileTypeId(fileTypeId);
-//		} catch (Exception e) {
-//			
-//		}
-//		
+		try {
+			pmlOneDoorReceiveFileList = PmlOneDoorReceiveFileLocalServiceUtil.findByFileTypeId(fileTypeId);
+		} catch (Exception e) {
+			
+		}
+		
 		try {
 			pmlFileTypeAttachedFileList = PmlFileTypeAttachedFileLocalServiceUtil.findByFileTypeId(fileTypeId);
 		} catch (Exception e) { }	
-//		validateFileType(pmlOneDoorReceiveFileList.size(), pmlFileTypeAttachedFileList.size());
+		validateFileType(pmlOneDoorReceiveFileList.size(), pmlFileTypeAttachedFileList.size());
 		pmlFileTypePersistence.remove(fileTypeId);
 	}
 	
@@ -143,5 +154,9 @@ public class PmlFileTypeLocalServiceImpl extends PmlFileTypeLocalServiceBaseImpl
 				}
 			}
 		}
+	}
+	
+	public List<PmlFileType> search(int start, int end, OrderByComparator obc) throws SystemException{
+		return pmlFileTypePersistence.findAll(start, end, obc);
 	}
 }

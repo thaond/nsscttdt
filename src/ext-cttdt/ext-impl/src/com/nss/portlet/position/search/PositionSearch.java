@@ -25,7 +25,7 @@ public class PositionSearch extends SearchContainer<Position>{
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 	
 	static{
-		headerNames.add("no.");
+		headerNames.add("STT");
 		headerNames.add("code.");
 		headerNames.add("name.");
 		headerNames.add("description");

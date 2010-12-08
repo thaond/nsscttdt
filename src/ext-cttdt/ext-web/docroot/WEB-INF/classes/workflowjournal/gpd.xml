@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<root-container name="workflowjournal" width="713" height="462">
+<root-container name="workflowjournal" width="814" height="462">
   <node name="bat-dau" x="166" y="-6" width="132" height="36">
     <edge>
       <label x="5" y="-10"/>
@@ -14,11 +14,6 @@
       <label x="5" y="-10"/>
       <bendpoint w1="163" h1="-6" w2="161" h2="82"/>
       <bendpoint w1="164" h1="-87" w2="162" h2="1"/>
-    </edge>
-    <edge>
-      <label x="5" y="-10"/>
-      <bendpoint w1="347" h1="-9" w2="352" h2="-264"/>
-      <bendpoint w1="355" h1="245" w2="360" h2="-10"/>
     </edge>
   </node>
   <node name="duyet-tin" x="168" y="286" width="132" height="36">

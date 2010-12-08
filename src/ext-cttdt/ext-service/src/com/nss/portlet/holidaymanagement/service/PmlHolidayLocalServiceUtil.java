@@ -101,6 +101,11 @@ public class PmlHolidayLocalServiceUtil {
         return getService().countHolidayByValue(holidayValue);
     }
 
+    public static int checkDateHoliday(java.lang.String dateReceipt,
+        int fileProcessNumber) {
+        return getService().checkDateHoliday(dateReceipt, fileProcessNumber);
+    }
+
     public static PmlHolidayLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("PmlHolidayLocalService is not set");

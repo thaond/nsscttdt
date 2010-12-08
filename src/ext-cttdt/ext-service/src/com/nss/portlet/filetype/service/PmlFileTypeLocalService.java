@@ -79,6 +79,8 @@ public interface PmlFileTypeLocalService {
         com.nss.portlet.filetype.model.PmlFileType pmlFileType, boolean merge)
         throws com.liferay.portal.SystemException;
 
+    public java.util.List<com.nss.portlet.filetype.model.PmlFileType> findAll();
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public int searchCount(java.lang.String keywords)
         throws com.liferay.portal.SystemException;
@@ -122,4 +124,9 @@ public interface PmlFileTypeLocalService {
         java.lang.String receiptTemplate, java.lang.String templateId)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.filetype.model.PmlFileType> search(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
 }

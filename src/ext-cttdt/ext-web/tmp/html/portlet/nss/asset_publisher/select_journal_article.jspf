@@ -51,7 +51,7 @@ ArticleSearch searchContainer = new ArticleSearch(renderRequest, portletURL);
 ArticleSearchTerms searchTerms = (ArticleSearchTerms)searchContainer.getSearchTerms();
 %>
 
-<%@ include file="/html/portlet/nss/journal/article_search_results.jspf" %>
+<%@ include file="/html/portlet/journal/article_search_results.jspf" %>
 
 <div class="separator"><!-- --></div>
 

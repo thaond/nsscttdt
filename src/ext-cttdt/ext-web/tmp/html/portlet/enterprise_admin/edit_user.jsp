@@ -38,6 +38,16 @@ if (selUser != null) {
 	selContact = selUser.getContact();
 }
 
+PmlUser selPmlUser = null;
+
+if (selUser != null) {
+	try {
+		selPmlUser = PmlUserLocalServiceUtil.getPmlUser(selUser.getUserId());
+	} catch (Exception e) {
+		selPmlUser = null;
+	}
+}
+
 PasswordPolicy passwordPolicy = null;
 
 if (selUser == null) {
@@ -165,7 +175,9 @@ String[][] categorySections = {mainSections, identificationSections, miscellaneo
 String curSection = mainSections[0];
 %>
 
-<script type="text/javascript">
+
+<%@page import="com.nss.portlet.department.model.PmlUser"%>
+<%@page import="com.nss.portlet.department.service.PmlUserLocalServiceUtil"%><script type="text/javascript">
 	function <portlet:namespace />createURL(href, value, onclick) {
 		return '<a href="' + href + '"' + (onclick ? ' onclick="' + onclick + '" ' : '') + '>' + value + '</a>';
 	};
@@ -213,6 +225,7 @@ String curSection = mainSections[0];
 			request.setAttribute("user.communityRoles", communityRoles);
 			request.setAttribute("user.organizationRoles", organizationRoles);
 			request.setAttribute("user.userGroups", userGroups);
+			request.setAttribute("user.pmlUser", selPmlUser);
 
 			request.setAttribute("addresses.className", Contact.class.getName());
 			request.setAttribute("emailAddresses.className", Contact.class.getName());

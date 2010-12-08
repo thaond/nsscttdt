@@ -34,4 +34,11 @@ import com.liferay.portal.kernel.annotation.Transactional;
     PortalException.class, SystemException.class}
 )
 public interface IdTemplateService {
+    public java.lang.String generatedId(java.lang.Class clazz)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException;
+
+    public java.lang.String generatedId(java.lang.String template)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException;
 }

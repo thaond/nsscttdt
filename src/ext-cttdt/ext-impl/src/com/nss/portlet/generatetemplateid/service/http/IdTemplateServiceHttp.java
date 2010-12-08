@@ -1,5 +1,14 @@
 package com.nss.portlet.generatetemplateid.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MethodWrapper;
+import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.security.auth.HttpPrincipal;
+import com.liferay.portal.service.http.TunnelUtil;
+
+import com.nss.portlet.generatetemplateid.service.IdTemplateServiceUtil;
+
 
 /**
  * <a href="IdTemplateServiceHttp.java.html"><b><i>View Source</i></b></a>
@@ -41,4 +50,81 @@ package com.nss.portlet.generatetemplateid.service.http;
  *
  */
 public class IdTemplateServiceHttp {
+    private static Log _log = LogFactoryUtil.getLog(IdTemplateServiceHttp.class);
+
+    public static java.lang.String generatedId(HttpPrincipal httpPrincipal,
+        java.lang.Class clazz)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        try {
+            Object paramObj0 = clazz;
+
+            if (clazz == null) {
+                paramObj0 = new NullWrapper("java.lang.Class");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(IdTemplateServiceUtil.class.getName(),
+                    "generatedId", new Object[] { paramObj0 });
+
+            Object returnObj = null;
+
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
+
+                if (e instanceof com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException) {
+                    throw (com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException) e;
+                }
+
+                throw new com.liferay.portal.SystemException(e);
+            }
+
+            return (java.lang.String) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
+
+            throw se;
+        }
+    }
+
+    public static java.lang.String generatedId(HttpPrincipal httpPrincipal,
+        java.lang.String template)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException {
+        try {
+            Object paramObj0 = template;
+
+            if (template == null) {
+                paramObj0 = new NullWrapper("java.lang.String");
+            }
+
+            MethodWrapper methodWrapper = new MethodWrapper(IdTemplateServiceUtil.class.getName(),
+                    "generatedId", new Object[] { paramObj0 });
+
+            Object returnObj = null;
+
+            try {
+                returnObj = TunnelUtil.invoke(httpPrincipal, methodWrapper);
+            } catch (Exception e) {
+                if (e instanceof com.liferay.portal.SystemException) {
+                    throw (com.liferay.portal.SystemException) e;
+                }
+
+                if (e instanceof com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException) {
+                    throw (com.nss.portlet.generatetemplateid.NoSuchIdGeneratedException) e;
+                }
+
+                throw new com.liferay.portal.SystemException(e);
+            }
+
+            return (java.lang.String) returnObj;
+        } catch (com.liferay.portal.SystemException se) {
+            _log.error(se, se);
+
+            throw se;
+        }
+    }
 }

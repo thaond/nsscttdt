@@ -89,6 +89,10 @@ public class PmlFileTypeLocalServiceUtil {
         return getService().updatePmlFileType(pmlFileType, merge);
     }
 
+    public static java.util.List<com.nss.portlet.filetype.model.PmlFileType> findAll() {
+        return getService().findAll();
+    }
+
     public static int searchCount(java.lang.String keywords)
         throws com.liferay.portal.SystemException {
         return getService().searchCount(keywords);
@@ -149,6 +153,12 @@ public class PmlFileTypeLocalServiceUtil {
                    .updateFileType(fileTypeId, fileTypeCode, fileTypeName,
             fieldId, processTime, description, active, currentReceiptNumber,
             receiptTemplate, templateId);
+    }
+
+    public static java.util.List<com.nss.portlet.filetype.model.PmlFileType> search(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().search(start, end, obc);
     }
 
     public static PmlFileTypeLocalService getService() {

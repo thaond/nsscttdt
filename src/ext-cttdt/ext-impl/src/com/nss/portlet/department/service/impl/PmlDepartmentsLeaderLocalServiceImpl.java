@@ -26,4 +26,19 @@ public class PmlDepartmentsLeaderLocalServiceImpl
 		return pmlDepartmentsLeaderPersistence.findByDepartmentsId(departmentsId);
 	}
 	
+	public boolean checkUserIsLeader(String userIdString) {
+		long userId = Long.parseLong(userIdString);
+		boolean flag = false;
+		List<PmlDepartmentsLeader> departmentsLeaderList = new ArrayList<PmlDepartmentsLeader>();
+		try {
+			departmentsLeaderList = pmlDepartmentsLeaderPersistence.findByUserId(userId);
+		} catch (Exception e) {
+			departmentsLeaderList = new ArrayList<PmlDepartmentsLeader>();
+		}
+		
+		if (departmentsLeaderList.size()>0) {
+			flag = true;
+		}
+		return flag;
+	}
 }

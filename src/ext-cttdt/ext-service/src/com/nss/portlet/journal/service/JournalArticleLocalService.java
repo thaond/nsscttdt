@@ -82,7 +82,7 @@ public interface JournalArticleLocalService {
 
     public com.nss.portlet.journal.model.JournalArticle addArticle(
         long userId, long groupId, java.lang.String articleId,
-        boolean autoArticleId, java.lang.String title,
+        boolean autoArticleId, double version, java.lang.String title,
         java.lang.String description, java.lang.String content,
         java.lang.String type, java.lang.String structureId,
         java.lang.String templateId, int displayDateMonth, int displayDateDay,
@@ -100,7 +100,7 @@ public interface JournalArticleLocalService {
 
     public com.nss.portlet.journal.model.JournalArticle addArticle(
         long userId, long groupId, java.lang.String articleId,
-        boolean autoArticleId, double version, java.lang.String title,
+        boolean autoArticleId, java.lang.String title,
         java.lang.String description, java.lang.String content,
         java.lang.String type, java.lang.String structureId,
         java.lang.String templateId, int displayDateMonth, int displayDateDay,
@@ -135,25 +135,25 @@ public interface JournalArticleLocalService {
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void addArticleResources(long groupId, java.lang.String articleId,
-        boolean addCommunityPermissions, boolean addGuestPermissions)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
     public void addArticleResources(
         com.nss.portlet.journal.model.JournalArticle article,
         boolean addCommunityPermissions, boolean addGuestPermissions)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void addArticleResources(long groupId, java.lang.String articleId,
+    public void addArticleResources(
+        com.nss.portlet.journal.model.JournalArticle article,
         java.lang.String[] communityPermissions,
         java.lang.String[] guestPermissions)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void addArticleResources(
-        com.nss.portlet.journal.model.JournalArticle article,
+    public void addArticleResources(long groupId, java.lang.String articleId,
+        boolean addCommunityPermissions, boolean addGuestPermissions)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    public void addArticleResources(long groupId, java.lang.String articleId,
         java.lang.String[] communityPermissions,
         java.lang.String[] guestPermissions)
         throws com.liferay.portal.PortalException,
@@ -191,15 +191,15 @@ public interface JournalArticleLocalService {
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void deleteArticle(long groupId, java.lang.String articleId,
-        double version, java.lang.String articleURL,
+    public void deleteArticle(
+        com.nss.portlet.journal.model.JournalArticle article,
+        java.lang.String articleURL,
         com.liferay.portal.service.ServiceContext serviceContext)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void deleteArticle(
-        com.nss.portlet.journal.model.JournalArticle article,
-        java.lang.String articleURL,
+    public void deleteArticle(long groupId, java.lang.String articleId,
+        double version, java.lang.String articleURL,
         com.liferay.portal.service.ServiceContext serviceContext)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
@@ -208,15 +208,15 @@ public interface JournalArticleLocalService {
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void expireArticle(long groupId, java.lang.String articleId,
-        double version, java.lang.String articleURL,
+    public void expireArticle(
+        com.nss.portlet.journal.model.JournalArticle article,
+        java.lang.String articleURL,
         com.liferay.portal.service.ServiceContext serviceContext)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
 
-    public void expireArticle(
-        com.nss.portlet.journal.model.JournalArticle article,
-        java.lang.String articleURL,
+    public void expireArticle(long groupId, java.lang.String articleId,
+        double version, java.lang.String articleURL,
         com.liferay.portal.service.ServiceContext serviceContext)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
@@ -245,38 +245,6 @@ public interface JournalArticleLocalService {
             com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.lang.String getArticleContent(long groupId,
-        java.lang.String articleId, java.lang.String viewMode,
-        java.lang.String languageId,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.lang.String getArticleContent(long groupId,
-        java.lang.String articleId, java.lang.String viewMode,
-        java.lang.String templateId, java.lang.String languageId,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.lang.String getArticleContent(long groupId,
-        java.lang.String articleId, double version, java.lang.String viewMode,
-        java.lang.String languageId,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.lang.String getArticleContent(long groupId,
-        java.lang.String articleId, double version, java.lang.String viewMode,
-        java.lang.String templateId, java.lang.String languageId,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public java.lang.String getArticleContent(
         com.nss.portlet.journal.model.JournalArticle article,
         java.lang.String templateId, java.lang.String viewMode,
@@ -285,8 +253,58 @@ public interface JournalArticleLocalService {
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getArticleContent(long groupId,
+        java.lang.String articleId, double version, java.lang.String viewMode,
+        java.lang.String templateId, java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getArticleContent(long groupId,
+        java.lang.String articleId, double version, java.lang.String viewMode,
+        java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getArticleContent(long groupId,
+        java.lang.String articleId, java.lang.String viewMode,
+        java.lang.String templateId, java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getArticleContent(long groupId,
+        java.lang.String articleId, java.lang.String viewMode,
+        java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
-        long groupId, java.lang.String articleId, java.lang.String viewMode,
+        com.nss.portlet.journal.model.JournalArticle article,
+        java.lang.String templateId, java.lang.String viewMode,
+        java.lang.String languageId, int page, java.lang.String xmlRequest,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
+        long groupId, java.lang.String articleId, double version,
+        java.lang.String templateId, java.lang.String viewMode,
+        java.lang.String languageId, int page, java.lang.String xmlRequest,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
+        long groupId, java.lang.String articleId, double version,
+        java.lang.String templateId, java.lang.String viewMode,
         java.lang.String languageId,
         com.liferay.portal.theme.ThemeDisplay themeDisplay)
         throws com.liferay.portal.PortalException,
@@ -296,14 +314,6 @@ public interface JournalArticleLocalService {
     public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
         long groupId, java.lang.String articleId, java.lang.String viewMode,
         java.lang.String languageId, int page, java.lang.String xmlRequest,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
-        long groupId, java.lang.String articleId, java.lang.String templateId,
-        java.lang.String viewMode, java.lang.String languageId,
         com.liferay.portal.theme.ThemeDisplay themeDisplay)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
@@ -319,29 +329,19 @@ public interface JournalArticleLocalService {
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
-        long groupId, java.lang.String articleId, double version,
-        java.lang.String templateId, java.lang.String viewMode,
+        long groupId, java.lang.String articleId, java.lang.String templateId,
+        java.lang.String viewMode, java.lang.String languageId,
+        com.liferay.portal.theme.ThemeDisplay themeDisplay)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
+        long groupId, java.lang.String articleId, java.lang.String viewMode,
         java.lang.String languageId,
         com.liferay.portal.theme.ThemeDisplay themeDisplay)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
-        long groupId, java.lang.String articleId, double version,
-        java.lang.String templateId, java.lang.String viewMode,
-        java.lang.String languageId, int page, java.lang.String xmlRequest,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.PortalException,
-            com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.nss.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
-        com.nss.portlet.journal.model.JournalArticle article,
-        java.lang.String templateId, java.lang.String viewMode,
-        java.lang.String languageId, int page, java.lang.String xmlRequest,
-        com.liferay.portal.theme.ThemeDisplay themeDisplay)
-        throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public java.util.List<com.nss.portlet.journal.model.JournalArticle> getArticles()
@@ -463,11 +463,11 @@ public interface JournalArticleLocalService {
             com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public void reIndex(long resourcePrimKey)
+    public void reIndex(com.nss.portlet.journal.model.JournalArticle article)
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public void reIndex(com.nss.portlet.journal.model.JournalArticle article)
+    public void reIndex(long resourcePrimKey)
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -481,20 +481,27 @@ public interface JournalArticleLocalService {
             com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.liferay.portal.kernel.search.Hits search(long companyId,
-        long groupId, java.lang.String keywords, int start, int end)
+    public java.util.List<com.nss.portlet.journal.model.JournalArticle> search(
+        long userId, long companyId, long groupId, java.lang.String keywords,
+        java.lang.Double version, java.lang.String type,
+        java.lang.String structureId, java.lang.String templateId,
+        java.util.Date displayDateGT, java.util.Date displayDateLT,
+        java.lang.Boolean approved, java.lang.Boolean expired,
+        java.util.Date reviewDate, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.liferay.portal.kernel.search.Hits search(long companyId,
-        long groupId, java.lang.String keywords,
-        com.liferay.portal.kernel.search.Sort sort, int start, int end)
-        throws com.liferay.portal.SystemException;
-
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public com.liferay.portal.kernel.search.Hits search(long companyId,
-        long groupId, java.lang.String keywords,
-        com.liferay.portal.kernel.search.Sort[] sorts, int start, int end)
+    public java.util.List<com.nss.portlet.journal.model.JournalArticle> search(
+        long userId, long companyId, long groupId, java.lang.String articleId,
+        java.lang.Double version, java.lang.String title,
+        java.lang.String description, java.lang.String content,
+        java.lang.String type, java.lang.String structureId,
+        java.lang.String templateId, java.util.Date displayDateGT,
+        java.util.Date displayDateLT, java.lang.Boolean approved,
+        java.lang.Boolean expired, java.util.Date reviewDate,
+        boolean andOperator, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -535,6 +542,32 @@ public interface JournalArticleLocalService {
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.search.Hits search(long companyId,
+        long groupId, java.lang.String keywords, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.search.Hits search(long companyId,
+        long groupId, java.lang.String keywords,
+        com.liferay.portal.kernel.search.Sort sort, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.search.Hits search(long companyId,
+        long groupId, java.lang.String keywords,
+        com.liferay.portal.kernel.search.Sort[] sorts, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int searchCount(long userId, long companyId, long groupId,
+        java.lang.String keywords, java.lang.Double version,
+        java.lang.String type, java.lang.String structureId,
+        java.lang.String templateId, java.util.Date displayDateGT,
+        java.util.Date displayDateLT, java.lang.Boolean approved,
+        java.lang.Boolean expired, java.util.Date reviewDate)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public int searchCount(long companyId, long groupId,
         java.lang.String keywords, java.lang.Double version,
         java.lang.String type, java.lang.String structureId,
@@ -560,6 +593,17 @@ public interface JournalArticleLocalService {
         java.lang.String title, java.lang.String description,
         java.lang.String content, java.lang.String type,
         java.lang.String[] structureIds, java.lang.String[] templateIds,
+        java.util.Date displayDateGT, java.util.Date displayDateLT,
+        java.lang.Boolean approved, java.lang.Boolean expired,
+        java.util.Date reviewDate, boolean andOperator)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public int searchCount1(long userId, long companyId, long groupId,
+        java.lang.String articleId, java.lang.Double version,
+        java.lang.String title, java.lang.String description,
+        java.lang.String content, java.lang.String type,
+        java.lang.String structureId, java.lang.String templateId,
         java.util.Date displayDateGT, java.util.Date displayDateLT,
         java.lang.Boolean approved, java.lang.Boolean expired,
         java.util.Date reviewDate, boolean andOperator)

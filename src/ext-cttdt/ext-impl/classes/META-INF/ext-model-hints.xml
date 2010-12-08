@@ -646,6 +646,7 @@
 		<field name="resourcePrimkey" type="long" />
 		<field name="countImageOfArticle" type="int" />
 		<field name="datecomplete" type="Date" />
+		<field name="statuscurrent" type="String" />
 	</model>
 	<model name="com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle">
 		<field name="logWorkflowJournalArticleId" type="long" />
@@ -899,5 +900,160 @@
 		<field name="fileTypeDelegateId" type="long" />
 		<field name="fileTypeId" type="String" />
 		<field name="delegateId" type="long" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile">
+		<field name="fileId" type="String" />
+		<field name="cityId" type="String" />
+		<field name="districtId" type="String" />
+		<field name="wardsId" type="String" />
+		<field name="streetId" type="String" />
+		<field name="exactReturningDate" type="Date" />
+		<field name="receiverId" type="long" />
+		<field name="validDate" type="Date" />
+		<field name="expectedReturningDate" type="Date" />
+		<field name="applicationDate" type="Date" />
+		<field name="otherContent" type="String" />
+		<field name="briefContent" type="String" />
+		<field name="applicantName" type="String" />
+		<field name="organization" type="String" />
+		<field name="authorisedLetter" type="String" />
+		<field name="idNumber" type="String" />
+		<field name="issuingDate" type="Date" />
+		<field name="issuingPlace" type="String" />
+		<field name="telephone" type="String" />
+		<field name="gender" type="String" />
+		<field name="streetNumber" type="String" />
+		<field name="permanentAddress" type="String" />
+		<field name="contactInfomation" type="String" />
+		<field name="oldNumberReceipt" type="String" />
+		<field name="numberReceipt" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="fieldId" type="String" />
+		<field name="solvingTime" type="int" />
+		<field name="amendedContent" type="String" />
+		<field name="landCheckingDate" type="Date" />
+		<field name="decisionNotice" type="String" />
+		<field name="receiver" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="lastUpdate" type="Date" />
+		<field name="lastTestProcessInfo" type="String" />
+		<field name="active" type="String" />
+		<field name="generalorderno" type="long" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlWfOnedoorProcess">
+		<field name="fileId" type="String" />
+		<field name="processId" type="long" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlWorkflow">
+		<field name="workflowId" type="long" />
+		<field name="fileTypeId" type="String" />
+		<field name="workflow" type="String" />
+		<field name="version_" type="int" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlStateProcess">
+		<field name="stateProcessId" type="long" />
+		<field name="stateProcessCode" type="String" />
+		<field name="stateProcessName" type="String" />
+		<field name="fileStatusId" type="long" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlProcessDispose">
+		<field name="processDisposeId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="transition_" type="int" />
+		<field name="processer" type="long" />
+		<field name="dateProcess" type="Date" />
+		<field name="processInfomation" type="String" />
+		<field name="receiver" type="long" />
+		<field name="receiveDate" type="Date" />
+		<field name="stateProcessIdBefore" type="long" />
+		<field name="stateProcessIdAfter" type="long" />
+		<field name="expiredDate" type="Date" />
+		<field name="delegateUser" type="long" />
+		<field name="sendDate" type="Date" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlStateWorkFlow">
+		<field name="stateWfId" type="long" />
+		<field name="workflow" type="String" />
+		<field name="stateProcessId" type="long" />
+		<field name="solvingTime" type="int" />
+		<field name="version_" type="int" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlTransition">
+		<field name="transitionId" type="long" />
+		<field name="transitionName" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="noTransition" type="int" />
+		<field name="stateProcessCurrent" type="long" />
+		<field name="stateProcessNext" type="long" />
+		<field name="version_" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlFilePCCC">
+		<field name="fileId" type="String" />
+		<field name="fileName" type="String" />
+		<field name="applicantRepresentation" type="String" />
+		<field name="applicantTelephone" type="String" />
+		<field name="receiverRepresentation" type="String" />
+		<field name="receiverTelephone" type="String" />
+		<field name="projectName" type="String" />
+		<field name="applicantCategory" type="String" />
+		<field name="addressBuilder" type="String" />
+		<field name="investor" type="String" />
+		<field name="designCop" type="String" />
+		<field name="fileNumber" type="int" />
+		<field name="inputDataDate" type="Date" />
+		<field name="noteInformationManagement" type="String" />
+		<field name="totalHour" type="int" />
+		<field name="totalDate" type="int" />
+		<field name="conclusion" type="String" />
+		<field name="receiveOfUnit" type="String" />
+		<field name="applicantTime" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlFilePCCCAttachedFile">
+		<field name="attachedFileId" type="long" />
+		<field name="filePcccId" type="String" />
+		<field name="objectType" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="path" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="fileType" type="String" />
+		<field name="title" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlFileReturningInfo">
+		<field name="fileReturningInfoId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="fileSender" type="String" />
+		<field name="licenseNumber" type="String" />
+		<field name="issuingDateLicense" type="Date" />
+		<field name="receiveLicenseDate" type="Date" />
+		<field name="documentNumber" type="String" />
+		<field name="billNumber" type="String" />
+		<field name="numberMoney" type="long" />
+		<field name="note" type="String" />
+		<field name="conclude" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlFileStatus">
+		<field name="fileStatusId" type="long" />
+		<field name="fileStatusCode" type="String" />
+		<field name="fileStatusName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="type" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlFileStatusStateProcess">
+		<field name="id" type="long" />
+		<field name="fileStatusId" type="long" />
+		<field name="stateProcessId" type="long" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.nss.portlet.onedoor.model.PmlPaintDocument">
+		<field name="paintDocumentId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="paintDocumentName" type="String" />
+		<field name="quantity" type="int" />
+		<field name="note" type="String" />
 	</model>
 </model-hints>

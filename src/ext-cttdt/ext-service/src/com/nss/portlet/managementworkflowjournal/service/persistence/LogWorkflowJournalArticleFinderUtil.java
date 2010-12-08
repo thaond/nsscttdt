@@ -3,6 +3,11 @@ package com.nss.portlet.managementworkflowjournal.service.persistence;
 public class LogWorkflowJournalArticleFinderUtil {
     private static LogWorkflowJournalArticleFinder _finder;
 
+    public static java.util.List<com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle> getAllLog(
+        long resourcePrimkey) throws com.liferay.portal.SystemException {
+        return getFinder().getAllLog(resourcePrimkey);
+    }
+
     public static com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle getLogBy_R_T(
         long resourcePrimkey) throws com.liferay.portal.SystemException {
         return getFinder().getLogBy_R_T(resourcePrimkey);

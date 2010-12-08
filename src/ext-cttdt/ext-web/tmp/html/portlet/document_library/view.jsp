@@ -58,9 +58,9 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
 <input name="<portlet:namespace />searchFolderIds" type="hidden" value="<%= folderId %>" />
-
+<div class="parent-title"><liferay-ui:message key="Thu-vien-tai-lieu"/></div>
 <liferay-util:include page="/html/portlet/document_library/tabs1.jsp" />
-
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs1.equals("folders") %>'>
 		<c:if test="<%= showBreadcrumbs && (folder != null) %>">
@@ -146,10 +146,11 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 				<liferay-ui:search-iterator />
 			</liferay-ui:search-container>
 		</c:if>
-
 		</form>
 
-		<script type="text/javascript">
+
+
+	<script type="text/javascript">
 			function <portlet:namespace />addFolder() {
 				var url = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/document_library/edit_folder" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="parentFolderId" value="<%= String.valueOf(folderId) %>" /></portlet:renderURL>';
 
@@ -163,11 +164,15 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 			<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm1.<portlet:namespace />keywords);
 			</c:if>
-		</script>
+	</script>
+
+
+
+
 
 		<c:if test="<%= folder != null %>">
 			<c:if test="<%= showSubfolders %>">
-				<br />
+				<br>
 			</c:if>
 
 			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm2" onSubmit="submitForm(this); return false;">
@@ -179,7 +184,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 			<c:if test="<%= showTabs && showSubfolders %>">
 				<liferay-ui:tabs names="documents" />
 			</c:if>
-
+			<div class="borderendTab">
 			<liferay-ui:search-container
 				curParam="cur2"
 				delta="<%= fileEntriesPerPage %>"
@@ -285,7 +290,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 				<liferay-ui:search-iterator />
 			</liferay-ui:search-container>
-
+			</div>
 			</form>
 
 			<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
@@ -296,7 +301,10 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 			</c:if>
 		</c:if>
 
-		<br />
+
+
+
+		<br>
 
 		<%
 		StringBuffer sb = new StringBuffer();
@@ -369,3 +377,4 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 	</c:when>
 </c:choose>
+</div>

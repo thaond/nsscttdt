@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<root-container name="workflowjournal" width="703" height="463">
+<root-container name="workflowjournal" width="814" height="462">
   <node name="bat-dau" x="166" y="-6" width="132" height="36">
     <edge>
       <label x="5" y="-10"/>
@@ -12,6 +12,8 @@
     </edge>
     <edge>
       <label x="5" y="-10"/>
+      <bendpoint w1="163" h1="-6" w2="161" h2="82"/>
+      <bendpoint w1="164" h1="-87" w2="162" h2="1"/>
     </edge>
   </node>
   <node name="duyet-tin" x="168" y="286" width="132" height="36">
@@ -20,16 +22,29 @@
     </edge>
     <edge>
       <label x="5" y="-10"/>
-      <bendpoint w1="119" h1="9" w2="122" h2="131"/>
+      <bendpoint w1="119" h1="4" w2="122" h2="126"/>
       <bendpoint w1="118" h1="-127" w2="121" h2="-5"/>
     </edge>
-  </node>
-  <node name="soan-tin" x="168" y="68" width="132" height="36">
     <edge>
       <label x="5" y="-10"/>
-      <bendpoint w1="-141" h1="-3" w2="-152" h2="-88"/>
-      <bendpoint w1="-137" h1="93" w2="-134" h2="-3"/>
+      <bendpoint w1="241" h1="3" w2="242" h2="213"/>
+      <bendpoint w1="235" h1="-212" w2="236" h2="-2"/>
     </edge>
   </node>
-  <node name="hoan-thanh" x="160" y="419" width="132" height="36"/>
+  <node name="soan-tin" x="167" y="76" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="4" y="94"/>
+      <bendpoint w1="-203" h1="-7" w2="-196" h2="-350"/>
+      <bendpoint w1="-197" h1="341" w2="-190" h2="-2"/>
+    </edge>
+    <edge>
+      <label x="3" y="16"/>
+      <bendpoint w1="-175" h1="1" w2="-176" h2="-209"/>
+      <bendpoint w1="-172" h1="209" w2="-173" h2="-1"/>
+    </edge>
+  </node>
+  <node name="hoan-thanh" x="173" y="418" width="132" height="36"/>
 </root-container>

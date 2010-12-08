@@ -634,6 +634,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 		document.<portlet:namespace />fm1.<portlet:namespace /><%= Constants.CMD %>.value = cmd;
 
 		<c:if test="<%= article == null %>">
+			document.<portlet:namespace />fm1.<portlet:namespace />content.value = <portlet:namespace />getArticleContent();
 			document.<portlet:namespace />fm1.<portlet:namespace />articleId.value = document.<portlet:namespace />fm1.<portlet:namespace />newArticleId.value;
 			submitForm(document.<portlet:namespace />fm1,"<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="workflowAction" value="true"/><portlet:param name="workflowActionName" value="<%= addWorkflowJournalArticleCommand%>"/><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:actionURL>");
 			return;

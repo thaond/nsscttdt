@@ -87,4 +87,6 @@ public interface PmlDepartmentsLeaderLocalService {
     public java.util.List<com.nss.portlet.department.model.PmlDepartmentsLeader> findByDepartmentsId(
         java.lang.String departmentsId)
         throws com.liferay.portal.SystemException;
+
+    public boolean checkUserIsLeader(java.lang.String userIdString);
 }

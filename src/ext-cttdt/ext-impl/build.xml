@@ -199,4 +199,18 @@
 			<param name="service.file" value="src/com/nss/portlet/delegate/service.xml" />
 		</antcall>
 	</target>
+	
+	<target name="build-service-portlet-onedoor">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/onedoor/service.xml" />
+		</antcall>
+	</target>
+	
+	<target name="build-wssd-portlet-onedoor">
+			<antcall target="build-wsdd">
+				<param name="service.file" value="src/com/nss/portlet/onedoor/service.xml" />
+			</antcall>
+		</target>
+	
+	
 </project>

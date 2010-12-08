@@ -12,9 +12,20 @@
 %>
 
 <form action="<%=portletURL.toString() %>" enctype="multipart/form-data" method="post">
-	<liferay-ui:message key="image-Sign" /> <input type="file" name="<portlet:namespace/>imageSign"><br>
-	<liferay-ui:message key="image-UnSign" /> <input type="file" name="<portlet:namespace/>imageUnSign"><br>
-	<input type="submit"  value='<liferay-ui:message key="upload" />'>
+<table cellspacing="0" width="100%">
+<tr>
+	<td width="30%"><liferay-ui:message key="image-Sign" />: </td>
+	<td><input type="file" name="<portlet:namespace/>imageSign"></td>
+</tr>
+<tr>
+	<td><liferay-ui:message key="image-UnSign" />:</td>
+	<td> <input type="file" name="<portlet:namespace/>imageUnSign"></td>
+</tr>
+<tr>
+	<td></td>
+	<td><input type="submit"  value='<liferay-ui:message key="upload" />'></td>
+	</tr>
+</table>
 </form>
 
 

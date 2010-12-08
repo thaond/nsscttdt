@@ -151,6 +151,7 @@ if (Validator.isNotNull(viewUsersRedirect)) {
 			keyProperty="userId"
 			modelVar="user2"
 		>
+		
 			<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="rowURL">
 				<portlet:param name="struts_action" value="/enterprise_admin/edit_user" />
 				<portlet:param name="redirect" value="<%= searchContainer.getIteratorURL().toString() %>" />

@@ -1668,26 +1668,6 @@ create table instancebean (
 	finish smallint
 );
 
-create table log_workflow_journal_article (
-	logWorkflowJournalArticleId bigint not null primary key,
-	resourcePrimkey bigint,
-	transition integer,
-	groupId bigint,
-	companyId bigint,
-	userId bigint,
-	roleId bigint,
-	dateReceiptOfUserReceipt timestamp,
-	dateProcessOfUserReceipt timestamp,
-	dateSendOfUserReceipt timestamp,
-	useridProcess bigint,
-	roleIdProcess bigint,
-	dateReceiptOfUserProcess timestamp,
-	dateProcessOfUserProcess timestamp,
-	processInformation varchar(75),
-	workflowStatusBefore varchar(75),
-	workflowStatusAfter varchar(75)
-);
-
 create table nss_certificate (
 	userId bigint not null primary key,
 	x509Certificate varchar(75)
@@ -1698,19 +1678,6 @@ create table nss_image_signer (
 	imageIdSign bigint,
 	imageIdUnSign bigint,
 	userId bigint
-);
-
-create table nss_quan_ly_quy_trinh_duyet_tin (
-	managementWorkflowJournalId bigint not null primary key,
-	groupId bigint,
-	companyId bigint,
-	userId bigint,
-	processDefinitionId bigint,
-	workflowname varchar(75),
-	version_ integer,
-	description varchar(75),
-	dateFrom timestamp,
-	dateTo timestamp
 );
 
 create table nss_signature (
@@ -1724,19 +1691,6 @@ create table nss_signature (
 	articleId varchar(75),
 	version double,
 	signData varchar(75)
-);
-
-create table nss_workflow_journal_article (
-	workflowJournalArticleId bigint not null primary key,
-	groupId bigint,
-	companyId bigint,
-	userId bigint,
-	roleId bigint,
-	processDefinitionId bigint,
-	processInstanceId bigint,
-	resourcePrimkey bigint,
-	journalType varchar(75),
-	countImageOfArticle integer
 );
 
 create table processdefinition (
@@ -3028,15 +2982,9 @@ create index IX_F27E8D9F on instancebean (previousNode, finish);
 create index IX_205EC031 on instancebean (status);
 create index IX_A8355678 on instancebean (status, finish);
 
-create index IX_6B798ECC on log_workflow_journal_article (resourcePrimkey);
-
-create index IX_E9CED857 on nss_quan_ly_quy_trinh_duyet_tin (workflowname, version_);
-
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
 create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
 create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
-
-create index IX_7BD52FD6 on nss_workflow_journal_article (resourcePrimkey);
 
 

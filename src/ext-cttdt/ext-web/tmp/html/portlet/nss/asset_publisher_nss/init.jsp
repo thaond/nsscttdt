@@ -214,38 +214,66 @@ if (0 != tagsEntryId) {
 // end minh 20100713
 
 //MoNT start 17/11/2010
-String valueAbstract = GetterUtil.getString(preferences.getValue("valueAbstract","2"));
-String valueChildren = GetterUtil.getString(preferences.getValue("valueChildren","5"));
-
 long categoryParentIdAbstractEntry = 0;
 List<TagsEntry> tagsAbstractEntrys = new ArrayList<TagsEntry>();
 List<TagsVocabulary> vocabulariesTest = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
-for (TagsVocabulary vocabulary : vocabulariesTest) {
-	if (vocabulary.getName().equals(category)) {
-		categoryParentIdAbstractEntry = vocabulary.getVocabularyId();	
+	for (TagsVocabulary vocabulary : vocabulariesTest) {
+		if (vocabulary.getName().equals(category)) {
+			categoryParentIdAbstractEntry = vocabulary.getVocabularyId();	
+		}
 	}
-}
 try {
 	tagsAbstractEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentIdAbstractEntry);
 
 } catch (Exception e) {
 	
 }
+
+//MoNT start 12/2/2010
+Map<Long,String> mapValueAbstract = new HashMap<Long,String>();
+Map<Long,String> mapValueChildren = new HashMap<Long,String>();
+	for(TagsVocabulary vocabulary : vocabulariesTest){
+		long vocabularyId = vocabulary.getVocabularyId();
+		String valueAbstractVocabulary = GetterUtil.getString(preferences.getValue("valueAbstract"+vocabularyId,"2"));
+		if(valueAbstractVocabulary.equals("")||valueAbstractVocabulary==null){
+			valueAbstractVocabulary="2";
+		}
+		mapValueAbstract.put(vocabularyId,valueAbstractVocabulary);
+		String valueChildrenVocabulary = GetterUtil.getString(preferences.getValue("valueChildren"+vocabularyId,"5"));
+		if(valueChildrenVocabulary.equals("")||valueChildrenVocabulary==null){
+			valueChildrenVocabulary="5";
+		}
+		mapValueChildren.put(vocabularyId,valueChildrenVocabulary);
+	}
+//MoNT end 12/2/2010
+
 Map<String,String> mapValueAbstractEntry= new HashMap<String,String>();
 Map<String,String> mapValueChildrenEntry= new HashMap<String,String>(); 
- for(int i=0;i<tagsAbstractEntrys.size();i++){
-	 long tagEntryId=tagsAbstractEntrys.get(i).getEntryId();
-	 String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagEntryId,"2"));
-	 if(valueAbstractEntry.equals("")||valueAbstractEntry==null){
-		 valueAbstractEntry="2";
-     }
-     mapValueAbstractEntry.put(""+tagEntryId,valueAbstractEntry);
-     String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagEntryId,"2"));
-     if(valueChildrenEntry.equals("")||valueChildrenEntry==null){
-    	 valueChildrenEntry="2";
-     }
-	 mapValueChildrenEntry.put(""+tagEntryId,valueChildrenEntry); 
- } 
+
+for(TagsVocabulary vocabulary : vocabulariesTest){
+	long vocabularyChildrenId = vocabulary.getVocabularyId();
+		List<TagsEntry> tagChildrenEntrys = new ArrayList<TagsEntry>();
+	try {
+		tagChildrenEntrys = JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyChildrenId);
+	}
+	catch (Exception e) {
+	}
+	if(tagChildrenEntrys.size()>0){
+		for(int i=0;i<tagChildrenEntrys.size();i++){
+			long tagEntryId=tagChildrenEntrys.get(i).getEntryId();
+			String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagEntryId,"2"));
+			if(valueAbstractEntry.equals("")||valueAbstractEntry==null){
+				valueAbstractEntry="2";
+		    }
+		    mapValueAbstractEntry.put(""+tagEntryId,valueAbstractEntry);
+		    String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagEntryId,"5"));
+		    if(valueChildrenEntry.equals("")||valueChildrenEntry==null){
+		    	valueChildrenEntry="5";
+		    }
+			mapValueChildrenEntry.put(""+tagEntryId,valueChildrenEntry); 
+		} 
+	}
+}
 //MoNT end 17/11/2010
 
 

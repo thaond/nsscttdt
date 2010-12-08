@@ -119,4 +119,8 @@ public interface DepartmentLocalService {
     public void removeDepartment(java.lang.String departmentId)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.department.model.Department> findByDepartmentsCode(
+        java.lang.String departmentCode)
+        throws com.liferay.portal.SystemException;
 }

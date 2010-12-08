@@ -29,30 +29,35 @@ import com.nss.portlet.journal.model.JournalArticle;
 /**
  * <a href="ArticleModifiedDateComparator.java.html"><b><i>View Source</i></b>
  * </a>
- *
+ * 
  * @author Brian Wing Shun Chan
- *
  */
 public class ArticleModifiedDateComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "modifiedDate ASC";
+	public static String ORDER_BY_ASC = "journalarticle.modifiedDate ASC";
 
-	public static String ORDER_BY_DESC = "modifiedDate DESC";
+	public static String ORDER_BY_DESC = "journalarticle.modifiedDate DESC";
+
+	private boolean _asc;
 
 	public ArticleModifiedDateComparator() {
+
 		this(false);
 	}
 
 	public ArticleModifiedDateComparator(boolean asc) {
+
 		_asc = asc;
 	}
 
 	public int compare(Object obj1, Object obj2) {
-		JournalArticle article1 = (JournalArticle)obj1;
-		JournalArticle article2 = (JournalArticle)obj2;
 
-		int value = DateUtil.compareTo(
-			article1.getModifiedDate(), article2.getModifiedDate());
+		JournalArticle article1 = (JournalArticle) obj1;
+		JournalArticle article2 = (JournalArticle) obj2;
+
+		int value =
+			DateUtil.compareTo(
+				article1.getModifiedDate(), article2.getModifiedDate());
 
 		if (_asc) {
 			return value;
@@ -63,6 +68,7 @@ public class ArticleModifiedDateComparator extends OrderByComparator {
 	}
 
 	public String getOrderBy() {
+
 		if (_asc) {
 			return ORDER_BY_ASC;
 		}
@@ -70,7 +76,5 @@ public class ArticleModifiedDateComparator extends OrderByComparator {
 			return ORDER_BY_DESC;
 		}
 	}
-
-	private boolean _asc;
 
 }

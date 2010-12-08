@@ -83,4 +83,10 @@ public interface PmlFileAttachedFileLocalService {
     public java.util.List<com.nss.portlet.filetype.model.PmlFileAttachedFile> findByAttachedFileId(
         java.lang.String attachedFileId)
         throws com.liferay.portal.SystemException;
+
+    public void removeByFileId(java.lang.String fileId)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.filetype.model.PmlFileAttachedFile> findByFileId(
+        java.lang.String fileId) throws com.liferay.portal.SystemException;
 }

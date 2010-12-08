@@ -586,13 +586,7 @@ create index IX_F27E8D9F on instancebean (previousNode, finish);
 create index IX_205EC031 on instancebean (status);
 create index IX_A8355678 on instancebean (status, finish);
 
-create index IX_6B798ECC on log_workflow_journal_article (resourcePrimkey);
-
-create index IX_E9CED857 on nss_quan_ly_quy_trinh_duyet_tin (workflowname, version_);
-
 create index IX_895462F4 on nss_signature (articleId);
 create index IX_55D889C4 on nss_signature (articlePrimKey);
 create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
 create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
-
-create index IX_7BD52FD6 on nss_workflow_journal_article (resourcePrimkey);

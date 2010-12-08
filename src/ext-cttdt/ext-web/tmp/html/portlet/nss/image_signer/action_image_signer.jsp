@@ -30,7 +30,7 @@
 			title : '<liferay-ui:message key="upload-image-signer"/>',
 			position : [ 'center', 100 ],
 			modal : true,
-			width : 350,
+			width : 450,
 			height : 'auto',
 			xy : [ 'center', 100 ],
 			url : url,

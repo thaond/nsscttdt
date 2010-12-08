@@ -1672,14 +1672,12 @@ create table log_workflow_journal_article (
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
-	roleId LONG,
+	userIds VARCHAR(75) null,
 	dateReceiptOfUserReceipt DATE null,
 	dateProcessOfUserReceipt DATE null,
 	dateSendOfUserReceipt DATE null,
 	useridProcess LONG,
-	roleIdProcess LONG,
-	dateReceiptOfUserProcess DATE null,
-	dateProcessOfUserProcess DATE null,
+	userIdsProcess VARCHAR(75) null,
 	processInformation VARCHAR(75) null,
 	workflowStatusBefore VARCHAR(75) null,
 	workflowStatusAfter VARCHAR(75) null
@@ -1728,12 +1726,13 @@ create table nss_workflow_journal_article (
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
-	roleId LONG,
+	userIds VARCHAR(75) null,
 	processDefinitionId LONG,
 	processInstanceId LONG,
 	resourcePrimkey LONG,
-	journalType VARCHAR(75) null,
-	countImageOfArticle INTEGER
+	countImageOfArticle INTEGER,
+	datecomplete DATE null,
+	statuscurrent VARCHAR(75) null
 );
 
 create table processdefinition (

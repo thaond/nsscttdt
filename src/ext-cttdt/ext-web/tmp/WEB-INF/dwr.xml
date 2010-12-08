@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN" "http://getahead.org/dwr/dwr30.dtd">
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr//dwr20.dtd">
 
 <dwr>
-
 	<allow>
+	<!-- pccc -->
+		<create creator="new" javascript="OneDoorUtilClientpccc"> 
+			<param name="class" value="com.nss.portlet.onedoor.ajax.OnedoorDwr" />
+		</create>
+		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileType" />
+		<convert converter="bean" match="com.liferay.portlet.expando.model.ExpandoBridge" />
+		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileTypeAttachedFile" />
+		<convert converter="bean" match="com.nss.portlet.onedoor.ajax.ProcessTransition" />			
+			
+		<!-- pccc -->
+		
+		<!-- yenlt PhieuChuyenDWR -->
+		<create javascript="PhieuChuyenClient" creator="new">
+			<param name="class" value="com.nss.portlet.onedoorprocess.util.PhieuChuyenDWR"></param>
+		</create>
+		
 		<create creator="new" javascript="JWFA">
 			<param name="class" value="com.nss.portlet.journalworkflow.ajax.JWFA"></param>
 		</create>
@@ -21,6 +36,26 @@
 		<create creator="new" javascript="pmlTemplateIdDwrClient"> 
 			<param name="class" value="com.nss.portlet.generatetemplateid.util.PmlTemplateIdDwr" />
 		</create>
+		<create creator="new" javascript="holidayDWRClient">
+			<param name="class" value="com.nss.portlet.holidaymanagement.service.impl.PmlHolidayLocalServiceImpl" />
+		</create>
+		<create creator="new" javascript="pmlUserUtilClient">
+			<param name="class" value="com.nss.portlet.department.util.PmlUserUtil" />
+		</create>
+		<convert match="com.nss.portlet.department.util.PmlUserDTO" converter="bean" />
+		
+		<create creator="new" javascript="pmlDepartmentsLeaderDWRClient">
+			<param name="class" value="com.nss.portlet.department.service.impl.PmlDepartmentsLeaderLocalServiceImpl" />
+		</create>
+		
+		<!-- PmlFileStatusStateProcess -->
+		<create javascript="PmlFileStatusStateProcessUtilClient" creator="new">
+			<param name="class" value="com.nss.portlet.onedoor.util.PmlFileStatusStateProcessUtil"></param>
+		</create>
+		<convert match="com.nss.portlet.onedoor.model.PmlFileStatusStateProcess" converter="bean"></convert>
+		<!-- end PmlFileStatusStateProcess -->
+		
+		
 	</allow>
 
 </dwr>

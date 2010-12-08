@@ -2,10 +2,23 @@ package com.nss.portlet.department.util;
 
 public class PmlUserDTO {
 	private long id;
+	private long userId;
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	private String name;
 	private String position;
 	private String isLeader;
 	private String isDepartmentMember;
+	private String screenName;
+	private String lastName;
+	private String middleName;
+	private String firstName;
 	private boolean main;
 	
 	public boolean isMain() {
@@ -51,5 +64,38 @@ public class PmlUserDTO {
 	public String getIsDepartmentMember() {
 		return isDepartmentMember;
 	}
+
+	public String getScreenName() {
+		return screenName;
+	}
+
+	public void setScreenName(String screenName) {
+		this.screenName = screenName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		this.middleName = middleName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
 	
 }

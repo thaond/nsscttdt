@@ -29,6 +29,10 @@
 			document.getElementById("email").focus();
 			return false;
 		}
+		if (echeck(email.value) == false){
+			document.getElementById("email").focus();
+			return false;
+		}
 		if (maChuDeCauHoi.selectedIndex == 0) {
 			alert('<liferay-ui:message key="vui-long-chon-chu-de-cau-hoi"/>');
 			document.getElementById("maChuDeCauHoi").focus();

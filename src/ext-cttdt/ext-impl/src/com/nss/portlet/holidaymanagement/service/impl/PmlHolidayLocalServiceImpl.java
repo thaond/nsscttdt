@@ -10,6 +10,7 @@ import java.util.List;
 import com.liferay.portal.SystemException;
 import com.nss.portlet.holidaymanagement.model.PmlHoliday;
 import com.nss.portlet.holidaymanagement.service.base.PmlHolidayLocalServiceBaseImpl;
+import com.nss.portlet.holidaymanagement.service.persistence.PmlHolidayUtil;
 
 public class PmlHolidayLocalServiceImpl extends PmlHolidayLocalServiceBaseImpl {
 public Date getExpextedRetrningDateByDateArrive (Date dateArrive, int numProcessDate) {
@@ -192,6 +193,143 @@ public Date getExpextedRetrningDateByDateArrive (Date dateArrive, int numProcess
 		} catch (Exception ex) {
 		}
 		return result;
+	}
+	
+	/**
+	 * 
+	 * @param dateReceipt
+	 * @param fileProcessNumber
+	 * @return float
+	 *
+	 */
+	public int checkDateHoliday(String dateReceipt , int fileProcessNumber ) {
+		int result = 0;
+		String[] arrStringDate = {"MON","TUES","WEDNES","THURS","FRI","SATUR","SUN"};
+		int[] arrIntDate = {2, 3, 4, 5, 6, 7, 1};		
+		String[] typeDate = {"1","2","3","Holiday"};
+		
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		long receipt = fileProcessNumber * 24 * 60 * 60 * 1000L;
+		float numberDateImcrement = 0;
+		
+		try {			
+			// ngay nhan ho so 
+			long dateReceiptFile = dateFormat.parse(dateReceipt).getTime();			
+			Date dateReceip = dateFormat.parse(dateReceipt);
+			
+			//ngay tra du kien chua tinh le, ngay nghi
+			long numberDateReturn = receipt + dateReceiptFile;
+			Date returnDateNoHoliday = new Date (numberDateReturn);
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(dateReceip);
+			
+			
+			// danh sach nhung ngay nghi ca ngay
+			List<PmlHoliday> dSNgayNghiCaNgay = PmlHolidayUtil.findByHoliday_Type(typeDate[2]);
+			for (PmlHoliday pmlHoliday : dSNgayNghiCaNgay) {
+				for (int i = 0; i < arrStringDate.length; i++) {				
+					if (arrStringDate[i].equalsIgnoreCase(pmlHoliday.getHoliday_value())) {
+						int duSat = arrIntDate[i] -  calendar.get(Calendar.DAY_OF_WEEK);
+						if (duSat < 0) {
+							duSat = 7 + duSat;
+						}
+						long dateReceiptFileCaNgay = dateReceiptFile + (duSat * 24 * 60 * 60 * 1000L); 
+						for (long j = dateReceiptFileCaNgay; j <= numberDateReturn;) {
+							 numberDateImcrement +=1;
+							 j += 7* 24 * 60 * 60 * 1000L;
+						}
+						
+					}
+				}
+			}	
+			
+			// danh sach nhung ngay nghi buoi sang
+			List<PmlHoliday> dSNgayNghiBuoiSang = PmlHolidayUtil.findByHoliday_Type(typeDate[0]);
+			for (PmlHoliday pmlHoliday : dSNgayNghiBuoiSang) {
+				for (int i = 0; i < arrStringDate.length; i++) {				
+					if (arrStringDate[i].equalsIgnoreCase(pmlHoliday.getHoliday_value())) {
+						int duSat = arrIntDate[i] -  calendar.get(Calendar.DAY_OF_WEEK);
+						if (duSat < 0) {
+							duSat = 7 + duSat;
+						}
+						long dateReceiptFileCaNgay = dateReceiptFile + (duSat * 24 * 60 * 60 * 1000L); 
+						for (long j = dateReceiptFileCaNgay; j <= numberDateReturn;) {
+							 numberDateImcrement += 0.5;
+							 j += 7* 24 * 60 * 60 * 1000L;
+						}
+						
+					}
+				}
+			}
+			
+			// danh sach nhung ngay nghi buoi chieu
+			List<PmlHoliday> dSNgayNghiBuoiChieu = PmlHolidayUtil.findByHoliday_Type(typeDate[1]);
+			for (PmlHoliday pmlHoliday : dSNgayNghiBuoiChieu) {
+				for (int i = 0; i < arrStringDate.length; i++) {				
+					if (arrStringDate[i].equalsIgnoreCase(pmlHoliday.getHoliday_value())) {
+						int duSat = arrIntDate[i] -  calendar.get(Calendar.DAY_OF_WEEK);
+						if (duSat < 0) {
+							duSat = 7 + duSat;
+						}
+						long dateReceiptFileCaNgay = dateReceiptFile + (duSat * 24 * 60 * 60 * 1000L); 
+						for (long j = dateReceiptFileCaNgay; j <= numberDateReturn;) {
+							 numberDateImcrement += 0.5;
+							 j += 7* 24 * 60 * 60 * 1000L;
+						}
+						
+					}
+				}
+			}
+			
+			// danh sach nhung ngay nghi ca ngay
+			List<PmlHoliday> PmlHolidaylist = PmlHolidayUtil.findByHoliday_Type(typeDate[3]);
+			if(PmlHolidaylist != null &&  PmlHolidaylist.size() > 0 ){
+				for (PmlHoliday pmlHoliday : PmlHolidaylist) {
+					Date holidayDate = new Date(dateFormat.parse(pmlHoliday.getHoliday_value()).getTime());
+					if(dateReceip.equals(holidayDate) || returnDateNoHoliday.equals(holidayDate)){
+						numberDateImcrement +=1;
+					}
+					else if (dateReceip.before(holidayDate) && holidayDate.before(returnDateNoHoliday)){
+						numberDateImcrement +=1;
+					}
+				}
+			}
+			result =(int) Math.ceil(numberDateImcrement);
+			
+			// neu ngay hen tra da tinh lai roi vao ngay nghi qui dinh thi cong 1 ngay
+			numberDateReturn +=  result * 24 * 60 * 60 * 1000L;
+			Date returnDateHasHoliday = new Date (numberDateReturn);
+			
+			for (PmlHoliday pmlHoliday : dSNgayNghiCaNgay) {
+				for (int i = 0; i < arrStringDate.length; i++) {				
+					if (arrStringDate[i].equalsIgnoreCase(pmlHoliday.getHoliday_value())) {
+						calendar.setTime(returnDateHasHoliday);
+						if ( calendar.get(Calendar.DAY_OF_WEEK) ==  arrIntDate[i]){
+							result += 1;
+							numberDateReturn +=  1* 24 * 60 * 60 * 1000L;
+							returnDateHasHoliday = new Date (numberDateReturn);
+						}
+					}
+				}
+			}
+			
+			//neu ma ngay hen tra lai roi vao ngay le thi cong them mot ngay
+			if(PmlHolidaylist != null &&  PmlHolidaylist.size() > 0 ){
+				for (PmlHoliday pmlHoliday : PmlHolidaylist) {
+					Date holidayDate = new Date(dateFormat.parse(pmlHoliday.getHoliday_value()).getTime());
+					if(returnDateHasHoliday.equals(holidayDate)){
+						result += 1;
+						numberDateReturn +=  1* 24 * 60 * 60 * 1000L;
+						returnDateHasHoliday = new Date (numberDateReturn);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		return result;
+		
 	}
 	
 }

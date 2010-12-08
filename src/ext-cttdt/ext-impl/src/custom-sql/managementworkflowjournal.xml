@@ -32,8 +32,7 @@
 				nss_quan_ly_quy_trinh_duyet_tin
 			WHERE
 				(nss_quan_ly_quy_trinh_duyet_tin.datefrom <=  ?)
-				 AND
-				(nss_quan_ly_quy_trinh_duyet_tin.dateto >= ?)
+			ORDER BY version_ ASC
 		]]>
 	</sql>
 	
