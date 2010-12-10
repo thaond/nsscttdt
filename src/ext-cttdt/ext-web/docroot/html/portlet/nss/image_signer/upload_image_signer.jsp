@@ -7,7 +7,7 @@
 	String userId = ParamUtil.getString(request,"userId");
 	PortletURL portletURL = renderResponse.createActionURL();
 	portletURL.setWindowState(WindowState.NORMAL);
-	portletURL.setParameter("struts_action", "/nss/image_signer/upload");
+	portletURL.setParameter("struts_action", "/nss/image_signer/view");
 	portletURL.setParameter("userId", userId);
 %>
 

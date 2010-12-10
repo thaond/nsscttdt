@@ -96,8 +96,7 @@ public class PmlHolidayLocalServiceUtil {
             numProcessDate);
     }
 
-    public static int countHolidayByValue(java.lang.String holidayValue)
-        throws com.liferay.portal.SystemException {
+    public static int countHolidayByValue(java.lang.String holidayValue) {
         return getService().countHolidayByValue(holidayValue);
     }
 

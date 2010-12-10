@@ -81,11 +81,11 @@
  		row.addText(user_image.getMiddleName());
  		row.addText(user_image.getLastName());
  		if (imageSigner == null) {
- 			row.addText("No Image Sign");
- 			row.addText("No Image UnSign");
+ 			row.addText("no-image-sign");
+ 			row.addText("no-image-unsign");
  		}else if(imageSigner.getImageIdSign()==0&&imageSigner.getImageIdUnSign()==0){
- 			row.addText("No Image Sign");
- 			row.addText("No Image UnSign");
+ 			row.addText("no-image-sign");
+ 			row.addText("no-image-unsign");
  		}else{
  			row.addText("<img width='30px' height='20px' src='"+  themeDisplay.getPathImage()+ "/image_signer?img_id="+ imageSigner.getImageIdSign() +"' />");
  			row.addText("<img width='30px' height='20px' src='"+  themeDisplay.getPathImage()+ "/image_signer?img_id="+ imageSigner.getImageIdUnSign() +"' />");

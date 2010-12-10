@@ -160,7 +160,6 @@ public class ViewAction extends PortletAction {
 
 	private void editPosition(RenderRequest req, RenderResponse res) {
 		String positionId = ParamUtil.getString(req, "positionId");
-		_log.info("edit positionId: " + positionId);
 		req.setAttribute("positionId", positionId);
 		
 	}

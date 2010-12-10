@@ -1012,4 +1012,24 @@
         <struts-path>nss/onedoorreport_baocaohosothang</struts-path>
         <use-default-template>false</use-default-template>
     </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORREPORT_BAOCAOHOSOTHANGLUYKE</portlet-name>
+        <struts-path>nss/onedoorreport_baocaohosothangluyke</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORREPORT_TINHHINHTHULYHOSOCAPPHONG</portlet-name>
+        <struts-path>nss/onedoorreport_tinhhinhthulyhosocapphong</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ONEDOORREPORT_TINHHINHTHULYHOSOCAPSO</portlet-name>
+        <struts-path>nss/onedoorreport_tinhhinhthulyhosocapso</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_PERMISSONUSERBYFILE</portlet-name>
+        <struts-path>nss/permissonuserbyfile</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
 </liferay-portlet-app>

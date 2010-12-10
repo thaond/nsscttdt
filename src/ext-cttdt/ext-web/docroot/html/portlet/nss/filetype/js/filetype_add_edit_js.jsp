@@ -45,6 +45,9 @@ function <portlet:namespace />validateForm(form){
 		currentReceiptNumber.focus();
 		return false;
 	}
+	else {
+		return true;
+	}
 }
 
 </script>

@@ -197,7 +197,6 @@
 					</tr>
 					<tbody>
 						<logic:iterate id="userDTO" name="userDTOList" type="com.nss.portlet.agency.util.UserDTO" indexId="i" scope="request">
-						<% System.out.println("user id = " +  userDTO.getPmlUserId()); %>
 							<tr class="${((i % 2)==0)? 'results-row':'tr_two results-row'}" onclick="getSelectRadio(this)">
 								<td align="center" id="<%=i %>"><input type="radio" id="userID<%=i %>" name="userID" value="<%= userDTO.getPmlUserId() %>" <%= (agencyLeader.getUserId() == userDTO.getPmlUserId()) ? "checked=checked":"" %> onclick="clickRadio(event)"/></td>
 								<td align="center"><div align="center"><%= (i + 1) %></div></td>

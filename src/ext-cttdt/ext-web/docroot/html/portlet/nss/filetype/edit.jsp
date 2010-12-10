@@ -102,7 +102,9 @@
 			<td></td>
 				<td>
 					<input type="submit" style="margin-left: 0;" value='<liferay-ui:message key="update"/>' />
-					<html:link action="/nss/filetype/view"><input class="button-width" type="button" value='<liferay-ui:message key="reset"/>' /></html:link>
+					<!-- html:link action="/nss/filetype/view" -->
+					<input class="button-width" type="reset" value='<liferay-ui:message key="reset"/>' />
+					<!-- /html:link -->
 					<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input  class="button" type="button"	value='<liferay-ui:message key="back"/>' /></span>
 				</td>
 			</tr>

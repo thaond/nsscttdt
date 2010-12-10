@@ -14,6 +14,17 @@ public class PmlUserFinderUtil {
         return getFinder().countUserListByDepartment(departmentsId);
     }
 
+    public static java.util.List<com.liferay.portal.model.User> listUserTheoDoiHoSo(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getFinder().listUserTheoDoiHoSo(start, end, obc);
+    }
+
+    public static int countUserTheoDoiHoSo()
+        throws com.liferay.portal.SystemException {
+        return getFinder().countUserTheoDoiHoSo();
+    }
+
     public static PmlUserFinder getFinder() {
         return _finder;
     }

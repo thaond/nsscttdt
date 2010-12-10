@@ -123,4 +123,8 @@ public interface DepartmentLocalService {
     public java.util.List<com.nss.portlet.department.model.Department> findByDepartmentsCode(
         java.lang.String departmentCode)
         throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.department.model.Department> search(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc);
 }

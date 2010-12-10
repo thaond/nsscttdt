@@ -25,16 +25,16 @@ public class UserSearch extends SearchContainer<User> {
 	static List<String> headerNames = new ArrayList<String>();
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 	static {
-		headerNames.add("FirstName"); // ten tieu de cua cot
-		headerNames.add("MiddleName");
-		headerNames.add("LastName");
-		headerNames.add("ImageSigner");
-		headerNames.add("ImageUnSigner");
+		headerNames.add("first-name"); // ten tieu de cua cot
+		headerNames.add("middle-name");
+		headerNames.add("last-name");
+		headerNames.add("image-signer");
+		headerNames.add("image-unsigner");
 		headerNames.add("");
 		
-		orderableHeaders.put("FirstName", "FirstName");
-		orderableHeaders.put("MiddleName", "MiddleName");
-		orderableHeaders.put("LastName", "LastName");
+		orderableHeaders.put("first-name", "FirstName");
+		orderableHeaders.put("middle-name", "MiddleName");
+		orderableHeaders.put("last-name", "LastName");
 	}
 	public static final String EMPTY_RESULTs_MESSAGE = "khong tim thay";
 

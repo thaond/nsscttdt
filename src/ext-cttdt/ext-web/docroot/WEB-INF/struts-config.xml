@@ -436,7 +436,8 @@
             <forward
                 name="portlet.nss.onedoorreport_baocaohosothang.filedetails" path="portlet.nss.onedoorreport_baocaohosothang.filedetails"/>
         </action>
-        <action path="/nss/onedoorreport_baocaohosothang/filedetails_detail" type="com.nss.portlet.onedoorreport_baocaohosothang.action.DetailsAction">
+        <action
+            path="/nss/onedoorreport_baocaohosothang/filedetails_detail" type="com.nss.portlet.onedoorreport_baocaohosothang.action.DetailAction">
             <forward
                 name="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail" path="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail"/>
         </action>
@@ -447,6 +448,82 @@
         <action path="/nss/onedoorreport_baocaohosothang/searchresult" type="com.nss.portlet.onedoorreport_baocaohosothang.action.SearchResultAction">
             <forward
                 name="portlet.nss.onedoorreport_baocaohosothang.searchresult" path="portlet.nss.onedoorreport_baocaohosothang.searchresult"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothangluyke/view" type="com.nss.portlet.onedoorreport_baocaohosothangluyke.action.ViewAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothangluyke.view" path="portlet.nss.onedoorreport_baocaohosothangluyke.view"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_baocaohosothangluyke/filedetails" type="com.nss.portlet.onedoorreport_baocaohosothangluyke.action.FileDetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails" path="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_baocaohosothangluyke/filedetails_detail" type="com.nss.portlet.onedoorreport_baocaohosothangluyke.action.DetailAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails_detail" path="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails_detail"/>
+        </action>
+        <action path="/nss/onedoorreport_baocaohosothangluyke/search" type="com.nss.portlet.onedoorreport_baocaohosothangluyke.action.SearchAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothangluyke.search" path="portlet.nss.onedoorreport_baocaohosothangluyke.search"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_baocaohosothangluyke/searchresult" type="com.nss.portlet.onedoorreport_baocaohosothangluyke.action.SearchResultAction">
+            <forward
+                name="portlet.nss.onedoorreport_baocaohosothangluyke.searchresult" path="portlet.nss.onedoorreport_baocaohosothangluyke.searchresult"/>
+        </action>
+        <action path="/nss/onedoorreport_tinhhinhthulyhosocapphong/view" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapphong.action.ViewAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.view" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.view"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapphong/filedetails" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapphong.action.FileDetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapphong/filedetails_detail" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapphong.action.DetailAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails_detail" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails_detail"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapphong/search" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapphong.action.SearchAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.search" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.search"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapphong/searchresult" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapphong.action.SearchResultAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.searchresult" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.searchresult"/>
+        </action>
+        <action path="/nss/onedoorreport_tinhhinhthulyhosocapso/view" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapso.action.ViewAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.view" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.view"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapso/filedetails" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapso.action.FileDetailsAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapso/filedetails_detail" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapso.action.DetailAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails_detail" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails_detail"/>
+        </action>
+        <action path="/nss/onedoorreport_tinhhinhthulyhosocapso/search" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapso.action.SearchAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.search" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.search"/>
+        </action>
+        <action
+            path="/nss/onedoorreport_tinhhinhthulyhosocapso/searchresult" type="com.nss.portlet.onedoorreport_tinhhinhthulyhosocapso.action.SearchResultAction">
+            <forward
+                name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.searchresult" path="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.searchresult"/>
+        </action>
+        <action path="/nss/permissonuserbyfile/view" type="com.nss.portlet.permissonuserbyfile.action.ViewAction">
+            <forward name="portlet.nss.permissonuserbyfile.view" path="portlet.nss.permissonuserbyfile.view"/>
+        </action>
+        <action path="/nss/permissonuserbyfile/edit" type="com.nss.portlet.permissonuserbyfile.action.EditAction">
+            <forward name="portlet.nss.permissonuserbyfile.edit" path="portlet.nss.permissonuserbyfile.edit"/>
         </action>
     </action-mappings>
 </struts-config>

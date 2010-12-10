@@ -854,4 +854,16 @@
 		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
 		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
 	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
 </beans>

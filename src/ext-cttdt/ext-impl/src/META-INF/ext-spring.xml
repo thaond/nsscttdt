@@ -1638,4 +1638,22 @@
 	<bean id="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentUtil" class="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentUtil">
 		<property name="persistence" ref="com.nss.portlet.onedoor.service.persistence.PmlPaintDocumentPersistence.impl" />
 	</bean>
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalService.impl" class="com.nss.portlet.permissonuserbyfile.service.impl.PmlUserFileTypeLocalServiceImpl" />
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalServiceUtil" class="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" class="com.nss.portlet.permissonuserbyfile.service.impl.PmlUserFileTypeServiceImpl" />
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeServiceUtil" class="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeServiceUtil">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypePersistence.impl" class="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypePersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypeUtil" class="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypeUtil">
+		<property name="persistence" ref="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypePersistence.impl" />
+	</bean>
 </beans>

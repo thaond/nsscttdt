@@ -57,11 +57,11 @@ public class PmlFileStatusSearch extends SearchContainer<PmlFileStatus> {
 			 
 			 if(Validator.isNotNull(orderByCol)&& Validator.isNotNull(orderByType)){
 				 
-				 preferences.setValue("SGS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type",orderByCol);
-				 preferences.setValue("SGS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type",orderByType);
+				 preferences.setValue("NSS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type",orderByCol);
+				 preferences.setValue("NSS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type",orderByType);
 			 }else{
-				 preferences.setValue("SGS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-column", "orderFilestatuscode");
-				 preferences.setValue("SGS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type", "asc");
+				 preferences.setValue("NSS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-column", "orderFilestatuscode");
+				 preferences.setValue("NSS_PMLEDM_FILESTATUS", "pmlFilestatus-order-by-type", "asc");
 			 }
 			 OrderByComparator orderByComparator = PmlFileStatusUtil.getPmlFileStatusOrderByComparator(orderByCol, orderByType);
 				setOrderableHeaders(orderableHeaders);

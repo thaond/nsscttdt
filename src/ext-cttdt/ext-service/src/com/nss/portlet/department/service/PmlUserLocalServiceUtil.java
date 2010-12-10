@@ -117,6 +117,21 @@ public class PmlUserLocalServiceUtil {
         return getService().findByDepartmentsId(departmentsId);
     }
 
+    public static java.lang.String getFullName(long userId) {
+        return getService().getFullName(userId);
+    }
+
+    public static java.util.List<com.liferay.portal.model.User> listUserTheoDoiHoSo(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().listUserTheoDoiHoSo(start, end, obc);
+    }
+
+    public static int countUserTheoDoiHoSo()
+        throws com.liferay.portal.SystemException {
+        return getService().countUserTheoDoiHoSo();
+    }
+
     public static PmlUserLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("PmlUserLocalService is not set");

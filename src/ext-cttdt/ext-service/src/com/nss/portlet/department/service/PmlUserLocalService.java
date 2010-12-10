@@ -93,4 +93,13 @@ public interface PmlUserLocalService {
     public java.util.List<com.nss.portlet.department.model.PmlUser> findByDepartmentsId(
         java.lang.String departmentsId)
         throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getFullName(long userId);
+
+    public java.util.List<com.liferay.portal.model.User> listUserTheoDoiHoSo(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public int countUserTheoDoiHoSo() throws com.liferay.portal.SystemException;
 }

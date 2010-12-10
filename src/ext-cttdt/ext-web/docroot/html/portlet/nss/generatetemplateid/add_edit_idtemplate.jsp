@@ -9,20 +9,6 @@
 
 <liferay-util:include page="/html/portlet/nss/generatetemplateid/js/validateIdTemplate.jsp"></liferay-util:include>
 
-<script type="text/javascript">
-function checkNumber() {
-	var startNumberValue = document.getElementById("startNumber").value;
-	if (isNaN(startNumberValue) == true) {
-		alert("<liferay-ui:message key='chi-nhap-con-so'/>");
-		year.focus();
-		return false;
-	} else {
-		return true;
-	}
-}
-
-</script>
-
 <%
 	String id = (String)renderRequest.getParameter("templateId") == null ? "" : (String)renderRequest.getParameter("templateId");
 	IdTemplate idTemplate = null;
@@ -62,8 +48,8 @@ function checkNumber() {
 			</td>
 		</tr>
 		<tr >
-			<td><liferay-ui:message key="so-bat-dau" />:</td>
-			<td><input type="text" style="width: 95%" name="startNumber" id="startNumber" size="20" value="<%=idTemplate.getStartNumber() %>" onblur="checkNumber()"/></td>
+			<td><liferay-ui:message key="so-bat-dau" /><div id="startnumber" style="color: red; display: none;" >(*)</div>:</td>
+			<td><input type="text" style="width: 95%" name="startNumber" id="startNumber" size="20" value="<%=idTemplate.getStartNumber() %>" maxlength="10"/></td>
 		</tr>
 		<tr valign="top">
 			<td><liferay-ui:message key="description" /><div id="des" style=" display: none;" >(*)</div>:</td>
@@ -101,11 +87,12 @@ function checkNumber() {
 				</tr>
 				
 				<tr >
-					<td ><liferay-ui:message key="so-bat-dau" /><div id="startnumber" style="color: red; display: none;" >(*)</div>:</td>
-					<td><input type="text" style="width: 95%" name="startNumber" id="startNumber" onblur="checkNumber()" size="20"/></td>
+					<td><liferay-ui:message key="so-bat-dau" /><div id="startnumber" style="color: red; display: none;" >(*)</div>:</td>
+					<td><input type="text" style="width: 95%" name="startNumber" id="startNumber" size="20" maxlength="10"/></td>
 				</tr>
+				
 				<tr valign="top">
-					<td ><liferay-ui:message key="description" /><div  id="des" style="color: red; display: none;" >(*)</div>:</td>
+					<td ><liferay-ui:message key="description" /><div id="des" style="color: red; display: none;" >(*)</div>:</td>
 					<td><textarea style="width: 95%; height: 80px" name="description" id="description"></textarea></td>
 				</tr>
 				<tr>
