@@ -154,6 +154,11 @@ public class DepartmentLocalServiceUtil {
         return getService().findByDepartmentsCode(departmentCode);
     }
 
+    public static java.util.List<com.nss.portlet.department.model.Department> search(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+        return getService().search(start, end, obc);
+    }
+
     public static DepartmentLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("DepartmentLocalService is not set");

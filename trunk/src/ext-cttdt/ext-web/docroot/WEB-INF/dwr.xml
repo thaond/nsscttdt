@@ -3,26 +3,9 @@
 
 <dwr>
 	<allow>
-	<!-- pccc -->
-		<create creator="new" javascript="OneDoorUtilClientpccc"> 
-			<param name="class" value="com.nss.portlet.onedoor.ajax.OnedoorDwr" />
-		</create>
-		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileType" />
-		<convert converter="bean" match="com.liferay.portlet.expando.model.ExpandoBridge" />
-		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileTypeAttachedFile" />
-		<convert converter="bean" match="com.nss.portlet.onedoor.ajax.ProcessTransition" />			
-			
-		<!-- pccc -->
-		
-		<!-- yenlt PhieuChuyenDWR -->
-		<create javascript="PhieuChuyenClient" creator="new">
-			<param name="class" value="com.nss.portlet.onedoorprocess.util.PhieuChuyenDWR"></param>
-		</create>
-		
 		<create creator="new" javascript="JWFA">
 			<param name="class" value="com.nss.portlet.journalworkflow.ajax.JWFA"></param>
 		</create>
-		
 		<create creator="new" javascript="VanBanPhapQuyIndexUtil"> 
 			<param name="class" value="com.nss.portlet.van_ban_phap_quy.util.VanBanPhapQuyIndexUtil" />
 		</create>
@@ -37,7 +20,7 @@
 			<param name="class" value="com.nss.portlet.generatetemplateid.util.PmlTemplateIdDwr" />
 		</create>
 		<create creator="new" javascript="holidayDWRClient">
-			<param name="class" value="com.nss.portlet.holidaymanagement.service.impl.PmlHolidayLocalServiceImpl" />
+			<param name="class" value="com.nss.portlet.holidaymanagement.ajax.HolidayManagementDWR" />
 		</create>
 		<create creator="new" javascript="pmlUserUtilClient">
 			<param name="class" value="com.nss.portlet.department.util.PmlUserUtil" />
@@ -45,16 +28,23 @@
 		<convert match="com.nss.portlet.department.util.PmlUserDTO" converter="bean" />
 		
 		<create creator="new" javascript="pmlDepartmentsLeaderDWRClient">
-			<param name="class" value="com.nss.portlet.department.service.impl.PmlDepartmentsLeaderLocalServiceImpl" />
+			<param name="class" value="com.nss.portlet.department.ajax.DepartmentsLeaderDWR" />
 		</create>
-		
-		<!-- PmlFileStatusStateProcess -->
-		<create javascript="PmlFileStatusStateProcessUtilClient" creator="new">
+		<create creator="new" javascript="PhieuChuyenClient">
+			<param name="class" value="com.nss.portlet.onedoorprocess.util.PhieuChuyenDWR"></param>
+		</create>
+		<create creator="new" javascript="OneDoorUtilClientpccc"> 
+			<param name="class" value="com.nss.portlet.onedoor.ajax.OnedoorDwr" />
+		</create>
+		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileType" />
+		<convert converter="bean" match="com.liferay.portlet.expando.model.ExpandoBridge" />
+		<convert converter="bean" match="com.nss.portlet.filetype.model.PmlFileTypeAttachedFile" />
+		<convert converter="bean" match="com.nss.portlet.onedoor.ajax.ProcessTransition" />			
+			
+		<create creator="new" javascript="PmlFileStatusStateProcessUtilClient">
 			<param name="class" value="com.nss.portlet.onedoor.util.PmlFileStatusStateProcessUtil"></param>
 		</create>
 		<convert match="com.nss.portlet.onedoor.model.PmlFileStatusStateProcess" converter="bean"></convert>
-		<!-- end PmlFileStatusStateProcess -->
-		
 		
 	</allow>
 

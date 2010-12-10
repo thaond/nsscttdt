@@ -1452,7 +1452,7 @@ public class PmlOneDoorReceiveFileFinderImpl extends BasePersistenceImpl impleme
 	} 
 	
 	/**
-	 *  BAO CAO HO SO THANG -- YEN --- 13/05/2010
+	 *  BAO CAO HO SO THANG -- 
 	 */
 	// TON DAU KY - BC THANG
 	public List<PmlOneDoorReceiveFile> getSoLuongHSTonBCThang(List<PmlFileType> fileTypeList, String fromDate, List<String> typeList,
@@ -2384,6 +2384,2128 @@ public class PmlOneDoorReceiveFileFinderImpl extends BasePersistenceImpl impleme
 					
 				} else if ("tenhoso".equals(typeList.get(0))) {
 					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose, pml_stateprocess ", ") AS pml_pro, pml_file , pml_processdispose, pml_stateprocess, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	/**
+	 * BAO CAO HO SO THANG LUY KE -- 
+	 */
+	// HS NHAN TRONG THANG - TON DAU KY
+	public List<PmlOneDoorReceiveFile> getListTonDauKyThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, String fromDate, String toDate, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = "SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose ";  
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL AND pml_processdispose.senddate < '" + fromDate + "') ";
+			sql += " AND ( pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess >= '" + fromDate + "') ";
+			sql += " AND ( pml_file.exactreturningdate IS NULL OR pml_file.exactreturningdate >= '" + fromDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// HS NHAN TRONG THANG - TRONG THANG
+	public List<PmlOneDoorReceiveFile> getListHSNhanTrongThangThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = "SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose "; 
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL ) ";
+			sql += " AND ( '" + fromDate + "' <= pml_processdispose.senddate  ";
+			sql += " AND pml_processdispose.senddate  <= '" + toDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	// TONG HO SO NHAN
+	public List<PmlOneDoorReceiveFile> getListTongHSNhanThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = "SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose "; 
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL ) ";
+			sql += " AND ( ";
+			sql += 		" ( ( pml_processdispose.senddate < '" + fromDate + "') ";
+			sql += 			" AND ( pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess >= '" + fromDate + "') ";
+			sql += 		" ) ";
+			sql +=		" OR ( '" + fromDate + "' <= pml_processdispose.senddate  AND pml_processdispose.senddate  <= '" + toDate + "') ";
+			sql += 	" ) ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	// HS NHAN TRONG NAM
+	public List<PmlOneDoorReceiveFile> getListHSNhanTrongNamThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = " SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose ";  
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL ) ";
+			sql += " AND ( '" + fromDate + "' <= pml_processdispose.senddate  ";
+			sql += " AND pml_processdispose.senddate  <= '" + toDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// HS GIAI QUYET - TRONG THANG
+	public List<PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongThangLuyKe(String departmentId, List<Long> userIds, String fileTypeId, String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = " SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose ";  
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_processdispose.dateprocess IS NOT NULL) ";
+			sql += " AND ( '" + fromDate + "' <= pml_processdispose.dateprocess  ";
+			sql += " AND pml_processdispose.dateprocess <= '" + toDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// HS GIAI QUYET - TRONG NAM
+	public List<PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongNamLuyKe(String departmentId, List<Long> userIds, String fileTypeId, String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = " SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose ";  
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND pml_processdispose.dateprocess IS NOT NULL ";
+			sql += " AND ( '" + fromDate + "' <= pml_processdispose.dateprocess  ";
+			sql += " AND pml_processdispose.dateprocess <= '" + toDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// HS TON DEN NGAY B/C
+	public List<PmlOneDoorReceiveFile> getListHSTonDenNgayBCThangLuyKe(String departmentId, List<Long> userIds, String fileTypeId, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		
+		try {
+			session = openSession();
+			
+			String sql = " SELECT DISTINCT pml_file.* "; 
+			sql += " FROM (  SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 			"FROM pml_processdispose ";
+			sql += 			" WHERE  ( pml_processdispose.processer in (" + userList + " )) ";  
+			sql += 			"GROUP BY pml_processdispose.fileid ";
+			sql +=		 ") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";  
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) ";
+			sql += " AND ( pml_file.applicationdate <= '" + toDate + "') ";
+			sql += " AND ( pml_file.exactreturningdate IS NULL OR '" + toDate + "' < pml_file.exactreturningdate ) ";
+			sql += " AND ( pml_processdispose.dateprocess IS NULL OR '" + toDate + "' < pml_processdispose.dateprocess ) ";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL AND pml_processdispose.senddate <=  '" + toDate + "') ";
+			if ("".equals(departmentId) && (!"".equals(fileTypeId))) {
+				sql += " AND ( pml_file.filetypeid = '" + fileTypeId + "') ";
+			} else {
+				sql += "";
+			}
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	/**
+	 * THU LY HO SO CAP PHONG - THU LY HO SO CAP SO -
+	 */
+	// TON DAU KY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonTruoc(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		try {
+			session = openSession();
+			String userList = "";
+			for (int i = 0; i < userIds.size(); i++) {
+				if (i < userIds.size() -1) {
+					userList += userIds.get(i) + ",";
+				} else {
+					userList += userIds.get(i) + ", 0";
+				}
+			}
+			
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql +=      " WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND ( pml_file.exactreturningdate IS NULL OR pml_file.exactreturningdate >= '"+ toDay +"') "; 
+			sql += " AND ( pml_processdispose.receivedate IS NOT NULL AND pml_processdispose.receivedate < '" + toDay +"') ";
+			sql += " AND (pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess >= '" + toDay +"') ";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// DA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoDaNhan(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file, pml_processdispose "; 
+			sql += " WHERE pml_pro.fileid = pml_file.fileid "; 
+			sql += " AND  pml_processdispose.fileid = pml_pro.fileid "; 
+			sql += " AND  pml_processdispose.transition_ = pml_pro.tran "; 
+			sql += " AND ( pml_processdispose.receivedate IS NOT NULL AND pml_processdispose.receivedate = '" + toDay + "' )";
+			sql += " AND ( pml_file.exactreturningdate IS NULL OR pml_file.exactreturningdate = '" + toDay + "' )";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file, pml_processdispose ", ") AS pml_pro, pml_file, pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// CHUA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoChuaNhan(List<Long> userIds, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" AND pml_processdispose.receivedate IS NULL ";
+			sql += 		" AND pml_processdispose.dateprocess IS NULL ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file "; 
+			sql += " WHERE  pml_pro.fileid = pml_file.fileid  "; 
+			sql += " AND ( pml_file.exactreturningdate IS NULL )";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file ", ") AS pml_pro, pml_file, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// TONG HS CAN XU LY =  TON + DA NHAN + CHUA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongTongHoSoCanXuLy(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND (";
+			sql += " ( pml_processdispose.receivedate IS NOT NULL AND pml_processdispose.receivedate <= '" + toDay + "' )";
+			sql += " OR pml_processdispose.receivedate IS NULL ";
+			sql += " ) ";
+			sql += " AND ( pml_file.exactreturningdate IS NULL OR pml_file.exactreturningdate >= '" + toDay + "' ) ";
+			sql += " AND (pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess >= '" + toDay + "' ) ";
+
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// TU GIAI QUYET
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTuGiaiQuyet(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			
+			if (userIds.size() == 1) {
+				sql += " WHERE ( pml_processdispose.processer = " + userIds.get(0) + ") " ;
+			}
+			else if (userIds.size() > 1) {
+				sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+				sql += 		" AND (pml_processdispose.delegateuser = 0 )";
+			}
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_   ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND ((pml_processdispose.delegateuser = " + userIds.get(0) + " ) OR (pml_processdispose.delegateuser = 0 ))";
+			sql += " AND pml_processdispose.dateprocess IS NOT NULL ";
+			sql += " AND pml_processdispose.dateprocess = '" + toDay + "' ";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// NGUOI KHAC THU LY THAY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoNguoiKhacThuLyThay(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			
+			if (userIds.size() == 1) {
+				sql += " WHERE ( pml_processdispose.processer = " + userIds.get(0) + ") " ;
+				sql += " AND (pml_processdispose.delegateuser != 0 ) ";
+			}
+			else if (userIds.size() > 1) {
+				sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+				sql += 		" AND (pml_processdispose.delegateuser != 0 )";
+				sql += 		" AND (pml_processdispose.delegateuser in (" + userList + "))";
+			}
+			
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_   ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND (pml_processdispose.delegateuser != " + userIds.get(0) + " ) ";
+			sql += " AND pml_processdispose.dateprocess IS NOT NULL ";
+			sql += " AND pml_processdispose.dateprocess = '" + toDay + "' ";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// SO LUONG HO SO GIAI QUYET = TU GIAI QUYET + NGUOI KHAC THU LY THAY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoGiaiQuyet(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran   ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" AND ((pml_processdispose.delegateuser != 0 ) OR (pml_processdispose.delegateuser = 0 ))";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_  ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND pml_processdispose.dateprocess IS NOT NULL ";
+			sql += " AND pml_processdispose.dateprocess = '" + toDay + "' ";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);	
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	// HS TON TRONG HAN ISO
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonTrongHanISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND ( pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess > '" + toDay + "' )";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL AND pml_processdispose.senddate <= '" + toDay + "' )";
+			sql += " AND ( pml_processdispose.expireddate IS NOT NULL AND pml_processdispose.expireddate >= '" + toDay + "' )";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// HS TON QUA HAN ISO
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonQuaHanISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND ( pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess > '" + toDay + "' )";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL AND pml_processdispose.senddate <= '" + toDay + "' )";
+			sql += " AND ( pml_processdispose.expireddate IS NOT NULL AND pml_processdispose.expireddate < '" + toDay + "' )";
+			
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
+					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
+					
+				} else if ("loaihoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					
+				} else if ("ngaygui".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+					//TODO
+				} else if ("ngaynhan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhethan".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+					String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[0]));
+					String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(0).split("_")[1]));
+					//TODO
+				} else if ("ngayhentrakhach".equals(typeList.get(0))) {
+					SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+					SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+					if (!"".equals(valueTypeList.get(0))) {
+						String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[0]));
+						String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(0).split("_")[1]));
+						sql += "AND (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+					}
+				}
+				
+			}
+			if (typeList.size() > 1) {
+				for (int i = 1; i < typeList.size(); i++) {	
+					String sqlHelp = " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ";
+					if ("mahoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.numberreceipt LIKE '%" + valueTypeList.get(i)  +"%') ";
+						
+					} else if ("tenhoso".equals(typeList.get(i))) {						
+						sqlHelp = sqlHelp.replace( " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file ", " SELECT DISTINCT pml_file.*  FROM (" + sql + ") as pml_file , pml_file_pccc ");
+						sqlHelp += " WHERE (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(i) + "%') ";
+						
+					} else if ("loaihoso".equals(typeList.get(i))) {
+						sqlHelp += " WHERE (pml_file.filetypeid = '" + valueTypeList.get(i) + "') ";
+						
+					} else if ("ngaygui".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//sql += "AND (pml_file.filetypeid = '" + valueTypeList.get(0) + "') ";
+						//TODO
+					} else if ("ngaynhan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhethan".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						String  beginDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[0]));
+						String  endDate =	dateFormat.format(dateFormat.parse(valueTypeList.get(i).split("_")[1]));
+						//TODO
+					} else if ("ngayhentrakhach".equals(typeList.get(i))) {
+						SimpleDateFormat dateFormatOne = new SimpleDateFormat("dd/MM/yyyy");
+						SimpleDateFormat dateFormatTwo = new SimpleDateFormat("yyyy-MM-dd");
+						if (!"".equals(valueTypeList.get(i))) {
+							String  beginDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[0]));
+							String  endDate =	dateFormatTwo.format(dateFormatOne.parse(valueTypeList.get(i).split("_")[1]));
+							sqlHelp += " WHERE (('"+ beginDate +"' <= pml_file.expectedreturningdate ) AND (pml_file.expectedreturningdate <= '"+ endDate +  "')) ";
+						}
+					}
+					sql = sqlHelp;
+				}
+				
+			}
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_file", PmlOneDoorReceiveFileImpl.class);
+			
+			return (List<PmlOneDoorReceiveFile>) QueryUtil.list(q, getDialect(), start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally{
+			closeSession(session);
+		}
+	}
+	
+	// TONG HO SO TON DONG
+	public List<PmlOneDoorReceiveFile> getSoLuongTongHoSoTonISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		Session session = null;
+		String userList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i < userIds.size() -1) {
+				userList += userIds.get(i) + ",";
+			} else {
+				userList += userIds.get(i) + ", 0";
+			}
+		}
+		try {
+			session = openSession();
+			String sql = "	SELECT DISTINCT pml_file.* ";
+			sql += " FROM ( ";	
+			sql += 		" SELECT pml_processdispose.fileid, MAX(pml_processdispose.transition_ ) as tran ";
+			sql += 		" FROM pml_processdispose  ";
+			sql += 		" WHERE ( pml_processdispose.processer in (" + userList + ")) ";
+			sql += 		" GROUP BY pml_processdispose.fileid ";
+			sql += 		") AS pml_pro, pml_file , pml_processdispose "; 
+			sql += " WHERE  pml_pro.fileid = pml_processdispose.fileid AND pml_pro.tran = pml_processdispose.transition_ ";
+			sql += " AND ( pml_pro.fileid = pml_file.fileid ) "; 
+			sql += " AND ( pml_processdispose.dateprocess IS NULL OR pml_processdispose.dateprocess > '" + toDay + "' )";
+			sql += " AND ( pml_processdispose.senddate IS NOT NULL AND pml_processdispose.senddate <= '" + toDay + "' )";
+			sql += " AND pml_processdispose.expireddate IS NOT NULL ";
+			sql += " AND ( pml_processdispose.expireddate >= '" + toDay + "' OR  pml_processdispose.expireddate < '" + toDay + "' )";
+
+			if (typeList.size() > 0) { 
+				if ("mahoso".equals(typeList.get(0))) {
+					sql += "AND (pml_file.numberreceipt LIKE '%" + valueTypeList.get(0)  +"%') ";
+					
+				} else if ("tenhoso".equals(typeList.get(0))) {
+					sql = sql.replace( ") AS pml_pro, pml_file , pml_processdispose ", ") AS pml_pro, pml_file , pml_processdispose, pml_file_pccc");
 					sql += "AND (pml_file.fileid = pml_file_pccc.fileid AND pml_file_pccc.filename like '%" + valueTypeList.get(0) + "%') ";
 					
 				} else if ("loaihoso".equals(typeList.get(0))) {

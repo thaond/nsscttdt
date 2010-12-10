@@ -134,6 +134,15 @@ upload-image-signer = upload ảnh chữ ký
 image-Sign = ảnh đã ký
 image-UnSign = ảnh chưa ký
 upload = up ảnh
+Quan-ly-anh-ky = Quản lý ảnh ký
+javax.portlet.title.NSS_IMAGE_SIGNER = Quản lý ảnh ký
+first-name = Họ
+middle-name = Họ Đệm
+last-name = Tên
+image-signer = Ảnh đã ký
+image-unsigner = Ảnh chưa ký
+no-image-sign = Không có ảnh ký
+no-image-unsign = Không có ảnh chưa ký
 ##
 ##asset_publisher_nss
 ##
@@ -145,11 +154,32 @@ tin-lien-quan-entry = Tin liên quan entry
 ##managementworkflowjournal
 ##
 error_delete_workflowjounal = Không xóa được workflow này
+please-select-file-deploy = vui lòng chọn tập tin 
+please-select-file-xml = vui lòng chọn file xml
 input-date-validate-dd-mm-yyyy = Nhập một ngày hợp lệ theo định dạng dd/mm/yyyy
 input-date-validate = Nhập một ngày hợp lệ
 input-month-validate = Nhập một tháng hợp lệ
 input-year-validate = Nhập một năm hợp lệ
-date-from-must-be-greater-than-date-now = Ngày bắt đầu phải lớn hơn ngày hiện tại
-date-from-new-must-be-greater-than-date-from-old = Ngày bắt đầu của quy trình sau phải lớn hơn ngày bắt đầu của quy trình trước
-date-to-must-be-greater-than-date-from = Ngày kết thúc phải lớn hơn ngày bắt đầu
+date-from-must-not-be-less-than-date-now = Ngày bắt đầu không được nhỏ hơn ngày hiện tại
+date-from-new-must-not-be-less-than-date-from-old = Ngày bắt đầu của quy trình sau không được nhỏ hơn ngày bắt đầu của quy trình trước
+date-to-must-not-be-less-than-date-from = Ngày kết thúc không được nhỏ hơn ngày bắt đầu
 update-work-flow-old = Bạn có muốn cập nhật lại ngày kết thúc của quy trình trước không
+management-workflow-journal = Quản lý quy trình duyệt tin
+javax.portlet.title.NSS_MANAGEMENTWORKFLOWJOURNAL = Quản lý quy trình duyệt tin 
+##
+##ADV
+##
+vui-long-nhap-so-lon-hon-0 = Vui lòng nhập số lớn hơn 0
+##
+##PARTNER
+##
+vui-long-nhap-url-partner = Vui lòng nhập URL đối tác
+##
+##Polls
+##
+Binh-chon = Bình chọn
+##
+##sgs_filestatus
+##
+javax.portlet.title.SGS_FILESTATUS = Trạng thái hồ sơ
+ 

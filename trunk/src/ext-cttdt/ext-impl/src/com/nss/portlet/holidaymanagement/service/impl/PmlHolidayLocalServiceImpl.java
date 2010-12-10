@@ -185,12 +185,13 @@ public Date getExpextedRetrningDateByDateArrive (Date dateArrive, int numProcess
 		return retValue;
 	}
 	
-	public int countHolidayByValue(String holidayValue) throws SystemException {
+	public int countHolidayByValue(String holidayValue){
 		int result = 0;
 		
 		try {
 			result = pmlHolidayPersistence.countByHoliday_Value(holidayValue);
 		} catch (Exception ex) {
+			result = 0;
 		}
 		return result;
 	}

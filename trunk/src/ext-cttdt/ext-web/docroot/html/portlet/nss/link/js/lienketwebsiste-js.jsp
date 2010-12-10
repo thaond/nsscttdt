@@ -43,24 +43,24 @@
 			document.getElementById("<portlet:namespace/>urlwebsite").focus();
 			return false;
 		} 
-		if (loaiwebsite.trim () == "0" ) {
-			alert('<liferay-ui:message key="vui-long-chon-loai-website"/>');
-			document.getElementById("<portlet:namespace/>loaiwebsite").focus();
-			return false;
-		} 
 		if (thuTuWebsite.trim () == "") {
 			alert('<liferay-ui:message key="vui-long-nhap-thu-tu-website"/>');
 			document.getElementById("<portlet:namespace/>thutuwebsite").focus();
 			return false;
 		} 
-		if (thuTuWebsite.trim () == "0") {
-			alert('<liferay-ui:message key="vui-long-nhap-so-khac-0"/>');
+		if (thuTuWebsite.trim () <= 0) {
+			alert('<liferay-ui:message key="vui-long-nhap-so-lon-hon-0"/>');
 			document.getElementById("<portlet:namespace/>thutuwebsite").focus();
 			return false;
-		} 
+		}
 		if (isNaN(thuTuWebsite) == true) {
 			alert("<liferay-ui:message key='chi-nhap-con-so'/>");
 			document.getElementById("<portlet:namespace/>thutuwebsite").focus();
+			return false;
+		}
+		if (loaiwebsite.trim () == "0" ) {
+			alert('<liferay-ui:message key="vui-long-chon-loai-website"/>');
+			document.getElementById("<portlet:namespace/>loaiwebsite").focus();
 			return false;
 		}
 		if (!checkImageUpload()) {

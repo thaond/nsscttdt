@@ -120,4 +120,12 @@ public class DepartmentLocalServiceImpl extends DepartmentLocalServiceBaseImpl {
 	public List<Department> findByDepartmentsCode(String departmentCode) throws SystemException{
 		return DepartmentUtil.findByDepartmentsCode(departmentCode);
 	}
+	
+	public List<Department> search(int start, int end, OrderByComparator obc) {
+		try {
+			return departmentPersistence.findAll(-1, -1, obc);
+		} catch (SystemException e) {
+			return new ArrayList<Department>();
+		}
+	}
 }

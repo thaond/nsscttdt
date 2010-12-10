@@ -63,7 +63,7 @@
         	<td>
           		<select style="width: 99%" title="<liferay-ui:message key="pccc-TN-trangthaihoso"/>" name="fileStatus" id="fileStatus">
           			<option value=""><liferay-ui:message key="chon-trang-thai-ho-so-can-tim" /></option>
-          		<logic:iterate id="fileStatus" name="listFileStatus" indexId="i" type="com.sgs.portlet.document.model.PmlFileStatus" scope="request" >
+          		<logic:iterate id="fileStatus" name="listFileStatus" indexId="i" type="com.nss.portlet.onedoor.model.PmlFileStatus" scope="request" >
           			<option value="<%=fileStatus.getFileStatusId() %>"><%=fileStatus.getFileStatusName() %></option>
           		</logic:iterate>
           		</select>
@@ -74,7 +74,7 @@
         	<td>
         		<select style="width: 99%" title="<liferay-ui:message key="pccc-TN-loaihoso"/>" name="fileType" id="fileType">
         			<option value=""><liferay-ui:message key="chon-loai-ho-so-can-tim" /></option>
-          		<logic:iterate id="fileType" name="listFileType" indexId="i" type="com.sgs.portlet.onedoor.model.PmlFileType" scope="request" >
+          		<logic:iterate id="fileType" name="listFileType" indexId="i" type="com.nss.portlet.filetype.model.PmlFileType" scope="request" >
           			<option value="<%=fileType.getFileTypeId() %>"><%=fileType.getFileTypeName() %></option>
           		</logic:iterate>
             	</select>

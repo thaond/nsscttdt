@@ -145,4 +145,102 @@ public class PmlOneDoorReceiveFileLocalServiceImpl
 			List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
 		return pmlOneDoorReceiveFileFinder.getSoHSChoBoSung(fileTypeList, fromDate, toDate, typeList, valueTypeList, start, end, obc);
 	}
+	
+	/**
+	 * BAO CAO HO SO THANG LUY KE -- 
+	 */
+	// HS TON DEN NGAY B/C
+	public List<PmlOneDoorReceiveFile> getListHSTonDenNgayBCThangLuyKe(String departmentId, List<Long> userIds, String fileTypeId,
+			String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListHSTonDenNgayBCThangLuyKe(departmentId, userIds, fileTypeId, toDate, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// HS GIAI QUYET - TRONG NAM
+	public List<PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongNamLuyKe(String departmentId, List<Long> userIds, String fileTypeId, 
+			String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListHSGiaiQuyetTrongNamLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// HS GIAI QUYET - TRONG THANG
+	public List<PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongThangLuyKe(String departmentId, List<Long> userIds, String fileTypeId,
+			String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListHSGiaiQuyetTrongThangLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// HS NHAN TRONG NAM
+	public List<PmlOneDoorReceiveFile> getListHSNhanTrongNamThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, 
+			String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListHSNhanTrongNamThangLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// TONG HO SO NHAN
+	public List<PmlOneDoorReceiveFile> getListTongHSNhanThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, 
+			String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListTongHSNhanThangLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+		
+	// HS NHAN TRONG THANG - TRONG THANG
+	public List<PmlOneDoorReceiveFile> getListHSNhanTrongThangThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId,
+			String fromDate, String toDate,List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListHSNhanTrongThangThangLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+		
+	// HS NHAN TRONG THANG - TON DAU KY
+	public List<PmlOneDoorReceiveFile> getListTonDauKyThangLuyKe(String departmentId, List<Long> userIds,String fileTypeId, 
+			String fromDate, String toDate, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getListTonDauKyThangLuyKe(departmentId, userIds, fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end, obc);
+	}
+
+	/**
+	 * THU LY HO SO CAP PHONG - THU LY HO SO CAP SO -
+	 */	
+	// TON DAU KY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonTruoc(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoTonTruoc(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// DA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoDaNhan(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoDaNhan(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// CHUA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoChuaNhan(List<Long> userIds, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoChuaNhan(userIds, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// TONG HS CAN XU LY =  TON + DA NHAN + CHUA NHAN
+	public List<PmlOneDoorReceiveFile> getSoLuongTongHoSoCanXuLy(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongTongHoSoCanXuLy(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// TU GIAI QUYET
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTuGiaiQuyet(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoTuGiaiQuyet(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// NGUOI KHAC THU LY THAY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoNguoiKhacThuLyThay(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoNguoiKhacThuLyThay(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// SO LUONG HO SO GIAI QUYET = TU GIAI QUYET + NGUOI KHAC THU LY THAY
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoGiaiQuyet(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoGiaiQuyet(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// HS TON TRONG HAN ISO
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonTrongHanISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoTonTrongHanISO(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// HS TON QUA HAN ISO
+	public List<PmlOneDoorReceiveFile> getSoLuongHoSoTonQuaHanISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongHoSoTonQuaHanISO(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
+	
+	// TONG HO SO TON DONG
+	public List<PmlOneDoorReceiveFile> getSoLuongTongHoSoTonISO(List<Long> userIds, String toDay, List<String> typeList, List<String> valueTypeList, int start, int end, OrderByComparator obc) throws SystemException {
+		return pmlOneDoorReceiveFileFinder.getSoLuongTongHoSoTonISO(userIds, toDay, typeList, valueTypeList, start, end, obc);
+	}
 }

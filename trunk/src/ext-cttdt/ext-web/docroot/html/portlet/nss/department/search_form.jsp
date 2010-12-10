@@ -8,7 +8,7 @@
 <%
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
-	portletURL.setParameter("struts_action", "/sgs/departmentleader/view");
+	portletURL.setParameter("struts_action", "/nss/department/view");
 %>
 
 <script type="text/javascript">

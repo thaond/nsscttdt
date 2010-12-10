@@ -11,50 +11,68 @@ function validateFormIdtemplate(){
 	var format = document.getElementById("format");
 	var valueTextTemplate = document.getElementById("textTemplate").value;
 	
-	var startnumber = document.getElementById("startNumber");
+	var startnumber = document.getElementById("startnumber");
 	var valueStartNumber =document.getElementById("startNumber").value;
 	
 	var des = document.getElementById("des");
 	var valueDescription =document.getElementById("description").value;
-	var message = "";
+	//var message = "";
 	
 	if(null == valueTextTemplate || "" == valueTextTemplate ){
-		message = "template";
+		//message = "template";
 		alert("<liferay-ui:message key='vui-long-nhap-dinh-dang'/>");
 		format.style.display = "inline";
+		return false;
 	}
-	else{
-		format.style.display = "none";
-	}
+	//else{
+	//	format.style.display = "none";
+	//}
 	
 	if (!checkOnlyContainText(valueTextTemplate)){
 		if(null == valueStartNumber || "" == valueStartNumber ){
-			message = "startnumber";
+			//message = "startnumber";
 			alert("<liferay-ui:message key='vui-long-nhap-so-bat-dau'/>");
 			startnumber.style.display = "inline";
+			return false;
 		}
-		else{
-			startnumber.style.display = "none";
-		}
+		//else{
+		//	startnumber.style.display = "none";
+		//}
+	}
+
+	if (!checkNumber()) {
+		//message = "startnumber";
+		startnumber.style.display = "inline";
+		document.getElementById("startNumber").focus();
+		return false;
 	}
 	
 	if(null == valueDescription || "" == valueDescription ){
-		message = "description";
+		//message = "description";
 		alert("<liferay-ui:message key='vui-long-nhap-mo-ta'/>");
 		des.style.display = "inline";
-	}
-	else{
-		des.style.display = "none";
-	}
-	
-	if("" != message ){
 		return false;
 	}
+	//else{
+	//	des.style.display = "none";
+	//}
+	
+	//if("" != message ){
+	//	return false;
+	//}
 	else{
 		return true;
 	}
-	
+}
 
+function checkNumber() {
+	var startNumberValue = document.getElementById("startNumber").value;
+	if (isNaN(startNumberValue) == true) {
+		alert("<liferay-ui:message key='chi-nhap-con-so'/>");
+		return false;
+	} else {
+		return true;
+	}
 }
 
 function checkOnlyContainText(str){
@@ -121,9 +139,8 @@ function isValid(parm,val) {
   }
   return true;
 }
-
-function checkChar(e)
-{
+var notOk = ' ,(){}[]*@#$^&';
+function checkChar(e) {
 var keynum;
 var keychar;
 

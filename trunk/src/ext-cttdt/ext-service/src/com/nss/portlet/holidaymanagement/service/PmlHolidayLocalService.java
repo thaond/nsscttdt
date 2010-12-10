@@ -83,8 +83,7 @@ public interface PmlHolidayLocalService {
     public java.util.Date getExpextedRetrningDateByDateArrive(
         java.util.Date dateArrive, int numProcessDate);
 
-    public int countHolidayByValue(java.lang.String holidayValue)
-        throws com.liferay.portal.SystemException;
+    public int countHolidayByValue(java.lang.String holidayValue);
 
     public int checkDateHoliday(java.lang.String dateReceipt,
         int fileProcessNumber);

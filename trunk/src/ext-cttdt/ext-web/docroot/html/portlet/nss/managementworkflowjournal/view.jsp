@@ -189,7 +189,7 @@ function <portlet:namespace />check_filetype_upload(form) {
 	var fileName =	document.getElementById("fileWorkflow").value;
 	var type = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 	if (fileName == "") {
-		alert("<liferay-ui:message key='vui-long-chon-tap-tin-'/>");
+		alert("<liferay-ui:message key='please-select-file-deploy'/>");
 		return false;
 	}
 	if ("xml" == type) {
@@ -205,14 +205,14 @@ function <portlet:namespace />check_filetype_upload(form) {
 			var compareFromNewToOld = compareDate(form,dateToWorkFlow,dateFrom);
 			var compareDateFromTo = compareDate(form,dateFrom,dateTo);
 			if(compareDateFromNow == false){
-				alert("<liferay-ui:message key='date-from-must-be-greater-than-date-now'/>");
+				alert("<liferay-ui:message key='date-from-must-not-be-less-than-date-now'/>");
 				return false;
 			}else if(compareFromOldFromNew == false){
-				alert("<liferay-ui:message key='date-from-new-must-be-greater-than-date-from-old'/>");
+				alert("<liferay-ui:message key='date-from-new-must-not-be-less-than-date-from-old'/>");
 				return false;
 			}else if(dateTo != ""){
 				if(compareDateFromTo == false){
-					alert("<liferay-ui:message key='date-to-must-be-greater-than-date-from'/>");
+					alert("<liferay-ui:message key='date-to-must-not-be-less-than-date-from'/>");
 					return false;
 				}
 			}
@@ -239,7 +239,7 @@ function <portlet:namespace />check_filetype_upload(form) {
 			return false;
 		}
 	} else {
-		alert("<liferay-ui:message key='vui-long-chon-file-xml'/>");
+		alert("<liferay-ui:message key='please-select-file-xml'/>");
 		return false;
 	}
 }

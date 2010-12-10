@@ -34,7 +34,7 @@
 						<tr>
 							<td class="lft_bct" width="25%"><liferay-ui:message key="onedoorpcccreport-tungay" />:&nbsp;</td>
 							<td align="left">
-								<input type="text" name="<portlet:namespace/><%= BaoCaoHoSoThangDisplayTerms.TUNGAY %>" id="<portlet:namespace />fromDate" value="<%= HtmlUtil.escape(displayTerms.getFromDate()) %>" style="width: 200px" />
+								<input type="text" name="<portlet:namespace/><%= BaoCaoHoSoThangDisplayTerms.TUNGAY %>" id="<portlet:namespace />fromDate" value="<%= HtmlUtil.escape(displayTerms.getFromDate()) %>" style="width: 100px" />
 								<input align="top" type="image" src="/html/images/cal.gif" style="cursor: pointer;" id="cal-button-FromDate" onClick="callCalendar('<portlet:namespace/>fromDate','cal-button-FromDate')"/> 
 							</td>
 						</tr>
@@ -45,7 +45,7 @@
 						<tr>
 							<td class="lft_bct" width="20%"><liferay-ui:message key="onedoorpcccreport-denngay" />:&nbsp;</td>
 							<td align="left">
-								<input type="text" name="<portlet:namespace/><%= BaoCaoHoSoThangDisplayTerms.DENNGAY %>" id="<portlet:namespace />toDate" value="<%= HtmlUtil.escape(displayTerms.getToDate()) %>" style="width: 200px" />
+								<input type="text" name="<portlet:namespace/><%= BaoCaoHoSoThangDisplayTerms.DENNGAY %>" id="<portlet:namespace />toDate" value="<%= HtmlUtil.escape(displayTerms.getToDate()) %>" style="width: 100px" />
 								<input type="image" src="/html/images/cal.gif" id="cal-button-ToDate" style="cursor: pointer;" onClick="callCalendar('<portlet:namespace/>toDate','cal-button-ToDate')" />
 							</td>
 						</tr>

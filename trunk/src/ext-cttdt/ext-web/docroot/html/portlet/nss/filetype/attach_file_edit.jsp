@@ -75,7 +75,9 @@
 			<td></td>
 				<td>
 					<input style="margin-left: 0" type="submit" value='<bean:message key="update"/>' />&nbsp;&nbsp;
-					<html:link action="/nss/filetype/view"><input  type="button" value='<bean:message key="reset"/>' /></html:link>
+					<!-- html:link action="/nss/filetype/view" -->
+					<input type="reset" value='<bean:message key="reset"/>' />
+					<!-- /html:link -->
 					<span onclick="javascript:submitForm(document.hrefFm,'<%= rowURLAttFile.toString() %>');" ><input  type="button"	value='<liferay-ui:message key="back"/>' /></span>
 				</td>
 			</tr>

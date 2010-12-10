@@ -437,4 +437,55 @@
     <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.searchresult">
         <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/searchresult.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.permissonuserbyfile.view">
+        <put name="portlet_content" value="/portlet/nss/permissonuserbyfile/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.permissonuserbyfile.edit">
+        <put name="portlet_content" value="/portlet/nss/permissonuserbyfile/edit.jsp"/>
+    </definition>
 </tiles-definitions>

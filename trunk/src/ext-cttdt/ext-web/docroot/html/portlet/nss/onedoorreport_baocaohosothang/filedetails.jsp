@@ -17,7 +17,7 @@
 <liferay-util:include page="/html/portlet/nss/onedoorreport_baocaohosothang/js/onedoorreport_baocaohosothang-js.jsp"></liferay-util:include>
 
 <link type="text/css" rel="stylesheet" href="/html/css/changeColorRow.css" />
-<link type="text/css" rel="stylesheet" href="/html/portlet/ext/onedoorreport_baocaohosothang/css/ex.css" />
+<link type="text/css" rel="stylesheet" href="/html/portlet/nss/onedoorreport_baocaohosothang/css/ex.css" />
 <link type="text/css" rel="stylesheet" href="/html/css/calendar-system.css" />
 
 <script type="text/javascript"	src="/html/js/calendar.js"></script>

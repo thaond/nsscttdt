@@ -680,6 +680,14 @@
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
+	<class name="com.nss.portlet.permissonuserbyfile.model.impl.PmlUserFileTypeImpl" table="pml_user_file_type">
+		<cache usage="read-write" />
+		<composite-id name="primaryKey" class="com.nss.portlet.permissonuserbyfile.service.persistence.PmlUserFileTypePK">
+			<key-property name="userId" column="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="fileTypeId" column="filetypeid" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		</composite-id>
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
 	<class name="com.nss.portlet.managementworkflowjournal.model.impl.ManagementWorkflowJournalImpl" table="nss_quan_ly_quy_trinh_duyet_tin">
 		<cache usage="read-write" />
 		<id name="managementWorkflowJournalId" type="long">
@@ -754,6 +762,171 @@
 		<property name="createdate" type="org.hibernate.type.TimestampType" />
 		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
 		<property name="active" column="active_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.nss.portlet.nss_don_vi_thu_tuc.model.impl.DonViThuTucImpl" table="nss_don_vi_thu_tuc">
+		<cache usage="read-write" />
+		<id name="maDonViThuTuc" column="ma_don_vi_thu_tuc" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tenDonViThuTuc" column="ten_don_vi_thu_tuc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="capDonVi" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.partner.model.impl.PartnerImpl" table="nss_partner">
+		<cache usage="read-write" />
+		<id name="maPartner" column="ma_partner" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tenPartner" column="ten_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="urlPartner" column="url_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="moTaPartner" column="mo_ta_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
+		<property name="thuTuPartner" column="thu_tu_partner" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="target" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="imageId_liferay" column="imageid_liferay" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.nss.portlet.position.model.impl.PositionImpl" table="pml_position">
+		<cache usage="read-write" />
+		<id name="positionId" column="positionid" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="positionCode" column="positioncode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="positionName" column="positionname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.qa_cau_hoi.model.impl.CauHoiQAImpl" table="nss_qa_cau_hoi">
+		<cache usage="read-write" />
+		<id name="maCauHoiQA" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tieuDe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tenNguoiHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="noiDungHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="publishdate" type="org.hibernate.type.TimestampType" />
+		<property name="publish" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.nss.portlet.qa_cau_hoi.model.impl.FileDinhKemQAImpl" table="nss_qa_file_dinh_kem">
+		<cache usage="read-write" />
+		<id name="maFileDinhKemQA" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maCauTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tenFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kichThuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="duongDan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.qa_cau_tra_loi.model.impl.CauTraLoiQAImpl" table="nss_qa_cau_tra_loi">
+		<cache usage="read-write" />
+		<id name="maCauTraLoiQA" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maCauHoiQA" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maNguoiTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="noiDungTraLoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="publishdate" type="org.hibernate.type.TimestampType" />
+		<property name="publish" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="answerThroughWeb" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="answerThroughEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.qa_chu_de.model.impl.QAChuDeCauHoiImpl" table="nss_qa_chu_de">
+		<cache usage="read-write" />
+		<id name="maChuDeCauHoi" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tenChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.nss.portlet.qa_phan_quyen.model.impl.QAPhanQuyenImpl" table="nss_qa_phan_quyen">
+		<cache usage="read-write" />
+		<id name="maPhanQuyen" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maNguoiTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="quyenXem" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="quyenCapNhat" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="quyenTraLoi" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="quyenDuyet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.nss.portlet.thu_tuc_hanh_chinh.model.impl.ThuTucHanhChinhImpl" table="nss_thu_tuc_hanh_chinh">
+		<cache usage="read-write" />
+		<id name="maThuTucHanhChinh" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tenThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="diaChiLienHe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="maLinhVucThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maDonViThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.thu_tuc_hanh_chinh.model.impl.FileDinhKemTTHCImpl" table="nss_file_dinh_kem_tthc">
+		<cache usage="read-write" />
+		<id name="maFileDinhKemTTHC" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tenFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="moTa" column="mo_ta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kichThuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="duongDan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phienBan" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.nss.portlet.van_ban_phap_quy.model.impl.VanBanPhapQuyImpl" table="nss_van_ban_phap_quy">
+		<cache usage="read-write" />
+		<id name="maVanBanPhapQuy" column="ma_van_ban_phap_quy" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="kyHieuVanBan" column="ky_hieu_van_ban" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="maLoaiVanBan" column="ma_loai_van_ban" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="maLinhVucVanBan" column="ma_linh_vuc_van_ban" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tomTat" column="tom_tat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nguon" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="noiDung" column="noi_dung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ngayKy" column="ngay_ky" type="org.hibernate.type.TimestampType" />
+		<property name="ngayCoHieuLuc" column="ngay_co_hieu_luc" type="org.hibernate.type.TimestampType" />
+		<property name="nguoiKy" column="nguoi_ky" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ngayBanHanh" column="ngay_ban_hanh" type="org.hibernate.type.TimestampType" />
+		<property name="ngayHetHieuLuc" column="ngay_het_hieu_luc" type="org.hibernate.type.TimestampType" />
+		<property name="maCoQuanBanHanh" column="ma_co_quan_ban_hanh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tag_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createdate" type="org.hibernate.type.TimestampType" />
+		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
+		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.nss.portlet.van_ban_phap_quy.model.impl.FileDinhKemImpl" table="nss_file_dinh_kem">
+		<cache usage="read-write" />
+		<id name="maFileDinhKem" column="ma_file_dinh_kem" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="maVanBanPhapQuy" column="ma_van_ban_phap_quy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="tenFile" column="ten_file" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="moTa" column="mo_ta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kichThuoc" column="kich_thuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="duongDan" column="duong_dan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="phienBan" column="phien_ban" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalendarImpl" table="MeetingCalendar">
 		<cache usage="read-write" />
@@ -935,171 +1108,6 @@
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
-	</class>
-	<class name="com.nss.portlet.nss_don_vi_thu_tuc.model.impl.DonViThuTucImpl" table="nss_don_vi_thu_tuc">
-		<cache usage="read-write" />
-		<id name="maDonViThuTuc" column="ma_don_vi_thu_tuc" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="tenDonViThuTuc" column="ten_don_vi_thu_tuc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="capDonVi" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.partner.model.impl.PartnerImpl" table="nss_partner">
-		<cache usage="read-write" />
-		<id name="maPartner" column="ma_partner" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="tenPartner" column="ten_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="urlPartner" column="url_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="moTaPartner" column="mo_ta_partner" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
-		<property name="thuTuPartner" column="thu_tu_partner" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="target" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="imageId_liferay" column="imageid_liferay" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-	</class>
-	<class name="com.nss.portlet.position.model.impl.PositionImpl" table="pml_position">
-		<cache usage="read-write" />
-		<id name="positionId" column="positionid" type="java.lang.String">
-			<generator class="assigned" />
-		</id>
-		<property name="positionCode" column="positioncode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="positionName" column="positionname" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.qa_cau_hoi.model.impl.CauHoiQAImpl" table="nss_qa_cau_hoi">
-		<cache usage="read-write" />
-		<id name="maCauHoiQA" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tieuDe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="tenNguoiHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="noiDungHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="publishdate" type="org.hibernate.type.TimestampType" />
-		<property name="publish" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-	</class>
-	<class name="com.nss.portlet.qa_cau_hoi.model.impl.FileDinhKemQAImpl" table="nss_qa_file_dinh_kem">
-		<cache usage="read-write" />
-		<id name="maFileDinhKemQA" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="maCauTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tenFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="kichThuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="duongDan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.qa_cau_tra_loi.model.impl.CauTraLoiQAImpl" table="nss_qa_cau_tra_loi">
-		<cache usage="read-write" />
-		<id name="maCauTraLoiQA" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maCauHoiQA" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="maNguoiTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="noiDungTraLoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="publishdate" type="org.hibernate.type.TimestampType" />
-		<property name="publish" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="answerThroughWeb" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="answerThroughEmail" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.qa_chu_de.model.impl.QAChuDeCauHoiImpl" table="nss_qa_chu_de">
-		<cache usage="read-write" />
-		<id name="maChuDeCauHoi" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="tenChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-	</class>
-	<class name="com.nss.portlet.qa_phan_quyen.model.impl.QAPhanQuyenImpl" table="nss_qa_phan_quyen">
-		<cache usage="read-write" />
-		<id name="maPhanQuyen" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maChuDeCauHoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="maNguoiTraLoi" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="quyenXem" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="quyenCapNhat" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="quyenTraLoi" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="quyenDuyet" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-	</class>
-	<class name="com.nss.portlet.thu_tuc_hanh_chinh.model.impl.ThuTucHanhChinhImpl" table="nss_thu_tuc_hanh_chinh">
-		<cache usage="read-write" />
-		<id name="maThuTucHanhChinh" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="tenThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="diaChiLienHe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="maLinhVucThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="maDonViThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.thu_tuc_hanh_chinh.model.impl.FileDinhKemTTHCImpl" table="nss_file_dinh_kem_tthc">
-		<cache usage="read-write" />
-		<id name="maFileDinhKemTTHC" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maThuTucHanhChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tenFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="moTa" column="mo_ta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="kichThuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="duongDan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="phienBan" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-	</class>
-	<class name="com.nss.portlet.van_ban_phap_quy.model.impl.VanBanPhapQuyImpl" table="nss_van_ban_phap_quy">
-		<cache usage="read-write" />
-		<id name="maVanBanPhapQuy" column="ma_van_ban_phap_quy" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="kyHieuVanBan" column="ky_hieu_van_ban" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="maLoaiVanBan" column="ma_loai_van_ban" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="maLinhVucVanBan" column="ma_linh_vuc_van_ban" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tomTat" column="tom_tat" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="nguon" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="noiDung" column="noi_dung" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="ngayKy" column="ngay_ky" type="org.hibernate.type.TimestampType" />
-		<property name="ngayCoHieuLuc" column="ngay_co_hieu_luc" type="org.hibernate.type.TimestampType" />
-		<property name="nguoiKy" column="nguoi_ky" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="ngayBanHanh" column="ngay_ban_hanh" type="org.hibernate.type.TimestampType" />
-		<property name="ngayHetHieuLuc" column="ngay_het_hieu_luc" type="org.hibernate.type.TimestampType" />
-		<property name="maCoQuanBanHanh" column="ma_co_quan_ban_hanh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tag_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="createdate" type="org.hibernate.type.TimestampType" />
-		<property name="modifieddate" type="org.hibernate.type.TimestampType" />
-		<property name="active" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
-		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-	</class>
-	<class name="com.nss.portlet.van_ban_phap_quy.model.impl.FileDinhKemImpl" table="nss_file_dinh_kem">
-		<cache usage="read-write" />
-		<id name="maFileDinhKem" column="ma_file_dinh_kem" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="maVanBanPhapQuy" column="ma_van_ban_phap_quy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="tenFile" column="ten_file" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="moTa" column="mo_ta" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="kichThuoc" column="kich_thuoc" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="duongDan" column="duong_dan" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="phienBan" column="phien_ban" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 	<class name="com.nss.portlet.journalworkflow.model.impl.InstanceBeanImpl" table="InstanceBean">
 		<cache usage="read-write" />

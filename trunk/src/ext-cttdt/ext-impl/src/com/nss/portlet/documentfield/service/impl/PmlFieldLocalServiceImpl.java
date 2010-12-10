@@ -1,6 +1,5 @@
 package com.nss.portlet.documentfield.service.impl;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +12,9 @@ import com.nss.portlet.documentfield.FieldCodeSameCodeException;
 import com.nss.portlet.documentfield.model.PmlField;
 import com.nss.portlet.documentfield.service.base.PmlFieldLocalServiceBaseImpl;
 import com.nss.portlet.generatetemplateid.service.IdTemplateLocalServiceUtil;
+
+import com.nss.portlet.filetype.model.PmlFileType;
+import com.nss.portlet.filetype.service.persistence.PmlFileTypeUtil;
 
 
 public class PmlFieldLocalServiceImpl extends PmlFieldLocalServiceBaseImpl {
@@ -42,14 +44,14 @@ public class PmlFieldLocalServiceImpl extends PmlFieldLocalServiceBaseImpl {
 	}
 	
 	public void removePmlField(String fieldId) throws SystemException, PortalException {
-//		List<PmlFileType> fileTypeList = new ArrayList<PmlFileType>();
-//		try {
-//			fileTypeList = PmlFileTypeUtil.findByFieldId(fieldId);
-//		} catch (Exception e) {
-//			
-//		}
-//		validateField(fileTypeList.size());
-//		pmlFieldPersistence.remove(fieldId);
+		List<PmlFileType> fileTypeList = new ArrayList<PmlFileType>();
+		try {
+			fileTypeList = PmlFileTypeUtil.findByFieldId(fieldId);
+		} catch (Exception e) {
+			
+		}
+		validateField(fileTypeList.size());
+		pmlFieldPersistence.remove(fieldId);
 	}
 	
 	public PmlField addPmlField(String fieldCode, String fieldName, String departmentsId, String description, String active) throws SystemException, PortalException {

@@ -293,6 +293,195 @@ public class PmlOneDoorReceiveFileLocalServiceUtil {
             valueTypeList, start, end, obc);
     }
 
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListHSTonDenNgayBCThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String toDate,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListHSTonDenNgayBCThangLuyKe(departmentId, userIds,
+            fileTypeId, toDate, typeList, valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongNamLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListHSGiaiQuyetTrongNamLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListHSGiaiQuyetTrongThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListHSGiaiQuyetTrongThangLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListHSNhanTrongNamThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListHSNhanTrongNamThangLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListTongHSNhanThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListTongHSNhanThangLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListHSNhanTrongThangThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListHSNhanTrongThangThangLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getListTonDauKyThangLuyKe(
+        java.lang.String departmentId, java.util.List<Long> userIds,
+        java.lang.String fileTypeId, java.lang.String fromDate,
+        java.lang.String toDate, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getListTonDauKyThangLuyKe(departmentId, userIds,
+            fileTypeId, fromDate, toDate, typeList, valueTypeList, start, end,
+            obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoTonTruoc(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoTonTruoc(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoDaNhan(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoDaNhan(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoChuaNhan(
+        java.util.List<Long> userIds, java.util.List<String> typeList,
+        java.util.List<String> valueTypeList, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoChuaNhan(userIds, typeList, valueTypeList,
+            start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongTongHoSoCanXuLy(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongTongHoSoCanXuLy(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoTuGiaiQuyet(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoTuGiaiQuyet(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoNguoiKhacThuLyThay(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoNguoiKhacThuLyThay(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoGiaiQuyet(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoGiaiQuyet(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoTonTrongHanISO(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoTonTrongHanISO(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongHoSoTonQuaHanISO(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongHoSoTonQuaHanISO(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
+    public static java.util.List<com.nss.portlet.onedoor.model.PmlOneDoorReceiveFile> getSoLuongTongHoSoTonISO(
+        java.util.List<Long> userIds, java.lang.String toDay,
+        java.util.List<String> typeList, java.util.List<String> valueTypeList,
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getSoLuongTongHoSoTonISO(userIds, toDay, typeList,
+            valueTypeList, start, end, obc);
+    }
+
     public static PmlOneDoorReceiveFileLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

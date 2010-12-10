@@ -81,7 +81,7 @@
 
 		<tr>
 			<td ><label><liferay-ui:message key="sgs_filetype_processTime"/>&nbsp;<font color="red">(*)</font>:</label></td>
-			<td><input style="width: 50%" type="text" name="_processTime" value="<%= processTime %>"/></td>
+			<td><input style="width: 50%" type="text" name="_processTime" value="<%= processTime %>" maxlength="10"/></td>
 		</tr>
 
 		<tr valign="top">
@@ -107,7 +107,9 @@
 			<td></td>
 				<td>
 					<input style="margin-left: 0;" type="submit" value='<liferay-ui:message key="luu"/>' />
-					<html:link action="/nss/filetype/view"><input class="button" type="button" value='<liferay-ui:message key="reset"/>' /></html:link>
+					<!-- html:link action="/nss/filetype/view" -->
+						<input class="button" type="reset" value='<liferay-ui:message key="reset"/>' />
+					<!-- /html:link -->
 					<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button" type="button" value='<liferay-ui:message key="back"/>' /></span>
 				</td>
 			</tr>
