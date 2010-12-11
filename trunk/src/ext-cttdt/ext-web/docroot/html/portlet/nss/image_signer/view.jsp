@@ -1,3 +1,4 @@
+<%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@page import="com.nss.portlet.image_signer.model.ImageSigner"%>
 <%@ include file="/html/portlet/nss/image_signer/init.jsp"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
@@ -81,11 +82,11 @@
  		row.addText(user_image.getMiddleName());
  		row.addText(user_image.getLastName());
  		if (imageSigner == null) {
- 			row.addText("no-image-sign");
- 			row.addText("no-image-unsign");
+ 			row.addText(LanguageUtil.get(pageContext,"no-image-sign"));
+ 			row.addText(LanguageUtil.get(pageContext,"no-image-unsign"));
  		}else if(imageSigner.getImageIdSign()==0&&imageSigner.getImageIdUnSign()==0){
- 			row.addText("no-image-sign");
- 			row.addText("no-image-unsign");
+ 			row.addText(LanguageUtil.get(pageContext,"no-image-sign"));
+ 			row.addText(LanguageUtil.get(pageContext,"no-image-unsign"));
  		}else{
  			row.addText("<img width='30px' height='20px' src='"+  themeDisplay.getPathImage()+ "/image_signer?img_id="+ imageSigner.getImageIdSign() +"' />");
  			row.addText("<img width='30px' height='20px' src='"+  themeDisplay.getPathImage()+ "/image_signer?img_id="+ imageSigner.getImageIdUnSign() +"' />");

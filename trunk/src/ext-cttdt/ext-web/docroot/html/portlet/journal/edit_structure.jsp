@@ -253,7 +253,7 @@ int tabIndex = 1;
 <input name="xml" type="hidden" value="" />
 </form>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveStructure(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveStructure(); return false;">
 <input name="scroll" type="hidden" value="" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
@@ -479,7 +479,7 @@ tabIndex = tabIndexWrapper.getValue();
 		}
 	);
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 		<c:choose>
 			<c:when test="<%= PropsValues.JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID %>">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm1.<portlet:namespace />name);

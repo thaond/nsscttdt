@@ -230,6 +230,7 @@
 	<classpathentry kind="lib" path="ext-lib/portal/httpcore-nio-4.0.1.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/httpmime-4.0.3.jar"/>
 	<classpathentry kind="lib" path="ext-lib/global/digitalsignature-portlet-service.jar" sourcepath="/digitalsignature-portlet"/>
+	<classpathentry kind="lib" path="ext-lib/global/bouncycastle-jdk1.6.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/bootstrap.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/bsh-1.3.0.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/hibernate-annotations.jar"/>
@@ -242,7 +243,6 @@
 	<classpathentry kind="lib" path="ext-lib/portal/persistence.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/sgs-rtftemplate-1.0.jar"/>
 	<classpathentry kind="lib" path="ext-lib/portal/spring-modules-jbpm31.jar"/>
-	<classpathentry kind="lib" path="ext-lib/global/bouncycastle-jdk1.6.jar"/>
 	<classpathentry kind="lib" path="lib/development/jtds.jar"/>
 	<classpathentry kind="lib" path="lib/development/support-tomcat.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

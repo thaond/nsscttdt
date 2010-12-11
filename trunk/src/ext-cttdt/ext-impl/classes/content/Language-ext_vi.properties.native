@@ -182,4 +182,16 @@ Binh-chon = Bình chọn
 ##sgs_filestatus
 ##
 javax.portlet.title.SGS_FILESTATUS = Trạng thái hồ sơ
- 
+##
+##journal
+##
+web-content = Bài báo
+add-web-content = Thêm bài báo
+expire = Hết hạn
+feeds = Nguồn dữ liệu
+recent = Gần đây
+permissions = Phân quyền
+copy = Sao chép
+never-auto-expire = Không tự động hết hạn
+review-date = Xem lại ngày
+never-review = Không xem lại ngày 

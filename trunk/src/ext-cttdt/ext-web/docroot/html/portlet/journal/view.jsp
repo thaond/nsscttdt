@@ -29,7 +29,7 @@ String tabs1 = ParamUtil.getString(request, "tabs1", "web-content");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setWindowState(WindowState.NORMAL);
 
 portletURL.setParameter("struts_action", "/journal/view");
 portletURL.setParameter("tabs1", tabs1);
@@ -112,7 +112,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			ArticleSearchTerms searchTerms = (ArticleSearchTerms)searchContainer.getSearchTerms();
@@ -140,7 +140,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_article");
 				rowURL.setParameter("redirect", currentURL);
@@ -222,7 +222,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			StructureSearchTerms searchTerms = (StructureSearchTerms)searchContainer.getSearchTerms();
@@ -248,7 +248,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_structure");
 				rowURL.setParameter("redirect", currentURL);
@@ -306,7 +306,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			TemplateSearchTerms searchTerms = (TemplateSearchTerms)searchContainer.getSearchTerms();
@@ -334,7 +334,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_template");
 				rowURL.setParameter("redirect", currentURL);
@@ -383,7 +383,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			FeedSearchTerms searchTerms = (FeedSearchTerms)searchContainer.getSearchTerms();
@@ -409,7 +409,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_feed");
 				rowURL.setParameter("redirect", currentURL);
@@ -482,7 +482,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editArticleURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editArticleURL">
 						<portlet:param name="struts_action" value="/journal/edit_article" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(article.getGroupId()) %>" />
@@ -532,7 +532,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editStructureURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editStructureURL">
 						<portlet:param name="struts_action" value="/journal/edit_structure" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(structure.getGroupId()) %>" />
@@ -581,7 +581,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editTemplateURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editTemplateURL">
 						<portlet:param name="struts_action" value="/journal/edit_template" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(template.getGroupId()) %>" />
