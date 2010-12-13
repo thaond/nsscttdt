@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<resource file="resource-actions/meetingcalendar.xml" />
+	<resource file="resource-actions/nss_journal.xml" />
+</resource-action-mapping>

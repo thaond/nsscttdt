@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.qa_cau_tra_loi">
+	<namespace>CauTraLoiQA</namespace>
+	<entity name="CauTraLoiQA" local-service="true" remote-service="true" table="nss_qa_cau_tra_loi">
+		<column name="maCauTraLoiQA" type="long" primary="true" />
+		<column name="maCauHoiQA" type="long" />
+		<column name="maNguoiTraLoi" type="long" />
+		
+		<column name="noiDungTraLoi" type="String" />
+		
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="publishdate" type="Date" />
+	  	<column name="publish" type="boolean" />
+	  	
+	  	<column name="answerThroughWeb" type="boolean" />
+	  	<column name="answerThroughEmail" type="String" />
+	  	
+		<!-- Order -->
+	    <!-- Finder methods -->
+	    <finder name="MaCauHoiQA" return-type="Collection">
+	   		<finder-column name="maCauHoiQA"/>
+	    </finder>
+	    <finder name="MaCauHoiQA_Publish" return-type="Collection">
+	   		<finder-column name="maCauHoiQA"/>
+	   		<finder-column name="publish"/>
+	    </finder>
+	    
+	    <finder name="AnswerThroughWeb" return-type="Collection">
+	   		<finder-column name="answerThroughWeb"/>
+	    </finder>
+	    
+	    <finder name="AnswerThroughEmail" return-type="Collection">
+	   		<finder-column name="answerThroughEmail"/>
+	    </finder>
+	</entity>
+</service-builder>

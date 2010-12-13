@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.nss.portlet.managementworkflowjournal.service.persistence.ManagementWorkflowJournalFinder.findBy_WORKFLOWNAME_VERSION">
+		<![CDATA[
+			SELECT
+				nss_quan_ly_quy_trinh_duyet_tin.*
+			FROM
+				nss_quan_ly_quy_trinh_duyet_tin
+			WHERE
+				(lower(nss_quan_ly_quy_trinh_duyet_tin.workflowname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(nss_quan_ly_quy_trinh_duyet_tin.version_ = ?)				 	
+		]]>
+	</sql>
+	<sql id="com.nss.portlet.managementworkflowjournal.service.persistence.ManagementWorkflowJournalFinder.countBy_WORKFLOWNAME_VERSION">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				nss_quan_ly_quy_trinh_duyet_tin
+			WHERE
+				(lower(nss_quan_ly_quy_trinh_duyet_tin.workflowname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(nss_quan_ly_quy_trinh_duyet_tin.version_ = ?)
+		]]>
+	</sql>
+	
+	<sql id="com.nss.portlet.managementworkflowjournal.service.persistence.ManagementWorkflowJournalFinder.getBy_DATEFROM_BETWEEN_DATETO">
+		<![CDATA[
+			SELECT
+				nss_quan_ly_quy_trinh_duyet_tin.*
+			FROM
+				nss_quan_ly_quy_trinh_duyet_tin
+			WHERE
+				(nss_quan_ly_quy_trinh_duyet_tin.datefrom <=  ?)
+			ORDER BY version_ ASC
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.managementworkflowjournal.service.persistence.WorkflowJournalArticleFinder.GET_WORKFLOW_JOURNALARTICAL_BY_PROCESSDEFINITION">
+		<![CDATA[
+		SELECT *
+		FROM nss_workflow_journal_article 
+		WHERE processDefinitionId = ? 
+		]]>
+	</sql>	
+	<sql
+		id="com.nss.portlet.managementworkflowjournal.service.persistence.LogWorkflowJournalArticleFinder.GET_LOG_WORKFLOW_JOURNAL_ARTICLE_BY_R_T">
+		<![CDATA[
+		SELECT *
+		FROM log_workflow_journal_article
+		WHERE resourceprimkey = ?
+		ORDER BY  transition DESC
+		]]>
+	</sql>	
+</custom-sql>
