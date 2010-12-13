@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.contact">
+	<namespace>HoTroTrucTuyen</namespace>
+	
+	<entity name="HoTroTrucTuyen" local-service="true" remote-service="true" table="nss_ho_tro_truc_tuyen">
+		<column name="maHoTroTrucTuyen" type="int" db-name="ma_ho_tro_truc_tuyen" primary="true" />
+		
+		<column name="ten" type="String" db-name="ten" />
+		<column name="link" type="String" db-name="link" />
+		<column name="imageUrl" type="String" db-name="image_url" />
+		<column name="order" type="int" db-name="order_" />
+		<column name="active" type="int" db-name="active" />
+		<column name="description" type="String" db-name="description" />
+		
+		<column name="companyid" type="long" db-name="companyid" />
+	  	<column name="userid" type="long" db-name="userid" />
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="modifieddate" type="Date" db-name="modifieddate" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="order" case-sensitive="false" />
+	    </order>
+		
+		<!-- Finder methods -->
+		<finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	</entity>
+	
+</service-builder>

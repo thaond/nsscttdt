@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinder.findByVanBanPhapQuy">
+		<![CDATA[
+			SELECT
+				nss_van_ban_phap_quy.*
+			FROM
+				nss_van_ban_phap_quy
+			WHERE
+				(lower(nss_van_ban_phap_quy.ky_hieu_van_ban) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+		]]>
+	</sql>
+	<sql id="com.nss.portlet.van_ban_phap_quy.service.persistence.VanBanPhapQuyFinder.countByVanBanPhapQuy">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				nss_van_ban_phap_quy
+			WHERE
+				(lower(nss_van_ban_phap_quy.ky_hieu_van_ban) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+</custom-sql>

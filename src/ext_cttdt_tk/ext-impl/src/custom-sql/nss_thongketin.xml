@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_ALL_TAGSASSET_BY_U_G_C">
+		<![CDATA[
+		SELECT tagsasset.*
+		FROM tagsasset inner join nss_workflow_journal_article on tagsasset.classpk = nss_workflow_journal_article.resourceprimkey
+		WHERE 
+		(tagsasset.userid = ?) AND
+		(tagsasset.classpk in ?)
+		]]>
+	</sql>
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_ALL_TAGSASSET_BY_VOCABULARY">
+		<![CDATA[
+		SELECT tagsasset.*
+		FROM nss_workflow_journal_article 
+					left join tagsasset 
+						on nss_workflow_journal_article.resourceprimkey = tagsasset.classpk 
+							left join tagsassets_tagsentries 
+								on tagsasset.assetid = tagsassets_tagsentries.assetid 
+									left join tagsentry 
+										on tagsassets_tagsentries.entryid = tagsentry.entryid 
+											left join tagsvocabulary 
+												on tagsentry.vocabularyid = tagsvocabulary.vocabularyid
+		WHERE 
+		(tagsvocabulary.vocabularyid = ?)
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.COUNT_ARTICLE_BY_VOCABULARY">
+		<![CDATA[
+		SELECT COUNT(journalarticle.*) AS COUNT_VALUE
+		FROM journalarticle left join nss_workflow_journal_article 
+				on journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey 
+					left join tagsasset 
+						on nss_workflow_journal_article.resourceprimkey = tagsasset.classpk 
+							left join tagsassets_tagsentries 
+								on tagsasset.assetid = tagsassets_tagsentries.assetid 
+									left join tagsentry 
+										on tagsassets_tagsentries.entryid = tagsentry.entryid 
+											left join tagsvocabulary 
+												on tagsentry.vocabularyid = tagsvocabulary.vocabularyid
+		WHERE 
+		(tagsvocabulary.vocabularyid = ?)
+		AND
+		(journalarticle.createdate BETWEEN ? AND ?)
+		AND
+		(journalarticle.approveddate BETWEEN ? AND ?)
+		AND
+		(journalarticle.displaydate BETWEEN ? AND ?)
+		AND
+		(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_ARTICLE_BY_VOCABULARY">
+		<![CDATA[
+		SELECT journalarticle.*
+		FROM journalarticle left join nss_workflow_journal_article 
+				on journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey 
+					left join tagsasset 
+						on nss_workflow_journal_article.resourceprimkey = tagsasset.classpk 
+							left join tagsassets_tagsentries 
+								on tagsasset.assetid = tagsassets_tagsentries.assetid 
+									left join tagsentry 
+										on tagsassets_tagsentries.entryid = tagsentry.entryid 
+											left join tagsvocabulary 
+												on tagsentry.vocabularyid = tagsvocabulary.vocabularyid
+		WHERE 
+		(tagsvocabulary.vocabularyid = ?)
+		AND
+		(journalarticle.createdate BETWEEN ? AND ?)
+		AND
+		(journalarticle.approveddate BETWEEN ? AND ?)
+		AND
+		(journalarticle.displaydate BETWEEN ? AND ?)
+		AND
+		(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.COUNT_ARTICLE_APPROVED_BY_VOCABULARY">
+		<![CDATA[
+		SELECT COUNT(journalarticle.*) AS COUNT_VALUE
+		FROM journalarticle left join nss_workflow_journal_article 
+				on journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey 
+					left join tagsasset 
+						on nss_workflow_journal_article.resourceprimkey = tagsasset.classpk 
+							left join tagsassets_tagsentries 
+								on tagsasset.assetid = tagsassets_tagsentries.assetid 
+									left join tagsentry 
+										on tagsassets_tagsentries.entryid = tagsentry.entryid 
+											left join tagsvocabulary 
+												on tagsentry.vocabularyid = tagsvocabulary.vocabularyid
+		WHERE 
+		(tagsvocabulary.vocabularyid = ?)
+		AND
+		(journalarticle.approved = ?)
+		AND
+		(journalarticle.createdate BETWEEN ? AND ?)
+		AND
+		(journalarticle.approveddate BETWEEN ? AND ?)
+		AND
+		(journalarticle.displaydate BETWEEN ? AND ?)
+		AND
+		(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_NSS_WORKFLOW_BY_VOCABULARY">
+		<![CDATA[
+		SELECT nss_workflow_journal_article.*
+		FROM journalarticle left join nss_workflow_journal_article 
+				on journalarticle.resourceprimkey = nss_workflow_journal_article.resourceprimkey 
+					left join tagsasset 
+						on nss_workflow_journal_article.resourceprimkey = tagsasset.classpk 
+							left join tagsassets_tagsentries 
+								on tagsasset.assetid = tagsassets_tagsentries.assetid 
+									left join tagsentry 
+										on tagsassets_tagsentries.entryid = tagsentry.entryid 
+											left join tagsvocabulary 
+												on tagsentry.vocabularyid = tagsvocabulary.vocabularyid
+		WHERE 
+		(tagsvocabulary.vocabularyid = ?)
+		AND
+		(journalarticle.createdate BETWEEN ? AND ?)
+		AND
+		(journalarticle.approveddate BETWEEN ? AND ?)
+		AND
+		(journalarticle.displaydate BETWEEN ? AND ?)
+		AND
+		(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_ARTICLE_INNER_JOIN_NSS_WORKFLOW">
+		<![CDATA[
+		SELECT journalarticle.*
+		FROM nss_workflow_journal_article INNER JOIN journalarticle ON nss_workflow_journal_article.resourceprimkey = journalarticle.resourceprimkey
+		WHERE 
+			(nss_workflow_journal_article.userid = ?)
+			AND
+			(journalarticle.createdate BETWEEN ? AND ?)
+			AND
+			(journalarticle.approveddate BETWEEN ? AND ?)
+			AND
+			(journalarticle.displaydate BETWEEN ? AND ?)
+			AND
+			(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.GET_NSS_WORKFLOW_INNER_JOIN_ARTICLE">
+		<![CDATA[
+		SELECT nss_workflow_journal_article.*
+		FROM nss_workflow_journal_article INNER JOIN journalarticle ON nss_workflow_journal_article.resourceprimkey = journalarticle.resourceprimkey
+		WHERE 
+			(nss_workflow_journal_article.userid = ?)
+			AND
+			(journalarticle.createdate BETWEEN ? AND ?)
+			AND
+			(journalarticle.approveddate BETWEEN ? AND ?)
+			AND
+			(journalarticle.displaydate BETWEEN ? AND ?)
+			AND
+			(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+	
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.COUNT_ARTICLE_BY_USERID_AND_DATE">
+		<![CDATA[
+		SELECT COUNT(nss_workflow_journal_article.*) AS COUNT_VALUE
+		FROM nss_workflow_journal_article INNER JOIN journalarticle ON nss_workflow_journal_article.resourceprimkey = journalarticle.resourceprimkey
+		WHERE 
+			(nss_workflow_journal_article.userid = ?)
+			AND
+			(journalarticle.createdate BETWEEN ? AND ?)
+			AND
+			(journalarticle.approveddate BETWEEN ? AND ?)
+			AND
+			(journalarticle.displaydate BETWEEN ? AND ?)
+			AND
+			(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+		
+	<sql
+		id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.COUNT_ARTICLE_APPROVED_BY_USERID_AND_DATE">
+		<![CDATA[
+		SELECT COUNT(nss_workflow_journal_article.*) AS COUNT_VALUE
+		FROM nss_workflow_journal_article INNER JOIN journalarticle ON nss_workflow_journal_article.resourceprimkey = journalarticle.resourceprimkey
+		WHERE 
+			(nss_workflow_journal_article.userid = ?)
+			AND
+			(journalarticle.approved = ?)
+			AND
+			(journalarticle.createdate BETWEEN ? AND ?)
+			AND
+			(journalarticle.approveddate BETWEEN ? AND ?)
+			AND
+			(journalarticle.displaydate BETWEEN ? AND ?)
+			AND
+			(journalarticle.expirationdate BETWEEN ? AND ?)
+		]]>
+	</sql>
+</custom-sql>

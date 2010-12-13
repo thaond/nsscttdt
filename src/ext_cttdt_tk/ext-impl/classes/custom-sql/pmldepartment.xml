@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.nss.portlet.department.service.persistence.DepartmentFinder.countByPmlDepartment">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_departments
+			WHERE
+				(lower(pml_departments.departmentscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_departments.departmentsname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_departments.abbreviatename) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+	<sql id="com.nss.portlet.department.service.persistence.DepartmentFinder.findByPmlDepartment">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_departments.*}
+			FROM
+				pml_departments
+			WHERE
+				(lower(pml_departments.departmentscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_departments.departmentsname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_departments.abbreviatename) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+</custom-sql>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.thu_tuc_hanh_chinh">
+	<namespace>ThuTucHanhChinh</namespace>
+	<entity name="ThuTucHanhChinh" local-service="true" remote-service="true" table="nss_thu_tuc_hanh_chinh">
+		<column name="maThuTucHanhChinh" type="long" primary="true" />
+		
+		<column name="tenThuTucHanhChinh" type="String" />
+		<column name="diaChiLienHe" type="String" />
+		
+		<column name="maLinhVucThuTucHanhChinh" type="long" />
+		<column name="maDonViThuTucHanhChinh" type="long" />
+		
+		<column name="companyid" type="long" db-name="companyid" />
+	  	<column name="userid" type="long" db-name="userid" />
+	  	<column name="createdate" type="Date" db-name="createdate" />
+	  	<column name="modifieddate" type="Date" db-name="modifieddate" />
+		
+		<column name="active" type="int" db-name="active" />
+		<column name="description" type="String" db-name="description" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="tenThuTucHanhChinh" case-sensitive="false" />
+	    </order>
+	    
+	    <!-- Finder methods -->
+	    <finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	    <finder name="MaLinhVucThuTucHanhChinh" return-type="Collection">
+	   		<finder-column name="maLinhVucThuTucHanhChinh"/>
+	    </finder>
+	    <finder name="MaDonViThuTucHanhChinh" return-type="Collection">
+	   		<finder-column name="maDonViThuTucHanhChinh"/>
+	    </finder>
+	</entity>
+	
+	<entity name="FileDinhKemTTHC" local-service="true" remote-service="true" table="nss_file_dinh_kem_tthc">
+		<column name="maFileDinhKemTTHC" type="long" primary="true" />		
+		<column name="maThuTucHanhChinh" type="long" />
+		<column name="tenFile" type="String" />
+		<column name="moTa" type="String" db-name="mo_ta" />
+		<column name="kichThuoc" type="long" />		
+		<column name="duongDan" type="String" />
+		<column name="phienBan" type="int" />	
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="maFileDinhKemTTHC" case-sensitive="false" />
+	    </order>
+		
+		<!-- Finder methods -->
+	    <finder name="MaThuTucHanhChinh" return-type="Collection">
+	   		<finder-column name="maThuTucHanhChinh"/>
+	    </finder>
+	</entity>
+</service-builder>

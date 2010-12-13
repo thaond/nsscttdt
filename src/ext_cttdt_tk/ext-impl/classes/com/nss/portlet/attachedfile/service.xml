@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.attachedfile">
+	<namespace>Attachedfile</namespace>
+	<entity name="AttachedFile" local-service="true" remote-service="true"
+		table="pml_attachedfile">
+
+		<!-- PK fields -->
+
+		<column name="attachedFileId" type="String" primary="true" db-name="attachedfileid"/>
+
+		<!-- Other fields -->
+
+		<column name="attachedFileCode" type="String" db-name="attachedfilecode"/>
+		<column name="attachedFileName" type="String" db-name="attachedfilename"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="attachedFileId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="AttachedFileCode" return-type="Collection">
+			<finder-column name="attachedFileCode" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="AttachedFileName" return-type="Collection">
+			<finder-column case-sensitive="false" name="attachedFileName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		<finder name="C_N_D" return-type="Collection">
+			<finder-column name="attachedFileCode" comparator="LIKE"/>
+			<finder-column name="attachedFileName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>AttachedFileCanNotDelete</exception>
+		<exception>AttachedFileCodeSameCode</exception>
+	</exceptions>
+</service-builder>
