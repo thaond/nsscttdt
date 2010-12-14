@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean name="/com_ext_portlet_reports_service_spring_ReportsEntryService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.reports.service.ReportsEntryService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.reports.service.ReportsEntryService" />
+	</bean>
+	<bean name="/com_ext_portlet_reports_service_spring_ReportsEntryService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.reports.service.ReportsEntryService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.reports.service.ReportsEntryService" />
+	</bean>
+	<bean name="/com_ext_portlet_reports_service_spring_ReportsEntryService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.reports.service.ReportsEntryService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.reports.service.ReportsEntryService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalArticleService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalArticleService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalArticleService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalFeedService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalFeedService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalFeedService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalStructureService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalStructureService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalStructureService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalTemplateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalTemplateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_liferay_portlet_journal_service_spring_JournalTemplateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_JournalProcessDefinitionService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_JournalProcessDefinitionService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_JournalProcessDefinitionService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_InstanceBeanService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.InstanceBeanService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_InstanceBeanService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.InstanceBeanService" />
+	</bean>
+	<bean name="/com_nss_portlet_journalworkflow_service_spring_InstanceBeanService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journalworkflow.service.InstanceBeanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journalworkflow.service.InstanceBeanService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_VanBanPhapQuyService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_VanBanPhapQuyService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_VanBanPhapQuyService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_FileDinhKemService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_FileDinhKemService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService" />
+	</bean>
+	<bean name="/com_nss_portlet_van_ban_phap_quy_service_spring_FileDinhKemService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.van_ban_phap_quy.service.FileDinhKemService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_van_ban_service_spring_LoaiVanBanService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_van_ban.service.LoaiVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_van_ban_service_spring_LoaiVanBanService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_van_ban.service.LoaiVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_van_ban_service_spring_LoaiVanBanService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_van_ban.service.LoaiVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_van_ban.service.LoaiVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_van_ban_service_spring_LinhVucVanBanService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_van_ban_service_spring_LinhVucVanBanService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_van_ban_service_spring_LinhVucVanBanService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_van_ban.service.LinhVucVanBanService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LienKetWebsiteService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LienKetWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LienKetWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LienKetWebsiteService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LienKetWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LienKetWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LienKetWebsiteService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LienKetWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LienKetWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LoaiWebsiteService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LoaiWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LoaiWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LoaiWebsiteService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LoaiWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LoaiWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_link_service_spring_LoaiWebsiteService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.link.service.LoaiWebsiteService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.link.service.LoaiWebsiteService" />
+	</bean>
+	<bean name="/com_nss_portlet_co_quan_ban_hanh_service_spring_CoQuanBanHanhService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService" />
+	</bean>
+	<bean name="/com_nss_portlet_co_quan_ban_hanh_service_spring_CoQuanBanHanhService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService" />
+	</bean>
+	<bean name="/com_nss_portlet_co_quan_ban_hanh_service_spring_CoQuanBanHanhService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.co_quan_ban_hanh.service.CoQuanBanHanhService" />
+	</bean>
+	<bean name="/com_nss_portlet_partner_service_spring_PartnerService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.partner.service.PartnerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.partner.service.PartnerService" />
+	</bean>
+	<bean name="/com_nss_portlet_partner_service_spring_PartnerService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.partner.service.PartnerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.partner.service.PartnerService" />
+	</bean>
+	<bean name="/com_nss_portlet_partner_service_spring_PartnerService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.partner.service.PartnerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.partner.service.PartnerService" />
+	</bean>
+	<bean name="/com_nss_portlet_necessary_info_service_spring_ThongTinCanThietService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.necessary_info.service.ThongTinCanThietService" />
+	</bean>
+	<bean name="/com_nss_portlet_necessary_info_service_spring_ThongTinCanThietService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.necessary_info.service.ThongTinCanThietService" />
+	</bean>
+	<bean name="/com_nss_portlet_necessary_info_service_spring_ThongTinCanThietService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.necessary_info.service.ThongTinCanThietService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.necessary_info.service.ThongTinCanThietService" />
+	</bean>
+	<bean name="/com_nss_portlet_adv_service_spring_QuangCaoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.adv.service.QuangCaoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.adv.service.QuangCaoService" />
+	</bean>
+	<bean name="/com_nss_portlet_adv_service_spring_QuangCaoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.adv.service.QuangCaoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.adv.service.QuangCaoService" />
+	</bean>
+	<bean name="/com_nss_portlet_adv_service_spring_QuangCaoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.adv.service.QuangCaoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.adv.service.QuangCaoService" />
+	</bean>
+	<bean name="/com_nss_portlet_nss_don_vi_thu_tuc_service_spring_DonViThuTucService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService" />
+	</bean>
+	<bean name="/com_nss_portlet_nss_don_vi_thu_tuc_service_spring_DonViThuTucService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService" />
+	</bean>
+	<bean name="/com_nss_portlet_nss_don_vi_thu_tuc_service_spring_DonViThuTucService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.nss_don_vi_thu_tuc.service.DonViThuTucService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_thu_tuc_service_spring_LoaiThuTucHanhChinhService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_thu_tuc_service_spring_LoaiThuTucHanhChinhService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_loai_thu_tuc_service_spring_LoaiThuTucHanhChinhService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.loai_thu_tuc.service.LoaiThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_thu_tuc_service_spring_LinhVucThuTucHanhChinhService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_thu_tuc_service_spring_LinhVucThuTucHanhChinhService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_linh_vuc_thu_tuc_service_spring_LinhVucThuTucHanhChinhService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.linh_vuc_thu_tuc.service.LinhVucThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_ThuTucHanhChinhService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_ThuTucHanhChinhService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_ThuTucHanhChinhService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.ThuTucHanhChinhService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_FileDinhKemTTHCService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_FileDinhKemTTHCService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService" />
+	</bean>
+	<bean name="/com_nss_portlet_thu_tuc_hanh_chinh_service_spring_FileDinhKemTTHCService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService" />
+	</bean>
+	<bean name="/com_nss_portlet_contact_service_spring_HoTroTrucTuyenService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.contact.service.HoTroTrucTuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_contact_service_spring_HoTroTrucTuyenService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.contact.service.HoTroTrucTuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_contact_service_spring_HoTroTrucTuyenService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.contact.service.HoTroTrucTuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.contact.service.HoTroTrucTuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_CauHoiQAService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_CauHoiQAService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_CauHoiQAService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.CauHoiQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_FileDinhKemQAService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_FileDinhKemQAService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_hoi_service_spring_FileDinhKemQAService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_hoi.service.FileDinhKemQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_chu_de_service_spring_QAChuDeCauHoiService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_chu_de_service_spring_QAChuDeCauHoiService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_chu_de_service_spring_QAChuDeCauHoiService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_chu_de.service.QAChuDeCauHoiService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_phan_quyen_service_spring_QAPhanQuyenService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_phan_quyen_service_spring_QAPhanQuyenService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_phan_quyen_service_spring_QAPhanQuyenService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_phan_quyen.service.QAPhanQuyenService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_tra_loi_service_spring_CauTraLoiQAService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_tra_loi_service_spring_CauTraLoiQAService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService" />
+	</bean>
+	<bean name="/com_nss_portlet_qa_cau_tra_loi_service_spring_CauTraLoiQAService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.qa_cau_tra_loi.service.CauTraLoiQAService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBCategoryService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBCategoryService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBCategoryService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBCategoryService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBCategoryService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBCategoryService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBCategoryService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBCategoryService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBCategoryService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBThreadService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBThreadService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBThreadService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBThreadService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBThreadService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBThreadService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBThreadService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBThreadService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBThreadService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBBanService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBBanService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBBanService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBBanService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBBanService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBBanService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBBanService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBBanService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBBanService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageFlagService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageFlagService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageFlagService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageFlagService" />
+	</bean>
+	<bean name="/com_liferay_portlet_messageboards_service_spring_MBMessageFlagService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.liferay.portlet.messageboards.service.MBMessageFlagService.impl" />
+		<property name="serviceInterface" value="com.liferay.portlet.messageboards.service.MBMessageFlagService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_chu_de_service_spring_MediaChuDeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_chu_de.service.MediaChuDeService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_chu_de_service_spring_MediaChuDeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_chu_de.service.MediaChuDeService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_chu_de_service_spring_MediaChuDeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_chu_de.service.MediaChuDeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_chu_de.service.MediaChuDeService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_library_service_spring_MediaLibraryService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_library.service.MediaLibraryService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_library_service_spring_MediaLibraryService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_library.service.MediaLibraryService" />
+	</bean>
+	<bean name="/com_nss_portlet_media_library_service_spring_MediaLibraryService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.media_library.service.MediaLibraryService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.media_library.service.MediaLibraryService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalendarService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalendarService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalendarService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingCalComponentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingCalComponentService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_ext_portlet_meetingcalendar_service_spring_MeetingDetailWeekService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService.impl" />
+		<property name="serviceInterface" value="com.ext.portlet.meetingcalendar.service.MeetingDetailWeekService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_image_signer_service_spring_ImageSignerService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.image_signer.service.ImageSignerService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.image_signer.service.ImageSignerService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdTemplateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdTemplateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdTemplateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdGeneratedService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdGeneratedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdGeneratedService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdGeneratedService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdGeneratedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdGeneratedService" />
+	</bean>
+	<bean name="/com_nss_portlet_generatetemplateid_service_spring_IdGeneratedService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.generatetemplateid.service.IdGeneratedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.generatetemplateid.service.IdGeneratedService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_AgencyService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.AgencyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.AgencyService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_AgencyService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.AgencyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.AgencyService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_AgencyService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.AgencyService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.AgencyService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_PmlAgencyLeaderService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.PmlAgencyLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_PmlAgencyLeaderService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.PmlAgencyLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_agency_service_spring_PmlAgencyLeaderService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.agency.service.PmlAgencyLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.agency.service.PmlAgencyLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_position_service_spring_PositionService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.position.service.PositionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.position.service.PositionService" />
+	</bean>
+	<bean name="/com_nss_portlet_position_service_spring_PositionService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.position.service.PositionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.position.service.PositionService" />
+	</bean>
+	<bean name="/com_nss_portlet_position_service_spring_PositionService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.position.service.PositionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.position.service.PositionService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalArticleService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalArticleService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalArticleService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalArticleService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalArticleService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalFeedService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalFeedService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalFeedService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalFeedService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalFeedService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalStructureService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalStructureService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalStructureService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalStructureService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalStructureService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalTemplateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalTemplateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_journal_service_spring_JournalTemplateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.journal.service.JournalTemplateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.journal.service.JournalTemplateService" />
+	</bean>
+	<bean name="/com_nss_portlet_holidaymanagement_service_spring_PmlHolidayService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.holidaymanagement.service.PmlHolidayService" />
+	</bean>
+	<bean name="/com_nss_portlet_holidaymanagement_service_spring_PmlHolidayService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.holidaymanagement.service.PmlHolidayService" />
+	</bean>
+	<bean name="/com_nss_portlet_holidaymanagement_service_spring_PmlHolidayService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.holidaymanagement.service.PmlHolidayService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.holidaymanagement.service.PmlHolidayService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_DepartmentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.DepartmentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.DepartmentService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_DepartmentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.DepartmentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.DepartmentService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_DepartmentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.DepartmentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.DepartmentService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlUserService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlUserService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlUserService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlUserService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlUserService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlUserService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlUserService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlUserService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlUserService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlDepartmentsLeaderService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlDepartmentsLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlDepartmentsLeaderService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlDepartmentsLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_department_service_spring_PmlDepartmentsLeaderService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.department.service.PmlDepartmentsLeaderService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.department.service.PmlDepartmentsLeaderService" />
+	</bean>
+	<bean name="/com_nss_portlet_documentfield_service_spring_PmlFieldService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.documentfield.service.PmlFieldService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.documentfield.service.PmlFieldService" />
+	</bean>
+	<bean name="/com_nss_portlet_documentfield_service_spring_PmlFieldService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.documentfield.service.PmlFieldService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.documentfield.service.PmlFieldService" />
+	</bean>
+	<bean name="/com_nss_portlet_documentfield_service_spring_PmlFieldService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.documentfield.service.PmlFieldService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.documentfield.service.PmlFieldService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeAttachedFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeAttachedFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileTypeAttachedFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileTypeAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileAttachedFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileAttachedFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_filetype_service_spring_PmlFileAttachedFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.filetype.service.PmlFileAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.filetype.service.PmlFileAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_attachedfile_service_spring_AttachedFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.attachedfile.service.AttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.attachedfile.service.AttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_attachedfile_service_spring_AttachedFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.attachedfile.service.AttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.attachedfile.service.AttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_attachedfile_service_spring_AttachedFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.attachedfile.service.AttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.attachedfile.service.AttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlDelegateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlDelegateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlDelegateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlFileTypeDelegateService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlFileTypeDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlFileTypeDelegateService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlFileTypeDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_delegate_service_spring_PmlFileTypeDelegateService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.delegate.service.PmlFileTypeDelegateService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.delegate.service.PmlFileTypeDelegateService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlOneDoorReceiveFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlOneDoorReceiveFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlWorkflowService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlWorkflowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlWorkflowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateProcessService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlProcessDisposeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlProcessDisposeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlProcessDisposeService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlStateWorkFlowService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlStateWorkFlowService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlStateWorkFlowService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlTransitionService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlTransitionService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlTransitionService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFilePCCCAttachedFileService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFilePCCCAttachedFileService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileReturningInfoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileReturningInfoService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileReturningInfoService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlFileStatusStateProcessService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlFileStatusStateProcessService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
+	<bean name="/com_nss_portlet_onedoor_service_spring_PmlPaintDocumentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.onedoor.service.PmlPaintDocumentService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.onedoor.service.PmlPaintDocumentService" />
+	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
+	<bean name="/com_nss_portlet_permissonuserbyfile_service_spring_PmlUserFileTypeService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService.impl" />
+		<property name="serviceInterface" value="com.nss.portlet.permissonuserbyfile.service.PmlUserFileTypeService" />
+	</bean>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns=""  name="tinxahoi">
+
+
+	<start-state name="start">
+		<transition to="soan"></transition>
+	</start-state>
+
+
+	<task-node name="soan">
+		<transition to="bien tap"></transition>
+	</task-node>
+
+	<task-node name="bien tap">
+		<transition to="duyet"></transition>
+	</task-node>
+
+	<task-node name="duyet">
+		<transition to="end"></transition>
+	</task-node>
+
+
+	<end-state name="end"></end-state>
+
+
+</process-definition>

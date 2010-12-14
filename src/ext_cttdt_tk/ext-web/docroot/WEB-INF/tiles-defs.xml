@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+                                   "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+    <!-- Reports -->
+    <definition extends="portlet" name="portlet.ext.reports.view">
+        <put name="portlet_content" value="/portlet/ext/reports/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.ext.reports.view_reports">
+        <put name="portlet_content" value="/portlet/ext/reports/view_reports.jsp"/>
+    </definition>
+    <!-- Asset Publisher -->
+    <definition extends="portlet" name="portlet.nss.asset_publisher"/>
+    <definition extends="portlet.nss.asset_publisher" name="portlet.nss.asset_publisher.view">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.asset_publisher" name="portlet.nss.asset_publisher.view_content">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher/view_content.jsp"/>
+    </definition>
+    <!-- Asset Publisher NSS -->
+    <definition extends="portlet" name="portlet.nss.asset_publisher_nss"/>
+    <definition extends="portlet.nss.asset_publisher_nss" name="portlet.nss.asset_publisher_nss.view">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_nss/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.asset_publisher_nss" name="portlet.nss.asset_publisher_nss.view_content">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_nss/view_content.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.asset_publisher_nss" name="portlet.nss.asset_publisher_nss.viewhelp">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_nss/viewhelp.jsp"/>
+    </definition>
+    <!-- Journal -->
+    <definition extends="portlet" name="portlet.nss.journal"/>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.copy_article">
+        <put name="portlet_content" value="/portlet/nss/journal/copy_article.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.copy_structure">
+        <put name="portlet_content" value="/portlet/nss/journal/copy_structure.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.copy_template">
+        <put name="portlet_content" value="/portlet/nss/journal/copy_template.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_article">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_article.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_feed">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_feed.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_structure">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_structure.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_structure_xsd">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_structure_xsd.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_template">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_template.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.edit_template_xsl">
+        <put name="portlet_content" value="/portlet/nss/journal/edit_template_xsl.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.error">
+        <put name="portlet_content" value="/portlet/nss/journal/error.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.raw_article_content">
+        <put name="portlet_content" value="/portlet/nss/journal/raw_article_content.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.select_document_library">
+        <put name="portlet_content" value="/portlet/nss/journal/select_document_library.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.select_image_gallery">
+        <put name="portlet_content" value="/portlet/nss/journal/select_image_gallery.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.select_structure">
+        <put name="portlet_content" value="/portlet/nss/journal/select_structure.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.select_template">
+        <put name="portlet_content" value="/portlet/nss/journal/select_template.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.view">
+        <put name="portlet_content" value="/portlet/nss/journal/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.view_article_content">
+        <put name="portlet_content" value="/portlet/nss/journal/view_article_content.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.transitionreviewjournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/transitionreviewjournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.transitionapprovejournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/transitionapprovejournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.approvejournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/approvejournalarticle.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal" name="portlet.nss.journal.backjournalarticle">
+        <put name="portlet_content" value="/portlet/nss/journal/backjournalarticle.jsp"/>
+    </definition>
+    <!-- Journal Articles -->
+    <definition extends="portlet" name="portlet.nss.journal_articles"/>
+    <definition extends="portlet.nss.journal_articles" name="portlet.nss.journal_articles.view">
+        <put name="portlet_content" value="/portlet/nss/journal_articles/view.jsp"/>
+    </definition>
+    <!-- Navigation -->
+    <definition extends="portlet" name="portlet.nss.navigation"/>
+    <definition extends="portlet.nss.navigation" name="portlet.nss.navigation.view">
+        <put name="portlet_content" value="/portlet/nss/navigation/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.header.view">
+        <put name="portlet_content" value="/portlet/nss/header/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.header.clock">
+        <put name="portlet_content" value="/portlet/nss/header/clock.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.footer.view">
+        <put name="portlet_content" value="/portlet/nss/footer/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.partner.view">
+        <put name="portlet_content" value="/portlet/nss/partner/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.adv.view">
+        <put name="portlet_content" value="/portlet/nss/adv/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.visitor.view">
+        <put name="portlet_content" value="/portlet/nss/visitor/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.vote.view">
+        <put name="portlet_content" value="/portlet/nss/vote/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.link.view">
+        <put name="portlet_content" value="/portlet/nss/link/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.home_news.view">
+        <put name="portlet_content" value="/portlet/nss/home_news/view.jsp"/>
+    </definition>
+    <!-- Journal Workflow -->
+    <definition extends="portlet" name="portlet.nss.journalworkflow.view">
+        <put name="portlet_content" value="/portlet/nss/journalworkflow/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.journalworkflow.addBusinessProcess">
+        <put name="portlet_content" value="/portlet/nss/journalworkflow/add_business_process.jsp"/>
+    </definition>
+    <!-- End Journal Workflow -->
+    <!-- Site Map -->
+    <definition extends="portlet" name="portlet.nss.site_map"/>
+    <definition extends="portlet.nss.site_map" name="portlet.nss.site_map.view">
+        <put name="portlet_content" value="/portlet/nss/site_map/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.chinh_quyen.view">
+        <put name="portlet_content" value="/portlet/nss/chinh_quyen/view.jsp"/>
+    </definition>
+    <!-- Journal Content -->
+    <definition extends="portlet" name="portlet.nss.journal_content"/>
+    <definition extends="portlet.nss.journal_content" name="portlet.nss.journal_content.error">
+        <put name="portlet_content" value="/portlet/nss/journal_content/error.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.journal_content" name="portlet.nss.journal_content.view">
+        <put name="portlet_content" value="/portlet/nss/journal_content/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.van_ban_phap_quy.view">
+        <put name="portlet_content" value="/portlet/nss/van_ban_phap_quy/view.jsp"/>
+    </definition>
+    <!-- tin moi -->
+    <definition extends="portlet" name="portlet.nss.tinmoi"/>
+    <definition extends="portlet.nss.tinmoi" name="portlet.nss.tinmoi.view">
+        <put name="portlet_content" value="/portlet/nss/tinmoi/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.tinmoi" name="portlet.nss.tinmoi.view_content">
+        <put name="portlet_content" value="/portlet/nss/tinmoi/view_content.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.loai_van_ban.view">
+        <put name="portlet_content" value="/portlet/nss/loai_van_ban/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.linh_vuc_van_ban.view">
+        <put name="portlet_content" value="/portlet/nss/linh_vuc_van_ban/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.chat.view">
+        <put name="portlet_content" value="/portlet/nss/chat/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.van_ban_phap_quy_display.view">
+        <put name="portlet_content" value="/portlet/nss/van_ban_phap_quy_display/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.link_display.view">
+        <put name="portlet_content" value="/portlet/nss/link_display/view.jsp"/>
+    </definition>
+    <!-- Journal content search -->
+    <definition extends="portlet" name="portlet.journal_content_search.view_journal_content">
+        <put name="portlet_content" value="/portlet/journal_content_search/view_journal_content.jsp"/>
+    </definition>
+    <!-- end Journal content search -->
+    <definition extends="portlet" name="portlet.nss.co_quan_ban_hanh.view">
+        <put name="portlet_content" value="/portlet/nss/co_quan_ban_hanh/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.partner_management.view">
+        <put name="portlet_content" value="/portlet/nss/partner_management/view.jsp"/>
+    </definition>
+    <!-- Login -->
+    <definition extends="portlet" name="portlet.nss.login"/>
+    <definition extends="portlet.nss.login" name="portlet.login.nss.create_account">
+        <put name="portlet_content" value="/portlet/nss/login/create_account.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.login" name="portlet.nss.login.forgot_password">
+        <put name="portlet_content" value="/portlet/nss/login/forgot_password.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.login" name="portlet.nss.login.login">
+        <put name="portlet_content" value="/portlet/nss/login/login.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.login" name="portlet.nss.login.open_id">
+        <put name="portlet_content" value="/portlet/nss/login/open_id.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.necessary_info.view">
+        <put name="portlet_content" value="/portlet/nss/necessary_info/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.necessary_info_display.view">
+        <put name="portlet_content" value="/portlet/nss/necessary_info_display/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.adv_display.view">
+        <put name="portlet_content" value="/portlet/nss/adv_display/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.nss_don_vi_thu_tuc.view">
+        <put name="portlet_content" value="/portlet/nss/nss_don_vi_thu_tuc/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.loai_thu_tuc.view">
+        <put name="portlet_content" value="/portlet/nss/loai_thu_tuc/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.linh_vuc_thu_tuc.view">
+        <put name="portlet_content" value="/portlet/nss/linh_vuc_thu_tuc/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thu_tuc_hanh_chinh.view">
+        <put name="portlet_content" value="/portlet/nss/thu_tuc_hanh_chinh/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thu_tuc_hanh_chinh_display.view">
+        <put name="portlet_content" value="/portlet/nss/thu_tuc_hanh_chinh_display/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.tintonghop"/>
+    <definition extends="portlet.nss.tintonghop" name="portlet.nss.tintonghop.view">
+        <put name="portlet_content" value="/portlet/nss/tintonghop/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.tintonghop" name="portlet.nss.tintonghop.view_content">
+        <put name="portlet_content" value="/portlet/nss/tintonghop/view_content.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thoitiet_tygia.view">
+        <put name="portlet_content" value="/portlet/nss/thoitiet_tygia/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.contact.view">
+        <put name="portlet_content" value="/portlet/nss/contact/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.qa_cau_hoi.view">
+        <put name="portlet_content" value="/portlet/nss/qa_cau_hoi/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.qa_chu_de.view">
+        <put name="portlet_content" value="/portlet/nss/qa_chu_de/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.qa_phan_quyen.view">
+        <put name="portlet_content" value="/portlet/nss/qa_phan_quyen/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.qa_cau_tra_loi.view">
+        <put name="portlet_content" value="/portlet/nss/qa_cau_tra_loi/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.media_chu_de.view">
+        <put name="portlet_content" value="/portlet/nss/media_chu_de/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.media_library.view">
+        <put name="portlet_content" value="/portlet/nss/media_library/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.media_library_display.view">
+        <put name="portlet_content" value="/portlet/nss/media_library_display/view.jsp"/>
+    </definition>
+    <!-- Meeting Calendar -->
+    <definition extends="portlet" name="portlet.ext.meeting_calendar"/>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.week_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/week.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.error">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/error.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.search">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/search.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print_DK">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print_DK.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.select_organization">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/select_organization.jsp"/>
+    </definition>
+    <!-- Meeting Calendar View -->
+    <definition extends="portlet" name="portlet.ext.meetingcalendarview"/>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.edit_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/edit_view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.image_signer.view">
+        <put name="portlet_content" value="/portlet/nss/image_signer/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.image_signer.upload">
+        <put name="portlet_content" value="/portlet/nss/image_signer/upload_image_signer.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thong_ke_tin.view">
+        <put name="portlet_content" value="/portlet/nss/thong_ke_tin/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.managementworkflowjournal.view">
+        <put name="portlet_content" value="/portlet/nss/managementworkflowjournal/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.generatetemplateid.view">
+        <put name="portlet_content" value="/portlet/nss/generatetemplateid/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.geneatedocumentcode.view">
+        <put name="portlet_content" value="/portlet/nss/geneatedocumentcode/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.agency.view">
+        <put name="portlet_content" value="/portlet/nss/agency/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.agency.add">
+        <put name="portlet_content" value="/portlet/nss/agency/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.position.view">
+        <put name="portlet_content" value="/portlet/nss/position/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.position.add">
+        <put name="portlet_content" value="/portlet/nss/position/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.documentfield.view">
+        <put name="portlet_content" value="/portlet/nss/documentfield/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.documentfield.add">
+        <put name="portlet_content" value="/portlet/nss/documentfield/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.documentfield.edit">
+        <put name="portlet_content" value="/portlet/nss/documentfield/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.holidaymanagement.view">
+        <put name="portlet_content" value="/portlet/nss/holidaymanagement/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.department.view">
+        <put name="portlet_content" value="/portlet/nss/department/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.department.add">
+        <put name="portlet_content" value="/portlet/nss/department/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.department.edit">
+        <put name="portlet_content" value="/portlet/nss/department/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.department.setleader">
+        <put name="portlet_content" value="/portlet/nss/department/setleader.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filetype.view">
+        <put name="portlet_content" value="/portlet/nss/filetype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filetype.add">
+        <put name="portlet_content" value="/portlet/nss/filetype/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filetype.edit">
+        <put name="portlet_content" value="/portlet/nss/filetype/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.attachedfile.view">
+        <put name="portlet_content" value="/portlet/nss/attachedfile/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.attachedfile.add">
+        <put name="portlet_content" value="/portlet/nss/attachedfile/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.delegate.view">
+        <put name="portlet_content" value="/portlet/nss/delegate/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.managementworkflowonedoor.view">
+        <put name="portlet_content" value="/portlet/nss/managementworkflowonedoor/view.jsp"/>
+    </definition>
+    <!-- ho so -->
+    <definition extends="portlet" name="portlet.nss.onedoor.view">
+        <put name="portlet_content" value="/portlet/nss/onedoor/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoor.add">
+        <put name="portlet_content" value="/portlet/nss/onedoor/view.jsp"/>
+    </definition>
+    <!-- file status onedoor -->
+    <definition extends="portlet" name="portlet.nss.filestatus.view">
+        <put name="portlet_content" value="/portlet/nss/filestatus/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.display_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/display_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.add_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/add_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.add_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/add_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.edit_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/edit_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.filestatus.edit_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/nss/filestatus/edit_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorprocess.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorprocess/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreturn.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreturn/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreturn.detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreturn/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorfileprocessed.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorfileprocessed/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorfileprocessed.detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorfileprocessed/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothang.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothang/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_baocaohosothangluyke.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_baocaohosothangluyke/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapphong.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapphong/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.view">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.filedetails_detail">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.search">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.onedoorreport_tinhhinhthulyhosocapso.searchresult">
+        <put name="portlet_content" value="/portlet/nss/onedoorreport_tinhhinhthulyhosocapso/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.permissonuserbyfile.view">
+        <put name="portlet_content" value="/portlet/nss/permissonuserbyfile/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.permissonuserbyfile.edit">
+        <put name="portlet_content" value="/portlet/nss/permissonuserbyfile/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thong_ke_tin.view">
+        <put name="portlet_content" value="/portlet/nss/thong_ke_tin/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.video.view">
+        <put name="portlet_content" value="/portlet/nss/video/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thong_ke_tin.details">
+        <put name="portlet_content" value="/portlet/nss/thong_ke_tin/detailsArticle.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.thong_ke_tin.edit_article">
+        <put name="portlet_content" value="/portlet/nss/thong_ke_tin/edit_article.jsp"/>
+    </definition>
+</tiles-definitions>
