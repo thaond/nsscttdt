@@ -1,0 +1,336 @@
+<script type="text/javascript">
+	function changeAbstract() 
+	{
+		var delta = document.getElementById('<portlet:namespace />delta');
+		var abstractDelta = document.getElementById('<portlet:namespace />abstractDelta');
+		abstractDelta.value = delta.value;
+	}
+</script>
+
+<table class="lfr-table">
+	<tr>
+		<td>
+			<liferay-ui:message key="display-style" />
+		</td>
+		<td>
+			<select id="<portlet:namespace />displayStyle" name="<portlet:namespace />displayStyle">
+	
+				<%
+				for (String curDisplayStyle : PropsValues.ASSET_PUBLISHER_DISPLAY_STYLES) {
+				%>
+	
+					<option <%= displayStyle.equals(curDisplayStyle) ? "selected" : "" %> value="<%= curDisplayStyle %>"><liferay-ui:message key="<%= curDisplayStyle %>" /></option>
+	
+				<%
+				}
+				%>
+	
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="hidden-field" id="abstractLength">
+		<td>
+			<liferay-ui:message key="abstract-length" /> <liferay-ui:icon-help message="abstract-length-key-help" />
+		</td>
+		<td>
+			<select name="<portlet:namespace />abstractLength">
+				<option <%= abstractLength == 100 ? "selected" : "" %> value="100">100</option>
+				<option <%= abstractLength == 200 ? "selected" : "" %> value="200">200</option>
+				<option <%= abstractLength == 300 ? "selected" : "" %> value="300">300</option>
+				<option <%= abstractLength == 400 ? "selected" : "" %> value="400">400</option>
+				<option <%= abstractLength == 500 ? "selected" : "" %> value="500">500</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr class="hidden-field" id="showAssetTitle">
+		<td>
+			<liferay-ui:message key="show-asset-title" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="showAssetTitle" defaultValue="<%= showAssetTitle %>" />
+		</td>
+	</tr>
+	
+	<tr class="hidden-field" id="showContextLink">
+		<td>
+			<liferay-ui:message key="show-context-link" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="showContextLink" defaultValue="<%= showContextLink %>" />
+		</td>
+	</tr>
+	
+	<tr class="hidden-field" id="assetLinkBehaviour">
+		<td>
+			<liferay-ui:message key="asset-link-behaviour" />
+		</td>
+		<td>
+			<select name="<portlet:namespace />assetLinkBehaviour">
+				<option <%= assetLinkBehaviour.equals("showFullContent") ? "selected" : "" %> value="showFullContent"><liferay-ui:message key="show-full-content" /></option>
+				<option <%= assetLinkBehaviour.equals("viewInPortlet") ? "selected" : "" %> value="viewInPortlet"><liferay-ui:message key="view-in-a-specific-portlet" /></option>
+			</select>
+		</td>
+	</tr>
+
+	<c:if test='<%= selectionStyle.equals("dynamic") %>'>
+		<tr>
+			<td>
+				<liferay-ui:message key="order-by-column" /> 1
+			</td>
+			<td>
+				<select name="<portlet:namespace />orderByColumn1">
+					<option <%= orderByColumn1.equals("title") ? "selected" : "" %> value="title"><liferay-ui:message key="title" /></option>
+					<option <%= orderByColumn1.equals("createDate") ? "selected" : "" %> value="createDate"><liferay-ui:message key="create-date" /></option>
+					<option <%= orderByColumn1.equals("modifiedDate") ? "selected" : "" %> value="modifiedDate"><liferay-ui:message key="modified-date" /></option>
+					<option <%= orderByColumn1.equals("publishDate") ? "selected" : "" %> value="publishDate"><liferay-ui:message key="publish-date" /></option>
+					<option <%= orderByColumn1.equals("expirationDate") ? "selected" : "" %> value="expirationDate"><liferay-ui:message key="expiration-date" /></option>
+					<option <%= orderByColumn1.equals("priority") ? "selected" : "" %> value="priority"><liferay-ui:message key="priority" /></option>
+					<option <%= orderByColumn1.equals("viewCount") ? "selected" : "" %> value="viewCount"><liferay-ui:message key="view-count" /></option>
+				</select>
+	
+				<select name="<portlet:namespace />orderByType1">
+					<option <%= orderByType1.equals("ASC") ? "selected" : "" %> value="ASC"><liferay-ui:message key="ascending" /></option>
+					<option <%= orderByType1.equals("DESC") ? "selected" : "" %> value="DESC"><liferay-ui:message key="descending" /></option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<liferay-ui:message key="order-by-column" /> 2
+			</td>
+			<td>
+				<select name="<portlet:namespace />orderByColumn2">
+					<option <%= orderByColumn2.equals("title") ? "selected" : "" %> value="title"><liferay-ui:message key="title" /></option>
+					<option <%= orderByColumn2.equals("createDate") ? "selected" : "" %> value="createDate"><liferay-ui:message key="create-date" /></option>
+					<option <%= orderByColumn2.equals("modifiedDate") ? "selected" : "" %> value="modifiedDate"><liferay-ui:message key="modified-date" /></option>
+					<option <%= orderByColumn2.equals("publishDate") ? "selected" : "" %> value="publishDate"><liferay-ui:message key="publish-date" /></option>
+					<option <%= orderByColumn2.equals("expirationDate") ? "selected" : "" %> value="expirationDate"><liferay-ui:message key="expiration-date" /></option>
+					<option <%= orderByColumn2.equals("priority") ? "selected" : "" %> value="priority"><liferay-ui:message key="priority" /></option>
+					<option <%= orderByColumn2.equals("viewCount") ? "selected" : "" %> value="viewCount"><liferay-ui:message key="view-count" /></option>
+				</select>
+	
+				<select name="<portlet:namespace />orderByType2">
+					<option <%= orderByType2.equals("ASC") ? "selected" : "" %> value="ASC"><liferay-ui:message key="ascending" /></option>
+					<option <%= orderByType2.equals("DESC") ? "selected" : "" %> value="DESC"><liferay-ui:message key="descending" /></option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<liferay-ui:message key="maximum-items-to-display" />
+			</td>
+			<td>
+				<select name="<portlet:namespace />delta" id="<portlet:namespace />delta" onchange="changeAbstract();">
+					<%
+						for (int i = 5; i <= 20; i+= 5) {
+					%>
+						<option <%=(delta == i) ? "selected" : "" %> value="<%= i %>"><%= i %></option>
+					<%		
+						}
+					%>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<liferay-ui:message key="pagination-type" />
+			</td>
+			<td>
+				<select name="<portlet:namespace />paginationType">
+					<option <%= paginationType.equals("none") ? "selected" : "" %> value="none"><liferay-ui:message key="none" /></option>
+					<option <%= paginationType.equals("simple") ? "selected" : "" %> value="simple"><liferay-ui:message key="simple" /></option>
+					<option <%= paginationType.equals("regular") ? "selected" : "" %> value="regular"><liferay-ui:message key="regular" /></option>
+				</select>
+			</td>
+		</tr>
+	</c:if>
+	
+	<c:if test='<%= selectionStyle.equals("dynamic") %>'>
+		<tr>
+			<td>
+				<liferay-ui:message key="exclude-assets-with-0-views" />
+			</td>
+			<td>
+				<liferay-ui:input-checkbox param="excludeZeroViewCount" defaultValue="<%= excludeZeroViewCount %>" />
+			</td>
+		</tr>
+	</c:if>
+	
+	<tr>
+		<td>
+			<liferay-ui:message key="show-available-locales" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="showAvailableLocales" defaultValue="<%= showAvailableLocales %>" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<liferay-ui:message key="enable-ratings" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="enableRatings" defaultValue="<%= enableRatings %>" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<liferay-ui:message key="enable-comments" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="enableComments" defaultValue="<%= enableComments %>" />
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<liferay-ui:message key="enable-comment-ratings" />
+		</td>
+		<td>
+			<liferay-ui:input-checkbox param="enableCommentRatings" defaultValue="<%= enableCommentRatings %>" />
+		</td>
+	</tr>
+	
+	<c:if test='<%= selectionStyle.equals("manual") %>'>
+		<tr>
+			<td>
+				<liferay-ui:message key="enable-tag-based-navigation" /> <liferay-ui:icon-help message="enable-tag-based-navigation-help" />
+			</td>
+			<td>
+				<liferay-ui:input-checkbox param="enableTagBasedNavigation" defaultValue="<%= enableTagBasedNavigation %>" />
+			</td>
+		</tr>
+	</c:if>
+	
+	<c:if test='<%= selectionStyle.equals("dynamic") %>'>
+		<tr>
+			<td>
+				<liferay-ui:message key="show-query-logic" />
+			</td>
+			<td>
+				<liferay-ui:input-checkbox param="showQueryLogic" defaultValue="<%= showQueryLogic %>" />
+			</td>
+		</tr>
+	</c:if>
+	
+	<tr><td height="15px;"></td></tr>
+	<tr>
+		<td><liferay-ui:message key="nss-so-tin-abstract" /></td>
+		<td>
+			<input readonly="readonly" name="<portlet:namespace />abstractDelta" id="<portlet:namespace />abstractDelta" value="<%= abstractDelta %>"/>
+		</td>
+	</tr>
+	
+	<tr><td height="15px;"></td></tr>
+	<tr>
+		<td><liferay-ui:message key="nss-kieu-hien-thi" /></td>
+		<td>
+			<select name="<portlet:namespace />displayType">
+				<option <%= displayType.equals("horizontal") ? "selected" : "" %> value="horizontal"><liferay-ui:message key="trai-phai" /></option>
+				<option <%= displayType.equals("vertical") ? "selected" : "" %> value="vertical"><liferay-ui:message key="len-xuong" /></option>
+			</select>
+		</td>
+	</tr>
+	
+	
+	<tr><td height="20px;"></td></tr>
+	
+	<tr>
+		<td>
+			<liferay-ui:message key="show-metadata" />
+		</td>
+		<td>
+			<input name="<portlet:namespace />metadataFields" type="hidden" value="" />
+	
+			<%
+			Set availableMetadataFields = SetUtil.fromArray(StringUtil.split(allMetadataFields));
+	
+			// Left list
+	
+			List leftList = new ArrayList();
+	
+			for (int i = 0; i < metadataFields.length; i++) {
+				String folderColumn = metadataFields[i];
+	
+				leftList.add(new KeyValuePair(folderColumn, LanguageUtil.get(pageContext, folderColumn)));
+			}
+	
+			// Right list
+	
+			List rightList = new ArrayList();
+	
+			Arrays.sort(metadataFields);
+	
+			Iterator itr = availableMetadataFields.iterator();
+	
+			while (itr.hasNext()) {
+				String folderColumn = (String)itr.next();
+	
+				if (Arrays.binarySearch(metadataFields, folderColumn) < 0) {
+					rightList.add(new KeyValuePair(folderColumn, LanguageUtil.get(pageContext, folderColumn)));
+				}
+			}
+	
+			rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
+			%>
+	
+			<liferay-ui:input-move-boxes
+				formName="fm"
+				leftTitle="current"
+				rightTitle="available"
+				leftBoxName="currentMetadataFields"
+				rightBoxName="availableMetadataFields"
+				leftReorder="true"
+				leftList="<%= leftList %>"
+				rightList="<%= rightList %>"
+			/>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript">
+	jQuery(
+		function() {
+			var selectDisplayStyle = jQuery('#<portlet:namespace />displayStyle');
+
+			function showHiddenFields () {
+				var hiddenFields = jQuery('.hidden-field');
+				var abstractLength = jQuery('#abstractLength');
+				var showAssetTitle = jQuery('#showAssetTitle');
+				var showContextLink = jQuery('#showContextLink');
+				var assetLinkBehaviour = jQuery('#assetLinkBehaviour');
+				var selectDisplayStyle = jQuery('#<portlet:namespace />displayStyle');
+
+				hiddenFields.hide();
+
+				if (selectDisplayStyle.val() == 'full-content') {
+					showAssetTitle.show();
+					showContextLink.show();
+				}
+				else if (selectDisplayStyle.val() == 'abstracts') {
+					abstractLength.show();
+					assetLinkBehaviour.show();
+				}
+				else {
+					assetLinkBehaviour.show();
+				}
+			}
+
+			showHiddenFields();
+
+			selectDisplayStyle.change(
+				function(event) {
+					showHiddenFields();
+				}
+			);
+
+			Liferay.Util.focusFormField(selectDisplayStyle);
+		}
+	);
+</script>
