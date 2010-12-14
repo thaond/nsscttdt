@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.nss.portlet.phone_book">
+	<namespace>PhoneBook</namespace>
+	<entity name="ContactBook" local-service="true" remote-service="true" table="nss_contact_book">
+		<column name="contactBookId" type="long" primary="true"></column>
+		<column name="contactBookCode" type="String"></column>
+		<column name="contactBookName" type="String"></column>
+		<column name="contactDescription" type="String"></column>
+		<column name="contactActive" type="boolean"></column>
+		<column name="detailBooks" type="Collection" entity="DetailBook"
+			mapping-key="contactBookId"></column>
+			
+		<column name="companyid" type="long"/>
+	  	<column name="userid" type="long"/>	
+	  	
+	  	<finder name="Companyid" return-type="Collection">
+	   		<finder-column name="companyid"/>
+	    </finder>
+	    
+	</entity>
+	<entity name="DetailBook" local-service="true" remote-service="true" table="nss_detail_book">
+		<column name="detailBookId" type="long" primary="true"></column>
+		<column name="detailBookCode" type="String"></column>
+		<column name="detailBookName" type="String"></column>
+		<column name="detailDescription" type="String"></column>
+		<column name="detailActive" type="boolean"></column>
+		<column name="zip" type="String"></column>
+		<column name="internal" type="String"></column>
+		<column name="home" type="String"></column>
+		<column name="mobile" type="String"></column>
+		<column name="contactBookId" type="long"></column>
+		
+		<column name="companyid" type="long"/>
+	  	<column name="userid" type="long"/>	
+	</entity>
+</service-builder>
