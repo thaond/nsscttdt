@@ -3,8 +3,6 @@
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
 
-phone book ----
-
 <%
 	String tabs = ParamUtil.getString(request, "tabs");
 	PortletURL portletURL = renderResponse.createRenderURL();

@@ -7,8 +7,7 @@
 	DetailBookDisplayTerms displayTerms = (DetailBookDisplayTerms) detailBookSearch.getDisplayTerms();
 %>
 
-<liferay-ui:search-toggle displayTerms="<%= displayTerms %>"
-	id="toogle_id_phone_book_detail">
+<liferay-ui:search-toggle displayTerms="<%= displayTerms %>" id="toogle_id_phone_book_detail">
 	<table cellspacing="0" width="100%">
 		<tr>
 			<td><liferay-ui:message key="detail-code" />:&nbsp;</td>
