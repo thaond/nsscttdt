@@ -97,3 +97,5 @@ Liferay.Service.register("Liferay.Service.department", "com.nss.portlet.departme
 Liferay.Service.register("Liferay.Service.position", "com.nss.portlet.position.service");
 
 Liferay.Service.register("Liferay.Service.Field", "com.nss.portlet.documentfield.service");
+
+Liferay.Service.register("Liferay.Service.PhoneBook", "com.nss.portlet.phone_book.service");

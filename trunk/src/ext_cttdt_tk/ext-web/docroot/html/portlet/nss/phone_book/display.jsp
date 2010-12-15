@@ -22,7 +22,6 @@ phone book!
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="java.io.File"%>
 
-------------chao
 	<%
 		PortletURL portletURL = renderResponse.createRenderURL();
 		portletURL.setWindowState(WindowState.NORMAL);

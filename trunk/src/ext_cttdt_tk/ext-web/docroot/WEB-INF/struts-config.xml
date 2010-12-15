@@ -534,5 +534,8 @@
         <action path="/nss/video/view" type="com.nss.portlet.video.action.ViewAction">
             <forward name="portlet.nss.video.view" path="portlet.nss.video.view"/>
         </action>
+        <action path="/nss/phone_book/view" type="com.nss.portlet.phone_book.action.ViewAction">
+            <forward name="portlet.nss.phone_book.view" path="portlet.nss.phone_book.view"/>
+        </action>
     </action-mappings>
 </struts-config>

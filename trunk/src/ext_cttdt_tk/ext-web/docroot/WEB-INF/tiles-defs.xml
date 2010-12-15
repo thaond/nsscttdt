@@ -500,4 +500,7 @@
     <definition extends="portlet" name="portlet.nss.thong_ke_tin.edit_article">
         <put name="portlet_content" value="/portlet/nss/thong_ke_tin/edit_article.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.phone_book.view">
+        <put name="portlet_content" value="/portlet/nss/phone_book/view.jsp"/>
+    </definition>
 </tiles-definitions>
