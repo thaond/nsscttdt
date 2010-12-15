@@ -3,9 +3,6 @@
 <%@page import="com.nss.portlet.phone_book.search.ContactBookSearch"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
 
-<%@page import="java.util.List"%>
-<%@page import="java.util.Calendar"%>
- chao
 <%
 	ContactBookSearch contactBookSearch = (ContactBookSearch) request
 			.getAttribute("liferay-ui:search:searchContainer");
@@ -18,23 +15,18 @@
 	<table cellspacing="0" width="100%">
 		<tr>
 			<td width="20%"><liferay-ui:message key="contact-code" />:&nbsp;</td>
-			<td><input
-				name="<portlet:namespace/><%=ContactBookDisplayTerms.CODE%>"
-				style="width: 90%" type="text"
-				value="<%=HtmlUtil.escape(displayTerms.getContactBookCode())%>" />
+			<td><input id="<portlet:namespace/>contactBookCodeAutoComplete" name="<portlet:namespace/><%=ContactBookDisplayTerms.CODE%>" 
+				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getContactBookCode())%>" />
 			</td>
 
 			<td width="20%"><liferay-ui:message key="contact-name" />:&nbsp;</td>
-			<td><input
-				name="<portlet:namespace/><%=ContactBookDisplayTerms.NAME%>"
-				style="width: 90%" type="text"
-				value="<%=HtmlUtil.escape(displayTerms.getContactBookName())%>" />
+			<td><input id="<portlet:namespace/>contactBookNameAutoComplete"	name="<portlet:namespace/><%=ContactBookDisplayTerms.NAME%>" 
+				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getContactBookName())%>" />
 			</td>
+			
 			<td width="20%"><liferay-ui:message key="contact-description" />:&nbsp;</td>
-			<td><input
-				name="<portlet:namespace/><%=ContactBookDisplayTerms.DESCRIPTION%>"
-				style="width: 90%" type="text"
-				value="<%=HtmlUtil.escape(displayTerms.getContactDescription())%>" />
+			<td><input id="<portlet:namespace/>contactBookDescriptionAutoComplete" name="<portlet:namespace/><%=ContactBookDisplayTerms.DESCRIPTION%>"
+				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getContactDescription())%>" />
 			</td>
 		</tr>
 	</table>

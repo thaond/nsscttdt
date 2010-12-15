@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
 
 phone book!
@@ -22,12 +23,30 @@ phone book!
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="java.io.File"%>
 
-	<%
+	<%	
+		String notDeleteContact = (String) request.getAttribute("NotDeleteContact") ;
+		List<ContactBook> contactBooks = ContactBookLocalServiceUtil.getContactBooks(-1,-1);
+		List<String> contactBookCodes = new ArrayList<String>();
+		List<String> contactBookNames = new ArrayList<String>();
+		List<String> contactBookDescriptions = new ArrayList<String>();
+		for(ContactBook contactBook : contactBooks){
+			contactBookCodes.add(contactBook.getContactBookCode());
+			contactBookNames.add(contactBook.getContactBookName());
+			contactBookDescriptions.add(contactBook.getContactDescription());
+		}
+	
 		PortletURL portletURL = renderResponse.createRenderURL();
 		portletURL.setWindowState(WindowState.NORMAL);
 		portletURL.setParameter("struts_action", "/nss/phone_book/view");
-	%>    
-    <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
+	%> 
+	<% if(notDeleteContact != null){ %>
+		<liferay-ui:message key="not-delete-contact" />
+	<%}%>   
+	
+<form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
+		<input type="hidden" name="<portlet:namespace/>listContactBookCode" value="<%=contactBookCodes %>">
+		<input type="hidden" name="<portlet:namespace/>listContactBookName" value="<%=contactBookNames %>">
+		<input type="hidden" name="<portlet:namespace/>listContactBookDescription" value="<%=contactBookDescriptions %>">
     	<%
 			ContactBookSearch contactBookSearch = new ContactBookSearch(renderRequest, portletURL);
     		ContactBookDisplayTerms displayTerms = (ContactBookDisplayTerms)contactBookSearch.getDisplayTerms();
@@ -44,16 +63,13 @@ phone book!
 		%>
 	<div class="commom-form">
 		<div class="parent-title"><liferay-ui:message key="nss-phone-book" /></div>
-		<liferay-ui:search-form
-			page="/html/portlet/nss/phone_book/search_form.jsp"
-			searchContainer="<%= contactBookSearch %>" />
+		<liferay-ui:search-form	page="/html/portlet/nss/phone_book/search_form.jsp"	searchContainer="<%= contactBookSearch %>" />
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
 				addURL.setWindowState(WindowState.NORMAL);
 				addURL.setParameter("struts_action", "/nss/phone_book/view");
 				addURL.setParameter("tabs", "add");
 				addURL.setParameter("redirect", contactBookSearch.getIteratorURL().toString());
-			
 			%>
 			<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
 			<br><br>
@@ -81,7 +97,7 @@ phone book!
 					ResultRow row = null;
 					ContactBook contactBook = null;
 					
-					int contactBookId = 0;
+					long contactBookId = 0;
 					String update = "";
 					String deleteAction = "";
 					String active = "";
@@ -164,6 +180,22 @@ phone book!
 		
 		<liferay-ui:search-iterator searchContainer="<%= contactBookSearch %>" />
 	</div>
-    </form>
-    	
+</form>
+
+<script>
+	var myCode = document.<portlet:namespace />fm.<portlet:namespace/>listContactBookCode.value;
+	var myName = document.<portlet:namespace />fm.<portlet:namespace/>listContactBookName.value;
+	var myDescription = document.<portlet:namespace />fm.<portlet:namespace/>listContactBookDescription.value;
+	
+	jQuery("#<portlet:namespace/>contactBookCodeAutoComplete").autocomplete({
+		data : myCode
+	});
+	jQuery("#<portlet:namespace/>contactBookNameAutoComplete").autocomplete({
+		data : myName
+	});
+	jQuery("#<portlet:namespace/>contactBookDescriptionAutoComplete").autocomplete({
+		data : myDescription
+	});
+	
+</script>    	
    
