@@ -13,16 +13,13 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.nss.portlet.phone_book.model.ContactBook;
 import com.nss.portlet.phone_book.search.ContactBookDisplayTerms;
-import com.nss.portlet.van_ban_phap_quy.service.VanBanPhapQuyLocalServiceUtil;
+import com.nss.portlet.phone_book.service.ContactBookLocalServiceUtil;
 
 public class ContactBookIndexer implements Indexer{
 	
 	public static final String PORTLET_ID = "NSS_PHONE_BOOK";
 	
-	public static void updateContactBook(long companyId, ContactBook contactBook) throws SearchException, UnsupportedEncodingException {
-		Document doc = getContactBook(companyId, contactBook);
-		SearchEngineUtil.updateDocument(companyId, doc.get(Field.UID), doc);
-	}
+	
 	public static Document getContactBook(long companyId,
 			ContactBook contactBook) throws UnsupportedEncodingException {
 		long contactBookId = contactBook.getContactBookId();
@@ -44,6 +41,16 @@ public class ContactBookIndexer implements Indexer{
 		return doc;
 	}
 	
+	public static void updateContactBook(long companyId, ContactBook contactBook) throws SearchException, UnsupportedEncodingException {
+		Document doc = getContactBook(companyId, contactBook);
+		SearchEngineUtil.updateDocument(companyId, doc.get(Field.UID), doc);
+	}
+	
+	public static void deleteContactBook(long companyId, ContactBook contactBook) throws SearchException, UnsupportedEncodingException {
+		Document doc = getContactBook(companyId, contactBook);
+		SearchEngineUtil.deleteDocument(companyId, doc.get(Field.UID));
+	}
+	
 	@Override
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
@@ -57,7 +64,7 @@ public class ContactBookIndexer implements Indexer{
 	@Override
 	public void reIndex(String[] ids) throws SearchException {
 		try {
-			VanBanPhapQuyLocalServiceUtil.reIndex(ids);
+			ContactBookLocalServiceUtil.reIndex(ids);
 		} catch (Exception e) {
 			throw new SearchException(e);
 		}

@@ -27,25 +27,25 @@ public class ViewAction extends PortletAction {
 	public void processAction(ActionMapping mapping, ActionForm form,
 			PortletConfig config, ActionRequest req, ActionResponse res)
 			throws Exception {
-		
 		String cmd = ParamUtil.getString(req, "cmd");
 		if(cmd.equals("add")){
-			String code = ParamUtil.getString(req, "contactBookCode");
-			String name = ParamUtil.getString(req, "contactBookName");
-			String description = ParamUtil.getString(req, "contactBookDescription");
-			String active = ParamUtil.getString(req, "contactBookActive");
-			System.out.println("active " + active);
+			addContactBook(req);
+		}
+	}
 
-			long userId = 0;
-			long companyId = 0;
+	public void addContactBook(ActionRequest req) {
+		String code = ParamUtil.getString(req, "contactBookCode");
+		String name = ParamUtil.getString(req, "contactBookName");
+		String description = ParamUtil.getString(req, "contactBookDescription");
+		boolean active = ParamUtil.getBoolean(req, "contactBookActive");
+		long userId = 0;
+		long companyId = 0;
 
-			try {
-				userId = PortalUtil.getUserId(req);
-				if (userId != 0) {
-					User user = UserLocalServiceUtil.getUser(userId);
-					companyId = user.getCompanyId();
-				}
-
+		try {
+			userId = PortalUtil.getUserId(req);
+			if (userId != 0) {
+				User user = UserLocalServiceUtil.getUser(userId);
+				companyId = user.getCompanyId();
 				long contactBookId = CounterLocalServiceUtil.increment();
 				ContactBook contactBook = ContactBookLocalServiceUtil
 						.createContactBook(contactBookId);
@@ -54,11 +54,16 @@ public class ViewAction extends PortletAction {
 				contactBook.setContactDescription(description);
 				contactBook.setUserid(userId);
 				contactBook.setCompanyid(companyId);
-				ContactBookLocalServiceUtil.addContactBook(contactBook);
-			} catch (Exception e) {
-				_log.error("ERROR ADD IN METHOD PROCESSACTION OF "
-						+ ViewAction.class + " " + e.getMessage());
+				if(active){
+					contactBook.setContactActive(true);
+				}else{
+					contactBook.setContactActive(false);
+				}
+				ContactBookLocalServiceUtil.addContactBook(companyId, contactBook);
 			}
+		} catch (Exception e) {
+			_log.error("ERROR ADD IN METHOD addContactBook OF "
+					+ ViewAction.class + " " + e.getMessage());
 		}
 	}
 

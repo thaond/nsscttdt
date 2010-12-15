@@ -1061,4 +1061,27 @@
 		<field name="fileTypeId" type="String" />
 		<field name="description" type="String" />
 	</model>
+	<model name="com.nss.portlet.phone_book.model.ContactBook">
+		<field name="contactBookId" type="long" />
+		<field name="contactBookCode" type="String" />
+		<field name="contactBookName" type="String" />
+		<field name="contactDescription" type="String" />
+		<field name="contactActive" type="boolean" />
+		<field name="companyid" type="long" />
+		<field name="userid" type="long" />
+	</model>
+	<model name="com.nss.portlet.phone_book.model.DetailBook">
+		<field name="detailBookId" type="long" />
+		<field name="detailBookCode" type="String" />
+		<field name="detailBookName" type="String" />
+		<field name="detailDescription" type="String" />
+		<field name="detailActive" type="boolean" />
+		<field name="zip" type="String" />
+		<field name="internal" type="String" />
+		<field name="home" type="String" />
+		<field name="mobile" type="String" />
+		<field name="contactBookId" type="long" />
+		<field name="companyid" type="long" />
+		<field name="userid" type="long" />
+	</model>
 </model-hints>
