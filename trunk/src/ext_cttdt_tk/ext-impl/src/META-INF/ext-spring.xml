@@ -1667,4 +1667,40 @@
 	<bean id="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinderUtil" class="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinderUtil">
 		<property name="finder" ref="com.nss.portlet.thong_ke_tin.service.persistence.NSSTagsAssetFinder.impl" />
 	</bean>
+	<bean id="com.nss.portlet.phone_book.service.ContactBookLocalService.impl" class="com.nss.portlet.phone_book.service.impl.ContactBookLocalServiceImpl" />
+	<bean id="com.nss.portlet.phone_book.service.ContactBookLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.phone_book.service.ContactBookLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.ContactBookLocalServiceUtil" class="com.nss.portlet.phone_book.service.ContactBookLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.phone_book.service.ContactBookLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.ContactBookService.impl" class="com.nss.portlet.phone_book.service.impl.ContactBookServiceImpl" />
+	<bean id="com.nss.portlet.phone_book.service.ContactBookService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.phone_book.service.ContactBookService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.ContactBookServiceUtil" class="com.nss.portlet.phone_book.service.ContactBookServiceUtil">
+		<property name="service" ref="com.nss.portlet.phone_book.service.ContactBookService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.persistence.ContactBookPersistence.impl" class="com.nss.portlet.phone_book.service.persistence.ContactBookPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.phone_book.service.persistence.ContactBookUtil" class="com.nss.portlet.phone_book.service.persistence.ContactBookUtil">
+		<property name="persistence" ref="com.nss.portlet.phone_book.service.persistence.ContactBookPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.DetailBookLocalService.impl" class="com.nss.portlet.phone_book.service.impl.DetailBookLocalServiceImpl" />
+	<bean id="com.nss.portlet.phone_book.service.DetailBookLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.phone_book.service.DetailBookLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.DetailBookLocalServiceUtil" class="com.nss.portlet.phone_book.service.DetailBookLocalServiceUtil">
+		<property name="service" ref="com.nss.portlet.phone_book.service.DetailBookLocalService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.DetailBookService.impl" class="com.nss.portlet.phone_book.service.impl.DetailBookServiceImpl" />
+	<bean id="com.nss.portlet.phone_book.service.DetailBookService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.nss.portlet.phone_book.service.DetailBookService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.DetailBookServiceUtil" class="com.nss.portlet.phone_book.service.DetailBookServiceUtil">
+		<property name="service" ref="com.nss.portlet.phone_book.service.DetailBookService.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookPersistence.impl" class="com.nss.portlet.phone_book.service.persistence.DetailBookPersistenceImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookUtil" class="com.nss.portlet.phone_book.service.persistence.DetailBookUtil">
+		<property name="persistence" ref="com.nss.portlet.phone_book.service.persistence.DetailBookPersistence.impl" />
+	</bean>
 </beans>

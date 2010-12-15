@@ -222,5 +222,9 @@
 			<param name="service.file" value="src/com/nss/portlet/thong_ke_tin/service.xml" />
 		</antcall>
 	</target>
-	
+	<target name="build-service-portlet-phonebook">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/nss/portlet/phone_book/service.xml" />
+		</antcall>
+	</target>
 </project>

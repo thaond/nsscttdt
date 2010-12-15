@@ -16,6 +16,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.journal.util.Indexer;
+import com.nss.portlet.phone_book.NoSuchContactBookException;
 import com.nss.portlet.phone_book.model.ContactBook;
 import com.nss.portlet.phone_book.search.ContactBookDisplayTerms;
 import com.nss.portlet.phone_book.service.base.ContactBookLocalServiceBaseImpl;
@@ -65,6 +66,14 @@ public class ContactBookLocalServiceImpl extends
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	public void reIndex(long companyId, ContactBook contactBook) throws SearchException {
+		try {
+			ContactBookIndexer.updateContactBook(companyId, contactBook);
+		} catch (UnsupportedEncodingException e) {
+			throw new SearchException(e);
 		}
 	}
 
@@ -162,5 +171,55 @@ public class ContactBookLocalServiceImpl extends
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
+	}
+	public ContactBook addContactBook(long companyId, ContactBook contactBook) throws SystemException, SearchException {
+		contactBook.setNew(true);
+		contactBookPersistence.update(contactBook, false);
+		reIndex(companyId, contactBook);
+		return contactBook;
+	}
+	
+	@Override
+	public ContactBook addContactBook(ContactBook contactBook) throws SystemException {
+		throw new SystemException(
+		"Please use method: addContactBook(long companyId, ContactBook contactBook)");
+	}
+	
+	public ContactBook updateContactBook(long companyId, ContactBook contactBook) throws SystemException, SearchException {
+		contactBookPersistence.update(contactBook, false);
+		reIndex(companyId, contactBook);
+		return contactBook;
+	}
+	
+	@Override
+	public ContactBook updateContactBook(ContactBook contactBook) throws SystemException {
+		throw new SystemException(
+		"Please use method: updateContactBook(long companyId, ContactBook contactBook)");
+	}
+	public void deleteContactBook(long companyId, long contactBookId) throws SystemException, SearchException, NoSuchContactBookException {
+		ContactBook contactBook = contactBookPersistence.findByPrimaryKey(contactBookId);
+		deleteContactBook(companyId, contactBook);
+		
+	}
+	
+	public void deleteContactBook(long companyId, ContactBook contactBook) throws SystemException, SearchException {
+		contactBookPersistence.remove(contactBook);
+		try {
+			ContactBookIndexer.deleteContactBook(companyId, contactBook);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void deleteContactBook(long contactBookId) throws SystemException {
+		throw new SystemException(
+		"Please use method: deleteContactBook(long companyId, long contactBookId)");
+	}
+	
+	@Override
+	public void deleteContactBook(ContactBook contactBook) throws SystemException {
+		throw new SystemException(
+		"Please use method: deleteContactBook(long companyId, ContactBook contactBook)");
 	}
 }
