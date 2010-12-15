@@ -1,7 +1,8 @@
+<%@ include file="/html/portlet/nss/phone_book_display/init.jsp" %>
+
 <%@page import="com.liferay.portal.kernel.util.Validator"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
-<%@ include file="/html/portlet/nss/phone_book_display/init.jsp" %>
 
 
 <%

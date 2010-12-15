@@ -21,26 +21,26 @@
 
 
 <form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm">
-<input type="hidden" name="<portlet:namespace/>contactBookId" value="<%=contactBook.getContactBookId()%>">
-<table>
-	<tr>
-		<td><liferay-ui:message key="contact-code" /></td>
-		<td><input type="text" name="<portlet:namespace/>contactBookCode" value="<%= contactBook.getContactBookCode()%>"></td>
-	</tr>
-	<tr>
-		<td><liferay-ui:message key="contact-name" /></td>
-		<td><input type="text" name="<portlet:namespace/>contactBookName" value="<%= contactBook.getContactBookName()%>"></td>
-	</tr>
-	<tr>
-		<td><liferay-ui:message key="contact-description" /></td>
-		<td><input type="text"
-			name="<portlet:namespace/>contactBookDescription" value="<%= contactBook.getContactDescription()%>"></td>
-	</tr>
-	<tr>
-		<td><liferay-ui:message key="contact-active" /></td>
-		<td><input type="checkbox"
-			name="<portlet:namespace/>contactBookActive" checked="<%=checked %>"></td>
-	</tr>
-</table>
-<input type="submit" value='<liferay-ui:message key="update" />'>
+	<input type="hidden" name="<portlet:namespace/>contactBookId" value="<%=contactBook.getContactBookId()%>">
+		<table>
+			<tr>
+				<td><liferay-ui:message key="contact-code" /></td>
+				<td><input type="text" name="<portlet:namespace/>contactBookCode" value="<%= contactBook.getContactBookCode()%>"></td>
+			</tr>
+			<tr>
+				<td><liferay-ui:message key="contact-name" /></td>
+				<td><input type="text" name="<portlet:namespace/>contactBookName" value="<%= contactBook.getContactBookName()%>"></td>
+			</tr>
+			<tr>
+				<td><liferay-ui:message key="contact-description" /></td>
+				<td><input type="text"
+					name="<portlet:namespace/>contactBookDescription" value="<%= contactBook.getContactDescription()%>"></td>
+			</tr>
+			<tr>
+				<td><liferay-ui:message key="contact-active" /></td>
+				<td><input type="checkbox"
+					name="<portlet:namespace/>contactBookActive" checked="<%=checked %>"></td>
+			</tr>
+		</table>
+	<input type="submit" value='<liferay-ui:message key="update" />'>
 </form>

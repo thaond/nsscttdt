@@ -10,8 +10,7 @@
 			.getDisplayTerms();
 %>
 
-<liferay-ui:search-toggle displayTerms="<%= displayTerms %>"
-	id="toogle_id_phone_book">
+<liferay-ui:search-toggle displayTerms="<%= displayTerms %>" id="toogle_id_phone_book">
 	<table cellspacing="0" width="100%">
 		<tr>
 			<td width="20%"><liferay-ui:message key="contact-code" />:&nbsp;</td>
@@ -31,9 +30,6 @@
 		</tr>
 	</table>
 </liferay-ui:search-toggle>
-<br>
-<br>
-<input type="submit" class="button-width"
-	name="<portlet:namespace/>search"
-	value="<liferay-ui:message key="search"/>" />
+<br><br>
+<input type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>" />
 

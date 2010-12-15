@@ -197,5 +197,11 @@ phone book!
 		data : myDescription
 	});
 	
+	function deleteContactBook(url) {
+		if (confirm("<liferay-ui:message key='ban-co-that-su-muon-xoa'/>")) {
+			location.href = url;
+		}
+	}
+	
 </script>    	
    

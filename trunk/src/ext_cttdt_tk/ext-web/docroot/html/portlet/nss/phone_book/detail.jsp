@@ -1,13 +1,11 @@
+<%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.nss.portlet.phone_book.model.ContactBook"%>
 <%@page import="com.nss.portlet.phone_book.service.DetailBookLocalServiceUtil"%>
 <%@page import="com.nss.portlet.phone_book.model.DetailBook"%>
 <%@page import="com.nss.portlet.phone_book.search.DetailBookDisplayTerms"%>
 <%@page import="com.nss.portlet.phone_book.search.DetailBookSearch"%>
-<%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
-
-phone book!
-
 <%@page import="javax.portlet.WindowState"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="javax.portlet.PortletURL"%>
@@ -136,7 +134,6 @@ phone book!
 						// STT
 						row.addText(String.valueOf(i + 1));
 						
-						// code
 						//URL detail
 						PortletURL rowURLDetail= renderResponse.createActionURL();
 						rowURLDetail.setWindowState(WindowState.NORMAL);
@@ -205,7 +202,8 @@ phone book!
 		
 		<liferay-ui:search-iterator searchContainer="<%= detailBookSearch %>" />
 	</div>
-    </form>
+</form>
+    
 <script>
 	var myCode = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookCode.value;
 	var myName = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookName.value;
@@ -236,5 +234,11 @@ phone book!
 	jQuery("#<portlet:namespace/>detailBookMobileAutoComplete").autocomplete({
 		data : myMobile
 	});
+	
+	function deleteDetailBook(url) {
+		if (confirm("<liferay-ui:message key='ban-co-that-su-muon-xoa'/>")) {
+			location.href = url;
+		}
+	}
 </script>   	
    
