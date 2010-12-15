@@ -48,6 +48,12 @@
 				<a href="$page_settings_url">$page_settings_text</a>
 			</li>
 		#end
+		
+		#if ($show_add_content)
+			<li class="page-settings">
+				<a href="$home_url/quan-tri">Management</a>
+			</li>
+		#end
 
 		#if ($show_staging)
 			<li class="staging">
