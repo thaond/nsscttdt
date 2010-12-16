@@ -23,12 +23,21 @@
 <%@page import="java.io.File"%>
 
 	<%	
+	long contactBookId =0;
+	String contactBookCode = "";
+	String contactBookName = "";
+	String contactBookDescription = "";
+	try{
 		ContactBook contactBook = (ContactBook) request.getAttribute("contactBook");
-		long contactBookId = contactBook.getContactBookId();
-		String contactBookCode = contactBook.getContactBookCode();
-		String contactBookName = contactBook.getContactBookName();
-		String contactBookDescription = contactBook.getContactDescription();
+		contactBookId = contactBook.getContactBookId();
+		contactBookCode = contactBook.getContactBookCode();
+		contactBookName = contactBook.getContactBookName();
+		contactBookDescription = contactBook.getContactDescription();
+	}catch(Exception e){
+		contactBookId = ParamUtil.getLong(renderRequest, "contactBookId");
+	}
 		
+		String redirect = ParamUtil.getString(renderRequest, "redirect", "/nss/phone_book/view");
 		List<DetailBook> detailBooks = DetailBookLocalServiceUtil.getDetailBooks(-1,-1);
 		List<String> detailBookCodes = new ArrayList<String>();
 		List<String> detailBookNames = new ArrayList<String>();
@@ -36,7 +45,7 @@
 		List<String> detailBookZips = new ArrayList<String>();
 		List<String> detailBookInternals = new ArrayList<String>();
 		List<String> detailBookHomes = new ArrayList<String>();
-		List<String> contactBookMobiles = new ArrayList<String>();
+		List<String> detailBookMobiles = new ArrayList<String>();
 		for(DetailBook detailBook : detailBooks){
 			detailBookCodes.add(detailBook.getDetailBookCode());
 			detailBookNames.add(detailBook.getDetailBookName());
@@ -44,17 +53,20 @@
 			detailBookZips.add(detailBook.getZip());
 			detailBookInternals.add(detailBook.getInternal());  
 			detailBookHomes.add(detailBook.getHome());
-			contactBookMobiles.add(detailBook.getMobile());
+			detailBookMobiles.add(detailBook.getMobile());
 		}
 		
 		PortletURL portletURL = renderResponse.createRenderURL();
 		portletURL.setWindowState(WindowState.NORMAL);
 		portletURL.setParameter("struts_action", "/nss/phone_book/view");
+		portletURL.setParameter(Constants.CMD,"DETAIL");
+		portletURL.setParameter("tabs", "detail");
+		portletURL.setParameter("contactBookId", String.valueOf(contactBookId));
 	%> 
-	
-	<%=contactBookCode %>
-	<%=contactBookName %>
-	<%=contactBookDescription %>
+
+<%=contactBookCode %>
+<%=contactBookName %>
+<%=contactBookDescription %>	
 	
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
 		<input type="hidden" name="<portlet:namespace/>listDetailBookCode" value="<%=detailBookCodes %>">
@@ -63,7 +75,7 @@
 		<input type="hidden" name="<portlet:namespace/>listDetailBookZip" value="<%=detailBookZips %>">
 		<input type="hidden" name="<portlet:namespace/>listDetailBookInternal" value="<%=detailBookInternals %>">
 		<input type="hidden" name="<portlet:namespace/>listDetailBookHome" value="<%=detailBookHomes %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookMobile" value="<%=contactBookMobiles %>">
+		<input type="hidden" name="<portlet:namespace/>listDetailBookMobile" value="<%=detailBookMobiles %>">
     	<%	
     		DetailBookSearch detailBookSearch = new DetailBookSearch(renderRequest,portletURL);
     		DetailBookDisplayTerms displayTerms = (DetailBookDisplayTerms)detailBookSearch.getDisplayTerms();
@@ -87,6 +99,7 @@
 				addURL.setWindowState(WindowState.NORMAL);
 				addURL.setParameter("struts_action", "/nss/phone_book/view_detail");
 				addURL.setParameter("tabs", "add");
+				addURL.setParameter("contactBookId", String.valueOf(contactBookId));
 				addURL.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
 			
 			%>
@@ -96,10 +109,11 @@
 				try {
 					Hits hits = null;
 					if (!displayTerms.isAdvancedSearch()) {
-						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),displayTerms.getKeywords(),
+						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,displayTerms.getKeywords(),
 								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
+						out.print("detail co ban");
 					} else {
-						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),
+						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,
 								displayTerms.getDetailBookCode().trim().length() == 0 ? "" : (displayTerms.getDetailBookCode() + "*"),
 								displayTerms.getDetailBookName().trim().length() == 0 ? "" : (displayTerms.getDetailBookName() + "*"),
 								displayTerms.getDetailDescription().trim().length() == 0 ? "" : (displayTerms.getDetailDescription() + "*"),				
@@ -107,7 +121,8 @@
 								displayTerms.getInternal().trim().length() == 0 ? "" : (displayTerms.getInternal() + "*"),
 								displayTerms.getHome().trim().length() == 0 ? "" : (displayTerms.getHome() + "*"),
 								displayTerms.getMobile().trim().length() == 0 ? "" : (displayTerms.getMobile() + "*"),
-								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());		
+								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
+						out.print("detail nang cao");
 					}
 					
 					int total = 0;

@@ -4,7 +4,6 @@
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 
-
 <%
 	String tabs = ParamUtil.getString(request, "tabs");
 	PortletURL portletURL = renderResponse.createRenderURL();
