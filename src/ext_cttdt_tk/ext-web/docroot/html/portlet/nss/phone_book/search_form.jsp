@@ -1,5 +1,4 @@
-<%@page
-	import="com.nss.portlet.phone_book.search.ContactBookDisplayTerms"%>
+<%@page	import="com.nss.portlet.phone_book.search.ContactBookDisplayTerms"%>
 <%@page import="com.nss.portlet.phone_book.search.ContactBookSearch"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
 

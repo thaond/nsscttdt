@@ -1,9 +1,11 @@
+<%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="javax.portlet.WindowState"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
 
-<%
+<%	
+	long contactBookId = ParamUtil.getLong(renderRequest,"contactBookId");
 	String redirect = renderRequest.getParameter("redirect");
 	PortletURL portletURL = renderResponse.createActionURL();
 	portletURL.setWindowState(WindowState.NORMAL);
@@ -12,8 +14,8 @@
 	portletURL.setParameter("redirect", redirect);
 %>
 
-
 <form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm">
+	<input type="hidden" name="<portlet:namespace/>contactBookId" value="<%=contactBookId %>">
 		<table>
 			<tr>
 				<td><liferay-ui:message key="detail-code" /></td>
