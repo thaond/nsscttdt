@@ -48,6 +48,11 @@ public class DetailBookSearch extends SearchContainer<DetailBook> {
 		iteratorURL.setParameter(DetailBookDisplayTerms.CODE, displayTerms.getDetailBookCode());
 		iteratorURL.setParameter(DetailBookDisplayTerms.NAME, displayTerms.getDetailBookName());
 		iteratorURL.setParameter(DetailBookDisplayTerms.DESCRIPTION, displayTerms.getDetailDescription());
+		iteratorURL.setParameter(DetailBookDisplayTerms.ZIP, displayTerms.getZip());
+		iteratorURL.setParameter(DetailBookDisplayTerms.INTERNAL, displayTerms.getInternal());
+		iteratorURL.setParameter(DetailBookDisplayTerms.HOME, displayTerms.getHome());
+		iteratorURL.setParameter(DetailBookDisplayTerms.MOBILE, displayTerms.getMobile());
+		iteratorURL.setParameter(DetailBookDisplayTerms.CONTACTBOOKID, String.valueOf(displayTerms.getContactBookId()));
 		
 		try {
 			PortalPreferences preferences =	PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);

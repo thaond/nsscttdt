@@ -18,20 +18,23 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.journal.util.Indexer;
 import com.nss.portlet.phone_book.NoSuchContactBookException;
 import com.nss.portlet.phone_book.model.ContactBook;
+import com.nss.portlet.phone_book.model.DetailBook;
 import com.nss.portlet.phone_book.search.ContactBookDisplayTerms;
 import com.nss.portlet.phone_book.service.base.ContactBookLocalServiceBaseImpl;
 import com.nss.portlet.phone_book.util.ContactBookIndexer;
 
 public class ContactBookLocalServiceImpl extends
 		ContactBookLocalServiceBaseImpl {
+	
+	public List<DetailBook> getDetailBooks(long contactBookId) throws SystemException{
+		return contactBookPersistence.getDetailBooks(contactBookId);
+	}
 
 	public void reIndex(String[] ids) throws SystemException {
 		if (SearchEngineUtil.isIndexReadOnly()) {
 			return;
 		}
-
 		long companyId = GetterUtil.getLong(ids[0]);
-
 		try {
 			reIndexContactBook(companyId);
 		} catch (SystemException se) {
@@ -56,8 +59,7 @@ public class ContactBookLocalServiceImpl extends
 	protected void reIndexContactBook(long companyId, int start, int end)
 			throws SystemException {
 
-		List<ContactBook> contactBooks = contactBookPersistence
-				.findByCompanyid(companyId, start, end);
+		List<ContactBook> contactBooks = contactBookPersistence.findByCompanyid(companyId, start, end);
 		for (ContactBook contactBook : contactBooks) {
 			try {
 				ContactBookIndexer.updateContactBook(companyId, contactBook);
@@ -83,33 +85,27 @@ public class ContactBookLocalServiceImpl extends
 			throws SystemException {
 		try {
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
-			contextQuery.addRequiredTerm(Field.PORTLET_ID,
-					ContactBookIndexer.PORTLET_ID);
+			contextQuery.addRequiredTerm(Field.PORTLET_ID, ContactBookIndexer.PORTLET_ID);
+			contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, ContactBook.class.getName());
 
-			BooleanQuery contactBookCodeQuery = BooleanQueryFactoryUtil
-					.create();
-			BooleanQuery contactBookNameQuery = BooleanQueryFactoryUtil
-					.create();
-			BooleanQuery contactDescriptionQuery = BooleanQueryFactoryUtil
-					.create();
+			BooleanQuery contactBookCodeQuery = BooleanQueryFactoryUtil.create();
+			BooleanQuery contactBookNameQuery = BooleanQueryFactoryUtil.create();
+			BooleanQuery contactDescriptionQuery = BooleanQueryFactoryUtil.create();
 
 			List<BooleanQuery> booleanQueries = new ArrayList<BooleanQuery>();
 
 			if (Validator.isNotNull(contactBookCode)) {
-				contactBookCodeQuery.addTerm(ContactBookDisplayTerms.CODE,
-						contactBookCode);
+				contactBookCodeQuery.addTerm(ContactBookDisplayTerms.CODE,contactBookCode);
 				booleanQueries.add(contactBookCodeQuery);
 			}
 
 			if (Validator.isNotNull(contactBookName)) {
-				contactBookNameQuery.addTerm(ContactBookDisplayTerms.NAME,
-						contactBookName);
+				contactBookNameQuery.addTerm(ContactBookDisplayTerms.NAME,contactBookName);
 				booleanQueries.add(contactBookNameQuery);
 			}
 
 			if (Validator.isNotNull(contactDescription)) {
-				contactDescriptionQuery
-						.addTerm(ContactBookDisplayTerms.DESCRIPTION,
+				contactDescriptionQuery.addTerm(ContactBookDisplayTerms.DESCRIPTION,
 								contactDescription);
 				booleanQueries.add(contactDescriptionQuery);
 			}
@@ -124,8 +120,10 @@ public class ContactBookLocalServiceImpl extends
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
 
-			return SearchEngineUtil.search(companyId, fullQuery, sort, start,
-					end);
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,end);
+			System.out.println("hits "+hits.getLength());
+			System.out.println("contact nang cao fullQuery.toString()  "+fullQuery.toString());
+			return hits;
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
@@ -141,10 +139,12 @@ public class ContactBookLocalServiceImpl extends
 			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
 
 			if (Validator.isNotNull(ContactBookIndexer.PORTLET_ID)) {
-				contextQuery.addRequiredTerm(Field.PORTLET_ID,
-						ContactBookIndexer.PORTLET_ID);
+				contextQuery.addRequiredTerm(Field.PORTLET_ID,ContactBookIndexer.PORTLET_ID);
 			}
-
+			if (Validator.isNotNull(ContactBookIndexer.ENTRY_CLASS_NAME)) {
+				contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME,ContactBookIndexer.ENTRY_CLASS_NAME);
+			}
+			
 			BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
 
 			if (Validator.isNotNull(keywords)) {
@@ -164,9 +164,11 @@ public class ContactBookLocalServiceImpl extends
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-
-			return SearchEngineUtil.search(companyId, fullQuery, sort, start,
-					end);
+			System.out.println("keyword "+keywords);
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,end);
+			System.out.println("hits "+hits.getLength());
+			System.out.println("contact co ban fullQuery.toString()  "+fullQuery.toString());
+			return hits;
 
 		} catch (Exception e) {
 			throw new SystemException(e);
