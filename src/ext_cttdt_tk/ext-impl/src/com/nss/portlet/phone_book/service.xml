@@ -34,5 +34,10 @@
 		
 		<column name="companyid" type="long"/>
 	  	<column name="userid" type="long"/>	
+	  	
+	  	<finder name="Companyid" return-type="Collection">
+	   		<finder-column name="companyid"/>
+	    </finder>
+	  	
 	</entity>
 </service-builder>
