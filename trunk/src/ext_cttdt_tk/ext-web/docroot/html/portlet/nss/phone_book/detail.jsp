@@ -1,8 +1,9 @@
+
 <%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
 
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.nss.portlet.phone_book.model.ContactBook"%>
 <%@page import="com.nss.portlet.phone_book.service.DetailBookLocalServiceUtil"%>
+<%@page import="com.nss.portlet.phone_book.service.ContactBookLocalServiceUtil"%>
+<%@page import="com.nss.portlet.phone_book.model.ContactBook"%>
 <%@page import="com.nss.portlet.phone_book.model.DetailBook"%>
 <%@page import="com.nss.portlet.phone_book.search.DetailBookDisplayTerms"%>
 <%@page import="com.nss.portlet.phone_book.search.DetailBookSearch"%>
@@ -38,22 +39,22 @@
 	}
 		
 		String redirect = ParamUtil.getString(renderRequest, "redirect", "/nss/phone_book/view");
-		List<DetailBook> detailBooks = DetailBookLocalServiceUtil.getDetailBooks(-1,-1);
-		List<String> detailBookCodes = new ArrayList<String>();
-		List<String> detailBookNames = new ArrayList<String>();
-		List<String> detailBookDescriptions = new ArrayList<String>();
-		List<String> detailBookZips = new ArrayList<String>();
-		List<String> detailBookInternals = new ArrayList<String>();
-		List<String> detailBookHomes = new ArrayList<String>();
-		List<String> detailBookMobiles = new ArrayList<String>();
+		List<DetailBook> detailBooks = ContactBookLocalServiceUtil.getDetailBooks(contactBookId);
+		String detailBookCodes = "";
+		String detailBookNames = "";
+		String detailBookDescriptions = "";
+		String detailBookZips = "";
+		String detailBookInternals = "";
+		String detailBookHomes = "";
+		String detailBookMobiles = "";
 		for(DetailBook detailBook : detailBooks){
-			detailBookCodes.add(detailBook.getDetailBookCode());
-			detailBookNames.add(detailBook.getDetailBookName());
-			detailBookDescriptions.add(detailBook.getDetailDescription());
-			detailBookZips.add(detailBook.getZip());
-			detailBookInternals.add(detailBook.getInternal());  
-			detailBookHomes.add(detailBook.getHome());
-			detailBookMobiles.add(detailBook.getMobile());
+			detailBookCodes += detailBook.getDetailBookCode() + "/";
+			detailBookNames += detailBook.getDetailBookName() + "/";
+			detailBookDescriptions += detailBook.getDetailDescription() + "/";
+			detailBookZips += detailBook.getZip() + "/";
+			detailBookInternals += detailBook.getInternal() + "/";  
+			detailBookHomes += detailBook.getHome() + "/";
+			detailBookMobiles += detailBook.getMobile() + "/";
 		}
 		
 		PortletURL portletURL = renderResponse.createRenderURL();
@@ -64,18 +65,7 @@
 		portletURL.setParameter("contactBookId", String.valueOf(contactBookId));
 	%> 
 
-<%=contactBookCode %>
-<%=contactBookName %>
-<%=contactBookDescription %>	
-	
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
-		<input type="hidden" name="<portlet:namespace/>listDetailBookCode" value="<%=detailBookCodes %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookName" value="<%=detailBookNames %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookDescription" value="<%=detailBookDescriptions %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookZip" value="<%=detailBookZips %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookInternal" value="<%=detailBookInternals %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookHome" value="<%=detailBookHomes %>">
-		<input type="hidden" name="<portlet:namespace/>listDetailBookMobile" value="<%=detailBookMobiles %>">
     	<%	
     		DetailBookSearch detailBookSearch = new DetailBookSearch(renderRequest,portletURL);
     		DetailBookDisplayTerms displayTerms = (DetailBookDisplayTerms)detailBookSearch.getDisplayTerms();
@@ -101,17 +91,20 @@
 				addURL.setParameter("tabs", "add");
 				addURL.setParameter("contactBookId", String.valueOf(contactBookId));
 				addURL.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
+				
+				PortletURL backURL = renderResponse.createRenderURL();
+				backURL.setWindowState(WindowState.NORMAL);
+				backURL.setParameter("struts_action", "/nss/phone_book/view");
 			
 			%>
 			<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
+			<a href="<%= backURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span></a>
 			<br><br>
 			<%
-				try {
 					Hits hits = null;
 					if (!displayTerms.isAdvancedSearch()) {
 						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,displayTerms.getKeywords(),
 								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
-						out.print("detail co ban");
 					} else {
 						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,
 								displayTerms.getDetailBookCode().trim().length() == 0 ? "" : (displayTerms.getDetailBookCode() + "*"),
@@ -122,96 +115,114 @@
 								displayTerms.getHome().trim().length() == 0 ? "" : (displayTerms.getHome() + "*"),
 								displayTerms.getMobile().trim().length() == 0 ? "" : (displayTerms.getMobile() + "*"),
 								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
-						out.print("detail nang cao");
 					}
 					
-					int total = 0;
-					total = hits.getLength();
-					detailBookSearch.setTotal(total);
-					portletURL.setParameter(detailBookSearch.getCurParam(), String.valueOf(detailBookSearch.getCurValue()));
-				
+					int total = hits.getLength();
 					List resultRows = detailBookSearch.getResultRows();
-				
 					ResultRow row = null;
 					DetailBook detailBook = null;
-					
 					int detailBookId = 0;
 					String update = "";
 					String deleteAction = "";
 					String active = "";
+					int j = 0;
 					
 					for (int i = 0; i < hits.getDocs().length; i ++) {
+						int stt = j+1;
 						detailBookId = GetterUtil.getInteger(hits.doc(i).get(Field.ENTRY_CLASS_PK));
-						detailBook  = DetailBookLocalServiceUtil.getDetailBook(detailBookId);
-							
-						row = new ResultRow(detailBook, detailBook.getDetailBookId(), i);
-						
-						// STT
-						row.addText(String.valueOf(i + 1));
-						
-						//URL detail
-						PortletURL rowURLDetail= renderResponse.createActionURL();
-						rowURLDetail.setWindowState(WindowState.NORMAL);
-						rowURLDetail.setParameter("struts_action","/nss/phone_book/view_detail");
-						rowURLDetail.setParameter(Constants.CMD,"DETAIL");
-						rowURLDetail.setParameter("detailBookId", String.valueOf(detailBookId));
-						rowURLDetail.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
-						rowURLDetail.setParameter("tabs", "detail");
-						
-						row.addText(detailBook.getDetailBookCode(), rowURLDetail.toString());
-						
-						// name
-						row.addText(detailBook.getDetailBookName(), rowURLDetail.toString());
-						
-						// mo ta 
-						row.addText(detailBook.getDetailDescription(), rowURLDetail.toString());
-						
-						//active 
-						//URL active
-						PortletURL rowURLActive= renderResponse.createActionURL();
-						rowURLActive.setWindowState(WindowState.NORMAL);
-						rowURLActive.setParameter("struts_action","/nss/phone_book/view_detail");
-						rowURLActive.setParameter(Constants.CMD,Constants.LOCK);
-						rowURLActive.setParameter("detailBookId", String.valueOf(detailBookId));
-						rowURLActive.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
-						
-						if (true == detailBook.getDetailActive()) {
-							active = "<a href='"+ rowURLActive.toString()+"'><img src='/html/images/checked.gif' />&nbsp;</a>";
-						} else if (false == detailBook.getDetailActive()){
-							active = "<a href='"+ rowURLActive.toString()+"'><img src='/html/images/unchecked.gif' />&nbsp;</a>";
+						try{
+							detailBook  = DetailBookLocalServiceUtil.getDetailBook(detailBookId);
+							if(detailBook.getContactBookId() == contactBookId){
+								j++;
+							}else{
+								total --;
+							}
+						}catch(Exception e){
+							total --;
 						}
-						row.addText(active);
-						
-						// edit
-						//URL update
-						PortletURL rowURLEdit = renderResponse.createActionURL();
-						rowURLEdit.setWindowState(WindowState.NORMAL);
-						rowURLEdit.setParameter(Constants.CMD,Constants.EDIT);
-						rowURLEdit.setParameter("struts_action","/nss/phone_book/view_detail");
-						rowURLEdit.setParameter("detailBookId", String.valueOf(detailBookId));
-						rowURLEdit.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
-						rowURLEdit.setParameter("tabs", "edit");
-						
-						update = "<a href='"+ rowURLEdit.toString()+"'><img src='/html/images/edit.png' />&nbsp;</a>";
-						
-						row.addText(update);
-						
-						// delete
-						//URL delete
-						PortletURL rowURLDelete = renderResponse.createActionURL();
-						rowURLDelete.setWindowState(WindowState.NORMAL);
-						rowURLDelete.setParameter("struts_action","/nss/phone_book/view_detail");
-						rowURLDelete.setParameter(Constants.CMD,Constants.DELETE);
-						rowURLDelete.setParameter("detailBookId", String.valueOf(detailBookId));
-						rowURLDelete.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
-						
-						deleteAction = "<a  href='javascript: ;' onclick=deleteDetailBook('"+ rowURLDelete.toString() +"')><u>"+ "<img src='/html/images/delete.png'/>" +"</u></a>";
-						
-						row.addText(deleteAction);
-						
-						resultRows.add(row);
+						if(detailBook != null && detailBook.getContactBookId() == contactBookId){
+							row = new ResultRow(detailBook, detailBook.getDetailBookId(), i);
+							
+							// STT
+							row.addText(String.valueOf(stt));
+							
+							//URL detail
+							PortletURL rowURLDetail= renderResponse.createActionURL();
+							rowURLDetail.setWindowState(WindowState.NORMAL);
+							rowURLDetail.setParameter("struts_action","/nss/phone_book/view_detail");
+							rowURLDetail.setParameter(Constants.CMD,"DETAIL");
+							rowURLDetail.setParameter("detailBookId", String.valueOf(detailBookId));
+							rowURLDetail.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
+							rowURLDetail.setParameter("tabs", "detail");
+							
+							row.addText(detailBook.getDetailBookCode(), rowURLDetail.toString());
+							
+							// name
+							row.addText(detailBook.getDetailBookName(), rowURLDetail.toString());
+							
+							// mo ta 
+							row.addText(detailBook.getDetailDescription(), rowURLDetail.toString());
+							
+							//zip
+							row.addText(detailBook.getZip(), rowURLDetail.toString());
+							
+							//internal
+							row.addText(detailBook.getInternal(), rowURLDetail.toString());
+							
+							//home
+							row.addText(detailBook.getHome(), rowURLDetail.toString());
+							
+							//mobile
+							row.addText(detailBook.getMobile(), rowURLDetail.toString());
+							
+							//active 
+							//URL active
+							PortletURL rowURLActive= renderResponse.createActionURL();
+							rowURLActive.setWindowState(WindowState.NORMAL);
+							rowURLActive.setParameter("struts_action","/nss/phone_book/view_detail");
+							rowURLActive.setParameter(Constants.CMD,Constants.LOCK);
+							rowURLActive.setParameter("detailBookId", String.valueOf(detailBookId));
+							rowURLActive.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
+							
+							if (true == detailBook.getDetailActive()) {
+								active = "<a href='"+ rowURLActive.toString()+"'><img src='/html/images/checked.gif' />&nbsp;</a>";
+							} else if (false == detailBook.getDetailActive()){
+								active = "<a href='"+ rowURLActive.toString()+"'><img src='/html/images/unchecked.gif' />&nbsp;</a>";
+							}
+							row.addText(active);
+							
+							// edit
+							//URL update
+							PortletURL rowURLEdit = renderResponse.createActionURL();
+							rowURLEdit.setWindowState(WindowState.NORMAL);
+							rowURLEdit.setParameter(Constants.CMD,Constants.EDIT);
+							rowURLEdit.setParameter("struts_action","/nss/phone_book/view_detail");
+							rowURLEdit.setParameter("detailBookId", String.valueOf(detailBookId));
+							rowURLEdit.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
+							rowURLEdit.setParameter("tabs", "edit");
+							
+							update = "<a href='"+ rowURLEdit.toString()+"'><img src='/html/images/edit.png' />&nbsp;</a>";
+							
+							row.addText(update);
+							
+							// delete
+							//URL delete
+							PortletURL rowURLDelete = renderResponse.createActionURL();
+							rowURLDelete.setWindowState(WindowState.NORMAL);
+							rowURLDelete.setParameter("struts_action","/nss/phone_book/view_detail");
+							rowURLDelete.setParameter(Constants.CMD,Constants.DELETE);
+							rowURLDelete.setParameter("detailBookId", String.valueOf(detailBookId));
+							rowURLDelete.setParameter("redirect", detailBookSearch.getIteratorURL().toString());
+							
+							deleteAction = "<a  href='javascript: ;' onclick=deleteDetailBook('"+ rowURLDelete.toString() +"')><u>"+ "<img src='/html/images/delete.png'/>" +"</u></a>";
+							
+							row.addText(deleteAction);
+							
+							resultRows.add(row);
+						}
 					}	
-				} catch (Exception e) {}
+				detailBookSearch.setTotal(total);
+				portletURL.setParameter(detailBookSearch.getCurParam(), String.valueOf(detailBookSearch.getCurValue()));
 				
 			%>
 		
@@ -220,34 +231,34 @@
 </form>
     
 <script>
-	var myCode = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookCode.value;
-	var myName = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookName.value;
-	var myDescription = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookDescription.value;
-	var myZip = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookZip.value;
-	var myInternal = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookInternal.value;
-	var myHome = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookHome.value;
-	var myMobile = document.<portlet:namespace />fm.<portlet:namespace/>listDetailBookMobile.value;
+	var myCodes = "<%= detailBookCodes %>".split("/");
+	var myNames = "<%= detailBookNames %>".split("/");
+	var myDescription = "<%= detailBookDescriptions %>".split("/");
+	var myZips = "<%= detailBookZips %>".split("/");
+	var myInternals = "<%= detailBookInternals %>".split("/");
+	var myHomes = "<%= detailBookHomes %>".split("/");
+	var myMobiles = "<%= detailBookMobiles %>".split("/");
 	
 	jQuery("#<portlet:namespace/>detailBookCodeAutoComplete").autocomplete({
-		data : myCode
+		data : myCodes
 	});
 	jQuery("#<portlet:namespace/>detailBookNameAutoComplete").autocomplete({
-		data : myName
+		data : myNames
 	});
 	jQuery("#<portlet:namespace/>detailBookDescriptionAutoComplete").autocomplete({
 		data : myDescription
 	});
 	jQuery("#<portlet:namespace/>detailBookZipAutoComplete").autocomplete({
-		data : myZip
+		data : myZips
 	});
 	jQuery("#<portlet:namespace/>detailBookInternalAutoComplete").autocomplete({
-		data : myInternal
+		data : myInternals
 	});
 	jQuery("#<portlet:namespace/>detailBookHomeAutoComplete").autocomplete({
-		data : myHome
+		data : myHomes
 	});
 	jQuery("#<portlet:namespace/>detailBookMobileAutoComplete").autocomplete({
-		data : myMobile
+		data : myMobiles
 	});
 	
 	function deleteDetailBook(url) {

@@ -36,20 +36,18 @@
 		portletURL.setParameter("struts_action", "/nss/phone_book/view");
 	%> 
 	<% if(notDeleteContact != null){ %>
-		<liferay-ui:message key="not-delete-contact" />
+		<div style="color: red"><liferay-ui:message key="not-delete-contact" /></div>
 	<%}%>   
 	
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
     	<%
 			ContactBookSearch contactBookSearch = new ContactBookSearch(renderRequest, portletURL);
     		ContactBookDisplayTerms displayTerms = (ContactBookDisplayTerms)contactBookSearch.getDisplayTerms();
-    		
 	   		String orderByCol = ParamUtil.getString(renderRequest, "orderByCol", ContactBookDisplayTerms.NAME);
-    		
     		int sortType = Sort.STRING_TYPE;
-
     		String orderByType = contactBookSearch.getOrderByType().toLowerCase();
     		boolean reverse = false;
+    		
     		if (orderByType.equals("desc")) {
     			reverse = true;
     		} 
@@ -67,44 +65,42 @@
 			<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="them-moi"/>' /></span></a>
 			<br><br>
 			<%
-				try {
+				
 					Hits hits = null;
 					if (!displayTerms.isAdvancedSearch()) {
 						hits = ContactBookLocalServiceUtil.search(user.getCompanyId(),displayTerms.getKeywords(),
 								orderByCol, sortType, reverse,contactBookSearch.getStart(),contactBookSearch.getEnd());
-						out.print("contact co ban");
 					} else {
 						hits = ContactBookLocalServiceUtil.search(user.getCompanyId(),
 								displayTerms.getContactBookCode().trim().length() == 0 ? "" : (displayTerms.getContactBookCode() + "*"),
 								displayTerms.getContactBookName().trim().length() == 0 ? "" : (displayTerms.getContactBookName() + "*"),
 								displayTerms.getContactDescription().trim().length() == 0 ? "" : (displayTerms.getContactDescription() + "*"),				
 								orderByCol, sortType, reverse,contactBookSearch.getStart(),contactBookSearch.getEnd());		
-						out.print("contact nang cao");
 					}
 					
-					int total = 0;
-					total = hits.getLength();
-					contactBookSearch.setTotal(total);
-					portletURL.setParameter(contactBookSearch.getCurParam(), String.valueOf(contactBookSearch.getCurValue()));
-				
+					int total = hits.getLength();
 					List resultRows = contactBookSearch.getResultRows();
-				
 					ResultRow row = null;
 					ContactBook contactBook = null;
-					
 					long contactBookId = 0;
 					String update = "";
 					String deleteAction = "";
 					String active = "";
+					int j = 0;
 					
 					for (int i = 0; i < hits.getDocs().length; i ++) {
+						int stt = j+1;
 						contactBookId = GetterUtil.getInteger(hits.doc(i).get(Field.ENTRY_CLASS_PK));
-						contactBook  = ContactBookLocalServiceUtil.getContactBook(contactBookId);
+						try{
+							contactBook  = ContactBookLocalServiceUtil.getContactBook(contactBookId);
+							j++;
+						}catch(Exception e){
+							total --;
+						}
 						if(contactBook != null){
 							row = new ResultRow(contactBook, contactBook.getContactBookId(), i);
-							
 							// STT
-							row.addText(String.valueOf(i + 1));
+							row.addText(String.valueOf(stt));
 							
 							// code
 							//URL detail
@@ -169,10 +165,9 @@
 							
 							resultRows.add(row);
 						}
-						
-					}	
-				} catch (Exception e) {}
-				
+					}
+				contactBookSearch.setTotal(total);
+				portletURL.setParameter(contactBookSearch.getCurParam(), String.valueOf(contactBookSearch.getCurValue()));
 			%>
 		
 		<liferay-ui:search-iterator searchContainer="<%= contactBookSearch %>" />
