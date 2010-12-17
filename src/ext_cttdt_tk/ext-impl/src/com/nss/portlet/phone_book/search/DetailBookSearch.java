@@ -27,6 +27,10 @@ public class DetailBookSearch extends SearchContainer<DetailBook> {
 		headerNames.add("ma-don-vi-co-so");
 		headerNames.add("ten-don-vi-co-so");
 		headerNames.add("mo-ta-don-vi-co-so");
+		headerNames.add("zip-don-vi-co-so");
+		headerNames.add("internal-don-vi-co-so");
+		headerNames.add("home-don-vi-co-so");
+		headerNames.add("mobile-don-vi-co-so");
 		headerNames.add("active");
 		headerNames.add("edit");
 		headerNames.add("delete");

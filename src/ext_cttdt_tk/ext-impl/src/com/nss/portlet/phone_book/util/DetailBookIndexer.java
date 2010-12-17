@@ -24,8 +24,12 @@ public class DetailBookIndexer implements Indexer{
 			DetailBook detailBook) throws UnsupportedEncodingException {
 		long detailBookId = detailBook.getDetailBookId();
 		String detailBookCode = detailBook.getDetailBookCode().toLowerCase();
-		String detailBookName= detailBook.getDetailBookName().toLowerCase();
-		String detailDescription= detailBook.getDetailDescription().toLowerCase();
+		String detailBookName = detailBook.getDetailBookName().toLowerCase();
+		String detailDescription = detailBook.getDetailDescription().toLowerCase();
+		String detailZip = detailBook.getZip();
+		String detailInternal = detailBook.getInternal();
+		String detailHome = detailBook.getHome();
+		String detailMobile = detailBook.getMobile();
 		
 		Document doc = new DocumentImpl();
 		doc.addUID(PORTLET_ID, detailBookId);
@@ -37,6 +41,10 @@ public class DetailBookIndexer implements Indexer{
 		doc.addKeyword(DetailBookDisplayTerms.CODE, detailBookCode);
 		doc.addKeyword(DetailBookDisplayTerms.NAME, detailBookName);
 		doc.addKeyword(DetailBookDisplayTerms.DESCRIPTION, detailDescription);
+		doc.addKeyword(DetailBookDisplayTerms.ZIP, detailZip);
+		doc.addKeyword(DetailBookDisplayTerms.INTERNAL, detailInternal);
+		doc.addKeyword(DetailBookDisplayTerms.HOME, detailHome);
+		doc.addKeyword(DetailBookDisplayTerms.MOBILE, detailMobile);
 		
 		return doc;
 	}

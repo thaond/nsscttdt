@@ -18,8 +18,6 @@ import com.nss.portlet.phone_book.service.ContactBookLocalServiceUtil;
 public class ContactBookIndexer implements Indexer{
 	
 	public static final String PORTLET_ID = "NSS_PHONE_BOOK";
-	public static final String ENTRY_CLASS_NAME = ContactBook.class.getName();	
-	
 	
 	public static Document getContactBook(long companyId,
 			ContactBook contactBook) throws UnsupportedEncodingException {
@@ -33,7 +31,6 @@ public class ContactBookIndexer implements Indexer{
 		
 		doc.addKeyword(Field.COMPANY_ID, companyId);
 		doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
-		doc.addKeyword(Field.ENTRY_CLASS_NAME, ENTRY_CLASS_NAME);
 		
 		doc.addKeyword(Field.ENTRY_CLASS_PK, contactBookId);
 		doc.addKeyword(ContactBookDisplayTerms.CODE, contactBookCode);

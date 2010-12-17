@@ -53,8 +53,7 @@ public class ViewAction extends PortletAction {
 				updateContactBook(req, res);
 				sendRedirect(req, res, redirect);
 			}else if(cmd.equals(Constants.DELETE)){
-				deleteContactBook(req);
-				sendRedirect(req, res, redirect);
+				deleteContactBook(req, res, redirect);
 			}else if(cmd.equals(Constants.LOCK)){
 				updateActiveContactBook(req,res);
 				sendRedirect(req, res, redirect);
@@ -151,7 +150,7 @@ public class ViewAction extends PortletAction {
 		}
 	}
 
-	public void deleteContactBook(ActionRequest req) {
+	public void deleteContactBook(ActionRequest req, ActionResponse res, String redirect) {
 		long contactBookId = ParamUtil.getLong(req, "contactBookId");
 		long userId = PortalUtil.getUserId(req);
 		long companyId = 0;
@@ -162,6 +161,7 @@ public class ViewAction extends PortletAction {
 				List<DetailBook> detailBooks = ContactBookLocalServiceUtil.getDetailBooks(contactBookId);
 				if(detailBooks.size() == 0){
 					ContactBookLocalServiceUtil.deleteContactBook(companyId, contactBookId);
+					sendRedirect(req, res, redirect);
 				}else{
 					req.setAttribute("NotDeleteContact", "NotDeleteContact");
 				}

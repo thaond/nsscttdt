@@ -1,7 +1,5 @@
 package com.nss.portlet.phone_book.action;
 
-import java.util.List;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
@@ -35,8 +33,7 @@ public class ViewDetailAction extends PortletAction {
 	}
 	
 	public void processAction(ActionMapping mapping, ActionForm form,
-			PortletConfig config, ActionRequest req, ActionResponse res)
-			throws Exception {
+			PortletConfig config, ActionRequest req, ActionResponse res) throws Exception {
 		String redirect = ParamUtil.getString(req, "redirect", "/nss/phone_book/view_detail");
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 		
@@ -99,8 +96,7 @@ public class ViewDetailAction extends PortletAction {
 				DetailBookLocalServiceUtil.addDetailBook(companyId, detailBook);
 			}
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD addDetailBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD addDetailBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 	
@@ -111,8 +107,7 @@ public class ViewDetailAction extends PortletAction {
 			detailBook = DetailBookLocalServiceUtil.getDetailBook(detailBookId);
 			req.setAttribute("detailBook", detailBook);
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD detailDetailBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD detailDetailBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 	
@@ -123,8 +118,7 @@ public class ViewDetailAction extends PortletAction {
 			detailBook = DetailBookLocalServiceUtil.getDetailBook(detailBookId);
 			req.setAttribute("detailBook", detailBook);
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD editDetailBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD editDetailBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 	
@@ -163,8 +157,7 @@ public class ViewDetailAction extends PortletAction {
 				DetailBookLocalServiceUtil.updateDetailBook(companyId, detailBook);
 			}
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD updateDetailBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD updateDetailBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 
@@ -179,8 +172,7 @@ public class ViewDetailAction extends PortletAction {
 				DetailBookLocalServiceUtil.deleteDetailBook(companyId, detailBookId);
 			}
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD deleteContactBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD deleteContactBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 	
@@ -204,8 +196,7 @@ public class ViewDetailAction extends PortletAction {
 				}
 			}
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD updateActiveDetailBook OF "
-					+ ViewDetailAction.class + " " + e.getMessage());
+			_log.error("ERROR IN METHOD updateActiveDetailBook OF " + ViewDetailAction.class + " " + e.getMessage());
 		}
 	}
 
@@ -221,5 +212,4 @@ public class ViewDetailAction extends PortletAction {
 			return mapping.findForward("portlet.nss.phone_book.view_detail");
 		}
 	}
-
 }
