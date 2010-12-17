@@ -22,8 +22,21 @@
 <%@page import="java.io.File"%>
 
 	<%	
-		DetailBook detailBook = (DetailBook)renderRequest.getAttribute("detailBook");
+	String redirect = renderRequest.getParameter("redirect");
+	DetailBook detailBook = (DetailBook)renderRequest.getAttribute("detailBook");
+	long contactBookId = detailBook.getContactBookId();
+	PortletURL backURL = renderResponse.createRenderURL();
+	backURL.setWindowState(WindowState.NORMAL);
+	backURL.setParameter("struts_action", "/nss/phone_book/view");
+	backURL.setParameter("redirect", redirect);
+	backURL.setParameter(Constants.CMD,"DETAIL");
+	backURL.setParameter("contactBookId", String.valueOf(contactBookId));
+	backURL.setParameter("tabs", "detail");
 	%> 
+
+<a href="<%= backURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span></a>
+
+<br>
 	
 <table>
 	<tr>

@@ -12,9 +12,21 @@
 	portletURL.setParameter("struts_action", "/nss/phone_book/view_detail");
 	portletURL.setParameter(Constants.CMD,Constants.ADD);
 	portletURL.setParameter("redirect", redirect);
+	
+	PortletURL backURL = renderResponse.createRenderURL();
+	backURL.setWindowState(WindowState.NORMAL);
+	backURL.setParameter("struts_action", "/nss/phone_book/view");
+	backURL.setParameter("redirect", redirect);
+	backURL.setParameter(Constants.CMD,"DETAIL");
+	backURL.setParameter("contactBookId", String.valueOf(contactBookId));
+	backURL.setParameter("tabs", "detail");
 %>
 
-<form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm">
+<a href="<%= backURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span></a>
+
+<br>
+
+<form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace/>fm" onsubmit="return check(this);">
 	<input type="hidden" name="<portlet:namespace/>contactBookId" value="<%=contactBookId %>">
 		<table>
 			<tr>
@@ -52,3 +64,51 @@
 		</table>
 	<input type="submit" value='<liferay-ui:message key="add" />'>
 </form>
+
+<script type="text/javascript">
+
+	 function check(fm){
+		 if((checkCode(fm) == false) || checkName(fm) == false || (checkDescription(fm) == false) || (checkMobile(fm) == false)){
+			return false;			 
+		 }
+	 }
+	
+	 function checkCode(fm){
+		var detailBookCode = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookCode.value;
+		if(detailBookCode == "" || detailBookCode == null){
+			alert("input-detail-book-code");
+			return false;
+		}
+	 }
+	 
+	 function checkName(fm){
+		var detailBookName = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookName.value;
+		if(detailBookName == "" || detailBookName == null){
+			alert("input-detail-book-name");
+			return false;
+		}
+     }
+	
+	 function checkDescription(fm){
+		var detailBookDescription = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookDescription.value;
+		if(detailBookDescription == "" || detailBookDescription == null){
+			alert("input-detail-book-description");
+			return false;
+		}
+     }
+	 
+	 function checkMobile(fm) {
+		 var detailBookMobile = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookMobile.value;
+	     var checkNum = /([0-9])/;
+	        
+	     if (detailBookMobile != ""){
+		      if(detailBookMobile < 0 || !checkNum.test(detailBookMobile) || isNaN(detailBookMobile)){
+		      	 alert("input-number-validate");
+		        return false;
+		      }else if(detailBookMobile.length < 7 || detailBookMobile.length >11){
+		        alert("input-length-number");
+		        return false;
+		      }
+	   	 }
+	 }
+</script>
