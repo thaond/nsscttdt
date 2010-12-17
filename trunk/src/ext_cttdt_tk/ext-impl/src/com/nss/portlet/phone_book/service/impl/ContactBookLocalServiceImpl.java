@@ -51,7 +51,6 @@ public class ContactBookLocalServiceImpl extends
 		for (int i = 0; i <= pages; i++) {
 			int start = (i * Indexer.DEFAULT_INTERVAL);
 			int end = start + Indexer.DEFAULT_INTERVAL;
-
 			reIndexContactBook(companyId, start, end);
 		}
 	}
@@ -86,7 +85,6 @@ public class ContactBookLocalServiceImpl extends
 		try {
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
 			contextQuery.addRequiredTerm(Field.PORTLET_ID, ContactBookIndexer.PORTLET_ID);
-			contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, ContactBook.class.getName());
 
 			BooleanQuery contactBookCodeQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery contactBookNameQuery = BooleanQueryFactoryUtil.create();
@@ -111,18 +109,15 @@ public class ContactBookLocalServiceImpl extends
 			}
 
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
-
 			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
+			
 			for (int i = 0; i < booleanQueries.size(); i++) {
 				fullQuery.add(booleanQueries.get(i), BooleanClauseOccur.MUST);
 			}
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-
 			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,end);
-			System.out.println("hits "+hits.getLength());
-			System.out.println("contact nang cao fullQuery.toString()  "+fullQuery.toString());
 			return hits;
 		} catch (Exception e) {
 			throw new SystemException(e);
@@ -133,16 +128,11 @@ public class ContactBookLocalServiceImpl extends
 			int sortType, boolean reverse, int start, int end)
 			throws SystemException {
 		try {
-
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
-
 			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
 
 			if (Validator.isNotNull(ContactBookIndexer.PORTLET_ID)) {
 				contextQuery.addRequiredTerm(Field.PORTLET_ID,ContactBookIndexer.PORTLET_ID);
-			}
-			if (Validator.isNotNull(ContactBookIndexer.ENTRY_CLASS_NAME)) {
-				contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME,ContactBookIndexer.ENTRY_CLASS_NAME);
 			}
 			
 			BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
@@ -150,12 +140,11 @@ public class ContactBookLocalServiceImpl extends
 			if (Validator.isNotNull(keywords)) {
 				searchQuery.addTerm(Field.TITLE, keywords);
 				searchQuery.addTerm("contactBookCode", keywords + "*");
-				searchQuery.addTerm("contactBookName", keywords);
-				searchQuery.addTerm("contactDescription", keywords);
+				searchQuery.addTerm("contactBookName", keywords + "*");
+				searchQuery.addTerm("contactDescription", keywords + "*");
 			}
 
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
-
 			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
 
 			if (searchQuery.clauses().size() > 0) {
@@ -164,16 +153,13 @@ public class ContactBookLocalServiceImpl extends
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-			System.out.println("keyword "+keywords);
 			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,end);
-			System.out.println("hits "+hits.getLength());
-			System.out.println("contact co ban fullQuery.toString()  "+fullQuery.toString());
 			return hits;
-
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
+	
 	public ContactBook addContactBook(long companyId, ContactBook contactBook) throws SystemException, SearchException {
 		contactBook.setNew(true);
 		contactBookPersistence.update(contactBook, false);

@@ -83,8 +83,8 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 			throws SystemException {
 		try {
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
+			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
 			contextQuery.addRequiredTerm(Field.PORTLET_ID,DetailBookIndexer.PORTLET_ID);
-			contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, DetailBook.class.getName());
 
 			BooleanQuery detailBookCodeQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery detailBookNameQuery = BooleanQueryFactoryUtil.create();
@@ -93,7 +93,6 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 			BooleanQuery internalQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery homeQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery mobileQuery = BooleanQueryFactoryUtil.create();
-			BooleanQuery contactBookIdQuery = BooleanQueryFactoryUtil.create();
 			
 			List<BooleanQuery> booleanQueries = new ArrayList<BooleanQuery>();
 
@@ -136,11 +135,6 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 				booleanQueries.add(mobileQuery);
 			}
 			
-			if(contactBookId > 0){
-				contactBookIdQuery.addTerm(DetailBookDisplayTerms.CONTACTBOOKID, contactBookId);
-				booleanQueries.add(contactBookIdQuery);
-			}
-
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
 
 			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
@@ -150,9 +144,9 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-			System.out.println("detail nang cao fullQuery.toString()  "+fullQuery.toString());
-			return SearchEngineUtil.search(companyId, fullQuery, sort, start,
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,
 					end);
+			return hits;
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
@@ -164,31 +158,25 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 		try {
 
 			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
-
 			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
-			contextQuery.addRequiredTerm(Field.ENTRY_CLASS_NAME, DetailBook.class.getName());
 
 			if (Validator.isNotNull(DetailBookIndexer.PORTLET_ID)) {
 				contextQuery.addRequiredTerm(Field.PORTLET_ID,DetailBookIndexer.PORTLET_ID);
 			}
-
+			
 			BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
 
 			if (Validator.isNotNull(keywords)) {
-				searchQuery.addTerm(Field.TITLE, keywords);
 				searchQuery.addTerm("detailBookCode", keywords + "*");
-				searchQuery.addTerm("detailBookName", keywords);
-				searchQuery.addTerm("detailDescription", keywords);
-				searchQuery.addTerm("zip", keywords);
-				searchQuery.addTerm("internal", keywords);
-				searchQuery.addTerm("home", keywords);
-				searchQuery.addTerm("mobile", keywords);
+				searchQuery.addTerm("detailBookName", keywords + "*");
+				searchQuery.addTerm("detailDescription", keywords + "*");
+				searchQuery.addTerm("zip", keywords + "*");
+				searchQuery.addTerm("internal", keywords + "*");
+				searchQuery.addTerm("home", keywords + "*");
+				searchQuery.addTerm("mobile", keywords + "*");
 			}
-			//searchQuery.addTerm("contactBookId", contactBookId); 
-			System.out.println("contactBookId good "+contactBookId);
 			
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
-
 			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
 
 			if (searchQuery.clauses().size() > 0) {
@@ -197,12 +185,9 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-			System.out.println("detail co ban fullQuery.toString()  "+fullQuery.toString());
 			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,
 					end);
-			System.out.println("hits "+hits.getLength());
 			return hits;
-			
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
