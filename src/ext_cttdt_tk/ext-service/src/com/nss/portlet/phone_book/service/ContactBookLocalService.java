@@ -80,6 +80,10 @@ public interface ContactBookLocalService {
         throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.util.List<com.nss.portlet.phone_book.model.DetailBook> getDetailBooks(
+        long contactBookId) throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public void reIndex(java.lang.String[] ids)
         throws com.liferay.portal.SystemException;
 

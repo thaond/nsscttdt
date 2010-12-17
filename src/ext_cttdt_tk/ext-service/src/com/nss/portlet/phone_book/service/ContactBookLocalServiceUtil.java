@@ -89,6 +89,11 @@ public class ContactBookLocalServiceUtil {
         return getService().updateContactBook(contactBook, merge);
     }
 
+    public static java.util.List<com.nss.portlet.phone_book.model.DetailBook> getDetailBooks(
+        long contactBookId) throws com.liferay.portal.SystemException {
+        return getService().getDetailBooks(contactBookId);
+    }
+
     public static void reIndex(java.lang.String[] ids)
         throws com.liferay.portal.SystemException {
         getService().reIndex(ids);

@@ -89,6 +89,67 @@ public class DetailBookLocalServiceUtil {
         return getService().updateDetailBook(detailBook, merge);
     }
 
+    public static void reIndex(java.lang.String[] ids)
+        throws com.liferay.portal.SystemException {
+        getService().reIndex(ids);
+    }
+
+    public static void reIndex(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.kernel.search.SearchException {
+        getService().reIndex(companyId, detailBook);
+    }
+
+    public static com.liferay.portal.kernel.search.Hits search(long companyId,
+        long contactBookId, java.lang.String detailBookCode,
+        java.lang.String detailBookName, java.lang.String detailDescription,
+        java.lang.String zip, java.lang.String internal, java.lang.String home,
+        java.lang.String mobile, java.lang.String sortField, int sortType,
+        boolean reverse, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .search(companyId, contactBookId, detailBookCode,
+            detailBookName, detailDescription, zip, internal, home, mobile,
+            sortField, sortType, reverse, start, end);
+    }
+
+    public static com.liferay.portal.kernel.search.Hits search(long companyId,
+        long contactBookId, java.lang.String keywords,
+        java.lang.String sortField, int sortType, boolean reverse, int start,
+        int end) throws com.liferay.portal.SystemException {
+        return getService()
+                   .search(companyId, contactBookId, keywords, sortField,
+            sortType, reverse, start, end);
+    }
+
+    public static com.nss.portlet.phone_book.model.DetailBook addDetailBook(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().addDetailBook(companyId, detailBook);
+    }
+
+    public static com.nss.portlet.phone_book.model.DetailBook updateDetailBook(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().updateDetailBook(companyId, detailBook);
+    }
+
+    public static void deleteDetailBook(long companyId, long detailBookId)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException {
+        getService().deleteDetailBook(companyId, detailBookId);
+    }
+
+    public static void deleteDetailBook(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        getService().deleteDetailBook(companyId, detailBook);
+    }
+
     public static DetailBookLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("DetailBookLocalService is not set");
