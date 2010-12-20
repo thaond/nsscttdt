@@ -503,4 +503,7 @@
     <definition extends="portlet" name="portlet.nss.phone_book.view">
         <put name="portlet_content" value="/portlet/nss/phone_book/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.phone_book.view_detail">
+        <put name="portlet_content" value="/portlet/nss/phone_book_display/view.jsp"/>
+    </definition>
 </tiles-definitions>
