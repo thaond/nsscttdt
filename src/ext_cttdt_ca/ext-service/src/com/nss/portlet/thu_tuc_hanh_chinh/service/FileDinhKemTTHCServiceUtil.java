@@ -1,0 +1,39 @@
+package com.nss.portlet.thu_tuc_hanh_chinh.service;
+
+
+/**
+ * <a href="FileDinhKemTTHCServiceUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * <p>
+ * This class provides static methods for the
+ * <code>com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService</code>
+ * bean. The static methods of this class calls the same methods of the bean
+ * instance. It's convenient to be able to just write one line to call a method
+ * on a bean instead of writing a lookup call and a method call.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ * @see com.nss.portlet.thu_tuc_hanh_chinh.service.FileDinhKemTTHCService
+ *
+ */
+public class FileDinhKemTTHCServiceUtil {
+    private static FileDinhKemTTHCService _service;
+
+    public static FileDinhKemTTHCService getService() {
+        if (_service == null) {
+            throw new RuntimeException("FileDinhKemTTHCService is not set");
+        }
+
+        return _service;
+    }
+
+    public void setService(FileDinhKemTTHCService service) {
+        _service = service;
+    }
+}
