@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.permissonuserbyfile">
+	<namespace>PmlUserFileType</namespace>
+	<entity name="PmlUserFileType" local-service="true" remote-service="true"
+		table="pml_user_file_type">
+
+		<!-- PK fields -->
+
+		<column name="userId" type="long" primary="true" db-name="userid"/>
+		<column name="fileTypeId" type="String" primary="true" db-name="filetypeid"/>
+
+		<!-- Other fields -->
+
+		<column name="description" type="String" db-name="description"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="userId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		
+		<finder name="FileTypeId" return-type="Collection">
+			<finder-column name="fileTypeId" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+</service-builder>
