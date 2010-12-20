@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns=""  name="news">
+
+
+	<start-state name="start">
+		<transition to="soan"></transition>
+	</start-state>
+
+
+	<task-node name="soan">
+		<task name="soan"></task>
+		<transition to="bien tap"></transition>
+	</task-node>
+
+	<task-node name="bien tap">
+		<task name="bien tap"></task>
+		<transition to="duyet"></transition>
+	</task-node>
+
+	<task-node name="duyet">
+		<task name="duyet"></task>
+		<transition to="end"></transition>
+	</task-node>
+
+
+	<end-state name="end"></end-state>
+
+
+</process-definition>
