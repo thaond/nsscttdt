@@ -537,5 +537,8 @@
         <action path="/nss/phone_book/view" type="com.nss.portlet.phone_book.action.ViewAction">
             <forward name="portlet.nss.phone_book.view" path="portlet.nss.phone_book.view"/>
         </action>
+        <action path="/nss/phone_book/view_detail" type="com.nss.portlet.phone_book.action.ViewDetailAction">
+            <forward name="portlet.nss.phone_book.view_detail" path="portlet.nss.phone_book.view_detail"/>
+        </action>
     </action-mappings>
 </struts-config>
