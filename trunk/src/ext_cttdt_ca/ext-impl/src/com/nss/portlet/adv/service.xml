@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_2_0.dtd">
+
+<service-builder package-path="com.nss.portlet.adv">
+	<namespace>QuangCao</namespace>
+	<entity name="QuangCao" local-service="true" remote-service="true" table="nss_quang_cao">
+		<column name="maQuangCao" type="long" primary="true" />
+		
+		<column name="tenQuangCao" type="String" />
+		<column name="urlWebsite" type="String" />
+		<column name="moTaQuangCao" type="String"/>
+		
+		<column name="companyid" type="long"/>
+	  	<column name="userid" type="long"/>
+	  	<column name="createdate" type="Date" />
+	  	<column name="modifieddate" type="Date" />
+		
+		<column name="thuTuQuangCao" type="int"/>
+		<column name="target" type="String" />
+		<column name="imageId_liferay" type="long"  />
+		<column name="active" type="int" />
+		
+		<!-- Order -->
+	    <order by="ASC">
+	    	<order-column name="thuTuQuangCao" case-sensitive="false" />
+	    </order>
+	    
+	    <!-- Finder methods -->
+	    <finder name="Active" return-type="Collection">
+	   		<finder-column name="active"/>
+	    </finder>
+	</entity>
+</service-builder>
