@@ -1,0 +1,155 @@
+javax.portlet.title.NSS_HEADER=HEADER
+javax.portlet.title.NSS_NAVIGATION=NAVIGATION
+javax.portlet.title.NSS_LINK=Link liên kết
+javax.portlet.title.NSS_VOTE=Bầu chọn
+javax.portlet.title.NSS_VISITOR=Bộ đếm
+javax.portlet.title.NSS_ADV=Quản trị quảng cáo
+javax.portlet.title.NSS_ADV_DISPLAY=Hiển Thị quảng cáo
+javax.portlet.title.NSS_NECESSARY_INFO=Thông tin cần biết
+javax.portlet.title.NSS_PARTNER=Quản trị đối tác
+
+javax.portlet.title.NSS_NECESSARY_INFO_DISPLAY = Hiển thị thông tin cần biết
+javax.portlet.title.NSS_LOGIN=NSS Đăng nhập
+javax.portlet.title.NSS_PARTNER_MANAGEMENT=Hiển thị đối tác
+javax.portlet.title.NSS_CO_QUAN_BAN_HANH=Cơ quan ban hành
+javax.portlet.title.NSS_LINK_DISPLAY=Hiển thị liên kết
+javax.portlet.title.NSS_CHAT = Chat
+javax.portlet.title.NSS_SITE_MAP= Sơ đồ trang
+
+nss-cttdt-stttt-tphcm=Cổng thông tin điện tử SỞ THÔNG TIN VÀ TRUYỀN THÔNG TP.HỒ CHÍ MINH
+nss-tru-so-i=59 Lý Tự Trọng	- Quận 1 - Thành Phố Hồ Chí Minh
+nss-giay-phep-so-i=183/GP-TTDT do Bộ Thông tin và Truyền thông cấp ngày 27/11/2009
+nss-portal-dang-cong-san-viet-nam=Portal đảng cộng sản Việt Nam
+nss-portal-bo-ngoai-giao=Portal bộ ngoại giao
+nss-bao-vietnamnet=Báo Vietnamnet
+nss-portal-tphcm=Portal TP.Hồ Chí Minh
+nss-portal-quoc-hoi=Portal Quốc hội
+nss-tap-chi-cong-san=Tạp chí Cộng sản
+
+nss-trang-chu=Trang chủ
+nss-chinh-quyen=Chính quyền
+nss-so-do-website=Sơ đồ website
+nss-sang=Sáng
+nss-ngay=Ngày
+nss-lien-ket=Liên kết
+nss-lien-ket-website=Liên Kết Website
+nss-binh-chon=Bình chọn
+nss-binh-chon-question=Bạn đánh giá thế nào về Cổng thông tin điện tử của chúng tôi?
+nss-rat-dep=Rất đẹp
+nss-dep=Đẹp
+nss-binh-thuong=Bình thường
+nss-y-khac=Ý khác
+nss-xem-ket-qua=Xem kết quả
+nss-tin-chung-khoang=Tin chứng khoán
+nss-ty-gia-ngoai-te=Tỷ giá ngoại tệ
+nss-gia-vang=Giá vàng
+nss-tin-thoi-tiet=Tin thời tiết
+nss-luot-truy-cap=Lượt truy cập
+nss-tim-kiem=Tìm kiếm
+nss-tieng-viet=Tiếng Việt
+nss-tieng-anh=Tiếng Anh
+nss-thong-tin-can-biet=Thông tin cần biết
+nss-doi-tac=Đối tác
+nss-giay-phep-so=Giấy phép số
+nss-dien-thoai=Điện thoại
+nss-tru-so=Trụ sở
+nss-cap-nhat=Cập nhật
+nss-cac-tin-khac=Các tin khác
+nss-so-tin-abstract=Số tin Abstract
+showing-x-result=Hiển thị {0} Kết quả
+showing-x-results=Hiển thị {0} Kết quả
+nss-van-ban-phat-quy=Văn bản pháp quy
+nss-dang-nhap=Đăng nhập
+nss-thoi-tiet-ty-gia=Thời tiết - Tỷ giá
+nss-lich-cong-tac-tuan=Lịch công tác tuần
+nss-ty-le-%=Tỷ lệ %
+nss-cap-nhat=Cập nhật
+
+stt=STT
+ky-hieu-van-ban=Ký hiệu văn bản
+ngay-ban-hanh=Ngày ban hành 	
+tom-tat=Tóm tắt
+
+displayed-content-must-contain-the-following-categories=Chọn Categories hiển thị
+displayed-content-must-not-contain-the-following-categories=Chọn Categories không được hiển thị
+
+##
+## Journal Workflow
+##
+soan=SOẠN
+bien_tap=BIÊN TẬP
+duyet=DUYỆT
+add-new-article=Thêm tin mới
+add-business-process=Thêm quy trình
+display-date=Ngày xuất bản
+process-definition=Định nghĩa quy trình
+save-and-continue=Lưu và tiếp tục
+accept=Chuyển
+reject=Trả lại
+save-and-approve=Lưu và duyệt
+
+##
+## Category titles
+##
+category.vanbanphapquy= Văn bản pháp quy
+javax.portlet.title.NSS_VAN_BAN_PHAP_QUY=Quản trị văn bản pháp quy
+javax.portlet.title.NSS_LOAI_VAN_BAN=Loại văn bản
+javax.portlet.title.NSS_LINH_VUC_VAN_BAN= Lĩnh vực văn bản
+javax.portlet.title.NSS_VAN_BAN_PHAP_QUY_DISPLAY= Hiển thị văn bản pháp quy
+
+##hien thi thong bao khi tim kiem khong thay
+no-web-content-were-found=Không tìm thấy kết quả...
+
+no-web-content-were-found=Không tìm thấy kết quả...
+download=Tải về
+edit= Sửa
+any=Bất kỳ
+match-x-of-the-following-fields=Phù hợp {0} các tiêu chí:
+configuration=Cấu hình
+view=Xem
+action.VIEW=Xem
+ket-qua-tim-kiem=Tìm kết quả
+
+show=Hiển thị
+showing-x-result=Hiển thị {0} kết quả.
+showing-x-results=Hiển thị {0} kết quả.
+showing-x-x-of-x-results=Hiển thị {0} - {1} của {2} kết quả.
+items-per-page=Hiển thị/trang
+no-pages-were-found-that-matched-the-keywords-x = Không tìm thấy kết quả nào với từ khoá: {0}.
+##
+##nss_journal
+##
+nss-journal-use-sign = sử dụng chữ ký
+##
+##sign
+##
+sign-kiem-duyet = bài viết này đã được kiểm duyệt
+sign-thay-doi = bài viết này đã bị thay đổi
+sign-nguoi-ky = người ký
+##
+##image_signer
+##
+upload-image = upload ảnh
+upload-image-signer = upload ảnh chữ ký
+image-Sign = ảnh đã ký
+image-UnSign = ảnh chưa ký
+upload = up ảnh
+##
+##asset_publisher_nss
+##
+tin-abstract = Tin abstract
+tin-lien-quan = Tin liên quan
+tin-abstract-entry = Tin abstract entry
+tin-lien-quan-entry = Tin liên quan entry
+##
+##managementworkflowjournal
+##
+error_delete_workflowjounal = Không xóa được workflow này
+input-date-validate-dd-mm-yyyy = Nhập một ngày hợp lệ theo định dạng dd/mm/yyyy
+input-date-validate = Nhập một ngày hợp lệ
+input-month-validate = Nhập một tháng hợp lệ
+input-year-validate = Nhập một năm hợp lệ
+date-from-must-be-greater-than-date-now = Ngày bắt đầu phải lớn hơn ngày hiện tại
+date-from-new-must-be-greater-than-date-from-old = Ngày bắt đầu của quy trình sau phải lớn hơn ngày bắt đầu của quy trình trước
+date-to-must-be-greater-than-date-from = Ngày kết thúc phải lớn hơn ngày bắt đầu
+update-work-flow-old = Bạn có muốn cập nhật lại ngày kết thúc của quy trình trước không
