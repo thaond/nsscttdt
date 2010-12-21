@@ -1,0 +1,41 @@
+.divlist {padding: 5px 0 0;}
+.divlist img.w1 {height: 28px;width: auto;}
+.divlist img.w2 {height: 20px;width: auto;}
+.weather h3{
+    background:url("/html/portlet/nss/thoitiet_tygia/images/thoitiet.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.weather div h4{
+    color: #292929;
+    text-align: left;
+    font-size: 11px !important;
+}
+.weather strong{
+    font-size: 11px !important;
+    color: #647983;
+}
+.content_weather{
+	text-align:left;
+    font-size: 11px;
+    color: #222;
+    padding-left: 15px;
+}
+.weather span{
+    color: #06478C;
+    font-size: 15px !important;
+    }
+.tygia {
+	border:1px solid #F4F4F4;
+	padding:0 1px;
+	margin-top: 10px;
+}
+.info-tb-title {
+	color: #647983;
+	font-size: 11px;
+	font-weight: bold;
+}
+.textbold {
+	color: #06478C;
+	font-size: 13px;
+}
