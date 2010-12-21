@@ -24,6 +24,7 @@
 
 
 <form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm" onsubmit="return check(this);">
+<input type="hidden" name="<portlet:namespace/>detailBookId" value="<%= detailBook.getDetailBookId() %>">
 	<table>
 		<tr>
 			<td><liferay-ui:message key="detail-code" /></td>
@@ -50,18 +51,15 @@
 		</tr>
 		<tr>
 			<td><liferay-ui:message key="detail-home" /></td>
-			<td><input type="text"
-				name="<portlet:namespace/>detailBookHome" value="<%= detailBook.getHome()%>"></td>
+			<td><input type="text" name="<portlet:namespace/>detailBookHome" value="<%= detailBook.getHome()%>"></td>
 		</tr>
 		<tr>
 			<td><liferay-ui:message key="detail-mobile" /></td>
-			<td><input type="text"
-				name="<portlet:namespace/>detailBookMobile" value="<%= detailBook.getMobile()%>"></td>
+			<td><input type="text" name="<portlet:namespace/>detailBookMobile" value="<%= detailBook.getMobile()%>"></td>
 		</tr>
 		<tr>
 			<td><liferay-ui:message key="detail-active" /></td>
-			<td><input type="checkbox"
-				name="<portlet:namespace/>detailBookActive" checked="<%=checked %>"></td>
+			<td><input type="checkbox" name="<portlet:namespace/>detailBookActive" <%=checked %>></td>
 		</tr>
 	</table>
 	<input type="submit" value='<liferay-ui:message key="edit" />'>
