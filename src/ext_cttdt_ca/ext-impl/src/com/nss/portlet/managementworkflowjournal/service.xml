@@ -41,6 +41,7 @@
 		<column name="countImageOfArticle" type="int" />
 		<column name="datecomplete" type="Date" />
 		<column name="statuscurrent" type="String" />
+		<column name="type_" type="String" />
 		
 		<!-- Order -->
 	    <order by="ASC">

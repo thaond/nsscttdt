@@ -647,6 +647,7 @@
 		<field name="countImageOfArticle" type="int" />
 		<field name="datecomplete" type="Date" />
 		<field name="statuscurrent" type="String" />
+		<field name="type_" type="String" />
 	</model>
 	<model name="com.nss.portlet.managementworkflowjournal.model.LogWorkflowJournalArticle">
 		<field name="logWorkflowJournalArticleId" type="long" />
@@ -1067,6 +1068,8 @@
 		<field name="contactBookName" type="String" />
 		<field name="contactDescription" type="String" />
 		<field name="contactActive" type="boolean" />
+		<field name="companyid" type="long" />
+		<field name="userid" type="long" />
 	</model>
 	<model name="com.nss.portlet.phone_book.model.DetailBook">
 		<field name="detailBookId" type="long" />
@@ -1079,5 +1082,7 @@
 		<field name="home" type="String" />
 		<field name="mobile" type="String" />
 		<field name="contactBookId" type="long" />
+		<field name="companyid" type="long" />
+		<field name="userid" type="long" />
 	</model>
 </model-hints>
