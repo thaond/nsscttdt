@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 
 <%
 List results = (List)request.getAttribute("view.jsp-results");
@@ -41,7 +41,7 @@ boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 
 PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
 
 if (className.equals(BlogsEntry.class.getName())) {
@@ -117,7 +117,7 @@ else if (className.equals(JournalArticle.class.getName())) {
 
 		PortletURL articleURL = renderResponse.createRenderURL();
 
-		articleURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+		articleURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 		articleURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 		articleURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
 

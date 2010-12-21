@@ -226,7 +226,7 @@ if(listTagAsset.size()>0){
 			try {
 		%>
 		
-				<%@ include file="/html/portlet/nss/asset_publisher_index/view_display.jspf" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_display.jspf" %>
 
 		<%
 			}
@@ -272,7 +272,7 @@ if(listTagAsset.size()>0){
 			try {
 		%>
 		
-				<%@ include file="/html/portlet/nss/asset_publisher_index/display/nss_title_list.jsp" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/display/nss_title_list.jsp" %>
 
 		<%
 			}

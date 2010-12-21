@@ -47,24 +47,6 @@
 	margin-right:10px;
 	padding:1px;
 }
-#<portlet:namespace/>screenhelp .prev{
-		float:left;
-	}
-#<portlet:namespace/>screenhelp .next{
-	float:right;
-}
-#<portlet:namespace/>slideshowhelp {
-	overflow:hidden;
-	width:500px;
-}	
-#<portlet:namespace/>slideshowhelp ul {
-	width:3900px;
-}
-#<portlet:namespace/>slideshowhelp li {
-	float:left;
-	padding-left: 15px;
-	padding-right: 0px;
-}
 </style>
 
 <div id="<portlet:namespace/>divTab" >
@@ -96,8 +78,8 @@
 </script>
 <!-- MoNT end 27/11/2010 -->
 
-<div class="boxnews">  
-	<div class="toptab">
+	<div class="toplist" >
+	    <div class="titlecateg">
 	    <div id="<portlet:namespace/>slideshowhelp" class="bgtabtle">
 	    <ul>    
 	    <%
@@ -175,8 +157,11 @@
 				<a class="nextbt" onclick="<portlet:namespace/>scrollviewhelp()" href="#"></a>
 			</div>	
 		</div>
-	</div>			
-	<div class="contab">
+	    </div>			
+		<!-- MoNT end 27/11/2010 -->
+	    <div class="btmlist">
+	    <div class="ctrlist">
+	    <div class="shownew">
 	   
 		<%
 		if (mergeUrlTags) {
@@ -312,7 +297,9 @@
 		%>
 		</div>
 		</div>
+		</div>
 	</div>
+</div>
 <div id="<portlet:namespace/>end"></div>
 
 

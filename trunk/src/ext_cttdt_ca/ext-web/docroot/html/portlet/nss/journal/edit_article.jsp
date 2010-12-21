@@ -1,3 +1,6 @@
+<%@page import="com.nss.workflow.JournalLiferayWorkflowService"%>
+<%@page import="com.nss.portlet.managementworkflowjournal.service.WorkflowJournalArticleLocalServiceUtil"%>
+<%@page import="com.nss.portlet.managementworkflowjournal.model.WorkflowJournalArticle"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.nss.workflow.JournalLiferayPortletAction"%>
@@ -1016,6 +1019,38 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 					<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="smallImage" />
 				</td>
 			</tr>
+			<!-- TuNV update 20101216 -->
+			<tr>
+				<td>
+					<liferay-ui:message key="theloai" /> :
+				</td>
+				<td>
+					<c:choose>
+						<c:when test="<%= article == null %>">
+							<input type="radio" name="type_article"  value="news" checked="checked"/> <liferay-ui:message key="tin" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="type_article" value="articles" /> <liferay-ui:message key="bai" />
+						</c:when>
+						<c:otherwise>
+							<%
+							boolean b1 = false;
+							boolean b2 = false;
+							try{
+								WorkflowJournalArticle workflowJournalArticle = WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(article.getResourcePrimKey());
+								b1 = (workflowJournalArticle.getType_().equals(JournalLiferayWorkflowService.NEWS) ? true : false);
+								b2 = (workflowJournalArticle.getType_().equals(JournalLiferayWorkflowService.ARTICLES) ? true : false);
+							}catch(Exception e){
+								
+							}
+							
+							%>
+							<input <%= b1 ? "checked" : "" %> type="radio" name="type_article"  value="news" /> <liferay-ui:message key="tin" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input <%= b2 ? "checked" : "" %> type="radio" name="type_article" value="articles" /> <liferay-ui:message key="bai" />
+						</c:otherwise>
+				</c:choose>
+					
+				</td>
+			</tr>
+			<!-- TuNV end-->
 			</table>
 		</liferay-ui:panel>
 

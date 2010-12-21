@@ -158,9 +158,9 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 <c:if test="<%= assetIndex == 0 %>">
 	<table class="taglib-search-iterator">
 	<tr class="portlet-section-header results-header">
-		<td>
+		<th>
 			<liferay-ui:message key="title" />
-		</td>
+		</th>
 
 		<%
 		for (int m = 0; m < metadataFields.length; m++) {
@@ -172,7 +172,7 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 		}
 		%>
 
-		<td></td>
+		<th></th>
 	</tr>
 </c:if>
 

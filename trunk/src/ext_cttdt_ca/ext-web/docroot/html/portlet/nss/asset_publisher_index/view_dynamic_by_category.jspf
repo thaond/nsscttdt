@@ -1,11 +1,6 @@
-<%@page import="java.util.StringTokenizer"%>
-<%@page import="com.liferay.portlet.journal.model.JournalArticleResource"%>
-<%@page import="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil"%>
-<%@page import="com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
 <%@page import="com.liferay.portlet.journal.model.JournalArticle"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.liferay.portlet.journal.model.JournalArticleResource"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -30,9 +25,8 @@
  */
 %>
 
-<% 
-	long idVo = 0;
-%>
+
+<div class="titlecategories"><h6><%= category %></h6></div>
 
 <%
 long[] entryIds = TagsEntryLocalServiceUtil.getEntryIds(scopeGroupId, tagsCategories, TagsEntryConstants.FOLKSONOMY_CATEGORY);
@@ -48,54 +42,42 @@ int total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, classNameIds,
 
 searchContainer.setTotal(total);
 
-Map<String, List<TagsAsset>> assetsByCategory = new TreeMap<String, List<TagsAsset>>();
+List<TagsAsset> results = new ArrayList<TagsAsset>();
+//TuNV update 20101127
+JournalArticleResource articleResource1 = null;
+JournalArticle article = null;
 
 List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), total);
+
 for (TagsAsset asset : assets) {
 	List<TagsEntry> assetEntries = TagsEntryLocalServiceUtil.getAssetEntries(asset.getAssetId(), TagsEntryConstants.FOLKSONOMY_CATEGORY);
-
+	
+	//TuNV update 20101127
+	articleResource1 = JournalArticleResourceLocalServiceUtil.getArticleResource(asset.getClassPK());
+	article = JournalArticleLocalServiceUtil.getArticle(articleResource1.getGroupId(),articleResource1.getArticleId());
+	if(b2){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 1)
+			continue;
+	}else if(b3){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 2)
+			continue;
+	}else if(b4){
+		if(ArticleSignUtil.veriSign(article.getPrimaryKey()) != 0)
+			continue;
+	}
+	//End TuNV
 	for (TagsEntry assetEntry : assetEntries) {
 		TagsVocabulary vocabulary = assetEntry.getVocabulary();
-		String vocabularyId=""+vocabulary.getVocabularyId();
-		idVo = vocabulary.getVocabularyId();
-		String vocabularyName = vocabulary.getName();
-		request.setAttribute("vocabularyId",vocabularyId);
-		request.setAttribute("vocabularyName",vocabularyName);
+
 		if (vocabulary.getName().equals(category)) {
-			String tagLabel = null;
-
-			try {
-				TagsProperty descriptionProperty = TagsPropertyLocalServiceUtil.getProperty(assetEntry.getEntryId(), themeDisplay.getLanguageId());
-
-				tagLabel = descriptionProperty.getValue();
+			if (!results.contains(asset)) {
+				results.add(asset);
 			}
-			catch (NoSuchPropertyException nspee1) {
-				try {
-					TagsProperty descriptionProperty = TagsPropertyLocalServiceUtil.getProperty(assetEntry.getEntryId(), "en_US");
-
-					tagLabel = descriptionProperty.getValue();
-				}
-				catch (NoSuchPropertyException nspee2) {
-					tagLabel = StringUtil.upperCaseFirstLetter(assetEntry.getName());
-				}
-			}
-			List assetsList = assetsByCategory.get(tagLabel);
-			
-			if (assetsList == null) {
-				assetsList = new ArrayList();
-
-				assetsByCategory.put(tagLabel, assetsList);
-			}
-			assetsList.add(asset);
-			break;
 		}
 	}
 }
 
-Iterator<Map.Entry<String, List<TagsAsset>>> itr = assetsByCategory.entrySet().iterator();
-
-
-if (!itr.hasNext()) {
+if (results == null) {
 	if (!showPortletWithNoResults) {
 		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
 	}
@@ -104,95 +86,17 @@ if (!itr.hasNext()) {
 	
 <liferay-ui:message key="there-are-no-results" />
 
-<!--  MoNT start 18/11/2010 -->
+<%
+} else {
+	request.setAttribute("view.jsp-results", results);
 
-<%}
-int countAbstract=1;
-int countChildren=3;
-List<TagsAsset> listTagAsset = new ArrayList<TagsAsset>();
-List<TagsAsset> listTagAssetAbstract = new ArrayList<TagsAsset>();
-List<TagsAsset> listTagAssetChildren = new ArrayList<TagsAsset>();
-JournalArticleResource articleResource1 = null;
-JournalArticle article = null;
-while(itr.hasNext()){
-	Map.Entry<String, List<TagsAsset>> entry = itr.next();
-	List<TagsAsset> tagAsset = entry.getValue();
-	String tagLabel = entry.getKey();
-	listTagAsset.addAll(tagAsset);
-}
-
-if(tagsEntryId==0){
-	if(idVo > 0){
-		Iterator<Map.Entry<Long,String>> iteratorValueAbstract = mapValueAbstract.entrySet().iterator();
-		while(iteratorValueAbstract.hasNext()){
-			Map.Entry<Long,String> entry = iteratorValueAbstract.next();
-			long key = entry.getKey();
-			String value = entry.getValue();
-			if(idVo == key){
-				countAbstract = Integer.parseInt(value);
-				break;
-			}
-		}
-		
-		Iterator<Map.Entry<Long,String>> iteratorValueChildren = mapValueChildren.entrySet().iterator();
-		while(iteratorValueChildren.hasNext()){
-			Map.Entry<Long,String> entry = iteratorValueChildren.next();
-			long key = entry.getKey();
-			String value = entry.getValue();
-			if(idVo == key){
-				countChildren = Integer.parseInt(value);
-				break;
-			}
-		}
-	}else{
-		countAbstract = 1;	
-		countChildren = 1;
-	}
-	
-	if(countAbstract<listTagAsset.size()){
-		listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
-		listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
-	}else{
-		listTagAssetAbstract = listTagAsset;
-	}
-}
-
-if(tagsEntryId!=0){
-	Iterator<Map.Entry<String,String>> iterator = mapValueAbstractEntry.entrySet().iterator();
-	while(iterator.hasNext()){
-		Map.Entry<String,String> entry = iterator.next();
-		String key = entry.getKey();
-		int entryId = Integer.parseInt(key);
-		if(entryId == tagsEntryId){
-			countAbstract = Integer.parseInt(entry.getValue());
-			if(countAbstract<listTagAsset.size()){
-				listTagAssetAbstract = listTagAsset.subList(0,countAbstract);
-				listTagAssetChildren = listTagAsset.subList(countAbstract,listTagAsset.size());
-			}else{
-				listTagAssetAbstract = listTagAsset;
-			}
-		}
-	}
-	Iterator<Map.Entry<String,String>> iteratorEntry = mapValueChildrenEntry.entrySet().iterator();
-	while(iteratorEntry.hasNext()){
-		Map.Entry<String,String> entry = iteratorEntry.next();
-		String key = entry.getKey();
-		int entryId = Integer.parseInt(key);
-		if(entryId == tagsEntryId){
-			countChildren = Integer.parseInt(entry.getValue());
-		}
-	}
-}
-
-if(listTagAsset.size()>0){
-	List<TagsAsset> results = listTagAsset;
 %>
-<!--  MoNT end 18/11/2010 Image ABStract -->
 
-	<div class="asset-tag-entries lefttab">
+	<div class="asset-tag-entries">
+
 		<%
-		for (int assetIndex = 0; (assetIndex < listTagAssetAbstract.size()) && (assetIndex < countAbstract); assetIndex++) {
-			TagsAsset asset = listTagAssetAbstract.get(assetIndex);
+		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
+			TagsAsset asset = results.get(assetIndex);
 
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
@@ -218,14 +122,10 @@ if(listTagAsset.size()>0){
 			request.setAttribute("view.jsp-classPK", new Long(classPK));
 
 			request.setAttribute("view.jsp-show", new Boolean(show));
-			
-			// MoNT start 18/11/2010
-			request.setAttribute("categoryParentId",""+categoryParentId);
-			//  MoNT start 18/11/2010 
-			
+
 			try {
 		%>
-		
+				
 				<%@ include file="/html/portlet/nss/asset_publisher_index/view_display.jspf" %>
 
 		<%
@@ -237,12 +137,11 @@ if(listTagAsset.size()>0){
 		%>
 
 	</div>
-	
-	<div class="asset-tag-entries righttab">
-	
+	<div class="asset-tag-entries">
+
 		<%
-		for (int assetIndex = 0; (assetIndex < listTagAssetChildren.size()) && (assetIndex < countChildren); assetIndex++) {
-			TagsAsset asset = listTagAssetChildren.get(assetIndex);
+		for (int assetIndex = abstractDelta; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
+			TagsAsset asset = results.get(assetIndex);
 
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
@@ -271,7 +170,7 @@ if(listTagAsset.size()>0){
 
 			try {
 		%>
-		
+
 				<%@ include file="/html/portlet/nss/asset_publisher_index/display/nss_title_list.jsp" %>
 
 		<%
@@ -285,7 +184,6 @@ if(listTagAsset.size()>0){
 	</div>
 
 <%
-	}
-
+}
 %>
 

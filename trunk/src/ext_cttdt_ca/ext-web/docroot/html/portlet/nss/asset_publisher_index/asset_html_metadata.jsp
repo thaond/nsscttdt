@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
 
 <%
 String title = (String)request.getAttribute("view.jsp-title");

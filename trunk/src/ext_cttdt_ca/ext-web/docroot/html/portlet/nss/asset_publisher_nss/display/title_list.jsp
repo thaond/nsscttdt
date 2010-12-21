@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 %>
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 
 <%
 List results = (List)request.getAttribute("view.jsp-results");
@@ -43,7 +43,7 @@ request.setAttribute("view.jsp-showIconLabel", false);
 
 PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
 
 if (className.equals(BlogsEntry.class.getName())) {
@@ -128,7 +128,7 @@ else if (className.equals(JournalArticle.class.getName())) {
 
 		PortletURL articleURL = renderResponse.createRenderURL();
 
-		articleURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+		articleURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 		articleURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 		articleURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
 
@@ -176,10 +176,10 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 				</c:otherwise>
 			</c:choose>
 
-			<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+			<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 			<div class="asset-metadata">
-				<%@ include file="/html/portlet/nss/asset_publisher_index/asset_metadata.jspf" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/asset_metadata.jspf" %>
 			</div>
 		</li>
 	</c:if>

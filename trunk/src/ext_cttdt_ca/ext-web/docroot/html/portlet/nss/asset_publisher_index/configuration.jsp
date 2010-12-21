@@ -1,4 +1,3 @@
-<%@page import="java.util.Iterator"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -25,13 +24,7 @@
 
 <%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
 
-<%@page import="com.liferay.portal.kernel.util.StringUtil"%>
-<%@page import="java.util.List"%>
-<%@page import="com.liferay.portal.model.Layout"%>
-<%@page import="com.liferay.portal.service.LayoutLocalServiceUtil"%>
-<%@page import="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil"%>
 <%
-
 String tabs2 = ParamUtil.getString(request, "tabs2");
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -54,8 +47,8 @@ configurationActionURL.setParameter("portletResource", portletResource);
 %>
 
 
-
-<script type="text/javascript">
+<%@page import="com.liferay.portal.kernel.util.StringUtil"%>
+<%@page import="java.util.List"%><script type="text/javascript">
 	function <portlet:namespace />chooseSelectionStyle() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = 'selection-style';
 
@@ -312,11 +305,10 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							%>
 
 						</select>
-
+		
 						<br /><br />
 						 
 						<!-- add category by triltm -->
-						
 						<liferay-ui:message key="group-by-tags-within-tags-set" />
 
 						<select name="<portlet:namespace />category">
@@ -324,257 +316,30 @@ configurationActionURL.setParameter("portletResource", portletResource);
 
 							<%
 							List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
-							String idVocabularies = "";
-							for (TagsVocabulary vocabulary : vocabularies) {
-								idVocabularies += vocabulary.getVocabularyId() + "_";
-							}
-							idVocabularies = idVocabularies.substring(0, idVocabularies.length() -1);
+
 							for (TagsVocabulary vocabulary : vocabularies) {
 							%>
 
-								<option onclick="displayAndHidden('<%= idVocabularies %>', '<%= String.valueOf(vocabulary.getVocabularyId()) %>')" <%= category.equals(vocabulary.getName()) ? "selected" : "" %> value="<%= vocabulary.getName() %>"><%= vocabulary.getName() %></option>
+								<option <%= category.equals(vocabulary.getName()) ? "selected" : "" %> value="<%= vocabulary.getName() %>"><%= vocabulary.getName() %></option>
 
 							<%
 							}
 							%>
 
 						</select>
-						
-						<!-- minhnv 20100813 -->
-						
-						<liferay-ui:message key="chon-trang-hien-thi" /> 
-						
-						<%
-							PortletPreferences preferencesLayout = renderRequest.getPreferences();
-							
-							String portletResourceLayout = ParamUtil.getString(request, "portletResource");
-							
-							if (Validator.isNotNull(portletResource)) {
-								preferencesLayout = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResourceLayout);
-							}
-							
-							long rootLayoutId = GetterUtil.getLong(preferencesLayout.getValue("root-layout-id", StringPool.BLANK));
-							
-							int displayDepth = GetterUtil.getInteger(preferencesLayout.getValue("display-depth", StringPool.BLANK));
-							boolean includeRootInTree = GetterUtil.getBoolean(preferencesLayout.getValue("include-root-in-tree", StringPool.BLANK));
-							boolean showCurrentPage = GetterUtil.getBoolean(preferencesLayout.getValue("show-current-page", StringPool.BLANK));
-							boolean useHtmlTitle = GetterUtil.getBoolean(preferencesLayout.getValue("use-html-title", StringPool.BLANK));
-							boolean showHiddenPages = GetterUtil.getBoolean(preferencesLayout.getValue("show-hidden-pages", StringPool.BLANK));
-							
-							if (rootLayoutId == LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
-								includeRootInTree = false;
-							}
-						
-							List<Layout> rootLayouts = LayoutLocalServiceUtil.getLayouts(layout.getGroupId(), layout.isPrivateLayout(), rootLayoutId);
 
-							StringBuilder sb = new StringBuilder();
-							sb.append("<select name='selectPlId'>");
-							sb.append("<option selected='selected' value='0'><liferay-ui:message key='none' /></option>");
-							_buildSiteMap(selectPlId, layout, rootLayouts, rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, 1, themeDisplay, sb);
-							sb.append("</select>");	
-							%>
-							<%= sb.toString() %>
-					<%!
-						private void _buildLayoutView(long selectPlId, Layout layout, String cssClass, boolean useHtmlTitle, ThemeDisplay themeDisplay, StringBuilder sb) throws Exception {
-							sb.append("<option value=\"");
-							sb.append(layout.getPlid());
-							sb.append("\" ");
-							if (layout.getPlid() == selectPlId) {
-								sb.append(" selected='selected' ");
-							}
-							sb.append(" > ");
-							
-							String layoutName = layout.getName(themeDisplay.getLocale());
-						
-							if (useHtmlTitle) {
-								layoutName = layout.getHTMLTitle(themeDisplay.getLocale());
-							}
-						
-							sb.append(layoutName);
-							sb.append("</option>");
-						}
-						
-						private void _buildSiteMap(long selectPlId, Layout layout, List<Layout> layouts, long rootLayoutId, boolean includeRootInTree, int displayDepth, boolean showCurrentPage, boolean useHtmlTitle, boolean showHiddenPages, int curDepth, ThemeDisplay themeDisplay, StringBuilder sb) throws Exception {
-							if (layouts.size() == 0) {
-								return;
-							}
-						
-							PermissionChecker permissionChecker = themeDisplay.getPermissionChecker();
-							boolean showRoot = (rootLayoutId > 0) && (curDepth == 1) && includeRootInTree;
-						
-							if (showRoot) {
-								Layout rootLayout = LayoutLocalServiceUtil.getLayout(layout.getGroupId(), layout.isPrivateLayout(), rootLayoutId);
-						
-								String cssClass = "root";
-						
-								if (rootLayout.getPlid() == layout.getPlid()) {
-									cssClass += " current";
-								}
-						
-								_buildLayoutView(selectPlId,rootLayout, cssClass, useHtmlTitle, themeDisplay, sb);
-						
-							}
-						
-							for (int i = 0; i < layouts.size(); i++) {
-								Layout curLayout = layouts.get(i);
-						
-								if ((showHiddenPages || !curLayout.isHidden()) && LayoutPermissionUtil.contains(permissionChecker, curLayout, ActionKeys.VIEW)) {
-									String cssClass = StringPool.BLANK;
-						
-									if (curLayout.getPlid() == layout.getPlid()) {
-										cssClass = "current";
-									}
-						
-									_buildLayoutView(selectPlId, curLayout, cssClass, useHtmlTitle, themeDisplay, sb);
-						
-									if ((displayDepth == 0) || (displayDepth > curDepth)) {
-										_buildSiteMap(selectPlId, layout, curLayout.getChildren(), rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, curDepth + 1, themeDisplay, sb);
-									}
-								}
-							}
-						}
-					%>
-					
-				<!-- MoNT start 17/11/2010 -->
-				
-				<% for (int m=0; m<vocabularies.size();m++) { %>
-				<% TagsVocabulary vocabulary = vocabularies.get(m); %>
-				<%if (category.equals(vocabulary.getName())) { %>
-				<span id="<portlet:namespace/>displayValue<%=vocabulary.getVocabularyId() %>" style="display: inline">
-				<%}else{ %>
-				<span id="<portlet:namespace/>displayValue<%=vocabulary.getVocabularyId() %>" style="display: none">
-				<%} %>
-					<liferay-ui:message key="tin-abstract" />
-					<% int countAbstract = 1; %>
-						<% Iterator<Map.Entry<Long,String>> iteratorValueAbstract = mapValueAbstract.entrySet().iterator();%>
-						<% while(iteratorValueAbstract.hasNext()){ 
-							Map.Entry<Long,String> entry = iteratorValueAbstract.next();
-							long key= entry.getKey();
-							String value= entry.getValue();
-							if(key == vocabulary.getVocabularyId()){
-								countAbstract = Integer.parseInt(value);
-							}
-						%>
-						<%} %>
-					<select name="<portlet:namespace/>valueAbstract<%=vocabulary.getVocabularyId() %>">
-					<%for(int i=1;i<=5;i++){%>
-						<option value="<%=i %>" <%= countAbstract == i ? "selected" :" " %>> <%=i %></option>
-					<%}%>
-					</select>
-					
-					<liferay-ui:message key="tin-lien-quan" />
-					<% int countChildren = 1; %>
-						<% Iterator<Map.Entry<Long,String>> iteratorValueChildren = mapValueChildren.entrySet().iterator();%>
-						<% while(iteratorValueChildren.hasNext()){ 
-							Map.Entry<Long,String> entry = iteratorValueChildren.next();
-							long key= entry.getKey();
-							String value= entry.getValue();
-							if(key == vocabulary.getVocabularyId()){
-								countChildren = Integer.parseInt(value);
-							}
-						%>
-						<%} %>
-					<select name="<portlet:namespace/>valueChildren<%=vocabulary.getVocabularyId() %>">
-					<%for(int i=1;i<=10;i++){%>
-						<option value="<%=i %>" <%= countChildren == i ? "selected" :" " %>> <%=i %></option>			
-					<%}%>
-					</select>
-				</span>
-				<%} %>
-				
-				<!-- MoNT end 17/11/2010 -->	
-					
-					 <br/> <br/>
-					<%
-					//List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
-				    List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
-				   
-				    for (TagsVocabulary vocabulary : vocabularies) {
-				    	try {
-					    	tagsEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabulary.getVocabularyId());
-					
-					 if (category.equals(vocabulary.getName())) {
-					%>
-						<div id="<%= vocabulary.getVocabularyId()%>" style="display: inline;">
-					<%	 
-					 } else {
-					%>
-					<div id="<%= vocabulary.getVocabularyId()%>" style="display: none">
-					<%
-					 }
-					 for(int j=0;j<tagsEntrys.size();j++){
-						 TagsEntry tE=tagsEntrys.get(j);
-						//for (TagsEntry tE: tagsEntrys) {
-					%>		
-						<label><%= tE.getName().concat(":        ") %></label>
-						<liferay-ui:message key="chon-trang-hien-thi" />: 
-						<%
-						long  tEPreferences = GetterUtil.getLong(preferences.getValue(String.valueOf(tE.getEntryId()), StringPool.BLANK));
-						
-						sb = new StringBuilder(); 
-						sb.append("<select name=\"");
-						sb.append(tE.getEntryId());
-						sb.append("\" ");
-						sb.append("<option selected='selected' value='0'><liferay-ui:message key='none' /></option>");
-						_buildSiteMap(tEPreferences, layout, rootLayouts, rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, 1, themeDisplay, sb);
-						sb.append("</select>");	
-						%>
-						<%= sb.toString() %>
-						
-				<!-- MoNT start 19/11/2010 -->
-						<liferay-ui:message key="tin-abstract-entry" />
-						<% Iterator<Map.Entry<String,String>> iteratorAbstractEntry = mapValueAbstractEntry.entrySet().iterator();
-						int valueSelect = 1;
-							while(iteratorAbstractEntry.hasNext()){
-								Map.Entry<String,String> entry = iteratorAbstractEntry.next();
-								String key= entry.getKey();
-								int entryId= Integer.parseInt(key);
-								String value= entry.getValue();
-								int entryValue= Integer.parseInt(value);
-								if(entryId == tE.getEntryId()){
-									valueSelect = entryValue;
-								}%>
-							<%}%>
-						<select name="<portlet:namespace/>valueAbstractEntry<%=tE.getEntryId() %>">
-						<% for(int i=1;i<=5;i++){ %>
-								<option value="<%=i %>" <%= valueSelect == i ? "selected" :" " %>> <%=i %></option>
-						<%}%>
+						<br /><br />
+						<!-- Tu update 20101122 -->
+							<liferay-ui:message key="Hien-Thi-Bai-Viet" /> : 
+						<select name="<portlet:namespace />nss_view_sign_type">
+							<option  <%= b1 ? "selected" : "" %> value="all"> <liferay-ui:message key="Tat-Ca" /> </option>
+							<option <%= b2 ? "selected" : "" %> value="sign"> <liferay-ui:message key="Bai-Da-Ky" /> </option>
+							<option <%= b3 ? "selected" : "" %> value="changesign"> <liferay-ui:message key="Bai-Ky-Bi-Doi" /> </option>
+							<option <%= b4 ? "selected" : "" %> value="notsign"> <liferay-ui:message key="Bai-Chua-Ky" /> </option>
 						</select>
-						
-						<liferay-ui:message key="tin-lien-quan-entry" />
-						<% Iterator<Map.Entry<String,String>> iteratorChildrenEntry = mapValueChildrenEntry.entrySet().iterator();
-						int valueEntrySelect = 1;
-							 while(iteratorChildrenEntry.hasNext()){ 
-								Map.Entry<String,String> entry = iteratorChildrenEntry.next();
-								String key= entry.getKey();
-								int entryId= Integer.parseInt(key);
-								String value= entry.getValue();
-								int entryValue= Integer.parseInt(value);
-								if(entryId == tE.getEntryId()){
-									valueEntrySelect = entryValue;
-								}%>
-							<%}%>
-						<select name="<portlet:namespace/>valueChildrenEntry<%=tE.getEntryId() %>">
-						<% for(int i=1;i<=10;i++){ %>
-							<option value="<%=i %>" <%= valueEntrySelect == i ? "selected" :" " %>> <%=i %></option>
-						<%}%>
-						</select>
-				<!-- MoNT end 19/11/2010 -->
-				
-						 <br/> <br/>
-					<%
-						}
-					%>
-					</div>
-					
-					<%    	
-					    } catch (Exception e) {}
-				    }
-				    
-					
-					%>		
-				<!-- end minhnv 20100813 -->			
-
+						<br>
+						<br>
+						<!--  End Tu update -->
 						<liferay-ui:message key="displayed-content-must-contain-the-following-categories" />
 
 						<br /><br />
@@ -599,9 +364,6 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						/>
 
 						<!-- end category by triltm -->
-						
-						
-						
 						<br /><br />
 
 						<liferay-ui:message key="include-tags-specified-in-the-url" />
@@ -696,26 +458,3 @@ configurationActionURL.setParameter("portletResource", portletResource);
 </c:choose>
 
 </form>
-
-<script>
-	function displayAndHidden(listVocabularieIds, idVocabularieId) {
-	 var lVArray = listVocabularieIds.split("_");
-	 for (i = 0; i < lVArray.length; i++) {
-		 document.getElementById(lVArray[i]).style.display = "none";
-	 } 
-	 document.getElementById(idVocabularieId).style.display = "inline";
-	//MoNT start 3/12/2010 
-	 displayHiddenValue(listVocabularieIds,idVocabularieId);
-	//MoNT end 3/12/2010 
-	}
-	
-	//MoNT start 3/12/2010 
-	function displayHiddenValue(listVocabularieIds,idVocabularieId){
-		var lVArray = listVocabularieIds.split("_");
-		for (i = 0; i < lVArray.length; i++) {
-			jQuery("#<portlet:namespace/>displayValue"+lVArray[i]).hide();
-		 } 
-		jQuery("#<portlet:namespace/>displayValue"+idVocabularieId).show();
-	}
-	//MoNT end 3/12/2010
-</script>

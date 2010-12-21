@@ -1,9 +1,13 @@
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
+<%@page import="com.nss.portlet.image_signer.model.ImageSigner"%>
+<%@page import="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil"%>
 <%@page import="com.liferay.portal.model.Image"%>
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.model.Signature"%>
 <%@page import="java.util.List"%>
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
 <%@page import="java.util.ArrayList"%>
-
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -27,9 +31,12 @@
  * SOFTWARE.
  */
 %>
+
 <%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
 <%
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
+
+List results = (List)request.getAttribute("view.jsp-results");
 
 int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
 
@@ -48,19 +55,9 @@ boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 
 request.setAttribute("view.jsp-showIconLabel", true);
 
-// MoNT start 18/11/2010
-//String categoryParentId = (String)request.getAttribute("categoryParentId");
-//String tagLabel = (String) request.getAttribute("tagLabel");
-//String vocabularyId = (String) request.getAttribute("vocabularyId");
-//String vocabularyName = (String) request.getAttribute("vocabularyName");
-// MoNT end 18/11/2010
+PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-// minh 20100713
-//PortletURL viewFullContentURL = renderResponse.createRenderURL();
-PortletURL viewFullContentURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
-//viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
-//end  minh 20100713
 viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
 
 if (className.equals(BlogsEntry.class.getName())) {
@@ -165,7 +162,7 @@ else if (className.equals(IGImage.class.getName())) {
 		sb.append(themeDisplay.getPathImage());
 		sb.append("/image_gallery?img_id=");
 		sb.append(smallImageId);
-		sb.append("</a>");
+		sb.append("\" style=\"float: left; padding-right: 10px;\" /></a>");
 	}
 
 	sb.append(StringUtil.shorten(image.getDescription(), abstractLength));
@@ -174,10 +171,9 @@ else if (className.equals(IGImage.class.getName())) {
 }
 else if (className.equals(JournalArticle.class.getName())) {
 	JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(classPK);
-	String languageId = LanguageUtil.getLanguageId(request);
-
+	String languageId = LanguageUtil.getLanguageId(request);	
 	JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(articleResource.getGroupId(), articleResource.getArticleId(), null, null, languageId, themeDisplay);
-
+	
 	if (articleDisplay != null) {
 		if (Validator.isNull(title)) {
 			title = articleDisplay.getTitle();
@@ -193,11 +189,17 @@ else if (className.equals(JournalArticle.class.getName())) {
 		StringBuilder sb = new StringBuilder();
 
 		if (articleDisplay.isSmallImage()) {
-			//sb.append("<div class=\"contab\">");
+			sb.append("<div class=\"shownew\">");
 			//sb.append("<div style=\"float: left; margin-bottom: 10px; padding-right: 10px;\">");
 			sb.append("<a href=\"" + _viewURL + "\"><img alt=\"");
 			sb.append(LanguageUtil.get(pageContext, "web-content-image"));
-			sb.append("\" src=\"");
+			sb.append("\" width=\"");
+			sb.append(dimensionWidth);
+			sb.append("px");
+			sb.append("\" height=\"");
+			sb.append(dimensionHeight);
+			sb.append("px\" src=\"");
+			//sb.append("src=\"");
 
 			if (Validator.isNotNull(articleDisplay.getSmallImageURL())) {
 				sb.append(articleDisplay.getSmallImageURL());
@@ -213,19 +215,18 @@ else if (className.equals(JournalArticle.class.getName())) {
 			//sb.append("\" /></a></div>");
 			sb.append("\" /></a>");
 		}
-		
+
 		if (abstractNumber == 1) {
-			sb.append("<h5 style=\"font-size:20px\"><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h5><a style=\"font-size:20px\" href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
 		} else {
-			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title +"</a></h5>");
+			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
 		}
 		
+		sb.append("<h1>" + df.format(asset.getPublishDate()) + "</h1>");
 		
-		sb.append("<h1>" + LanguageUtil.get(pageContext, "nss-cap-nhat") + ": " + df.format(asset.getPublishDate())+ "</h1>");
-		
-		sb.append("<span>" +StringUtil.shorten(HtmlUtil.stripHtml( articleDisplay.getDescription()), abstractLength) + "</span>");
+		sb.append("<span>" +  StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()), abstractLength) + "</span>");
 
-		//sb.append("</div>");
+		sb.append("</div>");
 		
 		summary = sb.toString();
 
@@ -276,11 +277,13 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 <%@page import="java.text.SimpleDateFormat"%>
 
 <c:if test="<%= show %>">
-	<div class="asset-abstract publisher_nss">
+	<div class="asset-abstract assetall">
+		<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
 		<div class="asset-content">
-			<p class="asset-summary">
-				<%= summary %>
-			</p>
+			<p class="asset-summary"><%= summary%></p>
 		</div>
+		<div class="asset-metadata"><%@ include file="/html/portlet/nss/asset_publisher_index/asset_metadata.jspf" %></div>
+		
 	</div>
+	
 </c:if>

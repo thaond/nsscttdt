@@ -70,7 +70,7 @@ viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 				</c:otherwise>
 			</c:choose>
 
-			<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+			<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 		</li>
 	</c:if>

@@ -27,7 +27,7 @@
  * SOFTWARE.
  */
 %>
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 <%
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 

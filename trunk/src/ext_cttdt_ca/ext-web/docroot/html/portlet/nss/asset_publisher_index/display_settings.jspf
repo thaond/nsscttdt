@@ -249,7 +249,7 @@ function changeAbstract()
 	</tr>
 </c:if>
 
-<tr><td height="20px;"></td></tr>
+<tr><td height="15px;"></td></tr>
 <tr>
 	<td><liferay-ui:message key="nss-so-tin-abstract" /></td>
 	<td>
@@ -264,6 +264,61 @@ function changeAbstract()
 		</select>
 	</td>
 </tr>
+
+<tr><td height="15px;"></td></tr>
+<tr>
+	<td><liferay-ui:message key="nss-kich-thuoc-anh" /></td>
+	<!-- chieu rong anh cua tin abstract -->
+	<td><liferay-ui:message key="chieu-rong" />:&nbsp;
+	<input onblur="return checkDimensionWidth()" class="input-pml" id="dimensionWidth" name="dimensionWidth" size="5%" value="<%= dimensionWidth %>" />px
+	
+	<script type="text/javascript">
+		function checkDimensionWidth() {
+			var dimensionWidthVar = document.getElementById('dimensionWidth').value.trim();
+			if (isNaN(dimensionWidthVar) == true) {
+				alert("<liferay-ui:message key='chi-nhap-con-so'/>");
+				dimensionWidthVar.focus();
+				return false;
+			}
+			if (dimensionWidthVar < 100) {
+				alert("<liferay-ui:message key='nhap-kich-thuoc-lon-hon'/>");
+				dimensionVar.focus();
+				return false;
+			}
+			if (dimensionWidthVar > 300) {
+				alert("<liferay-ui:message key='nhap-kich-thuoc-nho-hon'/>");
+				dimensionWidthVar.focus();
+				return false;
+			}
+		}
+	</script>
+	<br/>
+	<!-- chieu cao anh cua tin abstract -->
+	<liferay-ui:message key="chieu-cao" />:&nbsp;&nbsp;&nbsp;
+	<input onblur="return checkDimensionHeight()" class="input-pml" id="dimensionHeight" name="dimensionHeight" size="5%" value="<%= dimensionHeight %>" />px</td>
+	
+	<script type="text/javascript">
+		function checkDimensionHeight() {
+			var dimensionHeightVar = document.getElementById('dimensionHeight').value.trim();
+			if (isNaN(dimensionHeightVar) == true) {
+				alert("<liferay-ui:message key='chi-nhap-con-so'/>");
+				dimensionHeightVar.focus();
+				return false;
+			}
+			if (dimensionHeightVar < 100) {
+				alert("<liferay-ui:message key='nhap-kich-thuoc-lon-hon'/>");
+				dimensionHeightVar.focus();
+				return false;
+			}
+			if (dimensionHeightVar > 300) {
+				alert("<liferay-ui:message key='nhap-kich-thuoc-nho-hon'/>");
+				dimensionHeightVar.focus();
+				return false;
+			}
+		}
+	</script>
+</tr>
+
 <tr><td height="20px;"></td></tr>
 
 <tr>

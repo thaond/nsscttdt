@@ -312,9 +312,6 @@
     <definition extends="portlet" name="portlet.nss.image_signer.upload">
         <put name="portlet_content" value="/portlet/nss/image_signer/upload_image_signer.jsp"/>
     </definition>
-    <definition extends="portlet" name="portlet.nss.thong_ke_tin.view">
-        <put name="portlet_content" value="/portlet/nss/thong_ke_tin/view.jsp"/>
-    </definition>
     <definition extends="portlet" name="portlet.nss.managementworkflowjournal.view">
         <put name="portlet_content" value="/portlet/nss/managementworkflowjournal/view.jsp"/>
     </definition>
@@ -502,6 +499,9 @@
     </definition>
     <definition extends="portlet" name="portlet.nss.phone_book.view">
         <put name="portlet_content" value="/portlet/nss/phone_book/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.nss.phone_book.view_detail">
+        <put name="portlet_content" value="/portlet/nss/phone_book_display/view.jsp"/>
     </definition>
     <!-- Asset Publisher INDEX -->
     <definition extends="portlet" name="portlet.nss.asset_publisher_index"/>
