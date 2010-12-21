@@ -37,6 +37,7 @@ public class WorkflowJournalArticleSoap implements Serializable {
     private int _countImageOfArticle;
     private Date _datecomplete;
     private String _statuscurrent;
+    private String _type_;
 
     public WorkflowJournalArticleSoap() {
     }
@@ -56,6 +57,7 @@ public class WorkflowJournalArticleSoap implements Serializable {
         soapModel.setCountImageOfArticle(model.getCountImageOfArticle());
         soapModel.setDatecomplete(model.getDatecomplete());
         soapModel.setStatuscurrent(model.getStatuscurrent());
+        soapModel.setType_(model.getType_());
 
         return soapModel;
     }
@@ -193,5 +195,13 @@ public class WorkflowJournalArticleSoap implements Serializable {
 
     public void setStatuscurrent(String statuscurrent) {
         _statuscurrent = statuscurrent;
+    }
+
+    public String getType_() {
+        return _type_;
+    }
+
+    public void setType_(String type_) {
+        _type_ = type_;
     }
 }

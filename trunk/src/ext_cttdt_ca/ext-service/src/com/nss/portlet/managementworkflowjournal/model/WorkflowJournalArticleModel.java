@@ -74,5 +74,9 @@ public interface WorkflowJournalArticleModel extends BaseModel<WorkflowJournalAr
 
     public void setStatuscurrent(String statuscurrent);
 
+    public String getType_();
+
+    public void setType_(String type_);
+
     public WorkflowJournalArticle toEscapedModel();
 }

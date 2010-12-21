@@ -50,5 +50,13 @@ public interface ContactBookModel extends BaseModel<ContactBook> {
 
     public void setContactActive(boolean contactActive);
 
+    public long getCompanyid();
+
+    public void setCompanyid(long companyid);
+
+    public long getUserid();
+
+    public void setUserid(long userid);
+
     public ContactBook toEscapedModel();
 }

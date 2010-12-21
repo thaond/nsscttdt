@@ -30,6 +30,8 @@ public class ContactBookSoap implements Serializable {
     private String _contactBookName;
     private String _contactDescription;
     private boolean _contactActive;
+    private long _companyid;
+    private long _userid;
 
     public ContactBookSoap() {
     }
@@ -42,6 +44,8 @@ public class ContactBookSoap implements Serializable {
         soapModel.setContactBookName(model.getContactBookName());
         soapModel.setContactDescription(model.getContactDescription());
         soapModel.setContactActive(model.getContactActive());
+        soapModel.setCompanyid(model.getCompanyid());
+        soapModel.setUserid(model.getUserid());
 
         return soapModel;
     }
@@ -132,5 +136,21 @@ public class ContactBookSoap implements Serializable {
 
     public void setContactActive(boolean contactActive) {
         _contactActive = contactActive;
+    }
+
+    public long getCompanyid() {
+        return _companyid;
+    }
+
+    public void setCompanyid(long companyid) {
+        _companyid = companyid;
+    }
+
+    public long getUserid() {
+        return _userid;
+    }
+
+    public void setUserid(long userid) {
+        _userid = userid;
     }
 }

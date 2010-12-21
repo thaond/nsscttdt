@@ -78,4 +78,48 @@ public interface DetailBookLocalService {
     public com.nss.portlet.phone_book.model.DetailBook updateDetailBook(
         com.nss.portlet.phone_book.model.DetailBook detailBook, boolean merge)
         throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public void reIndex(java.lang.String[] ids)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public void reIndex(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.kernel.search.SearchException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.search.Hits search(long companyId,
+        long contactBookId, java.lang.String detailBookCode,
+        java.lang.String detailBookName, java.lang.String detailDescription,
+        java.lang.String zip, java.lang.String internal, java.lang.String home,
+        java.lang.String mobile, java.lang.String sortField, int sortType,
+        boolean reverse, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public com.liferay.portal.kernel.search.Hits search(long companyId,
+        long contactBookId, java.lang.String keywords,
+        java.lang.String sortField, int sortType, boolean reverse, int start,
+        int end) throws com.liferay.portal.SystemException;
+
+    public com.nss.portlet.phone_book.model.DetailBook addDetailBook(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException;
+
+    public com.nss.portlet.phone_book.model.DetailBook updateDetailBook(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException;
+
+    public void deleteDetailBook(long companyId, long detailBookId)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException;
+
+    public void deleteDetailBook(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException;
 }

@@ -35,6 +35,8 @@ public class DetailBookSoap implements Serializable {
     private String _home;
     private String _mobile;
     private long _contactBookId;
+    private long _companyid;
+    private long _userid;
 
     public DetailBookSoap() {
     }
@@ -52,6 +54,8 @@ public class DetailBookSoap implements Serializable {
         soapModel.setHome(model.getHome());
         soapModel.setMobile(model.getMobile());
         soapModel.setContactBookId(model.getContactBookId());
+        soapModel.setCompanyid(model.getCompanyid());
+        soapModel.setUserid(model.getUserid());
 
         return soapModel;
     }
@@ -182,5 +186,21 @@ public class DetailBookSoap implements Serializable {
 
     public void setContactBookId(long contactBookId) {
         _contactBookId = contactBookId;
+    }
+
+    public long getCompanyid() {
+        return _companyid;
+    }
+
+    public void setCompanyid(long companyid) {
+        _companyid = companyid;
+    }
+
+    public long getUserid() {
+        return _userid;
+    }
+
+    public void setUserid(long userid) {
+        _userid = userid;
     }
 }
