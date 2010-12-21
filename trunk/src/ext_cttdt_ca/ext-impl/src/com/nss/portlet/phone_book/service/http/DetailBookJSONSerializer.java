@@ -42,6 +42,8 @@ public class DetailBookJSONSerializer {
         jsonObj.put("home", model.getHome());
         jsonObj.put("mobile", model.getMobile());
         jsonObj.put("contactBookId", model.getContactBookId());
+        jsonObj.put("companyid", model.getCompanyid());
+        jsonObj.put("userid", model.getUserid());
 
         return jsonObj;
     }

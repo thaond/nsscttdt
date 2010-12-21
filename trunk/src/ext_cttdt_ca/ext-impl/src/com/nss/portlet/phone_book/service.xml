@@ -11,6 +11,14 @@
 		<column name="contactActive" type="boolean"></column>
 		<column name="detailBooks" type="Collection" entity="DetailBook"
 			mapping-key="contactBookId"></column>
+			
+		<column name="companyid" type="long"/>
+	  	<column name="userid" type="long"/>	
+	  	
+	  	<finder name="Companyid" return-type="Collection">
+	   		<finder-column name="companyid"/>
+	    </finder>
+	    
 	</entity>
 	<entity name="DetailBook" local-service="true" remote-service="true" table="nss_detail_book">
 		<column name="detailBookId" type="long" primary="true"></column>
@@ -23,5 +31,13 @@
 		<column name="home" type="String"></column>
 		<column name="mobile" type="String"></column>
 		<column name="contactBookId" type="long"></column>
+		
+		<column name="companyid" type="long"/>
+	  	<column name="userid" type="long"/>	
+	  	
+	  	<finder name="Companyid" return-type="Collection">
+	   		<finder-column name="companyid"/>
+	    </finder>
+	  	
 	</entity>
 </service-builder>

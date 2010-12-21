@@ -43,6 +43,10 @@ public class JournalLiferayWorkflowService
 	private final String START = "start";
 	private final String END = "end";
 	private final String ACTORID = "actorId";
+	// TuNV update 20101220
+	public final static String NEWS = "news";
+	public final static String ARTICLES = "articles";
+	// end TuNV
 
 	private final static Logger log =
 		Logger.getLogger(JournalLiferayWorkflowService.class);
@@ -59,7 +63,9 @@ public class JournalLiferayWorkflowService
 		long groudId = WorkflowParamUtil.getLong(params, "groundId", 0);
 		String counterImage =
 			WorkflowParamUtil.getString(params, "countImage", "0");
-
+		// TuNV update20101220
+		String type_ = WorkflowParamUtil.getString(params, "type_", NEWS);
+		// end TuNV
 		if ((articleId == 0) || (userId == 0)) {
 			log.info("CAN'T CREATE WORKFLOW INSTANCE: PARAMETER INVALID");
 			return;
@@ -117,6 +123,7 @@ public class JournalLiferayWorkflowService
 					workflowJournalArticle.setProcessInstanceId(processInstanceId);
 					workflowJournalArticle.setResourcePrimkey(articleId);
 					workflowJournalArticle.setCountImageOfArticle(Integer.parseInt(counterImage));
+					workflowJournalArticle.setType_(type_);
 
 					WorkflowJournalArticleLocalServiceUtil.addWorkflowJournalArticle(workflowJournalArticle);
 				}

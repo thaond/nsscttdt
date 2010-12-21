@@ -441,8 +441,11 @@ public class JournalArticleLocalServiceImpl
 
 		// Tags
 
+		// TuNV update20101217
 		tagsAssetLocalService.updateVisible(
-			JournalArticle.class.getName(), article.getResourcePrimKey(), true);
+			com.liferay.portlet.journal.model.JournalArticle.class.getName(),
+			article.getResourcePrimKey(), true);
+		// end Tu update
 
 		// Email
 
@@ -2743,7 +2746,8 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		tagsAssetLocalService.updateAsset(
-			userId, article.getGroupId(), JournalArticle.class.getName(),
+			userId, article.getGroupId(),
+			com.liferay.portlet.journal.model.JournalArticle.class.getName(),
 			article.getResourcePrimKey(), tagsCategories, tagsEntries, visible,
 			null, null, displayDate, expirationDate, ContentTypes.TEXT_HTML,
 			article.getTitle(), article.getDescription(), null, null, 0, 0,

@@ -75,9 +75,12 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
             { "datecomplete", new Integer(Types.TIMESTAMP) },
             
 
-            { "statuscurrent", new Integer(Types.VARCHAR) }
+            { "statuscurrent", new Integer(Types.VARCHAR) },
+            
+
+            { "type_", new Integer(Types.VARCHAR) }
         };
-    public static final String TABLE_SQL_CREATE = "create table nss_workflow_journal_article (workflowJournalArticleId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userIds VARCHAR(75) null,processDefinitionId LONG,processInstanceId LONG,resourcePrimkey LONG,countImageOfArticle INTEGER,datecomplete DATE null,statuscurrent VARCHAR(75) null)";
+    public static final String TABLE_SQL_CREATE = "create table nss_workflow_journal_article (workflowJournalArticleId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userIds VARCHAR(75) null,processDefinitionId LONG,processInstanceId LONG,resourcePrimkey LONG,countImageOfArticle INTEGER,datecomplete DATE null,statuscurrent VARCHAR(75) null,type_ VARCHAR(75) null)";
     public static final String TABLE_SQL_DROP = "drop table nss_workflow_journal_article";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -105,6 +108,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
     private int _countImageOfArticle;
     private Date _datecomplete;
     private String _statuscurrent;
+    private String _type_;
     private transient ExpandoBridge _expandoBridge;
 
     public WorkflowJournalArticleModelImpl() {
@@ -125,6 +129,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         model.setCountImageOfArticle(soapModel.getCountImageOfArticle());
         model.setDatecomplete(soapModel.getDatecomplete());
         model.setStatuscurrent(soapModel.getStatuscurrent());
+        model.setType_(soapModel.getType_());
 
         return model;
     }
@@ -260,6 +265,14 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         _statuscurrent = statuscurrent;
     }
 
+    public String getType_() {
+        return GetterUtil.getString(_type_);
+    }
+
+    public void setType_(String type_) {
+        _type_ = type_;
+    }
+
     public WorkflowJournalArticle toEscapedModel() {
         if (isEscapedModel()) {
             return (WorkflowJournalArticle) this;
@@ -280,6 +293,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
             model.setCountImageOfArticle(getCountImageOfArticle());
             model.setDatecomplete(getDatecomplete());
             model.setStatuscurrent(HtmlUtil.escape(getStatuscurrent()));
+            model.setType_(HtmlUtil.escape(getType_()));
 
             model = (WorkflowJournalArticle) Proxy.newProxyInstance(WorkflowJournalArticle.class.getClassLoader(),
                     new Class[] { WorkflowJournalArticle.class },
@@ -312,6 +326,7 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         clone.setCountImageOfArticle(getCountImageOfArticle());
         clone.setDatecomplete(getDatecomplete());
         clone.setStatuscurrent(getStatuscurrent());
+        clone.setType_(getType_());
 
         return clone;
     }
@@ -385,6 +400,8 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         sb.append(getDatecomplete());
         sb.append(", statuscurrent=");
         sb.append(getStatuscurrent());
+        sb.append(", type_=");
+        sb.append(getType_());
         sb.append("}");
 
         return sb.toString();
@@ -441,6 +458,10 @@ public class WorkflowJournalArticleModelImpl extends BaseModelImpl<WorkflowJourn
         sb.append(
             "<column><column-name>statuscurrent</column-name><column-value><![CDATA[");
         sb.append(getStatuscurrent());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>type_</column-name><column-value><![CDATA[");
+        sb.append(getType_());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");

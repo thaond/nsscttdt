@@ -2,6 +2,35 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<class name="com.nss.portlet.phone_book.model.impl.ContactBookImpl" table="nss_contact_book">
+		<cache usage="read-write" />
+		<id name="contactBookId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="contactBookCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactBookName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactActive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.nss.portlet.phone_book.model.impl.DetailBookImpl" table="nss_detail_book">
+		<cache usage="read-write" />
+		<id name="detailBookId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="detailBookCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="detailBookName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="detailDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="detailActive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="zip" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="internal" column="internal_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="home" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mobile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="contactBookId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 	<class name="com.nss.portlet.journalworkflow.model.impl.JournalProcessDefinitionImpl" table="JournalProcessDefinition">
 		<cache usage="read-write" />
 		<id name="journalProcessDefinitionId" type="long">
@@ -718,6 +747,7 @@
 		<property name="countImageOfArticle" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="datecomplete" type="org.hibernate.type.TimestampType" />
 		<property name="statuscurrent" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.nss.portlet.managementworkflowjournal.model.impl.LogWorkflowJournalArticleImpl" table="log_workflow_journal_article">
 		<cache usage="read-write" />
@@ -1121,30 +1151,5 @@
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="finish" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-	</class>
-	<class name="com.nss.portlet.phone_book.model.impl.ContactBookImpl" table="nss_contact_book">
-		<cache usage="read-write" />
-		<id name="contactBookId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="contactBookCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactBookName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactActive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-	</class>
-	<class name="com.nss.portlet.phone_book.model.impl.DetailBookImpl" table="nss_detail_book">
-		<cache usage="read-write" />
-		<id name="detailBookId" type="long">
-			<generator class="assigned" />
-		</id>
-		<property name="detailBookCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="detailBookName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="detailDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="detailActive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="zip" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="internal" column="internal_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="home" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="mobile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="contactBookId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

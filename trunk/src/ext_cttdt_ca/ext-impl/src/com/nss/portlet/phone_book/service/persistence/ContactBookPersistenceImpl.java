@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
@@ -42,6 +43,21 @@ public class ContactBookPersistenceImpl extends BasePersistenceImpl
     public static final String FINDER_CLASS_NAME_ENTITY = ContactBookImpl.class.getName();
     public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
         ".List";
+    public static final FinderPath FINDER_PATH_FIND_BY_COMPANYID = new FinderPath(ContactBookModelImpl.ENTITY_CACHE_ENABLED,
+            ContactBookModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByCompanyid", new String[] { Long.class.getName() });
+    public static final FinderPath FINDER_PATH_FIND_BY_OBC_COMPANYID = new FinderPath(ContactBookModelImpl.ENTITY_CACHE_ENABLED,
+            ContactBookModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "findByCompanyid",
+            new String[] {
+                Long.class.getName(),
+                
+            "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            });
+    public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(ContactBookModelImpl.ENTITY_CACHE_ENABLED,
+            ContactBookModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+            "countByCompanyid", new String[] { Long.class.getName() });
     public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ContactBookModelImpl.ENTITY_CACHE_ENABLED,
             ContactBookModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
             "findAll", new String[0]);
@@ -267,8 +283,7 @@ public class ContactBookPersistenceImpl extends BasePersistenceImpl
 
         if (contactBook == null) {
             if (_log.isWarnEnabled()) {
-                _log.warn("No ContactBook exists with the primary key " +
-                    contactBookId);
+                //_log.warn("No ContactBook exists with the primary key " + contactBookId);
             }
 
             throw new NoSuchContactBookException(
@@ -303,6 +318,209 @@ public class ContactBookPersistenceImpl extends BasePersistenceImpl
         }
 
         return contactBook;
+    }
+
+    public List<ContactBook> findByCompanyid(long companyid)
+        throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyid) };
+
+        List<ContactBook> list = (List<ContactBook>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.phone_book.model.ContactBook WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                list = q.list();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<ContactBook>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public List<ContactBook> findByCompanyid(long companyid, int start, int end)
+        throws SystemException {
+        return findByCompanyid(companyid, start, end, null);
+    }
+
+    public List<ContactBook> findByCompanyid(long companyid, int start,
+        int end, OrderByComparator obc) throws SystemException {
+        Object[] finderArgs = new Object[] {
+                new Long(companyid),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        List<ContactBook> list = (List<ContactBook>) FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                finderArgs, this);
+
+        if (list == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.nss.portlet.phone_book.model.ContactBook WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                list = (List<ContactBook>) QueryUtil.list(q, getDialect(),
+                        start, end);
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (list == null) {
+                    list = new ArrayList<ContactBook>();
+                }
+
+                cacheResult(list);
+
+                FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_OBC_COMPANYID,
+                    finderArgs, list);
+
+                closeSession(session);
+            }
+        }
+
+        return list;
+    }
+
+    public ContactBook findByCompanyid_First(long companyid,
+        OrderByComparator obc)
+        throws NoSuchContactBookException, SystemException {
+        List<ContactBook> list = findByCompanyid(companyid, 0, 1, obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No ContactBook exists with the key {");
+
+            msg.append("companyid=" + companyid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchContactBookException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public ContactBook findByCompanyid_Last(long companyid,
+        OrderByComparator obc)
+        throws NoSuchContactBookException, SystemException {
+        int count = countByCompanyid(companyid);
+
+        List<ContactBook> list = findByCompanyid(companyid, count - 1, count,
+                obc);
+
+        if (list.isEmpty()) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No ContactBook exists with the key {");
+
+            msg.append("companyid=" + companyid);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchContactBookException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public ContactBook[] findByCompanyid_PrevAndNext(long contactBookId,
+        long companyid, OrderByComparator obc)
+        throws NoSuchContactBookException, SystemException {
+        ContactBook contactBook = findByPrimaryKey(contactBookId);
+
+        int count = countByCompanyid(companyid);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.nss.portlet.phone_book.model.ContactBook WHERE ");
+
+            query.append("companyid = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(companyid);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    contactBook);
+
+            ContactBook[] array = new ContactBookImpl[3];
+
+            array[0] = (ContactBook) objArray[0];
+            array[1] = (ContactBook) objArray[1];
+            array[2] = (ContactBook) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
     }
 
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
@@ -404,10 +622,62 @@ public class ContactBookPersistenceImpl extends BasePersistenceImpl
         return list;
     }
 
+    public void removeByCompanyid(long companyid) throws SystemException {
+        for (ContactBook contactBook : findByCompanyid(companyid)) {
+            remove(contactBook);
+        }
+    }
+
     public void removeAll() throws SystemException {
         for (ContactBook contactBook : findAll()) {
             remove(contactBook);
         }
+    }
+
+    public int countByCompanyid(long companyid) throws SystemException {
+        Object[] finderArgs = new Object[] { new Long(companyid) };
+
+        Long count = (Long) FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_COMPANYID,
+                finderArgs, this);
+
+        if (count == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.nss.portlet.phone_book.model.ContactBook WHERE ");
+
+                query.append("companyid = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(companyid);
+
+                count = (Long) q.uniqueResult();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                if (count == null) {
+                    count = Long.valueOf(0);
+                }
+
+                FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_COMPANYID,
+                    finderArgs, count);
+
+                closeSession(session);
+            }
+        }
+
+        return count.intValue();
     }
 
     public int countAll() throws SystemException {

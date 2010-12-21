@@ -329,6 +329,10 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		String type_ =
+			ParamUtil.getString(
+				actionRequest, "type_article",
+				JournalLiferayWorkflowService.NEWS);
 		JournalArticle article = null;
 		try {
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
@@ -344,6 +348,8 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 				addWorkflowParameter(
 					actionRequest, "groundId", WorkflowParam.TRANSIENT,
 					String.valueOf(article.getGroupId()));
+				addWorkflowParameter(
+					actionRequest, "type_", WorkflowParam.TRANSIENT, type_);
 
 				if (article != null) {
 					setForward(actionRequest, "");
@@ -500,6 +506,10 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 		String description = ParamUtil.getString(uploadRequest, "description");
 		String content = ParamUtil.getString(uploadRequest, "content");
 		// Tu edit 20101122
+		String type_ =
+			ParamUtil.getString(
+				actionRequest, "type_article",
+				JournalLiferayWorkflowService.NEWS);
 		// lay ra danh sach String
 		List<String> listImage = NSSHtmlUtil.getAllImageLinks(content, null);
 		// set lai so image dung trong bai viet
@@ -696,10 +706,17 @@ public class EditArticleAction extends JournalLiferayPortletAction {
 					serviceContext);
 
 			// update count image in table workflow_journal_articl
-			WorkflowJournalArticle workflowJournalArticle =
-				WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(article.getResourcePrimKey());
-			workflowJournalArticle.setCountImageOfArticle(listImage.size());
-			WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
+			try {
+				WorkflowJournalArticle workflowJournalArticle =
+					WorkflowJournalArticleLocalServiceUtil.getWorkflowJournalArticle(article.getResourcePrimKey());
+				workflowJournalArticle.setCountImageOfArticle(listImage.size());
+				workflowJournalArticle.setType_(type_);
+				WorkflowJournalArticleLocalServiceUtil.updateWorkflowJournalArticle(workflowJournalArticle);
+			}
+			catch (Exception e) {
+				System.out.println("**** ERROR in method updateArticle in Class EditArticleAction because : " +
+					e.getMessage());
+			}
 			// update complete
 		}
 

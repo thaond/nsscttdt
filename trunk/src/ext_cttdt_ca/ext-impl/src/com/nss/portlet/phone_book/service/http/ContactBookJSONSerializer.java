@@ -37,6 +37,8 @@ public class ContactBookJSONSerializer {
         jsonObj.put("contactBookName", model.getContactBookName());
         jsonObj.put("contactDescription", model.getContactDescription());
         jsonObj.put("contactActive", model.getContactActive());
+        jsonObj.put("companyid", model.getCompanyid());
+        jsonObj.put("userid", model.getUserid());
 
         return jsonObj;
     }

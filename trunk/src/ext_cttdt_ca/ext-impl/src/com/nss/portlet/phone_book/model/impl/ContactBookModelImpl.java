@@ -56,9 +56,15 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
             { "contactDescription", new Integer(Types.VARCHAR) },
             
 
-            { "contactActive", new Integer(Types.BOOLEAN) }
+            { "contactActive", new Integer(Types.BOOLEAN) },
+            
+
+            { "companyid", new Integer(Types.BIGINT) },
+            
+
+            { "userid", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table nss_contact_book (contactBookId LONG not null primary key,contactBookCode VARCHAR(75) null,contactBookName VARCHAR(75) null,contactDescription VARCHAR(75) null,contactActive BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table nss_contact_book (contactBookId LONG not null primary key,contactBookCode VARCHAR(75) null,contactBookName VARCHAR(75) null,contactDescription VARCHAR(75) null,contactActive BOOLEAN,companyid LONG,userid LONG)";
     public static final String TABLE_SQL_DROP = "drop table nss_contact_book";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -76,6 +82,8 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
     private String _contactBookName;
     private String _contactDescription;
     private boolean _contactActive;
+    private long _companyid;
+    private long _userid;
     private transient ExpandoBridge _expandoBridge;
 
     public ContactBookModelImpl() {
@@ -89,6 +97,8 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
         model.setContactBookName(soapModel.getContactBookName());
         model.setContactDescription(soapModel.getContactDescription());
         model.setContactActive(soapModel.getContactActive());
+        model.setCompanyid(soapModel.getCompanyid());
+        model.setUserid(soapModel.getUserid());
 
         return model;
     }
@@ -159,6 +169,22 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
         _contactActive = contactActive;
     }
 
+    public long getCompanyid() {
+        return _companyid;
+    }
+
+    public void setCompanyid(long companyid) {
+        _companyid = companyid;
+    }
+
+    public long getUserid() {
+        return _userid;
+    }
+
+    public void setUserid(long userid) {
+        _userid = userid;
+    }
+
     public ContactBook toEscapedModel() {
         if (isEscapedModel()) {
             return (ContactBook) this;
@@ -173,6 +199,8 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
             model.setContactBookName(HtmlUtil.escape(getContactBookName()));
             model.setContactDescription(HtmlUtil.escape(getContactDescription()));
             model.setContactActive(getContactActive());
+            model.setCompanyid(getCompanyid());
+            model.setUserid(getUserid());
 
             model = (ContactBook) Proxy.newProxyInstance(ContactBook.class.getClassLoader(),
                     new Class[] { ContactBook.class },
@@ -199,6 +227,8 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
         clone.setContactBookName(getContactBookName());
         clone.setContactDescription(getContactDescription());
         clone.setContactActive(getContactActive());
+        clone.setCompanyid(getCompanyid());
+        clone.setUserid(getUserid());
 
         return clone;
     }
@@ -254,6 +284,10 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
         sb.append(getContactDescription());
         sb.append(", contactActive=");
         sb.append(getContactActive());
+        sb.append(", companyid=");
+        sb.append(getCompanyid());
+        sb.append(", userid=");
+        sb.append(getUserid());
         sb.append("}");
 
         return sb.toString();
@@ -285,6 +319,14 @@ public class ContactBookModelImpl extends BaseModelImpl<ContactBook> {
         sb.append(
             "<column><column-name>contactActive</column-name><column-value><![CDATA[");
         sb.append(getContactActive());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>companyid</column-name><column-value><![CDATA[");
+        sb.append(getCompanyid());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>userid</column-name><column-value><![CDATA[");
+        sb.append(getUserid());
         sb.append("]]></column-value></column>");
 
         sb.append("</model>");
