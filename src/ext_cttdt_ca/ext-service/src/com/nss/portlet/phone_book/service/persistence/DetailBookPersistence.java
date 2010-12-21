@@ -58,6 +58,34 @@ public interface DetailBookPersistence extends BasePersistence {
     public com.nss.portlet.phone_book.model.DetailBook fetchByPrimaryKey(
         long detailBookId) throws com.liferay.portal.SystemException;
 
+    public java.util.List<com.nss.portlet.phone_book.model.DetailBook> findByCompanyid(
+        long companyid) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.phone_book.model.DetailBook> findByCompanyid(
+        long companyid, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.phone_book.model.DetailBook> findByCompanyid(
+        long companyid, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public com.nss.portlet.phone_book.model.DetailBook findByCompanyid_First(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException;
+
+    public com.nss.portlet.phone_book.model.DetailBook findByCompanyid_Last(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException;
+
+    public com.nss.portlet.phone_book.model.DetailBook[] findByCompanyid_PrevAndNext(
+        long detailBookId, long companyid,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException;
+
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException;
@@ -76,7 +104,13 @@ public interface DetailBookPersistence extends BasePersistence {
         int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
 
+    public void removeByCompanyid(long companyid)
+        throws com.liferay.portal.SystemException;
+
     public void removeAll() throws com.liferay.portal.SystemException;
+
+    public int countByCompanyid(long companyid)
+        throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;
 }

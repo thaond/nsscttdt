@@ -81,6 +81,47 @@ public class ContactBookUtil {
         return getPersistence().fetchByPrimaryKey(contactBookId);
     }
 
+    public static java.util.List<com.nss.portlet.phone_book.model.ContactBook> findByCompanyid(
+        long companyid) throws com.liferay.portal.SystemException {
+        return getPersistence().findByCompanyid(companyid);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.ContactBook> findByCompanyid(
+        long companyid, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByCompanyid(companyid, start, end);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.ContactBook> findByCompanyid(
+        long companyid, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByCompanyid(companyid, start, end, obc);
+    }
+
+    public static com.nss.portlet.phone_book.model.ContactBook findByCompanyid_First(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchContactBookException {
+        return getPersistence().findByCompanyid_First(companyid, obc);
+    }
+
+    public static com.nss.portlet.phone_book.model.ContactBook findByCompanyid_Last(
+        long companyid, com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchContactBookException {
+        return getPersistence().findByCompanyid_Last(companyid, obc);
+    }
+
+    public static com.nss.portlet.phone_book.model.ContactBook[] findByCompanyid_PrevAndNext(
+        long contactBookId, long companyid,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.nss.portlet.phone_book.NoSuchContactBookException {
+        return getPersistence()
+                   .findByCompanyid_PrevAndNext(contactBookId, companyid, obc);
+    }
+
     public static java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException {
@@ -109,8 +150,18 @@ public class ContactBookUtil {
         return getPersistence().findAll(start, end, obc);
     }
 
+    public static void removeByCompanyid(long companyid)
+        throws com.liferay.portal.SystemException {
+        getPersistence().removeByCompanyid(companyid);
+    }
+
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
+    }
+
+    public static int countByCompanyid(long companyid)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().countByCompanyid(companyid);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

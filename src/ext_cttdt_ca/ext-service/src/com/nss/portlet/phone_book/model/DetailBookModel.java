@@ -70,5 +70,13 @@ public interface DetailBookModel extends BaseModel<DetailBook> {
 
     public void setContactBookId(long contactBookId);
 
+    public long getCompanyid();
+
+    public void setCompanyid(long companyid);
+
+    public long getUserid();
+
+    public void setUserid(long userid);
+
     public DetailBook toEscapedModel();
 }
