@@ -1,4 +1,3 @@
-
 <%
 List results1 = (List)request.getAttribute("view.jsp-results");
 
@@ -17,12 +16,9 @@ boolean show1 = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 
 request.setAttribute("view.jsp-showIconLabel", false);
 
-// minh update 20100713
-//PortletURL viewFullContentURL = renderResponse.createRenderURL();
-PortletURL viewFullContentURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
-//viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
+PortletURL viewFullContentURL = renderResponse.createRenderURL();
+
 viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
-//end minh update 20100713
 viewFullContentURL.setParameter("assetId", String.valueOf(asset1.getAssetId()));
 
 	JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(classPK1);
@@ -36,12 +32,9 @@ viewFullContentURL.setParameter("assetId", String.valueOf(asset1.getAssetId()));
 			title1 = articleDisplay.getTitle();
 		}
 
-		// minh update 20100713	
-		//PortletURL articleURL = renderResponse.createRenderURL();
-		PortletURL articleURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
-		//articleURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
+		PortletURL articleURL = renderResponse.createRenderURL();
+
 		articleURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
-		// end minh update 20100713
 		articleURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 		articleURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
 
@@ -54,19 +47,19 @@ viewFullContentURL.setParameter("assetId", String.valueOf(asset1.getAssetId()));
 
 viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 %>
-	
+<div class="listnewsmore">
 	<c:if test="<%= assetIndex1 == 0 %>">
-		<ul>
+		<ul class="title-list">
 	</c:if>
 
 	<c:if test="<%= show1 %>">
 		<li>
 			<c:choose>
 				<c:when test="<%= Validator.isNotNull(viewURL1) %>">
-					<a href="<%= viewURL1 %>"><%= title1 %></a>
+					<a href="<%= viewURL1 %>"><%= title1 %></a> <font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
 				</c:when>
 				<c:otherwise>
-					<%= title1 %>
+					<%= title1 %> <font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
 				</c:otherwise>
 			</c:choose>
 
@@ -78,3 +71,4 @@ viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 	<c:if test="<%= (assetIndex1 + 1) == results.size() %>">
 		</ul>
 	</c:if>
+</div>

@@ -291,7 +291,7 @@ DateFormat dateFormatDate = DateFormats.getDate(locale, timeZone);
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init-ext.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init-ext.jsp" %>
 
 <%!
 private String _checkViewURL(String viewURL, String currentURL, ThemeDisplay themeDisplay) {

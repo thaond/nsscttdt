@@ -325,10 +325,6 @@
         <action path="/nss/image_signer/upload" type="com.nss.portlet.image_signer.action.UpLoadAction">
             <forward name="portlet.nss.image_signer.upload" path="portlet.nss.image_signer.upload"/>
         </action>
-        <action path="/nss/thong_ke_tin/view" type="com.nss.portlet.thong_ke_tin.action.ViewAction">
-            <forward name="portlet.nss.thong_ke_tin.view" path="portlet.nss.thong_ke_tin.view"/>
-        </action>
-        <action forward="portlet.nss.thong_ke_tin.view" path="/nss/thong_ke_tin/tab"/>
         <action path="/nss/managementworkflowjournal/view" type="com.nss.portlet.managementworkflowjournal.action.ViewAction">
             <forward name="portlet.nss.managementworkflowjournal.view" path="portlet.nss.managementworkflowjournal.view"/>
         </action>
@@ -536,6 +532,9 @@
         </action>
         <action path="/nss/phone_book/view" type="com.nss.portlet.phone_book.action.ViewAction">
             <forward name="portlet.nss.phone_book.view" path="portlet.nss.phone_book.view"/>
+        </action>
+        <action path="/nss/phone_book/view_detail" type="com.nss.portlet.phone_book.action.ViewDetailAction">
+            <forward name="portlet.nss.phone_book.view_detail" path="portlet.nss.phone_book.view_detail"/>
         </action>
          <!-- Asset Publisher INDEX -->
         <action path="/nss/asset_publisher_index/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">

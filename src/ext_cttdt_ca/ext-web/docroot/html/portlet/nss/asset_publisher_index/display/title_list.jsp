@@ -162,7 +162,7 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 %>
 
 	<c:if test="<%= assetIndex == 0 %>">
-		<ul class="title-list">
+		<ul style="padding-top: 10px" >
 	</c:if>
 
 	<c:if test="<%= show %>">

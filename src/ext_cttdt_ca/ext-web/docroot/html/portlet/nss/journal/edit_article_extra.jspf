@@ -227,7 +227,7 @@ String scheduleTitle = LanguageUtil.get(pageContext, "schedule");
 			<liferay-ui:message key="categories" /><br />
 
 			<liferay-ui:tags-selector
-				className="<%= JournalArticle.class.getName() %>"
+				className="<%= com.liferay.portlet.journal.model.JournalArticle.class.getName() %>"
 				classPK="<%= classPK %>"
 				folksonomy="<%= false %>"
 				hiddenInput="tagsCategories"
@@ -238,7 +238,7 @@ String scheduleTitle = LanguageUtil.get(pageContext, "schedule");
 			<liferay-ui:message key="tags" /><br />
 
 			<liferay-ui:tags-selector
-				className="<%= JournalArticle.class.getName() %>"
+				className="<%= com.liferay.portlet.journal.model.JournalArticle.class.getName() %>"
 				classPK="<%= classPK %>"
 				hiddenInput="tagsEntries"
 				contentCallback='<%= renderResponse.getNamespace() + "getSuggestionsContent" %>'

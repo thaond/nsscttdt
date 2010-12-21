@@ -44,7 +44,7 @@ if (!groupByClass) {
 
 	request.setAttribute("view.jsp-results", results);
 %>
-	<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_list_asset.jspf" %>
+	<%@ include file="/html/portlet/nss/asset_publisher_nss/view_dynamic_list_asset.jspf" %>
 
 <%
 }
@@ -71,7 +71,7 @@ else {
 
 <%@page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil"%><h3><liferay-ui:message key="<%= _ASSET_TITLES[groupAssetIndex] %>" /></h3>
 
-			<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_list_asset.jspf" %>
+			<%@ include file="/html/portlet/nss/asset_publisher_nss/view_dynamic_list_asset.jspf" %>
 
 <%
 		}

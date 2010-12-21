@@ -34,7 +34,7 @@ if (results.size() < abstractDelta) {
 		try {
 
 %>
-		<%@ include file="/html/portlet/nss/asset_publisher_index/view_display.jspf" %>
+		<%@ include file="/html/portlet/nss/asset_publisher_nss/view_display.jspf" %>
 <%
 		}
 		catch (Exception e) {
@@ -72,7 +72,7 @@ if (results.size() < abstractDelta) {
 
 		try {
 	%>
-		<%@ include file="/html/portlet/nss/asset_publisher_index/view_display.jspf" %>
+		<%@ include file="/html/portlet/nss/asset_publisher_nss/view_display.jspf" %>
 		<div class="separator"><!-- --></div>
 	<%
 		} catch (Exception e) {
@@ -109,7 +109,7 @@ if (results.size() < abstractDelta) {
 
 		try {
 	%>
-		<%@ include file="/html/portlet/nss/asset_publisher_index/display/nss_title_list.jsp" %>
+		<%@ include file="/html/portlet/nss/asset_publisher_nss/display/nss_title_list.jsp" %>
 	<%
 		} catch (Exception e) {
 			_log.error(e.getMessage());

@@ -12,13 +12,8 @@
 <%@page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil"%>
 <%@page import="com.liferay.portlet.tags.model.TagsEntry"%>
 <%@page import="com.nss.portlet.thong_ke_tin.service.NSSTagsAssetLocalServiceUtil"%>
-<%@page import="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil"%>
-<%@page import="com.nss.portlet.image_signer.model.ImageSigner"%>
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
-<%@page import="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil"%>
-<%@page import="com.nss.portlet.digitalsignature.model.Signature"%>
 <%@page import="java.util.List"%>
-<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
 <%@page import="com.liferay.portlet.journalcontent.util.JournalContentUtil"%>
 <%@page import="com.liferay.portlet.journal.model.JournalArticleDisplay"%>
 <%@page import="com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil"%>

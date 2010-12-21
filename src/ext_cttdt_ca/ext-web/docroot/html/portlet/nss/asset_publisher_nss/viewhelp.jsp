@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 
 <%@page import="com.liferay.portlet.tags.service.persistence.TagsVocabularyUtil"%>
 <%@page import="com.liferay.portlet.tags.service.persistence.TagsEntryUtil"%>
@@ -116,7 +116,7 @@
 	    	//PortletURL viewCategoryURL = new PortletURLImpl(request,portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
 	    	PortletURL viewCategoryURL = renderResponse.createRenderURL();
 	    	viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
-	  		viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_index/viewhelp");
+	  		viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 	  		viewCategoryURL.setParameter("tagsEntryId", "0");
 	  		
 	  		
@@ -135,7 +135,7 @@
 						   if (tagsEntry.getName().equals(tagsCategoriesHelp[i])) {
 							   viewCategoryURL = renderResponse.createRenderURL();
 							   viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
-						  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_index/viewhelp");
+						  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 						  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 						  	   
 						  	   name = tagsEntry.getName();
@@ -153,7 +153,7 @@
 				   else {
 					   viewCategoryURL = renderResponse.createRenderURL();
 					   viewCategoryURL.setWindowState(LiferayWindowState.NORMAL);
-				  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_index/viewhelp");
+				  	   viewCategoryURL.setParameter("struts_action", "/nss/asset_publisher_nss/viewhelp");
 				  	   viewCategoryURL.setParameter("tagsEntry", String.valueOf(tagsEntry.getEntryId()));
 				  	   if (tagsEntryId == tagsEntry.getEntryId()) {
 		%>				   
@@ -232,7 +232,7 @@
 		String portletId = portletDisplay.getId();
 		%>
 		
-		<%@ include file="/html/portlet/nss/asset_publisher_index/add_asset.jspf" %>
+		<%@ include file="/html/portlet/nss/asset_publisher_nss/add_asset.jspf" %>
 		 <div id="<portlet:namespace/>last_msg_loader" align="center"></div>
 		<%
 		if (showQueryLogic) {
@@ -293,13 +293,13 @@
 		
 		<c:choose>
 			<c:when test='<%= selectionStyle.equals("dynamic") && Validator.isNotNull(category) %>'>
-				<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_by_category.jspf" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_dynamic_by_category.jspf" %>
 			</c:when>
 			<c:when test='<%= selectionStyle.equals("dynamic") && Validator.isNull(category) %>'>
-				<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_list.jspf" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_dynamic_list.jspf" %>
 			</c:when>
 			<c:when test='<%= selectionStyle.equals("manual") %>'>
-				<%@ include file="/html/portlet/nss/asset_publisher_index/view_manual.jspf" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_nss/view_manual.jspf" %>
 			</c:when>
 		</c:choose>
 		
@@ -308,7 +308,7 @@
 		</c:if>
 		
 		<%!
-		private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher_index.view.jsp");
+		private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher_nss.view.jsp");
 		%>
 		</div>
 		</div>

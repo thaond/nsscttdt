@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -93,10 +93,10 @@ try {
 	</div>-->
 
 	<div>
-		<liferay-util:include page="/html/portlet/nss/asset_publisher_index/display/full_content.jsp" />
+		<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/display/full_content.jsp" />
 	</div>
 
-	<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_html_metadata.jsp" />
+	<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_html_metadata.jsp" />
 
 <%
 }
@@ -182,7 +182,7 @@ for (int i = 0; (i < assetList.size()) && (i < delta); i++) {
 	try {
 %>
 
-<div><liferay-util:include page="/html/portlet/nss/asset_publisher_index/display/title_list.jsp" /></div>
+<div><liferay-util:include page="/html/portlet/nss/asset_publisher_nss/display/title_list.jsp" /></div>
 
 <%
 	} catch (Exception e) {

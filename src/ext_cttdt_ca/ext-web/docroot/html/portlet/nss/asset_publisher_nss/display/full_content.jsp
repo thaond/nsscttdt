@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_nss/init.jsp" %>
 
 <%
 List results = (List)request.getAttribute("view.jsp-results");
@@ -60,7 +60,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 			PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-			viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+			viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 			viewFullContentURL.setParameter("type", AssetPublisherUtil.TYPE_BLOG);
 
 			String urlTitle = entry.getUrlTitle();
@@ -75,14 +75,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_BLOG %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -107,7 +107,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher_index/edit_entry_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_nss/edit_entry_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -134,14 +134,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_BOOKMARK %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -177,14 +177,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_DOCUMENT %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -215,7 +215,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher_index/edit_file_entry_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_nss/edit_file_entry_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -248,14 +248,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_IMAGE %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -304,12 +304,12 @@ request.setAttribute("view.jsp-showIconLabel", true);
 				<c:choose>
 					<c:when test="<%= showAssetTitle %>">
 						<!-- <h3 class="asset-title <%= AssetPublisherUtil.TYPE_CONTENT %>">
-							<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+							<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 							<%= title %>
 						</h3> -->
 						
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 						
 						<h5><%= title %></h5>
 						<h1><liferay-ui:message key="nss-cap-nhat" />: <%=df.format(asset.getPublishDate()) %></h1>
@@ -317,7 +317,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					</c:when>
 					<c:otherwise>
 						<div class="asset-edit">
-							<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+							<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -355,7 +355,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 						PortletURL articlePageURL = renderResponse.createRenderURL();
 
-						articlePageURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+						articlePageURL.setParameter("struts_action", "/nss/asset_publisher_nss/view_content");
 						articlePageURL.setParameter("redirect", pageRedirect);
 						articlePageURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 						articlePageURL.setParameter("cur", String.valueOf(cur));
@@ -389,7 +389,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 						<br />
 
 						<portlet:actionURL var="discussionURL">
-							<portlet:param name="struts_action" value="/nss/asset_publisher_index/edit_article_discussion" />
+							<portlet:param name="struts_action" value="/nss/asset_publisher_nss/edit_article_discussion" />
 						</portlet:actionURL>
 
 						<liferay-ui:discussion
@@ -423,14 +423,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_THREAD %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= message.getSubject() %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -449,14 +449,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_WIKI %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_nss/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -523,7 +523,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher_index/edit_page_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_nss/edit_page_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -545,7 +545,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 	<c:if test="<%= show %>">
 		<div class="asset-metadata">
-			<%@ include file="/html/portlet/nss/asset_publisher_index/asset_metadata.jspf" %>
+			<%@ include file="/html/portlet/nss/asset_publisher_nss/asset_metadata.jspf" %>
 		</div>
 	</c:if>
 </div>

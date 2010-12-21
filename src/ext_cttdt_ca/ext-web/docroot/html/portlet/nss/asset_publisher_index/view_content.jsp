@@ -92,9 +92,15 @@ try {
 		&laquo; <a href="<%= HtmlUtil.escape(redirect) %>"><liferay-ui:message key="back" /></a>
 	</div>-->
 
-	<div>
-		<liferay-util:include page="/html/portlet/nss/asset_publisher_index/display/full_content.jsp" />
-	</div>
+	
+<%@page import="java.util.List"%>
+
+<%@page import="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil"%>
+<%@page import="java.util.ArrayList"%>
+
+<div>
+	<liferay-util:include page="/html/portlet/nss/asset_publisher_index/display/full_content.jsp" />
+</div>
 
 	<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_html_metadata.jsp" />
 
@@ -118,14 +124,15 @@ if (allowEmptyResults && (entryIds.length == 0) && (notEntryIds.length == 0)) {
 }
 
 Date now = new Date();
-
 int total = TagsAssetLocalServiceUtil.getAssetsCount(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, excludeZeroViewCount, now, now);
 
-
 List<TagsAsset> assetList = new ArrayList<TagsAsset>();
+
+
 List<TagsAsset> assets = TagsAssetLocalServiceUtil.getAssets(scopeGroupId, classNameIds, entryIds, notEntryIds, andOperator, orderByColumn1, orderByColumn2, orderByType1, orderByType2, excludeZeroViewCount, now, now, searchContainer.getStart(), total);
 List<TagsEntry> assetEntries = TagsEntryLocalServiceUtil.getAssetEntries(asset.getAssetId(), TagsEntryConstants.FOLKSONOMY_TAG);
 
+/*
 for (TagsAsset tagasset : assets) {
 	List<TagsEntry> tgentries = tagasset.getEntries();
 	for (TagsEntry assetEntry : assetEntries) {
@@ -137,16 +144,29 @@ for (TagsAsset tagasset : assets) {
 			}
 		}
 	}
+}*/
+
+// phmphuc update 19/07/2010 - khong chon tag
+
+List<TagsEntry> entriesList = asset.getCategories();
+
+for (TagsAsset tagasset : assets) {
+	List<TagsEntry> tagsentries = TagsEntryLocalServiceUtil.getAssetEntries(tagasset.getAssetId(), false);
+	for(TagsEntry tentry : tagsentries) {
+		for (TagsEntry tagsentry : entriesList) {
+			if (tagsentry.getVocabularyId() == tentry.getVocabularyId()) {
+				if ((!assetList.contains(tagasset)) && (!tagasset.equals(asset)) && tagasset.getPublishDate().before(asset.getPublishDate())) {
+				assetList.add(tagasset);
+				}
+			}
+		}
+	}
 }
+
+// phmphuc end 19/07/2010
+
 if (assetList.size() != 0) {
 %>
-
-<style type="text/css">
-.portlet-asset-publisher ul.title-list {
-	margin: 0 !important;
-}
-</style>
-
 <div class="listnewsmore">
 <p class="textmore"><liferay-ui:message key="nss-cac-tin-khac"/></p>
 <%
@@ -194,5 +214,5 @@ for (int i = 0; (i < assetList.size()) && (i < delta); i++) {
 <!-- end them tin lien quan by triltm -->
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher.view_content.jsp");
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher_index.view_content.jsp");
 %>

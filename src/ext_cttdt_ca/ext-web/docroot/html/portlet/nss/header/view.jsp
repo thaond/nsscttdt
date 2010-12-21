@@ -5,8 +5,6 @@
 
 <%
 String serverURL = "/web/guest/";
-String vssLanguageVN = "?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=2&_82_struts_action=%2Flanguage%2Fview&languageId=vi_VN";
-String vssLanguageEN = "?p_p_id=82&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_pos=2&_82_struts_action=%2Flanguage%2Fview&languageId=en_US";
 %>
 
 <portlet:renderURL var="clock" windowState="<%=LiferayWindowState.EXCLUSIVE.toString()%>">

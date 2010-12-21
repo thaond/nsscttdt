@@ -248,6 +248,8 @@
         <portlet-name>NSS_PHONE_BOOK</portlet-name>
         <struts-path>nss/phone_book</struts-path>
         <use-default-template>false</use-default-template>
+         <indexer-class>com.nss.portlet.phone_book.util.ContactBookIndexer</indexer-class>
+         <indexer-class>com.nss.portlet.phone_book.util.DetailBookIndexer</indexer-class>
     </portlet>
     <portlet>
         <portlet-name>NSS_ASSET_PUBLISHER_INDEX</portlet-name>

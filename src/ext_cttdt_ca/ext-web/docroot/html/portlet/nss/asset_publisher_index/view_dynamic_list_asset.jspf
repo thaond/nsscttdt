@@ -1,7 +1,4 @@
 <%
-
-request.setAttribute("view.jsp-abstractDelta", abstractDelta);
-
 if (results.size() < abstractDelta) {
 	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {
 		TagsAsset asset = (TagsAsset)results.get(assetIndex);

@@ -1,5 +1,3 @@
-
-<%@page import="com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServiceUtil"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -113,9 +111,6 @@
 
 <%@ page import="java.io.StringReader" %>
 
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="theme" %>
-<theme:defineObjects/>
-
 <%
 DateFormat df = new SimpleDateFormat("hh'h' mm - dd/MM/yyyy");
 DateFormat df1 = new SimpleDateFormat("(dd/MM/yyyy)");
@@ -150,10 +145,10 @@ String tag = ParamUtil.getString(request, "tag");
 
 String[] entries = null;
 
-
 // by triltm
 String[] tagsCategories = preferences.getValues("tags-categories", new String[0]);
 String[] notTagsCategories = preferences.getValues("not-tags-categories", new String[0]);
+
 if (Validator.isNull(tag)) {
 	entries = preferences.getValues("entries", new String[0]);
 }
@@ -190,86 +185,9 @@ boolean enableCommentRatings = GetterUtil.getBoolean(preferences.getValue("enabl
 boolean enableTagBasedNavigation = GetterUtil.getBoolean(preferences.getValue("enable-tag-based-navigation", null));
 
 //by triltm
-
-// minh 20100713
-String[] tagsCategoriesHelp = tagsCategories;
-long  selectPlId = GetterUtil.getLong(preferences.getValue("selectPlId", StringPool.BLANK));
-String  portletAssetPublisher = GetterUtil.getString(preferences.getValue("portletAssetPublisher", StringPool.BLANK));
-long tagsEntryId = ParamUtil.getLong(request, "tagsEntry", 0);
-TagsEntry tagsEntryO = null; 
-if (0 != tagsEntryId) {
-	tagsEntryO = TagsEntryLocalServiceUtil.getEntry(tagsEntryId);
-	tagsCategories = new String[]{tagsEntryO.getName()};
-	long  tagsEntryIdSelectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(tagsEntryId), StringPool.BLANK));
-	selectPlId = tagsEntryIdSelectPlId;
-}
-// end minh 20100713
-
-//MoNT start 17/11/2010
-long categoryParentIdAbstractEntry = 0;
-List<TagsEntry> tagsAbstractEntrys = new ArrayList<TagsEntry>();
-List<TagsVocabulary> vocabulariesTest = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
-	for (TagsVocabulary vocabulary : vocabulariesTest) {
-		if (vocabulary.getName().equals(category)) {
-			categoryParentIdAbstractEntry = vocabulary.getVocabularyId();	
-		}
-	}
-try {
-	tagsAbstractEntrys= JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(categoryParentIdAbstractEntry);
-
-} catch (Exception e) {
-	
-}
-
-//MoNT start 12/2/2010
-Map<Long,String> mapValueAbstract = new HashMap<Long,String>();
-Map<Long,String> mapValueChildren = new HashMap<Long,String>();
-	for(TagsVocabulary vocabulary : vocabulariesTest){
-		long vocabularyId = vocabulary.getVocabularyId();
-		String valueAbstractVocabulary = GetterUtil.getString(preferences.getValue("valueAbstract"+vocabularyId,"2"));
-		if(valueAbstractVocabulary.equals("")||valueAbstractVocabulary==null){
-			valueAbstractVocabulary="2";
-		}
-		mapValueAbstract.put(vocabularyId,valueAbstractVocabulary);
-		String valueChildrenVocabulary = GetterUtil.getString(preferences.getValue("valueChildren"+vocabularyId,"5"));
-		if(valueChildrenVocabulary.equals("")||valueChildrenVocabulary==null){
-			valueChildrenVocabulary="5";
-		}
-		mapValueChildren.put(vocabularyId,valueChildrenVocabulary);
-	}
-//MoNT end 12/2/2010
-
-Map<String,String> mapValueAbstractEntry= new HashMap<String,String>();
-Map<String,String> mapValueChildrenEntry= new HashMap<String,String>(); 
-
-for(TagsVocabulary vocabulary : vocabulariesTest){
-	long vocabularyChildrenId = vocabulary.getVocabularyId();
-		List<TagsEntry> tagChildrenEntrys = new ArrayList<TagsEntry>();
-	try {
-		tagChildrenEntrys = JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyChildrenId);
-	}
-	catch (Exception e) {
-	}
-	if(tagChildrenEntrys.size()>0){
-		for(int i=0;i<tagChildrenEntrys.size();i++){
-			long tagEntryId=tagChildrenEntrys.get(i).getEntryId();
-			String valueAbstractEntry = GetterUtil.getString(preferences.getValue("valueAbstractEntry"+tagEntryId,"2"));
-			if(valueAbstractEntry.equals("")||valueAbstractEntry==null){
-				valueAbstractEntry="2";
-		    }
-		    mapValueAbstractEntry.put(""+tagEntryId,valueAbstractEntry);
-		    String valueChildrenEntry = GetterUtil.getString(preferences.getValue("valueChildrenEntry"+tagEntryId,"5"));
-		    if(valueChildrenEntry.equals("")||valueChildrenEntry==null){
-		    	valueChildrenEntry="5";
-		    }
-			mapValueChildrenEntry.put(""+tagEntryId,valueChildrenEntry); 
-		} 
-	}
-}
-//MoNT end 17/11/2010
-
-
 int abstractDelta = GetterUtil.getInteger(preferences.getValue("abstractDelta", StringPool.BLANK), 1);
+String dimensionHeight = GetterUtil.getString(preferences.getValue("dimensionHeight", ""));
+String dimensionWidth = GetterUtil.getString(preferences.getValue("dimensionWidth", "150"));
 
 String defaultMetadataFields = StringPool.BLANK;
 String allMetadataFields = "create-date,modified-date,publish-date,expiration-date,priority,author,view-count,tags";
@@ -289,6 +207,15 @@ boolean allowEmptyResults = false;
 DateFormat dateFormatDate = DateFormats.getDate(locale, timeZone);
 
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
+
+//TuNV update 20101126
+String nss_view_sign_type = GetterUtil.getString(preferences.getValue("nss_view_sign_type", "all"));
+boolean b1,b2,b3,b4;
+b1 = (nss_view_sign_type.equalsIgnoreCase("all") ? true : false);
+b2 = (nss_view_sign_type.equalsIgnoreCase("sign") ? true : false);
+b3 = (nss_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
+b4 = (nss_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
+//end TuNV update
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher_index/init-ext.jsp" %>
