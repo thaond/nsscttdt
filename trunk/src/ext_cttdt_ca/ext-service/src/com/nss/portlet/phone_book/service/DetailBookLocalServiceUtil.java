@@ -104,13 +104,13 @@ public class DetailBookLocalServiceUtil {
         long contactBookId, java.lang.String detailBookCode,
         java.lang.String detailBookName, java.lang.String detailDescription,
         java.lang.String zip, java.lang.String internal, java.lang.String home,
-        java.lang.String mobile, java.lang.String sortField, int sortType,
-        boolean reverse, int start, int end)
-        throws com.liferay.portal.SystemException {
+        java.lang.String mobile, java.lang.String email,
+        java.lang.String sortField, int sortType, boolean reverse, int start,
+        int end) throws com.liferay.portal.SystemException {
         return getService()
                    .search(companyId, contactBookId, detailBookCode,
             detailBookName, detailDescription, zip, internal, home, mobile,
-            sortField, sortType, reverse, start, end);
+            email, sortField, sortType, reverse, start, end);
     }
 
     public static com.liferay.portal.kernel.search.Hits search(long companyId,

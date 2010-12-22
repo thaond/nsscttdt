@@ -66,6 +66,10 @@ public interface DetailBookModel extends BaseModel<DetailBook> {
 
     public void setMobile(String mobile);
 
+    public String getEmail();
+
+    public void setEmail(String email);
+
     public long getContactBookId();
 
     public void setContactBookId(long contactBookId);
