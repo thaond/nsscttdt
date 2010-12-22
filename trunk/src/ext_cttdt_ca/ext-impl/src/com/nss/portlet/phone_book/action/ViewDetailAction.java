@@ -67,6 +67,7 @@ public class ViewDetailAction extends PortletAction {
 		String internal = ParamUtil.getString(req, "detailBookInternal");
 		String home = ParamUtil.getString(req, "detailBookHome");
 		String mobile = ParamUtil.getString(req, "detailBookMobile");
+		String email = ParamUtil.getString(req, "detailBookEmail");
 		boolean active = ParamUtil.getBoolean(req, "detailBookActive");
 		long userId = PortalUtil.getUserId(req);
 		long companyId = 0;
@@ -86,6 +87,7 @@ public class ViewDetailAction extends PortletAction {
 				detailBook.setInternal(internal);
 				detailBook.setHome(home);
 				detailBook.setMobile(mobile);
+				detailBook.setEmail(email);
 				detailBook.setUserid(userId);
 				detailBook.setCompanyid(companyId);
 				if(active){
@@ -132,6 +134,7 @@ public class ViewDetailAction extends PortletAction {
 		String internal = ParamUtil.getString(req, "detailBookInternal");
 		String home = ParamUtil.getString(req, "detailBookHome");
 		String mobile = ParamUtil.getString(req, "detailBookMobile");
+		String email = ParamUtil.getString(req, "detailBookEmail");
 		boolean active = ParamUtil.getBoolean(req, "detailBookActive");
 		long userId = PortalUtil.getUserId(req);
 		long companyId = 0;
@@ -148,6 +151,7 @@ public class ViewDetailAction extends PortletAction {
 				detailBook.setInternal(internal);
 				detailBook.setHome(home);
 				detailBook.setMobile(mobile);
+				detailBook.setEmail(email);
 				
 				if(active){
 					detailBook.setDetailActive(true);

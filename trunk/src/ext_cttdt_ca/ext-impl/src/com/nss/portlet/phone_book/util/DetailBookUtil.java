@@ -19,6 +19,8 @@ public class DetailBookUtil {
 			orderByComparator = new DetailBookNameComparator(orderByAsc);
 		} else if (orderByCol.equals("detailDescription")) {
 			orderByComparator = new DetailBookDescriptionComparator(orderByAsc);
+		}else if (orderByCol.equals("email")) {
+			orderByComparator = new DetailBookEmailComparator(orderByAsc);
 		}
 
 		return orderByComparator;

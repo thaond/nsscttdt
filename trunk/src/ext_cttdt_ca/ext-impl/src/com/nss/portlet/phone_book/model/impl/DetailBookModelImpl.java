@@ -71,6 +71,9 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
             { "mobile", new Integer(Types.VARCHAR) },
             
 
+            { "email", new Integer(Types.VARCHAR) },
+            
+
             { "contactBookId", new Integer(Types.BIGINT) },
             
 
@@ -79,7 +82,7 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
 
             { "userid", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table nss_detail_book (detailBookId LONG not null primary key,detailBookCode VARCHAR(75) null,detailBookName VARCHAR(75) null,detailDescription VARCHAR(75) null,detailActive BOOLEAN,zip VARCHAR(75) null,internal_ VARCHAR(75) null,home VARCHAR(75) null,mobile VARCHAR(75) null,contactBookId LONG,companyid LONG,userid LONG)";
+    public static final String TABLE_SQL_CREATE = "create table nss_detail_book (detailBookId LONG not null primary key,detailBookCode VARCHAR(75) null,detailBookName VARCHAR(75) null,detailDescription VARCHAR(75) null,detailActive BOOLEAN,zip VARCHAR(75) null,internal_ VARCHAR(75) null,home VARCHAR(75) null,mobile VARCHAR(75) null,email VARCHAR(75) null,contactBookId LONG,companyid LONG,userid LONG)";
     public static final String TABLE_SQL_DROP = "drop table nss_detail_book";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -101,6 +104,7 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
     private String _internal;
     private String _home;
     private String _mobile;
+    private String _email;
     private long _contactBookId;
     private long _companyid;
     private long _userid;
@@ -121,6 +125,7 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
         model.setInternal(soapModel.getInternal());
         model.setHome(soapModel.getHome());
         model.setMobile(soapModel.getMobile());
+        model.setEmail(soapModel.getEmail());
         model.setContactBookId(soapModel.getContactBookId());
         model.setCompanyid(soapModel.getCompanyid());
         model.setUserid(soapModel.getUserid());
@@ -226,6 +231,14 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
         _mobile = mobile;
     }
 
+    public String getEmail() {
+        return GetterUtil.getString(_email);
+    }
+
+    public void setEmail(String email) {
+        _email = email;
+    }
+
     public long getContactBookId() {
         return _contactBookId;
     }
@@ -268,6 +281,7 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
             model.setInternal(HtmlUtil.escape(getInternal()));
             model.setHome(HtmlUtil.escape(getHome()));
             model.setMobile(HtmlUtil.escape(getMobile()));
+            model.setEmail(HtmlUtil.escape(getEmail()));
             model.setContactBookId(getContactBookId());
             model.setCompanyid(getCompanyid());
             model.setUserid(getUserid());
@@ -301,6 +315,7 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
         clone.setInternal(getInternal());
         clone.setHome(getHome());
         clone.setMobile(getMobile());
+        clone.setEmail(getEmail());
         clone.setContactBookId(getContactBookId());
         clone.setCompanyid(getCompanyid());
         clone.setUserid(getUserid());
@@ -367,6 +382,8 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
         sb.append(getHome());
         sb.append(", mobile=");
         sb.append(getMobile());
+        sb.append(", email=");
+        sb.append(getEmail());
         sb.append(", contactBookId=");
         sb.append(getContactBookId());
         sb.append(", companyid=");
@@ -420,6 +437,10 @@ public class DetailBookModelImpl extends BaseModelImpl<DetailBook> {
         sb.append(
             "<column><column-name>mobile</column-name><column-value><![CDATA[");
         sb.append(getMobile());
+        sb.append("]]></column-value></column>");
+        sb.append(
+            "<column><column-name>email</column-name><column-value><![CDATA[");
+        sb.append(getEmail());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>contactBookId</column-name><column-value><![CDATA[");

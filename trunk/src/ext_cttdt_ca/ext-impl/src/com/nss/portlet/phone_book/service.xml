@@ -9,8 +9,7 @@
 		<column name="contactBookName" type="String"></column>
 		<column name="contactDescription" type="String"></column>
 		<column name="contactActive" type="boolean"></column>
-		<column name="detailBooks" type="Collection" entity="DetailBook"
-			mapping-key="contactBookId"></column>
+		<column name="detailBooks" type="Collection" entity="DetailBook" mapping-key="contactBookId"></column>
 			
 		<column name="companyid" type="long"/>
 	  	<column name="userid" type="long"/>	
@@ -30,6 +29,7 @@
 		<column name="internal" type="String"></column>
 		<column name="home" type="String"></column>
 		<column name="mobile" type="String"></column>
+		<column name="email" type="String"></column>
 		<column name="contactBookId" type="long"></column>
 		
 		<column name="companyid" type="long"/>

@@ -27,6 +27,7 @@
 		<property name="internal" column="internal_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="home" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="mobile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="contactBookId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyid" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userid" type="com.liferay.portal.dao.orm.hibernate.LongType" />

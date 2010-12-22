@@ -31,6 +31,7 @@ public class DetailBookSearch extends SearchContainer<DetailBook> {
 		headerNames.add("internal-don-vi-co-so");
 		headerNames.add("home-don-vi-co-so");
 		headerNames.add("mobile-don-vi-co-so");
+		headerNames.add("email");
 		headerNames.add("active");
 		headerNames.add("edit");
 		headerNames.add("delete");
@@ -38,15 +39,14 @@ public class DetailBookSearch extends SearchContainer<DetailBook> {
 		orderableHeaders.put("ma-don-vi-co-so", "detailBookCode");
 		orderableHeaders.put("ten-don-vi-co-so", "detailBookName");
 		orderableHeaders.put("mo-ta-don-vi-co-so", "detailDescription");
+		orderableHeaders.put("email", "email");
 	}	
 
 	public static final String EMPTY_RESULTS_MESSAGE = "no-detail-book-were-found";
 
 	public DetailBookSearch(PortletRequest portletRequest, PortletURL iteratorURL) {
-		super(
-			portletRequest, new DetailBookDisplayTerms(portletRequest),
-			new DetailBookSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
-			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
+		super(portletRequest, new DetailBookDisplayTerms(portletRequest),new DetailBookSearchTerms(portletRequest), 
+				DEFAULT_CUR_PARAM, DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
 
 		DetailBookDisplayTerms displayTerms = (DetailBookDisplayTerms)getDisplayTerms();
 		iteratorURL.setParameter(DetailBookDisplayTerms.CODE, displayTerms.getDetailBookCode());
@@ -56,7 +56,7 @@ public class DetailBookSearch extends SearchContainer<DetailBook> {
 		iteratorURL.setParameter(DetailBookDisplayTerms.INTERNAL, displayTerms.getInternal());
 		iteratorURL.setParameter(DetailBookDisplayTerms.HOME, displayTerms.getHome());
 		iteratorURL.setParameter(DetailBookDisplayTerms.MOBILE, displayTerms.getMobile());
-		iteratorURL.setParameter(DetailBookDisplayTerms.CONTACTBOOKID, String.valueOf(displayTerms.getContactBookId()));
+		iteratorURL.setParameter(DetailBookDisplayTerms.EMAIL, displayTerms.getEmail());
 		
 		try {
 			PortalPreferences preferences =	PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
