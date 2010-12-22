@@ -93,9 +93,9 @@ public interface DetailBookLocalService {
         long contactBookId, java.lang.String detailBookCode,
         java.lang.String detailBookName, java.lang.String detailDescription,
         java.lang.String zip, java.lang.String internal, java.lang.String home,
-        java.lang.String mobile, java.lang.String sortField, int sortType,
-        boolean reverse, int start, int end)
-        throws com.liferay.portal.SystemException;
+        java.lang.String mobile, java.lang.String email,
+        java.lang.String sortField, int sortType, boolean reverse, int start,
+        int end) throws com.liferay.portal.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public com.liferay.portal.kernel.search.Hits search(long companyId,
