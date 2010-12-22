@@ -136,7 +136,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta, portletURL, null, null);
 %>
-
+<div class="listcategory">
 <c:choose>
 	<c:when test='<%= selectionStyle.equals("dynamic") && Validator.isNotNull(category) %>'>
 		<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_by_category.jspf" %>
@@ -148,6 +148,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		<%@ include file="/html/portlet/nss/asset_publisher_index/view_manual.jspf" %>
 	</c:when>
 </c:choose>
+</div>
 
 <c:if test='<%= !paginationType.equals("none") && (searchContainer.getTotal() > searchContainer.getResults().size()) %>'>
 	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="<%= paginationType %>" />

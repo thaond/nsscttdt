@@ -217,12 +217,12 @@ else if (className.equals(JournalArticle.class.getName())) {
 		}
 
 		if (abstractNumber == 1) {
-			sb.append("<h5><a style=\"font-size:20px\" href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h4><a href=\"" + viewURL + "\">" + "" + title + "</a></h4>");
 		} else {
-			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h4><a href=\"" + viewURL + "\">" + "" + title + "</a></h4>");
 		}
 		
-		sb.append("<h1>" + df.format(asset.getPublishDate()) + "</h1>");
+		sb.append("<h5>" + df.format(asset.getPublishDate()) + "</h5>");
 		
 		sb.append("<span>" +  StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()), abstractLength) + "</span>");
 
@@ -275,15 +275,11 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
 <c:if test="<%= show %>">
-	<div class="asset-abstract assetall">
+	<div class="showany">
 		<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
-		<div class="asset-content">
-			<p class="asset-summary"><%= summary%></p>
-		</div>
+		<div class="asset-content"><%= summary%></div>
 		<div class="asset-metadata"><%@ include file="/html/portlet/nss/asset_publisher_index/asset_metadata.jspf" %></div>
-		
 	</div>
 	
 </c:if>

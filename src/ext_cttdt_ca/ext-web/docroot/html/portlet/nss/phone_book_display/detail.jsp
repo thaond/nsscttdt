@@ -25,6 +25,7 @@
 	String redirect = renderRequest.getParameter("redirect");
 	DetailBook detailBook = (DetailBook)renderRequest.getAttribute("detailBook");
 	long contactBookId = detailBook.getContactBookId();
+	
 	PortletURL backURL = renderResponse.createRenderURL();
 	backURL.setWindowState(WindowState.NORMAL);
 	backURL.setParameter("struts_action", "/nss/phone_book/view");
@@ -40,32 +41,36 @@
 	
 <table>
 	<tr>
-		<td><liferay-ui:message key="detail-book-code" /></td>
+		<td><liferay-ui:message key="detail-code" /></td>
 		<td><%=detailBook.getDetailBookCode() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-name" /></td>
+		<td><liferay-ui:message key="detail-name" /></td>
 		<td><%=detailBook.getDetailBookName() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-description" /></td>
+		<td><liferay-ui:message key="detail-description" /></td>
 		<td><%=detailBook.getDetailDescription() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-zip" /></td>
+		<td><liferay-ui:message key="detail-zip" /></td>
 		<td><%=detailBook.getZip() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-internal" /></td>
+		<td><liferay-ui:message key="detail-internal" /></td>
 		<td><%=detailBook.getInternal() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-home" /></td>
+		<td><liferay-ui:message key="detail-home" /></td>
 		<td><%=detailBook.getHome() %></td>
 	</tr>
 	<tr>
-		<td><liferay-ui:message key="detail-book-mobile" /></td>
+		<td><liferay-ui:message key="detail-mobile" /></td>
 		<td><%=detailBook.getMobile() %></td>
+	</tr>
+	<tr>
+		<td><liferay-ui:message key="detail-email" /></td>
+		<td><%=detailBook.getEmail() %></td>
 	</tr>
 </table>
     	

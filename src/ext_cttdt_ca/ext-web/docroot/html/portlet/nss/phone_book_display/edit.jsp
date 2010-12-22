@@ -9,6 +9,7 @@
 <%
 	String redirect = renderRequest.getParameter("redirect");
 	DetailBook detailBook = (DetailBook) renderRequest.getAttribute("detailBook");
+	long contactBookId = detailBook.getContactBookId();
 	boolean check = detailBook.getDetailActive();
 	String checked = "";
 	if(check == true){
@@ -20,8 +21,19 @@
 	portletURL.setParameter("struts_action", "/nss/phone_book/view_detail");
 	portletURL.setParameter(Constants.CMD,Constants.UPDATE);
 	portletURL.setParameter("redirect", redirect);
+	
+	PortletURL backURL = renderResponse.createRenderURL();
+	backURL.setWindowState(WindowState.NORMAL);
+	backURL.setParameter("struts_action", "/nss/phone_book/view");
+	backURL.setParameter("redirect", redirect);
+	backURL.setParameter(Constants.CMD,"DETAIL");
+	backURL.setParameter("contactBookId", String.valueOf(contactBookId));
+	backURL.setParameter("tabs", "detail");
 %>
 
+<a href="<%= backURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span></a>
+
+<br>
 
 <form action="<%=portletURL.toString()%>" method="post" name="<portlet:namespace />fm" onsubmit="return check(this);">
 <input type="hidden" name="<portlet:namespace/>detailBookId" value="<%= detailBook.getDetailBookId() %>">
@@ -58,6 +70,10 @@
 			<td><input type="text" name="<portlet:namespace/>detailBookMobile" value="<%= detailBook.getMobile()%>"></td>
 		</tr>
 		<tr>
+			<td><liferay-ui:message key="detail-email" /></td>
+			<td><input type="text" name="<portlet:namespace/>detailBookEmail" value="<%= detailBook.getEmail()%>"></td>
+		</tr>
+		<tr>
 			<td><liferay-ui:message key="detail-active" /></td>
 			<td><input type="checkbox" name="<portlet:namespace/>detailBookActive" <%=checked %>></td>
 		</tr>
@@ -69,7 +85,7 @@
 
 	 function check(fm){
 		 if((checkCode(fm) == false) || checkName(fm) == false || (checkDescription(fm) == false) || (checkZip(fm) == false) 
-				 || (checkInternal(fm) == false) || (checkHome(fm) == false) || (checkMobile(fm) == false)){
+				 || (checkInternal(fm) == false) || (checkHome(fm) == false) || (checkMobile(fm) == false) || (checkEmail(fm) == false)){
 			return false;			 
 		 }
 	 }
@@ -156,5 +172,16 @@
 		        return false;
 		      }
 	   	 }
+	 }
+	 
+	 function checkEmail(fm) {
+		 var detailBookEmail = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookEmail.value;
+	     var regex = /^(([\-\w]+)\.?)+@(([\-\w]+)\.?)+\.[a-zA-Z]{2,4}$/;
+	     if (detailBookEmail != ""){
+	    	 if (!regex.test(detailBookEmail)){
+	    		 alert("<liferay-ui:message key='input-email-validate'/>")
+		       return false;
+	    	}
+	 	}
 	 }
 </script>
