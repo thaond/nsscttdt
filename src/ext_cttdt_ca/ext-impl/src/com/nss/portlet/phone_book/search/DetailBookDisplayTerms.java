@@ -13,7 +13,7 @@ public class DetailBookDisplayTerms extends DisplayTerms{
 	public static final String INTERNAL = "internal";
 	public static final String HOME = "home";
 	public static final String MOBILE = "mobile";
-	public static final String CONTACTBOOKID = "contactBookId";
+	public static final String EMAIL = "email";
 	
 	protected String detailBookCode;
 	protected String detailBookName;
@@ -22,7 +22,7 @@ public class DetailBookDisplayTerms extends DisplayTerms{
 	protected String internal;
 	protected String home;
 	protected String mobile;
-	protected long contactBookId;
+	protected String email;
 
 	public DetailBookDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);
@@ -33,7 +33,7 @@ public class DetailBookDisplayTerms extends DisplayTerms{
 		internal = ParamUtil.getString(portletRequest,INTERNAL);
 		home = ParamUtil.getString(portletRequest,HOME);
 		mobile = ParamUtil.getString(portletRequest,MOBILE);
-		contactBookId = ParamUtil.getLong(portletRequest,CONTACTBOOKID);
+		email = ParamUtil.getString(portletRequest,EMAIL);
 	}
 
 	public String getDetailBookCode() {
@@ -92,12 +92,11 @@ public class DetailBookDisplayTerms extends DisplayTerms{
 		this.mobile = mobile;
 	}
 
-	public long getContactBookId() {
-		return contactBookId;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setContactBookId(long contactBookId) {
-		this.contactBookId = contactBookId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
 }

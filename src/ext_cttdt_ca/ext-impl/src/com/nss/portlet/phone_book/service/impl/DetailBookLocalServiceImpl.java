@@ -78,7 +78,7 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 	}
 
 	public Hits search(long companyId, long contactBookId, String detailBookCode,
-			String detailBookName, String detailDescription, String zip, String internal, String home, String mobile,
+			String detailBookName, String detailDescription, String zip, String internal, String home, String mobile, String email,
 			String sortField, int sortType, boolean reverse, int start, int end)
 			throws SystemException {
 		try {
@@ -93,25 +93,22 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 			BooleanQuery internalQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery homeQuery = BooleanQueryFactoryUtil.create();
 			BooleanQuery mobileQuery = BooleanQueryFactoryUtil.create();
+			BooleanQuery emailQuery = BooleanQueryFactoryUtil.create();
 			
 			List<BooleanQuery> booleanQueries = new ArrayList<BooleanQuery>();
 
 			if (Validator.isNotNull(detailBookCode)) {
-				detailBookCodeQuery.addTerm(DetailBookDisplayTerms.CODE,
-						detailBookCode);
+				detailBookCodeQuery.addTerm(DetailBookDisplayTerms.CODE, detailBookCode);
 				booleanQueries.add(detailBookCodeQuery);
 			}
 
 			if (Validator.isNotNull(detailBookName)) {
-				detailBookNameQuery.addTerm(DetailBookDisplayTerms.NAME,
-						detailBookName);
+				detailBookNameQuery.addTerm(DetailBookDisplayTerms.NAME, detailBookName);
 				booleanQueries.add(detailBookNameQuery);
 			}
 
 			if (Validator.isNotNull(detailDescription)) {
-				detailDescriptionQuery
-						.addTerm(DetailBookDisplayTerms.DESCRIPTION,
-								detailDescription);
+				detailDescriptionQuery.addTerm(DetailBookDisplayTerms.DESCRIPTION, detailDescription);
 				booleanQueries.add(detailDescriptionQuery);
 			}
 			
@@ -133,6 +130,11 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 			if (Validator.isNotNull(mobile)) {
 				mobileQuery.addTerm(DetailBookDisplayTerms.MOBILE,mobile);
 				booleanQueries.add(mobileQuery);
+			}
+			
+			if (Validator.isNotNull(email)) {
+				emailQuery.addTerm(DetailBookDisplayTerms.EMAIL,email);
+				booleanQueries.add(emailQuery);
 			}
 			
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
@@ -167,13 +169,14 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 			BooleanQuery searchQuery = BooleanQueryFactoryUtil.create();
 
 			if (Validator.isNotNull(keywords)) {
-				searchQuery.addTerm("detailBookCode", keywords + "*");
-				searchQuery.addTerm("detailBookName", keywords + "*");
-				searchQuery.addTerm("detailDescription", keywords + "*");
-				searchQuery.addTerm("zip", keywords + "*");
-				searchQuery.addTerm("internal", keywords + "*");
-				searchQuery.addTerm("home", keywords + "*");
-				searchQuery.addTerm("mobile", keywords + "*");
+				searchQuery.addTerm("detailBookCode", keywords);
+				searchQuery.addTerm("detailBookName", keywords);
+				searchQuery.addTerm("detailDescription", keywords);
+				searchQuery.addTerm("zip", keywords);
+				searchQuery.addTerm("internal", keywords);
+				searchQuery.addTerm("home", keywords);
+				searchQuery.addTerm("mobile", keywords);
+				searchQuery.addTerm("email", keywords);
 			}
 			
 			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();

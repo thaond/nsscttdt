@@ -29,6 +29,7 @@ public class DetailBookIndexer implements Indexer{
 		String detailInternal = detailBook.getInternal();
 		String detailHome = detailBook.getHome();
 		String detailMobile = detailBook.getMobile();
+		String detailEmail = detailBook.getEmail();
 		
 		Document doc = new DocumentImpl();
 		doc.addUID(PORTLET_ID, detailBookId);
@@ -44,6 +45,7 @@ public class DetailBookIndexer implements Indexer{
 		doc.addKeyword(DetailBookDisplayTerms.INTERNAL, detailInternal);
 		doc.addKeyword(DetailBookDisplayTerms.HOME, detailHome);
 		doc.addKeyword(DetailBookDisplayTerms.MOBILE, detailMobile);
+		doc.addKeyword(DetailBookDisplayTerms.EMAIL, detailEmail);
 		
 		return doc;
 	}

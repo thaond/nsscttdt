@@ -1081,6 +1081,7 @@
 		<field name="internal" type="String" />
 		<field name="home" type="String" />
 		<field name="mobile" type="String" />
+		<field name="email" type="String" />
 		<field name="contactBookId" type="long" />
 		<field name="companyid" type="long" />
 		<field name="userid" type="long" />
