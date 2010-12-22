@@ -1676,14 +1676,12 @@ create table log_workflow_journal_article (
 	groupId bigint,
 	companyId bigint,
 	userId bigint,
-	roleId bigint,
+	userIds varchar(75) null,
 	dateReceiptOfUserReceipt timestamp null,
 	dateProcessOfUserReceipt timestamp null,
 	dateSendOfUserReceipt timestamp null,
 	useridProcess bigint,
-	roleIdProcess bigint,
-	dateReceiptOfUserProcess timestamp null,
-	dateProcessOfUserProcess timestamp null,
+	userIdsProcess varchar(75) null,
 	processInformation varchar(75) null,
 	workflowStatusBefore varchar(75) null,
 	workflowStatusAfter varchar(75) null
@@ -1692,6 +1690,32 @@ create table log_workflow_journal_article (
 create table nss_certificate (
 	userId bigint not null primary key,
 	x509Certificate varchar(75) null
+);
+
+create table nss_contact_book (
+	contactBookId bigint not null primary key,
+	contactBookCode varchar(75) null,
+	contactBookName varchar(75) null,
+	contactDescription varchar(75) null,
+	contactActive bool,
+	companyid bigint,
+	userid bigint
+);
+
+create table nss_detail_book (
+	detailBookId bigint not null primary key,
+	detailBookCode varchar(75) null,
+	detailBookName varchar(75) null,
+	detailDescription varchar(75) null,
+	detailActive bool,
+	zip varchar(75) null,
+	internal_ varchar(75) null,
+	home varchar(75) null,
+	mobile varchar(75) null,
+	email varchar(75) null,
+	contactBookId bigint,
+	companyid bigint,
+	userid bigint
 );
 
 create table nss_image_signer (
@@ -1732,12 +1756,13 @@ create table nss_workflow_journal_article (
 	groupId bigint,
 	companyId bigint,
 	userId bigint,
-	roleId bigint,
+	userIds varchar(75) null,
 	processDefinitionId bigint,
 	processInstanceId bigint,
 	resourcePrimkey bigint,
-	journalType varchar(75) null,
-	countImageOfArticle integer
+	countImageOfArticle integer,
+	datecomplete timestamp null,
+	statuscurrent varchar(75) null
 );
 
 create table processdefinition (
@@ -5848,6 +5873,10 @@ create index IX_A8355678 on instancebean (status, finish);
 
 create index IX_6B798ECC on log_workflow_journal_article (resourcePrimkey);
 
+create index IX_66B4029 on nss_contact_book (companyid);
+
+create index IX_36E3A79C on nss_detail_book (companyid);
+
 create index IX_E9CED857 on nss_quan_ly_quy_trinh_duyet_tin (workflowname, version_);
 
 create index IX_895462F4 on nss_signature (articleId);
@@ -5855,6 +5884,7 @@ create index IX_55D889C4 on nss_signature (articlePrimKey);
 create index IX_4B61DDFE on nss_signature (articlePrimKey, userId);
 create index IX_A890C763 on nss_signature (articlePrimKey, userId, articleId);
 
+create index IX_3C7F46EA on nss_workflow_journal_article (processInstanceId);
 create index IX_7BD52FD6 on nss_workflow_journal_article (resourcePrimkey);
 
 
