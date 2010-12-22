@@ -189,6 +189,7 @@
 	height:310px;
 	position:relative;
 	width:50%;
+	margin-bottom: 15px;
 }
 .imgnews img {
 	height: 310px;
@@ -198,7 +199,7 @@
 	bottom:0;
 	position:absolute;
 	z-index:100;
-	background: url("../images/catp/bgnewsimg.png") repeat 0 0;color:#f6f6f6; padding:5px;
+	background: url("../images/catp/bgnewsimg.png") repeat 0 0;color:#f6f6f6; padding:5px 0 5px 5px;
 }
 .boxtextnews h5 a {
 	font-size: 12px;
@@ -208,7 +209,7 @@
 	padding-top: 5px;
 	padding-bottom: 5px;opacity:1;cursor:pointer;
 }
-.boxtextnews span {font-size: 11px;}
+.boxtextnews span {font-size: 11px;display: block;padding-right: 5px;}
 .listupdate {
 	float: right;
 	width: 47%;
@@ -243,7 +244,7 @@
 	padding-top: 5px;
 	text-shadow: 0 1px 0 #014892;
 	padding-right: 50px;
-	min-width:120px;
+	min-width:120px;font-size: 12px;
 }
 .cont_update {
 	background-image: url(../images/catp/bgupdate.jpg);

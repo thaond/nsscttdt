@@ -106,6 +106,7 @@ if (results.size() < abstractDelta) {
 
 		try {
 	%>
+	
 		<%@ include file="/html/portlet/nss/asset_publisher_index/display/nss_title_list.jsp" %>
 	<%
 		} catch (Exception e) {

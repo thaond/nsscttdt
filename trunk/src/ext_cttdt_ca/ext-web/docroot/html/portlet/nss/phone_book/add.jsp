@@ -1,7 +1,8 @@
+<%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
+
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="javax.portlet.WindowState"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
-<%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
 
 <%
 	String redirect = renderRequest.getParameter("redirect");

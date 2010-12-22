@@ -158,7 +158,7 @@ if (results.size() < abstractDelta) {
 									if (articleDisplay.isSmallImage()) {
 										sb.append("<div class=\"news\">");
 
-										sb.append("<a style=\"display: block;cursor: pointer;position: absolute;\" href=\"" + _viewURL + "\"><img alt=\"");
+										sb.append("<a style=\"display: block;cursor: pointer;\" href=\"" + _viewURL + "\"><img alt=\"");
 										sb.append(LanguageUtil.get(pageContext, "web-content-image"));
 										sb.append("\" src=\"");
 										if (Validator.isNotNull(articleDisplay.getSmallImageURL())) {
@@ -242,7 +242,7 @@ if (results.size() < abstractDelta) {
 			document.getElementById("<portlet:namespace />slideShow").innerHTML = <portlet:namespace />imgArray[<portlet:namespace />imgArrayPos];
 		}
 		
-		<portlet:namespace />play();
+	//	<portlet:namespace />play();
 	</script>
 
 	<div id="<portlet:namespace />slideShow">

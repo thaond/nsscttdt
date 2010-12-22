@@ -47,16 +47,19 @@ viewFullContentURL.setParameter("assetId", String.valueOf(asset1.getAssetId()));
 
 viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 %>
-<div class="listnewsmore">
-	<c:if test="<%= assetIndex1 == 0 %>">
-		<ul class="title-list">
-	</c:if>
 
+	<c:if test="<%= assetIndex1 == 1 %>">
+	<div class="listany">
+	<ul>
+	</c:if>
 	<c:if test="<%= show1 %>">
+	
 		<li>
 			<c:choose>
 				<c:when test="<%= Validator.isNotNull(viewURL1) %>">
-					<a href="<%= viewURL1 %>"><%= title1 %></a> <font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
+					<a href="<%= viewURL1 %>"><%= title1 %>
+						<font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
+					</a> 
 				</c:when>
 				<c:otherwise>
 					<%= title1 %> <font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
@@ -68,7 +71,8 @@ viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 		</li>
 	</c:if>
 
-	<c:if test="<%= (assetIndex1 + 1) == results.size() %>">
-		</ul>
+	<c:if test="<%= (assetIndex1 + 1) == delta %>">
+	
+	</ul>
+	</div>
 	</c:if>
-</div>

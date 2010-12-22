@@ -1,12 +1,14 @@
+<%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
+
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="javax.portlet.WindowState"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
-<%@ include file="/html/portlet/nss/phone_book/init.jsp"%>
 
 <%	
 	long contactBookId = ParamUtil.getLong(renderRequest,"contactBookId");
 	String redirect = renderRequest.getParameter("redirect");
+	
 	PortletURL portletURL = renderResponse.createActionURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action", "/nss/phone_book/view_detail");
@@ -58,6 +60,10 @@
 				<td><input type="text" name="<portlet:namespace/>detailBookMobile"></td>
 			</tr>
 			<tr>
+				<td><liferay-ui:message key="detail-email" /></td>
+				<td><input type="text" name="<portlet:namespace/>detailBookEmail"></td>
+			</tr>
+			<tr>
 				<td><liferay-ui:message key="detail-active" /></td>
 				<td><input type="checkbox" name="<portlet:namespace/>detailBookActive"></td>
 			</tr>
@@ -69,7 +75,7 @@
 
 	 function check(fm){
 		 if((checkCode(fm) == false) || checkName(fm) == false || (checkDescription(fm) == false) || (checkZip(fm) == false) 
-				 || (checkInternal(fm) == false) || (checkHome(fm) == false) || (checkMobile(fm) == false)){
+				 || (checkInternal(fm) == false) || (checkHome(fm) == false) || (checkMobile(fm) == false) || (checkEmail(fm) == false)){
 			return false;			 
 		 }
 	 }
@@ -157,4 +163,16 @@
 		      }
 	   	 }
 	 }
+	 
+	 function checkEmail(fm) {
+		 var detailBookEmail = document.<portlet:namespace/>fm.<portlet:namespace/>detailBookEmail.value;
+	     var regex = /^(([\-\w]+)\.?)+@(([\-\w]+)\.?)+\.[a-zA-Z]{2,4}$/;
+	     if (detailBookEmail != ""){
+	    	 if (!regex.test(detailBookEmail)){
+	    		 alert("<liferay-ui:message key='input-email-validate'/>")
+		       return false;
+	    	}
+	 	}
+	 }
+
 </script>
