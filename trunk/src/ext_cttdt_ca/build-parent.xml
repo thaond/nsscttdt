@@ -222,7 +222,7 @@
 				
 				<mkdir dir="${app.server.tomcat.portal.imagesigners.dir}" />
 				<copy todir="${app.server.tomcat.portal.imagesigners.dir}" >
-						<fileset dir="imagesigners" includes="*.png, *.jpg" />
+					<fileset dir="imagesigners" includes="*.png, *.jpg" />
 				</copy>
 				
 				<copy file="classes/log4j.properties" todir="${app.server.classes.portal.dir}" />
