@@ -389,6 +389,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			preferences.setValue(vocabularyAbstractName, valueAbstract);
 			preferences.setValue(vocabularyChildrenName, valueChildren);
 			List<TagsEntry> tagsEntryChildrens = new ArrayList<TagsEntry>();
+			preferences.setValue(String.valueOf(vocabularyId),ParamUtil.getString(actionRequest, String.valueOf(vocabularyId)));
 			try {
 				tagsEntryChildrens =
 					JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyId);

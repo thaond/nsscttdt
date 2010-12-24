@@ -194,3 +194,31 @@ input-number-validate = Nhập một số điện thoại hợp lệ
 input-length-number = Số điện thoại quá ngắn
 input-email-validate = Nhập một địa chỉ email hợp lệ
 javax.portlet.title.NSS_PHONE_BOOK = Quản lý danh bạ
+##
+##
+##
+configuration = Cấu hình
+submit = Lưu lại
+scope = Phạm vi
+archived = Lưu trữ
+asset-type = Kiểu tin
+search-operator = Hành động tìm kiếm
+select-categories = Chọn loại tin
+
+##
+## managementworkflowjournal
+##
+error_delete_workflowjounal=\ufeffKh\u00f4ng x\u00f3a \u0111\u01b0\u1ee3c workflow n\u00e0y
+please-select-file-deploy=\ufeffvui l\u00f2ng ch\u1ecdn t\u1eadp tin
+please-select-file-xml=\ufeffvui l\u00f2ng ch\u1ecdn file xml
+input-date-validate-dd-mm-yyyy=\ufeffNh\u1eadp m\u1ed9t ng\u00e0y h\u1ee3p l\u1ec7 theo \u0111\u1ecbnh d\u1ea1ng dd/mm/yyyy
+input-date-validate=Nh\u1eadp m\u1ed9t ng\u00e0y h\u1ee3p l\u1ec7
+input-month-validate=Nh\u1eadp m\u1ed9t th\u00e1ng h\u1ee3p l\u1ec7
+input-year-validate=Nh\u1eadp m\u1ed9t n\u0103m h\u1ee3p l\u1ec7
+date-from-must-not-be-less-than-date-now=Ng\u00e0y b\u1eaft \u0111\u1ea7u kh\u00f4ng \u0111\u01b0\u1ee3c nh\u1ecf h\u01a1n ng\u00e0y hi\u1ec7n t\u1ea1i
+date-from-new-must-not-be-less-than-date-from-old=Ng\u00e0y b\u1eaft \u0111\u1ea7u c\u1ee7a quy tr\u00ecnh sau kh\u00f4ng \u0111\u01b0\u1ee3c nh\u1ecf h\u01a1n ng\u00e0y b\u1eaft \u0111\u1ea7u c\u1ee7a quy tr\u00ecnh tr\u01b0\u1edbc
+date-to-must-not-be-less-than-date-from=Ng\u00e0y k\u1ebft th\u00fac kh\u00f4ng \u0111\u01b0\u1ee3c nh\u1ecf h\u01a1n ng\u00e0y b\u1eaft \u0111\u1ea7u
+update-work-flow-old=\ufeffB\u1ea1n c\u00f3 mu\u1ed1n c\u1eadp nh\u1eadt l\u1ea1i ng\u00e0y k\u1ebft th\u00fac c\u1ee7a quy tr\u00ecnh tr\u01b0\u1edbc kh\u00f4ng
+nss-generate-template-id=M\u1EABu ph\u00E1t sinh m\u00E3
+management-workflow-journal=\ufeffQu\u1ea3n l\u00fd quy tr\u00ecnh duy\u1ec7t tin
+javax.portlet.title.NSS_MANAGEMENTWORKFLOWJOURNAL=\ufeffQu\u1ea3n l\u00fd quy tr\u00ecnh duy\u1ec7t tin 
