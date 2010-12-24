@@ -216,6 +216,16 @@ b2 = (nss_view_sign_type.equalsIgnoreCase("sign") ? true : false);
 b3 = (nss_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
 b4 = (nss_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
 //end TuNV update
+long categoryParentId = GetterUtil.getLong(preferences.getValue("categoryParentId", 0));
+try{
+TagsVocabulary t = TagsVocabularyLocalServiceUtil.getTagsVocabulary(categoryParentId);
+System.out.println("name-----------"+t.getName());
+
+}catch(Exception e){
+	System.out.println("loi ------------------"+e.getMessage());
+}
+System.out.println("category-----------"+category);
+System.out.println("categoryParentId----------------------"+categoryParentId);
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher_index/init-ext.jsp" %>

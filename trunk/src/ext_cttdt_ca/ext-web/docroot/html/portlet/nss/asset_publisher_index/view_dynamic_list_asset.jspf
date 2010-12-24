@@ -3,6 +3,8 @@
 <%@page import="java.util.List"%>
 
 <%
+request.setAttribute("view.jsp-abstractDelta", abstractDelta);
+System.out.println("results ---------------------------- "+results.size());
 if (results.size() < abstractDelta) {
 	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {
 		TagsAsset asset = (TagsAsset)results.get(assetIndex);
@@ -124,7 +126,7 @@ if (results.size() < abstractDelta) {
 									long vocabularyId = asset.getCategories().get(0).getVocabularyId();
 									selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
 								}
-
+								System.out.println("selectPlId +++ "+selectPlId);
 								//lay gia tri cua layoutid
 
 								List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
@@ -140,6 +142,7 @@ if (results.size() < abstractDelta) {
 										break;
 									}
 								}
+								System.out.println("portletAssetPublisher +++ "+portletAssetPublisher);
 								//phmphuc end 19/07/2010
 
 								PortletURL viewFullContentURL = new PortletURLImpl(request, portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
