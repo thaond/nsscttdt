@@ -152,6 +152,24 @@
         <add-default-resource>true</add-default-resource>
     </portlet>
     <portlet>
+        <portlet-name>NSS_VOTE</portlet-name>
+        <struts-path>nss/vote</struts-path>
+        <configuration-action-class>com.nss.portlet.vote.action.ConfigurationActionImpl</configuration-action-class>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_NECESSARY_INFO</portlet-name>
+        <struts-path>nss/necessary_info</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_NECESSARY_INFO_DISPLAY</portlet-name>
+        <struts-path>nss/necessary_info_display</struts-path>
+        <use-default-template>false</use-default-template>
+        <configuration-action-class>com.nss.portlet.necessary_info_display.action.ConfigurationActionImpl</configuration-action-class>
+        <instanceable>true</instanceable>
+    </portlet>
+    <portlet>
         <portlet-name>NSS_ADV_DISPLAY</portlet-name>
         <struts-path>nss/adv_display</struts-path>
         <use-default-template>false</use-default-template>
@@ -173,10 +191,56 @@
         <css-class-wrapper>portlet-tintonghop</css-class-wrapper>
     </portlet>
     <portlet>
+        <portlet-name>NSS_THOITIET_TYGIA</portlet-name>
+        <struts-path>nss/thoitiet_tygia</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
         <portlet-name>NSGS_CONTACT</portlet-name>
         <struts-path>nss/contact</struts-path>
         <use-default-template>false</use-default-template>
     </portlet>
+    <portlet>
+        <portlet-name>NSS_QA_CAU_HOI</portlet-name>
+        <struts-path>nss/qa_cau_hoi</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_QA_CHU_DE</portlet-name>
+        <struts-path>nss/qa_chu_de</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_QA_PHAN_QUYEN</portlet-name>
+        <struts-path>nss/qa_phan_quyen</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_QA_CAU_TRA_LOI</portlet-name>
+        <struts-path>nss/qa_cau_tra_loi</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <!-- Meeting Calendar -->
+    <portlet>
+        <portlet-name>EXT_M_CAL</portlet-name>
+        <icon>/html/icons/calendar.png</icon>
+        <struts-path>ext/meeting_calendar</struts-path>
+        <configuration-action-class>com.ext.portlet.meetingcalendar.action.ConfigurationActionImpl</configuration-action-class>
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <instanceable>false</instanceable>
+    </portlet>
+    <!-- Meeting Calendar View -->
+    <portlet>
+        <portlet-name>EXT_M_CAL_VIEW</portlet-name>
+        <icon>/html/icons/calendar.png</icon>
+        <struts-path>ext/meeting_calendar_view</struts-path>
+        <configuration-action-class>com.ext.portlet.meetingcalendarview.action.ConfigurationActionImpl</configuration-action-class>
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <instanceable>false</instanceable>
+    </portlet>
+    <!-- #### end ######## -->
     <portlet>
         <portlet-name>NSS_THONG_KE_TIN</portlet-name>
         <struts-path>nss/thong_ke_tin</struts-path>

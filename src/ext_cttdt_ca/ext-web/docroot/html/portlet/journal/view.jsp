@@ -26,11 +26,8 @@
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "web-content");
-
 PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.MAXIMIZED);
-
+portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("struts_action", "/journal/view");
 portletURL.setParameter("tabs1", tabs1);
 %>
@@ -41,7 +38,7 @@ portletURL.setParameter("tabs1", tabs1);
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = "<%= scopeGroupId %>";
 			document.<portlet:namespace />fm.<portlet:namespace />deleteArticleIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		}
 	}
 
@@ -50,7 +47,7 @@ portletURL.setParameter("tabs1", tabs1);
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = "<%= scopeGroupId %>";
 			document.<portlet:namespace />fm.<portlet:namespace />deleteFeedIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_feed" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_feed" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		}
 	}
 
@@ -59,7 +56,7 @@ portletURL.setParameter("tabs1", tabs1);
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = "<%= scopeGroupId %>";
 			document.<portlet:namespace />fm.<portlet:namespace />deleteStructureIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_structure" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		}
 	}
 
@@ -68,7 +65,7 @@ portletURL.setParameter("tabs1", tabs1);
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.DELETE %>";
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = "<%= scopeGroupId %>";
 			document.<portlet:namespace />fm.<portlet:namespace />deleteTemplateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_template" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_template" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		}
 	}
 
@@ -77,19 +74,19 @@ portletURL.setParameter("tabs1", tabs1);
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.EXPIRE %>";
 			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = "<%= scopeGroupId %>";
 			document.<portlet:namespace />fm.<portlet:namespace />expireArticleIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		}
 	}
 </script>
 
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-noi-dung" /></p></h4></div>
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
-
 <liferay-ui:tabs
 	names="web-content,structures,templates,feeds,recent"
 	url="<%= portletURL.toString() %>"
 />
-
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs1.equals("web-content") %>'>
 		<input name="<portlet:namespace />groupId" type="hidden" value="" />
@@ -112,21 +109,16 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			ArticleSearchTerms searchTerms = (ArticleSearchTerms)searchContainer.getSearchTerms();
 			%>
 
 			<%@ include file="/html/portlet/journal/article_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
+			<br>
 			<input type="button" value="<liferay-ui:message key="expire" />" onClick="<portlet:namespace />expireArticles();" />
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteArticles();" />
-
-			<br /><br />
 
 			<%
 			List resultRows = searchContainer.getResultRows();
@@ -140,7 +132,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_article");
 				rowURL.setParameter("redirect", currentURL);
@@ -204,7 +196,6 @@ portletURL.setParameter("tabs1", tabs1);
 	<c:when test='<%= tabs1.equals("structures") %>'>
 		<input name="<portlet:namespace />groupId" type="hidden" value="" />
 		<input name="<portlet:namespace />deleteStructureIds" type="hidden" value="" />
-
 		<liferay-ui:error exception="<%= RequiredStructureException.class %>" message="required-structures-could-not-be-deleted" />
 
 		<%
@@ -222,7 +213,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			StructureSearchTerms searchTerms = (StructureSearchTerms)searchContainer.getSearchTerms();
@@ -248,7 +239,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_structure");
 				rowURL.setParameter("redirect", currentURL);
@@ -306,7 +297,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			TemplateSearchTerms searchTerms = (TemplateSearchTerms)searchContainer.getSearchTerms();
@@ -334,7 +325,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_template");
 				rowURL.setParameter("redirect", currentURL);
@@ -383,7 +374,7 @@ portletURL.setParameter("tabs1", tabs1);
 			searchContainer="<%= searchContainer %>"
 		/>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
 			FeedSearchTerms searchTerms = (FeedSearchTerms)searchContainer.getSearchTerms();
@@ -409,7 +400,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				PortletURL rowURL = renderResponse.createRenderURL();
 
-				rowURL.setWindowState(WindowState.MAXIMIZED);
+				rowURL.setWindowState(WindowState.NORMAL);
 
 				rowURL.setParameter("struts_action", "/journal/edit_feed");
 				rowURL.setParameter("redirect", currentURL);
@@ -482,7 +473,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editArticleURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editArticleURL">
 						<portlet:param name="struts_action" value="/journal/edit_article" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(article.getGroupId()) %>" />
@@ -532,7 +523,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editStructureURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editStructureURL">
 						<portlet:param name="struts_action" value="/journal/edit_structure" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(structure.getGroupId()) %>" />
@@ -581,7 +572,7 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				%>
 
-					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editTemplateURL">
+					<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editTemplateURL">
 						<portlet:param name="struts_action" value="/journal/edit_template" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="groupId" value="<%= String.valueOf(template.getGroupId()) %>" />
@@ -607,5 +598,5 @@ portletURL.setParameter("tabs1", tabs1);
 		</table>
 	</c:when>
 </c:choose>
-
+</div>
 </form>

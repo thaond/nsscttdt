@@ -55,7 +55,7 @@ headerNames.add(StringPool.BLANK);
 	/>
 </c:if>
 
-<c:if test="<%= !passwordPolicyEnabled && windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= !passwordPolicyEnabled && windowState.equals(WindowState.NORMAL) %>">
 
 	<%
 	PasswordPolicySearchTerms searchTerms = (PasswordPolicySearchTerms)searchContainer.getSearchTerms();
@@ -87,7 +87,7 @@ headerNames.add(StringPool.BLANK);
 
 		PortletURL rowURL = renderResponse.createRenderURL();
 
-		rowURL.setWindowState(WindowState.MAXIMIZED);
+		rowURL.setWindowState(WindowState.NORMAL);
 
 		rowURL.setParameter("struts_action", "/enterprise_admin/edit_password_policy");
 		rowURL.setParameter("redirect", searchContainer.getIteratorURL().toString());

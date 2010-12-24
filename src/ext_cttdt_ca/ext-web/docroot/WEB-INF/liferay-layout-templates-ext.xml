@@ -3,6 +3,14 @@
 
 <layout-templates>
 	<custom>
+		<layout-template id="nss_cttdt_111" name="NSS - 1_1_1">
+			<template-path>/layouttpl/nss_cttdt/1_1_1_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/nss_cttdt/1_1_1_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/nss_cttdt/1_1_1_columns.png</thumbnail-path>
+			<roles>
+				<role-name>User</role-name>
+			</roles>
+		</layout-template>
 		<layout-template id="nss_cttdt_131" name="NSS - 1_3_1">
 			<template-path>/layouttpl/nss_cttdt/1_3_1_columns.tpl</template-path>
 			<wap-template-path>/layouttpl/nss_cttdt/1_3_1_columns.wap.tpl</wap-template-path>

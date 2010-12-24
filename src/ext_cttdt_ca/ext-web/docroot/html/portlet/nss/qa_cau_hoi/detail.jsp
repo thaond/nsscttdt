@@ -66,7 +66,7 @@
 			<table width="100%" cellspacing="0">
 				<tr>
 					<td style="text-transform: capitalize;color: #ff8a00; font-size: 14px;">
-						<label><liferay-ui:message key="Cau-hoi" />&nbsp;:&nbsp;<%= cauHoiQA.getTieuDe() %></label>
+						<label><liferay-ui:message key="cau-hoi" />&nbsp;:&nbsp;<%= cauHoiQA.getTieuDe() %></label>
 					</td>
 				</tr>
 				<tr>

@@ -116,7 +116,7 @@ if (Validator.isNotNull(viewUsersRedirect)) {
 		page="/html/portlet/enterprise_admin/user_search.jsp"
 	/>
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 		<%
 		LinkedHashMap userParams = new LinkedHashMap();
@@ -152,7 +152,7 @@ if (Validator.isNotNull(viewUsersRedirect)) {
 			modelVar="user2"
 		>
 		
-			<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="rowURL">
+			<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" varImpl="rowURL">
 				<portlet:param name="struts_action" value="/enterprise_admin/edit_user" />
 				<portlet:param name="redirect" value="<%= searchContainer.getIteratorURL().toString() %>" />
 				<portlet:param name="p_u_i_d" value="<%= String.valueOf(user2.getUserId()) %>" />

@@ -33,7 +33,7 @@ OrgLabor orgLabor = (OrgLabor)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL">
+	<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="editURL">
 		<portlet:param name="struts_action" value="/enterprise_admin/edit_org_labor" />
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="orgLaborId" value="<%= String.valueOf(orgLabor.getOrgLaborId()) %>" />
@@ -41,7 +41,7 @@ OrgLabor orgLabor = (OrgLabor)row.getObject();
 
 	<liferay-ui:icon image="edit" url="<%= editURL %>" />
 
-	<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="deleteURL">
+	<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" var="deleteURL">
 		<portlet:param name="struts_action" value="/enterprise_admin/edit_org_labor" />
 		<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 		<portlet:param name="redirect" value="<%= redirect %>" />

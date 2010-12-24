@@ -51,7 +51,7 @@
 	<input type="submit" value='<liferay-ui:message key="update" />'>
 </form>
 
-<script>
+<script type="text/javascript">
 	 function check(form){
 		 if((checkCode(form) == false) || checkName(form) == false || (checkDescription(form) == false)){
 			return false;			 

@@ -35,56 +35,17 @@ ArticleDisplayTerms displayTerms = (ArticleDisplayTerms)searchContainer.getDispl
 	displayTerms="<%= displayTerms %>"
 	buttonLabel="search"
 >
-	<table class="lfr-table">
+	<table cellspacing="0">
+	
 	<tr>
-		<td>
-			<liferay-ui:message key="id" />
+		<td width="100px">
+			<liferay-ui:message key="content" />:
 		</td>
-		<td>
-			<liferay-ui:message key="version" />
-		</td>
-		<td>
-			<liferay-ui:message key="name" />
-		</td>
-		<td>
-			<liferay-ui:message key="description" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<input name="<portlet:namespace /><%= displayTerms.ARTICLE_ID %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getArticleId()) %>" />
-		</td>
-		<td>
-			<input name="<portlet:namespace /><%= displayTerms.VERSION %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getVersionString()) %>" />
-		</td>
-		<td>
-			<input name="<portlet:namespace /><%= displayTerms.TITLE %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getTitle()) %>" />
-		</td>
-		<td>
-			<input name="<portlet:namespace /><%= displayTerms.DESCRIPTION %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getDescription()) %>" />
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<liferay-ui:message key="content" />
-		</td>
-		<td>
-			<liferay-ui:message key="type" />
-		</td>
-		<td colspan="2">
-			<c:choose>
-				<c:when test="<%= portletName.equals(PortletKeys.JOURNAL) %>">
-					<liferay-ui:message key="status" />
-				</c:when>
-				<c:otherwise>
-					<liferay-ui:message key="my-places" />
-				</c:otherwise>
-			</c:choose>
-		</td>
-	</tr>
-	<tr>
 		<td>
 			<input name="<portlet:namespace /><%= displayTerms.CONTENT %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getContent()) %>" />
+		</td>
+		<td width="70px">
+			<liferay-ui:message key="type" />:
 		</td>
 		<td>
 			<select name="<portlet:namespace /><%= displayTerms.TYPE %>">
@@ -102,7 +63,17 @@ ArticleDisplayTerms displayTerms = (ArticleDisplayTerms)searchContainer.getDispl
 
 			</select>
 		</td>
-		<td colspan="2">
+		<td width="100px">
+			<c:choose>
+				<c:when test="<%= portletName.equals(PortletKeys.JOURNAL) %>">
+					<liferay-ui:message key="status" />:
+				</c:when>
+				<c:otherwise>
+					<liferay-ui:message key="my-places" />:
+				</c:otherwise>
+			</c:choose>
+		</td>
+		<td>
 			<c:choose>
 				<c:when test="<%= portletName.equals(PortletKeys.JOURNAL) %>">
 					<select name="<portlet:namespace /><%= displayTerms.STATUS %>">
@@ -162,9 +133,7 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 %>
 
 <c:if test="<%= showAddArticleButtonButton || showPermissionsButton %>">
-	<br />
-
-	<div>
+	<br>
 		<c:if test="<%= showAddArticleButtonButton %>">
 			<input type="button" value="<liferay-ui:message key="add-web-content" />" onClick="<portlet:namespace />addArticle();" />
 		</c:if>
@@ -179,9 +148,7 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 
 			<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
 		</c:if>
-	</div>
 </c:if>
-
 <c:if test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
 	<br />
 
@@ -200,7 +167,7 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 
 <script type="text/javascript">
 	function <portlet:namespace />addArticle() {
-		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.JOURNAL %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
+		var url = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" portletName="<%= PortletKeys.JOURNAL %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="structureId" value="<%= displayTerms.getStructureId() %>" /><portlet:param name="templateId" value="<%= displayTerms.getTemplateId() %>" /></liferay-portlet:renderURL>';
 
 		if (toggle_id_journal_article_searchcurClickValue == 'basic') {
 			url += '&<portlet:namespace /><%= displayTerms.TITLE %>=' + document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.KEYWORDS %>.value;
@@ -213,7 +180,7 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 		}
 	}
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.ARTICLE_ID %>);
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.KEYWORDS %>);
 	</c:if>

@@ -182,7 +182,7 @@
 						row.addText(detailBook.getMobile(), rowURLDetail.toString());
 						
 						//email
-						row.addText(detailBook.getEmail(), rowURLDetail.toString());
+						//row.addText(detailBook.getEmail(), rowURLDetail.toString());
 						
 						//active 
 						//URL active
@@ -236,7 +236,7 @@
 	</div>
 </form>
     
-<script>
+<script type="text/javascript">
 	var myCodes = "<%= detailBookCodes %>".split("/");
 	var myNames = "<%= detailBookNames %>".split("/");
 	var myDescription = "<%= detailBookDescriptions %>".split("/");

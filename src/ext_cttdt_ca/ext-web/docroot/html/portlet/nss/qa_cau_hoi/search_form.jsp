@@ -5,7 +5,7 @@
 <%@page import="com.nss.portlet.qa_cau_hoi.search.CauHoiQADisplayTerms"%>
 <%@page import="com.nss.portlet.qa_cau_hoi.search.CauHoiQASearch"%>
 <%
-	List<QAChuDeCauHoi> qAChuDeCauHoilList = (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList") == null ? new ArrayList<QAChuDeCauHoi>() 
+	List<QAChuDeCauHoi> qAChuDeCauHoilList = (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList") == null ? new ArrayList<QAChuDeCauHoi>() : (List<QAChuDeCauHoi>)renderRequest.getAttribute("qAChuDeCauHoilList"); 
 	CauHoiQASearch cauHoiQASearch = (CauHoiQASearch)renderRequest.getAttribute("liferay-ui:search:searchContainer");
 	CauHoiQADisplayTerms displayTerms = (CauHoiQADisplayTerms)cauHoiQASearch.getDisplayTerms();
 %>

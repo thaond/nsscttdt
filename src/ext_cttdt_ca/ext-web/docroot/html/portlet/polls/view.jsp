@@ -29,7 +29,7 @@
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setWindowState(WindowState.NORMAL);
 
 portletURL.setParameter("struts_action", "/polls/view");
 
@@ -62,7 +62,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	PortletURL rowURL = renderResponse.createRenderURL();
 
-	rowURL.setWindowState(WindowState.MAXIMIZED);
+	rowURL.setWindowState(WindowState.NORMAL);
 
 	rowURL.setParameter("struts_action", "/polls/view_question");
 	rowURL.setParameter("redirect", currentURL);
@@ -112,7 +112,7 @@ boolean showPermissionsButton = GroupPermissionUtil.contains(permissionChecker, 
 <c:if test="<%= showAddPollButton || showPermissionsButton %>">
 	<div>
 		<c:if test="<%= showAddPollButton %>">
-			<input type="button" value="<liferay-ui:message key="add-question" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/polls/edit_question" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
+			<input type="button" value="<liferay-ui:message key="add-question" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/polls/edit_question" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
 		</c:if>
 
 		<c:if test="<%= showPermissionsButton %>">

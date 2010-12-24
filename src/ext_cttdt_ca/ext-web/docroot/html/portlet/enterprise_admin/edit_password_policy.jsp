@@ -47,7 +47,7 @@ long lockoutDuration = BeanParamUtil.getLong(passwordPolicy, request, "lockoutDu
 	<liferay-util:param name="backURL" value="<%= backURL %>" />
 </liferay-util:include>
 
-<form method="post" name="<portlet:namespace />fm" action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_password_policy" /></portlet:actionURL>">
+<form method="post" name="<portlet:namespace />fm" action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_password_policy" /></portlet:actionURL>">
 <input name="<portlet:namespace /><%= Constants.CMD %>" value="<%= passwordPolicy == null ? Constants.ADD : Constants.UPDATE %>" type="hidden" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />passwordPolicyId" type="hidden" value="<%= passwordPolicyId %>" />
@@ -361,7 +361,7 @@ long lockoutDuration = BeanParamUtil.getLong(passwordPolicy, request, "lockoutDu
 </form>
 
 <script type="text/javascript">
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= defaultPolicy ? "description" : "name" %>);
 	</c:if>
 

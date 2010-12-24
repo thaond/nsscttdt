@@ -52,7 +52,7 @@ for (int i = 0; i < choices.size(); i++) {
 
 	int votesPixelWidth = 35;
 
-	if (windowState.equals(WindowState.MAXIMIZED)) {
+	if (windowState.equals(WindowState.NORMAL)) {
 		votesPixelWidth = 100;
 	}
 
@@ -114,7 +114,7 @@ for (int i = 0; i < choices.size(); i++) {
 		<%
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		portletURL.setWindowState(WindowState.NORMAL);
 
 		portletURL.setParameter("struts_action", "/polls/view_question");
 		portletURL.setParameter("redirect", redirect);

@@ -68,10 +68,6 @@
 		<td><liferay-ui:message key="detail-mobile" /></td>
 		<td><%=detailBook.getMobile() %></td>
 	</tr>
-	<tr>
-		<td><liferay-ui:message key="detail-email" /></td>
-		<td><%=detailBook.getEmail() %></td>
-	</tr>
 </table>
     	
    

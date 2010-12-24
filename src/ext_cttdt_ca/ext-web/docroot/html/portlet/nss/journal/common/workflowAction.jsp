@@ -41,7 +41,7 @@
 		<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 		<portlet:param name="articleId" value="<%= articleId %>" />
 		<portlet:param name="version" value="<%= String.valueOf(version) %>" />
-		<portlet:param name="articleURL" value='<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:renderURL>' />
+		<portlet:param name="articleURL" value='<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:renderURL>' />
 	</portlet:renderURL>
 	
 	<span onclick="javascript:submitForm(document.hrefFm,'<%= form%>');">

@@ -27,7 +27,7 @@
 <%
 PortletURL tabs1URL = renderResponse.createRenderURL();
 
-tabs1URL.setWindowState(WindowState.MAXIMIZED);
+tabs1URL.setWindowState(WindowState.NORMAL);
 
 tabs1URL.setParameter("struts_action", "/enterprise_admin/view");
 
@@ -36,7 +36,7 @@ String tabs1Names = "users,organizations,user-groups";
 String tabs1Values = tabs1Names;
 
 if (!filterManageableOrganizations) {
-	if (windowState.equals(WindowState.MAXIMIZED)) {
+	if (windowState.equals(WindowState.NORMAL)) {
 		tabs1Names += ",roles,password-policies,settings,monitoring,plugins";
 	}
 	else {

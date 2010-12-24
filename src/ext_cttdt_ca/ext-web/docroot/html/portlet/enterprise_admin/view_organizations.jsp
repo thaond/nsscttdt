@@ -56,7 +56,7 @@ if (Validator.isNotNull(viewOrganizationsRedirect)) {
 		page="/html/portlet/enterprise_admin/organization_search.jsp"
 	/>
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 		<%
 		OrganizationSearchTerms searchTerms = (OrganizationSearchTerms)searchContainer.getSearchTerms();
@@ -86,7 +86,7 @@ if (Validator.isNotNull(viewOrganizationsRedirect)) {
 			keyProperty="organizationId"
 			modelVar="organization"
 		>
-			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL">
+			<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="rowURL">
 				<portlet:param name="struts_action" value="/enterprise_admin/edit_organization" />
 				<portlet:param name="redirect" value="<%= searchContainer.getIteratorURL().toString() %>" />
 				<portlet:param name="organizationId" value="<%= String.valueOf(organization.getOrganizationId()) %>" />

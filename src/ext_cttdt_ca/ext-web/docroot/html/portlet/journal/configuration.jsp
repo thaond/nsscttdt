@@ -49,7 +49,7 @@ String emailArticleReviewSubject = ParamUtil.getString(request, "emailArticleRev
 String emailArticleReviewBody = ParamUtil.getString(request, "emailArticleReviewBody", JournalUtil.getEmailArticleReviewBody(portletSetup));
 %>
 
-<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="portletURL" portletConfiguration="true">
+<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="portletURL" portletConfiguration="true">
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:renderURL>

@@ -72,7 +72,7 @@ if (choiceName > 0) {
 
 <script type="text/javascript">
 	function <portlet:namespace />addPollChoice() {
-		<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addPollChoiceURL">
+		<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>" var="addPollChoiceURL">
 			<portlet:param name="struts_action" value="/polls/edit_question" />
 			<portlet:param name="<%= EditQuestionAction.CHOICE_DESCRIPTION_PREFIX + (char)(96 + choicesCount + 1) %>" value="" />
 		</portlet:actionURL>
@@ -96,7 +96,7 @@ if (choiceName > 0) {
 	}
 </script>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/polls/edit_question" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveQuestion(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/polls/edit_question" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveQuestion(); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />questionId" type="hidden" value="<%= questionId %>" />
@@ -263,7 +263,7 @@ if (choiceName > 0) {
 
 </form>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 	<script type="text/javascript">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />title);
 	</script>
