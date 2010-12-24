@@ -57,7 +57,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
+viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
 viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
 
 if (className.equals(BlogsEntry.class.getName())) {
