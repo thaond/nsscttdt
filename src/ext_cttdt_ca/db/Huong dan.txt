@@ -1,0 +1,18 @@
+﻿Địa chỉ truy cập db trên server: 
+   Address: 192.168.1.27
+   username: postgres
+   password: 123456
+
+- Mọi người connect trực tiếp vào để thêm bảng, cấu hình, nhập dữ liệu, ....
+   + Mở file: \webapps\ROOT\WEB-INF\classes\portal-ext.properties
+   + Chỉnh lại như sau:
+      * jdbc.default.driverClassName=org.postgresql.Driver
+
+      * jdbc.default.url=jdbc:postgresql://192.168.1.27:5432/lportal_8_catphcm
+
+      * jdbc.default.username=postgres
+
+      * jdbc.default.password=123456
+- Cuối ngày sẽ backup một bản commit lên SVN
+
+Lưu ý: mọi người cẩn thận không connect trực tiếp vào để test, muốn test backup về máy local để trách trường hợp db bị rác
