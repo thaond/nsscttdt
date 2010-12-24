@@ -48,7 +48,7 @@ if (Validator.isNotNull(portletResource)) {
 
 PortletURL editRoleURL = renderResponse.createRenderURL();
 
-editRoleURL.setWindowState(WindowState.MAXIMIZED);
+editRoleURL.setWindowState(WindowState.NORMAL);
 
 editRoleURL.setParameter("struts_action", "/enterprise_admin/edit_role");
 editRoleURL.setParameter("redirect", backURL);
@@ -59,7 +59,7 @@ editRoleURL.setParameter("roleId", String.valueOf(role.getRoleId()));
 
 PortletURL definePermissionsURL = renderResponse.createRenderURL();
 
-definePermissionsURL.setWindowState(WindowState.MAXIMIZED);
+definePermissionsURL.setWindowState(WindowState.NORMAL);
 
 definePermissionsURL.setParameter("struts_action", "/enterprise_admin/edit_role_permissions");
 definePermissionsURL.setParameter("redirect", backURL);
@@ -70,7 +70,7 @@ definePermissionsURL.setParameter("roleId", String.valueOf(role.getRoleId()));
 
 PortletURL assignMembersURL = renderResponse.createRenderURL();
 
-assignMembersURL.setWindowState(WindowState.MAXIMIZED);
+assignMembersURL.setWindowState(WindowState.NORMAL);
 
 assignMembersURL.setParameter("struts_action", "/enterprise_admin/edit_role_assignments");
 assignMembersURL.setParameter("redirect", backURL);
@@ -114,7 +114,7 @@ if (tabs1Names.startsWith(",")) {
 
 PortletURL breadcrumbsURL = renderResponse.createRenderURL();
 
-breadcrumbsURL.setWindowState(WindowState.MAXIMIZED);
+breadcrumbsURL.setWindowState(WindowState.NORMAL);
 
 breadcrumbsURL.setParameter("struts_action", "/enterprise_admin/view");
 breadcrumbsURL.setParameter("tabs1", tabs1);

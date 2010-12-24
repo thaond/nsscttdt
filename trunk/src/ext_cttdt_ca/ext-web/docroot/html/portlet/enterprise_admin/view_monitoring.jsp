@@ -81,7 +81,7 @@ String portletURLString = (String)request.getAttribute("view.jsp-portletURLStrin
 
 			PortletURL rowURL = renderResponse.createRenderURL();
 
-			rowURL.setWindowState(WindowState.MAXIMIZED);
+			rowURL.setWindowState(WindowState.NORMAL);
 
 			rowURL.setParameter("struts_action", "/enterprise_admin/edit_session");
 			rowURL.setParameter("redirect", currentURL);

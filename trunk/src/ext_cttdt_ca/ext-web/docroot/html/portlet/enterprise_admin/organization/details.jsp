@@ -100,7 +100,7 @@ if (organization != null) {
 
 		var rowColumns = [];
 
-		var href = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>&<portlet:namespace />organizationId=" + organizationId;
+		var href = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>&<portlet:namespace />organizationId=" + organizationId;
 
 		rowColumns.push(<portlet:namespace />createURL(href, name));
 		rowColumns.push(<portlet:namespace />createURL(href, Liferay.Language.get(type)));
@@ -322,7 +322,7 @@ if (parentOrganization != null) {
 		keyProperty="organizationId"
 		modelVar="curOrganization"
 	>
-		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL">
+		<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="rowURL">
 			<portlet:param name="struts_action" value="/enterprise_admin/edit_organization" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="organizationId" value="<%= String.valueOf(curOrganization.getOrganizationId()) %>" />

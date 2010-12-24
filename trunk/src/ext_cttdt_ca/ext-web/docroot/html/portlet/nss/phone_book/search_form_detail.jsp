@@ -24,10 +24,6 @@
 			<td width="20%"><input id="<portlet:namespace/>detailBookDescriptionAutoComplete" name="<portlet:namespace/><%=DetailBookDisplayTerms.DESCRIPTION%>"
 				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getDetailDescription())%>" />
 			</td>
-			<td><liferay-ui:message key="detail-email" />&nbsp;</td>
-			<td width="20%"><input id="<portlet:namespace/>detailBookEmailAutoComplete" name="<portlet:namespace/><%=DetailBookDisplayTerms.EMAIL%>"
-				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getEmail())%>" />
-			</td>
 		</tr>
 		<tr>
 			<td><liferay-ui:message key="detail-zip" />&nbsp;</td>

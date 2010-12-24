@@ -36,7 +36,7 @@ long userGroupId = BeanParamUtil.getLong(userGroup, request, "userGroupId");
 <script type="text/javascript">
 	function <portlet:namespace />saveUserGroup() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= userGroup == null ? Constants.ADD : Constants.UPDATE %>";
-		submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_user_group" /></portlet:actionURL>");
+		submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_user_group" /></portlet:actionURL>");
 	}
 </script>
 
@@ -93,7 +93,7 @@ long userGroupId = BeanParamUtil.getLong(userGroup, request, "userGroupId");
 
 </form>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 	<script type="text/javascript">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 	</script>

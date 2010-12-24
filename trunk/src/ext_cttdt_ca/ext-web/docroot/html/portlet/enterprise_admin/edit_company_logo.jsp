@@ -36,7 +36,7 @@
 		</script>
 	</c:when>
 	<c:otherwise>
-		<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_company_logo" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+		<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_company_logo" /></portlet:actionURL>" class="uni-form" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 
 		<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
 
@@ -54,7 +54,7 @@
 
 		</form>
 
-		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 			<script type="text/javascript">
 				Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />fileName);
 			</script>

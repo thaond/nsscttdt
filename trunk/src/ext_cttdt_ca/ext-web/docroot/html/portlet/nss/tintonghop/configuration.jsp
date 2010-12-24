@@ -86,15 +86,14 @@ configurationActionURL.setParameter("portletResource", portletResource);
 
 <c:choose>
 	<c:when test="<%= typeSelection.equals(StringPool.BLANK) %>">
+	<div style="display: none">
 		<liferay-ui:message key="asset-selection" />
 
 		<select name="<portlet:namespace />selectionStyle" onchange="<portlet:namespace />chooseSelectionStyle();">
 			<option <%= selectionStyle.equals("dynamic") ? " selected=\"selected\"" : "" %> value="dynamic"><liferay-ui:message key="dynamic" /></option>
 			<option <%= selectionStyle.equals("manual") ? " selected=\"selected\"" : "" %> value="manual"><liferay-ui:message key="manual" /></option>
 		</select>
-
-		<br /><br />
-
+	</div>
 		<c:choose>
 			<c:when test='<%= selectionStyle.equals("manual") %>'>
 				<liferay-ui:tabs
@@ -435,7 +434,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						
 						
 						<br /><br />
-
+						<div style="display: none">		
 						<liferay-ui:message key="include-tags-specified-in-the-url" />
 
 						<liferay-ui:input-checkbox param="mergeUrlTags" defaultValue="<%= mergeUrlTags %>" />
@@ -448,6 +447,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							<option <%= andOperator ? "selected" : "" %> value="1"><liferay-ui:message key="and" /></option>
 							<option <%= !andOperator ? "selected" : "" %> value="0"><liferay-ui:message key="or" /></option>
 						</select>
+						</div>
 					</liferay-ui:section>
 					<liferay-ui:section>
 						<%@ include file="/html/portlet/nss/tintonghop/display_settings.jspf" %>

@@ -25,10 +25,12 @@
 <%@ include file="/html/portlet/admin/init.jsp" %>
 
 <c:choose>
+
 	<c:when test="<%= permissionChecker.isOmniadmin() %>">
 
 		<%
 		String tabs1 = ParamUtil.getString(request, "tabs1", "server");
+		
 
 		boolean showTabs1 = false;
 
@@ -58,7 +60,7 @@
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		portletURL.setWindowState(WindowState.NORMAL);
 
 		portletURL.setParameter("struts_action", "/admin/view");
 		portletURL.setParameter("tabs1", tabs1);
@@ -69,8 +71,8 @@
 		<script type="text/javascript">
 			function <portlet:namespace />saveServer(cmd) {
 				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = cmd;
-				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/admin/view" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /><portlet:param name="tabs3" value="<%= tabs3 %>" /><portlet:param name="cur" value="<%= cur %>" /></portlet:renderURL>";
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/admin/edit_server" /></portlet:actionURL>");
+				document.<portlet:namespace />fm.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/admin/view" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /><portlet:param name="tabs3" value="<%= tabs3 %>" /><portlet:param name="cur" value="<%= cur %>" /></portlet:renderURL>";
+				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/admin/edit_server" /></portlet:actionURL>");
 			}
 		</script>
 
@@ -80,7 +82,7 @@
 		<input name="<portlet:namespace />tabs1" type="hidden" value="<%= HtmlUtil.escape(tabs1) %>" />
 		<input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
 		<input name="<portlet:namespace />tabs3" type="hidden" value="<%= HtmlUtil.escape(tabs3) %>" />
-		<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/admin/view" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /><portlet:param name="tabs3" value="<%= tabs3 %>" />portlet:param name="cur" value="<%= cur %>" /></portlet:renderURL>" />
+		<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/admin/view" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /><portlet:param name="tabs3" value="<%= tabs3 %>" />portlet:param name="cur" value="<%= cur %>" /></portlet:renderURL>" />
 		<input name="<portlet:namespace />portletId" type="hidden" value="" />
 
 		<c:if test="<%= showTabs1 %>">
@@ -98,7 +100,6 @@
 				<%@ include file="/html/portlet/admin/instances.jspf" %>
 			</c:when>
 			<c:when test='<%= tabs1.equals("plugins") %>'>
-
 				<%
 				PortletURL installPluginsURL = null;
 

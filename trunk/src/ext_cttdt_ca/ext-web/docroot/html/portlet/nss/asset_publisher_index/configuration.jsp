@@ -104,15 +104,14 @@ configurationActionURL.setParameter("portletResource", portletResource);
 
 <c:choose>
 	<c:when test="<%= typeSelection.equals(StringPool.BLANK) %>">
+		
+		<div style="display: none">
 		<liferay-ui:message key="asset-selection" />
-
 		<select name="<portlet:namespace />selectionStyle" onchange="<portlet:namespace />chooseSelectionStyle();">
 			<option <%= selectionStyle.equals("dynamic") ? " selected=\"selected\"" : "" %> value="dynamic"><liferay-ui:message key="dynamic" /></option>
 			<option <%= selectionStyle.equals("manual") ? " selected=\"selected\"" : "" %> value="manual"><liferay-ui:message key="manual" /></option>
 		</select>
-
-		<br /><br />
-
+		</div>
 		<c:choose>
 			<c:when test='<%= selectionStyle.equals("manual") %>'>
 				<liferay-ui:tabs
@@ -339,6 +338,122 @@ configurationActionURL.setParameter("portletResource", portletResource);
 						</select>
 						<br>
 						<br>
+						
+						<!-- MoNT start 24/12/2010 -->
+						
+						<%
+							PortletPreferences preferencesLayout = renderRequest.getPreferences();
+							
+							String portletResourceLayout = ParamUtil.getString(request, "portletResource");
+							
+							if (Validator.isNotNull(portletResource)) {
+								preferencesLayout = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResourceLayout);
+							}
+							
+							long rootLayoutId = GetterUtil.getLong(preferencesLayout.getValue("root-layout-id", StringPool.BLANK));
+							
+							int displayDepth = GetterUtil.getInteger(preferencesLayout.getValue("display-depth", StringPool.BLANK));
+							boolean includeRootInTree = GetterUtil.getBoolean(preferencesLayout.getValue("include-root-in-tree", StringPool.BLANK));
+							boolean showCurrentPage = GetterUtil.getBoolean(preferencesLayout.getValue("show-current-page", StringPool.BLANK));
+							boolean useHtmlTitle = GetterUtil.getBoolean(preferencesLayout.getValue("use-html-title", StringPool.BLANK));
+							boolean showHiddenPages = GetterUtil.getBoolean(preferencesLayout.getValue("show-hidden-pages", StringPool.BLANK));
+							
+							if (rootLayoutId == LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
+								includeRootInTree = false;
+							}
+						
+							List<Layout> rootLayouts = LayoutLocalServiceUtil.getLayouts(layout.getGroupId(), layout.isPrivateLayout(), rootLayoutId);
+
+							StringBuilder sb = new StringBuilder();
+							%>
+							
+					<%!
+						private void _buildLayoutView(long selectPlId, Layout layout, String cssClass, boolean useHtmlTitle, ThemeDisplay themeDisplay, StringBuilder sb) throws Exception {
+							sb.append("<option value=\"");
+							sb.append(layout.getPlid());
+							sb.append("\" ");
+							if (layout.getPlid() == selectPlId) {
+								sb.append(" selected='selected' ");
+							}
+							sb.append(" > ");
+							
+							String layoutName = layout.getName(themeDisplay.getLocale());
+						
+							if (useHtmlTitle) {
+								layoutName = layout.getHTMLTitle(themeDisplay.getLocale());
+							}
+						
+							sb.append(layoutName);
+							sb.append("</option>");
+						}
+						
+						private void _buildSiteMap(long selectPlId, Layout layout, List<Layout> layouts, long rootLayoutId, boolean includeRootInTree, int displayDepth, boolean showCurrentPage, boolean useHtmlTitle, boolean showHiddenPages, int curDepth, ThemeDisplay themeDisplay, StringBuilder sb) throws Exception {
+							if (layouts.size() == 0) {
+								return;
+							}
+						
+							PermissionChecker permissionChecker = themeDisplay.getPermissionChecker();
+							boolean showRoot = (rootLayoutId > 0) && (curDepth == 1) && includeRootInTree;
+						
+							if (showRoot) {
+								Layout rootLayout = LayoutLocalServiceUtil.getLayout(layout.getGroupId(), layout.isPrivateLayout(), rootLayoutId);
+						
+								String cssClass = "root";
+						
+								if (rootLayout.getPlid() == layout.getPlid()) {
+									cssClass += " current";
+								}
+						
+								_buildLayoutView(selectPlId,rootLayout, cssClass, useHtmlTitle, themeDisplay, sb);
+						
+							}
+						
+							for (int i = 0; i < layouts.size(); i++) {
+								Layout curLayout = layouts.get(i);
+						
+								if ((showHiddenPages || !curLayout.isHidden()) && LayoutPermissionUtil.contains(permissionChecker, curLayout, ActionKeys.VIEW)) {
+									String cssClass = StringPool.BLANK;
+						
+									if (curLayout.getPlid() == layout.getPlid()) {
+										cssClass = "current";
+									}
+						
+									_buildLayoutView(selectPlId, curLayout, cssClass, useHtmlTitle, themeDisplay, sb);
+						
+									if ((displayDepth == 0) || (displayDepth > curDepth)) {
+										_buildSiteMap(selectPlId, layout, curLayout.getChildren(), rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, curDepth + 1, themeDisplay, sb);
+									}
+								}
+							}
+						}
+					%>
+					 <br/> <br/>
+						<table>
+					<%
+					//List<TagsVocabulary> vocabularies = TagsVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, TagsEntryConstants.FOLKSONOMY_CATEGORY);
+					for (TagsVocabulary vocabulary : vocabularies) {
+					%>	
+					<% if(category.equals(vocabulary.getName())){ %>	
+						<tr><td><label><%= vocabulary.getName().concat(":        ") %></label>&nbsp;&nbsp;</td>
+						<td><liferay-ui:message key="chon-trang-hien-thi" />: &nbsp;&nbsp;</td> 
+						<%
+						long vocaPreferences = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabulary.getVocabularyId()), StringPool.BLANK));
+						
+						sb = new StringBuilder();
+						sb.append("<select name=\"");
+						sb.append(vocabulary.getVocabularyId());
+						sb.append("\" ");
+						sb.append("<option selected='selected' value='0'><liferay-ui:message key='none' /></option>");
+						_buildSiteMap(vocaPreferences, layout, rootLayouts, rootLayoutId, includeRootInTree, displayDepth, showCurrentPage, useHtmlTitle, showHiddenPages, 1, themeDisplay, sb);
+						sb.append("</select>");	
+						%>
+						<td><%= sb.toString() %></td>
+						</tr>
+					<% } %>
+					<% } %>
+					</table>
+					<!-- MoNT end 24/12/2010 -->
+						
 						<!--  End Tu update -->
 						<liferay-ui:message key="displayed-content-must-contain-the-following-categories" />
 
@@ -365,7 +480,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 
 						<!-- end category by triltm -->
 						<br /><br />
-
+						<div style="display: none">	
 						<liferay-ui:message key="include-tags-specified-in-the-url" />
 
 						<liferay-ui:input-checkbox param="mergeUrlTags" defaultValue="<%= mergeUrlTags %>" />
@@ -378,6 +493,7 @@ configurationActionURL.setParameter("portletResource", portletResource);
 							<option <%= andOperator ? "selected" : "" %> value="1"><liferay-ui:message key="and" /></option>
 							<option <%= !andOperator ? "selected" : "" %> value="0"><liferay-ui:message key="or" /></option>
 						</select>
+						</div>
 					</liferay-ui:section>
 					<liferay-ui:section>
 						<%@ include file="/html/portlet/nss/asset_publisher_index/display_settings.jspf" %>

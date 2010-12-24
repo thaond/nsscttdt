@@ -53,7 +53,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_USER_GROUP))
 		page="/html/portlet/enterprise_admin/user_group_search.jsp"
 	/>
 
-	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+	<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 		<%
 		UserGroupSearchTerms searchTerms = (UserGroupSearchTerms)searchContainer.getSearchTerms();
@@ -70,7 +70,7 @@ if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_USER_GROUP))
 			keyProperty="userGroupId"
 			modelVar="userGroup"
 		>
-			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="rowURL">
+			<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="rowURL">
 				<portlet:param name="struts_action" value="/enterprise_admin/edit_user_group" />
 				<portlet:param name="redirect" value="<%= searchContainer.getIteratorURL().toString() %>" />
 				<portlet:param name="userGroupId" value="<%= String.valueOf(userGroup.getUserGroupId()) %>" />

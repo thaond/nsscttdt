@@ -59,7 +59,7 @@ String curSection = mainSections[0];
 	function <portlet:namespace />saveOrganization() {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (organization == null) ? Constants.ADD : Constants.UPDATE %>";
 
-		var redirect = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /><portlet:param name="backURL" value="<%= backURL %>"></portlet:param></portlet:renderURL>";
+		var redirect = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /><portlet:param name="backURL" value="<%= backURL %>"></portlet:param></portlet:renderURL>";
 
 		if (location.hash) {
 			redirect += location.hash;
@@ -76,7 +76,7 @@ String curSection = mainSections[0];
 	<liferay-util:param name="backURL" value="<%= backURL %>" />
 </liferay-util:include>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /></portlet:actionURL>" class="uni-form" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOrganization(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_organization" /></portlet:actionURL>" class="uni-form" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOrganization(); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="" />
 <input name="<portlet:namespace />backURL" type="hidden" value="<%= HtmlUtil.escape(backURL) %>" />
@@ -143,7 +143,7 @@ String curSection = mainSections[0];
 	</table>
 </div>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 	<script type="text/javascript">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 	</script>

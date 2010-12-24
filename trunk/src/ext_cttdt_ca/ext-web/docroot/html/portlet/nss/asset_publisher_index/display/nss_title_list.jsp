@@ -47,7 +47,7 @@ viewFullContentURL.setParameter("assetId", String.valueOf(asset1.getAssetId()));
 
 viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 %>
-
+<c:if test="<%= results.size() > delta %>">
 	<c:if test="<%= assetIndex1 == 1 %>">
 	<div class="listany">
 	<ul>
@@ -75,4 +75,36 @@ viewURL1 = _checkViewURL(viewURL1, currentURL, themeDisplay);
 	
 	</ul>
 	</div>
+	</c:if>
+	</c:if>
+	
+	<c:if test="<%= results.size() <= delta %>">
+	<c:if test="<%= assetIndex1 == 1 %>">
+	<div class="listany">
+	<ul>
+	</c:if>
+	<c:if test="<%= show1 %>">
+	
+		<li>
+			<c:choose>
+				<c:when test="<%= Validator.isNotNull(viewURL1) %>">
+					<a href="<%= viewURL1 %>"><%= title1 %>
+						<font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
+					</a> 
+				</c:when>
+				<c:otherwise>
+					<%= title1 %> <font class="leddmy"><%=df1.format(asset.getPublishDate()) %></font>
+				</c:otherwise>
+			</c:choose>
+
+			<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+
+		</li>
+	</c:if>
+
+	<c:if test="<%= (assetIndex1 + 1) == results.size() %>">
+	
+	</ul>
+	</div>
+	</c:if>
 	</c:if>

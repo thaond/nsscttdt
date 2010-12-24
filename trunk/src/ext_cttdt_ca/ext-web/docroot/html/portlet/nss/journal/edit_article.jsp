@@ -270,12 +270,12 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 			document.<portlet:namespace />fm1.<portlet:namespace />content.value = "";
 		}
 
-		document.<portlet:namespace />fm1.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /><portlet:param name="version" value="<%= String.valueOf(version) %>" /></portlet:renderURL>&<portlet:namespace />languageId=" + document.<portlet:namespace />fm1.<portlet:namespace />languageId.value;
+		document.<portlet:namespace />fm1.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /><portlet:param name="version" value="<%= String.valueOf(version) %>" /></portlet:renderURL>&<portlet:namespace />languageId=" + document.<portlet:namespace />fm1.<portlet:namespace />languageId.value;
 		submitForm(document.<portlet:namespace />fm1);
 	}
 
 	function <portlet:namespace />changeVersionView(version) {
-		location.href = "<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /></liferay-portlet:renderURL>&<portlet:namespace />version=" + version;
+		location.href = "<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /></liferay-portlet:renderURL>&<portlet:namespace />version=" + version;
 	}
 
 	function <portlet:namespace />contentChanged() {
@@ -608,7 +608,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 	function <portlet:namespace />removeArticleLocale() {
 		if (confirm("<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-deactivate-this-language") %>")) {
 			document.<portlet:namespace />fm1.<portlet:namespace /><%= Constants.CMD %>.value = "removeArticlesLocale";
-			document.<portlet:namespace />fm1.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="struts_action" value="/nss/journal/edit_article" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /><portlet:param name="version" value="<%= String.valueOf(version) %>" /></portlet:renderURL>&<portlet:namespace />languageId=<%= defaultLanguageId %>";
+			document.<portlet:namespace />fm1.<portlet:namespace />redirect.value = "<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="struts_action" value="/nss/journal/edit_article" /><portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" /><portlet:param name="articleId" value="<%= articleId %>" /><portlet:param name="version" value="<%= String.valueOf(version) %>" /></portlet:renderURL>&<portlet:namespace />languageId=<%= defaultLanguageId %>";
 			submitForm(document.<portlet:namespace />fm1);
 		}
 	}
@@ -639,7 +639,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 		<c:if test="<%= article == null %>">
 			document.<portlet:namespace />fm1.<portlet:namespace />content.value = <portlet:namespace />getArticleContent();
 			document.<portlet:namespace />fm1.<portlet:namespace />articleId.value = document.<portlet:namespace />fm1.<portlet:namespace />newArticleId.value;
-			submitForm(document.<portlet:namespace />fm1,"<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="workflowAction" value="true"/><portlet:param name="workflowActionName" value="<%= addWorkflowJournalArticleCommand%>"/><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm1,"<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="workflowAction" value="true"/><portlet:param name="workflowActionName" value="<%= addWorkflowJournalArticleCommand%>"/><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:actionURL>");
 			return;
 		</c:if>
 
@@ -706,7 +706,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 <input name="xml" type="hidden" value="" />
 </form>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /> </portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveArticle(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /> </portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveArticle(); return false;">
 <input name="<portlet:namespace />portletResource" type="hidden" value="<%= HtmlUtil.escape(portletResource) %>" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
@@ -717,7 +717,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 <input name="<portlet:namespace />articleId" type="hidden" value="<%= articleId %>" />
 <input name="<portlet:namespace />version" type="hidden" value="<%= version %>" />
 <input name="<portlet:namespace />content" type="hidden" value="" />
-<input name="<portlet:namespace />articleURL" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:renderURL>" />
+<input name="<portlet:namespace />articleURL" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/nss/journal/edit_article" /></portlet:renderURL>" />
 <input name="<portlet:namespace />approve" type="hidden" value="" />
 <input name="<portlet:namespace />saveAndContinue" type="hidden" value="" />
 <input name="<portlet:namespace />deleteArticleIds" type="hidden" value="<%= articleId + EditArticleAction.VERSION_SEPARATOR + version %>" />
@@ -1085,7 +1085,7 @@ String addWorkflowJournalArticleCommand =  JournalLiferayPortletAction.COMMAND_P
 </div>
 </form>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 	<script type="text/javascript">
 		<c:choose>
 			<c:when test="<%= PropsValues.JOURNAL_ARTICLE_FORCE_AUTOGENERATE_ID %>">

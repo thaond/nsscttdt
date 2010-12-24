@@ -10,15 +10,10 @@
 
 .ui-dialog-overlay {
 	background: #000;
-	opacity: 0.8;
+	opacity: 0.8;filter: alpha(opacity=80);
 	z-index: 400;
 }
 
-.ie .ui-dialog-overlay {
-	filter: alpha(opacity=80);
-}
-
-/* ---------- Breadcrumbs ---------- */
 
 .breadcrumbs {
 	margin-bottom: 1.5em;
@@ -50,13 +45,10 @@
 
 .ui-proxy {
 	cursor: move;
-	opacity: 0.65;
+	opacity: 0.65;filter: alpha(opacity=65);
 	position: relative;
 }
 
-.ie .ui-proxy {
-	filter: alpha(opacity=65);
-}
 
 .ui-proxy.generic-portlet {
 	height: 200px;
@@ -205,90 +197,53 @@
 }
 
 .ui-slider-disabled .ui-slider-handle {
-	opacity: 0.5;
-}
-
-.ie .ui-slider-disabled .ui-slider-handle {
-	filter: alpha(opacity=50);
+	opacity: 0.5;	filter: alpha(opacity=50);
 }
 
 .ui-slider-range {
 	background: #1E2529;
 	height: 100%;
-	opacity: 0.3;
+	opacity: 0.3;filter: alpha(opacity=30);
 	position: absolute;
 	width: 100%;
-}
-
-.ie .ui-slider-range {
-	filter: alpha(opacity=30);
 }
 
 /* ---------- Tabs ---------- */
 
 .ui-tabs {
-	border-bottom: 1px solid #049fcc;
-	padding: 0 0 0 5px;
+	background: url(../images/catp/TabUL.jpg) repeat-x left bottom;width: 99%;height: 27px;padding: 5px 0 3px 1%;
 }
 
 .ui-tabs:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
 }
 
 .ie .ui-tabs {
-	overflow: hidden;
-}
-
-.ie6 .ui-tabs {
-	height: 1%;
 }
 
 .ui-tabs li,.ui-tabs li:hover {
-	display: inline;float: left;background: url(../images/application/lineTab.jpg) no-repeat right top;height: 27px;padding-right: 1px;
 }
 
 .ui-tabs li.last {
-	border-right: none;
 }
 
 .ui-tabs li a, .tabs li span {
-	background: #d1f6ff url(../images/application/tabs_bg.jpg) repeat-x left bottom;
-	color: #369;
-	display: block;
-	float: left;
-	padding: 5px 12px 5px;
-	position: relative;
-	text-decoration: none;
-	height: 17px;
+	display:block;height:20px;padding:5px 15px 0 0;color: #222;text-shadow: 0 1px 0 #fff;
 }
 
-.ie6 .ui-tabs li a, .ie6 .tabs li span {
-	background-image: none;
-	border-bottom: 3px solid #304049;
-	padding-bottom: 7px;
-}
 .ui-tabs li a:hover, .ui-tabs li span:hover {
-	background: #878F93 url(../images/application/tabs_bg_active.jpg) repeat-x left bottom;
-	color: #fff;
 	
 }
-
+.ui-tabs li {height:25px;padding:0 0 0 15px; float: left;color: #222;font-weight: bold;}
 .ui-tabs li.current {
+	background: url(../images/catp/lefttab.png) no-repeat left top;padding-left: 15px;
 }
-
+.ui-tabs li.current a {
+	background: url(../images/catp/righttab.png) no-repeat right top;padding-right: 15px;color: #fcff00;display:block;height:20px;padding:5px 15px 0 0;
+	text-shadow: none;
+}
 .ui-tabs li.current a, .ui-tabs li.current span {
-	background: #878F93 url(../images/application/tabs_bg_active.jpg) repeat-x left bottom;
-	color: #fff;
-	font-weight: bold;
 }
 
-.ie6 .ui-tabs li.current a, .ie6 .ui-tabs li.current span {
-	padding-bottom: 10px;
-}
 
 .ui-tabs li.current:hover, .ui-tabs li.current a:hover {
 }
@@ -298,13 +253,8 @@
 }
 
 .ui-tabs-disabled {
-	opacity: 0.4;
+	opacity: 0.4;filter:alpha(opacity=60);
 }
-
-.ie .ui-tabs-disabled {
-	filter: alpha(opacity=40);
-}
-
 .ui-tabs .ui-tabs-disabled a:link, .ui-tabs .ui-tabs-disabled a:visited {
 	color: #000;
 }
@@ -320,7 +270,7 @@
 /* ---------- Dialog ---------- */
 
 .ui-dialog {
-	background-color: #FFF;
+	background-color: #fbfbfb;
 	border: 2px solid #828F95;
 	padding: 4px;
 }
@@ -340,9 +290,6 @@
 	z-index: 1;
 }
 
-.ie6 .ui-dialog .ui-dialog-titlebar {
-	height: 29px;
-}
 
 .ui-dialog.ui-draggable .ui-dialog-titlebar {
 	cursor: move;
@@ -426,9 +373,6 @@ img.ui-datepicker-trigger {
 	padding: 2px;
 }
 
-.ie6 .ui-datepicker-prompt {
-	width: 185px;
-}
 
 .ui-datepicker-control, .ui-datepicker-links, .ui-datepicker-header, .ui-datepicker {
 	clear: both;
@@ -599,17 +543,6 @@ img.ui-datepicker-trigger {
 
 .ui-datepicker-new-row {
 	clear: left;
-}
-
-.ie6 .ui-datepicker-cover {
-	display: block;
-	filter: mask();
-	height: 200px;
-	left: -4px;
-	position: absolute;
-	top: -4px;
-	width: 193px;
-	z-index: -1;
 }
 
 /* ---------- Color picker ---------- */
@@ -857,9 +790,6 @@ img.ui-datepicker-trigger {
 	width: 16px;
 }
 
-.ie6 .hitarea {
-	display: inline;
-}
 
 .treeview li {
 	background: url(../images/trees/treeview_line.png) 0 0 no-repeat;

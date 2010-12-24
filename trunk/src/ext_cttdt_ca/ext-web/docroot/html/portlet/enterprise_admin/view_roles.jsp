@@ -47,7 +47,7 @@ headerNames.add(StringPool.BLANK);
 	searchContainer="<%= searchContainer %>"
 />
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 	<%
 	RoleSearchTerms searchTerms = (RoleSearchTerms)searchContainer.getSearchTerms();
@@ -82,7 +82,7 @@ headerNames.add(StringPool.BLANK);
 		if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.UPDATE)) {
 			rowURL = renderResponse.createRenderURL();
 
-			rowURL.setWindowState(WindowState.MAXIMIZED);
+			rowURL.setWindowState(WindowState.NORMAL);
 
 			rowURL.setParameter("struts_action", "/enterprise_admin/edit_role");
 			rowURL.setParameter("redirect", searchContainer.getIteratorURL().toString());

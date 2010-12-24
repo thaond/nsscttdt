@@ -1,4 +1,6 @@
+<%@page import="com.ext.portal.util.ConstantsExt"%>
 <%
+
 
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
 
@@ -42,12 +44,17 @@ if (results.size() < abstractDelta) {
 		}
 		}
 	
-} else {%>
+} else {
+
+
+%>
 	
 	<script type="text/javascript">
 	var <portlet:namespace />imgArray = new Array();
 	<%
+	
 	String assetSummaryFirst = "";
+	String des = "";
 	for (int assetIndex = 0; assetIndex < abstractDelta; assetIndex++) {
 		TagsAsset asset = (TagsAsset)results.get(assetIndex);
 
@@ -157,8 +164,7 @@ if (results.size() < abstractDelta) {
 									StringBuilder sb = new StringBuilder();
 									if (articleDisplay.isSmallImage()) {
 										sb.append("<div class=\"news\">");
-
-										sb.append("<a style=\"display: block;cursor: pointer;\" href=\"" + _viewURL + "\"><img alt=\"");
+										sb.append("<a style=\"display: block;cursor: pointer;position: absolute;\" href=\"" + _viewURL + "\"><img alt=\"");
 										sb.append(LanguageUtil.get(pageContext, "web-content-image"));
 										sb.append("\" src=\"");
 										if (Validator.isNotNull(articleDisplay.getSmallImageURL())) {
@@ -173,9 +179,16 @@ if (results.size() < abstractDelta) {
 										}
 										sb.append("\" /></a>");
 									}
+									
+									des = StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()),abstractLength);
+									for (int i = 0; i < ConstantsExt.CHARACTERSPECIALS.length; i++) {
+										if (des.contains(ConstantsExt.CHARACTERSPECIALS[i])) {
+											des = des.replace(ConstantsExt.CHARACTERSPECIALS[i], ConstantsExt.CHARACTERSPECIALCHANGES[i]);
+										}
+									}
 									sb.append("<div class=\"boxtextnews\">");
 									sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
-									sb.append("<span>" + articleDisplay.getDescription() + "</span>");
+									sb.append("<span>" + des + "</span>");
 									sb.append("</div>");
 									sb.append("</div>");
 									summary = sb.toString();
@@ -206,7 +219,7 @@ if (results.size() < abstractDelta) {
 			
 		}
 
-		int defaultSpeed = 7000;
+		int defaultSpeed = 3000;
 		%>
 
 		var <portlet:namespace />imgArrayPos = 0
@@ -226,7 +239,6 @@ if (results.size() < abstractDelta) {
 
 		function <portlet:namespace />showNext() {
 			<portlet:namespace />imgArrayPos++;
-
 			if (<portlet:namespace />imgArrayPos == <portlet:namespace />imgArray.length) {
 				<portlet:namespace />imgArrayPos = 0;
 			}
@@ -242,7 +254,7 @@ if (results.size() < abstractDelta) {
 			document.getElementById("<portlet:namespace />slideShow").innerHTML = <portlet:namespace />imgArray[<portlet:namespace />imgArrayPos];
 		}
 		
-	//	<portlet:namespace />play();
+		<portlet:namespace />play();
 	</script>
 
 	<div id="<portlet:namespace />slideShow">

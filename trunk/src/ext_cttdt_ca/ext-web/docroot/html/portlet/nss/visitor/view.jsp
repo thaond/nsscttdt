@@ -1,11 +1,11 @@
 <%@ include file="/html/portlet/nss/visitor/init.jsp" %>
 <div class="ti_categr"><h4><liferay-ui:message key="nss-luot-truy-cap" /></h4></div>
 <div class="cont_categr">
-			<img width="100%" src="http://imagecontents.com/counter.php?id=169212&t=16" border="0"  ></img>
+	<img width="100%" src="http://imagecontents.com/counter.php?id=169212&t=16" border="0"  ></img>
 </div>
 
-<SCRIPT>
-	/* 
+<%--SCRIPT>
+	 
 		function GetCookie (name) { 
 			var arg = name + "="; 
 			var alen = arg.length; 
@@ -68,5 +68,4 @@
 		}
 		
 		document.write("You've been here <b>" + amt() + "</b> times.")
-		*/
-</SCRIPT>
+</SCRIPT--%>

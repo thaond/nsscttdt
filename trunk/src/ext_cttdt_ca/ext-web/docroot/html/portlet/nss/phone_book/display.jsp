@@ -181,7 +181,7 @@
 	</div>
 </form>
 
-<script>
+<script type="text/javascript">
 	var myCode =  "<%= contactBookCodesString %>".split("/");
 	var myName =  "<%= contactBookNamesString %>".split("/");
 	var myDescription =  "<%= contactBookDescriptionsString %>".split("/");

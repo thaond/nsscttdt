@@ -55,7 +55,7 @@
 }
 
 .green .drag-proxy-indicator {
-	border-color: 2px dashed #253710;
+	border: 2px dashed #253710;
 }
 
 .green .drop-area {

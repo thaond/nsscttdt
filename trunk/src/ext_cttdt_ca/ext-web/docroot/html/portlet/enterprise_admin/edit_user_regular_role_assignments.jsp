@@ -35,7 +35,7 @@ User user2 = PortalUtil.getSelectedUser(request);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setWindowState(WindowState.NORMAL);
 
 portletURL.setParameter("struts_action", "/enterprise_admin/edit_user_regular_role_assignments");
 portletURL.setParameter("redirect", redirect);
@@ -53,7 +53,7 @@ portletURL.setParameter("p_u_i_d", String.valueOf(user2.getUserId()));
 	}
 </script>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_user_regular_role_assignments" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_user_regular_role_assignments" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
@@ -128,7 +128,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	PortletURL rowURL = renderResponse.createRenderURL();
 
-	rowURL.setWindowState(WindowState.MAXIMIZED);
+	rowURL.setWindowState(WindowState.NORMAL);
 
 	rowURL.setParameter("struts_action", "/enterprise_admin/edit_role");
 	rowURL.setParameter("redirect", currentURL);

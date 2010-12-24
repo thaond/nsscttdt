@@ -55,7 +55,7 @@ if (Validator.isNotNull(portletResource)) {
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setWindowState(WindowState.NORMAL);
 
 portletURL.setParameter("struts_action", "/enterprise_admin/edit_role_permissions");
 portletURL.setParameter("tabs1", tabs1);
@@ -65,7 +65,7 @@ portletURL.setParameter("portletResource", portletResource);
 
 PortletURL addPermissionsURL = renderResponse.createRenderURL();
 
-addPermissionsURL.setWindowState(WindowState.MAXIMIZED);
+addPermissionsURL.setWindowState(WindowState.NORMAL);
 
 addPermissionsURL.setParameter("struts_action", "/enterprise_admin/edit_role_permissions");
 addPermissionsURL.setParameter(Constants.CMD, Constants.EDIT);
@@ -177,7 +177,7 @@ else if ((role.getType() == RoleConstants.TYPE_COMMUNITY) || (role.getType() == 
 	<liferay-util:param name="tabs1" value="define-permissions" />
 </liferay-util:include>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_role_permissions" /></portlet:actionURL>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_role_permissions" /></portlet:actionURL>" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="" />
@@ -349,7 +349,7 @@ else if ((role.getType() == RoleConstants.TYPE_COMMUNITY) || (role.getType() == 
 
 			PortletURL editResourcePermissionsURL = renderResponse.createRenderURL();
 
-			editResourcePermissionsURL.setWindowState(WindowState.MAXIMIZED);
+			editResourcePermissionsURL.setWindowState(WindowState.NORMAL);
 
 			editResourcePermissionsURL.setParameter("struts_action", "/enterprise_admin/edit_role_permissions");
 			editResourcePermissionsURL.setParameter("tabs1", "roles");
@@ -597,7 +597,7 @@ else if ((role.getType() == RoleConstants.TYPE_COMMUNITY) || (role.getType() == 
 
 			PortletURL rowURL = renderResponse.createRenderURL();
 
-			rowURL.setWindowState(WindowState.MAXIMIZED);
+			rowURL.setWindowState(WindowState.NORMAL);
 
 			rowURL.setParameter("struts_action", "/enterprise_admin/edit_role_permissions");
 			rowURL.setParameter("redirect", redirect);

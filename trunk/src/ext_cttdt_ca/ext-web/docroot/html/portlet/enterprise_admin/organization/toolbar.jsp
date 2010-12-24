@@ -30,7 +30,7 @@ String backURL = ParamUtil.getString(request, "backURL");
 %>
 <div class="parent-title"><liferay-ui:message key="Organization"/></div>	
 <div class="lfr-portlet-toolbar">
-	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewOrganizationsURL">
+	<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="viewOrganizationsURL">
 		<portlet:param name="struts_action" value="/enterprise_admin/view" />
 	</portlet:renderURL>
 
@@ -39,7 +39,7 @@ String backURL = ParamUtil.getString(request, "backURL");
 	</span>
 
 	<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_ORGANIZATION) %>">
-		<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="addOrganizationURL">
+		<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="addOrganizationURL">
 			<portlet:param name="struts_action" value="/enterprise_admin/edit_organization" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:renderURL>

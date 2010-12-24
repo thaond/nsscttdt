@@ -36,7 +36,7 @@ PasswordPolicy passwordPolicy = (PasswordPolicy)request.getAttribute(WebKeys.PAS
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setWindowState(WindowState.MAXIMIZED);
+portletURL.setWindowState(WindowState.NORMAL);
 
 portletURL.setParameter("struts_action", "/enterprise_admin/edit_password_policy_assignments");
 portletURL.setParameter("tabs1", tabs1);
@@ -64,7 +64,7 @@ portletURL.setParameter("passwordPolicyId", String.valueOf(passwordPolicy.getPas
 	}
 </script>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_password_policy_assignments" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_password_policy_assignments" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs1" type="hidden" value="<%= HtmlUtil.escape(tabs1) %>" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />

@@ -6,6 +6,7 @@
 		<category name="category.display">
 			<portlet id="NSS_TINMOI" />
 			<portlet id="NSS_TINTONGHOP" />
+			<portlet id="NSS_ASSET_PUBLISHER_INDEX" />
 			<portlet id="NSS_ASSET_PUBLISHER_NSS" />
 			<portlet id="NSS_ASSET_PUBLISHER" />
 			<portlet id="NSGS_CONTACT" />
@@ -13,6 +14,11 @@
 			<portlet id="NSS_LINK_DISPLAY" />
 			<portlet id="NSS_ADV_DISPLAY" />
 			<portlet id="NSS_VISITOR" />
+			<portlet id="EXT_M_CAL_VIEW" />
+			<portlet id="NSS_QA_CAU_HOI" />
+			<portlet id="NSS_THOITIET_TYGIA" />
+			<portlet id="NSS_NECESSARY_INFO_DISPLAY" />
+			<portlet id="NSS_VOTE" />
 		</category>
 		<category name="category.management">
 			<portlet id="NSS_MANAGEMENTWORKFLOWJOURNAL" />
@@ -20,6 +26,7 @@
 			<portlet id="NSS_LINK" />
 			<portlet id="NSS_ADV" />
 			<portlet id="NSS_THONG_KE_TIN" />
+			<portlet id="NSS_NECESSARY_INFO_DISPLAY" />
 		</category>
 	</category>
 	<category name="category.controlpanel">

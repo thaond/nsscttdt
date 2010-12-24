@@ -58,7 +58,7 @@ DateFormat timeFormat = new SimpleDateFormat("HH:mm", locale);
 	}
 </script>
 
-<form action="<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_org_labor" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOrgLabor(); return false;">
+<form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/enterprise_admin/edit_org_labor" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOrgLabor(); return false;">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />orgLaborId" type="hidden" value="<%= orgLaborId %>" />
@@ -228,7 +228,7 @@ for (int i = 0; i < days.length; i++) {
 
 </form>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
+<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 	<script type="text/javascript">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />typeId);
 	</script>
