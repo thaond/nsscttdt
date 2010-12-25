@@ -1,4 +1,4 @@
-<%@ include file="/html/portlet/nss/tintonghop/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
 
 <%@page import="com.liferay.portlet.tags.service.persistence.TagsVocabularyUtil"%>
 <%@page import="com.liferay.portlet.tags.service.persistence.TagsEntryUtil"%>
