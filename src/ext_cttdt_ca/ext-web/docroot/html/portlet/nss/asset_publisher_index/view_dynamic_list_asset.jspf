@@ -4,7 +4,6 @@
 
 <%
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
-System.out.println("results ---------------------------- "+results.size());
 if (results.size() < abstractDelta) {
 	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {
 		TagsAsset asset = (TagsAsset)results.get(assetIndex);
@@ -84,9 +83,6 @@ if (results.size() < abstractDelta) {
 
 		try {
 	%>
-	<%-- minh update 20101220 --%>
-		<%--@ include file="/html/portlet/nss/tintonghop/view_display.jspf" --%>
-		
 		
 		<%
 				if (!ArrayUtil.contains(PropsValues.ASSET_PUBLISHER_DISPLAY_STYLES, displayStyle)) {
@@ -100,41 +96,21 @@ if (results.size() < abstractDelta) {
 							if (displayStyle.equals(curDisplayStyle)) {	
 								int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 
-								//List results = (List)request.getAttribute("view.jsp-results");
-
-								//int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
-
-								//TagsAsset asset = (TagsAsset)request.getAttribute("view.jsp-asset");
-
-								//String title = (String)request.getAttribute("view.jsp-title");
-								//String summary = (String)request.getAttribute("view.jsp-summary");
-								//String viewURL = (String)request.getAttribute("view.jsp-viewURL");
-								//String viewURLMessage = (String)request.getAttribute("view.jsp-viewURLMessage");
 								String cssClassName = StringPool.BLANK;
 
-								//String className = (String)request.getAttribute("view.jsp-className");
-								//long classPK = ((Long)request.getAttribute("view.jsp-classPK")).longValue();
-
-								//boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
-
-								//request.setAttribute("view.jsp-showIconLabel", true);
-
-
-								// phmphuc update 19/07/2010
+								// MoNT update 25/12/2010
 								long selectPlId = 0;
 								if (asset.getCategories().size() > 0 ) {
 									long vocabularyId = asset.getCategories().get(0).getVocabularyId();
 									selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
 								}
-								System.out.println("selectPlId +++ "+selectPlId);
-								//lay gia tri cua layoutid
 
 								List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
 								try {
 									pPlIds = PortletPreferencesLocalServiceUtil.getPortletPreferencesByPlid(selectPlId);
 								} catch (Exception e) {
 								}
-
+								
 								String portletAssetPublisher = "NSS_ASSET_PUBLISHER";
 								for (int i = 0; i < pPlIds.size(); i++) {
 									if(pPlIds.get(i).getPortletId().contains("NSS_ASSET_PUBLISHER_INSTANCE")) {
@@ -142,8 +118,7 @@ if (results.size() < abstractDelta) {
 										break;
 									}
 								}
-								System.out.println("portletAssetPublisher +++ "+portletAssetPublisher);
-								//phmphuc end 19/07/2010
+								//MoNT update 25/12/2010
 
 								PortletURL viewFullContentURL = new PortletURLImpl(request, portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
 								viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
@@ -204,13 +179,6 @@ if (results.size() < abstractDelta) {
 										sb.append( "</span></li>");
 										summary = sb.toString();
 
-										//summary = sb.toString().substring(0, 300);
-										//summary = StringUtil.shorten(HtmlUtil.stripHtml(summary), abstractLength);
-										//summary =summary.substring(0, abstractLength);
-										//if (Validator.isNull(summary)) {
-										//	summary = StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getContent()), abstractLength);
-										//}
-										
 										viewURLMessage = "read-more";
 										cssClassName = AssetPublisherUtil.TYPE_CONTENT;
 									
