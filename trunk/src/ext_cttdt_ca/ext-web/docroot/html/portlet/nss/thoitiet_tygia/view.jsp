@@ -35,10 +35,8 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 <script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Gold_Content.js"></Script>
 <script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Forex_Content.js"></Script>
 <!-- Thoi tiet -->
-<div class="toptitleright">
-    <h3><liferay-ui:message key="nss-thoi-tiet-ty-gia" /></h3>
-    <div class="btmtitleright">
-    <div class="ctrtitleright">
+<div class="ti_categr"> <h4><liferay-ui:message key="nss-thoi-tiet-ty-gia" /></h4></div>
+<div class="cont_categr">   
 		<div >
 		      <ul class="ui-tabs-nav">
 		        <li id="li_1" ><a href="javascript:ChangeTab(1);"><span><liferay-ui:message key="weather" /></span></a></li>
@@ -46,7 +44,7 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		      </ul>
 		</div>
 		<div class="ui-tabs-panel">
-		<div id="box_leftpane_1" >
+		<div id="box_leftpane_1" style="display:none;">
 		<div class="weather">
 				 <h3></h3>
 				 <div class="divlist">
@@ -110,7 +108,7 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 				 </div>
 			</div>
 		</div>
-		<div  id="box_leftpane_2" style="display:none;">
+		<div  id="box_leftpane_2">
 		  <!-- Ty gia -->
 		  <span id="timeField_"><liferay-ui:message key="cap-nhat-luc" />&nbsp;:<%=df.format(new Date()) %></span><br>
 		  <div class="tygia">
@@ -137,7 +135,7 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		    </div>
 		    <script type="text/javascript" language="JavaScript" src="http://vnexpress.net/Service/Forex_Content.js"> </Script>
 		    <div class="tygia">
-			    <div class="conts_leftpane" id="box_leftpane_4" style="height:115px;overflow: auto;overflow-x: hidden"> 
+			    <div class="conts_leftpane" id="box_leftpane_4" style="overflow: hidden"> 
 			    <span class="textred textbold"><img src="/html/images/tygia.png" hspace="5" vspace="1" align="middle" /><liferay-ui:message key="ty-gia-ngoai-te" />
 			   </span><br>
 			      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="info-tb">
@@ -154,8 +152,6 @@ DateFormat df = new SimpleDateFormat("HH : mm", new Locale("vi", "VN"));
 		   </div>
 		</div>
 </div>
-</div>
-</div>
 <script type="text/javascript">
-document.getElementById('li_1').className = "current";
+document.getElementById('li_2').className = "current";
 </script>

@@ -121,14 +121,12 @@
 				int sideMargin = (PrefsPropsUtil.getInteger(PropsKeys.IG_IMAGE_THUMBNAIL_MAX_DIMENSION) - smallImageWidth + 20) / 2;
 				%>
 
-				<div style="float: left;">
+				<div style="float: left;margin: 30px 0 0 30px;width: 162px;">
 					<a href="javascript: ;" onClick="<portlet:namespace />viewImage(<%= largeImage.getImageId() %>, '<%= ImageServletTokenUtil.getToken(largeImage.getImageId()) %>', '<b><%= UnicodeFormatter.toString(image.getName()) %></b><br /><%= UnicodeFormatter.toString(image.getDescription()) %>', <%= largeImage.getWidth() %>, <%= largeImage.getHeight() %>)">
-						<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathImage() %>/image_gallery?img_id=<%= smallImageId %>&t=<%= ImageServletTokenUtil.getToken(smallImageId) %>" style="height: <%= smallImageHeight %>; width: <%= smallImageWidth %>;" />
-					</a>
-
-					<div style="text-align: center;">
+						<img alt="<liferay-ui:message key="image" />" border="no" src="<%= themeDisplay.getPathImage() %>/image_gallery?img_id=<%= smallImageId %>&t=<%= ImageServletTokenUtil.getToken(smallImageId) %>" class="imgmypic"/>
+						<br>
+						<div style="overflow: hidden;width: 95%">
 						<%= image.getName() %>
-
 						<c:if test="<%= scores != null %>">
 							<br />
 
@@ -140,8 +138,8 @@
 
 							<liferay-ui:ratings-score score="<%= score %>" />
 						</c:if>
-					</div>
-
+						</div>
+					</a>
 					<div id="<portlet:namespace />buttonsContainer_<%= largeImage.getImageId() %>" style="display: none;">
 						<div class="buttons-container float-container" id="<portlet:namespace />buttons_<%= largeImage.getImageId() %>">
 							<%@ include file="/html/portlet/image_gallery/image_action.jspf" %>

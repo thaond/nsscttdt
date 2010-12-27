@@ -315,7 +315,13 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:if test="<%= articleDisplay != null %>">
 				<c:choose>
 					<c:when test="<%= showAssetTitle %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+						<!-- <h3 class="asset-title <%= AssetPublisherUtil.TYPE_CONTENT %>">
+							<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+
+							<%= title %>
+						</h3> -->
+						
+						<liferay-util:include page="/html/portlet/asset_publisher_index/asset_actions.jsp" />
 						
 						<h5><%= title %></h5>
 						<h1><liferay-ui:message key="nss-cap-nhat" />: <%=df.format(asset.getPublishDate()) %></h1>
@@ -410,6 +416,61 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					</c:if>
 				</c:if>
 				</div>
+				<!-- Tu update 20101122 -->
+				<%
+				long articleSignId = JournalArticleLocalServiceUtil.getArticle(articleResource.getGroupId(),articleResource.getArticleId()).getPrimaryKey();
+				int checkSign = ArticleSignUtil.veriSign(articleSignId);
+				//lay thong tin nguoi ky
+				List<Signature> signature = SignatureLocalServiceUtil.findByArticlePrimKey(articleSignId);
+				long userSignId = 0;
+				String infoSign = "";
+				if(signature.size()>0){
+					userSignId = signature.get(0).getUserId();
+					infoSign = UserLocalServiceUtil.getUser(userSignId).getFullName();
+				}
+				ImageSigner image = ImageSignerLocalServiceUtil.getImageSignerByUserId(userSignId,0,ImageSignerLocalServiceUtil.getImageSigners(-1,-1).size());
+				%>
+				<c:choose>
+					<c:when test="<%= checkSign == 1 %>">
+						<div style="padding-left: 50px;padding-bottom: 10px;padding-top: 10px; background-color: #EBFAFF;">
+							<table>
+							<tr>
+								<td>
+								<c:choose>
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdSign()%>">
+									</c:when>
+									<c:when test="<%= image == null %>">
+										<img width="60" alt="certificate" src="/html/images/Certificate.jpg">
+									</c:when>
+								</c:choose>
+								</td>
+								<td style="padding-left: 10px;"><liferay-ui:message key="sign-kiem-duyet" /><br><liferay-ui:message key="sign-nguoi-ky" /> : <%= infoSign %></td>
+							</tr>
+							</table>
+						</div>
+					</c:when>
+					<c:when test="<%= checkSign == 2 %>">
+						<div style="padding-left: 50px;padding-bottom: 10px;padding-top: 10px; background-color: #EBFAFF;">
+							<table>
+							<tr>
+								<td>
+								<c:choose>
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdUnSign()%>">
+									</c:when>
+									<c:when test="<%= image == null %>">
+										<img width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
+									</c:when>
+								</c:choose>
+								</td>
+								<td style="padding-left: 10px;"><liferay-ui:message key="sign-thay-doi" /></td>
+							</tr>
+							</table>
+						</div>
+					</c:when>
+				</c:choose>
+				<!--  end Tu Update -->
 		</c:when>
 		<c:when test="<%= className.equals(MBMessage.class.getName()) %>">
 

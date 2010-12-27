@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 
 <%
+
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
 if (results.size() < abstractDelta) {
 	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {

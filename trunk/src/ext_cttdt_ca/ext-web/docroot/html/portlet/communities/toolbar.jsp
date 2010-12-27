@@ -27,7 +27,7 @@
 <%
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 %>
-
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="communities"/></p></h4></div>
 <div class="lfr-portlet-toolbar">
 	<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewCommunitiesURL">
 		<portlet:param name="struts_action" value="/communities/view" />

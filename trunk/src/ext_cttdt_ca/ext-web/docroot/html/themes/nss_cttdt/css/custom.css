@@ -246,6 +246,5 @@ body.lfr-has-sidebar {
 }
 
 .lfr-has-sidebar, #content-wrapper {
-	padding-left: 270px;
 	width: auto;
 }

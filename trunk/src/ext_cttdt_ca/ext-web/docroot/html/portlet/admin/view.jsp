@@ -77,7 +77,7 @@
 		</script>
 
 		<form method="post" name="<portlet:namespace />fm">
-		<div class="parent-title"><liferay-ui:message key="Admin"/></div>
+		<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Quan-tri-may-chu"/></p></h4></div>
 		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 		<input name="<portlet:namespace />tabs1" type="hidden" value="<%= HtmlUtil.escape(tabs1) %>" />
 		<input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
@@ -91,7 +91,7 @@
 				url="<%= portletURL.toString() %>"
 			/>
 		</c:if>
-		<div class="borderendTab">
+		
 		<c:choose>
 			<c:when test='<%= tabs1.equals("server") %>'>
 				<%@ include file="/html/portlet/admin/server.jspf" %>
@@ -121,7 +121,6 @@
 				<%@ include file="/html/portlet/enterprise_admin/plugins.jspf" %>
 			</c:when>
 		</c:choose>
-		</div>
 		</form>
 	</c:when>
 	<c:otherwise>

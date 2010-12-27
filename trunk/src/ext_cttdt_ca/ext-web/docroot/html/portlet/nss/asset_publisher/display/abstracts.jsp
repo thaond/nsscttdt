@@ -218,7 +218,7 @@ else if (className.equals(JournalArticle.class.getName())) {
 		}
 
 		if (abstractNumber == 1) {
-			sb.append("<h5><a style=\"font-size:20px\" href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
+			sb.append("<h5><a style=\"font-size:12px\" href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
 		} else {
 			sb.append("<h5><a href=\"" + viewURL + "\">" + "" + title + "</a></h5>");
 		}

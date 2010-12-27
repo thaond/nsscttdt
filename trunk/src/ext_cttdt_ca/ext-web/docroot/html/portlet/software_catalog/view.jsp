@@ -55,6 +55,7 @@ portletURL.setParameter("tabs1", tabs1);
 %>
 
 <form action="<%= portletURL %>" method="get" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-danh-muc-phan-mem" /></p></h4></div>
 <liferay-portlet:renderURLParams varImpl="portletURL" />
 
 <liferay-ui:tabs
@@ -62,7 +63,7 @@ portletURL.setParameter("tabs1", tabs1);
 	tabsValues="<%= tabs1Values %>"
 	portletURL="<%= portletURL %>"
 />
-
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs1.equals("products") %>'>
 
@@ -633,7 +634,7 @@ portletURL.setParameter("tabs1", tabs1);
 		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 	</c:when>
 </c:choose>
-
+</div>
 </form>
 
 <script type="text/javascript">

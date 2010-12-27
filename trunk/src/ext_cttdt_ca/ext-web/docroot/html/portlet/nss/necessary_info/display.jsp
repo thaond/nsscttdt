@@ -18,8 +18,7 @@
 %>
 
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
-	<fieldset>
-	<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_NECESSARY_INFO" /></div>
+	<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="javax.portlet.title.NSS_NECESSARY_INFO" /></p></h4></div>
 	<%
 		ThongTinCanThietSearch searchContainer = new ThongTinCanThietSearch(renderRequest, portletURL);
 		ThongTinCanThietSearchTerms searchTerms = (ThongTinCanThietSearchTerms)searchContainer.getSearchTerms();
@@ -142,7 +141,6 @@
 		
 	%>
 	<liferay-ui:search-iterator searchContainer="<%=searchContainer %>" />
-	</fieldset>
 </form>
 <% 
 boolean delete = (Boolean)renderRequest.getAttribute("delete") == null ? true : (Boolean)renderRequest.getAttribute("delete");

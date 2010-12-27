@@ -27,7 +27,13 @@ jQuery(document).ready(function(){
 			<span id="<portlet:namespace/>show"></span> 
    			- <liferay-ui:message key="nss-ngay" /> <%=new SimpleDateFormat("dd/MM/yyyy").format(new Date()) %>
 		</li>
-		<li class="marqtxt"><liferay-ui:message key="Doan text chay tin tieu de tin moi + tin noi bat trong ngay..." /></li>
+		<li class="marqtxt">
+			<marquee behavior="scroll" direction="left" onmouseout="this.start();" onmouseover="this.stop();">
+				<liferay-ui:message key="nss-van-phong-cong-an-tp-ho-chi-minh" /> -
+				<liferay-ui:message key="nss-van-phong-cong-an-tp-ho-chi-minh" /> -
+				<liferay-ui:message key="nss-van-phong-cong-an-tp-ho-chi-minh" />
+			</marquee>
+		</li>
 		<li class="search"><liferay-ui:journal-content-search /></li>
     </ul>
 </div>

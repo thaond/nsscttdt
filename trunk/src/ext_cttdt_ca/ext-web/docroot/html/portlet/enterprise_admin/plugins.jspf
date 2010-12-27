@@ -27,7 +27,7 @@
 	param="tabs2"
 	url="<%= portletURL.toString() %>"
 />
-
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs2.equals("theme-plugins") %>'>
 		<%@ include file="/html/portlet/enterprise_admin/themes.jspf" %>
@@ -43,3 +43,4 @@
 		<%@ include file="/html/portlet/enterprise_admin/portlets.jspf" %>
 	</c:otherwise>
 </c:choose>
+</div>

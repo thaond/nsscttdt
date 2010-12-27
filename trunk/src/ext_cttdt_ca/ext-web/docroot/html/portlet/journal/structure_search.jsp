@@ -39,26 +39,25 @@ StructureDisplayTerms displayTerms = (StructureDisplayTerms)searchContainer.getD
 	
 	<tr>
 		<td width="100px">
-			<liferay-ui:message key="id" />
+			<liferay-ui:message key="id" />:
 		</td>
-		<td>
-			<liferay-ui:message key="name" />
-		</td>
-		<td>
-			<liferay-ui:message key="description" />
-		</td>
-	</tr>
-	<tr>
 		<td>
 			<input name="<portlet:namespace /><%= displayTerms.STRUCTURE_ID %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getStructureId()) %>" />
+		</td>
+		<td>
+			<liferay-ui:message key="name" />:
 		</td>
 		<td>
 			<input name="<portlet:namespace /><%= displayTerms.NAME %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getName()) %>" />
 		</td>
 		<td>
+			<liferay-ui:message key="description" />:
+		</td>
+		<td>
 			<input name="<portlet:namespace /><%= displayTerms.DESCRIPTION %>" size="20" type="text" value="<%= HtmlUtil.escape(displayTerms.getDescription()) %>" />
 		</td>
 	</tr>
+
 	</table>
 </liferay-ui:search-toggle>
 
@@ -74,8 +73,6 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 
 <c:if test="<%= showAddStructureButton || showPermissionsButton %>">
 	<br />
-
-	<div>
 		<c:if test="<%= showAddStructureButton %>">
 			<input type="button" value="<liferay-ui:message key="add-structure" />" onClick="<portlet:namespace />addStructure();" />
 		</c:if>
@@ -90,7 +87,6 @@ if (portletName.equals(PortletKeys.JOURNAL)) {
 
 			<input type="button" value="<liferay-ui:message key="permissions" />" onClick="location.href = '<%= permissionsURL %>';" />
 		</c:if>
-	</div>
 </c:if>
 
 <script type="text/javascript">

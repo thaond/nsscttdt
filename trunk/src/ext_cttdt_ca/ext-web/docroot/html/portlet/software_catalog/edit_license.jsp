@@ -44,18 +44,19 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />licenseId" type="hidden" value="<%= licenseId %>" />
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-danh-muc-phan-mem" /></p></h4></div>
 
 <liferay-ui:tabs
 	names="license"
 	backURL="<%= redirect %>"
 />
-
+<div class="borderendTab">
 <liferay-ui:error exception="<%= LicenseNameException.class %>" message="please-enter-a-valid-name" />
 
-<table class="lfr-table">
+<table cellspacing="0" width="100%">
 <tr>
-	<td>
-		<liferay-ui:message key="name" />
+	<td width="20%">
+		<liferay-ui:message key="name" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCLicense.class %>" bean="<%= license %>" field="name" />
@@ -63,7 +64,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="url" />
+		<liferay-ui:message key="url" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCLicense.class %>" bean="<%= license %>" field="url" />
@@ -71,7 +72,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="open-source" />
+		<liferay-ui:message key="open-source" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCLicense.class %>" bean="<%= license %>" field="openSource" defaultValue="<%= Boolean.TRUE %>" />
@@ -79,7 +80,7 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="active" />
+		<liferay-ui:message key="active" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCLicense.class %>" bean="<%= license %>" field="active" defaultValue="<%= Boolean.TRUE %>" />
@@ -87,20 +88,22 @@ long licenseId = BeanParamUtil.getLong(license, request, "licenseId");
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="recommended" />
+		<liferay-ui:message key="recommended" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCLicense.class %>" bean="<%= license %>" field="recommended" defaultValue="<%= Boolean.TRUE %>" />
 	</td>
 </tr>
+<tr>
+	<td>
+	</td>
+	<td>
+		<input type="submit" value="<liferay-ui:message key="save" />" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+	</td>
+</tr>
 </table>
-
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

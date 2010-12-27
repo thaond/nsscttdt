@@ -28,7 +28,7 @@
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all");
 String backURL = ParamUtil.getString(request, "backURL");
 %>
-<div class="parent-title"><liferay-ui:message key="Role"/></div>
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Role"/></p></h4></div>
 <div class="lfr-portlet-toolbar">
 	<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="viewRolesURL">
 		<portlet:param name="struts_action" value="/enterprise_admin/view" />

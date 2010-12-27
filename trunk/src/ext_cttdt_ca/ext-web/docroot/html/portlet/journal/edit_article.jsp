@@ -681,6 +681,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 </form>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/journal/edit_article" /></portlet:actionURL>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm1" onSubmit="<portlet:namespace />saveArticle(); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-noi-dung" /></p></h4></div>
 <input name="<portlet:namespace />portletResource" type="hidden" value="<%= HtmlUtil.escape(portletResource) %>" />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />tabs2" type="hidden" value="<%= HtmlUtil.escape(tabs2) %>" />
@@ -702,20 +703,20 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 	formName="fm1"
 	backURL="<%= redirect %>"
 />
-
-<table class="lfr-table" width="100%">
+<div class="borderendTab">
+<table cellspacing="0" width="100%">
 <tr>
-	<td valign="top">
+	<td valign="top" width="65%">
 		<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 		<liferay-ui:error exception="<%= ArticleIdException.class %>" message="please-enter-a-valid-id" />
 		<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-name" />
 		<liferay-ui:error exception="<%= DuplicateArticleIdException.class %>" message="please-enter-a-unique-id" />
 		<liferay-ui:tags-error />
 
-		<table class="lfr-table">
+		<table cellspacing="0" width="100%">
 		<tr>
 			<td>
-				<liferay-ui:message key="id" />
+				<liferay-ui:message key="id" />:
 			</td>
 			<td>
 				<c:choose>
@@ -733,7 +734,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<table class="lfr-table">
+						<table cellspacing="0" width="100%">
 						<tr>
 							<td>
 								<c:choose>
@@ -760,7 +761,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</tr>
 		<tr>
 			<td>
-				<liferay-ui:message key="name" />
+				<liferay-ui:message key="name" />:
 			</td>
 			<td>
 				<liferay-ui:input-field model="<%= JournalArticle.class %>" bean="<%= article %>" field="title" />
@@ -768,14 +769,10 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 		</tr>
 		<tr>
 			<td>
-				<liferay-ui:message key="language" />
+				<liferay-ui:message key="language" />:
 			</td>
 			<td>
 				<input name="<portlet:namespace />lastLanguageId" type="hidden" value="<%= languageId %>" />
-
-				<table class="lfr-table">
-				<tr>
-					<td>
 						<select <%= (article == null) ? "disabled" : "" %> name="<portlet:namespace />languageId" onChange="<portlet:namespace />changeLanguageView();">
 
 							<%
@@ -795,14 +792,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 						<c:if test="<%= (article != null) && !languageId.equals(defaultLanguageId) %>">
 							<input type="button" name="<portlet:namespace />removeArticleLocaleButton" value="<liferay-ui:message key="remove" />" onClick="<portlet:namespace />removeArticleLocale();" />
 						</c:if>
-					</td>
-					<td>
-						<table class="lfr-table">
-						<tr>
-							<td>
-								<liferay-ui:message key="default-language" />
-							</td>
-							<td>
+								<liferay-ui:message key="default-language" />:
 								<select
 									<c:choose>
 										<c:when test="<%= article == null %>">
@@ -856,12 +846,6 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 								<c:if test="<%= article == null %>">
 									<input name="<portlet:namespace />defaultLanguageId" type="hidden" value="<%= HtmlUtil.escape(defaultLanguageId) %>" />
 								</c:if>
-							</td>
-						</tr>
-						</table>
-					</td>
-				</tr>
-				</table>
 			</td>
 		</tr>
 		</table>
@@ -1067,7 +1051,7 @@ String smallImageURL = BeanParamUtil.getString(article, request, "smallImageURL"
 	</td>
 </tr>
 </table>
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

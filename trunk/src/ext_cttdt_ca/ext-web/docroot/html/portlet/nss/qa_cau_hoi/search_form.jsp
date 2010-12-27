@@ -38,4 +38,4 @@
 		</tr>
 </table>	
 <br>
-<input style="margin-left: 15.5%" type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>
+<input style="margin-left: 20.5%" type="submit" class="button-width" name="<portlet:namespace/>search" value="<liferay-ui:message key="search"/>"/>

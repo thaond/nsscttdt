@@ -40,7 +40,7 @@ List scores = null;
 </liferay-portlet:renderURL>
 
 <form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">
-<div class="titlecategories"><h6><liferay-ui:message key="Thu-vien-anh" /></h6> </div>
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Thu-vien-anh" /></p></h4></div>
 <liferay-portlet:renderURLParams varImpl="searchURL" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />

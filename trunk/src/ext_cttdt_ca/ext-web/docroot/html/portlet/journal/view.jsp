@@ -116,10 +116,9 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/journal/article_search_results.jspf" %>
-			<br>
 			<input type="button" value="<liferay-ui:message key="expire" />" onClick="<portlet:namespace />expireArticles();" />
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteArticles();" />
-
+			<br><br>
 			<%
 			List resultRows = searchContainer.getResultRows();
 
@@ -212,7 +211,7 @@ portletURL.setParameter("tabs1", tabs1);
 			page="/html/portlet/journal/structure_search.jsp"
 			searchContainer="<%= searchContainer %>"
 		/>
-
+		<br />
 		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
@@ -220,9 +219,6 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/journal/structure_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteStructures();" />
 
 			<br /><br />
@@ -296,7 +292,7 @@ portletURL.setParameter("tabs1", tabs1);
 			page="/html/portlet/journal/template_search.jsp"
 			searchContainer="<%= searchContainer %>"
 		/>
-
+		<br />
 		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
@@ -306,9 +302,6 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/journal/template_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteTemplates();" />
 
 			<br /><br />
@@ -381,9 +374,6 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/journal/feed_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteFeeds();" />
 
 			<br /><br />

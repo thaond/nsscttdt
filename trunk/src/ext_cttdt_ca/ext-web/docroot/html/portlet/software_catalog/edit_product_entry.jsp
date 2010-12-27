@@ -79,12 +79,12 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />productEntryId" type="hidden" value="<%= productEntryId %>" />
 <input name="<portlet:namespace />screenshotsCount" type="hidden" value="<%= screenshotsCount %>" />
-
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-danh-muc-phan-mem" /></p></h4></div>
 <liferay-ui:tabs
 	names="product"
 	backURL="<%= redirect %>"
 />
-
+<div class="borderendTab">
 <liferay-ui:error exception="<%= DuplicateProductEntryModuleIdException.class %>" message="please-enter-a-unique-group-id-and-artifact-id-combination" />
 <liferay-ui:error exception="<%= ProductEntryAuthorException.class %>" message="please-enter-a-valid-author" />
 <liferay-ui:error exception="<%= ProductEntryLicenseException.class %>" message="please-select-at-least-one-license" />
@@ -94,10 +94,10 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 <liferay-ui:error exception="<%= ProductEntryShortDescriptionException.class %>" message="please-enter-a-valid-short-description" />
 <liferay-ui:error exception="<%= ProductEntryTypeException.class %>" message="please-select-a-valid-type" />
 
-<table class="lfr-table">
+<table cellspacing="0" width="100%">
 <tr>
-	<td>
-		<liferay-ui:message key="name" />
+	<td width="20%">
+		<liferay-ui:message key="name" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="name" />
@@ -105,7 +105,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="type" />
+		<liferay-ui:message key="type" />:
 	</td>
 	<td>
 		<select name="<portlet:namespace/>type">
@@ -125,7 +125,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="licenses" />
+		<liferay-ui:message key="licenses" />:
 	</td>
 	<td>
 		<select multiple="true" name="<portlet:namespace/>licenses">
@@ -167,7 +167,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="author" />
+		<liferay-ui:message key="author" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="author" />
@@ -175,7 +175,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="page-url" />
+		<liferay-ui:message key="page-url" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="pageURL" />
@@ -183,7 +183,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="tags" />
+		<liferay-ui:message key="tags" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="tags" /> (<liferay-ui:message key="comma-delimited-list" />)
@@ -191,7 +191,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="short-description" />
+		<liferay-ui:message key="short-description" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="shortDescription" />
@@ -199,7 +199,7 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="long-description" />
+		<liferay-ui:message key="long-description" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="longDescription" />
@@ -207,14 +207,10 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 
 <c:if test="<%= productEntry == null %>">
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
+	
 	<tr>
 		<td>
-			<liferay-ui:message key="permissions" />
+			<liferay-ui:message key="permissions" />:
 		</td>
 		<td>
 			<liferay-ui:input-permissions
@@ -223,23 +219,22 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 		</td>
 	</tr>
 </c:if>
-
+	<tr>
+	<td></td>
+	<td>
+		<input type="submit" value="<liferay-ui:message key="save" />" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+	</td>
+	</tr>
 </table>
 
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
 <br /><br />
-
 <liferay-ui:tabs names="plugin-repository" />
-
-<table class="lfr-table">
+<div class="borderendTab">
+<table cellspacing="0" width="100%">
 <tr>
-	<td>
-		<liferay-ui:message key="group-id" />
+	<td width="20%">
+		<liferay-ui:message key="group-id" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="repoGroupId" />
@@ -247,20 +242,19 @@ int screenshotsCount = ParamUtil.getInteger(request, "screenshotsCount", product
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="artifact-id" />
+		<liferay-ui:message key="artifact-id" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCProductEntry.class %>" bean="<%= productEntry %>" field="repoArtifactId" />
 	</td>
 </tr>
 </table>
-
+</div>
 <br />
 
 <liferay-ui:tabs names="screenshots" />
-
-<table class="lfr-table">
-
+<div class="borderendTab">
+<table cellspacing="0" width="100%">
 <%
 for (int i = 0; i < screenshotsCount; i++) {
 	SCProductScreenshot productScreenshot = null;
@@ -271,8 +265,8 @@ for (int i = 0; i < screenshotsCount; i++) {
 %>
 
 	<tr>
-		<td>
-			<liferay-ui:message key="thumbnail" />
+	<td width="20%">
+			<liferay-ui:message key="thumbnail" />:
 		</td>
 		<td>
 			<input class="lfr-input-text" name="<portlet:namespace />thumbnail<%= i %>" type="file" />
@@ -300,29 +294,29 @@ for (int i = 0; i < screenshotsCount; i++) {
 	</tr>
 	<tr>
 		<td>
-			<liferay-ui:message key="full-image" />
+			<liferay-ui:message key="full-image" />:
 		</td>
 		<td>
 			<input class="lfr-input-text" name="<portlet:namespace />fullImage<%= i %>" type="file" />
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
+	
 
 <%
 }
 %>
+<tr>
+	<td width="20%"></td>
+	<td><input type="button" value="<liferay-ui:message key="add-screenshot" />" onClick="<portlet:namespace />addScreenShot();" /></td>
+</tr>
 </table>
+</div>
 
-<input type="button" value="<liferay-ui:message key="add-screenshot" />" onClick="<portlet:namespace />addScreenShot();" />
 
 <c:if test="<%= screenshotsCount > 0 %>">
 	<input type="button" value="<liferay-ui:message key="remove-screenshot" />" onClick="<portlet:namespace />removeScreenShot();" />
 </c:if>
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

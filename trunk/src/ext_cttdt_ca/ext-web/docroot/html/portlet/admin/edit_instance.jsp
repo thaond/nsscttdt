@@ -40,6 +40,7 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 </script>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/admin/edit_instance" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveCompany(); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Quan-tri-may-chu"/></p></h4></div>
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />companyId" type="hidden" value="<%= companyId %>" />
@@ -48,17 +49,17 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 	names="instance"
 	backURL="<%= redirect %>"
 />
-
+<div class="borderendTab">
 <liferay-ui:error exception="<%= CompanyMxException.class %>" message="please-enter-a-valid-mail-domain" />
 <liferay-ui:error exception="<%= CompanyVirtualHostException.class %>" message="please-enter-a-valid-virtual-host" />
 <liferay-ui:error exception="<%= CompanyWebIdException.class %>" message="please-enter-a-valid-web-id" />
 
-<table class="lfr-table">
+<table width="100%" cellspacing="0">
 
 <c:if test="<%= company2 != null %>">
 	<tr>
-		<td>
-			<liferay-ui:message key="id" />
+		<td width="20%">
+			<liferay-ui:message key="id" />:
 		</td>
 		<td>
 			<%= companyId %>
@@ -66,7 +67,7 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 	</tr>
 	<tr>
 		<td>
-			<liferay-ui:message key="web-id" />
+			<liferay-ui:message key="web-id" />:
 		</td>
 		<td>
 			<%= company2.getWebId() %>
@@ -76,8 +77,8 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 
 <c:if test="<%= company2 == null %>">
 	<tr>
-		<td>
-			<liferay-ui:message key="web-id" />
+		<td width="20%">
+			<liferay-ui:message key="web-id" />:
 		</td>
 		<td>
 			<liferay-ui:input-field model="<%= Company.class %>" bean="<%= company2 %>" field="webId" />
@@ -87,7 +88,7 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 
 <tr>
 	<td>
-		<liferay-ui:message key="virtual-host" />
+		<liferay-ui:message key="virtual-host" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= Company.class %>" bean="<%= company2 %>" field="virtualHost" />
@@ -95,7 +96,7 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="mail-domain" />
+		<liferay-ui:message key="mail-domain" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= Company.class %>" bean="<%= company2 %>" field="mx" />
@@ -104,8 +105,8 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 
 <c:if test="<%= showShardSelector %>">
 	<tr>
-		<td>
-			<liferay-ui:message key="shard" />
+		<td width="20%">
+			<liferay-ui:message key="shard" />:
 		</td>
 		<td>
 			<c:choose>
@@ -131,13 +132,14 @@ long companyId = BeanParamUtil.getLong(company2, request, "companyId");
 		</td>
 	</tr>
 </c:if>
+<tr>
+	<td></td>
+	<td>
+		<input type="submit" value="<liferay-ui:message key="save" />" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+	</td>
 
+</tr>
 </table>
-
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
+</div>
 </form>
