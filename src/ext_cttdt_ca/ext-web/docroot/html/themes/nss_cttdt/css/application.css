@@ -237,7 +237,7 @@
 .ui-tabs li.current {
 	background: url(../images/catp/lefttab.png) no-repeat left top;padding-left: 15px;
 }
-.ui-tabs li.current a {
+.ui-tabs li.current a,.ui-tabs li.current span {
 	background: url(../images/catp/righttab.png) no-repeat right top;padding-right: 15px;color: #fcff00;display:block;height:20px;padding:5px 15px 0 0;
 	text-shadow: none;
 }

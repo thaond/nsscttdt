@@ -44,9 +44,6 @@ numberFormat.setMinimumIntegerDigits(2);
 </c:if>
 
 <%= numberFormat.format(hours) %>:<%= numberFormat.format(minutes) %>:<%= numberFormat.format(seconds) %>
-
-<br /><br />
-
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 		<html:link page="/admin/view?windowState=normal&portletMode=view&actionURL=0"><liferay-ui:message key="more" /></html:link> &raquo;
@@ -57,7 +54,7 @@ numberFormat.setMinimumIntegerDigits(2);
 			param="tabs2"
 			url="<%= portletURL.toString() %>"
 		/>
-
+		<div class="borderendTab">
 		<c:choose>
 			<c:when test='<%= tabs2.equals("log-levels") %>'>
 				<liferay-ui:tabs
@@ -65,10 +62,10 @@ numberFormat.setMinimumIntegerDigits(2);
 					param="tabs3"
 					url="<%= portletURL.toString() %>"
 				/>
-
+				<div class="borderendTab">
 				<c:choose>
 					<c:when test='<%= tabs3.equals("add-category") %>'>
-						<table class="lfr-table">
+						<table width="100%" cellspacing="0">
 						<tr>
 							<td>
 								<input class="lfr-input-text" name="<portlet:namespace />loggerName" type="text" />
@@ -192,6 +189,7 @@ numberFormat.setMinimumIntegerDigits(2);
 						<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveServer('updateLogLevels');" />
 					</c:otherwise>
 				</c:choose>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("properties") %>'>
 				<liferay-ui:tabs
@@ -199,7 +197,7 @@ numberFormat.setMinimumIntegerDigits(2);
 					param="tabs3"
 					url="<%= portletURL.toString() %>"
 				/>
-
+				<div class="borderendTab">
 				<c:choose>
 					<c:when test='<%= tabs3.equals("portal-properties") %>'>
 
@@ -298,6 +296,7 @@ numberFormat.setMinimumIntegerDigits(2);
 						<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 					</c:otherwise>
 				</c:choose>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("data-migration") %>'>
 
@@ -312,7 +311,6 @@ numberFormat.setMinimumIntegerDigits(2);
 					}
 				}
 				%>
-
 				<c:choose>
 					<c:when test="<%= convertProcesses.isEmpty() %>">
 						<div class="portlet-msg-info">
@@ -320,7 +318,7 @@ numberFormat.setMinimumIntegerDigits(2);
 						</div>
 					</c:when>
 					<c:otherwise>
-						<table class="lfr-table">
+						<table width="100%" cellspacing="0">
 
 						<%
 						for (ConvertProcess convertProcess : convertProcesses) {
@@ -345,10 +343,7 @@ numberFormat.setMinimumIntegerDigits(2);
 			</c:when>
 			<c:when test='<%= tabs2.equals("file-uploads") %>'>
 				<liferay-ui:message key="configure-the-file-upload-settings" />
-
-				<br /><br />
-
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
 					<td colspan="2">
 						<b><liferay-ui:message key="general" /></b>
@@ -559,9 +554,7 @@ numberFormat.setMinimumIntegerDigits(2);
 			<c:when test='<%= tabs2.equals("mail") %>'>
 				<liferay-ui:message key="configure-the-mail-server-settings" />
 
-				<br /><br />
-
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
 					<td>
 						<liferay-ui:message key="incoming-pop-server" />
@@ -655,7 +648,7 @@ numberFormat.setMinimumIntegerDigits(2);
 
 				<br /><br />
 
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
 					<td>
 						<liferay-ui:message key="advanced-properties" />
@@ -675,7 +668,7 @@ numberFormat.setMinimumIntegerDigits(2);
 
 				<br /><br />
 
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
 					<td>
 						<liferay-ui:message key="enabled" />
@@ -699,7 +692,7 @@ numberFormat.setMinimumIntegerDigits(2);
 				<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveServer('updateOpenOffice');" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("shutdown") %>'>
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
 					<td>
 						<liferay-ui:message key="number-of-minutes" />
@@ -735,9 +728,6 @@ numberFormat.setMinimumIntegerDigits(2);
 
 				long usedMemory = runtime.totalMemory() - runtime.freeMemory();
 				%>
-
-				<div>
-
 					<%
 					DefaultValueDataset dataset = new DefaultValueDataset(usedMemory * 100 / runtime.totalMemory());
 
@@ -746,7 +736,7 @@ numberFormat.setMinimumIntegerDigits(2);
 					JFreeChart chart = _getChart(LanguageUtil.get(pageContext, "used-memory") + " / " + LanguageUtil.get(pageContext, "total-memory"), plot);
 					%>
 
-					<img border="0" src="<%= themeDisplay.getPathContext() %>/display_chart?filename=<%= ServletUtilities.saveChartAsPNG(chart, 280, 180, null, null) %>" />
+					<img style="margin: 40px; border: 5px solid #eee;padding: 1px" src="<%= themeDisplay.getPathContext() %>/display_chart?filename=<%= ServletUtilities.saveChartAsPNG(chart, 280, 180, null, null) %>" />
 
 					<%
 					dataset = new DefaultValueDataset(usedMemory * 100 / runtime.maxMemory());
@@ -756,14 +746,12 @@ numberFormat.setMinimumIntegerDigits(2);
 					chart = _getChart(LanguageUtil.get(pageContext, "used-memory") + " / " + LanguageUtil.get(pageContext, "maximum-memory"), plot);
 					%>
 
-					<img border="0" src="<%= themeDisplay.getPathContext() %>/display_chart?filename=<%= ServletUtilities.saveChartAsPNG(chart, 280, 180, null, null) %>" />
-				</div>
-
+					<img style="margin: 40px; border: 5px solid #eee;padding: 1px" src="<%= themeDisplay.getPathContext() %>/display_chart?filename=<%= ServletUtilities.saveChartAsPNG(chart, 280, 180, null, null) %>" />
 				<br />
 
-				<table class="lfr-table">
+				<table width="100%" cellspacing="0">
 				<tr>
-					<td>
+					<td width="40%">
 						<liferay-ui:message key="used-memory" />:
 					</td>
 					<td>
@@ -791,11 +779,11 @@ numberFormat.setMinimumIntegerDigits(2);
 				<br />
 
 				<liferay-ui:tabs names="actions" />
-
-				<table class="lfr-table">
+				<div class="borderendTab">
+				<table width="100%" cellspacing="0">
 				<tr>
-					<td>
-						<liferay-ui:message key="run-the-garbage-collector-to-free-up-memory" />
+					<td width="40%">
+						<liferay-ui:message key="run-the-garbage-collector-to-free-up-memory" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('gc');" />
@@ -803,7 +791,7 @@ numberFormat.setMinimumIntegerDigits(2);
 				</tr>
 				<tr>
 					<td>
-						<liferay-ui:message key="clear-content-cached-by-this-vm" />
+						<liferay-ui:message key="clear-content-cached-by-this-vm" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('cacheSingle');" />
@@ -811,7 +799,7 @@ numberFormat.setMinimumIntegerDigits(2);
 				</tr>
 				<tr>
 					<td>
-						<liferay-ui:message key="clear-content-cached-across-the-cluster" />
+						<liferay-ui:message key="clear-content-cached-across-the-cluster" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('cacheMulti');" />
@@ -819,7 +807,7 @@ numberFormat.setMinimumIntegerDigits(2);
 				</tr>
 				<tr>
 					<td>
-						<liferay-ui:message key="clear-the-database-cache" />
+						<liferay-ui:message key="clear-the-database-cache" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('cacheDb');" />
@@ -827,7 +815,7 @@ numberFormat.setMinimumIntegerDigits(2);
 				</tr>
 				<tr>
 					<td>
-						<liferay-ui:message key="reindex-all-search-indexes" />
+						<liferay-ui:message key="reindex-all-search-indexes" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('reIndex');" />
@@ -835,15 +823,17 @@ numberFormat.setMinimumIntegerDigits(2);
 				</tr>
 				<tr>
 					<td>
-						<liferay-ui:message key="generate-thread-dump" />
+						<liferay-ui:message key="generate-thread-dump" />:
 					</td>
 					<td>
 						<input type="button" value="<liferay-ui:message key="execute" />" onClick="<portlet:namespace />saveServer('threadDump');" />
 					</td>
 				</tr>
 				</table>
+				</div>
 			</c:otherwise>
 		</c:choose>
+		</div>
 	</c:otherwise>
 </c:choose>
 

@@ -84,7 +84,7 @@ for (int i = 0; i < results.size(); i++) {
 	sb.append("<img align=\"left\" src=\"");
 	sb.append(theme2.getContextPath());
 	sb.append(theme2.getImagesPath());
-	sb.append("/thumbnail.png\" style=\"margin-right: 10px\" /><b>");
+	sb.append("/thumbnail.png\" style=\"margin-right: 10px;width: 120px;height: auto;border: 3px solid #eee;\" /><b>");
 	sb.append(theme2.getName());
 	sb.append("</b>");
 

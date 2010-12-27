@@ -23,9 +23,7 @@
 %>
 
 <input type="button" value="<liferay-ui:message key="add" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/admin/edit_instance" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" />
-
-<br /><br />
-
+<br><br>
 <%
 List<String> headerNames = new ArrayList<String>();
 

@@ -293,9 +293,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 				show = false;
 			}
 			%>
-			<div class="titlecategories">
-				<h6><%= category %></h6>			    
-			</div>
+			<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><%= category %></p></h4></div>
 			
 			<div class="txtdetail">
 			<c:if test="<%= articleDisplay != null %>">

@@ -13,8 +13,7 @@
 %>
 
 <form action="<%=portletURL.toString()%>" enctype="multipart/form-data" method="post" onSubmit="return checkFromThongTinCanThiet();" name="<portlet:namespace />fm" class="table-border-pml">
-	<fieldset>
-	<div class="parent-title"><liferay-ui:message key="them-moi"/></div>
+	<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="them-moi" /></p></h4></div>
  	<table width="100%" cellspacing="0">
 		<tr>
 			<td width="20%">
@@ -88,5 +87,4 @@
 			 	</td>
 			</tr>
 	</table>
-	</fieldset>
 </form>

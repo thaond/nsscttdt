@@ -61,11 +61,8 @@ if (!question.isExpired() && !hasVoted && PollsQuestionPermission.contains(permi
 	}
 }
 %>
-
-<div class="topbox">
-        <h4><liferay-ui:message key="nss-binh-chon" /></h4>
-        	<div class="bottombox">
-            <div class="centerbox">
+<div class="ti_categr"> <h4><liferay-ui:message key="nss-binh-chon" /></h4></div>
+<div class="cont_categr">      
 			<div class="question">
 			<form action="<portlet:renderURL><portlet:param name="struts_action" value="/polls_display/view" /></portlet:renderURL>" method="post" name="<portlet:namespace />fm">
 			<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
@@ -107,6 +104,4 @@ if (!question.isExpired() && !hasVoted && PollsQuestionPermission.contains(permi
 			</ul>
 			</form>
 			</div>
-		</div>
-	</div>
 </div>

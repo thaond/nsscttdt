@@ -31,8 +31,7 @@
 	<div style="color: red"><liferay-ui:message key="error_delete_workflowjounal"/></div>
 <% } %>
 	<form action="<%= portletURL.toString() %>"  method="get" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
-	<div class="parent-title"><liferay-ui:message key="management-workflow-journal"/></div>
-	<div class="boxcontent">
+	<div class="titlecategr_pages"><h4><p><liferay-ui:message key="management-workflow-journal"/></p></h4></div>
 	<input name="<portlet:namespace />redirect" type="hidden" value="<%= portletURL.toString() %>" />
 	<liferay-ui:error exception="<%= com.nss.portlet.managementworkflowjournal.ManagementWorkflowJournalCanNotDeleteException.class %>" message="not-deploy-workflow-journal" />
 	<%
@@ -183,7 +182,6 @@
 				</table>
 				</fieldset>
 	</form>
-</div>
 <script type="text/javascript">
 function <portlet:namespace />check_filetype_upload(form) {
 	var fileName =	document.getElementById("fileWorkflow").value;

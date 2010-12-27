@@ -32,8 +32,9 @@
        	<%
        	for( int i=0; i < thongTinCanThietList.size(); i++) {
     		ThongTinCanThiet thongTinCanThiet = thongTinCanThietList.get(i);
+    		String cssClasWT = "info" + i;
         %>
-					<div class="<portlet:namespace />info">
+					<div class="<%= cssClasWT %>">
 						<a href="<%= thongTinCanThiet.getUrlWebsite() %>"  target="<%= thongTinCanThiet.getTarget() %>">
 							<img src='<%= themeDisplay.getPathImage() %>/necessary_info?img_id=<%= thongTinCanThiet.getImageId_liferay() %>' />
 						</a>

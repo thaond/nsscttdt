@@ -75,6 +75,7 @@ portletURL.setParameter("tabs2", tabs2);
 portletURL.setParameter("categoryId", String.valueOf(categoryId));
 %>
 <div class="boxlayout">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="nss-dien-dan" /></p></h4></div>
 <liferay-util:include page="/html/portlet/message_boards/tabs1.jsp" />
 <div class="borderendTab">
 <liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="struts_action" value="/message_boards/search" /></liferay-portlet:renderURL>

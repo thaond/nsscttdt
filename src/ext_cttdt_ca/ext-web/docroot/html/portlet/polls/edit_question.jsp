@@ -97,6 +97,7 @@ if (choiceName > 0) {
 </script>
 
 <form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/polls/edit_question" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveQuestion(); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Binh-chon" /></p></h4></div>
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />questionId" type="hidden" value="<%= questionId %>" />
@@ -107,16 +108,16 @@ if (choiceName > 0) {
 	names="question"
 	backURL="<%= redirect %>"
 />
-
+<div class="borderendTab">
 <liferay-ui:error exception="<%= QuestionChoiceException.class %>" message="please-enter-valid-choices" />
 <liferay-ui:error exception="<%= QuestionDescriptionException.class %>" message="please-enter-a-valid-description" />
 <liferay-ui:error exception="<%= QuestionExpirationDateException.class %>" message="please-enter-a-valid-expiration-date" />
 <liferay-ui:error exception="<%= QuestionTitleException.class %>" message="please-enter-a-valid-title" />
 
-<table class="lfr-table">
+<table cellspacing="0" width="100%">
 <tr>
-	<td>
-		<liferay-ui:message key="title" />
+	<td width="20%">
+		<liferay-ui:message key="title" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= PollsQuestion.class %>" bean="<%= question %>" field="title" />
@@ -124,56 +125,32 @@ if (choiceName > 0) {
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="description" />
+		<liferay-ui:message key="description" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= PollsQuestion.class %>" bean="<%= question %>" field="description" />
 	</td>
 </tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
+
 <tr>
 	<td>
-		<liferay-ui:message key="expiration-date" />
+		<liferay-ui:message key="expiration-date" />:
 	</td>
 	<td>
-		<table class="lfr-table">
-		<tr>
-			<td>
 				<liferay-ui:input-field model="<%= PollsQuestion.class %>" bean="<%= question %>" field="expirationDate" defaultValue="<%= expirationDate %>" disabled="<%= neverExpire %>" />
-			</td>
-			<td>
 
 				<%
 				String taglibNeverExpireOnClick = renderResponse.getNamespace() + "disableInputDate('expirationDate', this.checked);";
 				%>
-
 				<liferay-ui:input-checkbox param="neverExpire" defaultValue="<%= neverExpire %>" onClick="<%= taglibNeverExpireOnClick %>" />
-
 				<liferay-ui:message key="never-expire" />
-			</td>
-		</tr>
-		</table>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
 	</td>
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="choices" />
+		<liferay-ui:message key="choices" />:
 	</td>
 	<td>
-		<table class="lfr-table">
-		<tr>
-			<td>
-				<table class="lfr-table">
-
 				<%
 				for (int i = 1; i <= choicesCount; i++) {
 					char c = (char)(96 + i);
@@ -202,48 +179,26 @@ if (choiceName > 0) {
 						}
 					}
 				%>
-
-					<tr>
-						<td>
 							<%= c %>.
-						</td>
-						<td>
 							<input name="<portlet:namespace /><%= EditQuestionAction.CHOICE_NAME_PREFIX %><%= c %>" type="hidden" value="<%= c %>" />
-
-							<input class="lfr-input-text" name="<%= EditQuestionAction.CHOICE_DESCRIPTION_PREFIX + c %>" type="text" value="<%= choiceDesc %>" />
-						</td>
+							<input style="width: 100px" name="<%= EditQuestionAction.CHOICE_DESCRIPTION_PREFIX + c %>" type="text" value="<%= choiceDesc %>" />
 
 						<c:if test="<%= ((question == null) && (i > 2)) || ((question != null) && (i > oldChoicesCount)) %>">
-							<td>
 								<input type="button" value="<liferay-ui:message key="delete" />" onClick="document.<portlet:namespace />fm.<portlet:namespace />choicesCount.value = '<%= choicesCount - 1 %>'; document.<portlet:namespace />fm.<portlet:namespace />choiceName.value = '<%= i %>'; submitForm(document.<portlet:namespace />fm);" />
-							</td>
 						</c:if>
-
-					</tr>
 
 				<%
 				}
 				%>
 
-				</table>
-			</td>
-			<td valign="bottom">
 				<input type="button" value="<liferay-ui:message key="add-choice" />" onClick="<portlet:namespace />addPollChoice();" />
-			</td>
-		</tr>
-		</table>
 	</td>
 </tr>
 
 <c:if test="<%= question == null %>">
 	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
-	<tr>
 		<td>
-			<liferay-ui:message key="permissions" />
+			<liferay-ui:message key="permissions" />:
 		</td>
 		<td>
 			<liferay-ui:input-permissions
@@ -252,15 +207,16 @@ if (choiceName > 0) {
 		</td>
 	</tr>
 </c:if>
+<tr>
+	<td></td>
+	<td>
+	<input type="submit" value="<liferay-ui:message key="save" />" />
+	<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+	</td>
 
+</tr>
 </table>
-
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

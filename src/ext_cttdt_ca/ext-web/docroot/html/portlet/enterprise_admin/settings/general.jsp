@@ -23,7 +23,7 @@
 %>
 
 <%@ include file="/html/portlet/enterprise_admin/init.jsp" %>
-
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Hien-thi-cai-dat"/></p></h4></div>
 <liferay-ui:error-marker key="errorSection" value="general" />
 
 <h3><liferay-ui:message key="main-configuration" /></h3>

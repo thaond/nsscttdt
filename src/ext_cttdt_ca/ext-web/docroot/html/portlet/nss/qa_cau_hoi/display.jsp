@@ -26,11 +26,10 @@
 	portletURL.setParameter("struts_action", "/nss/qa_cau_hoi/view");
 	String portletURLDisplayString = portletURL.toString();
 %>
-<div id="main">
-    <div id="leftmenu">
-    <div id="topmnl">
-    <div id="vbpq">
-	    <ul>
+<div class="leftmain_admin">
+<div id="menuleft">	
+<div class="nav-menu-style-1">	
+<ul class="navlevel-1">
 	    	<h2><liferay-ui:message key="chuyen-muc" /></h2>
 	    	<%
 	    		for (int i = 0; i < qAChuDeCauHoilList.size(); i ++) {
@@ -43,11 +42,11 @@
 	    </ul>
        </div>
     </div>
-    </div>  
-    
+</div>
+<div class="centermain_admin" >  
     <form action="<%= portletURLDisplayString %>"  method="post" name="<portlet:namespace />fm" >
 		<fieldset>
-		<div class="parent-title"><liferay-ui:message key="hoi-dap-truc-tuyen" /></div>
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="hoi-dap-truc-tuyen" /></p></h4></div>
     	<%
 	    	CauHoiQASearch cauHoiQASearch =  new CauHoiQASearch(renderRequest, portletURL);
 	    	CauHoiQASearchTerms searchTerms = (CauHoiQASearchTerms)cauHoiQASearch.getSearchTerms();

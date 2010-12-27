@@ -8,8 +8,8 @@
 				: (List<QuangCao>)renderRequest.getAttribute("quangCaoList");
 %>
 
-    	<div class="advr">
-    		<form  name="<portlet:namespace/>fm" action="" method="get">
+<div class="advr">
+<form  name="<portlet:namespace/>fm" action="" method="get">
         <%
        	if ("select".equals(displayStyleAdv)) {
        	%>
@@ -30,12 +30,12 @@
        	}
        	else if ("image".equals(displayStyleAdv)) {
        	%>
-       	<div id="<portlet:namespace/>boximage">
+
        	<%
        	for( int i=0; i < quangCaoList.size(); i++) {
     		QuangCao quangCao = quangCaoList.get(i);
         %>
-					<div class="<portlet:namespace />adv">
+					<div class="listadv">
 						<a href="<%= quangCao.getUrlWebsite() %>"  target="<%= quangCao.getTarget() %>">
 							<img src='<%= themeDisplay.getPathImage() %>/adv?img_id=<%= quangCao.getImageId_liferay() %>' />
 						</a>
@@ -43,18 +43,17 @@
         <%
         	}
        	%>
-       	</div>
+
 	    <%
        	} else if ("up".equals(displayStyleAdv) || "right".equals(displayStyleAdv)) {
 		%>
 <!-- MoNT start 16/11/2010 -->
 		<div id="<portlet:namespace/>adv_display" style="display: none">
-		<div id="<portlet:namespace/>boxadv">
 				<%
 				for( int i=0; i < quangCaoList.size(); i++) {
 		    		QuangCao quangCao = quangCaoList.get(i);
 		    	%>
-						<div class="<portlet:namespace />adv">
+						<div class="listadv">
 							<a href="<%= quangCao.getUrlWebsite() %>"  target="<%= quangCao.getTarget() %>">
 								<img src='<%= themeDisplay.getPathImage() %>/adv?img_id=<%= quangCao.getImageId_liferay() %>' />
 							</a>
@@ -62,7 +61,6 @@
 				<%
 				}
 				%>
-		</div>
 		</div>
 		<script type="text/javascript">
 			window.addEvent('load', function() {
@@ -95,6 +93,6 @@
 		</script>
 		<% } %>
 		
-   			</form>
-    	</div>
+</form>
+</div>
 <!-- MoNT end 16/11/2010 -->

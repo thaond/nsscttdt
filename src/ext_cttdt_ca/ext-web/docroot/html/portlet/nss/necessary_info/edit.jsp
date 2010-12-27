@@ -22,8 +22,7 @@
 
 <form action="<%=portletURL.toString()%>"enctype="multipart/form-data" method="post" onSubmit="return checkFromThongTinCanThiet();" name="<portlet:namespace />fm" class="table-border-pml">
 <input type="hidden" name="<portlet:namespace />maThongTinCanThiet" value="<%= thongTinCanThiet.getMaThongTinCanThiet()%>">
-<fieldset>
-	<div class="parent-title"><liferay-ui:message key="cap-nhat"/></div>
+<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="cap-nhat" /></p></h4></div>
  	<table width="100%" cellspacing="0">
 		<tr>
 			<td width="20%">
@@ -112,5 +111,4 @@
 		 		</td>
 			</tr>
 	</table>
-	</fieldset>
 </form>

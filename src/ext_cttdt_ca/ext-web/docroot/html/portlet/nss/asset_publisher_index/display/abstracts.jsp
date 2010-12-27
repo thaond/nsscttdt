@@ -42,6 +42,39 @@ int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue
 
 TagsAsset asset = (TagsAsset)request.getAttribute("view.jsp-asset");
 
+//MoNT update start 27/12/2010
+//String s = "";
+//for(int i=0;i<asset.getCategories().size();i++){
+//	s += asset.getCategories().get(i).getVocabularyId()+"/";
+//}
+//System.out.println(s);
+
+long selectPlId = 0;
+if (asset.getCategories().size() > 0 ) {
+	long vocabularyId = 0;
+	for(int i=0;i<asset.getCategories().size();i++){
+		vocabularyId = asset.getCategories().get(i).getVocabularyId();
+		selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
+		if(selectPlId != 0) break;
+	}
+	
+	//System.out.println(vocabularyId+"---------"+selectPlId);
+}
+List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
+try {
+	pPlIds = PortletPreferencesLocalServiceUtil.getPortletPreferencesByPlid(selectPlId);
+} catch (Exception e) {
+}
+
+String portletAssetPublisher = "NSS_ASSET_PUBLISHER_INDEX";
+for (int i = 0; i < pPlIds.size(); i++) {
+	if(pPlIds.get(i).getPortletId().contains("NSS_ASSET_PUBLISHER_INSTANCE")) {
+		portletAssetPublisher =  pPlIds.get(i).getPortletId();
+		break;
+	}
+}
+//MoNT update end 27/12/2010
+
 String title = (String)request.getAttribute("view.jsp-title");
 String summary = (String)request.getAttribute("view.jsp-summary");
 String viewURL = (String)request.getAttribute("view.jsp-viewURL");
@@ -55,9 +88,9 @@ boolean show = ((Boolean)request.getAttribute("view.jsp-show")).booleanValue();
 
 request.setAttribute("view.jsp-showIconLabel", true);
 
-PortletURL viewFullContentURL = renderResponse.createRenderURL();
-
-viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_index/view_content");
+PortletURL viewFullContentURL = new PortletURLImpl(request, portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
+//PortletURL viewFullContentURL = renderResponse.createRenderURL();
+viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
 viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
 
 if (className.equals(BlogsEntry.class.getName())) {
@@ -173,7 +206,6 @@ else if (className.equals(JournalArticle.class.getName())) {
 	JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(classPK);
 	String languageId = LanguageUtil.getLanguageId(request);	
 	JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(articleResource.getGroupId(), articleResource.getArticleId(), null, null, languageId, themeDisplay);
-	
 	if (articleDisplay != null) {
 		if (Validator.isNull(title)) {
 			title = articleDisplay.getTitle();
@@ -222,7 +254,7 @@ else if (className.equals(JournalArticle.class.getName())) {
 			sb.append("<h4><a href=\"" + viewURL + "\">" + "" + title + "</a></h4>");
 		}
 		
-		sb.append("<h5>" + df.format(asset.getPublishDate()) + "</h5>");
+		sb.append("<h5>" + df.format(asset.getPublishDate())  + "</h5>");
 		
 		sb.append("<span>" +  StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()), abstractLength) + "</span>");
 

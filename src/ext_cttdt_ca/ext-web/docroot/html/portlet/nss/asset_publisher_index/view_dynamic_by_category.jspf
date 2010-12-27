@@ -89,14 +89,15 @@ if (results == null) {
 <%
 } else {
 	request.setAttribute("view.jsp-results", results);
-
+	request.setAttribute("aaa", results);
+	//System.out.println("-"+results.size());
 %>
 
 
 		<%
 		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
 			TagsAsset asset = results.get(assetIndex);
-
+			System.out.println("------========--------------------------------------------------"+results.size());
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
 

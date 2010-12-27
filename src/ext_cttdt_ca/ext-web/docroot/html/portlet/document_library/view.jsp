@@ -58,7 +58,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
 <input name="<portlet:namespace />searchFolderIds" type="hidden" value="<%= folderId %>" />
-<div class="parent-title"><liferay-ui:message key="Thu-vien-tai-lieu"/></div>
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Thu-vien-tai-lieu"/></p></h4></div>
 <liferay-util:include page="/html/portlet/document_library/tabs1.jsp" />
 <div class="borderendTab">
 <c:choose>

@@ -43,6 +43,7 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />frameworkVersionId" type="hidden" value="<%= frameworkVersionId %>" />
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-danh-muc-phan-mem" /></p></h4></div>
 
 <liferay-ui:tabs
 	names="framework-version"
@@ -50,11 +51,11 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 />
 
 <liferay-ui:error exception="<%= FrameworkVersionNameException.class %>" message="please-enter-a-valid-name" />
-
-<table class="lfr-table">
+<div class="borderendTab">
+<table cellspacing="0" width="100%">
 <tr>
-	<td>
-		<liferay-ui:message key="name" />
+	<td width="20%">
+		<liferay-ui:message key="name" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCFrameworkVersion.class %>" bean="<%= frameworkVersion %>" field="name" />
@@ -62,7 +63,7 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="url" />
+		<liferay-ui:message key="url" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCFrameworkVersion.class %>" bean="<%= frameworkVersion %>" field="url" />
@@ -70,7 +71,7 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="active" />
+		<liferay-ui:message key="active" />:
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= SCFrameworkVersion.class %>" bean="<%= frameworkVersion %>" field="active" defaultValue="<%= Boolean.TRUE %>" />
@@ -78,14 +79,10 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 </tr>
 
 <c:if test="<%= frameworkVersion == null %>">
-	<tr>
-		<td colspan="2">
-			<br />
-		</td>
-	</tr>
+	
 	<tr>
 		<td>
-			<liferay-ui:message key="permissions" />
+			<liferay-ui:message key="permissions" />:
 		</td>
 		<td>
 			<liferay-ui:input-permissions
@@ -94,15 +91,16 @@ long frameworkVersionId = BeanParamUtil.getLong(frameworkVersion, request, "fram
 		</td>
 	</tr>
 </c:if>
-
+<tr>
+		<td>
+		</td>
+		<td>
+			<input type="submit" value="<liferay-ui:message key="save" />" />
+			<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
+		</td>
+	</tr>
 </table>
-
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(redirect) %>';" />
-
+</div>
 </form>
 
 <c:if test="<%= windowState.equals(WindowState.NORMAL) %>">

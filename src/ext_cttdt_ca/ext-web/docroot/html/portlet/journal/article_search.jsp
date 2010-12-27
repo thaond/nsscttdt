@@ -36,7 +36,6 @@ ArticleDisplayTerms displayTerms = (ArticleDisplayTerms)searchContainer.getDispl
 	buttonLabel="search"
 >
 	<table cellspacing="0">
-	
 	<tr>
 		<td width="100px">
 			<liferay-ui:message key="content" />:

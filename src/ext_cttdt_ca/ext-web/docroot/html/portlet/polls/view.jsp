@@ -25,7 +25,7 @@
 <%@ include file="/html/portlet/polls/init.jsp" %>
 
 <form method="post" name="<portlet:namespace />fm">
-<div class="parent-title"><liferay-ui:message key="Binh-chon" /></div>
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="Binh-chon" /></p></h4></div>
 <%
 PortletURL portletURL = renderResponse.createRenderURL();
 

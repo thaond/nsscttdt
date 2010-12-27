@@ -43,6 +43,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 <liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" varImpl="searchURL"><portlet:param name="struts_action" value="/bookmarks/search" /></liferay-portlet:renderURL>
 
 <form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-bookmarks"/></p></h4></div>
 <liferay-portlet:renderURLParams varImpl="searchURL" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 <input name="<portlet:namespace />breadcrumbsFolderId" type="hidden" value="<%= folderId %>" />
@@ -52,7 +53,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 	names="folders,my-entries,recent-entries"
 	url="<%= portletURL.toString() %>"
 />
-
+<div class="borderendTab">
 <c:choose>
 	<c:when test='<%= tabs1.equals("folders") %>'>
 		<c:if test="<%= folder != null %>">
@@ -230,8 +231,6 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 
 			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
-
-		</form>
 
 		<script type="text/javascript">
 			function <portlet:namespace />addFolder() {
@@ -472,6 +471,7 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
 
-		</form>
 	</c:when>
 </c:choose>
+</div>
+</form>

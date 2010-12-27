@@ -398,3 +398,11 @@ select.listmenulink {padding: 2px; font-size: 11px;color: #222;line-height: 18px
 }
 .toptitleleft_no img {width: 100%;}
 .toptitleleft_no a {display: block;padding-bottom: 1px;}
+img.imgmypic {width: 150px; height: 100px; padding: 1px; border: 5px solid #eee;display: block;margin-bottom: 10px;}
+.lfr-portlet-toolbar {background: none;}
+.lfr-portlet-toolbar .lfr-toolbar-button.current a {background-color: #b6e3f4!important;border-style:none !important; }
+.portlet-enterprise-admin .form-section h3 {background:#d7f1ff;border-bottom: 1px solid #b1ddf4;text-transform: uppercase;font-size: 12px; color: #222;text-shadow: 0 1px 0 #f5fbff; }
+.advr {width: 100%; float: left;margin-bottom: 15px;}
+.listadv {float: left;width: 100%;margin-bottom: 1px;}
+.listadv a img {display: block;width: 100%;float: left;vertical-align: top;}
+

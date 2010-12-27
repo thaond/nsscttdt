@@ -83,6 +83,7 @@ portletURL.setParameter("tabs1", tabs1);
 </script>
 
 <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-noi-dung-mo-rong" /></p></h4></div>
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <liferay-ui:tabs names="web-content,structures,templates,feeds,recent" url="<%= portletURL.toString() %>"/>
 <div class="borderendTab">
@@ -115,11 +116,7 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/nss/journal/article_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="expire" />" onClick="<portlet:namespace />expireArticles();" />
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteArticles();" />
 
 			<br /><br />
@@ -219,7 +216,7 @@ portletURL.setParameter("tabs1", tabs1);
 			page="/html/portlet/nss/journal/structure_search.jsp"
 			searchContainer="<%= searchContainer %>"
 		/>
-
+<br>
 		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
@@ -227,9 +224,6 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/nss/journal/structure_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteStructures();" />
 
 			<br /><br />
@@ -303,7 +297,6 @@ portletURL.setParameter("tabs1", tabs1);
 			page="/html/portlet/nss/journal/template_search.jsp"
 			searchContainer="<%= searchContainer %>"
 		/>
-
 		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
@@ -311,11 +304,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 			searchTerms.setStructureIdComparator(StringPool.EQUAL);
 			%>
-
 			<%@ include file="/html/portlet/nss/journal/template_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteTemplates();" />
 
 			<br /><br />
@@ -380,7 +369,6 @@ portletURL.setParameter("tabs1", tabs1);
 			page="/html/portlet/nss/journal/feed_search.jsp"
 			searchContainer="<%= searchContainer %>"
 		/>
-
 		<c:if test="<%= windowState.equals(WindowState.NORMAL) %>">
 
 			<%
@@ -388,9 +376,6 @@ portletURL.setParameter("tabs1", tabs1);
 			%>
 
 			<%@ include file="/html/portlet/nss/journal/feed_search_results.jspf" %>
-
-			<div class="separator"><!-- --></div>
-
 			<input type="button" value="<liferay-ui:message key="delete" />" onClick="<portlet:namespace />deleteFeeds();" />
 
 			<br /><br />

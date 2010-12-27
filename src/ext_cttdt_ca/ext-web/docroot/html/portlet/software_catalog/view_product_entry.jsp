@@ -65,15 +65,15 @@ viewProductEntryURL.setParameter("tabs2", tabs2);
 viewProductEntryURL.setParameter("redirect", redirect);
 viewProductEntryURL.setParameter("productEntryId", String.valueOf(productEntryId));
 %>
-
+<div class="titlecategr_pages"><h4><p><liferay-ui:message key="quan-tri-danh-muc-phan-mem" /></p></h4></div>
 <liferay-ui:tabs
 	names="product"
 	backURL="<%= redirect %>"
 />
-
+<div class="borderendTab">
 <h3><%= productEntry.getName() %> <%= (latestProductVersion == null) ? "" : latestProductVersion.getVersion() %></h3>
 
-<table class="lfr-table">
+<table class="lfr-table" width="100%">
 <tr>
 	<td>
 		<liferay-ui:message key="type" />:
