@@ -9,10 +9,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 Calendar cal = (Calendar)curCal.clone();
 
 // Lich ca ngay sang va chieu
-// xuancong close List events = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(),cal);
+// List events = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(),cal);
 // Dung groupId co dinh (sua tam thoi)
 List events = CalEventLocalServiceUtil.getEvents(32903,cal);
-//xuancong close events = ListUtil.sort(events, new EventTimeComparator(timeZone, locale));
+// events = ListUtil.sort(events, new EventTimeComparator(timeZone, locale));
 Collections.sort(events, new Comparator<CalEvent>(){
 				public int compare(CalEvent obj1, CalEvent obj2) {                                                
 					return obj1.getStartDate().compareTo(obj2.getStartDate());
@@ -44,11 +44,11 @@ if((events != null)){
 			if(mcal.getState()!= 0){
 				showCalendar = true;
 			}
-			//xuancong close if((mcal.getState() != MeetingCalendarKey.DOI) && (mcal.getState() != MeetingCalendarKey.HUY)){
-				//xuancong close if(stEvent.getHours()<=12 && showCalendar){
+			// if((mcal.getState() != MeetingCalendarKey.DOI) && (mcal.getState() != MeetingCalendarKey.HUY)){
+				// if(stEvent.getHours()<=12 && showCalendar){
 				if(showCalendar) {
 					sm.append("'<font class=\"font_time\">");
-					//xuancong close sm.append(dateFormatTime.format(Time.getDate(event.getStartDate(), timeZone)));
+					// sm.append(dateFormatTime.format(Time.getDate(event.getStartDate(), timeZone)));
 					if (event.isAllDay() == true){
 						sm.append("C\u1ea3 ng\u00e0y");
 					} // end if
@@ -74,11 +74,11 @@ if((events != null)){
 					sm.append(":&nbsp;</font><font class=\"font_content\">");
 					// xu ly br va dau 2 nhay
 					String title = event.getDescription();
-					//xuancong close title = title.replaceAll("\\<.*?\\>", "");
+					// title = title.replaceAll("\\<.*?\\>", "");
 					title = title.replaceAll("'","&quot;");
-					//xuancong close title = title.replaceAll("\n","<br />");
+					// title = title.replaceAll("\n","<br />");
 					
-					//xuancong tam thoi dongsm.append("<br />" + title + "&nbsp;");
+					// tam thoi dongsm.append("<br />" + title + "&nbsp;");
 					
 					
 					if(Validator.isNotNull(mcal.getPlace()) || Validator.isNotNull(mcal.getPlace_diff())){
@@ -98,7 +98,7 @@ if((events != null)){
 					}
 					sm.append("</font>',");
 				}
-			//xuancong close }
+			// }
 		}
 	}
 }
@@ -181,9 +181,9 @@ else{
 				<tr>
 					<td align="left" valign="bottom">
 						<table border="0" cellpadding="0" cellspacing="0" width="100%">
-							<tr>
+							<!--<tr>
 								<td class="maintitle" align="center"><img src="/html/portlet/ext/meeting_calendar_view/Lich_files/tieude.jpg"></td>
-							</tr>
+							</tr>-->
 							<tr>
 								<td class="font_ngay" align="center">
 									<strong><%= user.getLanguageId().equals("vi_VN")? StringUtil.replace(StringUtil.trim(dateFormatDayOfWeek.format(Time.getDate(cal))),"Th",LanguageUtil.get(pageContext,"thu-trong-tuan" )):dateFormatDayOfWeek.format(Time.getDate(cal)) %>,&nbsp;<liferay-ui:message key="date" />&nbsp;<%= dateFormatDate.format(Time.getDate(cal))%></strong>
@@ -192,12 +192,10 @@ else{
 						</table>
 					</td>
 				</tr>
-				<tr height="20">
-					<td>&nbsp;<td>
-				</tr>
+				
 				<tr>								
 					<td style="padding-bottom: 5px;">
-						<div style="border:3px solid #FF4F67; height: 580px;">
+						<div style="border: 2px solid #1faed9; height: 580px;">
 						<table border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td valign="top">

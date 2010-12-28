@@ -78,7 +78,7 @@ if(tabs1_.equals("focus-week")){
 
 <form action="<%= portletURL.toString() %>" method="post" enctype="multipart/form-data" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <div class="boxcom">
-<div class="titlecategories"><h6><liferay-ui:message key="Lich-lam-viec" /></h6> </div>
+<div class="titlecategr"><h4><p><liferay-ui:message key="nss-lich-cong-tac-tuan"/></p></h4></div><br /><br />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />tabs1" type="hidden" value="<%= tabs1_ %>" />

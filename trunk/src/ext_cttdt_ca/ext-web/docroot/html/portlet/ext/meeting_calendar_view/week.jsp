@@ -95,11 +95,11 @@ for (int i = 0; i < 7; i++) {
 					<table border="0" cellpadding="0" cellspacing="0" width="100%">
 					
 					<%
-					//xuancong close List events = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(), cal, eventType);
+					// List events = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(), cal, eventType);
 					// Dung groupId co dinh (sua tam thoi) 
 					List events = CalEventLocalServiceUtil.getEvents(32903, cal, eventType);
 					
-					//xuancong close events = ListUtil.sort(events, new EventTimeComparator(timeZone, locale));
+					// events = ListUtil.sort(events, new EventTimeComparator(timeZone, locale));
 					String duplicateBgr = StringPool.BLANK;
 					long calEndFirst = 0;
 					
@@ -290,11 +290,11 @@ for (int i = 0; i < 7; i++) {
 
 					<%
 					String duplicateBgr_E  = "";
-					// xuancong close List events_E = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(), cal, eventType);
+					//  List events_E = CalEventLocalServiceUtil.getEvents(portletGroupId.longValue(), cal, eventType);
 					// Dung groupId co dinh (sua tam thoi)
 					List events_E = CalEventLocalServiceUtil.getEvents(32903, cal, eventType);
 
-					//xuancong close events_E = ListUtil.sort(events_E, new EventTimeComparator(timeZone, locale));
+					// events_E = ListUtil.sort(events_E, new EventTimeComparator(timeZone, locale));
 
 					for (int k = 0; k < events_E.size(); k++) {
 						CalEvent event_E = (CalEvent)events.get(k);

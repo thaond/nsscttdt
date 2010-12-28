@@ -5,13 +5,13 @@ String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 if(Validator.isNotNull(ParamUtil.getString(request, "tabs1"))){
 	tabs1 = ParamUtil.getString(request, "tabs1");
 }
-//xuancong close tabs1Names = "lich-ngay,lich-tuan";
+// tabs1Names = "lich-ngay,lich-tuan";
 tabs1Names = "lich-ngay";
-//xuancong close start
+// start
 //if(PortletPermissionUtil.contains(permissionChecker, plid.longValue(),portletDisplay.getId(),"ADD_VIEW")){
 //	tabs1Names = "lich-ngay,lich-tuan,setting";
 //}
-//xuancong close end
+// end
 PortletURL tabs1URL = renderResponse.createRenderURL();
 
 tabs1URL.setWindowState(WindowState.NORMAL);

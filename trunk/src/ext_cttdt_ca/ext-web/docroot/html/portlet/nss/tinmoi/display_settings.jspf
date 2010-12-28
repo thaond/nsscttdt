@@ -296,6 +296,16 @@
 			/>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<liferay-ui:message key="default-image" />
+		</td>
+		<td>
+			<img alt="default-image" width="180" src='<%= themeDisplay.getPathImage()+ "/tinmoi?img_id="+ default_imageId  %>'><br><br>
+			<input type="file" name="<portlet:namespace/>default-image">
+			
+		</td>
+	</tr>
 </table>
 
 <script type="text/javascript">

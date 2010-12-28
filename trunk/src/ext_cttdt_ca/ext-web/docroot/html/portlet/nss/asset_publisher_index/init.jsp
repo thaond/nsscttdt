@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -217,6 +220,19 @@ b2 = (nss_view_sign_type.equalsIgnoreCase("sign") ? true : false);
 b3 = (nss_view_sign_type.equalsIgnoreCase("changesign") ? true : false);
 b4 = (nss_view_sign_type.equalsIgnoreCase("notsign") ? true : false);
 //end TuNV update
+
+//MoNT start update 28/12/2010
+Map<Long,Long> mapPlids = new HashMap<Long,Long>(); 
+List<TagsVocabulary> vocabularies1 = TagsVocabularyLocalServiceUtil.getTagsVocabularies(-1, -1);
+	for(int i = 0; i < vocabularies1.size(); i++){
+		long vocabularyId1 = vocabularies1.get(i).getVocabularyId();
+		long selectPlId1 = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId1), StringPool.BLANK));
+		if(selectPlId1 != 0){
+			mapPlids.put(vocabularyId1,selectPlId1);
+		}
+	}
+//MoNT end update 28/12/2010
+
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher_index/init-ext.jsp" %>

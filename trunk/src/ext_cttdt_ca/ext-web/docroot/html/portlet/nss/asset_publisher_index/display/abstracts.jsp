@@ -43,12 +43,6 @@ int assetIndex = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue
 TagsAsset asset = (TagsAsset)request.getAttribute("view.jsp-asset");
 
 //MoNT update start 27/12/2010
-//String s = "";
-//for(int i=0;i<asset.getCategories().size();i++){
-//	s += asset.getCategories().get(i).getVocabularyId()+"/";
-//}
-//System.out.println(s);
-
 long selectPlId = 0;
 if (asset.getCategories().size() > 0 ) {
 	long vocabularyId = 0;
@@ -57,8 +51,6 @@ if (asset.getCategories().size() > 0 ) {
 		selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
 		if(selectPlId != 0) break;
 	}
-	
-	//System.out.println(vocabularyId+"---------"+selectPlId);
 }
 List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
 try {

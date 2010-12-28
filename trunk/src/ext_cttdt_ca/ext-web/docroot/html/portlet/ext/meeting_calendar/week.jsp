@@ -157,7 +157,8 @@ java.util.Date nowDate = new java.util.Date();
 <liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" varImpl="searchURL"><portlet:param name="struts_action" value="/ext/meeting_calendar/search" /></liferay-portlet:renderURL>
 <form action="<%= searchURL %>" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 <div class="boxcom">
-<div class="titlecategories"><h6><liferay-ui:message key="Lich-lam-viec" /></h6> </div>
+<div class="titlecategr"><h4><p><liferay-ui:message key="nss-lich-cong-tac-tuan"/></p></h4></div>
+<br /><br />
 <liferay-portlet:renderURLParams varImpl="searchURL" />
 <input type="hidden" name="<portlet:namespace /><%= Constants.CMD %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
@@ -462,7 +463,7 @@ for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < events.size(); j++) {
 				CalEvent cale1 = (CalEvent)events.get(j);
 				if (cale1 != null) {
-					//xuancong close MeetingCalendar mcale = MeetingCalendarLocalServiceUtil.getMeetingCalendar(cale1.getEventId());
+					// MeetingCalendar mcale = MeetingCalendarLocalServiceUtil.getMeetingCalendar(cale1.getEventId());
 					MeetingCalendar mcale = null;
 					try {
 						mcale = MeetingCalendarLocalServiceUtil.getMeetingCalendar(cale1.getEventId());
@@ -624,7 +625,7 @@ for (int i = 0; i < 7; i++) {
 										<c:when test="<%= event.isAllDay() %>">
 											<liferay-ui:message key="all-day" />
 										</c:when>
-										<%-- xuancong close
+										<%-- 
 										<c:when test="<%= mcal.isMorning() || mcal.isAfternoon() || mcal.isEvening() %>">
 											
 										</c:when>
@@ -831,7 +832,7 @@ for (int i = 0; i < 7; i++) {
 													<c:when test="<%= event.isAllDay() %>">
 														<liferay-ui:message key="all-day" />
 													</c:when>
-													<%-- xuancong close
+													<%-- 
 													<c:when test="<%= mcal.isMorning() || mcal.isAfternoon() || mcal.isEvening() %>">
 														
 													</c:when>
@@ -1015,7 +1016,7 @@ for (int i = 0; i < 7; i++) {
 													<c:when test="<%= event.isAllDay() %>">
 														<liferay-ui:message key="all-day" />
 													</c:when>
-													<%-- xuancong close
+													<%-- 
 													<c:when test="<%= mcal.isMorning() || mcal.isAfternoon() || mcal.isEvening() %>">
 														
 													</c:when>
@@ -1245,7 +1246,7 @@ for (int i = 0; i < 7; i++) {
 									<c:when test="<%= event_E.isAllDay() %>">
 										<liferay-ui:message key="all-day" />
 									</c:when>
-									<%-- xuancong close
+									<%-- 
 									<c:when test="<%= mcal_E.isMorning() || mcal_E.isAfternoon() || mcal_E.isEvening() %>">
 										
 									</c:when>
@@ -1448,7 +1449,7 @@ for (int i = 0; i < 7; i++) {
 												<c:when test="<%= event_E.isAllDay() %>">
 													<liferay-ui:message key="all-day" />
 												</c:when>
-												<%-- xuancong close
+												<%-- 
 												<c:when test="<%= mcal_E.isMorning() || mcal_E.isAfternoon() || mcal_E.isEvening() %>">
 													
 												</c:when>
@@ -1634,7 +1635,7 @@ for (int i = 0; i < 7; i++) {
 												<c:when test="<%= event_E.isAllDay() %>">
 													<liferay-ui:message key="all-day" />
 												</c:when>
-												<%-- xuancong close
+												<%-- 
 												<c:when test="<%= mcal_E.isMorning() || mcal_E.isAfternoon() || mcal_E.isEvening() %>">
 													
 												</c:when>

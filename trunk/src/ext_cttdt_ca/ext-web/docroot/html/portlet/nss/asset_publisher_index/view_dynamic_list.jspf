@@ -1,3 +1,4 @@
+<%@page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -69,7 +70,7 @@ else {
 
 			
 
-<%@page import="com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil"%><h3><liferay-ui:message key="<%= _ASSET_TITLES[groupAssetIndex] %>" /></h3>
+<h3><liferay-ui:message key="<%= _ASSET_TITLES[groupAssetIndex] %>" /></h3>
 
 			<%@ include file="/html/portlet/nss/asset_publisher_index/view_dynamic_list_asset.jspf" %>
 

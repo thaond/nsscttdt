@@ -1,32 +1,28 @@
+<%@page import="com.liferay.portlet.tags.service.TagsVocabularyLocalServiceUtil"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.Set"%>
 <%
-List results1 = (List)request.getAttribute("aaa");
-//System.out.println("-------------------------------------------------"+results1.size());
+
 int assetIndex1 = ((Integer)request.getAttribute("view.jsp-assetIndex")).intValue();
 
 TagsAsset asset1 = (TagsAsset)request.getAttribute("view.jsp-asset");
 
 //MoNT update start 27/12/2010
-//System.out.println("----"+results.size());
-String s = "-----------------";
-for(int i=0;i<asset1.getCategories().size();i++){
-	s += asset1.getCategories().get(i).getVocabularyId()+"/";
-}
-//System.out.println(s);
-
-Set<Long> setVocabularyId = new HashSet<Long>();
 long selectPlId = 0;
 if (asset1.getCategories().size() > 0 ) {
 	long vocabularyId = 0;
 	for(int i=0;i<asset1.getCategories().size();i++){
 		vocabularyId = asset1.getCategories().get(i).getVocabularyId();
-		setVocabularyId.add(vocabularyId);
-		selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
-			//System.out.println(vocabularyId+" ////////// "+selectPlId);			
+		Iterator<Map.Entry<Long,Long>> iteratorPlids = mapPlids.entrySet().iterator();
+		while(iteratorPlids.hasNext()){
+			Map.Entry<Long,Long> entry = iteratorPlids.next();
+			long key = entry.getKey();
+			long value = entry.getValue();
+			if(vocabularyId == key){
+				selectPlId = value;
+			}
+		}
 	}
-	System.out.println("setVocabularyId  --  "+setVocabularyId.toString());
-	//System.out.println(vocabularyId+"??????????? "+selectPlId);
 }
 List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
 try {
