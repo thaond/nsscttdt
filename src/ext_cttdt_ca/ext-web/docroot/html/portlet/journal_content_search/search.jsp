@@ -77,7 +77,8 @@
 		
 		<!-- Tu update 20101126 -->
 
-		<div class="titlecategories"><h6><liferay-ui:message key="nss-tim-kiem"/></h6></div>
+		<div class="titlecategr"><h4><p><liferay-ui:message key="nss-tim-kiem"/></p></h4></div>
+		<br />
 		<div id="<portlet:namespace />journal_content_search_advanced" >
 			<br />
 			<table cellspacing="0" width="100%">

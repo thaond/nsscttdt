@@ -161,7 +161,11 @@ if (results.size() < abstractDelta) {
 										if (Validator.isNull(title)) {
 											title = articleDisplay.getTitle();
 										}
-
+										for (int i = 0; i < ConstantsExt.CHARACTERSPECIALS.length; i++) {
+											if (title.contains(ConstantsExt.CHARACTERSPECIALS[i])) {
+												title = title.replace(ConstantsExt.CHARACTERSPECIALS[i], ConstantsExt.CHARACTERSPECIALCHANGES[i]);
+											}
+										}
 										viewFullContentURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 										viewFullContentURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
 

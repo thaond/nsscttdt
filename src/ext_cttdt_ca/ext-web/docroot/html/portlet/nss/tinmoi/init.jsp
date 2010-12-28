@@ -181,7 +181,9 @@ boolean allowEmptyResults = false;
 DateFormat dateFormatDate = DateFormats.getDate(locale, timeZone);
 
 request.setAttribute("view.jsp-abstractDelta", abstractDelta);
-
+//TuNV update 20101227
+String default_imageId = preferences.getValue("default-image", "0");
+//end TuNV
 %>
 
 <%@ include file="/html/portlet/nss/asset_publisher_nss/init-ext.jsp" %>

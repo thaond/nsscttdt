@@ -8,7 +8,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 portletURL.setParameter("struts_action", "/ext/meeting_calendar_view/view");
 portletURL.setParameter("tabs1", tabs1);
 %>
-<liferay-util:include page="/html/portlet/ext/meeting_calendar_view/tabs1.jsp" />
+<div class="titlecategr"><h4><p><liferay-ui:message key="nss-lich-cong-tac-trong-ngay"/></p></h4></div><br /><br />
+<!--<liferay-util:include page="/html/portlet/ext/meeting_calendar_view/tabs1.jsp" />-->
 <c:choose>
 	<c:when test='<%= tabs1.equals("lich-ngay")  %>'>
 		<%@ include file="/html/portlet/ext/meeting_calendar_view/date.jsp" %>

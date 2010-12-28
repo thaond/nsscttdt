@@ -157,6 +157,12 @@ if (results.size() < abstractDelta) {
 									if (Validator.isNull(title)) {
 										title = articleDisplay.getTitle();
 									}
+									for (int i = 0; i < ConstantsExt.CHARACTERSPECIALS.length; i++) {
+										if (title.contains(ConstantsExt.CHARACTERSPECIALS[i])) {
+											title = title.replace(ConstantsExt.CHARACTERSPECIALS[i], ConstantsExt.CHARACTERSPECIALCHANGES[i]);
+										}
+									}
+									
 									viewFullContentURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 									viewFullContentURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
 									viewURL = viewFullContentURL.toString();
@@ -177,6 +183,15 @@ if (results.size() < abstractDelta) {
 											sb.append("&t=");
 											sb.append(ImageServletTokenUtil.getToken(articleDisplay.getSmallImageId()));
 										}
+										sb.append("\" /></a>");
+									}else{
+										sb.append("<div class=\"news\">");
+										sb.append("<a style=\"display: block;cursor: pointer;position: absolute;\" href=\"" + _viewURL + "\"><img alt=\"");
+										sb.append(LanguageUtil.get(pageContext, "web-content-image"));
+										sb.append("\" src=\"");
+										sb.append(themeDisplay.getPathImage());
+										sb.append("/tinmoi?img_id=");
+										sb.append(default_imageId);
 										sb.append("\" /></a>");
 									}
 									

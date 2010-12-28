@@ -43,7 +43,7 @@ portletURL.setParameter("year", String.valueOf(selYear));
 
 <form method="get" name="<portlet:namespace />fm">
 <div class="boxcom">
-<div class="titlecategories"><h6><liferay-ui:message key="nss-lich-cong-tac-tuan" /></h6> </div>
+<div class="titlecategr"><h4><p><liferay-ui:message key="nss-lich-cong-tac-tuan"/></p></h4></div><br /><br />
 	<liferay-util:include page="/html/portlet/ext/meeting_calendar/tabs1.jsp" />
 <c:choose>
 	<c:when test='<%= tabs1.equals("approved-calendar") || tabs1.equals("calendar-release")  %>'>

@@ -60,7 +60,7 @@ for (int i = 0; i < choices.size(); i++) {
 %>
 
 <tr>
-	<td width="40px" style="color: #00aeee;padding-left: 15px">
+	<td width="20px" style="color: #00aeee;padding-left: 15px">
 		<%= percentFormat.format(votesPercent) %>
 	</td>
 	

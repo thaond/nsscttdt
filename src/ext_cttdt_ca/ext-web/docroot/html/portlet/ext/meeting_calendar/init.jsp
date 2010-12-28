@@ -172,6 +172,9 @@ td.showDragHandle {
 	font-size:10pt;
 	font-weight:bold;
 }
+.boxcom {
+	padding: 0 !important;
+}
 </style>
 <%
 PortletPreferences prefs = renderRequest.getPreferences();

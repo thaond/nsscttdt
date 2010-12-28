@@ -356,7 +356,8 @@ function <portlet:namespace />initEditor(){
 
 <form action="<portlet:actionURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/ext/meeting_calendar/edit_event" /></portlet:actionURL>" method="post" enctype="multipart/form-data" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveEvent(); return false;" class="meeting_calendar_bg">
 <div class="boxcom">
-<div class="titlecategories"><h6><liferay-ui:message key="Lich-lam-viec" /></h6> </div>
+<div class="titlecategr"><h4><p><liferay-ui:message key="nss-lich-cong-tac-tuan"/></p></h4></div>
+<br /><br />
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />eventId" type="hidden" value="<%= eventId %>" />

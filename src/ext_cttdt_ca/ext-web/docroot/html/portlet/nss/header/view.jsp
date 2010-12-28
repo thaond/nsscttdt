@@ -4,7 +4,7 @@
 <%@page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 
 <%
-String serverURL = "/web/guest/";
+String serverURL = "/web/catp";
 %>
 
 <portlet:renderURL var="clock" windowState="<%=LiferayWindowState.EXCLUSIVE.toString()%>">
@@ -20,7 +20,11 @@ jQuery(document).ready(function(){
 });
 </script>
 
-<div class="banner"></div>
+<div class="banner">
+	<div style="padding-top: 15px;padding-left: 17px;width: 95px">
+		<a href="<%=serverURL %>"><div style="border: 0;height: 80px;">&nbsp;</div></a>
+	</div>
+</div>
 <div class="menu">
     <ul class="spmenu">
 		<li class="dmy">
