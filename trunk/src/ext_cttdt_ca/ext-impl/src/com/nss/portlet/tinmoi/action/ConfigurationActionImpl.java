@@ -1,6 +1,7 @@
 
 package com.nss.portlet.tinmoi.action;
 
+import java.io.File;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -10,13 +11,19 @@ import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.Image;
+import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
@@ -267,7 +274,32 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 					String.valueOf(vocabularies.get(i).getVocabularyId())));
 		}
 		// phmphuc end 19/07/2010
+		// TuNV update 20101227
+		UploadPortletRequest uploadRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+		File default_image = uploadRequest.getFile("default-image");
+		Image image = null;
+		if (default_image.exists()) {
+			long oldDefaulImageId =
+				Long.parseLong(preferences.getValue("default-image", "0"));
+			if (oldDefaulImageId > 0) {
+				ImageLocalServiceUtil.deleteImage(oldDefaulImageId);
+			}
+			long imageUpload = CounterLocalServiceUtil.increment();
 
+			try {
+				image =
+					ImageLocalServiceUtil.updateImage(
+						imageUpload, default_image);
+
+				preferences.setValue(
+					"default-image", String.valueOf(image.getImageId()));
+			}
+			catch (PortalException e) {
+				e.printStackTrace();
+			}
+		}
+		// end TuNV
 		String[] tagsCategories =
 			StringUtil.split(ParamUtil.getString(
 				actionRequest, "tagsCategories"));
