@@ -283,7 +283,7 @@ public class ContactBookPersistenceImpl extends BasePersistenceImpl
 
         if (contactBook == null) {
             if (_log.isWarnEnabled()) {
-                //_log.warn("No ContactBook exists with the primary key " + contactBookId);
+//                _log.warn("No ContactBook exists with the primary key " + contactBookId);
             }
 
             throw new NoSuchContactBookException(

@@ -39,6 +39,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import com.liferay.portal.PortalException;
@@ -63,7 +64,11 @@ import com.liferay.portlet.journal.model.JournalArticleResource;
 import com.liferay.portlet.journal.service.JournalArticleResourceLocalServiceUtil;
 import com.liferay.portlet.journalcontent.util.JournalContentUtil;
 import com.liferay.portlet.tags.model.TagsAsset;
+import com.liferay.portlet.tags.model.TagsEntry;
+import com.liferay.portlet.tags.model.TagsEntryConstants;
 import com.liferay.portlet.tags.model.TagsVocabulary;
+import com.liferay.portlet.tags.service.TagsAssetLocalServiceUtil;
+import com.liferay.portlet.tags.service.TagsEntryLocalServiceUtil;
 import com.liferay.portlet.tags.service.TagsVocabularyLocalServiceUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
 import com.nss.portlet.journal.model.JournalArticle;
@@ -265,6 +270,7 @@ public class ViewAction extends PortletAction {
 	}
 
 	private final String PORTLETNAME = "NSS_ASSET_PUBLISHER_INSTANCE_8Dkf";
+	private final String PORTLETNAME1 = "NSS_ASSET_PUBLISHER_INSTANCE";
 
 	public Date createDate(String date) {
 
@@ -337,6 +343,34 @@ public class ViewAction extends PortletAction {
 			date_expiration_t);
 	}
 
+	public PortletPreferences getPortletId(String portletId, String name) {
+
+		PortletPreferences prfs = null;
+
+		try {
+			DetachedCriteria dCriteria =
+				DetachedCriteria.forClass(PortletPreferences.class);
+			dCriteria.add(Restrictions.like(
+				"portletId", portletId, MatchMode.ANYWHERE));
+			DynamicQuery dynamicQuery = new DynamicQueryImpl(dCriteria);
+
+			List list =
+				PortletPreferencesLocalServiceUtil.dynamicQuery(dynamicQuery);
+			for (int i = 0; i < list.size(); i++) {
+				PortletPreferences preferences =
+					(PortletPreferences) list.get(i);
+				if (preferences.getPreferences().contains(name)) {
+					prfs = preferences;
+					break;
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return prfs;
+	}
+
 	public String getURL(ActionRequest req, JournalArticle journalArticle)
 		throws SystemException, PortalException {
 
@@ -345,10 +379,15 @@ public class ViewAction extends PortletAction {
 			NSSTagsAssetLocalServiceUtil.getTagsAsset(
 				journalArticle.getUserId(),
 				String.valueOf(journalArticle.getResourcePrimKey())).get(0);
-		long plid = getPortletId(PORTLETNAME);
+		// long plid = getPortletId(PORTLETNAME);
+		//
+		TagsVocabulary vocabulary = getVocagory(journalArticle);
+		PortletPreferences portletPreferences =
+			getPortletId(PORTLETNAME1, vocabulary.getName());
 		PortletURL viewFullContentURL =
 			new PortletURLImpl(
-				request, PORTLETNAME, plid, PortletRequest.RENDER_PHASE);
+				request, portletPreferences.getPortletId(),
+				portletPreferences.getPlid(), PortletRequest.RENDER_PHASE);
 		viewFullContentURL.setParameter(
 			"struts_action", "/nss/asset_publisher/view_content");
 		viewFullContentURL.setParameter(
@@ -369,6 +408,21 @@ public class ViewAction extends PortletAction {
 				"type", AssetPublisherUtil.TYPE_CONTENT);
 		}
 		return viewFullContentURL.toString();
+	}
+
+	public TagsVocabulary getVocagory(JournalArticle article)
+		throws PortalException, SystemException {
+
+		TagsAsset tagsAsset =
+			TagsAssetLocalServiceUtil.getAsset(
+				com.liferay.portlet.journal.model.JournalArticle.class.getName(),
+				article.getResourcePrimKey());
+		TagsEntry tagsEntry =
+			TagsEntryLocalServiceUtil.getAssetEntries(
+				tagsAsset.getAssetId(), TagsEntryConstants.FOLKSONOMY_CATEGORY).get(
+				0);
+		TagsVocabulary vocabulary = tagsEntry.getVocabulary();
+		return vocabulary;
 	}
 
 	public void printReport(

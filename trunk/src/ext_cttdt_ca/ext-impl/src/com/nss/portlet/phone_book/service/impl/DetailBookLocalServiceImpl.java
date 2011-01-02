@@ -56,8 +56,7 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 	protected void reIndexDetailBook(long companyId, int start, int end)
 			throws SystemException {
 
-		List<DetailBook> detailBooks = detailBookPersistence
-				.findByCompanyid(companyId, start, end);
+		List<DetailBook> detailBooks = detailBookPersistence.findByCompanyid(companyId, start, end);
 		for (DetailBook detailBook : detailBooks) {
 			try {
 				DetailBookIndexer.updateDetailBook(companyId, detailBook);
@@ -72,6 +71,15 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 	public void reIndex(long companyId, DetailBook detailBook) throws SearchException {
 		try {
 			DetailBookIndexer.updateDetailBook(companyId, detailBook);
+		} catch (UnsupportedEncodingException e) {
+			throw new SearchException(e);
+		}
+	}
+	
+	//nss-phone-book-index
+	public void reIndexIndex(long companyId, DetailBook detailBook) throws SearchException {
+		try {
+			DetailBookIndexer.updateDetailBookIndex(companyId, detailBook);
 		} catch (UnsupportedEncodingException e) {
 			throw new SearchException(e);
 		}
@@ -146,14 +154,14 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,
-					end);
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
+			//System.out.println("Hit search nang cao ---------------------- "+hits.getLength());
 			return hits;
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
-
+	
 	public Hits search(long companyId, long contactBookId, String keywords, String sortField,
 			int sortType, boolean reverse, int start, int end)
 			throws SystemException {
@@ -188,17 +196,51 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 
 			Sort sort;
 			sort = new Sort(sortField, sortType, reverse);
-			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start,
-					end);
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
+			//System.out.println("Hit search co ban ---------------------- "+hits.getLength());
 			return hits;
 		} catch (Exception e) {
 			throw new SystemException(e);
 		}
 	}
+	
+	//nss-phone-book-index
+	public Hits searchIndex(long companyId, String sortField, int sortType, boolean reverse, int start, int end)
+			throws SystemException {
+		try {
+
+			BooleanQuery contextQuery = BooleanQueryFactoryUtil.create();
+			contextQuery.addRequiredTerm(Field.COMPANY_ID, companyId);
+
+			if (Validator.isNotNull(DetailBookIndexer.PORTLET_ID)) {
+				contextQuery.addRequiredTerm(Field.PORTLET_ID,DetailBookIndexer.PORTLET_ID);
+			}
+			
+			BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
+			fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
+
+			Sort sort;
+			sort = new Sort(sortField, sortType, reverse);
+			Hits hits = SearchEngineUtil.search(companyId, fullQuery, sort, start, end);
+			//System.out.println("Hit search index ---------------------- "+hits.getLength());
+			return hits;
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}
+	}
+	
 	public DetailBook addDetailBook(long companyId, DetailBook detailBook) throws SystemException, SearchException {
 		detailBook.setNew(true);
 		detailBookPersistence.update(detailBook, false);
 		reIndex(companyId, detailBook);
+		return detailBook;
+	}
+	
+	//nss-phone-book-index
+	public DetailBook addDetailBookIndex(long companyId, DetailBook detailBook) throws SystemException, SearchException {
+		detailBook.setNew(true);
+		detailBookPersistence.update(detailBook, false);
+		reIndexIndex(companyId, detailBook);
 		return detailBook;
 	}
 	
@@ -214,11 +256,19 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 		return detailBook;
 	}
 	
+	//nss-phone-book-index
+	public DetailBook updateDetailBookIndex(long companyId, DetailBook detailBook) throws SystemException, SearchException {
+		detailBookPersistence.update(detailBook, false);
+		reIndexIndex(companyId, detailBook);
+		return detailBook;
+	}
+	
 	@Override
 	public DetailBook updateDetailBook(DetailBook detailBook) throws SystemException {
 		throw new SystemException(
 		"Please use method: updateDetailBook(long companyId, DetailBook detailBook)");
 	}
+	
 	public void deleteDetailBook(long companyId, long detailBookId) throws SystemException, SearchException, NoSuchDetailBookException {
 		DetailBook detailBook = detailBookPersistence.findByPrimaryKey(detailBookId);
 		deleteDetailBook(companyId, detailBook);
@@ -228,6 +278,22 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 		detailBookPersistence.remove(detailBook);
 		try {
 			DetailBookIndexer.deleteDetailBook(companyId, detailBook);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//nss-phone-book-index
+	public void deleteDetailBookIndex(long companyId, long detailBookId) throws SystemException, SearchException, NoSuchDetailBookException {
+		DetailBook detailBook = detailBookPersistence.findByPrimaryKey(detailBookId);
+		deleteDetailBookIndex(companyId, detailBook);
+	}
+	
+	//nss-phone-book-index
+	public void deleteDetailBookIndex(long companyId, DetailBook detailBook) throws SystemException, SearchException {
+		detailBookPersistence.remove(detailBook);
+		try {
+			DetailBookIndexer.deleteDetailBookIndex(companyId, detailBook);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
