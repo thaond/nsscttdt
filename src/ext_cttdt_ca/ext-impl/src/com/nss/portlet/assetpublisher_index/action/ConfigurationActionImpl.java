@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -56,12 +55,6 @@ import com.nss.portlet.journalworkflow.service.JournalProcessDefinitionLocalServ
  * @author Brian Wing Shun Chan
  */
 public class ConfigurationActionImpl extends BaseConfigurationAction {
-
-	// minh 20100713
-	public static final String PORTLET_ASSET_PUBLISHER =
-		"NSS_ASSET_PUBLISHER_INSTANCE";
-
-	// end minh 20100713
 
 	protected void moveSelectionDown(
 		ActionRequest actionRequest, PortletPreferences preferences)
@@ -325,33 +318,13 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		// by triltm
 
-		// minh 20100713
-		// lay gia tri cua layoutid
-		long selectPlId = ParamUtil.getLong(actionRequest, "selectPlId");
-		List<com.liferay.portal.model.PortletPreferences> pPlIds =
-			new ArrayList<com.liferay.portal.model.PortletPreferences>();
-		try {
-			pPlIds =
-				PortletPreferencesLocalServiceUtil.getPortletPreferencesByPlid(selectPlId);
-		}
-		catch (Exception e) {
-		}
-		String portletAssetPublisher = "NSS_ASSET_PUBLISHER";
-		for (int i = 0; i < pPlIds.size(); i++) {
-			if (pPlIds.get(i).getPortletId().contains(PORTLET_ASSET_PUBLISHER)) {
-				portletAssetPublisher = pPlIds.get(i).getPortletId();
-				break;
-			}
-		}
-		preferences.setValue("selectPlId", String.valueOf(selectPlId));
-		preferences.setValue("portletAssetPublisher", portletAssetPublisher);
-
 		long categoryParentId = 0;
 		List<TagsVocabulary> vocabularies =
 			TagsVocabularyLocalServiceUtil.getTagsVocabularies(-1, -1);
 		for (TagsVocabulary vocabulary : vocabularies) {
 			if (vocabulary.getName().equals(category)) {
 				categoryParentId = vocabulary.getVocabularyId();
+				preferences.setValue("categoryParentId", String.valueOf(categoryParentId));
 			}
 		}
 		List<TagsEntry> tagsEntrys = new ArrayList<TagsEntry>();
@@ -382,38 +355,26 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			long vocabularyId = vocabularies.get(i).getVocabularyId();
 			String vocabularyAbstractName = "valueAbstract" + vocabularyId;
 			String vocabularyChildrenName = "valueChildren" + vocabularyId;
-			String valueAbstract =
-				ParamUtil.getString(actionRequest, vocabularyAbstractName);
-			String valueChildren =
-				ParamUtil.getString(actionRequest, vocabularyChildrenName);
+			String valueAbstract = ParamUtil.getString(actionRequest, vocabularyAbstractName);
+			String valueChildren = ParamUtil.getString(actionRequest, vocabularyChildrenName);
 			preferences.setValue(vocabularyAbstractName, valueAbstract);
 			preferences.setValue(vocabularyChildrenName, valueChildren);
 			List<TagsEntry> tagsEntryChildrens = new ArrayList<TagsEntry>();
-			preferences.setValue(String.valueOf(vocabularyId),ParamUtil.getString(actionRequest, String.valueOf(vocabularyId)));
+			String vocabularyIdString = ParamUtil.getString(actionRequest, String.valueOf(vocabularyId));
+			preferences.setValue(String.valueOf(vocabularyId),vocabularyIdString);
 			try {
-				tagsEntryChildrens =
-					JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyId);
+				tagsEntryChildrens = JournalProcessDefinitionLocalServiceUtil.getListTagsEntry(vocabularyId);
 			}
 			catch (Exception e) {
 			}
 			if (tagsEntryChildrens.size() > 0) {
 				for (int j = 0; j < tagsEntryChildrens.size(); j++) {
-					String valueAbstractEntryName =
-						"valueAbstractEntry" +
-							tagsEntryChildrens.get(j).getEntryId();
-					String valueChildrenEntryName =
-						"valueChildrenEntry" +
-							tagsEntryChildrens.get(j).getEntryId();
-					String valueAbstractEntry =
-						ParamUtil.getString(
-							actionRequest, valueAbstractEntryName);
-					String valueChildrenEntry =
-						ParamUtil.getString(
-							actionRequest, valueChildrenEntryName);
-					preferences.setValue(
-						valueAbstractEntryName, valueAbstractEntry);
-					preferences.setValue(
-						valueChildrenEntryName, valueChildrenEntry);
+					String valueAbstractEntryName = "valueAbstractEntry" + tagsEntryChildrens.get(j).getEntryId();
+					String valueChildrenEntryName = "valueChildrenEntry" + tagsEntryChildrens.get(j).getEntryId();
+					String valueAbstractEntry = ParamUtil.getString(actionRequest, valueAbstractEntryName);
+					String valueChildrenEntry = ParamUtil.getString(actionRequest, valueChildrenEntryName);
+					preferences.setValue(valueAbstractEntryName, valueAbstractEntry);
+					preferences.setValue(valueChildrenEntryName, valueChildrenEntry);
 				}
 			}
 		}

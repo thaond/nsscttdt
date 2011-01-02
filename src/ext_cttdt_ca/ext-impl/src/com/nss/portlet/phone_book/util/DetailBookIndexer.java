@@ -50,13 +50,42 @@ public class DetailBookIndexer implements Indexer{
 		return doc;
 	}
 	
+	//nss-phone-book-index
+	public static Document getDetailBookIndex(long companyId, DetailBook detailBook) throws UnsupportedEncodingException {
+		long detailBookId = detailBook.getDetailBookId();
+		String detailBookName = detailBook.getDetailBookName().toLowerCase();
+		
+		Document doc = new DocumentImpl();
+		doc.addUID(PORTLET_ID, detailBookId);
+		
+		doc.addKeyword(Field.COMPANY_ID, companyId);
+		doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
+		
+		doc.addKeyword(Field.ENTRY_CLASS_PK, detailBookId);
+		doc.addKeyword(DetailBookDisplayTerms.NAME, detailBookName);
+		
+		return doc;
+	}
+	
 	public static void updateDetailBook(long companyId, DetailBook detailBook) throws SearchException, UnsupportedEncodingException {
 		Document doc = getDetailBook(companyId, detailBook);
 		SearchEngineUtil.updateDocument(companyId, doc.get(Field.UID), doc);
 	}
 	
+	//nss-phone-book-index
+	public static void updateDetailBookIndex(long companyId, DetailBook detailBook) throws SearchException, UnsupportedEncodingException {
+		Document doc = getDetailBookIndex(companyId, detailBook);
+		SearchEngineUtil.updateDocument(companyId, doc.get(Field.UID), doc);
+	}
+	
 	public static void deleteDetailBook(long companyId, DetailBook detailBook) throws SearchException, UnsupportedEncodingException {
 		Document doc = getDetailBook(companyId, detailBook);
+		SearchEngineUtil.deleteDocument(companyId, doc.get(Field.UID));
+	}
+	
+	//nss-phone-book-index
+	public static void deleteDetailBookIndex(long companyId, DetailBook detailBook) throws SearchException, UnsupportedEncodingException {
+		Document doc = getDetailBookIndex(companyId, detailBook);
 		SearchEngineUtil.deleteDocument(companyId, doc.get(Field.UID));
 	}
 	
