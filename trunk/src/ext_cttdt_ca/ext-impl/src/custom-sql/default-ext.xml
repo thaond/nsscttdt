@@ -28,4 +28,5 @@
 	<sql file="custom-sql/managementworkflowonedoor.xml" />
 	<sql file="custom-sql/filestatus.xml" />
 	<sql file="custom-sql/nss_thongketin.xml" />
+	<sql file="custom-sql/phone_book.xml" />
 </custom-sql>

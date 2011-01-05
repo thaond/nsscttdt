@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.nss.portlet.phone_book.service.persistence.ContactBookFinder.COUNT_CONTACT_BOOK">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM nss_contact_book 
+		WHERE 
+		(lower(contactBookCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(contactBookName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(contactDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.nss.portlet.phone_book.service.persistence.ContactBookFinder.FIND_CONTACT_BOOK">
+		<![CDATA[
+		SELECT *
+		FROM nss_contact_book 
+		WHERE 
+		(lower(contactBookCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(contactBookName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(contactDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY contactName ASC
+		]]>
+	</sql>
+	<sql
+		id="com.nss.portlet.phone_book.service.persistence.DetailBookFinder.COUNT_DETAIL_BOOK">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM nss_detail_book 
+		WHERE 
+		(lower(detailBookCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(detailBookName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(detailDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.nss.portlet.phone_book.service.persistence.DetailBookFinder.FIND_DETAIL_BOOK">
+		<![CDATA[
+		SELECT *
+		FROM nss_detail_book 
+		WHERE 
+		(lower(detailBookCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(detailBookName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(detailDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY detailName ASC
+		]]>
+	</sql>
+</custom-sql>
