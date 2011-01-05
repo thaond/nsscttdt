@@ -1685,6 +1685,10 @@
 	<bean id="com.nss.portlet.phone_book.service.persistence.ContactBookUtil" class="com.nss.portlet.phone_book.service.persistence.ContactBookUtil">
 		<property name="persistence" ref="com.nss.portlet.phone_book.service.persistence.ContactBookPersistence.impl" />
 	</bean>
+	<bean id="com.nss.portlet.phone_book.service.persistence.ContactBookFinder.impl" class="com.nss.portlet.phone_book.service.persistence.ContactBookFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.phone_book.service.persistence.ContactBookFinderUtil" class="com.nss.portlet.phone_book.service.persistence.ContactBookFinderUtil">
+		<property name="finder" ref="com.nss.portlet.phone_book.service.persistence.ContactBookFinder.impl" />
+	</bean>
 	<bean id="com.nss.portlet.phone_book.service.DetailBookLocalService.impl" class="com.nss.portlet.phone_book.service.impl.DetailBookLocalServiceImpl" />
 	<bean id="com.nss.portlet.phone_book.service.DetailBookLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.nss.portlet.phone_book.service.DetailBookLocalService.impl" />
@@ -1702,5 +1706,9 @@
 	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookPersistence.impl" class="com.nss.portlet.phone_book.service.persistence.DetailBookPersistenceImpl" parent="basePersistence" />
 	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookUtil" class="com.nss.portlet.phone_book.service.persistence.DetailBookUtil">
 		<property name="persistence" ref="com.nss.portlet.phone_book.service.persistence.DetailBookPersistence.impl" />
+	</bean>
+	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookFinder.impl" class="com.nss.portlet.phone_book.service.persistence.DetailBookFinderImpl" parent="basePersistence" />
+	<bean id="com.nss.portlet.phone_book.service.persistence.DetailBookFinderUtil" class="com.nss.portlet.phone_book.service.persistence.DetailBookFinderUtil">
+		<property name="finder" ref="com.nss.portlet.phone_book.service.persistence.DetailBookFinder.impl" />
 	</bean>
 </beans>
