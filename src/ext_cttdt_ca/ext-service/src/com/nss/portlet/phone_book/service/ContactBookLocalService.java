@@ -79,6 +79,26 @@ public interface ContactBookLocalService {
         com.nss.portlet.phone_book.model.ContactBook contactBook, boolean merge)
         throws com.liferay.portal.SystemException;
 
+    public int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.phone_book.model.ContactBook> findByKeyword(
+        java.lang.String keywords, int start, int end, boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public int countContactBook(java.lang.String contactBookCodes,
+        java.lang.String contactBookNames,
+        java.lang.String contactBookDescriptions, boolean andOperator)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.nss.portlet.phone_book.model.ContactBook> findContactBook(
+        java.lang.String contactBookCodes, java.lang.String contactBookNames,
+        java.lang.String contactBookDescriptions, int start, int end,
+        boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public java.util.List<com.nss.portlet.phone_book.model.DetailBook> getDetailBooks(
         long contactBookId) throws com.liferay.portal.SystemException;

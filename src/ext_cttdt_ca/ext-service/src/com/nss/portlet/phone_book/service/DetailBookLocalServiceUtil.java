@@ -89,6 +89,38 @@ public class DetailBookLocalServiceUtil {
         return getService().updateDetailBook(detailBook, merge);
     }
 
+    public static int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException {
+        return getService().countByKeyword(keywords);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.DetailBook> findByKeyword(
+        java.lang.String keywords, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().findByKeyword(keywords, start, end, obc);
+    }
+
+    public static int countDetailBook(java.lang.String detailBookCodes,
+        java.lang.String detailBookNames,
+        java.lang.String detailBookDescriptions, boolean andOperator)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .countDetailBook(detailBookCodes, detailBookNames,
+            detailBookDescriptions, andOperator);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.DetailBook> findDetailBook(
+        java.lang.String detailBookCodes, java.lang.String detailBookNames,
+        java.lang.String detailBookDescriptions, int start, int end,
+        boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .findDetailBook(detailBookCodes, detailBookNames,
+            detailBookDescriptions, start, end, andOperator, obc);
+    }
+
     public static void reIndex(java.lang.String[] ids)
         throws com.liferay.portal.SystemException {
         getService().reIndex(ids);
@@ -100,26 +132,41 @@ public class DetailBookLocalServiceUtil {
         getService().reIndex(companyId, detailBook);
     }
 
+    public static void reIndexIndex(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.kernel.search.SearchException {
+        getService().reIndexIndex(companyId, detailBook);
+    }
+
     public static com.liferay.portal.kernel.search.Hits search(long companyId,
-        long contactBookId, java.lang.String detailBookCode,
+        long detailBookId, java.lang.String detailBookCode,
         java.lang.String detailBookName, java.lang.String detailDescription,
         java.lang.String zip, java.lang.String internal, java.lang.String home,
         java.lang.String mobile, java.lang.String email,
         java.lang.String sortField, int sortType, boolean reverse, int start,
         int end) throws com.liferay.portal.SystemException {
         return getService()
-                   .search(companyId, contactBookId, detailBookCode,
+                   .search(companyId, detailBookId, detailBookCode,
             detailBookName, detailDescription, zip, internal, home, mobile,
             email, sortField, sortType, reverse, start, end);
     }
 
     public static com.liferay.portal.kernel.search.Hits search(long companyId,
-        long contactBookId, java.lang.String keywords,
+        long detailBookId, java.lang.String keywords,
         java.lang.String sortField, int sortType, boolean reverse, int start,
         int end) throws com.liferay.portal.SystemException {
         return getService()
-                   .search(companyId, contactBookId, keywords, sortField,
+                   .search(companyId, detailBookId, keywords, sortField,
             sortType, reverse, start, end);
+    }
+
+    public static com.liferay.portal.kernel.search.Hits searchIndex(
+        long companyId, java.lang.String sortField, int sortType,
+        boolean reverse, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .searchIndex(companyId, sortField, sortType, reverse, start,
+            end);
     }
 
     public static com.nss.portlet.phone_book.model.DetailBook addDetailBook(
@@ -129,11 +176,25 @@ public class DetailBookLocalServiceUtil {
         return getService().addDetailBook(companyId, detailBook);
     }
 
+    public static com.nss.portlet.phone_book.model.DetailBook addDetailBookIndex(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().addDetailBookIndex(companyId, detailBook);
+    }
+
     public static com.nss.portlet.phone_book.model.DetailBook updateDetailBook(
         long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
         throws com.liferay.portal.SystemException,
             com.liferay.portal.kernel.search.SearchException {
         return getService().updateDetailBook(companyId, detailBook);
+    }
+
+    public static com.nss.portlet.phone_book.model.DetailBook updateDetailBookIndex(
+        long companyId, com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().updateDetailBookIndex(companyId, detailBook);
     }
 
     public static void deleteDetailBook(long companyId, long detailBookId)
@@ -148,6 +209,20 @@ public class DetailBookLocalServiceUtil {
         throws com.liferay.portal.SystemException,
             com.liferay.portal.kernel.search.SearchException {
         getService().deleteDetailBook(companyId, detailBook);
+    }
+
+    public static void deleteDetailBookIndex(long companyId, long detailBookId)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException,
+            com.nss.portlet.phone_book.NoSuchDetailBookException {
+        getService().deleteDetailBookIndex(companyId, detailBookId);
+    }
+
+    public static void deleteDetailBookIndex(long companyId,
+        com.nss.portlet.phone_book.model.DetailBook detailBook)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        getService().deleteDetailBookIndex(companyId, detailBook);
     }
 
     public static DetailBookLocalService getService() {
