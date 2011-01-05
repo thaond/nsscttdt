@@ -22,7 +22,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_auto/init.jsp" %>
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
@@ -99,10 +99,10 @@ try {
 <%@page import="java.util.ArrayList"%>
 
 <div>
-	<liferay-util:include page="/html/portlet/nss/asset_publisher/display/full_content.jsp" />
+	<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/display/full_content.jsp" />
 </div>
 
-	<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_html_metadata.jsp" />
+	<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_html_metadata.jsp" />
 
 <%
 }
@@ -168,9 +168,9 @@ for (TagsAsset tagasset : assets) {
 if (assetList.size() != 0) {
 %>
 <div class="listnewsmore">
-<p class="textmore"><liferay-ui:message key="nss-cac-tin-khac"/>...</p>
+<p class="textmore"><liferay-ui:message key="nss-cac-tin-khac"/></p>
 <%
-
+}
 for (int i = 0; (i < assetList.size()) && (i < delta); i++) {
 	TagsAsset asset1 = assetList.get(i);
 
@@ -202,7 +202,7 @@ for (int i = 0; (i < assetList.size()) && (i < delta); i++) {
 	try {
 %>
 
-<liferay-util:include page="/html/portlet/nss/asset_publisher/display/title_list.jsp" />
+<div><liferay-util:include page="/html/portlet/nss/asset_publisher_auto/display/title_list.jsp" /></div>
 
 <%
 	} catch (Exception e) {
@@ -211,9 +211,8 @@ for (int i = 0; (i < assetList.size()) && (i < delta); i++) {
 
  } %>
  </div>
- <%} %>
 <!-- end them tin lien quan by triltm -->
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher.view_content.jsp");
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher_auto.view_content.jsp");
 %>

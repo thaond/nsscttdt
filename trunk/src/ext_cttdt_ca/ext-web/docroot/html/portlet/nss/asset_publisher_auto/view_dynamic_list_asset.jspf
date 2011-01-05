@@ -1,0 +1,294 @@
+<%@page import="com.ext.portal.util.ConstantsExt"%>
+<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
+<%@page import="java.util.List"%>
+
+<%
+
+request.setAttribute("view.jsp-abstractDelta", abstractDelta);
+if (results.size() < abstractDelta) {
+	for (int assetIndex = 0; assetIndex < results.size(); assetIndex++) {
+		TagsAsset asset = (TagsAsset)results.get(assetIndex);
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+
+%>
+		<%@ include file="/html/portlet/nss/asset_publisher_auto/view_display.jspf" %>
+<%
+		}
+		catch (Exception e) {
+			_log.error(e.getMessage());
+		}
+	}
+} else {
+%>
+
+	<script type="text/javascript">
+	var <portlet:namespace />journalArray = new Array();	
+	var StringListSlideShow = "";
+	<%
+	
+	String assetSummaryListFirst = "";
+	String des = "";
+	for (int assetIndex = 0; assetIndex < abstractDelta; assetIndex++) {
+		TagsAsset asset = (TagsAsset)results.get(assetIndex);
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+	%>
+		
+		<%
+				if (!ArrayUtil.contains(PropsValues.ASSET_PUBLISHER_DISPLAY_STYLES, displayStyle)) {
+				%>
+					<%= LanguageUtil.format(pageContext, "x-is-not-a-display-type", displayStyle) %>
+				<%
+					}
+					else{
+						
+						for (String curDisplayStyle : PropsValues.ASSET_PUBLISHER_DISPLAY_STYLES) {
+							if (displayStyle.equals(curDisplayStyle)) {	
+								int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
+
+								String cssClassName = StringPool.BLANK;
+
+								// MoNT update 25/12/2010
+								long selectPlId = 0;
+								if (asset.getCategories().size() > 0 ) {
+									long vocabularyId = asset.getCategories().get(0).getVocabularyId();
+									selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
+								}
+
+								List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
+								try {
+									pPlIds = PortletPreferencesLocalServiceUtil.getPortletPreferencesByPlid(selectPlId);
+								} catch (Exception e) {
+								}
+								
+								String portletAssetPublisher = "NSS_ASSET_PUBLISHER";
+								for (int i = 0; i < pPlIds.size(); i++) {
+									if(pPlIds.get(i).getPortletId().contains("NSS_ASSET_PUBLISHER_INSTANCE")) {
+										portletAssetPublisher =  pPlIds.get(i).getPortletId();
+										break;
+									}
+								}
+								//MoNT update 25/12/2010
+
+								PortletURL viewFullContentURL = new PortletURLImpl(request, portletAssetPublisher, selectPlId, PortletRequest.RENDER_PHASE );
+								viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
+								viewFullContentURL.setParameter("assetId", String.valueOf(asset.getAssetId()));
+								
+								if (className.equals(JournalArticle.class.getName())) {
+									JournalArticleResource articleResource = JournalArticleResourceLocalServiceUtil.getArticleResource(classPK);
+
+									String languageId = LanguageUtil.getLanguageId(request);
+
+									JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(articleResource.getGroupId(), articleResource.getArticleId(), null, null, languageId, themeDisplay);
+
+									if (articleDisplay != null) {
+										if (Validator.isNull(title)) {
+											title = articleDisplay.getTitle();
+										}
+
+										viewFullContentURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
+										viewFullContentURL.setParameter("type", AssetPublisherUtil.TYPE_CONTENT);
+
+										viewURL = viewFullContentURL.toString();
+										
+										String _viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
+										
+										StringBuilder sb = new StringBuilder();
+										sb.append("<li>");
+										if (articleDisplay.isSmallImage()) {
+											sb.append("<a href=\"" + _viewURL + "\"><img alt=\"");
+											sb.append(LanguageUtil.get(pageContext, "web-content-image"));
+											sb.append("\" src=\"");
+
+											if (Validator.isNotNull(articleDisplay.getSmallImageURL())) {
+												sb.append(articleDisplay.getSmallImageURL());
+											}
+											else {
+												sb.append(themeDisplay.getPathImage());
+												sb.append("/journal/article?img_id=");
+												sb.append(articleDisplay.getSmallImageId());
+												sb.append("&t=");
+												sb.append(ImageServletTokenUtil.getToken(articleDisplay.getSmallImageId()));
+											}
+
+											sb.append("\" /></a>");
+										}
+
+										sb.append("<h4><a href=\"" + viewURL + "\">" + "" + title + "</a></h4>");
+										
+										sb.append("<h5>" + df.format(asset.getPublishDate()) + "</h5>");
+										
+										des = StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()), abstractLength);
+										for (int i = 0; i < ConstantsExt.CHARACTERSPECIALS.length; i++) {
+											if (des.contains(ConstantsExt.CHARACTERSPECIALS[i])) {
+												des = des.replace(ConstantsExt.CHARACTERSPECIALS[i], ConstantsExt.CHARACTERSPECIALCHANGES[i]);
+											}
+										}
+										
+										sb.append("<span>" + des);
+										sb.append( "</span></li>");
+										summary = sb.toString();
+
+										viewURLMessage = "read-more";
+										cssClassName = AssetPublisherUtil.TYPE_CONTENT;
+									
+										assetSummaryListFirst += summary;
+									
+									
+						%>			
+								<portlet:namespace />journalArray[<%= assetIndex %>] = '<%= sb.toString() %>';
+						<%	
+						
+									}
+								
+							}
+								break;
+							}
+						}
+					}
+				
+		
+	
+			} catch (Exception e) {
+				_log.error(e.getMessage());
+			}
+			
+			
+		}
+	   assetSummaryListFirst = "<ul>" + assetSummaryListFirst + "</ul>";
+	
+	
+		int defaultSpeed = 10000;
+		%>
+		
+		var <portlet:namespace />speed = <%= defaultSpeed %>;
+		var <portlet:namespace />timeout = 0;
+		var <portlet:namespace />journalTempArray = null;
+
+		function <portlet:namespace />play() {
+			if (<portlet:namespace />timeout == 0) {
+				<portlet:namespace />timeout = setInterval("<portlet:namespace />showNext()", <portlet:namespace />speed);
+			}
+		}
+		
+		function <portlet:namespace />showNext() {			
+			var objRemove = <portlet:namespace />journalArray[0];
+			
+			<portlet:namespace />journalTempArray = new Array();
+			for (j = 1; j < <portlet:namespace />journalArray.length; j++) {
+				<portlet:namespace />journalTempArray[j-1] = <portlet:namespace />journalArray[j];
+			}
+			<portlet:namespace />journalTempArray[<portlet:namespace />journalTempArray.length] = objRemove;
+			<portlet:namespace />journalArray = <portlet:namespace />journalTempArray;
+			
+			StringListSlideShow = "";
+			for (i = 0; i < <portlet:namespace />journalArray.length; i++) {		
+				StringListSlideShow += <portlet:namespace />journalArray[i];
+			}
+			jQuery('#<portlet:namespace />slideShow').empty()
+			jQuery('#<portlet:namespace />slideShow').html("<ul>"+StringListSlideShow+"</ul>");
+		}		
+		
+		<portlet:namespace />play();
+	</script>
+	<div class="listupdate">
+	<div class="titlecategr"><h4><p><liferay-ui:message key="nss-tin-moi-cap-nhat" /></p></h4></div>
+	<div id="<portlet:namespace />slideShow" class="cont_update">
+	
+		<%= assetSummaryListFirst %>
+	</div>
+	</div>
+	<%--
+	// minh update 20101220 
+	for (int assetIndex = abstractDelta; assetIndex < results.size(); assetIndex++) {
+		TagsAsset asset = (TagsAsset)results.get(assetIndex);
+
+		String className = PortalUtil.getClassName(asset.getClassNameId());
+		long classPK = asset.getClassPK();
+
+		String title = asset.getTitle();
+		String summary = StringPool.BLANK;
+		String viewURL = StringPool.BLANK;
+		String viewURLMessage = StringPool.BLANK;
+		String editURL = StringPool.BLANK;
+
+		boolean show = true;
+
+		request.setAttribute("view.jsp-assetIndex", new Integer(assetIndex));
+
+		request.setAttribute("view.jsp-asset", asset);
+
+		request.setAttribute("view.jsp-title", title);
+		request.setAttribute("view.jsp-summary", summary);
+		request.setAttribute("view.jsp-viewURL", viewURL);
+		request.setAttribute("view.jsp-viewURLMessage", viewURLMessage);
+
+		request.setAttribute("view.jsp-className", className);
+		request.setAttribute("view.jsp-classPK", new Long(classPK));
+
+		request.setAttribute("view.jsp-show", new Boolean(show));
+
+		try {
+	--%>
+	<%--minh update 20101220 --%>
+		<%--@ include file="/html/portlet/nss/tintonghop/display/nss_title_list.jsp" --%>
+		<%--@ include file="/html/portlet/nss/tintonghop/view_display.jspf" --%>
+	<%--end minh update 20101220 --%>
+	<%
+	//	} catch (Exception e) {
+		//	_log.error(e.getMessage());
+	//	}
+	//}
+}
+%>

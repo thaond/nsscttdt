@@ -24,8 +24,7 @@
 		QuangCaoSearchTerms searchTerms = (QuangCaoSearchTerms)searchContainer.getSearchTerms();
 	%>
 	<div class="commom-form">
-		<div class="parent-title"><liferay-ui:message key="javax.portlet.title.NSS_ADV" /></div>
-		
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="javax.portlet.title.NSS_ADV" /></p></h4></div>
 		<liferay-ui:search-form
 			page="/html/portlet/nss/adv/search_form.jsp"
 			searchContainer="<%= searchContainer %>" />

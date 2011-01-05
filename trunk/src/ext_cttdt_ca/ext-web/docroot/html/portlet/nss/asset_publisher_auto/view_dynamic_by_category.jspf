@@ -72,7 +72,7 @@ if (results == null) {
 
 
 		<%
-		for (int assetIndex = 0; (assetIndex < results.size()) && (assetIndex < abstractDelta); assetIndex++) {
+		for (int assetIndex = 1; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
 			TagsAsset asset = results.get(assetIndex);
 			String className = PortalUtil.getClassName(asset.getClassNameId());
 			long classPK = asset.getClassPK();
@@ -101,8 +101,9 @@ if (results == null) {
 
 			try {
 		%>
-				
-				<%@ include file="/html/portlet/nss/asset_publisher_index/view_display.jspf" %>
+				<div id="<portlet:namespace/>abstractShow<%= assetIndex %>" style="display: none"> 
+				<%@ include file="/html/portlet/nss/asset_publisher_auto/view_display.jspf" %>
+				</div>
 
 		<%
 			}
@@ -114,7 +115,7 @@ if (results == null) {
 
 
 		<%
-		for (int assetIndex = abstractDelta; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
+		for (int assetIndex = 1; (assetIndex < results.size()) && (assetIndex < delta); assetIndex++) {
 			TagsAsset asset = results.get(assetIndex);
 
 			String className = PortalUtil.getClassName(asset.getClassNameId());
@@ -145,7 +146,7 @@ if (results == null) {
 			try {
 		%>
 
-				<%@ include file="/html/portlet/nss/asset_publisher_index/display/nss_title_list.jsp" %>
+				<%@ include file="/html/portlet/nss/asset_publisher_auto/display/nss_title_list.jsp" %>
 
 		<%
 			}
@@ -159,3 +160,17 @@ if (results == null) {
 }
 %>
 
+<script type="text/javascript">
+	jQuery("#<portlet:namespace/>abstractShow1").show();
+	function showAddDisplay(stt){
+		<% for(int i=1;i<results.size();i++){ %>
+			var temp = <%=i%>;
+			if(temp==stt){
+				jQuery("#<portlet:namespace/>abstractShow<%=i%>").show();
+			}else{
+				jQuery("#<portlet:namespace/>abstractShow<%=i%>").hide();
+			}
+		<%}%>
+	}
+</script>	
+	

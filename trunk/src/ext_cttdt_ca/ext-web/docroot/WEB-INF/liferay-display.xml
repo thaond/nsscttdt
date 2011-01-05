@@ -7,6 +7,7 @@
 			<portlet id="NSS_TINMOI" />
 			<portlet id="NSS_TINTONGHOP" />
 			<portlet id="NSS_ASSET_PUBLISHER_INDEX" />
+			<portlet id="NSS_ASSET_PUBLISHER_AUTO" />
 			<portlet id="NSS_ASSET_PUBLISHER_NSS" />
 			<portlet id="NSS_ASSET_PUBLISHER" />
 			<portlet id="NSGS_CONTACT" />

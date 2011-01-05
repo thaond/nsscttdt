@@ -1,6 +1,20 @@
+<%@page import="com.nss.portlet.image_signer.service.ImageSignerLocalServiceUtil"%>
+<%@page import="com.nss.portlet.image_signer.model.ImageSigner"%>
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
 <%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@page import="java.util.List"%>
+<%@page import="com.nss.portlet.digitalsignature.model.Signature"%>
+<%@page import="com.liferay.portal.kernel.util.Base64"%>
+<%@page import="com.nss.portlet.digitalsignature.service.ArticleDigestLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.model.Certificate"%>
+<%@page import="com.nss.portlet.digitalsignature.service.CertificateLocalServiceUtil"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.FileNotFoundException"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.ObjectInputStream"%>
+<%@page import="java.security.KeyPair"%>
+<%@page import="com.nss.portlet.digitalsignature.service.SignatureLocalServiceUtil"%>
+<%@page import="com.nss.portlet.digitalsignature.util.ArticleSignUtil"%>
 <%
 /**
  * Copyright (c) 2000-2009 Liferay, Inc. All rights reserved.
@@ -24,7 +38,7 @@
  * SOFTWARE.
  */
 %>
-<%@ include file="/html/portlet/nss/asset_publisher/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_auto/init.jsp" %>
 
 <%
 List results = (List)request.getAttribute("view.jsp-results");
@@ -61,7 +75,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 			PortletURL viewFullContentURL = renderResponse.createRenderURL();
 
-			viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
+			viewFullContentURL.setParameter("struts_action", "/nss/asset_publisher_auto/view_content");
 			viewFullContentURL.setParameter("type", AssetPublisherUtil.TYPE_BLOG);
 
 			String urlTitle = entry.getUrlTitle();
@@ -76,14 +90,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_BLOG %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -108,7 +122,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher/edit_entry_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_auto/edit_entry_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -135,14 +149,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_BOOKMARK %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -178,14 +192,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_DOCUMENT %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -216,7 +230,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher/edit_file_entry_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_auto/edit_file_entry_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -248,14 +262,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_IMAGE %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -293,18 +307,21 @@ request.setAttribute("view.jsp-showIconLabel", true);
 				show = false;
 			}
 			%>
-			<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><%= category %></p></h4></div>
+			<div class="titlecategories">
+				<h6><%= category %></h6>			    
+			</div>
 			
 			<div class="txtdetail">
 			<c:if test="<%= articleDisplay != null %>">
 				<c:choose>
 					<c:when test="<%= showAssetTitle %>">
 						<!-- <h3 class="asset-title <%= AssetPublisherUtil.TYPE_CONTENT %>">
-							<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+							<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
+							<%= title %>
 						</h3> -->
 						
-						<liferay-util:include page="/html/portlet/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/asset_publisher_auto/asset_actions.jsp" />
 						
 						<h5><%= title %></h5>
 						<h1><liferay-ui:message key="nss-cap-nhat" />: <%=df.format(asset.getPublishDate()) %></h1>
@@ -312,7 +329,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					</c:when>
 					<c:otherwise>
 						<div class="asset-edit">
-							<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+							<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -350,7 +367,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 						PortletURL articlePageURL = renderResponse.createRenderURL();
 
-						articlePageURL.setParameter("struts_action", "/nss/asset_publisher/view_content");
+						articlePageURL.setParameter("struts_action", "/nss/asset_publisher_auto/view_content");
 						articlePageURL.setParameter("redirect", pageRedirect);
 						articlePageURL.setParameter("urlTitle", articleDisplay.getUrlTitle());
 						articlePageURL.setParameter("cur", String.valueOf(cur));
@@ -384,7 +401,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 						<br />
 
 						<portlet:actionURL var="discussionURL">
-							<portlet:param name="struts_action" value="/nss/asset_publisher/edit_article_discussion" />
+							<portlet:param name="struts_action" value="/nss/asset_publisher_auto/edit_article_discussion" />
 						</portlet:actionURL>
 
 						<liferay-ui:discussion
@@ -397,9 +414,63 @@ request.setAttribute("view.jsp-showIconLabel", true);
 							redirect="<%= currentURL %>"
 						/>
 					</c:if>
-					</div>
 				</c:if>
 				</div>
+				<!-- Tu update 20101122 -->
+				<%
+				long articleSignId = JournalArticleLocalServiceUtil.getArticle(articleResource.getGroupId(),articleResource.getArticleId()).getPrimaryKey();
+				int checkSign = ArticleSignUtil.veriSign(articleSignId);
+				//lay thong tin nguoi ky
+				List<Signature> signature = SignatureLocalServiceUtil.findByArticlePrimKey(articleSignId);
+				long userSignId = 0;
+				String infoSign = "";
+				if(signature.size()>0){
+					userSignId = signature.get(0).getUserId();
+					infoSign = UserLocalServiceUtil.getUser(userSignId).getFullName();
+				}
+				ImageSigner image = ImageSignerLocalServiceUtil.getImageSignerByUserId(userSignId,0,ImageSignerLocalServiceUtil.getImageSigners(-1,-1).size());
+				%>
+				<c:choose>
+					<c:when test="<%= checkSign == 1 %>">
+						<div style="padding-left: 50px;padding-bottom: 10px;padding-top: 10px; background-color: #EBFAFF;">
+							<table>
+							<tr>
+								<td>
+								<c:choose>
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdSign()%>">
+									</c:when>
+									<c:when test="<%= image == null %>">
+										<img width="60" alt="certificate" src="/html/images/Certificate.jpg">
+									</c:when>
+								</c:choose>
+								</td>
+								<td style="padding-left: 10px;"><liferay-ui:message key="sign-kiem-duyet" /><br><liferay-ui:message key="sign-nguoi-ky" /> : <%= infoSign %></td>
+							</tr>
+							</table>
+						</div>
+					</c:when>
+					<c:when test="<%= checkSign == 2 %>">
+						<div style="padding-left: 50px;padding-bottom: 10px;padding-top: 10px; background-color: #EBFAFF;">
+							<table>
+							<tr>
+								<td>
+								<c:choose>
+									<c:when test="<%= image != null %>">
+										<img width="60" alt="certificate" src="<%= themeDisplay.getPathImage()+ "/adv?img_id=" + image.getImageIdUnSign()%>">
+									</c:when>
+									<c:when test="<%= image == null %>">
+										<img width="60" alt="certificate" src="/html/images/Certificate_error.jpg">
+									</c:when>
+								</c:choose>
+								</td>
+								<td style="padding-left: 10px;"><liferay-ui:message key="sign-thay-doi" /></td>
+							</tr>
+							</table>
+						</div>
+					</c:when>
+				</c:choose>
+				<!--  end Tu Update -->
 		</c:when>
 		<c:when test="<%= className.equals(MBMessage.class.getName()) %>">
 
@@ -418,14 +489,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_THREAD %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= message.getSubject() %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -444,14 +515,14 @@ request.setAttribute("view.jsp-showIconLabel", true);
 			<c:choose>
 				<c:when test="<%= showAssetTitle %>">
 					<h3 class="asset-title <%= AssetPublisherUtil.TYPE_WIKI %>">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 
 						<%= title %>
 					</h3>
 				</c:when>
 				<c:otherwise>
 					<div class="asset-edit">
-						<liferay-util:include page="/html/portlet/nss/asset_publisher/asset_actions.jsp" />
+						<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -518,7 +589,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 					<br />
 
 					<portlet:actionURL var="discussionURL">
-						<portlet:param name="struts_action" value="/nss/asset_publisher/edit_page_discussion" />
+						<portlet:param name="struts_action" value="/nss/asset_publisher_auto/edit_page_discussion" />
 					</portlet:actionURL>
 
 					<liferay-ui:discussion
@@ -540,7 +611,7 @@ request.setAttribute("view.jsp-showIconLabel", true);
 
 	<c:if test="<%= show %>">
 		<div class="asset-metadata">
-			<%@ include file="/html/portlet/nss/asset_publisher/asset_metadata.jspf" %>
+			<%@ include file="/html/portlet/nss/asset_publisher_auto/asset_metadata.jspf" %>
 		</div>
 	</c:if>
 </div>
@@ -557,5 +628,5 @@ request.setAttribute("view.jsp-showIconLabel", true);
 </div>
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher.display_full_content.jsp");
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.nss.asset_publisher_auto.display_full_content.jsp");
 %>

@@ -536,6 +536,9 @@
         <action path="/nss/phone_book/view_detail" type="com.nss.portlet.phone_book.action.ViewDetailAction">
             <forward name="portlet.nss.phone_book.view_detail" path="portlet.nss.phone_book.view_detail"/>
         </action>
+        <action path="/nss/phone_book_index/view" type="com.nss.portlet.phone_book_index.action.ViewAction">
+            <forward name="portlet.nss.phone_book_index.view" path="portlet.nss.phone_book_index.view"/>
+        </action>
          <!-- Asset Publisher INDEX -->
         <action path="/nss/asset_publisher_index/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
             <forward name="portlet.nss.message_boards.error" path="portlet.nss.journal_content.error"/>
@@ -556,6 +559,27 @@
         <action forward="portlet.nss.asset_publisher_index.view_content" path="/nss/asset_publisher_index/view_content"/>
         <action path="/nss/asset_publisher_index/viewhelp" type="com.nss.portlet.assetpublisher_index.action.ViewHelpAction">
             <forward name="portlet.nss.asset_publisher_index.viewhelp" path="portlet.nss.asset_publisher_index.viewhelp"/>
+        </action>
+        <!-- Asset Publisher AUTO -->
+        <action path="/nss/asset_publisher_auto/edit_article_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.journal_content.error"/>
+        </action>
+        <action path="/nss/asset_publisher_auto/edit_entry_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.blogs.error"/>
+        </action>
+        <action
+            path="/nss/asset_publisher_auto/edit_file_entry_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.document_library.error"/>
+        </action>
+        <action path="/nss/asset_publisher_auto/edit_page_discussion" type="com.liferay.portlet.messageboards.action.EditDiscussionAction">
+            <forward name="portlet.nss.message_boards.error" path="portlet.nss.page_comments.error"/>
+        </action>
+        <action path="/nss/asset_publisher_auto/view" type="com.nss.portlet.assetpublisher_auto.action.ViewAction">
+            <forward name="portlet.nss.asset_publisher_auto.view" path="portlet.nss.asset_publisher_auto.view"/>
+        </action>
+        <action forward="portlet.nss.asset_publisher_auto.view_content" path="/nss/asset_publisher_auto/view_content"/>
+        <action path="/nss/asset_publisher_auto/viewhelp" type="com.nss.portlet.assetpublisher_auto.action.ViewHelpAction">
+            <forward name="portlet.nss.asset_publisher_auto.viewhelp" path="portlet.nss.asset_publisher_auto.viewhelp"/>
         </action>
     </action-mappings>
 </struts-config>

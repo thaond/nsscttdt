@@ -15,11 +15,10 @@
 	portletURL.setParameter("struts_action", "/nss/qa_cau_hoi/view");
 	portletURL.setParameter("redirect", redirect);
 %>
-<div id="main">
-    <div id="leftmenu">
-    <div id="topmnl">
-    <div id="vbpq">
-	    <ul>
+<div class="leftmain_admin">
+<div id="menuleft">	
+<div class="nav-menu-style-1">	
+<ul class="navlevel-1">
 	    	<h2><liferay-ui:message key="chuyen-muc" /></h2>
 	    	<%
 	    		for (int i = 0; i < qAChuDeCauHoilList.size(); i ++) {
@@ -31,11 +30,12 @@
 	        %>
 	    </ul>
        </div>
-    </div>
-    </div>  
-    <form action="<%= portletURL.toString() %>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onsubmit="return checkFormAddCauHoi();">
+</div>
+</div>  
+<div class="centermain_admin" >  
+<form action="<%= portletURL.toString() %>" enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onsubmit="return checkFormAddCauHoi();">
 		<fieldset>
-		<div class="parent-title"><liferay-ui:message key="gui-cau-hoi" /></div>
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="gui-cau-hoi" /></p></h4></div>
 		<table width="100%" cellspacing="0">
 		
 			<tr>

@@ -27,13 +27,13 @@
 			document.getElementById("<portlet:namespace/>thutuThongTinCanThiet").focus();
 			return false;
 		} 
-		if (thuTuWebsite.trim () == "0") {
-			alert('<liferay-ui:message key="vui-long-nhap-so-khac-0"/>');
-			document.getElementById("<portlet:namespace/>thutuThongTinCanThiet").focus();
-			return false;
-		} 
 		if (isNaN(thuTuWebsite) == true) {
 			alert("<liferay-ui:message key='chi-nhap-con-so'/>");
+			document.getElementById("<portlet:namespace/>thutuThongTinCanThiet").focus();
+			return false;
+		}
+		if(thuTuWebsite <=0 ){
+			alert("<liferay-ui:message key='vui-long-nhap-so-lon-hon-0'/>");
 			document.getElementById("<portlet:namespace/>thutuThongTinCanThiet").focus();
 			return false;
 		}

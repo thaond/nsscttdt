@@ -35,6 +35,8 @@
 	backURL.setParameter("tabs", "detail");
 	%> 
 
+<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="nss-phone-book" /></p></h4></div>
+<br>
 <a href="<%= backURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="back"/>' /></span></a>
 
 <br>
