@@ -14,6 +14,7 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.journal.util.Indexer;
 import com.nss.portlet.phone_book.NoSuchContactBookException;
@@ -23,8 +24,23 @@ import com.nss.portlet.phone_book.search.ContactBookDisplayTerms;
 import com.nss.portlet.phone_book.service.base.ContactBookLocalServiceBaseImpl;
 import com.nss.portlet.phone_book.util.ContactBookIndexer;
 
-public class ContactBookLocalServiceImpl extends
-		ContactBookLocalServiceBaseImpl {
+public class ContactBookLocalServiceImpl extends ContactBookLocalServiceBaseImpl {
+	
+	public int countByKeyword(String keywords) throws SystemException{
+		return contactBookFinder.countByKeywords(keywords);
+	}
+	
+	public List<ContactBook> findByKeyword(String keywords, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
+		return contactBookFinder.findByKeywords(keywords, start, end, obc);
+	}
+	
+	public int countContactBook(String contactBookCodes, String contactBookNames, String contactBookDescriptions, boolean andOperator) throws SystemException{
+		return contactBookFinder.count_Contact_Book(contactBookCodes, contactBookNames, contactBookDescriptions, andOperator);
+	}
+	
+	public List<ContactBook> findContactBook(String contactBookCodes, String contactBookNames, String contactBookDescriptions, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
+		return contactBookFinder.find_contact_book(contactBookCodes, contactBookNames, contactBookDescriptions, start, end, andOperator, obc);
+	}
 	
 	public List<DetailBook> getDetailBooks(long contactBookId) throws SystemException{
 		return contactBookPersistence.getDetailBooks(contactBookId);

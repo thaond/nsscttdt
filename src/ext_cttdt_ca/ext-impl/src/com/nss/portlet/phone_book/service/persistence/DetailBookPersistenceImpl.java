@@ -253,7 +253,8 @@ public class DetailBookPersistenceImpl extends BasePersistenceImpl
 
         if (detailBook == null) {
             if (_log.isWarnEnabled()) {
-//                _log.warn("No DetailBook exists with the primary key " + detailBookId);
+                _log.warn("No DetailBook exists with the primary key " +
+                    detailBookId);
             }
 
             throw new NoSuchDetailBookException(
