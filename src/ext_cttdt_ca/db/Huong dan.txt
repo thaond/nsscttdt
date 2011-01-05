@@ -9,7 +9,8 @@
       * jdbc.default.driverClassName=org.postgresql.Driver
 
       * jdbc.default.url=jdbc:postgresql://192.168.1.27:5432/lportal_8_catphcm
-
+		jdbc.default.url=jdbc:postgresql://192.168.1.27:5432/lportal_8_catphcm_20101228
+		
       * jdbc.default.username=postgres
 
       * jdbc.default.password=123456
