@@ -89,6 +89,38 @@ public class ContactBookLocalServiceUtil {
         return getService().updateContactBook(contactBook, merge);
     }
 
+    public static int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException {
+        return getService().countByKeyword(keywords);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.ContactBook> findByKeyword(
+        java.lang.String keywords, int start, int end, boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().findByKeyword(keywords, start, end, andOperator, obc);
+    }
+
+    public static int countContactBook(java.lang.String contactBookCodes,
+        java.lang.String contactBookNames,
+        java.lang.String contactBookDescriptions, boolean andOperator)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .countContactBook(contactBookCodes, contactBookNames,
+            contactBookDescriptions, andOperator);
+    }
+
+    public static java.util.List<com.nss.portlet.phone_book.model.ContactBook> findContactBook(
+        java.lang.String contactBookCodes, java.lang.String contactBookNames,
+        java.lang.String contactBookDescriptions, int start, int end,
+        boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .findContactBook(contactBookCodes, contactBookNames,
+            contactBookDescriptions, start, end, andOperator, obc);
+    }
+
     public static java.util.List<com.nss.portlet.phone_book.model.DetailBook> getDetailBooks(
         long contactBookId) throws com.liferay.portal.SystemException {
         return getService().getDetailBooks(contactBookId);
