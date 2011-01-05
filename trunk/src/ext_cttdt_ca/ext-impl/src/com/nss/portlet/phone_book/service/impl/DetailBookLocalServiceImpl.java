@@ -14,6 +14,7 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.journal.util.Indexer;
 import com.nss.portlet.phone_book.NoSuchDetailBookException;
@@ -24,6 +25,22 @@ import com.nss.portlet.phone_book.util.DetailBookIndexer;
 
 
 public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
+	
+	public int countByKeyword(String keywords) throws SystemException{
+		return detailBookFinder.countByKeywords(keywords);
+	}
+	
+	public List<DetailBook> findByKeyword(String keywords, int start, int end, OrderByComparator obc) throws SystemException{
+		return detailBookFinder.findByKeywords(keywords, start, end, obc);
+	}
+	
+	public int countDetailBook(String detailBookCodes, String detailBookNames, String detailBookDescriptions, boolean andOperator) throws SystemException{
+		return detailBookFinder.count_detail_Book(detailBookCodes, detailBookNames, detailBookDescriptions, andOperator);
+	}
+	
+	public List<DetailBook> findDetailBook(String detailBookCodes, String detailBookNames, String detailBookDescriptions, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
+		return detailBookFinder.find_detail_book(detailBookCodes, detailBookNames, detailBookDescriptions, start, end, andOperator, obc);
+	}
 
 	public void reIndex(String[] ids) throws SystemException {
 		if (SearchEngineUtil.isIndexReadOnly()) {
@@ -85,7 +102,7 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 		}
 	}
 
-	public Hits search(long companyId, long contactBookId, String detailBookCode,
+	public Hits search(long companyId, long detailBookId, String detailBookCode,
 			String detailBookName, String detailDescription, String zip, String internal, String home, String mobile, String email,
 			String sortField, int sortType, boolean reverse, int start, int end)
 			throws SystemException {
@@ -162,7 +179,7 @@ public class DetailBookLocalServiceImpl extends DetailBookLocalServiceBaseImpl {
 		}
 	}
 	
-	public Hits search(long companyId, long contactBookId, String keywords, String sortField,
+	public Hits search(long companyId, long detailBookId, String keywords, String sortField,
 			int sortType, boolean reverse, int start, int end)
 			throws SystemException {
 		try {

@@ -387,7 +387,7 @@ public class JournalStructureLocalServiceImpl
 		return journalStructurePersistence.countByGroupId(groupId);
 	}
 
-	public List<JournalStructure> search(
+	public List<JournalStructure> search1(
 			long companyId, long groupId, String keywords, int start, int end,
 			OrderByComparator obc)
 		throws SystemException {
@@ -396,7 +396,7 @@ public class JournalStructureLocalServiceImpl
 			companyId, groupId, keywords, start, end, obc);
 	}
 
-	public List<JournalStructure> search(
+	public List<JournalStructure> search1(
 			long companyId, long groupId, String structureId, String name,
 			String description, boolean andOperator, int start, int end,
 			OrderByComparator obc)
@@ -407,14 +407,14 @@ public class JournalStructureLocalServiceImpl
 			start, end, obc);
 	}
 
-	public int searchCount(long companyId, long groupId, String keywords)
+	public int searchCount1(long companyId, long groupId, String keywords)
 		throws SystemException {
 
 		return journalStructureFinder.countByKeywords(
 			companyId, groupId, keywords);
 	}
 
-	public int searchCount(
+	public int searchCount1(
 			long companyId, long groupId, String structureId, String name,
 			String description, boolean andOperator)
 		throws SystemException {
