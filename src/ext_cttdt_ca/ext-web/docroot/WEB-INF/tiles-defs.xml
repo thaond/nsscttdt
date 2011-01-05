@@ -503,6 +503,9 @@
     <definition extends="portlet" name="portlet.nss.phone_book.view_detail">
         <put name="portlet_content" value="/portlet/nss/phone_book_display/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.nss.phone_book_index.view">
+        <put name="portlet_content" value="/portlet/nss/phone_book_index/view.jsp"/>
+    </definition>
     <!-- Asset Publisher INDEX -->
     <definition extends="portlet" name="portlet.nss.asset_publisher_index"/>
     <definition extends="portlet.nss.asset_publisher_index" name="portlet.nss.asset_publisher_index.view">
@@ -513,5 +516,16 @@
     </definition>
     <definition extends="portlet.nss.asset_publisher_index" name="portlet.nss.asset_publisher_index.viewhelp">
         <put name="portlet_content" value="/portlet/nss/asset_publisher_index/viewhelp.jsp"/>
+    </definition>
+    <!-- Asset Publisher AUTO -->
+    <definition extends="portlet" name="portlet.nss.asset_publisher_auto"/>
+    <definition extends="portlet.nss.asset_publisher_auto" name="portlet.nss.asset_publisher_auto.view">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_auto/view.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.asset_publisher_auto" name="portlet.nss.asset_publisher_auto.view_content">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_auto/view_content.jsp"/>
+    </definition>
+    <definition extends="portlet.nss.asset_publisher_auto" name="portlet.nss.asset_publisher_auto.viewhelp">
+        <put name="portlet_content" value="/portlet/nss/asset_publisher_auto/viewhelp.jsp"/>
     </definition>
 </tiles-definitions>

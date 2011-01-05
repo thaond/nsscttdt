@@ -42,11 +42,10 @@
 	portletURL_.setParameter("struts_action", "/nss/qa_cau_hoi/view");
 	String portletURLDisplayString = portletURL_.toString();
 %>
-<div id="main">
-    <div id="leftmenu">
-    <div id="topmnl">
-    <div id="vbpq">
-	    <ul>
+<div class="leftmain_admin">
+<div id="menuleft">	
+<div class="nav-menu-style-1">	
+<ul class="navlevel-1">
 	    	<h2><liferay-ui:message key="chuyen-muc" /></h2>
 	    	<%
 	    		for (int i = 0; i < qAChuDeCauHoilList.size(); i ++) {
@@ -60,9 +59,10 @@
        </div>
     </div>
     </div>  
+<div class="centermain_admin" >
     <form action="<%= portletURL.toString() %>" method="post" name="<portlet:namespace />fm" onsubmit="return checkFormAddCauHoi();">
-		<div class="commom-form">
-		<div class="parent-title"><liferay-ui:message key="hoi-dap-truc-tuyen" /></div>
+		<fieldset>
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="hoi-dap-truc-tuyen" /></p></h4></div>
 			<table width="100%" cellspacing="0">
 				<tr>
 					<td style="text-transform: capitalize;color: #ff8a00; font-size: 14px;">
@@ -152,6 +152,6 @@
 			    			<span onclick="javascript:submitForm(document.hrefFm,'<%= redirect %>');"><input class="button-width" type="button"	value='<liferay-ui:message key="back"/>' /></span>
 			</div>
 			<br><br>
-			</div>
+			</fieldset>
 	</form>
 </div>

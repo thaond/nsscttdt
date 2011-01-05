@@ -32,7 +32,7 @@
  */
 %>
 
-<%@ include file="/html/portlet/nss/asset_publisher_index/init.jsp" %>
+<%@ include file="/html/portlet/nss/asset_publisher_auto/init.jsp" %>
 <%
 int abstractNumber = ((Integer)request.getAttribute("view.jsp-abstractDelta")).intValue();
 
@@ -49,7 +49,7 @@ if (asset.getCategories().size() > 0 ) {
 	for(int i=0;i<asset.getCategories().size();i++){
 		vocabularyId = asset.getCategories().get(i).getVocabularyId();
 		selectPlId = GetterUtil.getLong(preferences.getValue(String.valueOf(vocabularyId), StringPool.BLANK));
-		if(selectPlId != 0) break;
+		//if(selectPlId != 0) break;
 	}
 }
 List<com.liferay.portal.model.PortletPreferences> pPlIds = new ArrayList<com.liferay.portal.model.PortletPreferences>();
@@ -58,7 +58,7 @@ try {
 } catch (Exception e) {
 }
 
-String portletAssetPublisher = "NSS_ASSET_PUBLISHER_INDEX";
+String portletAssetPublisher = "NSS_ASSET_PUBLISHER_AUTO";
 for (int i = 0; i < pPlIds.size(); i++) {
 	if(pPlIds.get(i).getPortletId().contains("NSS_ASSET_PUBLISHER_INSTANCE")) {
 		portletAssetPublisher =  pPlIds.get(i).getPortletId();
@@ -250,8 +250,8 @@ else if (className.equals(JournalArticle.class.getName())) {
 		
 		sb.append("<span>" +  StringUtil.shorten(HtmlUtil.stripHtml(articleDisplay.getDescription()), abstractLength) + "</span>");
 		
-		if (articleDisplay.isSmallImage()) {
-		sb.append("</div>");
+		if(articleDisplay.isSmallImage()){
+			sb.append("</div>");	
 		}
 		
 		summary = sb.toString();
@@ -303,9 +303,9 @@ viewURL = _checkViewURL(viewURL, currentURL, themeDisplay);
 <%@page import="java.text.SimpleDateFormat"%>
 <c:if test="<%= show %>">
 	<div class="showany">
-		<liferay-util:include page="/html/portlet/nss/asset_publisher_index/asset_actions.jsp" />
+		<liferay-util:include page="/html/portlet/nss/asset_publisher_auto/asset_actions.jsp" />
 		<div class="asset-content"><%= summary%></div>
-		<div class="asset-metadata"><%@ include file="/html/portlet/nss/asset_publisher_index/asset_metadata.jspf" %></div>
+		<div class="asset-metadata"><%@ include file="/html/portlet/nss/asset_publisher_auto/asset_metadata.jspf" %></div>
 	</div>
 	
 </c:if>

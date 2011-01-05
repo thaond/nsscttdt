@@ -858,12 +858,66 @@
         </security-role-ref>
     </portlet>
     <portlet>
+        <portlet-name>NSS_PHONE_BOOK_INDEX</portlet-name>
+        <display-name>phone_book_index</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/nss/phone_book_index/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <portlet>
         <portlet-name>NSS_ASSET_PUBLISHER_INDEX</portlet-name>
         <display-name>asset_publisher_index</display-name>
         <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
         <init-param>
             <name>view-action</name>
             <value>/nss/asset_publisher_index/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+        <supported-public-render-parameter>folksonomy</supported-public-render-parameter>
+        <supported-public-render-parameter>tag</supported-public-render-parameter>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ASSET_PUBLISHER_AUTO</portlet-name>
+        <display-name>asset_publisher_auto</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/nss/asset_publisher_auto/view</value>
         </init-param>
         <expiration-cache>0</expiration-cache>
         <supports>

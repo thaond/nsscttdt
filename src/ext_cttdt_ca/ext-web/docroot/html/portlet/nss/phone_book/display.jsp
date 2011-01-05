@@ -1,3 +1,4 @@
+<%@page import="com.nss.portlet.phone_book.search.ContactBookSearchTerms"%>
 <%@ include file="/html/portlet/nss/phone_book/init.jsp" %>
 
 <%@page import="com.nss.portlet.phone_book.model.ContactBook"%>
@@ -44,6 +45,7 @@
     	<%
 			ContactBookSearch contactBookSearch = new ContactBookSearch(renderRequest, portletURL);
     		ContactBookDisplayTerms displayTerms = (ContactBookDisplayTerms)contactBookSearch.getDisplayTerms();
+    		ContactBookSearchTerms searchTerms = (ContactBookSearchTerms) contactBookSearch.getSearchTerms();
     		
 	   		String orderByCol = ParamUtil.getString(renderRequest, "orderByCol", ContactBookDisplayTerms.NAME);
     		int sortType = Sort.STRING_TYPE;
@@ -55,7 +57,7 @@
     		} 
 		%>
 	<div class="commom-form">
-		<div class="parent-title"><liferay-ui:message key="nss-phone-book" /></div>
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="nss-phone-book" /></p></h4></div>
 		<liferay-ui:search-form	page="/html/portlet/nss/phone_book/search_form.jsp"	searchContainer="<%= contactBookSearch %>" />
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
@@ -68,39 +70,29 @@
 		<br><br>
 		
 				<%
-					Hits hits = null;
+				int count = 0;
+				List<ContactBook> listContactBook = new ArrayList<ContactBook>();
+				
 					if (!displayTerms.isAdvancedSearch()) {
-						hits = ContactBookLocalServiceUtil.search(user.getCompanyId(),displayTerms.getKeywords(),
-								orderByCol, sortType, reverse,contactBookSearch.getStart(),contactBookSearch.getEnd());
+						count = ContactBookLocalServiceUtil.countByKeyword(searchTerms.getKeywords());
+						listContactBook = ContactBookLocalServiceUtil.findByKeyword(searchTerms.getKeywords(),contactBookSearch.getStart(),
+									contactBookSearch.getEnd(),searchTerms.isAndOperator(),contactBookSearch.getOrderByComparator());
 					} else {
-						hits = ContactBookLocalServiceUtil.search(user.getCompanyId(),
-								displayTerms.getContactBookCode().trim().length() == 0 ? "" : (displayTerms.getContactBookCode() + "*"),
-								displayTerms.getContactBookName().trim().length() == 0 ? "" : (displayTerms.getContactBookName() + "*"),
-								displayTerms.getContactDescription().trim().length() == 0 ? "" : (displayTerms.getContactDescription() + "*"),				
-								orderByCol, sortType, reverse,contactBookSearch.getStart(),contactBookSearch.getEnd());		
+						count = ContactBookLocalServiceUtil.countContactBook(searchTerms.getContactBookCode(),searchTerms.getContactBookName(),searchTerms.getContactDescription(),searchTerms.isAndOperator());
+						listContactBook = ContactBookLocalServiceUtil.findContactBook(searchTerms.getContactBookCode(),searchTerms.getContactBookName(),searchTerms.getContactDescription(),
+									contactBookSearch.getStart(), contactBookSearch.getEnd(),searchTerms.isAndOperator(),contactBookSearch.getOrderByComparator());
 					}
 					
 					ContactBook contactBook = null;
 					long contactBookId = 0;
-					List<ContactBook> listContactBook = new ArrayList<ContactBook>();
 					
-					for(int i = 0; i<hits.getDocs().length; i++){
-						contactBookId = GetterUtil.getInteger(hits.doc(i).get(Field.ENTRY_CLASS_PK));
-						try{
-							contactBook  = ContactBookLocalServiceUtil.getContactBook(contactBookId);
-							if(contactBook != null){
-								listContactBook.add(contactBook);
-							}
-						}catch(Exception e){
-						}
-					}
-					
-					int total = listContactBook.size();
-					contactBookSearch.setTotal(total);
+					contactBookSearch.setTotal(count);
+					contactBookSearch.setResults(listContactBook);
 					portletURL.setParameter(contactBookSearch.getCurParam(), String.valueOf(contactBookSearch.getCurValue()));
 					
-					List resultRows = contactBookSearch.getResultRows();
+					List<ResultRow> resultRows = contactBookSearch.getResultRows();
 					ResultRow row = null;
+					
 					String update = "";
 					String deleteAction = "";
 					String active = "";

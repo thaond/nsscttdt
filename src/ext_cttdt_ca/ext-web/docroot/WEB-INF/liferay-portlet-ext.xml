@@ -316,6 +316,13 @@
          <indexer-class>com.nss.portlet.phone_book.util.DetailBookIndexer</indexer-class>
     </portlet>
     <portlet>
+        <portlet-name>NSS_PHONE_BOOK_INDEX</portlet-name>
+        <struts-path>nss/phone_book_index</struts-path>
+        <use-default-template>false</use-default-template>
+         <indexer-class>com.nss.portlet.phone_book.util.ContactBookIndexer</indexer-class>
+         <indexer-class>com.nss.portlet.phone_book.util.DetailBookIndexer</indexer-class>
+    </portlet>
+    <portlet>
         <portlet-name>NSS_ASSET_PUBLISHER_INDEX</portlet-name>
         <icon>/html/icons/default.png</icon>
         <struts-path>nss/asset_publisher_index</struts-path>
@@ -330,6 +337,23 @@
         <private-session-attributes>false</private-session-attributes>
         <render-weight>25</render-weight>
         <header-portlet-css>/html/portlet/nss/asset_publisher_index/css.jsp</header-portlet-css>
+        <css-class-wrapper>portlet-asset-publisher</css-class-wrapper>
+    </portlet>
+    <portlet>
+        <portlet-name>NSS_ASSET_PUBLISHER_AUTO</portlet-name>
+        <icon>/html/icons/default.png</icon>
+        <struts-path>nss/asset_publisher_auto</struts-path>
+        <configuration-action-class>com.nss.portlet.assetpublisher_auto.action.ConfigurationActionImpl</configuration-action-class>
+        <!-- <friendly-url-mapper-class>com.nss.portlet.assetpublisher.AssetPublisherFriendlyURLMapper</friendly-url-mapper-class> -->
+        <use-default-template>false</use-default-template>
+        <restore-current-view>false</restore-current-view>
+        <layout-cacheable>true</layout-cacheable>
+        <instanceable>true</instanceable>
+        <scopeable>true</scopeable>
+        <private-request-attributes>false</private-request-attributes>
+        <private-session-attributes>false</private-session-attributes>
+        <render-weight>25</render-weight>
+        <header-portlet-css>/html/portlet/nss/asset_publisher_auto/css.jsp</header-portlet-css>
         <css-class-wrapper>portlet-asset-publisher</css-class-wrapper>
     </portlet>
 </liferay-portlet-app>

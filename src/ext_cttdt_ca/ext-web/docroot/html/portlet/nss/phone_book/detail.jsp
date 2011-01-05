@@ -83,7 +83,7 @@
     		} 
 		%>
 	<div class="commom-form">
-		<div class="parent-title"><liferay-ui:message key="nss-phone-book" /></div>
+		<div class="titlecategr" style="margin-bottom: 15px;"><h4><p><liferay-ui:message key="nss-phone-book" /></p></h4></div>
 		<liferay-ui:search-form page="/html/portlet/nss/phone_book/search_form_detail.jsp" searchContainer="<%= detailBookSearch %>" />
 			<%
 				PortletURL addURL = renderResponse.createRenderURL();
@@ -103,43 +103,17 @@
 			<br><br>
 			
 				<%
-					Hits hits = null;
-					if (!displayTerms.isAdvancedSearch()) {
-						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,displayTerms.getKeywords(),
-								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
-					} else {
-						hits = DetailBookLocalServiceUtil.search(user.getCompanyId(),contactBookId,
-								displayTerms.getDetailBookCode().trim().length() == 0 ? "" : (displayTerms.getDetailBookCode() + "*"),
-								displayTerms.getDetailBookName().trim().length() == 0 ? "" : (displayTerms.getDetailBookName() + "*"),
-								displayTerms.getDetailDescription().trim().length() == 0 ? "" : (displayTerms.getDetailDescription() + "*"),				
-								displayTerms.getZip().trim().length() == 0 ? "" : (displayTerms.getZip() + "*"),
-								displayTerms.getInternal().trim().length() == 0 ? "" : (displayTerms.getInternal() + "*"),
-								displayTerms.getHome().trim().length() == 0 ? "" : (displayTerms.getHome() + "*"),
-								displayTerms.getMobile().trim().length() == 0 ? "" : (displayTerms.getMobile() + "*"),
-								displayTerms.getEmail().trim().length() == 0 ? "" : (displayTerms.getEmail() + "*"),
-								orderByCol, sortType, reverse,detailBookSearch.getStart(),detailBookSearch.getEnd());
-					}
+					List<DetailBook> listDetailBook = new ArrayList<DetailBook>();
+					listDetailBook = ContactBookLocalServiceUtil.getDetailBooks(contactBookId);
 					
 					DetailBook detailBook = null;
 					long detailBookId = 0;
-					List<DetailBook> listDetailBook = new ArrayList<DetailBook>();
-					
-					for(int i=0;i< hits.getDocs().length;i++){
-						detailBookId = GetterUtil.getInteger(hits.doc(i).get(Field.ENTRY_CLASS_PK));
-						try{
-							detailBook  = DetailBookLocalServiceUtil.getDetailBook(detailBookId);
-							if(detailBook != null && detailBook.getContactBookId() == contactBookId){
-									listDetailBook.add(detailBook);
-							}
-						}catch(Exception e){
-						}
-					}
 					
 					int total = listDetailBook.size();
 					detailBookSearch.setTotal(total);
 					portletURL.setParameter(detailBookSearch.getCurParam(), String.valueOf(detailBookSearch.getCurValue()));
 					
-					List resultRows = detailBookSearch.getResultRows();
+					List<ResultRow> resultRows = detailBookSearch.getResultRows();
 					ResultRow row = null;
 					String update = "";
 					String deleteAction = "";
