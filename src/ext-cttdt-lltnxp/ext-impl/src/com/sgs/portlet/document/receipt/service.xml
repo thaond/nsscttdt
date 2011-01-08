@@ -1,0 +1,646 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document.receipt">
+	<namespace>PmlDocumentReceipt</namespace>
+	<entity name="PmlEdmBookDocumentRecordTo" local-service="true" remote-service="true"
+		table="pml_edm_bookdocumentrecordto">
+
+		<!-- PK fields -->
+
+		<column name="documentReceiptId" type="long" primary="true" db-name="documentreceiptid"/>
+		<column name="documentRecordToId" type="long" primary="true" db-name="documentrecordtoid"/>
+
+		<!-- Other fields -->
+		
+
+		<column name="dateCreate" type="Date" db-name="datecreate"/>
+		<column name="dateComplete" type="Date" db-name="datecomplete"/>
+		<column name="soCongVanDenPhongHienTai" type="int" />
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="documentReceiptId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DocumentReceiptId" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+		</finder>
+		
+		<finder name="DocumentRecordToId" return-type="Collection">
+			<finder-column name="documentRecordToId" />
+		</finder>
+		
+		<finder name="DateComplete" return-type="Collection">
+			<finder-column name="dateComplete" />
+		</finder>
+		
+		<finder name="DateCreate" return-type="Collection">
+			<finder-column name="dateCreate" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_DocumentRecordToId" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="documentRecordToId" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+	<entity name="PmlEdmLevelSendDetail" local-service="true" remote-service="true"
+		table="pml_edm_levelsenddetail">
+
+		<!-- PK fields -->
+
+		<column name="levelSendId" type="int" primary="true" db-name="levelsendid"/>
+		<column name="issuingPlaceId" type="String" primary="true" db-name="issuingPlaceId"/>
+
+		<!-- Other fields -->
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="levelSendId" />
+		</order>
+		
+
+		<!-- Finder methods -->
+		<finder name="LevelSendId" return-type="Collection">
+			<finder-column name="levelSendId" />
+		</finder>
+		
+		<finder name="IssuingPlaceId" return-type="Collection">
+			<finder-column name="issuingPlaceId" />
+		</finder>
+		
+		<finder return-type="PmlEdmLevelSendDetail" name="LevelSendId_IssuingPlaceId">
+			<finder-column name="levelSendId" />
+			<finder-column name="issuingPlaceId" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmDocumentRecordTo" local-service="true" remote-service="true"
+		table="pml_edm_documentrecordto">
+
+		<!-- PK fields -->
+
+		<column name="documentRecordToId" type="long" primary="true" db-name="documentrecordtoid"/>
+
+		<!-- Other fields -->
+
+		<column name="dateCreate" type="Date" db-name="datecreate"/>
+		<column name="currentRecord" type="long" db-name="currentrecord"/>
+		<column name="departmentsId" type="String" db-name="departmentsid"/>
+		<column name="documentRecordTypeId" type="int" db-name="documentrecordtypeid"/>
+		<column name="yearInUse" type="String" db-name="yearinuse"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="isAgency" type="String" db-name="isagency"/>
+		<column name="agencyId" type="String" db-name="agencyid"/>
+
+		<!-- Finder methods -->
+		<finder name="DateCreate" return-type="Collection">
+			<finder-column name="dateCreate" />
+		</finder>
+
+		<finder name="CurrentRecord" return-type="Collection">
+			<finder-column name="currentRecord" comparator="="/>
+		</finder>
+		
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+
+		<finder name="DocumentRecordTypeId" return-type="Collection">
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+
+		<finder name="YearInUse" return-type="Collection">
+			<finder-column name="yearInUse" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="AgencyId" return-type="Collection">
+			<finder-column name="agencyId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartDocYear" return-type="Collection">
+			<finder-column name="yearInUse" comparator="LIKE"/>
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+		
+		<finder name="DepartDocAgency" return-type="Collection">
+			<finder-column name="agencyId" comparator="LIKE"/>
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+		
+		<finder name="AgencyId_Year_DocumentRecordTo" return-type="Collection">
+			<finder-column name="agencyId" />
+			<finder-column name="yearInUse" />
+			<finder-column name="documentRecordTypeId" />
+		</finder>
+		
+		<finder name="Agency_DocumentType" return-type="Collection">
+			<finder-column name="agencyId" />
+			<finder-column name="documentRecordTypeId" />
+		</finder>
+		
+		<finder name="DocumentRecordTypeId_DepartmentsId" return-type="PmlEdmDocumentRecordTo">
+			<finder-column name="documentRecordTypeId" />
+			<finder-column name="departmentsId" />
+		</finder>
+		
+		<finder name="DocumentRecordTypeId_AgencyId" return-type="PmlEdmDocumentRecordTo">
+			<finder-column name="documentRecordTypeId" />
+			<finder-column name="agencyId" />
+		</finder>
+		
+		<!--  24/05/2010 -->
+		<finder name="YearInUse_AgencyId" return-type="Collection">
+			<finder-column name="yearInUse" />
+			<finder-column name="agencyId" />
+		</finder>
+		
+		<finder name="YearInUse_DepartmentsId" return-type="Collection">
+			<finder-column name="yearInUse" />
+			<finder-column name="departmentsId" />
+		</finder>
+		<!-- end  -->
+
+	</entity>
+	
+	<entity name="PmlEdmDocumentRecordType" local-service="true" remote-service="true"
+		table="pml_edm_documentrecordtype">
+
+		<!-- PK fields -->
+
+		<column name="documentRecordTypeId" type="int" primary="true" db-name="documentrecordtypeid"/>
+
+		<!-- Other fields -->
+
+		<column name="documentRecordTypeName" type="String" db-name="documentrecordtypename"/>
+		<column name="documentRecordTypeCode" type="String" db-name="documentrecordtypecode"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="documentRecordTypeId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="documentRecordTypeName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DocumentRecordTypeCode" return-type="Collection">
+			<finder-column name="documentRecordTypeCode" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DocumentRecordTypeName" return-type="Collection">
+			<finder-column name="documentRecordTypeName" comparator="LIKE"/>
+		</finder>
+		
+	</entity>
+	
+	<entity name="PmlEdmDocumentReceipt" table="pml_edm_documentreceipt" local-service="true" remote-service="true">
+	
+		<!-- PK fields -->
+
+		<column name="documentReceiptId" type="long" primary="true" db-name="documentReceiptId"/>
+		
+		<!-- fields -->
+		<column name="levelSendId" type="int" db-name="levelsendid" />
+		<column name="documentTypeId" type="long" db-name="documenttypeid" />
+		<column name="documentReference" type="String" db-name="documentreference" />
+		<column name="issuingPlaceId" type="String" db-name="issuingplaceid" />
+		<column name="issuingDate" type="Date" db-name="issuingdate" />
+		<column name="dateArrive" type="Date" db-name="datearrive" />
+		<column name="signer" type="String" db-name="signer" />
+		<column name="privilegeLevelId" type="String" db-name="privilegelevelid" />
+		<column name="confidentialLevelId" type="String" db-name="confidentiallevelid" />
+		<column name="opinion" type="String" db-name="opinion" />
+		<column name="briefContent" type="String" db-name="briefcontent" />
+		<column name="isPublic" type="String" db-name="ispublic" />
+		<column name="numberDocumentReceipt" type="String" db-name="numberdocumentreceipt" />
+		<column name="processTime" type="int" db-name="processtime" />
+		<column name="status" type="String" db-name="status" />
+		<column name="active" type="String" db-name="active" />
+		<column name="numberLocalDocumentReceipt" type="String" db-name="numberlocaldocumentreceipt" />
+		<column name="issuingPlaceOtherName" type="String" db-name="issuingplaceothername" />
+		<column name="documentType" type="String" db-name="documenttype" />
+		<column name="dateButPhe" type="Date" db-name="datebutphe" />
+		<column name="dateHoanThanh" type="Date" db-name="datehoanthanh" />
+		<column name="statusId" type="long" db-name="statusid" />
+		<column name="thoigiannhancvden" type="String" db-name="thoigiannhancvden" />
+		<column name="socongvandiphucdap" type="String" db-name="socongvandiphucdap" />
+		<column name="generalOrderNo" type="long" db-name="generalorderno" />
+		<column name="mainDepartmentProcessId" type="String" db-name="maindepartmentprocessid"/>
+		<column name="mainUserProcessId" type="long" db-name="mainuserprocessid"/>
+		<column name="orgExternalId" type="long" db-name="orgexternalid"/>
+		<column name="docReceiptTempId" type="long" db-name="docreceipttempid"/>
+		<column name="donViSaoY" type="String" db-name="donvisaoy"/>
+		
+		<!-- methods --> 
+		<finder return-type="Collection" name="DocumentType">
+			<finder-column name="documentType" />
+		</finder>
+		<finder return-type="Collection" name="LevelSendId">
+			<finder-column name="levelSendId" comparator="=" />
+		</finder>
+		<finder return-type="Collection" name="DocumentTypeId">
+			<finder-column name="documentTypeId" comparator="=" />
+		</finder>
+		<finder return-type="Collection" name="IssuingPlaceId">
+			<finder-column name="issuingPlaceId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="PrivilegeLevelId">
+			<finder-column name="privilegeLevelId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="ConfidentialLevelId">
+			<finder-column name="confidentialLevelId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="NumberLocalDocumentReceipt">
+			<finder-column name="numberLocalDocumentReceipt" comparator="LIKE" />
+		</finder>
+		<finder name="StatusId" return-type="Collection">
+			<finder-column name="statusId" comparator="="/>
+		</finder>
+		<finder name="SoCongCanDiPhucDap" return-type="PmlEdmDocumentSend">
+			<finder-column name="socongvandiphucdap" comparator="LIKE"/>
+		</finder>	
+					
+		<finder name="MainDepartmentProcessId" return-type="Collection">
+			<finder-column name="mainDepartmentProcessId" comparator="LIKE"/>
+		</finder>	
+					
+		<finder name="MainUserProcessId" return-type="Collection">
+			<finder-column name="mainUserProcessId" comparator="="/>
+		</finder>
+						
+		<finder name="OrgExternalId" return-type="Collection">
+			<finder-column name="orgExternalId" comparator="="/>
+		</finder>	
+					
+		<finder name="DocReceiptTempId_OrgExternalId" return-type="Collection">
+			<finder-column name="docReceiptTempId" comparator="="/>
+			<finder-column name="orgExternalId" comparator="="/>
+		</finder>				
+		<finder name="DocReceiptTempId" return-type="Collection">
+			<finder-column name="docReceiptTempId" comparator="="/>
+		</finder>				
+	</entity>
+	
+	<entity name="PmlEdmDocumentReceiptTemp" table="pml_edm_documentreceipt_temp" local-service="true" remote-service="true">
+	
+		<!-- PK fields -->
+
+		<column name="documentReceiptId" type="long" primary="true" db-name="documentReceiptId"/>
+		
+		<!-- fields -->
+		<column name="levelSendId" type="int" db-name="levelsendid" />
+		<column name="documentTypeId" type="long" db-name="documenttypeid" />
+		<column name="documentReference" type="String" db-name="documentreference" />
+		<column name="issuingPlaceId" type="String" db-name="issuingplaceid" />
+		<column name="issuingDate" type="Date" db-name="issuingdate" />
+		<column name="dateArrive" type="Date" db-name="datearrive" />
+		<column name="signer" type="String" db-name="signer" />
+		<column name="privilegeLevelId" type="String" db-name="privilegelevelid" />
+		<column name="confidentialLevelId" type="String" db-name="confidentiallevelid" />
+		<column name="opinion" type="String" db-name="opinion" />
+		<column name="briefContent" type="String" db-name="briefcontent" />
+		<column name="isPublic" type="String" db-name="ispublic" />
+		<column name="numberDocumentReceipt" type="String" db-name="numberdocumentreceipt" />
+		<column name="processTime" type="int" db-name="processtime" />
+		<column name="status" type="String" db-name="status" />
+		<column name="active" type="String" db-name="active" />
+		<column name="numberLocalDocumentReceipt" type="String" db-name="numberlocaldocumentreceipt" />
+		<column name="issuingPlaceOtherName" type="String" db-name="issuingplaceothername" />
+		<column name="documentType" type="String" db-name="documenttype" />
+		<column name="dateButPhe" type="Date" db-name="datebutphe" />
+		<column name="dateHoanThanh" type="Date" db-name="datehoanthanh" />
+		<column name="statusId" type="long" db-name="statusid" />
+		<column name="thoigiannhancvden" type="String" db-name="thoigiannhancvden" />
+		<column name="socongvandiphucdap" type="String" db-name="socongvandiphucdap" />
+		<column name="generalOrderNo" type="long" db-name="generalorderno" />
+		<column name="mainDepartmentProcessId" type="String" db-name="maindepartmentprocessid"/>
+		<column name="mainUserProcessId" type="long" db-name="mainuserprocessid"/>
+		<column name="orgExternalId" type="long" db-name="orgexternalid"/>
+		
+		<!-- methods --> 
+		<finder return-type="Collection" name="DocumentType">
+			<finder-column name="documentType" />
+		</finder>
+		<finder return-type="Collection" name="LevelSendId">
+			<finder-column name="levelSendId" comparator="=" />
+		</finder>
+		<finder return-type="Collection" name="DocumentTypeId">
+			<finder-column name="documentTypeId" comparator="=" />
+		</finder>
+		<finder return-type="Collection" name="IssuingPlaceId">
+			<finder-column name="issuingPlaceId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="PrivilegeLevelId">
+			<finder-column name="privilegeLevelId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="ConfidentialLevelId">
+			<finder-column name="confidentialLevelId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="NumberLocalDocumentReceipt">
+			<finder-column name="numberLocalDocumentReceipt" comparator="LIKE" />
+		</finder>
+		<finder name="StatusId" return-type="Collection">
+			<finder-column name="statusId" comparator="="/>
+		</finder>
+		<finder name="SoCongCanDiPhucDap" return-type="PmlEdmDocumentSend">
+			<finder-column name="socongvandiphucdap" comparator="LIKE"/>
+		</finder>	
+					
+		<finder name="MainDepartmentProcessId" return-type="Collection">
+			<finder-column name="mainDepartmentProcessId" comparator="LIKE"/>
+		</finder>	
+					
+		<finder name="MainUserProcessId" return-type="Collection">
+			<finder-column name="mainUserProcessId" comparator="="/>
+		</finder>
+						
+		<finder name="OrgExternalId" return-type="Collection">
+			<finder-column name="orgExternalId" comparator="="/>
+		</finder>
+						
+		<finder name="NumberDocumentReceipt_OrgExternalId" return-type="Collection">
+			<finder-column name="numberDocumentReceipt" comparator="LIKE"/>
+			<finder-column name="orgExternalId" comparator="="/>
+		</finder>				
+	</entity>
+	
+	<entity name="PmlEdmDocumentReceiptExtend" table="pml_edm_documentreceiptextend" local-service="true" remote-service="true">
+	
+		<!-- PK fields -->
+		<column name="documentReceiptExtendId" type="long" primary="true" db-name="documentreceiptextendid" />
+		
+		<!-- Fields -->
+		<column name="documentReceiptId" type="long" db-name="documentreceiptid" />
+		<column name="documentReceiptLogId" type="long" db-name="documentreceiptlogid" />
+		<column name="extendOrderNo" type="int" db-name="extendorderno" />
+		<column name="startProcessDate" type="Date" db-name="startprocessdate" />
+		<column name="numDayProcessBef" type="int" db-name="numdayprocessbef" />
+		<column name="limitDateBef" type="Date" db-name="limitdatebef" />
+		<column name="extendReason" type="String" db-name="extendreason" />
+		<column name="numDayProcessAft" type="int" db-name="numdayprocessaft" />
+		<column name="limitDateAft" type="Date" db-name="limitdateaft" />
+		<column name="leanOnLimitDate" type="boolean" db-name="leanonlimitdate" />
+		<column name="extendUserId" type="long" db-name="extenduserid" />
+		<column name="extendDepartmentId" type="String" db-name="extenddepartmentid" />
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="extendOrderNo" />
+		</order>
+		
+		<!-- Finder --> 
+		<finder return-type="Collection" name="DocumentReceiptId">
+			<finder-column name="documentReceiptId" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmDocumentType" local-service="true" remote-service="true"
+		table="pml_edm_documenttype">
+
+		<!-- PK fields -->
+
+		<column name="documentTypeId" type="long" primary="true" db-name="documenttypeid"/>
+		
+
+		<!-- Other fields -->
+		<column name="documentTypeName" type="String" db-name="documenttypename"/>
+		<column name="documentSymbol" type="String" db-name="documentsymbol"/>
+		<column name="documentRecordTypeId" type="int" db-name="documentrecordtypeid"/>
+		<column name="sendReceiptDistinction" type="int" db-name="sendreceiptdistinction"/>
+		<column name="HaveDepartExtends" type="boolean" db-name="HaveDepartExtends"/>
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="documentTypeName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DocumentTypeName" return-type="Collection">
+			<finder-column name="documentTypeName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DocumentSymbol" return-type="Collection">
+			<finder-column name="documentSymbol" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DocumentRecordTypeId" return-type="Collection">
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+		
+		<finder name="SendReceiptDistinction" return-type="Collection">
+			<finder-column name="sendReceiptDistinction" />
+		</finder>
+		
+		<finder name="HaveDepartExtends" return-type="Collection">
+			<finder-column name="HaveDepartExtends" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmProcessDocumentReceiptDetail" local-service="true" remote-service="true"
+		table="pml_edm_processdocumentreceiptdetail">
+
+		<!-- PK fields -->
+
+		<column name="id" type="long" primary="true" db-name="id"/>
+
+		<!-- Other fields -->
+
+		<column name="documentReceiptId" type="long" db-name="documentreceiptid"/>
+		<column name="userId" type="long" db-name="userid"/>
+		<column name="note" type="String" db-name="note"/>
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="dateUpdate" type="Date" db-name="dateupdate"/>
+		
+		<!-- Order -->
+
+		<!-- finder -->
+		<finder name="DocumentReceiptId" return-type="Collection">
+			<finder-column name="documentReceiptId" comparator="="/>
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" comparator="="/>
+		</finder>
+		
+	</entity>
+	
+	<entity name="PmlEdmConfidentialLevel" local-service="true" remote-service="true"
+		table="pml_edm_confidentiallevel">
+
+		<!-- PK fields -->
+
+		<column name="confidentialLevelId" type="String" primary="true" db-name="confidentiallevelid"/>
+
+		<!-- Other fields -->
+
+		<column name="confidentialLevelName" type="String" db-name="confidentiallevelname"/>
+		<column name="limitViewDetail" type="boolean" db-name="limitviewdetail" />
+		<column name="haveProcess" type="boolean" db-name="haveprocess" />
+		<column name="confidentialLevelSymbol" type="int" db-name="confidentiallevelsymbol" />
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="confidentialLevelName" case-sensitive="false" />
+		</order>
+
+		<!-- finder -->
+		<finder name="ConfidentialLevelName" return-type="Collection">
+			<finder-column name="confidentialLevelName" comparator="LIKE"/>
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmPrivilegeLevel" local-service="true" remote-service="true"
+		table="pml_edm_privilegelevel">
+
+		<!-- PK fields -->
+
+		<column name="privilegeLevelId" type="String" primary="true" db-name="privilegelevelid"/>
+
+		<!-- Other fields -->
+
+		<column name="privilegeLevelName" type="String" db-name="privilegelevelname"/>
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="privilegeLevelName" case-sensitive="false" />
+		</order>
+
+		<!-- finder -->
+		<finder name="PrivilegeLevelName" return-type="Collection">
+			<finder-column name="privilegeLevelName" comparator="LIKE"/>
+		</finder>
+		
+	</entity>
+	
+	<entity name="PmlEdmAttachedFile" local-service="true" remote-service="true"
+		table="pml_edm_attachedfile">
+
+		<!-- PK fields -->
+
+		<column name="attachedFileId" type="long" primary="true" db-name="attachedfileid"/>
+
+		<!-- Other fields -->
+
+		<column name="objectContentId" type="long" db-name="objectcontentid"/>
+		<column name="objectType" type="String" db-name="objecttype"/>
+		<column name="attachedFileName" type="String" db-name="attachedfilename"/>
+		<column name="path" type="String" db-name="path"/>
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="fileType" type="String" db-name="filetype"/>
+		<column name="fileId" type="int" db-name="fileid"/>
+		<column name="title" type="String" db-name="title"/>
+		<column name="displayOrHidden" type="boolean" db-name="displayorhidden" />
+		<!-- Order -->
+
+		<!-- finder -->
+		<finder name="ObjectContentId" return-type="Collection">
+			<finder-column name="objectContentId" />
+		</finder>
+		<finder name="ObjectType" return-type="Collection">
+			<finder-column name="objectType" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileName" return-type="Collection">
+			<finder-column name="attachedFileName" comparator="LIKE"/>
+		</finder>
+		<finder name="Path" return-type="Collection">
+			<finder-column name="path" comparator="LIKE"/>
+		</finder>
+		<finder name="DateCreated" return-type="Collection">
+			<finder-column name="dateCreated" />
+		</finder>
+		<finder name="FileType" return-type="Collection">
+			<finder-column name="fileType" comparator="LIKE"/>
+		</finder>
+		<finder name="FileId" return-type="Collection">
+			<finder-column name="fileId" />
+		</finder>
+		<finder name="ObjectContentId_ObjectType" return-type="Collection">
+			<finder-column name="objectContentId" />
+			<finder-column name="objectType" />
+		</finder>
+		
+		<finder name="ObjectContentId_ObjectType_D_OR_H" return-type="Collection">
+			<finder-column name="objectContentId" />
+			<finder-column name="objectType" />
+			<finder-column name="displayOrHidden" />
+		</finder>
+		
+	</entity>
+	
+	<entity name="PmlFileStatusStateProcess" local-service="true" remote-service="true"
+		table="pml_filestatus_stateprocess">
+
+		<!-- PK fields -->
+
+		<column name="id" type="long" primary="true" db-name="id"/>
+
+		<!-- Other fields -->
+		
+		<column name="fileStatusId" type="long" db-name="filestatusid"/>
+		<column name="stateProcessId" type="long" db-name="stateprocessid"/>
+		<column name="description" type="String" />
+		<!-- Finder -->
+		
+		<finder name="FileStatusId" return-type="Collection">
+			<finder-column name="fileStatusId" />
+		</finder>
+		
+		<finder name="StateProcessId" return-type="Collection">
+			<finder-column name="stateProcessId" />
+		</finder>
+		
+		<finder name="FileStatus_StateProcess" return-type="Collection">
+			<finder-column name="fileStatusId" />
+			<finder-column name="stateProcessId" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmDocumentReceiptProcessType" table="pml_edm_documentreceiptprocesstype" local-service="true" remote-service="true">
+		<!-- PK fields -->
+		<column name="docReceiptProcessTypeId" type="long" primary="true" />
+		<!-- Fields -->
+		<column name="documentReceiptId" type="long" />
+		<column name="documentReceiptLogId" type="long" />
+		<column name="processTypeOrderNo" type="int" />
+		<column name="dateEdit" type="Date"/>
+		<column name="processTypeIdBefore" type="String"/>
+		<column name="processTypeIdAfter" type="String"/>
+		<column name="processTypeReason" type="String"/>
+		<column name="processerId" type="long"/>
+		<column name="departmentId" type="String"/>
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="processTypeOrderNo" />
+		</order>
+		
+		<!-- Finder --> 
+		<finder return-type="Collection" name="DocumentReceiptId">
+			<finder-column name="documentReceiptId" />
+		</finder>
+	</entity>
+	
+	<exceptions>
+		<exception>ConfidentialLevelReference</exception>
+		<exception>PmlEdmPrivilegeLevelCanNotDelete</exception>
+		<exception>PmlEdmDocumentRecordTypeCanNotDelete</exception>
+		<exception>PmlEdmDocumentTypeCanNotDelete</exception>
+		<exception>PmlEdmDocumentRecordToCanNotDelete</exception>
+		<exception>PmlFileStatusStateProcessCanNotDelete</exception>
+		<exception>InvalidExtendProcess</exception>
+		<exception>ConfidentialLevelNameNotSame</exception>
+		<exception>ConfidentialLevelSymbolNotSame</exception>
+	</exceptions>
+</service-builder>

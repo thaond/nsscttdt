@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.districtmanagement">
+
+	<namespace>DistrictManagement</namespace>
+
+	<entity name="District" table="pml_district" local-service="true">
+		<!-- fields -->
+		<column name="districtId" type="String" primary="true" db-name="districtId" />
+		<column name="districtCode" type="String" db-name="districtCode" />
+		<column name="districtName" type="String" db-name="districtName" />
+		<column name="cityID" type="String" db-name="cityID" />
+		<column name="description" type="String" db-name="description" />
+		<column name="active" type="String" db-name="active" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="districtName" case-sensitive="false" />
+		</order>
+
+		<!-- methods --> 
+		<finder return-type="Collection" name="DistrictActive">
+			<finder-column name="active" />
+		</finder>
+		<!-- 
+			change AND to OR 
+			add '%column-name%'
+		-->
+		<finder return-type="Collection" name="C_N_I_D">
+			<finder-column name="districtCode" comparator="LIKE" />
+			<finder-column name="districtName" comparator="LIKE" />
+			<finder-column name="cityID" comparator="LIKE" />
+			<finder-column name="description" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Code">
+			<finder-column name="districtCode" comparator="LIKE" case-sensitive="false"/>
+		</finder>
+		<finder return-type="Collection" name="Name">
+			<finder-column name="districtName" case-sensitive="false" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="CityID">
+			<finder-column name="cityID" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Description">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>DistrictCanNotDelete</exception>
+		<exception>DistrictCodeSameCode</exception>
+	</exceptions>
+</service-builder>
