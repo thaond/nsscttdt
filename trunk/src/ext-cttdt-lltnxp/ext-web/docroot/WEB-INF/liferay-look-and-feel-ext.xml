@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 5.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_5_1_0.dtd">
+
+<look-and-feel>
+	<compatibility>
+		<version>5.1.0+</version>
+	</compatibility>
+	<theme id="sgs-portal-skin" name="sgs-portal-skin">
+		<root-path>/html/themes/sgs-portal-skin</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<template-extension>vm</template-extension>
+		<settings>
+			<setting key="bullet-style-options" value="1,2" />
+		</settings>
+		<roles>
+			<role-name>User</role-name>
+		</roles>
+		<color-scheme id="01" name="Blue">
+			<css-class>blue</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/${css-class}</color-scheme-images-path>
+		</color-scheme>
+		<color-scheme id="02" name="Green">
+			<css-class>green</css-class>
+		</color-scheme>
+		<color-scheme id="03" name="Orange">
+			<css-class>orange</css-class>
+		</color-scheme>
+		
+	</theme>
+	<theme id="calendar" name="calendar">
+		<root-path>/html/themes/calendar</root-path>
+		<templates-path>${root-path}/templates</templates-path>
+		<images-path>${root-path}/images</images-path>
+		<template-extension>vm</template-extension>
+		<settings>
+			<setting key="portlet-setup-show-borders-default" value="false" />
+			<setting key="bullet-style-options" value="1,2" />
+		</settings>
+		<roles>
+			<role-name>User</role-name>
+		</roles>
+	</theme>
+	<theme id="mobile" name="Mobile">
+		<root-path>/wap/themes/${theme-id}</root-path>
+		<wap-theme>true</wap-theme>
+	</theme>
+	
+</look-and-feel>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns=""  name="congvanphucapchuyenvien">
+
+
+	<start-state name="start">
+		<transition to="xacnhanxem" name="xacnhanxem"></transition>
+	</start-state>
+
+
+	<task-node name="xacnhanxem">
+		<task name="none:xacnhandaxem:hoanthanh">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		<transition to="hoanthanh" name="hoanthanh"></transition>
+	</task-node>
+
+	
+	<end-state name="hoanthanh"></end-state>
+
+
+</process-definition>
