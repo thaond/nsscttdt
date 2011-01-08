@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+
+<project name="ext-impl" basedir="." default="deploy">
+	<import file="build-parent.xml" />
+
+	<target name="build-service-portlet-tiepnhangiaoviec">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/tiep_nhan_giao_viec/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-agency">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/agency/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-attached-file">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/attachedfile/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-career">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/career/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-citymanagement">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/citymanagement/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-country">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/country/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-userfiletype">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/country/pmluserfiletype/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-districtmanagement">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/districtmanagement/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-document">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-documentreceipt">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/receipt/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-documentsend">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/send/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-delegate">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/delegate/pmldelegate/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-department">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/department/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-filetypedelegate">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/delegate/pmlfiletypedelegate/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-managedocumentworkflow">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/document/manageworkflow/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-field">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/field/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-filetype">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/filetype/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-sgsgeneratetemplateid">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/generatetemplateid/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-holiday">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/holiday/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-nation">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/nation/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-onedoor">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/onedoor/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-roledmdc">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/onedoor/role/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-onedoorpccc">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/onedoorpccc/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-pml_ho_so_cong_viec">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_ho_so_cong_viec/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-pml_tinh_chat">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_tinh_chat/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-pml_do_quan_trong">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_do_quan_trong/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-pml_trang_thai_hscv">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_trang_thai_hscv/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-issuingplace">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pmlissuingplace/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-levelsend">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pmllevelsend/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-street">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pmlstreet/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-user">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pmluser/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-position">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/position/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-signer">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/signer/service.xml" />
+		</antcall>
+	</target>
+
+	<target name="build-service-portlet-wardsmanagement">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/wardsmanagement/service.xml" />
+		</antcall>
+	</target>
+	<!-- Meeting calendar -->
+	<target name="build-service-portlet-meetingcalendar">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/ext/portlet/meetingcalendar/service.xml" />
+		</antcall>
+	</target>
+	<!-- Process type -->
+	<target name="build-service-portlet-processtype">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/ext/portlet/processtype/service.xml" />
+		</antcall>
+	</target>
+	<!-- Save process type -->
+	<target name="build-service-portlet-saveprocesstype">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/ext/portlet/saveprocesstype/service.xml" />
+		</antcall>
+	</target>
+	<!-- Doc config user -->
+	<target name="build-service-portlet-docconfuser">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_edm_docconfuser/service.xml" />
+		</antcall>
+	</target>
+	<!-- pml_template -->
+	<target name="build-service-portlet-pml-template">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/pml_template/service.xml" />
+		</antcall>
+	</target>
+	<!-- organizationexternal -->
+	<target name="build-service-portlet-organizationexternal">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/organizationexternal/service.xml" />
+		</antcall>
+	</target>
+	<!-- message note -->
+	<target name="build-service-portlet-message_note">
+		<antcall target="build-service">
+			<param name="service.file" value="src/com/sgs/portlet/message_note/service.xml" />
+		</antcall>
+	</target>
+	<target name="build-service-portlet-documentdelegate">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/documentdelegate/service.xml" />
+			</antcall>
+	</target>
+	<target name="build-service-portlet-recievergroup">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/recievergroup/service.xml" />
+			</antcall>
+	</target>
+	
+	<!-- Language -->
+	<target name="build-lang-native2ascii-vi">
+		<antcall target="build-lang-native2ascii">
+			<param name="lang.code" value="vi" />
+		</antcall>
+	</target>
+
+	<target name="_build-lang-vi">
+		<antcall target="build-lang-cmd-vi">
+			<param name="lang.dir" value="src/content" />
+			<param name="lang.file" value="Language-ext" />
+		</antcall>
+	</target>
+
+	<target name="build-lang-cmd-vi">
+		<antcall target="build-lang-native2ascii-vi" />
+
+		<copy file="${lang.dir}/${lang.file}_vi.properties" tofile="${lang.dir}/${lang.file}.properties" />
+	</target>
+</project>

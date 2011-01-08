@@ -1,0 +1,17 @@
+//vào trong thu muc ..\conf\Catalina\localhost\ROOT.xml sửa lại dưới dòng <!-- Mail --> như sau
+
+<Resource
+		name="mail/MailSession"
+		auth="Container"
+		type="javax.mail.Session"
+		mail.imap.host="localhost"
+		mail.pop3.host="localhost"
+		mail.smtp.host="smtp.gmail.com"
+		mail.smtp.user="tudh06dta@gmail.com" -- mail nào cung dc -của gmail do
+		mail.smtp.password="vantu19882002" -- passwork của mail
+		mail.smtp.port="587"
+		mail.smtp.auth="true"
+		mail.smtp.starttls.enable="true"
+		mail.store.protocol="smtp"
+		mail.transport.protocol="smtp"
+	/>
