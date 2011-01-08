@@ -1,0 +1,15 @@
+<%@page import="com.sgs.portlet.pcccdocumentrecordto.search.DocumentRecordToSearchTerms"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentReceiptLocalServiceUtil"%>
+<%
+int total = 0;
+
+total = PmlEdmDocumentReceiptLocalServiceUtil.countByN_D_I_L_I_P_D_D_D_B(searchTerms.getSoNoiBo(), searchTerms.getSoHieuGoc(), searchTerms.getNgayPHDay(), searchTerms.getNgayPHMonth(), searchTerms.getNgayPHYear(), searchTerms.getCapGui(), searchTerms.getNoiPhatHanh(), searchTerms.getUuTien(), searchTerms.getNgayDenDay(), searchTerms.getNgayDenMonth(), searchTerms.getNgayDenYear(), searchTerms.getLoaiVB(), searchTerms.getPhongBan(), searchTerms.getTrichYeu()); 
+
+searchContainer.setTotal(total);
+
+List results = null;
+
+results = PmlEdmDocumentReceiptLocalServiceUtil.findByN_D_I_L_I_P_D_D_D_B(searchTerms.getSoNoiBo(), searchTerms.getSoHieuGoc(), searchTerms.getNgayPHDay(), searchTerms.getNgayPHMonth(), searchTerms.getNgayPHYear(), searchTerms.getCapGui(), searchTerms.getNoiPhatHanh(), searchTerms.getUuTien(), searchTerms.getNgayDenDay(), searchTerms.getNgayDenMonth(), searchTerms.getNgayDenYear(), searchTerms.getLoaiVB(), searchTerms.getPhongBan(), searchTerms.getTrichYeu(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+
+searchContainer.setResults(results);
+%>

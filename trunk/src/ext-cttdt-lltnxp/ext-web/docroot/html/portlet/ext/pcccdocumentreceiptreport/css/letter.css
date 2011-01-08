@@ -1,0 +1,946 @@
+/******************** Custom css start 20090629 ********************/
+.form-title {/**dinh dang tieu de cho td_headTitle**/
+	background-color:#6CA1B4;
+	color:white;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:1px;
+	padding:4px 2px 4px 4px;
+}
+.form-title-base-01 {/**dinh dang tieu de cho td_headTitle**/
+	background-color:#DBEAFC;
+	color:white;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:1px;
+	padding:4px 2px 4px 4px;
+}
+.label { /** dinh dang label hien thi **/
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	vertical-align:top;
+}
+.formField { /** dinh dang textbox hien thi **/
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width:98%;
+}
+.btn-fix { /** dinh dang button hien thi **/
+	background-color:white;
+	border:1px outset #DFF4FF !important;
+	font-family:Tahoma,Georgia,Times,serif!important;
+	font-size:8pt !important;
+	padding:0 4px !important;
+	text-transform:capitalize;
+	width:7.5em !important;
+}
+.btn-fix-base-01 { /** dinh dang button hien thi **/
+	background-color:white;
+	border:1px outset #DFF4FF !important;
+	font-family:Tahoma,Georgia,Times,serif!important;
+	font-size:8pt !important;
+	padding:0 4px !important;
+	text-transform:capitalize;
+	width:10em !important;
+}
+.legend { /**dinh dang tieu de cho legend**/
+	background-color:white;
+	color:#333366;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	padding:0 2px 0 4px;
+	text-transform:capitalize;
+	text-align:right;
+	line-height:0 !important;
+}
+.ie .legend {/**dinh dang tieu de cho legend chay tren ie**/
+	background-color:white !important;
+	color:#333366 !important;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif !important;
+	font-size:11px !important;
+	font-weight:bold !important;
+	letter-spacing:2px !important;
+	padding:0 2px 0 4px !important;
+	text-transform:capitalize !important;
+}
+.img_ult{
+	
+}
+.ie .img_ult{
+	margin-bottom:-5px !important;
+}
+
+.img_urt{
+	
+}
+.ie .img_urt{
+	margin-bottom:-6px !important;
+}
+
+.img_bdr_top{
+	
+}
+.ff3 .td_llt_image {/*Dinh dang duong vien cho groupbox chay tren Firefox*/
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+
+.ie .td_llt_image {/*Dinh dang duong vien cho groupbox chay tren IE*/
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.table-singe { /** dinh dang table form chuan **/
+	height:100%;
+	width:100%;
+	border:0;
+}
+.ie .table-singe { /** dinh dang table form chuan **/
+	height:100%;
+	width:98%;
+	border:0;
+}
+.table-singe-base-w-b { /** dinh dang table form chuan voi width, border **/
+	width:100%;
+	border:0;
+}
+.table-doc-auto-display-base-w-b {
+	width:100%;
+	border:0;
+}
+.ie .table-doc-auto-display-base-w-b {
+	width:100%;
+	border:0;
+	margin-bottom:-3px;
+}
+.table-singe-doc-info-al-w { /** dinh dang table form chuan voi align, width **/
+	text-align:left;
+	width:100%;
+}
+.table-list-doc-auto-display { /** table chua danh sach ho so dinh kem tu dong chon **/
+	display:block;
+	width:100%;
+	height:100%;
+	border:0;
+}
+.table-list-doc-not-auto-display { /** table chua danh sach ho so dinh kem khong tu dong chon **/
+	display:none;
+	width:100%;
+	height:100%;
+	border:0;
+}
+.table-doc-doc-auto-content-base { /** table chua danh sach ho so dinh kem tu dong chon ben trong **/
+	width:100%;
+	border-bottom: #a3b2cc 1px solid !important; 
+	border-left: #a3b2cc 1px solid !important; 
+	border-top: #a3b2cc 1px solid !important; 
+	border-right: #a3b2cc 1px solid !important;
+	border:0;
+}
+.table-pup-base { /** table chua danh sach quy trinh cua popup chon loai ho so **/
+	 height:100%;
+	 width:100%;
+	 border:1px #A3B2CC;
+	 border:0;
+}
+.table-div-pup-base { /** table chua danh sach ben trong the div cua popup **/
+	 width:100%;
+	 border:0;
+	 border:solid 1px #D4D4D4;
+}
+.tr-singe { /** dinh dang tr chuan **/
+	height:100%;
+}
+.tr-td-div-auto { /** dinh dang td bao ben ngoai div co scrollbar**/
+ 	width:100%px;
+	height:100%px;
+}
+.td-doc-doc-not-auto-display-base { /** ding dang tr bao quanh ho so dinh kem khong tu dong chon **/
+	height:100%;
+	width:100%;
+	padding:1px 5px 1px 5px;
+}
+.div-auto { /** dinh dang div tao scrollbar **/
+	overflow-x:hidden;
+	overflow-y:auto;
+	width:100%;
+	height:250px;
+}
+.div-table { /** dinh dang tabel ben trong div **/ 
+	 width:100%;
+	 border:0;
+	 background:#FFFFFF;
+}
+.title-cursor {/** dinh dang con tro chuot**/
+	cursor:pointer;
+}
+.td-rad-letter-base-01 { /**  dinh dang hien thi 2 nut radio button cong van dang xu ly va cong van da hoan tat **/
+	width:23%;
+	vertical-align:middle;
+	padding-left:10px;
+	padding-right:2px;
+	background-color:#8FBBDA;
+}
+.td-rad-letter-base-02 { /**  dinh dang hien thi 2 nut radio button cong van dang xu ly va cong van da hoan tat **/
+	vertical-align:middle;
+	padding-left:10px;
+	padding-right:2px;
+	width:23%;
+	background-color:#FFFFFF;
+
+}
+.td-letter-base { /**  dinh dang hien thi 2 nut radio button cong van dang xu ly va cong van da hoan tat **/
+	vertical-align:middle;
+	padding-left:2px;
+	padding-right:10px;
+	text-align:right;
+	background-color:#FFFFFF;
+
+}
+.td-base-table { /** dinh dang td chua table ben ngoai 2 cot **/
+	vertical-align:top;
+	height:100%;
+	padding-bottom:15px;
+}
+.td-doc-info-top-01 { /** dinh dang td top thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_ult_01.gif);
+
+}
+.ie .td-doc-info-top-01 { /** dinh dang td top thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_ult_01.gif);
+	margin-bottom:-5px !important;	
+}
+.td-doc-info-top-img-01 { /** dinh dang td - img top thong tin ho so **/
+/*
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_ult_01.gif);
+*/	
+} 
+.td-doc-info-top-02 { /** dinh dang td top title thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+}
+.ie .td-doc-info-top-02 { /** dinh dang td top title thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+	background-position-y:4px !important;
+}
+.td-doc-info-top-03 { /** dinh dang td top thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_urt_01.gif);
+}
+.td-doc-info-left-01 { /** dinh dang td left thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lt_01.gif);
+	background-repeat:repeat-y;
+}
+.td-doc-info-rigt-01 {/** dinh dang td right thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_rt_01.gif);
+	width:4px;
+}
+.td-doc-info-rigt-02 {/** dinh dang td right thong tin ho so **/
+	/*
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_llt_01.gif);
+	background-repeat:repeat-y;
+	*/
+	width:4px;
+}
+.td-doc-info-rigt-03 {/** dinh dang td right thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.ie .td-doc-info-rigt-03 {/** dinh dang td right thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+	height:3px !important;
+}
+.td-doc-info-rigt-04 {/** dinh dang td right thong tin ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lrt_01.gif);
+	background-repeat:repeat-y;
+}
+.td-doc-manage-top-01 { /** dinh dang td top thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_ult_01.gif);
+}
+.td-doc-manage-top-02 { /** dinh dang td top title thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+}
+.ie .td-doc-manage-top-02 { /** dinh dang td top title thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+	background-position-y:4px !important;
+}
+.td-doc-manage-top-03 { /** dinh dang td top thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_urt_01.gif);
+}
+.td-doc-manage-left-01 { /** dinh dang td left thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lt_01.gif);
+}
+.td-doc-manage-right-01 { /** dinh dang td right thong tin quan ly ho so**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_rt_01.gif);
+}
+.td-doc-manage-bottom-01 { /** dinh dang td bottom thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_llt_01.gif);
+}
+.td-doc-manage-bottom-02 { /** dinh dang td bottom thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;;
+	width:100%;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.ie .td-doc-manage-bottom-02 { /** dinh dang td bottom thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;;
+	width:100%;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.td-doc-manage-bottom-03 { /** dinh dang td bottom thong tin quan ly ho so **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lrt_01.gif);
+}
+
+.td-doc-refer-info-top-01 { /** dinh dang td top thong tin tham khao **/
+	/*
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_ult_01.gif);
+	*/
+}
+.td-doc-refer-info-top-02 { /** dinh dang td top thong tin tham khao **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+}
+.ie .td-doc-refer-info-top-02 { /** dinh dang td top thong tin tham khao **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_top_01.gif);
+	width:100%;
+	vertical-align:middle;
+	text-align:left;
+	background-position-y:4px !important;
+}
+.td-doc-refer-info-top-03 { /** dinh dang td top thong tin tham khao **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_c_bdr_urt_01.gif);
+}
+.td-doc-refer-info-left-01 { /** dinh dang td left thong tin tham khao **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lt_01.gif);
+}
+.td-doc-info-single-w-vl-al { /** dinh dang td chuan voi width, valign, align **/
+	width:100%;
+	vertical-align:top;
+	text-align:left;	
+}
+.td-doc-refer-info-right-01 { /** dinh dang td right trong thong tin tham khao**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_rt_01.gif);
+}
+.td-doc-refer-info-bottom-01 { /** dinh dang td right trong thong tin tham khao**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_llt_01.gif);
+}
+.td-doc-refer-info-bottom-02 { /** dinh dang td right trong thong tin tham khao**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;;
+	width:100%;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.ie .td-doc-refer-info-bottom-02 { /** dinh dang td right trong thong tin tham khao**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_btm_01.gif) !important;;
+	width:100%;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.td-doc-refer-info-bottom-03 { /** dinh dang td right trong thong tin tham khao**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/botron/fs_bdr_lrt_01.gif);
+}
+.td-doc-doc-app-auto-left-01 { /** dinh dang td left trong danh sach ho so dinh kem tu dong chon**/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_lt_01.gif);
+}
+.td-base-doc-info-label { /** dinh dang cac control label co dinh trong khung thong tin ho so**/
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	width:28%;
+	vertical-align:top;
+}
+.td-base-doc-info-w { /** dinh dang cac control textbox co dinh trong khung thong tin ho so **/
+	width:72%;
+}
+.td-singe-base-doc-info-w { /** dinh dang control textbox co dinh loai ho so trong khung thong tin ho so **/
+	width:85%;
+}
+.td-singe-base-doc-info-w-al { /** dinh dang control button ... chon loai ho so trong khung thong tin ho so **/
+	width:15%;
+	text-align:right;
+	padding-right:4px;
+}
+.td-base-vl {
+	vertical-align:top;
+}
+.td-base-doc-auto-display { /** dinh dang td hien thi thong tin ho so dinh kem tu dong chon **/
+	 height:100%;
+	 width:100%;
+	 padding:1px 5px 1px 5px;
+}
+.td-doc-auto-display-title-01 { /** dinh dang cot thu 1 tieu de ho so dinh kem tu dong chon **/
+	width:1%;
+}
+.td-doc-not-auto-display-title-01 { /** dinh dang cot thu 1 tieu de ho so dinh kem khong tu dong chon **/
+	width:1%;
+}
+.td-doc-auto-display-title-02 { /** dinh dang cot thu 2 tieu de ho so dinh kem tu dong chon **/
+	width:1%;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+}
+.ie .td-doc-auto-display-title-02 { /** dinh dang cot thu 2 tieu de ho so dinh kem tu dong chon **/
+	width:1%;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+	background-repeat:repeat-x;
+}
+.td-doc-not-auto-display-title-02 { /** dinh dang cot thu 2 tieu de ho so dinh kem tu dong chon **/
+	width:1%;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+}
+.ie .td-doc-not-auto-display-title-02 { /** dinh dang cot thu 2 tieu de ho so dinh kem tu dong chon **/
+	width:1%;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+	background-repeat:repeat-x;
+}
+.td-doc-doc-auto-title-base-01 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+	width:4%;
+}
+.td-doc-doc-auto-title-base-02 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+	width:3%;
+}
+.td-doc-doc-auto-title-base-03 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+	width:60%;
+}
+.td-doc-doc-auto-title-base-04 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+	width:10%;
+}
+.td-doc-doc-auto-title-base-05 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+	width:10%;
+}
+.td-doc-doc-auto-title-base-06 { /** dinh danh cac cot trong man hinh danh sach ho s dinh kem **/
+
+}
+.td-doc-process-list-title-base-01 { /** dinh dang title trong danh sach quy trinh xu ly **/
+	width:4%;
+}
+.td-doc-process-list-title-base-02 { /** dinh dang title trong danh sach quy trinh xu ly **/
+	width:36%;
+}
+.td-doc-process-list-title-base-03 { /** dinh dang title trong danh sach quy trinh xu ly **/
+	width:10%;
+}
+.td-doc-process-list-title-base-04 { /** dinh dang title trong danh sach quy trinh xu ly **/
+	width:50%;
+}
+.td-doc-doc-app-auto-right-01 { /** dinh dang td left ho so dinh kem tu dong chon **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_rt_01.gif);
+}
+.td-doc-doc-app-auto-bottom-01 { /** ding dang td bottom ho so dinh kem tu dong chon **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_llt_01.gif);
+}
+.td-doc-doc-app-auto-bottom-02 { /** ding dang td bottom ho so dinh kem tu dong chon **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_btm_01.gif) !important;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+}
+.ie .td-doc-doc-app-auto-bottom-02 { /** ding dang td bottom ho so dinh kem tu dong chon **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_btm_01.gif) !important;
+	background-repeat:repeat-x !important;
+	vertical-align:top !important;
+	margin-top:-2px !important;
+} 
+.td-doc-doc-app-auto-bottom-03 { /** ding dang td bottom ho so dinh kem tu dong chon **/
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_lrt_01.gif);
+} 
+.td-null { /** dinh dang khoang cach giua ho so dinh kem tu dong va khong tu dong chon **/
+	padding:2px 0px 2px 0px;
+}
+.td-middle { /** dinh dang khoang cach giua ho so dinh kem tu dong va khong tu dong chon **/
+	padding-left:0px;
+	padding-right:2px !important;
+}
+.td-doc-doc-not-auto-display-left-01 {
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_lt_01.gif);
+}
+.input-TotalTime { /**dinh dang the input nhap textbox thoi gian xu ly va ngay xu ly**/
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width:80%;
+}
+.in-formField-base-doc-info-w { /** dinh dang the input cua loai ho so trong khung thong tin quan ly **/
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width: 95%;
+}
+.input-checkbox { /** dac background cho checkbox **/
+	background-color:#F2F2F2;
+}
+.input-radio-01 { /** dac background cho radio button **/
+	background-color:#EEF3F8;
+	vertical-align:middle;
+	padding-left:2px;
+}
+.input-radio-02 { /** dac background cho radio button **/
+	background-color:#F2F2F2;
+	vertical-align:middle;
+	padding-left:2px;
+}
+.select-letter-base {
+	width:80px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+.rad-span-letter-base { /**dinh dang tieu de cho legend**/
+	color:#333366;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	padding:0 2px 0 4px;
+	text-transform:capitalize;
+	text-align:right;
+	line-height:0 !important;
+	cursor:pointer; 
+	vertical-align:middle;
+}
+.rad-letter-base-01 { /**  dinh dang hien thi 2 nut radio button cong van dang xu ly va cong van da hoan tat **/
+	vertical-align:middle;
+	background-color:#8FBBDA;
+}
+.rad-letter-base-02 { /**  dinh dang hien thi 2 nut radio button cong van dang xu ly va cong van da hoan tat **/
+	vertical-align:middle;
+}
+  
+.span-list-letter { /** danh sach list cong van **/
+	vertical-align:middle;
+	font-size:12px;
+	padding:1px 2px 1px 2px;
+	font-weight:normal;
+	letter-spacing:1px; 
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	color:#000066;
+}
+.ie. span-list-letter { /** danh sach list cong van **/
+	vertical-align:middle;
+	font-size:12px;
+	padding:1px 2px 1px 2px;
+	font-weight:normal;
+	letter-spacing:1px; 
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	color:#000066;
+}
+.td-leter-choice-rad-base { /**dinh dang tieu de cho legend**/
+	color:#000000;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	padding:0 2px 0 4px;
+	cursor:pointer; 
+	vertical-align:middle;
+	text-align:center;
+	text-transform:capitalize;
+}
+.tab-doc-process-list-base { /** dinh dang khung quy trinh xu ly ho so **/
+	border-color:#FFFFFF; 
+	height:25px;
+	width:100%;
+	border:0;
+	background-color:#DBEAFC;
+	border-bottom: #a3b2cc 1px solid; 
+	border-left: #a3b2cc 1px solid; 
+	border-top: #a3b2cc 1px solid; 
+	border-right: #a3b2cc 1px solid; 
+	vertical-align:top;
+	overflow-x: hidden; 
+		
+}
+.tr-doc-app-auto { /**dinh dang tr ho so dinh kem tu dong chon**/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:black;
+	background-color:#DBEAFC;
+	vertical-align:middle;
+	text-align:center;
+	font-weight:bold;
+	height:30px;
+}
+.tr-doc-app-not-auto { /**dinh dang tr ho so dinh kem khong tu dong chon**/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:black;
+	background-color:#DBEAFC;
+	vertical-align:middle;
+	text-align:center;
+	font-weight:bold;
+	height:30px;
+}
+.ff3.tr-doc-app-auto { /** dung cho firefox 3 tro di**/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:black;
+	background-color:#DBEAFC;
+}
+.ie7.tr-doc-app-auto { /** dung cho IE 7 **/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:black;
+	background-color:#DBEAFC;
+}
+.tr-list-num-doc-app-auto { /** dinh dang so thu tu trong danh sach ho so dinh kem **/
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	font-size:8pt;
+	text-transform:capitalize;
+	vertical-align:middle;
+	padding-top:3px;
+	background-color:#f2f2f2;
+	height:25px;
+}
+.ie7 .tr-list-num-doc-app-auto { /** dung cho IE 7 dinh dang so thu tu trong danh sach ho so dinh kem **/
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	font-size:8pt;
+	text-transform:capitalize;
+	vertical-align:middle;
+	padding-top:3px;
+	background-color:#f2f2f2;
+}
+.ff3 .tr-list-num-doc-app-auto { /** dung cho FF 3 dinh dang so thu tu trong danh sach ho so dinh kem **/
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	font-size:8pt;
+	text-transform:capitalize;
+	vertical-align:middle;
+	padding-top:3px;
+	background-color:#f2f2f2;
+}
+.tr-title-list-process{ /** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:black;
+	background-color:#EBEADB;
+	border-bottom:1px solid #D6D2C2;
+	padding:2px 2px 2px 2px;
+	font-weight:bold;
+	vertical-align:middle;
+}
+.tr-pup-base { /** dinh dang tr popup cua mang hinh chon loai ho so trong danh sach popup **/
+ 	height:100%;
+	vertical-align:top;
+}
+.tr-pup-list-base-01 { /**dung cho hang le cua danh sach xu ly cua popup **/
+	background-color:#EEF3F8;
+	color:000066;
+	height:25px;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	vertical-align:top;
+	cursor:pointer;
+}
+.tr-pup-list-base-02 { /**dung cho hang chan cua danh sach xu ly cua popup **/
+	background-color:#F2F2F2;
+	height:25px;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	vertical-align:top;
+	cursor:pointer;
+}
+.td-doc-colum-1 { /** dinh dang hien thi cot thu nhat **/
+	vertical-align:top;
+	width:49%;
+	text-align:left;
+	padding:1px 5px 1px 5px;
+}
+.td-doc-colum-2 { /** dinh dang hien thi cot thu hai **/
+	padding: 1px 5px 1px 5px;
+	width:49%;
+	vertical-align:top;
+	text-align:left;
+}
+.td-doc-app-not-auto-title { /** dinh dang td hien thi ten ho so dinh kem khong tu dong chon **/
+	padding:0px 0px 0px 4px;
+	color:#E3DFDF;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	text-decoration:none;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+}
+.ie .td-doc-app-not-auto-title { /** dinh dang td hien thi ten ho so dinh kem khong tu dong chon **/
+	padding:0px 0px 0px 4px;
+	color:#E3DFDF;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	text-decoration:none;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+	background-repeat:repeat-x;
+}
+.td-doc-app-auto-title { /** dinh dang td hien thi ten ho so dinh kem tu dong chon **/
+	padding:0px 0px 0px 4px;
+	color:#E3DFDF;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	text-decoration:none;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+}
+.ie .td-doc-app-auto-title { /** dinh dang td hien thi ten ho so dinh kem tu dong chon **/
+	padding:0px 0px 0px 4px;
+	color:#E3DFDF;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:2px;
+	text-decoration:none;
+	background:url(/html/portlet/ext/pcccdocumentreceiptprocess/images/doc-app-auto/dtb_top_01.gif);
+	background-repeat:repeat-x;
+}
+.td-pup-list-base-01{ /** dinh dang td hien thi noi dung danh sach ben trong ho so dinh kem tu dong chon **/
+	border-bottom:1px solid #D4D4D4;
+	padding-left:5px;
+	padding-right:5px;
+	text-align:left;
+	vertical-align:top;
+}
+.td-tab-chck-content-doc-attach-auto{ /** dinh dang td hien thi noi dung danh sach ben trong ho so dinh kem (check box) tu dong chon **/
+	border-bottom:1px solid #D4D4D4;
+	text-align:center;
+}
+.td-list-num-doc-app-auto { /** dinh dang danh sach so thu tu trong danh sach ho so dinh kem **/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	border-bottom:1px solid #D4D4D4;
+	background-color:#DBEAFC;
+	padding:2px 2px 2px 2px;
+	color: rgb(255, 0, 0);
+	text-align:center;
+}
+.td-tab-doc-app-auto { /** dinh dang khung vien bao quanh ho so dinh kem va quy trinh xu ly **/
+	border: 1px solid rgb(163, 178, 204);
+}
+.td-pup-rad-list-process{ /** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	vertical-align:middle;
+	text-align:center;
+}
+.ie .td-pup-rad-list-process{ /** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	vertical-align:middle;
+	text-align:center;
+}
+.td-pup-title-list-process-01{/** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	width:4%;
+	height:30px;
+}
+.td-pup-title-list-process-02{/** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	width:4%;
+}
+.td-pup-title-list-process-03{/** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	width:4%;
+}
+.td-pup-title-list-process-04{/** dinh dang hien thi tieu de va danh sach list, radio ben trai man hinh chon danh sach xu ly **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	width:84%;
+}
+.tr-pup-title-list-process { /** dinh dang hien thi tieu de va danh sach list popup man hinh chon danh sach quy trình **/
+	border-bottom:solid 1px #D4D4D4;
+	background-color:#EBEADB;
+	height:30px;
+	font-weight:bold;
+	text-align:center;
+}
+.td-pup-list-num-process { /** dinh dang danh sach so thu tu trong danh sach popup loai ho so **/
+	font-family:Tahoma, Geneva, Arial, Helvetica, sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	color:#FF0000;
+	background-color:#EBEADB;
+	border-bottom:1px solid rgb(212, 212, 212);
+	padding:2px 2px 2px 2px;
+	vertical-align:middle;
+	text-align:center;
+}
+.td-pup-list-process-base { /** dinh dang danh sach ma, ten loai ho so trong danh sach popup loai ho so **/
+	border-bottom:solid 1px #D4D4D4;
+	color:#003366;
+	padding-left:5px;
+	padding-right:5px;	
+	text-align:left;
+	vertical-align:middle;
+}
+.td-pup-base { /** dinh dang td popup **/
+	 width:100%;
+	 height:537px;
+	 padding:2px 2px 2px 2px;
+}
+.dtbContent-doc-app-auto{ /** dinh dang khung chua thong tin ho so dinh kem  (tieu de va danh sach)**/
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:black;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	width:100%;
+}
+.ie7 .dtbContent-doc-app-auto{ /** dung cho IE 7 dinh dang khung chua thong tin ho so dinh kem  (tieu de va danh sach) **/
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:black;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+.ff3.0.6.0.6 .dtbContent-doc-app-auto{ /** dung cho ff3.0.6 dinh dang khung chua thong tin ho so dinh kem  (tieu de va danh sach) **/
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:black;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+.tbl-flt-bar {
+	background-color:#DBEAFC;
+	color:black;
+	font-family:Tahoma,Geneva,Arial,Helvetica,sans-serif;
+	font-size:8.5pt;
+	font-weight:normal;
+	vertical-align:middle;
+	font-weight:bold;
+}
+/********* Phan trang ******************/
+.paging-next {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_next.png') center no-repeat;
+	width: 6px;
+	height: 11px;
+}
+.paging-next:hover {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_next_hover.png') center no-repeat;
+	width: 6px;
+	height: 11px;
+}
+.paging-previous {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_previous.png') center no-repeat;
+	width: 6px;
+	height: 11px;
+}
+.paging-previous:hover {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_previous_hover.png') center no-repeat;
+	width: 6px;
+	height: 11px;
+}
+.paging-first {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_first.png') center no-repeat;
+	width: 10px;
+	height: 11px;
+}
+.paging-first:hover {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_first_hover.png') center no-repeat;
+	width: 10px;
+	height: 11px;
+}
+.paging-last {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_last.png') center no-repeat;
+	width: 10px;
+	height: 11px;
+}
+.paging-last:hover {
+	background: url('/html/portlet/ext/pcccdocumentreceiptprocess/images/paging/paging_last_hover.png') center no-repeat;
+	width: 10px;
+	height: 11px;
+}
+.listdocument-cv {
+	
+}
+/*
+.tbodyScroll-CV {
+	height: 150px;overflow: auto;overflow-x: hidden;
+}
+.ie .tbodyScroll-CV {
+	height: 150px;overflow: auto;overflow-x: hidden;width: 98%;
+}*/
+
+
+.scrollTableBody .headerOnly .table2 tbody.body, .scrollTableBody .bodyOnly .table2 tbody.body {
+		height: auto;
+	}
+	.ieScrollTableBody .headerOnly {
+		height: 19px;
+		overflow: hidden;
+		vertical-align: top;
+	}
+	.ieScrollTableBody .headerOnly .table2 {
+		margin-right: 16px;
+	}
+	.ieScrollTableBody .bodyOnly {
+		display: block;
+		height: 100px;
+		overflow: hidden;
+		overflow-y: scroll;
+		vertical-align: top;
+	}
+	.ieScrollTableBody .bodyOnly .table2 {
+		margin-right: 18px;
+	}
+	.ieScrollTableBody .bodyOnly .table2 thead tr {
+		position: absolute;
+		left: -9999px;
+	}			
+
+
+
+
+
+
+
+
+
+
+
+
+
