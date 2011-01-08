@@ -1,0 +1,98 @@
+package com.sgs.portlet.report_registry_work.service;
+
+
+/**
+ * <a href="ReportRegistryLocalServiceUtil.java.html"><b><i>View Source</i></b></a>
+ *
+ * <p>
+ * ServiceBuilder generated this class. Modifications in this class will be
+ * overwritten the next time is generated.
+ * </p>
+ *
+ * <p>
+ * This class provides static methods for the
+ * <code>com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService</code>
+ * bean. The static methods of this class calls the same methods of the bean
+ * instance. It's convenient to be able to just write one line to call a method
+ * on a bean instead of writing a lookup call and a method call.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ *
+ * @see com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService
+ *
+ */
+public class ReportRegistryLocalServiceUtil {
+    private static ReportRegistryLocalService _service;
+
+    public static com.sgs.portlet.report_registry_work.model.ReportRegistry addReportRegistry(
+        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+        throws com.liferay.portal.SystemException {
+        return getService().addReportRegistry(reportRegistry);
+    }
+
+    public static com.sgs.portlet.report_registry_work.model.ReportRegistry createReportRegistry(
+        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK) {
+        return getService().createReportRegistry(reportRegistryPK);
+    }
+
+    public static void deleteReportRegistry(
+        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        getService().deleteReportRegistry(reportRegistryPK);
+    }
+
+    public static void deleteReportRegistry(
+        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+        throws com.liferay.portal.SystemException {
+        getService().deleteReportRegistry(reportRegistry);
+    }
+
+    public static java.util.List<Object> dynamicQuery(
+        com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
+        throws com.liferay.portal.SystemException {
+        return getService().dynamicQuery(dynamicQuery);
+    }
+
+    public static java.util.List<Object> dynamicQuery(
+        com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
+        int end) throws com.liferay.portal.SystemException {
+        return getService().dynamicQuery(dynamicQuery, start, end);
+    }
+
+    public static com.sgs.portlet.report_registry_work.model.ReportRegistry getReportRegistry(
+        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        return getService().getReportRegistry(reportRegistryPK);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> getReportRegistries(
+        int start, int end) throws com.liferay.portal.SystemException {
+        return getService().getReportRegistries(start, end);
+    }
+
+    public static int getReportRegistriesCount()
+        throws com.liferay.portal.SystemException {
+        return getService().getReportRegistriesCount();
+    }
+
+    public static com.sgs.portlet.report_registry_work.model.ReportRegistry updateReportRegistry(
+        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+        throws com.liferay.portal.SystemException {
+        return getService().updateReportRegistry(reportRegistry);
+    }
+
+    public static ReportRegistryLocalService getService() {
+        if (_service == null) {
+            throw new RuntimeException("ReportRegistryLocalService is not set");
+        }
+
+        return _service;
+    }
+
+    public void setService(ReportRegistryLocalService service) {
+        _service = service;
+    }
+}
