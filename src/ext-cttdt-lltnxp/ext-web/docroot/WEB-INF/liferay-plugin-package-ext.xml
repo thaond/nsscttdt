@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plugin-package PUBLIC "-//Liferay//DTD Plugin Package 5.1.0//EN" "http://www.liferay.com/dtd/liferay-plugin-package_5_1_0.dtd">
+
+<plugin-package>
+	<name>sgs-portal-skin</name>
+	<module-id>liferay/sgs-portal-skin/5.1.2.1/war</module-id>
+	<types>
+		<type>theme</type>
+		<type>layout</type>
+	</types>
+	<short-description></short-description>
+	<change-log></change-log>
+	<page-url>http://saigonsoft.com</page-url>
+	<author>SaiGon Soft</author>
+	<licenses>
+		<license osi-approved="true">MIT</license>
+	</licenses>
+	<liferay-versions>
+		<liferay-version>5.1.0+</liferay-version>
+	</liferay-versions>
+</plugin-package>

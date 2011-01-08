@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="congvandenchinh" width="1171" height="698">
+  <node name="start" x="60" y="60" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="vuatiepnhan" x="60" y="228" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="160" h1="-169" w2="-428" h2="-1"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="25" h1="83" w2="25" h2="-193"/>
+    </edge>
+  </node>
+  <node name="chophancong" x="60" y="504" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-89" h1="0" w2="-989" h2="480"/>
+      <bendpoint w1="-88" h1="-487" w2="-1000" h2="-43"/>
+      <bendpoint w1="387" h1="-487" w2="-525" h2="-43"/>
+      <bendpoint w1="908" h1="-487" w2="-4" h2="-43"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-91" h1="24" w2="-91" h2="24"/>
+      <bendpoint w1="-91" h1="104" w2="-91" h2="104"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="9" h1="97" w2="-195" h2="1"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-2" h1="170" w2="-893" h2="170"/>
+      <bendpoint w1="422" h1="171" w2="-433" h2="169"/>
+      <bendpoint w1="905" h1="160" w2="-9" h2="160"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-57" h1="-113" w2="-49" h2="114"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="89" h1="-90" w2="-119" h2="81"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="317" h1="-99" w2="-271" h2="345"/>
+    </edge>
+  </node>
+  <node name="daphancong" x="648" y="504" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="103" y="-15"/>
+      <bendpoint w1="-400" h1="29" w2="188" h2="29"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="0" h1="96" w2="276" h2="0"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="50" h1="-189" w2="49" h2="212"/>
+    </edge>
+  </node>
+  <node name="choxacnhan" x="648" y="60" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="dangsoancongvantraloi" x="959" y="504" width="162" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="chanhvanphong" x="342" y="229" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="148" h1="-123" w2="-128" h2="45"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-42" h1="112" w2="166" h2="-59"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-117" h1="-57" w2="195" h2="-57"/>
+    </edge>
+  </node>
+  <node name="trinhbaocao" x="372" y="600" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="232" h1="16" w2="-368" h2="556"/>
+      <bendpoint w1="391" h1="17" w2="-209" h2="557"/>
+      <bendpoint w1="707" h1="17" w2="107" h2="557"/>
+      <bendpoint w1="707" h1="-61" w2="107" h2="479"/>
+      <bendpoint w1="706" h1="-543" w2="106" h2="-3"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="167" h1="-27" w2="-85" h2="81"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-67" h1="47" w2="-67" h2="47"/>
+      <bendpoint w1="-1" h1="48" w2="-1" h2="48"/>
+    </edge>
+  </node>
+  <node name="hoanthanh" x="972" y="60" width="132" height="36"/>
+</root-container>

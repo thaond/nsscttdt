@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="" name="congvanphucaplanhdao">
+
+	<start-state name="start">
+		<transition to="chophancong"></transition>
+	</start-state>
+
+	<task-node name="chophancong">
+		<task name="chuyenphongban:chuyenphongban:chuyenphongban">
+			<assignment
+					class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:lanhdaoxuly:hoanthanh">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<transition to="dangxuly" name="chuyenphongban"></transition>
+		<transition to="hoanthanh" name="hoanthanh"></transition>
+	</task-node>
+
+	<task-node name="dangxuly">
+		<task name="none:xacnhandaxem:hoanthanh">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		<transition to="hoanthanh" name="hoanthanh"></transition>
+	</task-node>
+
+	<end-state name="hoanthanh"></end-state>
+
+	<event type="process-end">
+		<action class="com.sgs.liferay.jbpm.handler.document.EnterCommentHandler" />
+	</event>
+
+</process-definition>
