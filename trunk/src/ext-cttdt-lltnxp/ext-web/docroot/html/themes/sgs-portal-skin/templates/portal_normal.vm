@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+#parse ($init)
+<html class="nojs" dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>$the_title - $company_name</title>
+	$theme.include($top_head_include)
+	#css ($css_main_file)
+	#js ($js_main_file)
+
+	<script type="text/javascript">
+		// <![CDATA
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
+	</script>
+	#if ($company_logo != "")
+		<style type="text/css">
+			/* <![CDATA[ */
+				#banner .logo a {
+					background: url($company_logo) no-repeat;
+					display: block;
+					font-size: 0;
+					height: ${company_logo_height}px;
+					text-indent: -9999em;
+					width: ${company_logo_width}px;
+				}
+
+				#ie6_png_fix()
+			/* ]]> */
+		</style>
+	#end
+</head>
+<body class="$css_class">
+		$theme.include($top_messages_include)
+		<div id="contain-wrapper">
+						<div>
+							
+							#parse ("$full_templates_path/dock.vm")
+							<div id="banner">
+							<h1 class="logo">
+								<a class="png"  href="#"></a>
+							</h1>
+							#if ($update_available_url)
+							#end
+							</div>
+							
+								#if ($themeDisplay.isSignedIn()) 		
+									#if ($has_navigation)
+										#parse ("$full_templates_path/navigation.vm")
+									#end
+								#end
+						</div>
+					<!--Hien thi NoiDung - Dong 4-->
+									#if ($selectable)
+										$theme.include($content_include)
+									#else
+									$portletDisplay.recycle()
+									$portletDisplay.setTitle($the_title)
+									$theme.wrapPortlet("portlet.vm", $content_include)
+									#end
+						
+				</div>
+                                #if ($themeDisplay.isSignedIn()) 	
+				$theme.runtime("SGS_MESSAGE_NOTE","",$velocityPortletPreferences.toString())
+				$velocityPortletPreferences.reset()
+				#end
+$theme.include($bottom_ext_include)
+$theme.include($session_timeout_include)
+$theme.include($sound_alerts_include)
+
+</body>
+</html>

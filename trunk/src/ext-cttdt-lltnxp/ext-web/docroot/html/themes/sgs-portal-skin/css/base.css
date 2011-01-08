@@ -1,0 +1,71 @@
+html {
+	overflow-y: auto;width: 100%;color: #222;font-family: Arial, Tahoma, Helvetica, sans-serif;font-size: 12px;font-stretch: normal;overflow-x: hidden;font-style: normal;	font-variant: normal;
+}
+
+body {
+	height: 100%;width: 100%;
+}
+body.controls-visible {
+	background: #1e7db5;
+}
+body.controls-hidden {
+	background: url(../images/imgbasic/bgwapper.jpg) repeat 0 90px;
+}
+* {
+	padding: 0;margin: 0;list-style-type: none;border-style: none;
+}
+a,a:hover {
+	color:#0484db; text-decoration: none;cursor: pointer;
+}
+table {padding: 0; margin: 0; }
+td {padding: 4px 0 4px 2px;vertical-align: top;}
+#banner h1.logo {
+	display: block;
+}
+#banner h1.logo a.logocomp {
+	background:url(../images/imgbasic/logocomp.jpg) no-repeat left bottom;width: auto;height: 90px;
+}
+#topnavication {
+	position:absolute; z-index:100;height:22px;background:url(../images/imgbasic/lefttopnavication.png) no-repeat left top;right:0;top:0;padding-left:70px;
+}
+#topnavication ul {
+	background:url(../images/imgbasic/linebottom.png) repeat-x left bottom; height:21px; padding-bottom:1px;
+}
+#topnavication li {
+	background:url(../images/imgbasic/bgtopnavication.png) repeat-x top left;height:18px;float:left; padding: 3px 15px;
+}
+#topnavication a {
+	font-weight:bold;color: #fff;
+}
+#topnavication a:hover {
+	color:#FFFF66;
+}
+#topnavication a.selected {color: #FF5A00;}
+.bgnavica {background: url(../images/imgbasic/bgwapper.jpg) repeat 0 0; width: 100%;display:table;}
+.ie7 .bgnavica {padding: 0;margin: 0}
+.wel_user {
+	font-weight: bold; color:#FFFF33;
+}
+#page-wrap {
+	float:left; background:url(../images/imgbasic/bgmenutop.jpg) repeat-x top left; border-bottom: 1px solid #60bffc;border-right: 1px solid #60bffc;height:25px;
+}
+#page-wrap li {
+	padding: 5px 17px 0 17px; float:left;
+}
+#page-wrap li:hover { 
+	background: url(../images/imgbasic/topli.hover.jpg) repeat-x top left; height:25px;color:#000;
+}
+#page-wrap li.selected {
+	background: url(../images/imgbasic/topli.hover.jpg) repeat-x top left; height:25px;color:#000;
+}
+#page-wrap a  {
+	font-weight: bold; color:#333;
+}
+#page-wrap a:hover {
+	color:#000;
+}
+.lfr-column {
+	padding: 0 !important;
+}
+img {cursor: pointer;}
+.listright {float: left;width: 40%; padding: 1%;min-height: 100px;}

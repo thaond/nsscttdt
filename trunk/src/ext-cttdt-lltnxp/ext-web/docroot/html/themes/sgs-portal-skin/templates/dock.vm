@@ -1,0 +1,77 @@
+<div id="topnavication">
+	<!--<div class="lang">
+       $taglibLiferay.language()
+	</div>-->
+	<ul>
+	#if ($themeDisplay.isSignedIn())
+	<li class="wel_user">$user_greeting</li>
+	#end
+	
+	#if ($themeDisplay.isSignedIn()) 	
+		#if ($show_home)
+			<li >
+				<a href="$home_url/web/pml">$home_text</a>
+			</li>
+		#end
+	#end
+		#if ($show_sign_in)
+			<li >
+				<a href="$home_url/web/guest">$home_text</a>
+			</li>
+			<li >
+				<a href="$sign_in_url">$sign_in_text</a>
+			</li>
+		#end
+
+		#if ($show_my_account)
+			<li >
+				<a href="$my_account_url">$my_account_text</a>
+			</li>
+		#end
+
+		#if ($show_sign_out)
+			<li >
+				<a href="$sign_out_url">$sign_out_text</a>
+			</li>
+		#end
+
+		#if ($show_add_content)
+			<li >
+				<a href="javascript: void(0);" onclick="$add_content_url">$add_content_text</a>
+			</li>
+			<li >
+				<a href="javascript: void(0);" onclick="$layout_url">$layout_text</a>
+			</li>
+		#end
+
+		#if ($show_page_settings)
+			<li >
+				<a href="$page_settings_url">$page_settings_text</a>
+			</li>
+		#end
+
+		#if ($show_staging)
+			<li>
+				<a>$staging_text</a>
+
+				$theme.staging()
+			</li>
+		#end
+
+		#if ($show_toggle_controls)
+			<li class="toggle-controls">
+				<a href="$toggle_controls_url">$toggle_controls_text</a>
+			</li>
+		#end
+
+		<!--
+		#if ($show_my_places)
+			<li class="my-places">
+				<a>$my_places_text</a>
+
+				$theme.myPlaces()
+			</li>
+		#end
+		-->
+	</ul>
+</div>

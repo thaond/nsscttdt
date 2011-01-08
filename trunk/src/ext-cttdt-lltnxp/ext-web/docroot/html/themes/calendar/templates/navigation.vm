@@ -1,0 +1,65 @@
+<div
+	#if ($page_group.isOrganization() || $page_group.isUser())
+		class="profile"
+	#else
+		class="sort-pages modify-pages"
+	#end
+
+	id="navigation"
+>
+	<table>
+	<tr height="32" style="background-image: url($images_folder/custom/bgleft.gif);">
+	<td width="25%">
+<script language="JavaScript">
+ var months = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
+ var dayofweeks = new Array('Ch&#7911; nh&#7853;t', ' Th&#7913; 2', 'Th&#7913; 3', 'Th&#7913; 4', 'Th&#7913; 5', 'Th&#7913; 6', 'Th&#7913; 7');
+ var now = new Date();
+ var month = months[now.getMonth()];
+ var day=dayofweeks[now.getDay()]
+ var date = now.getDate();
+ var year = now.getYear();
+ var rawHours = now.getHours();
+ var rawMinutes = now.getMinutes();
+ var amOrPm = (rawHours <= 11) ? "am" : "pm";
+ var hours = (rawHours > 12) ? rawHours - 12 : rawHours;
+ var minutes = (rawMinutes < 10) ? "0" + rawMinutes : rawMinutes;
+ if (year < 100) {
+ year = year + 2000;
+ } else {
+ if (year < 2000) {
+ year = year + 1900;
+ }
+ }
+ var dateStamp = "&nbsp;&nbsp;" + day + ",  ng&agrave;y " + date + " th&aacute;ng " + month + " n&#259;m " + year;
+ document.write('<font face="arial" color="#000000" style="font-size:10px; padding-top:5px;">'+dateStamp+'</font>');
+</script>
+</td>
+<td><img height="32" width="18" alt="" src="$images_folder/custom/lcorn.gif"/></td>
+<td bgcolor="#cc0000" width="75%" style="background-image: url($images_folder/custom/bgright.gif);">
+	<ul>
+		#if ($page_group.isOrganization() || $page_group.isUser())
+			<li class="group">
+				<span>$community_name</span>
+				<span class="group-indicator"></span>
+			</li>
+		#end
+
+		#foreach ($nav_item in $nav_items)
+			#if ($nav_item.isSelected())
+				#set ($nav_item_class = "selected parent-nav-item")
+			#else
+				#set ($nav_item_class = "parent-nav-item")
+			#end
+
+			<li class="$nav_item_class">
+				<a href="$nav_item.getURL()" $nav_item.getTarget()><span>$nav_item.getName()</span></a>
+
+				
+			</li>
+		#end
+	</ul>	
+</td>	
+</tr>
+</table>
+	
+</div>

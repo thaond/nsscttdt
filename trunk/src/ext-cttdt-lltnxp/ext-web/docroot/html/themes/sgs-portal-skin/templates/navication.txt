@@ -1,0 +1,557 @@
+/* This CSS sets the default styles for the main navigation. */
+
+/* ---------- Main navigation ---------- */
+
+#navigation {
+}
+
+#navigation ul {
+	margin: 0 auto;
+}
+
+#navigation ul:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.ie #navigation ul {
+	height: 1%;
+}
+
+.ie6 #navigation, .ie6 #navigation ul {
+	height: 2em;
+	overflow: visible;
+}
+
+#navigation li {
+	float: left;
+	list-style-type: none;
+	position: relative;
+}
+
+#navigation .child-menu {
+	display: none;
+}
+
+/* ---------- Dock without JavaScript ---------- */
+
+.lfr-dock {
+	position: absolute;
+	right: 5%;
+	top: 10px;
+}
+
+.lfr-dock h2 {
+	background: url(../images/navigation/welcome_message.png) no-repeat 0 50%;
+	font-size: 1.2em;
+	margin-bottom: 0.5em;
+	padding-left: 2em;
+	text-align: right;
+}
+
+.lfr-dock ul {
+	display: inline;
+	float: left;
+}
+
+.lfr-dock li {
+	display: inline;
+	float: left;
+	margin-left: 15px;
+}
+
+.lfr-dock li a {
+	background: url() no-repeat 0 50%;
+	padding: 2px 0 2px 20px;
+}
+
+.lfr-dock li.home a {
+	background-image: url(../images/dock/home.png);
+}
+
+.lfr-dock li.my-account a {
+	background-image: url(../images/dock/my_account.png);
+}
+
+.lfr-dock li.sign-in a {
+	background-image: url(../images/dock/sign_in.png);
+}
+
+.lfr-dock li.sign-out a {
+	background-image: url(../images/dock/sign_out.png);
+}
+
+.lfr-dock li.add-content a {
+	background-image: url(../images/dock/add_content.png);
+}
+
+.lfr-dock li.layout a {
+	background-image: url(../images/dock/layout.png);
+}
+
+.lfr-dock li.page-settings a {
+	background-image: url(../images/dock/page_settings.png);
+}
+
+.lfr-dock li.staging a {
+	background-image: url(../images/dock/staging.png);
+}
+
+.lfr-dock li.my-places a {
+	background-image: url(../images/dock/my_places.png);
+}
+
+.lfr-dock li.my-places {
+	display: none;
+}
+
+.lfr-dock li.toggle-controls {
+	display: none;
+}
+
+/* ---------- Dock with JavaScript ---------- */
+
+.js .interactive-mode {
+	background: #020509 url(../images/dock/center_bg.png) repeat-x;
+	min-width: 150px;
+	position: absolute;
+	right: 20px;
+	top: 4px;
+}
+
+.js .interactive-mode h2 {
+	background: url(../images/dock/right_bg.png) no-repeat 100% 0;
+	font-size: 1em;
+	margin: 0;
+	padding: 0 37px 0 0;
+	position: relative;
+	z-index: 82;
+}
+
+.js .interactive-mode h2 span {
+	background: url(../images/dock/left_bg.png) no-repeat 0 0;
+	border-right: 1px solid #34404F;
+	color: #fff;
+	display: block;
+	font-size: 1em;
+	height: 15px;
+	line-height: 1;
+	margin-bottom: 0;
+	padding: 10px 20px 4px 20px;
+}
+
+.js .lfr-dock.expanded .lfr-dock-list-container {
+	top: -2px;
+}
+
+.js .interactive-mode ul {
+	background: #fff;
+	border: 1px solid;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	display: none;
+	float: none;
+}
+
+.js .interactive-mode li {
+	border-top: 1px solid #DEDEDE;
+	clear: both;
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 2px;
+}
+
+.js .interactive-mode li a {
+	background-position: 8px 50%;
+	background-repeat: no-repeat;
+	display: block;
+	margin-left: 0;
+	padding: 5px 0px;
+	text-decoration: none;
+}
+
+.js .interactive-mode li a, .js .interactive-mode li a:hover {
+	background-position: 8px 50%;
+	padding-left: 30px;
+}
+
+.js .interactive-mode li a:hover, .js .interactive-mode .my-places li.current a:hover {
+	color: #fff;
+}
+
+.js .interactive-mode .lfr-dock-list li.first {
+	border-top: none;
+}
+
+.js .lfr-dock.interactive-mode .my-places li a {
+	background-image: none;
+}
+
+.js .interactive-mode .my-places li {
+	background-position: 5px 50%;
+	background-repeat: no-repeat;
+}
+
+.js .lfr-dock.interactive-mode .my-places.lfr-flyout.has-children > ul {
+	margin-right: -1px;
+}
+
+.js .interactive-mode .my-places li.current-community {
+	background-color: #D3DADD;
+}
+
+.js .interactive-mode .my-places li h3 {
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+}
+
+.js .interactive-mode .lfr-flyout.has-children h3 {
+	min-width: 175px;
+}
+
+.js .lfr-dock.interactive-mode .my-places li h3 a {
+	background-image: url(../images/dock/my_place.png);
+}
+
+.js .interactive-mode .lfr-flyout.has-children ul {
+	display: none;
+	margin-left: 0;
+	top: -1px;
+}
+
+.js .interactive-mode .my-places li.public a {
+	background-image: url(../images/dock/my_places_public.png);
+}
+
+.js .interactive-mode .my-places li.private a {
+	background-image: url(../images/dock/my_places_private.png);
+}
+
+.js .interactive-mode .my-places li.current {
+	background-color: #DFF4FF;
+}
+
+.js .interactive-mode .my-places li.current a {
+	background: url(../images/dock/my_place_current.png) no-repeat 10px 50%;
+	margin: 0;
+	padding-left: 35px;
+}
+
+.js .interactive-mode li:hover, .js .interactive-mode .my-places li:hover {
+	background-color: #4682B4 ;
+}
+
+.js .interactive-mode li:hover a:hover, .js .interactive-mode li:hover > a, .js .interactive-mode li:hover > h3 > a {
+	background-color: #4682B4 ;
+	color: #fff;
+}
+
+.ie6 .js .interactive-mode li a:hover {
+	background-color: #828F95;
+	color: #fff;
+}
+
+.js .interactive-mode .my-places ul li a.add-page {
+	top: 7px;
+}
+
+.js .interactive-mode .group-end {
+	border-bottom: 2px solid #DEDEDE;
+}
+
+.ie6.js .interactive-mode .taglib-my-places li {
+	height: 24px;
+}
+
+.ie6.js .lfr-dock.interactive-mode {
+	white-space: nowrap;
+	width: 150px;
+}
+
+.ie6.js .lfr-dock.interactive-mode li {
+	height: 1%;
+	width: 100%;
+}
+
+.ie6.js .interactive-mode .lfr-flyout.has-children {
+	width: 150px;
+}
+
+.js .interactive-mode li.toggle-controls {
+	display: block;
+}
+
+.js .interactive-mode li.toggle-controls a {
+	background-image: url(../images/common/checked.png);
+}
+
+.js .controls-hidden .interactive-mode li.toggle-controls a {
+	background-image: url(../images/common/unchecked.png);
+}
+
+/* ---------- Add/remove page ---------- */
+
+.js .delete-tab {
+	background: url(../images/common/remove.png) no-repeat 42%;
+	cursor: pointer;
+	display: block;
+	height: 8px;
+	position: absolute;
+	right: 2px;
+	text-indent: -9999em;
+	top: 2px;
+	width: 8px;
+}
+
+/*------ Navigation portlet ------*/
+
+.nav-menu li a.ancestor {
+	font-weight: bold;
+}
+
+.nav-menu li a.selected {
+	color: #000;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav-menu ul {
+	padding-left: 1px;
+}
+
+.menu, .menu * {
+      z-index:1;
+  }
+  .menu {
+  padding:0; 
+  margin-right:1px; 
+  list-style:none; 
+  height:28px; 
+  background:#044B5B; 
+  position:inherit; 
+  z-index:1; 
+  font-family:arial, verdana, sans-serif;
+  background-image: url(../images/navigation/bgmenu.gif); 
+  font-size: 8pt;
+  }
+  
+  /*{
+  background-image: url(/sgs-portal-skin/images/custom/bgmenu.gif);
+  position:relative;
+  if background-image ->z-index:500; 
+  width:80%;
+  font-size:0.85em;
+  }*/
+  /* remove all the bullets, borders and padding from the default list styling */
+ .menu ul {
+ padding:0;
+ margin:0;
+ float:left;
+ height:1%;
+ width:100%;
+ display:block;
+ list-style-type:none;
+ font-size: 8pt;
+ }
+ .menu ul ul {
+ width:160px;
+ }
+ /* float the list to make it horizontal and a relative positon so that you can control the dropdown menu positon */
+ .menu li {
+ float:left;
+ display: block;
+ position:relative;
+ line-height:11.92pt;
+ }
+ * html body .menu li {
+     width:1px;
+ }
+ .menu li li{
+     top:0px;
+ }
+ .menu li li li{
+     top:0px;
+ }
+ .menu li a{
+     margin-top:1px;
+    /*background:url(/sgs-portal-skin/images/custom/three_1.gif) no-repeat;*/
+     text-align:center;
+ }
+ /*
+ *body .menu li a{
+     margin-top:1px;
+ }
+ *body .menu .drop1 *{
+     margin-top:0px;
+ }
+ */
+ /* style the links for the top level */
+ .menu a, .menu a:visited{
+ 
+ display:block;
+ font-size:8pt;
+ text-decoration:none;
+ /* text-transform: capitalize;*/
+ text-align:center;
+ color:#000;
+ height:16px;
+ padding-left:3px;
+ line-height:14px;
+ padding-top:1px;
+ }
+ 
+ /* style the second level background */
+ .menu ul ul a.drop, .menu ul ul a.drop:visited  span{
+ background:#000;
+
+ 
+
+ color:#000;
+ }
+ /* style the second level hover */
+ .menu ul ul a.drop:hover{
+ 
+ 
+ 
+ background:#01409E;
+ color:#DB112F;
+ }
+ .menu ul ul :hover > a.drop {
+ 
+ background:#01409E;
+ }
+ /* style the third level background */
+ .menu ul ul ul a, .menu ul ul ul a:visited {
+
+ background:#c60;
+ }
+ /* style the third level hover */
+ .menu ul ul a.drop3:hover {
+ background:#fa4;
+
+ }
+ .menu ul ul ul :hover > a {
+ background:#01409E;
+
+}
+
+/* hide the sub levels and give them a positon absolute so that they take up no room
+*khoang cach giua level 1 and top modify here
+*/
+.menu ul ul {
+visibility:hidden;
+position:absolute;
+height:0;
+top:18px;
+left:0px;
+width:160px;
+}
+
+/* position the third level flyout menu */
+.menu ul ul ul{
+left:186px;
+top:0;
+width:160px;
+}
+/* position the third level flyout menu for a left flyout */
+.menu ul ul ul.left {
+left:-180px;
+}
+
+/* style the table so that it takes no part in the layout - required for IE to work */
+.menu table {position:absolute; top:0; left:0;}
+
+/* style the second level links background of menu level 2*/
+.menu ul ul a, .menu ul ul a:visited {
+
+font-weight:normal;
+background:#226b6f;
+height:10px;
+line-height:1em;
+padding:5px 3px;
+width:180px;
+text-align:left;
+}
+
+/* style the top level hover */
+.menu a:hover{
+
+/*background:none;
+background:#d30;*/
+color:#FFF;
+}
+.menu .drop1 a:hover,.menu ul ul a:hover{
+color:#fff;
+
+background:#663;
+}
+.menu .drop1 :hover > a, .menu ul ul :hover > a {
+color:#fff;
+/*background color of level 2 on mouseover*/
+background:#369;
+}
+
+/* make the second level visible when hover on first level list OR link */
+.menu ul li:hover ul,
+.menu ul a:hover ul{
+visibility:visible;
+}
+/* keep the third level hidden when you hover on first level list OR link */
+.menu ul :hover ul ul{
+visibility:hidden;
+}
+/* keep the fourth level hidden when you hover on second level list OR link */
+.menu ul :hover ul :hover ul ul{
+visibility:hidden;
+}
+/* make the third level visible when you hover over second level list OR link */
+.menu ul :hover ul :hover ul{
+visibility:visible;
+}
+/* make the fourth level visible when you hover over third level list OR link */
+.menu ul :hover ul :hover ul :hover ul {
+visibility:visible;
+}
+.menu li a span{
+    color:#E3DFDF;
+    padding:0px;
+    margin:0px;
+    padding-left:5px;
+    padding-right:3px;
+    margin-right:3px;
+    margin-left:3px;
+    line-height:15px;
+    min-width:0px;
+	font-weight: bold;
+	font-family: Arial;
+	padding-bottom: 10px;
+   
+	white-space:nowrap;
+}
+.menu .mainlevel li.selected div{
+   /* background:#FFF url(../images/leftTab.jpg) 4px left no-repeat;*/
+   
+	margin:0px;
+    font-weight:bold;
+    margin-right:4px;
+	color:#FFFF00;
+}
+.menu li.selected span{
+   	color:#FFFFFF;
+	
+}
+.menu li.selected a {
+    color:#c0c0c0;
+}
+.menu li:hover {
+    background-color:#369;
+	color:#FFFF00;
+}
+.menu ul.selected a {
+    background-color:#d30;
+	
+}
