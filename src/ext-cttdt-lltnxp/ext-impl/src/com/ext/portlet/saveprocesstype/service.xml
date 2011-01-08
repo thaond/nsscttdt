@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.ext.portlet.saveprocesstype">
+	<namespace>saveprocesstype</namespace>
+	<entity name="SaveProcessType" local-service="true" remote-service="true"
+		table="pml_saveprocesstype">
+
+		<!-- PK fields -->
+
+		<column name="sptId" type="long" primary="true" db-name="sptid"/>
+
+		<!-- Other fields -->
+
+		<column name="docId" type="long" db-name="docId"/>
+		<column name="flagProcessType" type="long" db-name="flagprocesstype"/>
+		<column name="flag" type="boolean" db-name="flag"/>
+		
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="docId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DocId" return-type="Collection">
+			<finder-column name="docId" />
+		</finder>
+		
+		<finder name="FlagProcessType" return-type="Collection">
+			<finder-column name="flagProcessType" />
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+	</entity>
+	<exceptions>
+		<exception>docId</exception>
+	</exceptions>
+</service-builder>
