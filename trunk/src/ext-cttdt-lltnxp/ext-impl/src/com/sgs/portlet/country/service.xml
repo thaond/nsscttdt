@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service-builder package-path="com.sgs.portlet.country">
+	<namespace>Country</namespace>
+	<entity name="Country" table="PML_Country" local-service="true" remote-service="true">
+		<column name="countryId" db-name="countryId" type="String" primary="true"/>
+		<column name="countryCode" type="String" db-name="countryCode"/>
+		<column name="countryName" db-name="countryName" type="String"/>
+		<column name="description" db-name="description" type="String"/>
+		<column name="active" db-name="active" type="String"/>
+		
+		<!-- xuancong close, doi lai sap xep tang dan theo ten
+		<order by="desc">
+			<order-column name="countryId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="countryName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder method -->
+		<finder return-type="Collection" name="CountryCode">
+			<finder-column name="countryCode" comparator="LIKE"/>
+		</finder>
+		<finder return-type="Collection" name="CountryName">
+			<finder-column name="countryName" comparator="LIKE"/>
+		</finder>
+		<finder return-type="Collection" name="Active">
+			<finder-column name="active" comparator="LIKE"/>
+		</finder>
+		<finder return-type="Collection" name="Description">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		<finder return-type="Collection" name="C_N_D">
+			<finder-column name="countryCode" comparator="LIKE"/>
+			<finder-column name="countryName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		<!-- order -->
+	</entity>
+</service-builder>

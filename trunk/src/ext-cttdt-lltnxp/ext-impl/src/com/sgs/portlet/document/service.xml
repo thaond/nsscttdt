@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document">
+	<namespace>PmlDocument</namespace>
+	<entity name="PmlDocumentReceiptWF" local-service="true" remote-service="true"
+		table="pml_documentreceipt_wf">
+
+		<!-- PK fields -->
+
+		<column name="processId" type="long" primary="true" db-name="processid"/>
+
+		<!-- Other fields -->
+
+		<column name="documentReceiptId" type="long" db-name="documentreceiptid"/>
+		<column name="isMain" type="String" db-name="ismain"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="processId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DocumentReceiptId" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+		</finder>
+		
+		<finder name="DocumentReceiptIdIsMain" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="isMain" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+	<entity name="PmlDocumentSendWF" local-service="true" remote-service="true"
+		table="pml_documentsend_wf">
+
+		<!-- PK fields -->
+
+		<column name="documentSendId" type="long" primary="true" db-name="documentsendid"/>
+
+		<!-- Other fields -->
+
+		<column name="processId" type="long" db-name="processid"/>
+		<column name="isMain" type="String" />
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="documentSendId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="ProcessId" return-type="Collection">
+			<finder-column name="processId" />
+		</finder>
+		
+		
+		<!-- References -->
+
+	</entity>
+	
+	<entity name="PmlMainSupport" local-service="true" remote-service="true"
+		table="pml_main_support">
+
+		<!-- PK fields -->
+
+		<column name="processId" type="long" primary="true" db-name="processid"/>
+
+		<!-- Other fields -->
+
+		<column name="processId_Main" type="long" db-name="processid_main"/>
+		<column name="type_" type="String" db-name="type_"/>
+		<column name="supportInfomation" type="String" db-name="supportinfomation"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="processId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="ProcessIdMain" return-type="Collection">
+			<finder-column name="processId_Main" />
+		</finder>
+		<finder name="Type" return-type="Collection">
+			<finder-column name="type_" />
+		</finder>
+		<finder name="SupportInfomation" return-type="Collection">
+			<finder-column name="supportInfomation" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="processIdMain_Type" return-type="Collection">
+			<finder-column name="processId_Main" />
+			<finder-column name="type_" comparator="LIKE"/>
+		</finder>
+		
+		
+		
+	</entity>
+	
+	<!-- trang thai ho so -->
+	<entity name="PmlFileStatus" local-service="true" remote-service="true"
+		table="pml_filestatus">
+
+		<!-- PK fields -->
+
+		<column name="fileStatusId" type="long" primary="true" db-name="filestatusid"/>
+
+		<!-- Other fields -->
+
+		<column name="fileStatusCode" type="String" db-name="filestatuscode"/>
+		<column name="fileStatusName" type="String" db-name="filestatusname"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="type" type="String" db-name="type"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="fileStatusId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="FileStatusCode" return-type="Collection">
+			<finder-column name="fileStatusCode" comparator="LIKE"/>
+		</finder>
+		<finder name="FileStatusName" return-type="Collection">
+			<finder-column name="fileStatusName" comparator="LIKE"/>
+		</finder>
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		<finder name="Type" return-type="Collection">
+			<finder-column name="type"/>
+		</finder>
+		<finder name="FileStatusCode_Type" return-type="Collection">
+			<finder-column name="fileStatusCode" case-sensitive="false"/>
+			<finder-column name="type"/>
+		</finder>
+		<reference package-path="com.liferay.counter" entity="Counter" />
+	</entity>
+	
+	<!-- tinh trang xu ly -->
+	<entity name="PmlStateProcess" local-service="true" remote-service="true"
+		table="pml_stateprocess">
+
+		<!-- PK fields -->
+
+		<column name="stateProcessId" type="long" primary="true" db-name="stateprocessid"/>
+
+		<!-- Other fields -->
+
+		<column name="stateProcessCode" type="String" db-name="stateprocesscode"/>
+		<column name="stateProcessName" type="String" db-name="stateprocessname"/>
+		<column name="fileStatusId" type="long" db-name="filestatusid"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="stateProcessId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="StateProcessCode" return-type="Collection">
+			<finder-column name="stateProcessCode" comparator="LIKE"/>
+		</finder>
+		<finder name="StateProcessName" return-type="Collection">
+			<finder-column name="stateProcessName" comparator="LIKE"/>
+		</finder>
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		<finder name="FileStatusId" return-type="Collection">
+			<finder-column name="fileStatusId" />
+		</finder>
+		
+		<finder name="StateProcessCode" return-type="Collection">
+			<finder-column name="stateProcessCode" />
+			<finder-column name="stateProcessName" />
+		</finder>
+	</entity>
+	
+	<!-- quy trinh xu ly -->
+	<entity name="PmlProcessDispose" local-service="true" remote-service="true"
+		table="pml_processdispose">
+
+		<!-- PK fields -->
+
+		<column name="processDisposeId" type="long" primary="true" db-name="processdisposeid"/>
+
+		<!-- Other fields -->
+		<column name="fileId" type="String" db-name="fileid"/>
+		<column name="transition_" type="int" db-name="transition_"/>
+		<column name="processer" type="long" db-name="processer"/>
+		<column name="dateProcess" type="Date" db-name="dateprocess"/>
+		<column name="processInfomation" type="String" db-name="processinfomation"/>
+		<column name="receiver" type="long" db-name="receiver"/>
+		<column name="receiveDate" type="Date" db-name="receivedate"/>
+		<column name="stateProcessIdBefore" type="long" db-name="stateprocessidbefore"/>
+		<column name="stateProcessIdAfter" type="long" db-name="stateprocessidafter"/>
+		<column name="expiredDate" type="Date" db-name="expireddate"/>
+		<column name="delegateUser" type="long" db-name="delegateuser"/>
+		<column name="sendDate" type="Date" db-name="senddate"/>
+
+		<!-- Order -->
+		
+		<order by="asc">
+			<order-column name="processDisposeId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="SendDate" return-type="Collection">
+			<finder-column name="sendDate" />
+		</finder>
+		
+		<finder name="Transition" return-type="Collection">
+			<finder-column name="transition_" />
+		</finder>
+		
+		<finder name="DelegateUser" return-type="Collection">
+			<finder-column name="delegateUser" />
+		</finder>
+		
+		<finder name="ExpiredDate" return-type="Collection">
+			<finder-column name="expiredDate" />
+		</finder>
+		
+		<finder name="FileId_Transition" return-type="Collection">
+			<finder-column name="fileId" />
+			<finder-column name="transition_" />
+		</finder>
+		
+		<finder name="FileId_StateProcessIdBefore" return-type="Collection">
+			<finder-column name="fileId" />
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="FileId_StateProcessIdAfter" return-type="Collection">
+			<finder-column name="fileId" />
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="Processer" return-type="Collection">
+			<finder-column name="processer" />
+		</finder>
+		
+		<finder name="DateProcess" return-type="Collection">
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="Receiver" return-type="Collection">
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="ReceiveDate" return-type="Collection">
+			<finder-column name="receiveDate" />
+		</finder>
+		
+		<finder name="StateProcessIdBefore" return-type="Collection">
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="StateProcessIdAfter" return-type="Collection">
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="FileId" return-type="Collection">
+			<finder-column name="fileId" comparator="LIKE"/>
+		</finder>
+	</entity>
+	
+	<!-- quy trinh_trang thai xu ly -->
+	<entity name="PmlStateWorkFlow" local-service="true" remote-service="true"
+		table="pml_state_wf">
+
+		<!-- PK fields -->
+
+		<column name="stateWfId" type="long" primary="true" db-name="statewfid"/>
+
+		<!-- Other fields -->
+		<column name="workflow" type="String" db-name="workflow"/>
+		<column name="stateProcessId" type="long" db-name="stateprocessid"/>
+		<column name="solvingTime" type="int" db-name="solvingtime"/>
+		<column name="version_" type="int" db-name="version_"/>
+
+		<!-- Order -->
+		
+		<order by="desc">
+			<order-column name="stateWfId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="WorkFlow_StateProcessId_Version" return-type="Collection">
+			<finder-column name="workflow" comparator="LIKE"/>
+			<finder-column name="stateProcessId" />
+			<finder-column name="version_" />
+		</finder>
+		
+		<finder name="SolvingTime" return-type="Collection">
+			<finder-column name="solvingTime" />
+		</finder>
+		
+		<finder name="Workflow" return-type="Collection">
+			<finder-column name="workflow" />
+		</finder>
+		
+		<finder name="StateProcessId" return-type="Collection">
+			<finder-column name="stateProcessId" />
+		</finder>
+		
+		<finder name="WorkFlow_Version" return-type="Collection">
+			<finder-column name="workflow" comparator="LIKE"/>
+			<finder-column name="version_" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlStateDepartment" local-service="true" remote-service="true"
+		table="pml_state_department">
+
+		<!-- PK fields -->
+
+		<column name="departmentId" type="String" primary="true" db-name="departmentid"/>
+		<column name="stateWfId" type="long" primary="true" db-name="statewfid"/>
+
+		<!-- Other fields -->
+
+		<!-- Order -->
+		
+		<!-- finder -->
+		<finder name="DepartmentId" return-type="Collection">
+			<finder-column name="departmentId" />
+		</finder>
+		
+		<finder name="StateWfId" return-type="Collection">
+			<finder-column name="stateWfId" />
+		</finder>
+		
+	</entity>
+	
+	<!-- log for document receipt -->
+	<entity name="PmlDocumentReceiptLog" local-service="true" remote-service="true"
+		table="pml_documentreceipt_log">
+
+		<!-- PK fields -->
+
+		<column name="documentReceiptLogId" type="long" primary="true" db-name="documentreceiptlogid"/>
+
+		<!-- Other fields -->
+		<column name="documentReceiptId" type="long" db-name="documentreceiptid"/>
+		<column name="transition_" type="int" db-name="transition_"/>
+		<column name="processer" type="long" db-name="processer"/>
+		<column name="dateProcess" type="Date" db-name="dateprocess"/>
+		<column name="processInfomation" type="String" db-name="processinfomation"/>
+		<column name="receiver" type="long" db-name="receiver"/>
+		<column name="receiveDate" type="Date" db-name="receivedate"/>
+		<column name="stateProcessIdBefore" type="long" db-name="stateprocessidbefore"/>
+		<column name="stateProcessIdAfter" type="long" db-name="stateprocessidafter"/>
+		<column name="type_" type="int" db-name="type_"/>
+		<column name="expiredDate" type="Date" db-name="expireddate"/>
+		<column name="numDateProcess" type="int" db-name="numdateprocess"/>
+		<column name="processInstanceId" type="long" db-name="processinstanceid"/>
+		<column name="mainDepartmentProcessId" type="String" db-name="maindepartmentprocessid"/>
+		<column name="mainUserProcessId" type="long" db-name="mainuserprocessid"/>
+		<column name="sendDateBefore" type="Date" db-name="senddatebefore"/>
+		<column name="departmentReceiveId" type="String" db-name="departmentreceiveid"/>
+		<column name="departmentProcessId" type="String" db-name="departmentprocessid"/>
+		<column name="dateProcessTime" type="Date"/>
+		<column name="receiveDateTime" type="Date"/>
+		<column name="directProcesserId" type="long"/>
+		<column name="step" type="int"/>
+
+		<!-- Order -->
+		
+		<order by="desc">
+			<order-column name="documentReceiptLogId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="ProcessInstanceId_StateProcessIdBefore_DateProcess" return-type="Collection">
+			<finder-column name="processInstanceId" />
+			<finder-column name="stateProcessIdBefore" />
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="ProcessInstanceId_StateProcessIdAfter_DateProcess" return-type="Collection">
+			<finder-column name="processInstanceId" />
+			<finder-column name="stateProcessIdAfter" />
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="NumDateProcess" return-type="Collection">
+			<finder-column name="numDateProcess" />
+		</finder>
+		
+		<finder name="ExpiredDate" return-type="Collection">
+			<finder-column name="expiredDate" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Transition" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="transition_" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Step" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="step" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Type" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="type_" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_StateProcessIdBefore" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="Processer" return-type="Collection">
+			<finder-column name="processer" />
+		</finder>
+		
+		<finder name="DateProcess" return-type="Collection">
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="Receiver" return-type="Collection">
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="ReceiveDate" return-type="Collection">
+			<finder-column name="receiveDate" />
+		</finder>
+		
+		<finder name="StateProcessIdBefore" return-type="Collection">
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="StateProcessIdAfter" return-type="Collection">
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="Type" return-type="Collection">
+			<finder-column name="type_" />
+		</finder>
+		
+		<finder name="DocumentReceiptId" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_StateProcessIdBefore_Receiver" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="stateProcessIdBefore" />
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_StateProcessIdBefore_Processor" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="stateProcessIdBefore" />
+			<finder-column name="processer" />
+		</finder>
+		
+		<finder name="mainDepartmentProcessId" return-type="Collection">
+			<finder-column name="mainDepartmentProcessId" />
+		</finder>
+		
+		<finder name="mainUserProcessId" return-type="Collection">
+			<finder-column name="mainUserProcessId" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Processor_Receivedate_StateProcessIdAfter" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="processer" />
+			<finder-column name="receiveDate" />
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Processor_StateProcessIdAfter" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="processer" />			
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="DocumentReceiptId_Processor" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="processer" />			
+		</finder>
+		
+		<finder name="DocumentReceiptId_Processor_Step" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="processer" />			
+			<finder-column name="step" />			
+		</finder>
+		
+		<finder name="DocumentReceiptId_Receiver" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="receiver" />		
+		</finder>
+		
+		<finder name="DocumentReceiptId_Receiver_StateProcessIdAfter_Transition" return-type="Collection">
+			<finder-column name="documentReceiptId" />
+			<finder-column name="receiver" />		
+			<finder-column name="stateProcessIdAfter" />
+			<finder-column name="transition_" comparator="&lt;" />
+		</finder>
+		
+		<finder name="SendDateBefore" return-type="Collection">
+			<finder-column name="sendDateBefore" />
+		</finder>
+		
+		<finder name="DepartmentReceiveId" return-type="Collection">
+			<finder-column name="departmentReceiveId" />
+		</finder>
+		
+		<finder name="DepartmentProcessId" return-type="Collection">
+			<finder-column name="departmentProcessId" />
+		</finder>
+		
+		<finder name="ProcessInstanceId_Type" return-type="Collection">
+			<finder-column name="processInstanceId" />
+			<finder-column name="type_" />
+		</finder>	
+			
+		<finder name="ProcessInstanceId" return-type="Collection">
+			<finder-column name="processInstanceId" />
+		</finder>	
+	</entity>
+	
+	<!-- log for document send -->
+	<entity name="PmlDocumentSendLog" local-service="true" remote-service="true"
+		table="pml_documentsend_log">
+
+		<!-- PK fields -->
+
+		<column name="documentSendLogId" type="long" primary="true" db-name="documentsendlogid"/>
+
+		<!-- Other fields -->
+		<column name="documentSendId" type="long" db-name="documentsendid"/>
+		<column name="transition_" type="int" db-name="transition_"/>
+		<column name="processer" type="long" db-name="processer"/>
+		<column name="dateProcess" type="Date" db-name="dateprocess"/>
+		<column name="processInfomation" type="String" db-name="processinfomation"/>
+		<column name="receiver" type="long" db-name="receiver"/>
+		<column name="receiveDate" type="Date" db-name="receivedate"/>
+		<column name="stateProcessIdBefore" type="long" db-name="stateprocessidbefore"/>
+		<column name="stateProcessIdAfter" type="long" db-name="stateprocessidafter"/>
+		<column name="expiredDate" type="Date" db-name="expireddate"/>
+		<column name="numDateProcess" type="int" db-name="numdateprocess"/>
+		<column name="processInstanceId" type="long" db-name="processinstanceid"/>
+		<column name="type_" type="int" />
+		<column name="sendDateBefore" type="Date" db-name="senddatebefore"/>
+		<column name="departmentReceiveId" type="String" db-name="departmentreceiveid"/>
+		<column name="departmentProcessId" type="String" db-name="departmentprocessid"/>
+		<column name="dateProcessTime" type="Date" db-name="dateprocesstime"/>
+		<column name="receiveDateTime" type="Date" db-name="receivedatetime"/>
+		<column name="directProcesserId" type="long"/>
+		<column name="step" type="int"/>
+		<!-- Order -->
+		
+		<order by="desc">
+			<order-column name="documentSendLogId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="ProcessInstanceId_StateProcessIdBefore_DateProcess" return-type="Collection">
+			<finder-column name="processInstanceId" />
+			<finder-column name="stateProcessIdBefore" />
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="ProcessInstanceId_StateProcessIdAfter_DateProcess" return-type="Collection">
+			<finder-column name="processInstanceId" />
+			<finder-column name="stateProcessIdAfter" />
+			<finder-column name="dateProcess" />
+		</finder>
+		<finder name="NumDateProcess" return-type="Collection">
+			<finder-column name="numDateProcess" />
+		</finder>
+		
+		<finder name="ExpiredDate" return-type="Collection">
+			<finder-column name="expiredDate" />
+		</finder>
+		
+		<finder name="DocumentSendId_Transition" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="transition_" />
+		</finder>
+		
+		<finder name="DocumentSendId_StateProcessIdBefore" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="Processer" return-type="Collection">
+			<finder-column name="processer" />
+		</finder>
+		
+		<finder name="DateProcess" return-type="Collection">
+			<finder-column name="dateProcess" />
+		</finder>
+		
+		<finder name="Receiver" return-type="Collection">
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="ReceiveDate" return-type="Collection">
+			<finder-column name="receiveDate" />
+		</finder>
+		
+		<finder name="StateProcessIdBefore" return-type="Collection">
+			<finder-column name="stateProcessIdBefore" />
+		</finder>
+		
+		<finder name="StateProcessIdAfter" return-type="Collection">
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="DocumentSendId" return-type="Collection">
+			<finder-column name="documentSendId" />
+		</finder>
+		
+		<finder name="DocumentSendId_StateProcessIdBefore_Receiver" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="stateProcessIdBefore" />
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="DocumentSendId_Receiver" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="DocumentSendId_Processor_Receivedate_StateProcessIdAfter" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="processer" />
+			<finder-column name="receiveDate" />
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="DocumentSendId_Processor_StateProcessIdAfter" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="processer" />			
+			<finder-column name="stateProcessIdAfter" />
+		</finder>
+		
+		<finder name="DocumentSendId_Processor" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="processer" />			
+		</finder>
+		
+		<finder name="DocumentSendId_Processor_Step" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="processer" />			
+			<finder-column name="step" />			
+		</finder>
+		
+		<finder name="SendDateBefore" return-type="Collection">
+			<finder-column name="sendDateBefore" />
+		</finder>
+		
+		<finder name="DepartmentReceiveId" return-type="Collection">
+			<finder-column name="departmentReceiveId" />
+		</finder>
+		
+		<finder name="DepartmentProcessId" return-type="Collection">
+			<finder-column name="departmentProcessId" />
+		</finder>
+		
+		<finder name="DocumentSendId_Step" return-type="Collection">
+			<finder-column name="documentSendId" />
+			<finder-column name="step" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmDocumentRelation" local-service="true" remote-service="true"
+		table="pml_edm_documentrelation">
+
+		<!-- PK fields -->
+		<column name="documentRelationId" type="long" primary="true" db-name="documentrelationid" />
+
+		<!-- Other fields -->
+		<column name="docLeftId" type="long" db-name="docleftid" />
+		<column name="docRightId" type="long" db-name="docrightid" />
+		<column name="leftIsReceipt" type="boolean" db-name="leftisreceipt" />
+		<column name="rightIsReceipt" type="boolean" db-name="rightisreceipt" />
+		
+		<!-- Order -->
+		
+		<!-- Finder -->
+		<finder name="DocLeftId_LeftIsReceipt" return-type="Collection">
+			<finder-column name="docLeftId" />
+			<finder-column name="leftIsReceipt" />
+		</finder>
+		<finder name="DocRightId_RightIsReceipt" return-type="Collection">
+			<finder-column name="docRightId" />
+			<finder-column name="rightIsReceipt" />
+		</finder>
+		<finder name="DocLeftId_DocRightId_LeftIsReceipt_RightIsReceipt" return-type="PmlEdmDocumentRelation">
+			<finder-column name="docLeftId" />
+			<finder-column name="docRightId" />
+			<finder-column name="leftIsReceipt" />
+			<finder-column name="rightIsReceipt" />
+		</finder>
+	</entity>
+	
+	<exceptions>
+		<exception>PmlFileStatusCanNotDelete</exception>
+		<exception>PmlFileStatusCodeSameCode</exception>
+		<exception>DuplicateDocumentRelation</exception>
+	</exceptions>
+	
+</service-builder>

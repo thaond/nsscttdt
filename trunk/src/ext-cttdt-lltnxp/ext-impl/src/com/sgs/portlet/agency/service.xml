@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.agency">
+	<namespace>agency</namespace>
+	<entity name="Agency" local-service="true" remote-service="true"
+		table="pml_agency">
+
+		<!-- PK fields -->
+
+		<column name="agencyId" type="String" primary="true" db-name="agencyid"/>
+
+		<!-- Other fields -->
+
+		<column name="agencyCode" type="String" db-name="agencycode"/>
+		<column name="agencyName" type="String" db-name="agencyname"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close, doi lai sap xep tang dan theo ten
+		<order by="desc">
+			<order-column name="agencyId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="agencyName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="AgencyCode" return-type="Collection">
+			<finder-column name="agencyCode" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="AgencyName" return-type="Collection">
+			<finder-column name="agencyName" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="C_N_D" return-type="Collection">
+			<finder-column name="agencyCode" comparator="LIKE"/>
+			<finder-column name="agencyName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+	</entity>
+	
+	<exceptions>
+		<exception>AgencyCodeSameCode</exception>
+		<exception>AgencyCanNotDelete</exception>
+	</exceptions>
+</service-builder>
