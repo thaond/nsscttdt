@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.organizationexternal">
+	<namespace>OrganizationExternal</namespace>
+	<entity name="OrganizationExternal" local-service="true" remote-service="true"
+		table="pml_organization_external">
+
+		<!-- PK fields -->
+
+		<column name="orgExternalId" type="long" primary="true" db-name="orgexternalid"/>
+
+		<column name="orgExternalCode" type="String" db-name="orgexternalcode"/>
+		<column name="orgExternalName" type="String" db-name="orgexternalname"/>
+		<column name="isOwnerOrg" type="boolean" db-name="isownerorg"/>
+
+		<order by="asc">
+			<order-column name="orgExternalName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="OrgExternalCode" return-type="Collection">
+			<finder-column name="orgExternalCode" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="OrgExternalName" return-type="Collection">
+			<finder-column name="orgExternalName" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="IsOwnerOrg" return-type="Collection">
+			<finder-column name="isOwnerOrg"/>
+		</finder>
+	</entity>
+	
+	<exceptions>
+		<exception>OrganizationExternalCodeSameCode</exception>
+	</exceptions>
+</service-builder>

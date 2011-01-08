@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pmlstreet">
+	<namespace>PmlStreet</namespace>
+	<entity name="PmlStreet" local-service="true" remote-service="true"
+		table="pml_street">
+
+		<!-- PK fields -->
+
+		<column name="streetId" type="String" primary="true" db-name="streetId"/>
+
+		<!-- Other fields -->
+
+		<column name="streetName" type="String" db-name="streetName"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="streetId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="streetName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="StreetName" return-type="Collection">
+			<finder-column name="streetName" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+		
+	</entity>
+	<exceptions>
+		<exception>NoGenerateStreetId</exception>
+	</exceptions>
+</service-builder>

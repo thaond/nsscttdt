@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.pmluser">
+
+	<namespace>User</namespace>
+
+	<entity name="PmlUser" table="pml_user" local-service="true">
+		<!-- PK fields -->
+
+		<column name="userId" type="long" primary="true" db-name="userId"/>
+
+		<!-- Other fields -->
+
+		<column name="positionId" type="String" db-name="positionId"/>
+		<column name="departmentsId" type="String" db-name="departmentsId"/>
+		<column name="roleId" type="String" db-name="roleId"/>
+		<column name="handPhone" type="String" db-name="handphone"/>
+		<column name="note" type="String" db-name="note"/>
+		<column name="teamId" type="long" db-name="teamid"/>
+		<column name="active" type="boolean" db-name="active" />
+		<column name="screenName" type="String" db-name="screenname" />
+		<column name="firstName" type="String" db-name="firstname" />
+		<column name="middleName" type="String" db-name="middlename" />
+		<column name="lastName" type="String" db-name="lastname" />
+		<column name="male" type="boolean" db-name="male" />
+		<column name="birthday" type="Date" db-name="birthday" />
+		
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="firstName" case-sensitive="false" />
+			<order-column name="lastName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="PositionId" return-type="Collection">
+			<finder-column name="positionId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="TeamId" return-type="Collection">
+			<finder-column name="teamId" />
+		</finder>
+		
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="RoleId" return-type="Collection">
+			<finder-column name="roleId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="HandPhone" return-type="Collection">
+			<finder-column name="handPhone" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Note" return-type="Collection">
+			<finder-column name="note" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="P_D_R" return-type="Collection">
+			<finder-column name="positionId" comparator="LIKE"/>
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="roleId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartmentsId_Active" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="active" comparator="="/>
+		</finder>
+		
+	</entity>
+	
+</service-builder>

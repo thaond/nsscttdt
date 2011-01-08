@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_do_quan_trong">
+	<namespace>pml_do_quan_trong</namespace>
+	<entity name="PmlDoQuanTrong" local-service="true" remote-service="true"
+		table="pml_do_quan_trong">
+
+		<!-- PK fields -->
+
+		<column name="idDoQuanTrong" type="long" primary="true" db-name="id_do_quan_trong"/>
+
+		<!-- Other fields -->		
+		<column name="tenDoQuanTrong" type="String" db-name="ten_do_quan_trong"/>		
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="idDoQuanTrong" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="tenDoQuanTrong" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="TenDoQuanTrong" return-type="Collection">
+			<finder-column name="tenDoQuanTrong" comparator="LIKE"/>
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>	
+	<exceptions>
+		<exception>PmlDoQuanTrongTenDoQuanTrong</exception>
+		<exception>PmlDoQuanTrongCanNotDelete</exception>
+	</exceptions>
+	
+</service-builder>
