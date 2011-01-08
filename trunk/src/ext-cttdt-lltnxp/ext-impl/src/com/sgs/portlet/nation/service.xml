@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.nation">
+	<namespace>Nation</namespace>
+	<entity name="Nation" local-service="true" remote-service="true"
+		table="pml_nation">
+
+		<!-- PK fields -->
+
+		<column name="nationId" type="String" primary="true" db-name="nationid"/>
+
+		<!-- Other fields -->
+
+		<column name="nationCode" type="String" db-name="nationcode"/>
+		<column name="nationName" type="String" db-name="nationname"/>
+		<column name="countryId" type="String" db-name="countryid"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="nationId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="nationName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="NationCode" return-type="Collection">
+			<finder-column name="nationCode" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="NationName" return-type="Collection">
+			<finder-column name="nationName" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="CountryId" return-type="Collection">
+			<finder-column name="countryId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="C_N_D" return-type="Collection">
+			<finder-column name="nationCode" comparator="LIKE"/>
+			<finder-column name="nationName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="C_N_D_C" return-type="Collection">
+			<finder-column name="nationCode" comparator="LIKE"/>
+			<finder-column name="nationName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+			<finder-column name="countryId" comparator="LIKE"/>
+		</finder>
+		
+		<!-- References -->
+
+		<reference package-path="com.sgs.portlet.country" entity="Country" />
+	</entity>
+</service-builder>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.wardsmanagement">
+
+	<namespace>CityManagement</namespace>
+
+	<entity name="Wards" table="pml_wards" local-service="true">
+		<!-- fields -->
+		<column name="wardsId" type="String" primary="true" db-name="wardsId" />
+		<column name="wardsCode" type="String" db-name="wardsCode" />
+		<column name="wardsName" type="String" db-name="wardsName" />
+		<column name="districtId" type="String" db-name="districtId" />
+		<column name="description" type="String" db-name="description" />
+		<column name="active" type="String" db-name="active" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="wardsName" case-sensitive="false" />
+		</order>
+
+		<finder return-type="Collection" name="C_N_I_D">
+			<finder-column name="wardsCode" comparator="LIKE" />
+			<finder-column name="wardsName" comparator="LIKE" />
+			<finder-column name="districtId" comparator="LIKE" />
+			<finder-column name="description" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Code">
+			<finder-column name="wardsCode" case-sensitive="false" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Name">
+			<finder-column name="wardsName" case-sensitive="false" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="DistrictId">
+			<finder-column name="districtId" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Description">
+			<finder-column name="description" case-sensitive="false" comparator="LIKE" />
+		</finder>
+	</entity>
+	
+	<exceptions>
+		<exception>WardCodeSameCode</exception>
+	</exceptions>
+	
+</service-builder>
