@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.report_registry_work">
+	<namespace>ReportRegistryWork</namespace>
+	<entity name="ReportRegistry" local-service="true" remote-service="true" table="report_registry_work">
+
+		<!-- PK fields -->
+
+		<column name="reportRegistryId" type="long" primary="true" />
+
+		<!-- Other fields -->
+		
+		<column name="reportRegistryCode" type="long" primary="true" />
+		<column name="departmentName" type="String" />
+		<column name="resultWork" type="String" />
+		<column name="programWork" type="String" />
+		<column name="reportDate" type="Date" />
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+		
+		<!-- finder -->
+		
+		<finder return-type="Collection" name="ReportRegistryId">
+			<finder-column name="reportRegistryId"></finder-column>
+		</finder>
+		
+	</entity>
+	
+</service-builder>
