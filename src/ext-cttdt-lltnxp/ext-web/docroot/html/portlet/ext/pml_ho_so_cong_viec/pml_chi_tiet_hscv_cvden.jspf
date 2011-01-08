@@ -1,0 +1,179 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmAttachedFile"%>
+<%
+
+ 	//HAI TRIEU
+
+%>
+
+<%
+
+	List headerNames = new ArrayList(); //tieu de bang du lieu
+	headerNames.add("STT");
+	headerNames.add("chon");
+	headerNames.add("date");
+	
+	headerNames.add("trich-yeu");
+	headerNames.add("toan-van");
+	SearchContainer searchContainer = new SearchContainer(renderRequest, new DisplayTerms(renderRequest), 
+	new DisplayTerms(renderRequest), "cur", 1, portletURL, headerNames, "khong-co-cong-van-den");
+	searchContainer.setDelta(20); //so dong hien thi tren 1 trang
+	
+	searchContainer.setEmptyResultsMessage("khong-co-cong-van-den");
+	
+	idHoSoCongViec = ParamUtil.getLong(request, "idHoSoCongViec");
+	
+	if (Validator.isNotNull(idHoSoCongViec)) {
+		pmlHoSoCongViec = PmlHoSoCongViecLocalServiceUtil.getPmlHoSoCongViec(idHoSoCongViec);
+	}
+
+	if (pmlHoSoCongViec != null){
+		int total = PmlChiTietHSCVLocalServiceUtil.searchChiTietHSCVCVDENCount(
+		pmlHoSoCongViec.getIdHoSoCongViec(), true);
+		
+		searchContainer.setTotal(total);
+		
+		List results = null;
+		
+		results = PmlChiTietHSCVLocalServiceUtil.findChiTietHSCVCVDEN(
+				pmlHoSoCongViec.getIdHoSoCongViec(), searchContainer.getStart(), 
+				searchContainer.getEnd(), searchContainer.getOrderByComparator());
+		
+		searchContainer.setResults(results);
+	
+		// Parse long array 
+	
+		ArrayList<Long> idCongVanDens = new ArrayList<Long>();
+		ArrayList<String> idCongVanDenStrs = new ArrayList<String>();
+		for (int idxDen = 0; idxDen < (results.size() > 0 ? results.size() : 0); idxDen ++){
+			PmlEdmDocumentReceipt pmlEdmDocumentReceiptIdDen = (
+				PmlEdmDocumentReceipt)results.get(idxDen);
+				idCongVanDens.add(pmlEdmDocumentReceiptIdDen.getDocumentReceiptId());
+		}
+		// conver mang long sang String
+		 
+		for (int str = 0; str < idCongVanDens.size(); str ++ ){
+			idCongVanDenStrs.add(String.valueOf(idCongVanDens.get(str)));
+		}
+		
+		// Chuyen mang String [] sang String
+		String strIdCongVanDen = "";
+		for (int ids = 0; ids < idCongVanDens.size(); ids ++ ){
+			//strIdCongVanDen = strIdCongVanDen + idCongVanDens.get(ids);
+			if (idCongVanDens.size() > 1){
+				if (strIdCongVanDen.length() > 0){
+					strIdCongVanDen = strIdCongVanDen + "," + idCongVanDens.get(ids);
+				}
+				else
+			strIdCongVanDen = strIdCongVanDen + idCongVanDens.get(ids);
+		}
+else 
+				strIdCongVanDen = strIdCongVanDen + idCongVanDens.get(ids);
+		}
+		// lay danh sach cac file dinh kem co trong cong van
+List<PmlEdmAttachedFile> pmlEdmAttachedFile = 
+								PmlChiTietHSCVLocalServiceUtil.findByDocumentReceiptId(strIdCongVanDen);
+		ArrayList<Long> congVanIds = new ArrayList<Long>(); // Danh sach ma so cong van co file dinh kem
+		//ArrayList<Long> attFileIds = new ArrayList<Long>(); // Danh sach ma so file dinh kem
+		ArrayList<String > duongDans = new ArrayList<String>();
+		ArrayList<String > tenFiles = new ArrayList<String>();
+		if (pmlEdmAttachedFile != null){
+			for (int idx = 0; idx < pmlEdmAttachedFile.size(); idx++) {
+				PmlEdmAttachedFile attItem = (PmlEdmAttachedFile) pmlEdmAttachedFile.get(idx);
+	congVanIds.add(attItem.getObjectContentId()); // Luu ma so cong van
+				//attFileIds.add(attItem.getObjectContentId()); // Luu lai ma so file dinh kem
+				duongDans.add(attItem.getPath());
+				tenFiles.add(attItem.getTitle());
+			}
+		}
+		
+		List resultRows = searchContainer.getResultRows();
+		int flag = -1;
+		int flag1 = -1;
+		int flagNullFile = 0;
+		for (int ir = 0; ir < results.size(); ir++) {	
+			PmlEdmDocumentReceipt pmlEdmDocumentReceipt = (PmlEdmDocumentReceipt)results.get(ir);
+
+			pmlEdmDocumentReceipt = pmlEdmDocumentReceipt.toEscapedModel();
+ResultRow row = new ResultRow(pmlEdmDocumentReceipt, 
+									pmlEdmDocumentReceipt.getDocumentReceiptId(), ir);	
+
+			PortletURL rowURL = renderResponse.createRenderURL();
+
+			rowURL.setWindowState(WindowState.MAXIMIZED);
+
+			rowURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/viewDetail");
+			rowURL.setParameter("redirect", currentURL);
+			
+		rowURL.setParameter("idConVanDen", String.valueOf(
+							pmlEdmDocumentReceipt.getDocumentReceiptId()));
+
+			// Order no
+			row.addText(String.valueOf(ir + 1));
+			
+			// chon
+			StringBuilder smRad = new StringBuilder();	
+				smRad.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDen('"); 
+				smRad.append(String.valueOf(pmlEdmDocumentReceipt.getDocumentReceiptId()));
+				smRad.append("');\" name=\"CVDenRad\" /></div>");	
+			row.addText(smRad.toString() + "");	
+			
+			//Ngay
+row.addText(pmlEdmDocumentReceipt.getDateArrive()!= null ? 
+						new SimpleDateFormat("dd/MM/yyyy").format(
+						pmlEdmDocumentReceipt.getDateArrive()) : "");	
+			
+			//Trich yeu
+			PortletURL rowURL2 = renderResponse.createRenderURL();
+
+			rowURL2.setWindowState(WindowState.NORMAL);// YENLT
+
+			rowURL2.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/detail");
+			rowURL2.setParameter("redirect", currentURL);
+			
+			rowURL2.setParameter("documentReceiptId", String.valueOf(pmlEdmDocumentReceipt.getDocumentReceiptId()));
+			rowURL2.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+			row.addText(pmlEdmDocumentReceipt.getBriefContent(),rowURL2);
+			
+			//duong dan download
+			boolean hasAttFile = false;
+				StringBuilder smAtt = new StringBuilder();
+				for (int idx = 0; idx < congVanIds.size(); idx ++) {
+					if (pmlEdmDocumentReceipt.getDocumentReceiptId() == congVanIds.get(idx)) {
+					// Co file dinh kem
+					hasAttFile = true;
+					if (congVanIds.size() > 1){
+						smAtt.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+									duongDans.get(idx) + "\" > " + tenFiles.get(idx) );
+							smAtt.append("<img title=\"Down load\"  style=\"cursor:pointer;padding-left:10px\" ");
+							smAtt.append("border=\"0\" src=\"/html/_img/download.png\"");
+							smAtt.append("height=\"14px\" width=\"14px\"");
+							smAtt.append("> </a> <br/>");
+						}
+				else {
+						smAtt.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+								duongDans.get(idx) + "\" >" + tenFiles.get(idx));
+							smAtt.append("<img title=\"Down load\" style=\"cursor:pointer;padding-left:10px\" ");
+							smAtt.append("border=\"0\" src=\"/html/_img/download.png\"");
+							smAtt.append("height=\"14px\" width=\"14px\"");
+							smAtt.append("> </a>");
+						}
+				} //end if
+			} //end for	
+			if (hasAttFile == true) {	
+				row.addText(smAtt.toString());
+			}
+			else {
+				row.addText("Kh\u00f4ng c\u00f3 t\u1eadp tin \u0111\u00ednh k\u00e8m");
+			}
+				
+			resultRows.add(row);
+		}
+	}
+	%>
+	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" /> 
+	<br>
+	<div align="right">
+		<input type="button" value='<liferay-ui:message key="delete" />' 
+		onclick="<portlet:namespace />deleteCVDen()" />
+	</div>

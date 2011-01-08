@@ -1,0 +1,11 @@
+<%
+int total = 0;
+total = PmlTrangThaiHSCVLocalServiceUtil.searchCount(true);
+
+
+searchContainer.setTotal(total);
+
+List results = PmlTrangThaiHSCVLocalServiceUtil.search(true, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+
+searchContainer.setResults(results);
+%>
