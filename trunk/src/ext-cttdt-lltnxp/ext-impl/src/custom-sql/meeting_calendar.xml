@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.countBySD_D_S_C">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT CalEvent.eventId) AS COUNT_VALUE
+			FROM
+				CalEvent
+			INNER JOIN
+				MeetingCalendar ON
+					(MeetingCalendar.mcalId = CalEvent.eventId)
+			WHERE
+				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(sponsor LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(component LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.countBySD_D_S_C_S">
+		<![CDATA[
+			SELECT
+				COUNT(DISTINCT CalEvent.eventId) AS COUNT_VALUE
+			FROM
+				CalEvent
+			INNER JOIN
+				MeetingCalendar ON
+					(MeetingCalendar.mcalId = CalEvent.eventId)
+			WHERE
+				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(sponsor LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(component LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(state = ? )
+		]]>
+	</sql>
+	
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.findBySD_D_S_C">
+		<![CDATA[
+			SELECT
+				{CalEvent.*}
+			FROM
+				CalEvent
+			INNER JOIN
+				MeetingCalendar ON
+					(MeetingCalendar.mcalId = CalEvent.eventId)
+			WHERE
+				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(sponsor LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(component LIKE ? [$AND_OR_NULL_CHECK$])
+			ORDER BY 
+				startDate DESC
+		]]>
+	</sql>
+	
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.findBySD_D_S_C_S">
+		<![CDATA[
+			SELECT
+				{CalEvent.*}
+			FROM
+				CalEvent
+			INNER JOIN
+				MeetingCalendar ON
+					(MeetingCalendar.mcalId = CalEvent.eventId)
+			WHERE
+				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(sponsor LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(component LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(state = ? )
+			ORDER BY 
+				startDate DESC
+		]]>
+	</sql>
+	
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalComponentFinder.findByG_SD">
+		<![CDATA[
+			SELECT
+				{MeetingCalComponent.*}
+			FROM
+				MeetingCalComponent
+			WHERE
+				(groupIds like ?) AND
+				(startDate >= ?) AND
+				(startDate <= ?)
+		]]>
+	</sql>
+	<sql id="com.ext.portlet.meetingcalendar.service.persistence.MeetingCalendarFinder.findByG_SD">
+		<![CDATA[
+			SELECT
+				{MeetingCalendar.*}
+			FROM
+				MeetingCalendar
+			INNER JOIN
+				CalEvent ON
+					(MeetingCalendar.mcalId = CalEvent.eventId)
+			WHERE
+				(CalEvent.groupId = ?) AND
+				(CalEvent.startDate >= ?) AND
+				(CalEvent.startDate <= ?) AND
+				(CalEvent.type_ = ?)
+			ORDER BY
+				MeetingCalendar.stt ASC
+		]]>
+	</sql>
+</custom-sql>

@@ -1,0 +1,3547 @@
+## Quy dinh dat trong language
+#-------------------------------------------------------------------------
+##
+## Ten module
+##
+
+# Ten phan nhom
+## Ghi chu: key phai dat theo alphabet, rong, dau, ky tu; dung khoang trang giua key va text nhieu nhat la 1;
+## key dung chu thuong, dung dau - de cach tu;
+#-------------------------------------------------------------------------
+
+
+##
+## File Status
+##
+javax.portlet.title.SGS_FILESTATUS=Trạng thái
+pccc.filestatus=Trạng thái hồ sơ
+pccc.file_not_receive=Hồ sơ chưa nhận
+pccc.file_need_process=Hồ sơ cần xử lý trong ngày
+pccc.file_out_of_date=Hồ sơ đã quá hạn xử lý
+pccc.file_wait_for_supplyment=Hồ sơ chờ bổ sung
+
+#
+
+javax.portlet.title.SGS_DOCUMENTPROCESSMANAGEMENT=Quản lý quy trình VB
+javax.portlet.title.SGS_HOME=Home Menu
+home-one-door=Một cửa luân chuyển
+home-document=Văn bản
+home-news=Tin tức
+home-calendar=Lịch họp
+
+##
+##Category Name
+##
+category.SPortal=Cổng điện tử SaiGonSoft
+category.PML=Phần mềm lõi
+category.OneGate=Một cửa điện tử
+category.Document=Quản lý Văn Bản
+category.OneDoorReport=Thống kê(Bộ phận một cửa)
+category.DocumentPCCC=Quản lý văn bản
+category.ReportPCCC=PCCC Báo Cáo Thống Kê
+
+view-reports=View Reports
+javax.portlet.title.EXT_NEWS=Tin tức
+javax.portlet.title.EXT_NEWSMAIN=Tin nóng
+
+transition-to=Chuyển đến
+writing_article=Đang soạn thảo
+write_article=Soạn thảo
+editor=Người biên tập
+wait_to_edit=Chờ biên tập
+edit_article=Biên tập
+editing_article=Đang biên tập
+approver=Người phê duyệt
+rewrite_article=Soạn lại
+wait_to_rewrite=Chờ soạn lại
+wait_to_approve=Chờ phê duyệt
+approve_article=Phê duyệt
+publisher=Người xuất bản
+reedit_article=Biên tập lại
+wait_to_publish=Chờ xuất bản
+wait_to_reedit=Chờ biên tập lại
+publish_article=Xuất bản
+published_article=Đã xuất bản
+
+##
+## Messages question & answer
+##
+javax.portlet.title.SGS_QA=Hoi dap
+javax.portlet.title.SGS_QAADMIN=Hoi dap admin
+qa_category_name=Chuyên mục
+qa_category_type=Loại
+qa_category_update=Cập nhật
+qa_category_cancel=Hủy
+qa_from_date=Từ ngày
+qa_to_date=Đến ngày
+qa_statistic_done=Thực hiện
+qa_make_question=Đặt câu hỏi
+qa_total_category=Tổng số chuyên mục
+qa_total_question=Tổng số câu hỏi
+qa_maximum_questions_on_page=Số câu hỏi hiển thị trên một trang
+qa_maximum_categories_on_page=Số Chuyên mục hiển thị trên một trang
+qa_no=STT
+qa_question_amount=Số lượng
+qa_question_answered=Đã trả lời
+qa_question_not_answered=Chưa trả lời
+qa_question_statistic=Trạng thái
+qa_search_key_word=Từ khóa
+qa_question_content=Nội dung
+qa_question_answer=Trả lời
+from=Người gửi
+qu_date_post=Gửi ngày
+add_new=Thêm mới
+qa_category_description=Nội dung
+qa_view_category=Hiện thị chuyên mục
+qa_view_answer=Hiển thị câu trả lời
+qa_statistic=Hiển thị trạng thái
+qa_post_question_success=Dat cau hoi thanh cong
+
+##
+##Q&A
+##
+qa_question=Thông tin câu hỏi
+qa_question_type=Loại câu hỏi
+qa_question_subject=Tiêu đề
+qa_question_post_user=Thông tin người gửi
+qa_question_post_user_fullname=Họ tên
+qa_question_post_user_gender=Giới tính
+qa_question_post_user_gender_male=Nam
+qa_question_post_user_gender_female=Nữ
+qa_question_post_user_add=Địa chỉ
+qa_question_post_user_tel=Điện thoại
+qa_question_post_user_email=Email
+qa_question_post_user_answer=Trả lời
+qa_question_post_user_birthday=Ngay sinh
+
+##
+## Calendar
+##
+sgs_personal_calendar=Lịch cá nhân
+sgs_org_calendar=Lịch đơn vị
+sgs_calendar_of=Lịch của
+sgs_cal_duration=Thời gian hợp
+sgs_cal_hours=Giờ
+sgs_cal_minutes=Phút
+sgs_cal_responsibility=Chủ trì
+sgs_cal_content=Nội dung
+sgs_cal_member=Thành phần
+sgs_cal_note=Ghi chú
+sgs_cal_place=Địa điểm
+sgs_cal_ortherPlace=Nơi khác
+sgs_cal_start=Bắt đầu từ
+
+##
+javax.portlet.title.SGS_CALENDAR=Lịch công tác
+update=Cập nhật
+cancel=Hủy bỏ
+
+personal-calendar=Lịch Cá nhân
+prepare-calendar=Lịch dự kiến
+main-calendar=Lịch chính thức
+register-calendar=Đăng ký lịch
+
+sgscalendar.day=Thứ/Buổi
+sgscalendar.morning=Sáng
+sgscalendar.afternoon=Chiều
+sgscalendar.mon=Thứ hai
+sgscalendar.tue=Thứ ba
+sgscalendar.wed=Thứ tư
+sgscalendar.thu=Thứ năm
+sgscalendar.fri=Thứ sáu
+sgscalendar.sat=Thứ bảy
+sgscalendar.sun=Chủ nhật
+
+sgscalendar.from-date=Từ ngày
+sgscalendar.to-date=Đến ngày
+
+##
+## Portlet Country
+##
+javax.portlet.title.SGS_COUNTRY=Quốc Gia
+require.countryCode=Điền mã quốc gia
+
+countryCode=Mã quốc gia
+countryName=Tên quốc gia
+
+filter=Chọn xem
+keyword=Từ khóa
+amountDisplay=Số lượng hiển thị trên một trang
+index=STT
+description=Mô tả
+active=Hoạt Động
+page=Trang
+totalItem=so mau tin
+deleteConfirm=Bạn có chắc chắn xóa?
+
+##
+## Portlet Nation
+##
+javax.portlet.title.SGS_NATION=Dân Tộc
+
+##
+## add by tunglt
+##
+javax.portlet.title.SGS_FIELD=Lĩnh vưc
+sgs_field_filter=Lọc theo
+sgs_field_fieldCode=Mã lĩnh vưc
+sgs_field_fieldName=Tên lĩnh vưc
+sgs_field_key=Từ khóa
+sgs_field_numberDisplay=Số dòng hiển thị
+sgs_field_no=Số thứ tự
+sgs_field_description=Mô tả
+sgs_field_active=Hoạt động
+sgs_field_edit=Sữa
+sgs_field_delete=Xóa
+sgs_field_totalMessage=Tổng số mẫu tin
+sgs_field=Lĩnh vưc
+sgs_field_save=Lưu
+sgs_field_reset=Hủy bỏ
+sgs_field_create=Thêm mới
+sgs_field_go=Thực hiên
+sgs_field_page=Trang
+
+sgs_filetype_filetypeCode=Mã loại hồ sơ
+sgs_filetype_filetypeName=Tên loại hồ sơ
+sgs_filetype_fieldid=Lĩnh vực
+sgs_filetype_templateid=Bản mẫu
+sgs_filetype_processTime=Thời gian xử lý
+sgs_filetype_current_receipt_number=Số biên nhận hiện tại
+sgs_filetype_receipt_template=Mẫu biên nhận
+sgs_filetype=Loại hồ sơ
+
+sgs_field_empty_fieldCode=Nhập vào mã lĩnh vực
+sgs_field_fieldCode_lenght=Mã lĩnh vực không được nhiều hơn 20 kí tự
+sgs_field_fieldName_lenght=Tên lĩnh vực không được nhiều hơn 20 kí tự
+sgs_field_fieldDescription_lenght=Mô tả không được nhiều hơn 4000 kí tự
+sgs_field_deleteMessage=Bạn muốn xóa mẫu tin này?
+
+javax.portlet.title.SGS_FILETYPE=Loại hồ sơ
+sgs_filetype_empty_filetypeCode=Nhập vào mã loại hồ sơ
+sgs_filetypeCode_lenght=Mã loại hồ sơ không được nhiều hơn 20 kí tự
+sgs_filetypeName_lenght=Tên loại hồ sơ không được nhiều hơn 200 kí tự
+sgs_fieldID_lenght=Lĩnh vưc ID không được nhiều hơn 20 kí tự
+sgs_templateID_lenght=Bản mẫu ID không được nhiều hơn 20 kí tự
+sgs_processTime_lenght=Thời gian xử lý không được nhiều hơn 20 kí tự
+sgs_currentReceiptNumber_lenght=Số biên nhận hiện tại không được nhiều hơn 1 kí tự
+sgs_receiptTemplate_lenght=Mẫu biên nhận không được nhiều hơn 50 kí tự
+
+##
+## City Management
+##
+javax.portlet.title.SGS_CITYMANAGEMENT=City Management
+
+citymanagement.filter=Lọc theo
+citymanagement.all=Tất cả
+citymanagement.key-search=Từ khóa
+citymanagement.total-item-of-page=Số dòng hiển thị
+citymanagement.no=STT
+citymanagement.id=Tỉnh/Thành Phố ID
+citymanagement.code=Mã Tỉnh/Thành Phố
+citymanagement.name=Tên Tỉnh/Thành Phố
+citymanagement.description=Mô Tả
+citymanagement.active=Hoạt Động
+citymanagement.edit=Sửa
+citymanagement.edit-title=Sửa
+citymanagement.delete=Xóa
+citymanagement.delete-title=Xóa
+citymanagement.total-of-items=Tổng số mẫu tin
+citymanagement.page=Trang
+
+citymanagement.button-search=Thực hiện
+citymanagement.button-add=Thêm mới
+citymanagement.button-save=Lưu
+citymanagement.button-back=Trở về
+
+ban-muon-xoa-thanh-pho-nay-khoi-he-thong=Bạn muốn xóa thành phố này khỏi hệ thống?
+nhap-ma-thanh-pho=Nhập mã thành phố!
+nhap-ten-thanh-pho=Nhập tên thành phố!
+nhap-ma=Nhập mã!
+nhap-ten=Nhập tên
+ban-muon-xoa-quan-nay-khoi-he-thong=Bạn muốn xóa quận này khỏi hệ thống?
+nhap-ma-quan=Nhập mã quận!
+nhap-ten-quan=Nhập tên quận!
+ban-muon-xoa-phuong-xa-nay-khoi-he-thong=Bạn muốn xóa phường này khỏi hệ thống?
+nhap-ma-phuong-xa=Nhập mã phường xã!
+nhap-ten-phuong-xa=Nhập tên phường xã!
+
+##
+## District Management
+##
+javax.portlet.title.SGS_DISTRICTMANAGEMENT=Quản lý quận
+
+districtmanagement.head=Quản lý các quận
+districtmanagement.filter=Lọc theo
+districtmanagement.all=Tất cả
+districtmanagement.key-search=Từ khóa
+districtmanagement.total-item-of-page=Số dòng hiển thị
+districtmanagement.no=STT
+districtmanagement.id=Quận/Huyện ID
+districtmanagement.code=Mã Quận/Huyện
+districtmanagement.name=Tên Quận/Huyện
+districtmanagement.city-id=Mã Tỉnh/Thành Phố
+districtmanagement.description=Mô Tả
+districtmanagement.active=Hoạt Động
+districtmanagement.edit=Sửa
+districtmanagement.edit-title=Sửa
+districtmanagement.delete=Xóa
+districtmanagement.delete-title=Xóa
+districtmanagement.total-of-items=Tổng số mẫu tin
+districtmanagement.page=Trang
+
+districtmanagement.button-search=Thực hiện
+districtmanagement.button-add=Thêm mới
+districtmanagement.button-save=Lưu
+districtmanagement.button-back=Trở về
+
+##
+## Wards Management
+##
+javax.portlet.title.SGS_WARDSMANAGEMENT=Wards Management
+
+wardsmanagement.filter=Lọc theo
+wardsmanagement.all=Tất cả
+wardsmanagement.key-search=Từ khóa
+wardsmanagement.total-item-of-page=Số dòng hiển thị
+wardsmanagement.no=STT
+wardsmanagement.id=Phường/Xã ID
+wardsmanagement.code=Mã Phường/Xã
+wardsmanagement.name=Tên Phường/Xã
+wardsmanagement.district-id=Mã Quận/Huyện
+wardsmanagement.description=Mô Tả
+wardsmanagement.active=Hoạt Động
+wardsmanagement.edit=Sửa
+wardsmanagement.edit-title=Sửa
+wardsmanagement.delete=Xóa
+wardsmanagement.delete-title=Xóa
+wardsmanagement.total-of-items=Tổng số mẫu tin
+wardsmanagement.page=Trang
+
+wardsmanagement.button-search=Thực hiện
+wardsmanagement.button-add=Thêm mới
+wardsmanagement.button-save=Lưu
+wardsmanagement.button-back=Trở về
+
+##
+## add by tunglt
+##
+javax.portlet.title.SGS_PMLSTREET=Street
+javax.portlet.title.SGS_PMLFILEATTACHEDFILE=FileAttachedFile
+javax.portlet.title.SGS_PMLFILE=Hồ sơ
+javax.portlet.title.SGS_WORKFLOW_ADMIN=Quản lý quy trình
+sgs_onedoor_workflowadmin_workflow=Quy trình
+sgs_onedoor_workflowadmin_version=Phiên bản
+
+
+##
+## One door
+##
+javax.portlet.title.SGS_ONEDOORPROCESS=Bộ phận xử lý một cửa
+javax.portlet.title.SGS_ONEDOORRECEIVE=Bộ phận tiếp nhận một cửa
+sgs_onedoor_add_file=Tiếp nhận hồ sơ
+sgs_onedoor_file_type=Loại hồ sơ
+sgs_onedoor_file_type_select=Chọn loại hồ sơ
+sgs_onedoor_receiver=Người nhận
+sgs_onedoor_number_receipt=Số biên nhận
+sgs_onedoor_application_date=Ngày nộp
+sgs_onedoor_organization=Đơn vị/Công ty
+sgs_onedoor_description=Ghi chú
+sgs_onedoor_applicant_name=Tên người nộp
+sgs_onedoor_gender=Giới tính
+sgs_onedoor_gender_male=Nam
+sgs_onedoor_gender_female=Nữ
+sgs_onedoor_contact_information=Thông tin liên lạc
+sgs_onedoor_district=Quận
+sgs_onedoor_telephone=Điện thoại
+sgs_onedoor_authorised_letter=Giấy ủy quyền
+sgs_onedoor_address=Địa chỉ
+sgs_onedoor_expected_returning_date=Ngày hẹn trả
+sgs_onedoor_solving_time=Số ngày giải quyết
+sgs_onedoor_attached_file=Hồ sơ đính kèm
+sgs_onedoor_no.=STT
+sgs_onedoor_select=Chọn
+sgs_onedoor_attached_file_name=Tên hồ sơ đính kèm
+sgs_onedoor_original=Bản chính
+sgs_onedoor_copy=Bản sao
+sgs_onedoor_district_select=Chọn quận
+sgs_onedoor_user_select=-Chọn-
+sgs_onedoor_cereipt-info=Thông tin tiếp nhận hồ sơ
+No-attached-file=Không có hồ sơ đính kèm
+sgs_onedoor_note=Ghi chú
+sgs_onedoor_send_name=Người chuyển
+sgs_onedoor_sender_date=Ngày chuyển
+sgs_onedoor_sender_time=Thời điểm chuyển
+
+
+sgs_onedoor_search_information=Thông tin tìm kiếm
+sgs_onedoor_from_date=Từ ngày
+sgs_onedoor_to_date=Đến ngày
+sgs_onedoor_total_row=Tổng số
+sgs_onedoor_total_entries_per_page=Số dòng thể hiện trên trang
+sgs_onedoor_file_information=Thông tin hồ sơ
+sgs_onedoor_status=Trạng thái
+sgs_onedoor_file_id=Mã hồ sơ
+sgs_onedoor_change_process=Chuyển xử lý
+sgs_onedoor_application_time=Thời gian nhận
+sgs_onedoor_process_information=Thông tin xử lý
+sgs_onedoor_detail_information_file=Thông tin chi tiết hồ sơ
+
+onedoor_pageLicensingInformation=Thông tin gấy phép
+onedoor_printWorkshop=Cơ sở in
+onedoor_addressWorkshop=Địa chỉ
+onedoor_processingFor=In gia công cho
+onedoor_publishName=Tên phẩm xuất bản
+onedoor_frameworkOf=Khuông khổ
+onedoor_numberPage=Số trang
+onedoor_quantity=Số lượng in
+onedoor_quantityChar=Bằng số
+onedoor_exportPort=Cửa xuất khẩu
+onedoor_licensingInformation=Thông tin cấp phép
+onedoor_agree=Đồng ý cấp phép
+onedoor_permitNo=Số giấy phép
+onedoor_permitDate=Ngày cấp phép
+onedoor_expirationDate=Ngày hết hạn
+onedoor_submitInformation=Thông tin tờ trình
+onedoor_submitNo=Tờ trình số
+onedoor_workAbout=Về việc
+onedoor_receiptDate=Ngày nhận
+onedoor_submitExpirationDate=Ngày hết hạn
+onedoor_includingFiles=Hồ sơ gồm:
+onedoor_note=Ghi chú
+onedoor_content=Nội dung
+onedoor_proposed=Đề xuất
+sgs_onedoor_list=Danh sách hồ sơ
+deploy-workflow-success=Thêm mới quy trình thành công.
+deploy-workflow-fail=Thêm mới quy trình không thành công.
+sign-in=Đăng nhập
+pccconedoor-tra-thanh-cong=Trả hồ sơ thành công!
+are-you-sure-you-want-to-delete-this-file=Bạn có muốn xóa hồ sơ này không!
+pccconedoor-xoa-thanh-cong=Xóa hồ sơ thành công!
+pccconedoor-sua-thanh-cong=Sửa hồ sơ thành công!
+pccc-DSHS-trangthaihoso=Trạng thái hồ sơ
+pccc-DSHS-ngaygoi=Người gửi
+pccc-DSHS-ngayhethan=Ngày hết hạn
+pccc-DSHS-ngayHTK=Ngày HTK
+processList=Danh sách xử lý
+watchList=Danh sách theo dõi
+
+pccc-TN-gio-lam-viec=Giờ làm việc
+pccc-TN-ngay-lam-viec=Ngày làm việc
+pccc-TN-nagyxulyconlaicuahoso=Ngày xử lý còn lại của hồ sơ
+pccc-TN-hosotrehan=Hồ sơ trễ hẹn
+chuyenUBNDTP=Chuyển UBNDTP
+##
+## Document
+##
+javax.portlet.title.SGS_DOCUMENTRECEIPT=Tiếp nhận văn bản đến
+javax.portlet.title.SGS_DOCUMENTRECEIPTPROCESS=Xử lý văn bản đến
+javax.portlet.title.SGS_DOCUMENTRETURN=Soạn văn bản đi
+javax.portlet.title.SGS_DOCUMENTRETURNPROCESS=Xử lý văn bản đi
+document_input_document_receipt_information=Nhập thông tin văn bản đến
+document_Sender_Level_Rank=Cấp gửi
+document_Sender_Level_Rank_Select=Chọn cấp gửi
+document_Arriving_Doc_Reference=Số hiệu văn bản đến
+document_type=Loại văn bản
+document_type_selected=Chọn loại văn bản
+document_local_document_reference=Số văn bản nội bộ
+document_document_reference=Số văn bản
+document_document_reference_selected=Chọn số văn bản
+document_organization=Cơ quan ban hành
+document_priviledge_level=Độ khẩn
+document_priviledge_level_selected=Chọn Độ khẩn
+document_issuing_date=Ngày phát hành
+document_confidential_level=Độ mật
+document_confidential_level_selected=Chọn độ mật
+document_signer=Người ký
+document_brief_content=Trích yếu
+document_arriving_date=Ngày đến
+document_total_execution_date=Tổng số ngày xử lý
+document_local_documents=Văn bản nội bộ
+document_attached_file=Tập tin đính kèm
+document_attached_file_title=Tiêu đề
+document_attached_file_name=Tên tập tin
+document_search_information=Thông tin tìm kiếm văn bản
+document_issuing_place=Nơi phát hành
+document_receive_date=Ngày nhận
+document_status=Trạng thái
+document_status_selected=Chọn trạng thái
+document_process=Xử lý
+document_detail=Thông tin chi tiết văn bản
+document_book=Sổ văn bản
+document_book_selected=Chọn Sổ văn bản
+document_save_date=Ngày lưu
+document_action=Thao tác
+document_signing_date=Ngày ký
+document_editor=Người soạn thảo
+document_signer_selected=Chọn người ký
+document_return_document_reference=Số hiệu văn bản đi
+document_return_document_reference_selected=Chọn số hiệu văn bản đi
+document_send_place=Nơi gửi
+document_return_editor=Soạn văn bản đi
+document_return_update=Cập nhật văn bản đi
+document_more_file=Thêm hồ sơ
+maximum-items-to-display=Tổng số dòng hiển thị trên trang
+reset=Nhập lại
+document_send_to_director=Chuyển văn bản đến cho Lãnh đạo
+document_start_date=Ngày bắt đầu
+document_process_infomation=Thông tin xử lý
+document_send_to=Chuyển đến
+document_send_to_department=Phân văn bản bản đến các phòng ban
+document_department_list=Danh sách các phòng ban
+document_process_department_list=Danh sách phòng xử lý
+document_main_process_department=Phòng chịu trách nhiệm xử lý chính
+document_days_process=Số ngày xử lý văn bản đến
+document_save_and_main_process=Văn bản lưu trữ, phối hợp xử lý chính
+document_receive_info=Thông tin xử lý văn bản đến
+document_receive_info_=Thông tin văn bản đến
+doc-edit=Chỉnh sửa hồ sơ
+trinhky=Trình ký
+document_processor=Người xử lý
+doc-attached-info=Thông tin hồ sơ đính kèm
+document_process_information=Thông tin xử lý
+document_save=Lưu
+
+document_sender=Người gởi:
+document_receiver=Người nhận:
+document_content_addtional=Nội dung bổ sung:
+document_content_trans=Nội dung chuyển:
+document_content=Ý kiến:
+
+document_send_update=Sửa
+document_send_change=Chuyển
+document_send_additional=Bổ sung
+document_send_show_process=Xem quá trình xử lý
+documentsend_moveToAgencyLeaderdocumentsend_moveToPublish=Chuyển xuất bản
+
+document_employee_list=Danh sách chuyên viên
+document_process_employee_list=Danh sách chuyên viên xử lý
+document_main_process_employee=Chuyên viên xử lý chính
+
+
+documentsend_requestAdditional=Yêu cầu bổ sung
+documentsend_sender=Người gởi
+documentsend_receiver=Người nhận
+documentsend_processInformation=Thông tin xử lý
+pcccdocumentreceipt-tra-thanh-cong=Văn bản đã được trả!
+
+vui-long-chon-so=Vui lòng chọn sổ!
+so-hien-tai=Số hiện tại
+
+##
+## Admin document record type
+##
+document_record_type_title=Thêm loại sổ văn bản
+document_record_type_name=Tên loại sổ văn bản
+documentRecordType.display.all=Tất cả
+documentRecordType_name=Loại sổ văn bản
+documentRecordType.display.keyword=Từ khoá
+documentRecordType.display.go=Tìm
+documentRecordType.display.number_display=Số lượng thể hiện
+documentRecordType_no=STT
+documentRecordType.display.showDocumentType=Xem loại sổ văn bản
+documentRecordType.display.showDocumentRecordTo=Xem sổ văn bản đến
+documentRecordType.display.showBookDocumentSend=Xem sổ văn bản đi
+documentRecordType.delete=Xoá
+documentRecordType_total=Tổng cộng
+documentRecordType_page=Trang
+
+##
+## Admin document type
+##
+document_type_title=Loại văn bản
+document_type_name=Tên
+document_type_symbol=Ký hiệu
+document_type_update=Cập nhật
+documentType.display.filter=Lọc
+documentType.display.all=Tất cả
+documentType_name=Tên
+documentType.display.keyword=Từ khoá
+documentType.display.go=Tìm
+documentType.display.number_display=Số lượng thể hiện
+documentType_no=STT
+documentType_symbol=Ký hiệu
+documentType.display.edit=Sửa
+documentType.delete=Xoá
+documentType_total=Tổng cộng
+documentType_page=Trang
+
+##
+## Admin document record to
+##
+document_record_to_title=Sổ văn bản đến
+document_record_to_date_create=Ngày tạo
+document_record_to_current_record=Sổ hiện tại
+document_record_to_department=Phòng ban
+document_record_to_agency=Ban
+document_record_type=Loại sổ văn bản
+document_record_to_is_agency=Của Ban
+document_record_to_save=Lưu
+document_record_to_update=Cập nhật
+document_record_to_reset=Nhập lại
+documentRecordTo.display.all=Tất cả
+documentRecordTo.display.keyword=Từ khoá
+documentRecordTo.display.go=Tìm
+documentRecordTo.display.number_display=Số lượng thể hiện
+documentRecordTo_name=Tên
+documentRecordTo.display.edit=Sửa
+documentRecordTo.delete=Xoá
+documentRecordTo_ofAgency=Của phòng
+
+##
+## Admin book document send
+##
+book_document_send_title=Sổ văn bản đi
+book_document_send_date_create=Ngày tạo
+book_document_send_current_record=Sổ hiện tại
+book_document_send_department=Phòng ban
+book_document_send_agency=Ban
+book_document_send_yearln_user=Năm
+book_document_send_is_agency=Của Ban
+book_document_send_save=Lưu
+book_document_send_update=Cập nhật
+book_document_send_reset=Nhập lại
+bookDocumentSend.display.all=Tất cả
+bookDocumentSend.display.keyword=Từ khoá
+bookDocumentSend.display.go=Tìm
+bookDocumentSend.display.number_display=Số lượng thể hiện
+bookDocumentSend_no=STT
+bookDocumentSend_name=Tên
+bookDocumentSend.display.edit=Sửa
+bookDocumentSend.delete=Xoá
+bookDocumentSend_ofAgency=Của Ban
+
+##
+## Alert javascript
+##
+alert-ord-type=Chọn loại hồ sơ!
+alert-ord-gender=Chọn giới tính!
+alert-ord-dis=chọn quận!
+alert-ord-phonemax=số điện thoại không lớn hơn 15!
+alert-ord-phonemin=Ít nhất 7 số!
+alert-ord-copy-check-number=Nhập "bản sao" là số!
+alert-ord-original-check-number=Nhập "bản chính" là số!
+whoprocess=Người tiếp nhận xử lý hồ sơ?
+process-flow-switch=Quy trình luân chuyển
+sender=Người gửi
+date=Ngày
+number-day=Ngày
+content-process=Nội dung xử lý
+assign-emp-process=Phân cônng nhân viên xử lý
+list-docreceipt=Danh sách văn bản đến
+receipt-infomation=Thông tin văn bản đến
+
+##
+## Workflow
+##
+vuatiepnhan=Vừa tiếp nhận
+chuyenxuly=Chuyển xử lý
+inbiennhan=In biên nhận
+suahoso=Sửa hồ sơ
+chophancong=Chờ phân công
+daphancong=Đã phân công
+dathuly=Đã thụ lý
+thuly=Thụ lý
+dangthuly=Đang thụ lý
+bosung=Bổ sung
+chobosung=Chờ bổ sung
+hosodakyduyet=Hồ sơ đã ký duyệt
+bosunghoso=Bổ sung hồ sơ
+hosodabosung=Hồ sơ đã bổ sung
+trahoso=Trả hồ sơ
+hosodatra=Hồ sơ đã trả
+dangxuly=Đang xử lý
+huyhoso=Hủy hồ sơ
+yeucauchinhsua=Yếu cầu chỉnh sửa
+
+##
+## CVDENCHINH
+##
+suacongvan=Sửa văn bản
+xoacongvan=Xóa văn bản
+chuyenphongban=Chuyển xử lý
+phancong=Phân công
+xuly=Xử lý
+soancongvandi=Soạn văn bản đi
+dangsoancongvantraloi=Đang soạn văn bản trả lời
+congvantraloi=Văn bản trả lời
+hoanthanh=Hoàn thành
+
+##
+## CVDI
+##
+luutam=Lưu tạm
+chuyenphathanh=Chuyển phát hành
+trinhlanhdao=Trình ban giám đốc
+trinhtruongphong=Trình chỉ huy
+baocaocanhan=Báo cáo cá nhân
+chopheduyet=Chờ phê duyệt
+baocaodonvi=Báo cáo đơn vị
+yeucaubosung=Yêu cầu bổ sung
+datrinh=Đã trình
+baocaophong=Báo cáo phòng
+chophathanh=Chờ phát hành
+phathanh=Phát hành
+daphathanh=Đã phát hành
+trinhtruongdoi=Trình trưởng đội
+
+##
+## CVDENPHU2-CVDENPHU1
+##
+xacnhanxem=Xác nhận xem
+xacnhandaxem=Xác nhận đã xem
+thongtingopy=Thông tin góp ý
+
+##
+## Document receipt alert
+##
+doc-r1-alert=Nhập vào số hiệu văn bản đến!
+doc-r2-alert=Chọn cấp gửi văn bản!
+doc-r11-alert=Số văn bản nội bộ!
+doc-r3-alert=Chọn loại văn bản!
+doc-r4-alert=Chọn cơ quan ban hành!
+doc-r5-alert=Nhập thông tin trích yếu!
+doc-r6-alert=Chọn ngày văn bản đến!
+doc-r7-alert=Nhập tổng số ngày xử lý là số nguyên dương!
+doc-r8-alert=Xin vui lòng nhập đủ thông tin:
+doc-r9-alert=Ngày không hợp lệ
+doc-r10-alert=Ngày bắt đầu nhỏ hơn hoặc bằng ngày kết thúc!
+pcccdocumentreceipt-chuyen-thanh-cong=Chuyển thành công!
+pcccdocumentreceipt-xoa-thanh-cong=Xóa văn bản thành công!
+pcccdocumentreceipt-sua-thanh-cong=Cập nhật văn bản thành công!
+pcccdocumentreceipt-luu-thanh-cong=Lưu văn bản thành công!
+
+##
+## One door report
+##
+javax.portlet.title.SGS_ONEDOORREPORT_BAOCAOTHEOTINHTRANGHOSO=Báo cáo theo tình trạng hồ sơ
+javax.portlet.title.SGS_ONEDOORREPORT_BAOCAOTHEOTINHTRANGXULY=Báo cáo theo tình trạng xử lý
+javax.portlet.title.SGS_ONEDOORREPORT_THONGKEHOSOCHUATRAKETQUA=Thống kê hồ sơ chưa trả kết quả
+javax.portlet.title.SGS_ONEDOORREPORT_THONGKEHOSOQUAHANTRAKETQUA=Thống kê hồ sơ quá hạn trả kết quả
+javax.portlet.title.SGS_ONEDOORREPORT_TINHHINHGIAIQUYETHOSOCUAPHONGBAN=Tình hình giải quyết hồ sơ của phòng ban
+javax.portlet.title.SGS_ONEDOORREPORT_BIEUDOTINHHINHTIEPNHANHOSO=Biểu đồ tình hình tiếp nhận hồ sơ
+javax.portlet.title.SGS_ONEDOORREPORT_BIEUDOTINHHINHXULYHOSO=Biểu đồ tình hình xử lý hồ sơ
+one_door_report_file_status=Tình trạng hồ sơ
+one_door_report_print_report=Xuất báo cáo
+
+##
+## Privilege Level Admin
+##
+javax.portlet.title.SGS_PML_EDM_PRIVELEGELEVELADMIN=Quản lý độ khẩn
+pml_edm_privilege_level_name=Tên độ khẩn
+pml_edm_privilege_level_id=Mã độ khẩn
+privelegeadmin_add_failure=Lỗi xảy ra khi thêm mới!
+privelegeadmin_delete=Bạn có chắc xoá không?
+privelegeadmin_save=Lưu
+
+##
+##File Status Admin
+##
+javax.portlet.title.SGS_PMLEDM_FILESTATUS=Quản lý trạng thái hồ sơ
+pml_edm_file_status_id=Id trạng thái hồ sơ
+pml_edm_file_status_code=Mã trạng thái hồ sơ
+pml_edm_file_status_name=Tên trạng thái hồ sơ
+pml_edm_file_status_description=Mô tả
+pml_edm_file_status_active=Hoạt động
+pml_edm_file_state_process_id=Id trạng thái xử lý
+pml_edm_file_state_process_code=Mã trạng thái hồ sơ
+pml_edm_file_state_process_name=Tên trạng thái xử lý
+pml_edm_file_state_type=Loại trạng thái
+pml_edm_file_state_motcua=Một cửa
+pml_edm_file_state_congvan=Văn bản
+
+##
+## Calendar.displayPersonal
+##
+calendar.displayPersonal.addPersonalEvent=Thêm lịch
+calendar.displayPersonal.lichSo=Lịch Ban
+calendar.displayPersonal.previousWeek=<<<
+calendar.displayPersonal.nextWeek=>>>
+calendar.displayPersonal.dayOnWeek=Thứ
+calendar.displayPersonal.morning=Buổi sáng
+calendar.displayPersonal.afternoon=Buổi chiều
+calendar.displayPersonal.lichPhong=Lịch phòng
+calendar.displayPersonal.lichCaNhan=Lịch cá nhân
+calendar.displayPersonal.thu2=Thứ 2
+calendar.displayPersonal.thu3=Thứ 3
+calendar.displayPersonal.thu4=Thứ 4
+calendar.displayPersonal.thu5=Thứ 5
+calendar.displayPersonal.thu6=Thứ 6
+calendar.displayPersonal.thu7=Thứ 7
+calendar.displayPersonal.thu8=Chủ nhật
+calendar.displayPersonal.eventFrom=Lịch từ
+calendar.displayPersonal.toDate=đến ngày
+calendar.displayPersonal.year=năm
+calendar.displayPersonal.unapproved=Chưa duyệt
+calendar.displayPersonal.requireChange=Yêu cầu thay đổi
+calendar.displayPersonal.addDepartmentEvent=Thêm lịch
+calendar.displayPersonal.approved=Đã duyệt
+calendar.displayPersonal.cancelPersonalEventMessage=Có phải bạn muốn hủy lịch này?
+calendar.displayPersonal.cancelDepartmentEventMessage=Có phải bạn muốn hủy lịch này?
+calendar.displayPersonal.unapproveDepartmentEventMessage=Có phải bạn muốn bõ duyệt lịch này?
+calendar.displayPersonal.approveDepartmentEventMessage=Bạn sẽ duyệt lịch này?
+calendar.displayPersonal.selectDepartment=Chọn phòng
+calendar.displayPersonal.selectUser=Chọn nhân viên
+calendar.displayPersonal.viewEventOfUser=Xem lịch cá nhân
+calendar.displayPersonal.type=Loại sự kiện
+calendar.displayPersonal.otherplace=Vị trí khác
+calendar.displayPersonal.placename=Vị trí
+calendar.displayPersonal.sponsorname=Người chủ trì
+calendar.displayPersonal.title=Tên sự kiện
+calendar.displayPersonal.description=Mô tả
+calendar.displayPersonal.participants=Thành phần
+calendar.displayPersonal.otherParticipants=Thành phần khác
+calendar.displayPersonal.departmentName=Phòng tham gia
+calendar.displayPersonal.aliasName=Định danh
+
+##
+## Calendar.add person
+##
+calendar.add_personalevent.thu7=Thứ 7
+calendar.add_personalevent.thu6=Thứ 6
+calendar.add_personalevent.thu5=Thứ 5
+calendar.add_personalevent.thu4=Thứ 4
+calendar.add_personalevent.thu3=Thứ 3
+calendar.add_personalevent.thu2=Thứ 2
+calendar.add_personalevent.cn=Chủ nhật
+
+calendar.add_personalevent.startdate=Ngày bắt đầu
+calendar.add_personalevent.titleName=Tên sự kiện
+calendar.add_personalevent.defaulttitleName=Tên sự kiện
+calendar.add_personalevent.description=Mô tả
+calendar.add_personalevent.type=Loại sự kiện
+calendar.add_personalevent.permissions=Quyền hạn
+calendar.add_personalevent.alldayevent=Cả ngày
+calendar.add_personalevent.minutes=phút
+calendar.add_personalevent.hours=giờ
+calendar.add_personalevent.duration=Thời gian diển ra
+calendar.add_personalevent.save=Lưu
+calendar.add_personalevent.update=Cập nhật
+calendar.add_personalevent.cancel=Về trang trước
+calendar.add_personalevent.repeat=Lịch lặp
+calendar.add_personalevent.do-not-repeat-this-event=Khoảng lặp
+calendar.add_personalevent.day-s=Khoảng cách ngày
+calendar.add_personalevent.every-weekday=Các ngày làm việc trong tuần
+calendar.add_personalevent.recur-every=Lặp mổi
+calendar.add_personalevent.weeks-on=tuần trước:
+calendar.add_personalevent.day=Vào ngày
+calendar.add_personalevent.of-every=của mổi
+calendar.add_personalevent.month-s=Tháng mổi lần
+calendar.add_personalevent.the=vào ngày
+calendar.add_personalevent.first=Đầu tiên
+calendar.add_personalevent.second=Thứ hai
+calendar.add_personalevent.third=Thứ ba
+calendar.add_personalevent.fourth=Thứ tư
+calendar.add_personalevent.last=cuối
+calendar.add_personalevent.year-s=năm mỗi lần.
+calendar.add_personalevent.weekday=Các ngày trong tuần
+calendar.add_personalevent.weekend-day=Các ngày cuối tuần
+calendar.add_personalevent.of=của
+calendar.add_personalevent.end-date=Ngày kết thúc
+calendar.add_personalevent.no-end-date=Không có ngày kết thúc
+calendar.add_personalevent.end-by=kết thúc với
+calendar.add_personalevent.remind-me=Nhắc nhở
+calendar.add_personalevent.before-and-again=sau đó và tiếp thục
+calendar.add_personalevent.before-the-event-by=sau đó cho mổi sự kiện.
+calendar.add_personalevent.do-not-send-a-reminder=Không nhắc nhở
+calendar.add_personalevent.email-address=Nhắc nhở bằng email
+calendar.add_personalevent.sms=Nhắc nhở bằng SMS
+calendar.add_personalevent.ym=Nhắc nhở bằng YM
+calendar.add_personalevent.aim=aim
+calendar.add_personalevent.icq=ICQ
+calendar.add_personalevent.msn=MSN
+calendar.add_personalevent.eventtabname=Sự kiện
+calendar.add_personalevent.reminders=Nhắc nhở
+
+##
+## Months
+##
+calendar.add_personalevent.month_1=Tháng một
+calendar.add_personalevent.month_2=Tháng hai
+calendar.add_personalevent.month_3=Tháng ba
+calendar.add_personalevent.month_4=Tháng tư
+calendar.add_personalevent.month_5=Tháng năm
+calendar.add_personalevent.month_6=Tháng sáu
+calendar.add_personalevent.month_7=Tháng bảy
+calendar.add_personalevent.month_8=Tháng tám
+calendar.add_personalevent.month_9=Tháng chín
+calendar.add_personalevent.month_10=Tháng mười
+calendar.add_personalevent.month_11=Tháng mười một
+calendar.add_personalevent.month_12=Tháng mười hai
+
+##
+## Day on week
+##
+calendar.add_personalevent.monday=Thứ 2
+calendar.add_personalevent.tuesday=Thứ 3
+calendar.add_personalevent.wednesday=Thứ 4
+calendar.add_personalevent.thursday=Thứ 5
+calendar.add_personalevent.friday=Thứ 6
+calendar.add_personalevent.saturday=Thứ 7
+calendar.add_personalevent.sunday=Chủ nhật
+
+##
+## Event type id
+##
+calendar.add_personalevent.1=Đi họp
+calendar.add_personalevent.2=Công tác
+calendar.add_personalevent.3=Nghỉ phép
+calendar.add_personalevent.4=Nghĩ lễ
+
+calendar.add_eventUnit.title=Create Event Unit
+calendar.add_eventUnit.participants=Participants Join
+calendar.add_eventUnit.department=Department
+calendar.add_eventUnit.alias=Alias
+calendar.add_eventUnit.remove=Remove
+calendar.add_eventUnit.add=Add
+calendar.add_eventUnit.otherParticipant=Other Participant
+calendar.add_eventUnit.otherPlace=Other Participant
+calendar.add_eventUnit.sponsor=Sponsor Person
+calendar.add_eventUnit.index=Index
+calendar.add_eventUnit.select=Select
+calendar.add_eventUnit.quantityRes=Quantity
+calendar.add_eventUnit.description=Description
+calendar.add_eventUnit.nameResource=Name
+calendar.add_eventUnit.attachFile=Attch File
+
+##
+## Calendar.init
+##
+calendar.init.persontabname=Cá nhân
+calendar.init.departmenttabname=Phòng
+calendar.init.agencytabname=Cơ quan
+
+##
+## Calendar.displayAgency
+##
+calendar.displayAgency.eventFrom=Lịch từ
+calendar.displayAgency.toDate=đến ngày
+calendar.displayAgency.addAgencyEvent=Thêm lịch
+calendar.displayAgency.previousWeek=<<<
+calendar.displayAgency.nextWeek=>>>
+calendar.displayAgency.dayOnWeek=Thứ
+calendar.displayAgency.morning=Buổi sáng
+calendar.displayAgency.afternoon=Buổi chiều
+calendar.displayAgency.thu2=Thứ 2
+calendar.displayAgency.thu3=Thứ 3
+calendar.displayAgency.thu4=Thứ 4
+calendar.displayAgency.thu5=Thứ 5
+calendar.displayAgency.thu6=Thứ 6
+calendar.displayAgency.thu7=Thứ 7
+calendar.displayAgency.thu8=Thứ 8
+calendar.displayAgency.approved=Đã duyệt
+calendar.displayAgency.requireChange=Yêu cầu thay đổi
+calendar.displayAgency.unapproved=Chưa duyệt
+calendar.displayAgency.unapproveAgencyEventMessage=Có phải bạn muốn bõ duyệt lịch này?
+calendar.displayAgency.approveAgencyEventMessage=Bạn sẽ duyệt lịch này?
+calendar.displayAgency.cancelAgencyEventMessage=Có phải bạn muốn hủy lịch này?
+calendar.displayAgency.departmentName=Phòng tham gia
+calendar.displayAgency.aliasName=Định danh
+calendar.displayAgencyEvent.title=Tên sự kiện
+calendar.displayAgency.title=Tên sự kiện
+
+##
+## Calendar.displayDepartment
+##
+calendar.displayDepartment.approved=Đã duyệt
+calendar.displayDepartment.requireChange=Yêu cầu thay đổi
+calendar.displayDepartment.unapproved=Chưa duyệt
+calendar.displayDepartment.addDepartmentEvent=Thêm lịch
+calendar.displayDepartment.cancelEventMessage=Có phải bạn muốn hủy lịch này?
+calendar.displayDepartment.cancelEventMessage=Có phải bạn muốn hủy lịch này?
+calendar.displayDepartment.unapproveEventMessage=Có phải bạn muốn bõ duyệt lịch này?
+calendar.displayDepartment.approveEventMessage=Bạn sẽ duyệt lịch này?
+calendar.displayDepartment.type=Loại sự kiện
+calendar.displayDepartment.otherplace=Vị trí khác
+calendar.displayDepartment.placename=Vị trí
+calendar.displayDepartment.sponsorname=Người chủ trì
+calendar.displayDepartment.title=Tên sự kiện
+calendar.displayDepartment.nextWeek=>>>
+calendar.displayDepartment.previousWeek=<<<
+calendar.displayDepartment.description=Mô tả
+calendar.displayDepartment.participants=Thành phần
+calendar.displayDepartment.otherParticipants=Thành phần khác
+
+##
+## Calendar.addEditDepartmentEvent
+##
+calendar.addEditDepartmentEvent.cancel=Về trang trước
+calendar.addEditDepartmentEvent.index=STT
+calendar.addEditDepartmentEvent.select=Chọn
+calendar.addEditDepartmentEvent.nameResource=Tên
+calendar.addEditDepartmentEvent.description=Mô tả
+calendar.addEditDepartmentEvent.quantityRes=Số lượng
+calendar.addEditDepartmentEvent.type=Loại sự kiện
+calendar.addEditDepartment.addParticipant=Thêm
+calendar.addEditDepartment.removeParticipant=Xóa
+calendar.addEditDepartmentEvent.save=Lưu
+calendar.addEditDepartmentEvent.update=Cập nhật
+calendar.addEditDepartmentEvent.you_havent_selected_option=Xin vui lòng chọn người tham gia.
+calendar.addEditDepartmentEvent.do_not_add_user=Không thể thêm người này!
+calendar.addEditDepartmentEvent.participants=Thành phần tham gia
+calendar.addEditDepartmentEvent.otherParticipant=Thành phần khác
+calendar.addEditDepartmentEvent.place=Nơi diển ra
+calendar.addEditDepartmentEvent.otherPlace=Nơi khác
+calendar.addEditDepartmentEvent.pleaseselectplace=---Chọn nơi diển ra sự kiện----
+calendar.addEditDepartmentEvent.sponsor=Người chủ trì
+calendar.addEditDepartmentEvent.resource=Trang thiết bị
+calendar.addEditDepartmentEvent.reminders=Nhắc nhở
+calendar.addEditDepartmentEvent.attachFile=Tập tin đính kèm
+calendar.addEditDepartmentEvent.addFile=Thêm tập tin
+calendar.addEditDepartmentEvent.startdate=Ngày bắt đầu
+calendar.addEditDepartmentEvent.title=Tên sự kiện
+calendar.addEditDepartmentEvent.minutes=phút
+calendar.addEditDepartmentEvent.hours=giờ
+calendar.addEditDepartmentEvent.duration=Thời gian diển ra
+calendar.addEditDepartmentEvent.defaulttitleName=Tên sự kiện
+calendar.addEditDepartmentEvent.alldayevent=Cả ngày
+calendar.addEditDepartmentEvent.day-s=Khoảng cách ngày
+calendar.addEditDepartmentEvent.month-s=tháng mỗi lần
+calendar.addEditDepartmentEvent.year-s=năm mỗi lần.
+calendar.addEditDepartmentEvent.the=vào ngày
+
+##
+## calendar.addEditAgencyEvent
+##
+calendar.addEditAgencyEvent.addAgencyEvent=Thêm lịch
+calendar.addEditAgencyEvent.participants=Thành phần tham gia
+calendar.addEditAgencyEvent.addParticipant=Thêm
+calendar.addEditAgencyEvent.removeParticipant=Xóa
+calendar.addEditAgencyEvent.otherParticipant=Thành phần khác
+calendar.addEditAgencyEvent.pleaseselectplace=---Chọn nơi diển ra sự kiện----
+calendar.addEditAgency.otherPlace=Nơi khác
+calevent.addEditAgencyEvent.resource=Trang thiết bị
+calevent.addEditAgencyEvent.place=Nơi diển ra
+calendar.addEditAgencyEvent.department=Chọn phòng ban
+calendar.addEditAgencyEvent.alias=Chọn định danh
+calendar.addEditAgencyEvent.sponsor=Người chủ trì
+calendar.addEditAgencyEvent.index=STT
+calendar.addEditAgencyEvent.select=Chọn
+calendar.addEditAgencyEvent.nameResource=Tên
+calendar.addEditAgencyEvent.description=Mô tả
+calendar.addEditAgencyEvent.quantityRes=Số lượng
+calendar.addEditAgencyEvent.attachFile=Tập tin đính kèm
+calendar.addEditAgencyEvent.addFile=Thêm tập tin
+calendar.addEditAgencyEvent.thu7=Thứ 7
+calendar.addEditAgencyEvent.thu6=Thứ 6
+calendar.addEditAgencyEvent.thu5=Thứ 5
+calendar.addEditAgencyEvent.thu4=Thứ 4
+calendar.addEditAgencyEvent.thu3=Thứ 3
+calendar.addEditAgencyEvent.thu2=Thứ 2
+calendar.addEditAgencyEvent.cn=Chủ nhật
+calendar.addEditAgencyEvent.titleName=Tên sự kiện
+calendar.addEditAgencyEvent.defaulttitleName=Tên sự kiện
+calendar.addEditAgencyEvent.type=Loại sự kiện
+calendar.addEditAgencyEvent.permissions=Quyền hạn
+calendar.addEditAgencyEvent.alldayevent=Cả ngày
+calendar.addEditAgencyEvent.minutes=phút
+calendar.addEditAgencyEvent.hours=giờ
+calendar.addEditAgencyEvent.duration=Thời gian diển ra
+calendar.addEditAgencyEvent.startdate=Ngày bắt đầu
+calendar.addEditAgencyEvent.save=Lưu
+calendar.addEditAgencyEvent.update=Cập nhật
+calendar.addEditAgencyEvent.cancel=Về trang trước
+calendar.addEditAgencyEvent.repeat=Lịch lặp
+calendar.addEditAgencyEvent.do-not-repeat-this-event=Khoảng lặp
+calendar.addEditAgencyEvent.day-s=Khoảng cách ngày
+calendar.addEditAgencyEvent.reminders=Nhắc nhở
+calendar.addEditAgencyEvent.every-weekday=Các ngày làm việc trong tuần
+calendar.addEditAgencyEvent.recur-every=Lặp mổi
+calendar.addEditAgencyEvent.weeks-on=tuần trước:
+calendar.addEditAgencyEvent.day=Vào ngày
+calendar.addEditAgencyEvent.of-every=của mổi
+calendar.addEditAgencyEvent.month-s=Tháng mổi lần
+calendar.addEditAgencyEvent.the=vào ngày
+calendar.addEditAgencyEvent.first=Đầu tiên
+calendar.addEditAgencyEvent.second=Thứ hai
+calendar.addEditAgencyEvent.third=Thứ ba
+calendar.addEditAgencyEvent.fourth=Thứ tư
+calendar.addEditAgencyEvent.last=cuối
+calendar.addEditAgencyEvent.year-s=năm mỗi lần.
+calendar.addEditAgencyEvent.weekday=Các ngày trong tuần
+calendar.addEditAgencyEvent.weekend-day=Các ngày cuối tuần
+calendar.addEditAgencyEvent.of=của
+calendar.addEditAgencyEvent.end-date=Ngày kết thúc
+calendar.addEditAgencyEvent.no-end-date=Không có ngày kết thúc
+calendar.addEditAgencyEvent.end-by=kết thúc với
+calendar.addEditAgencyEvent.remind-me=Nhắc nhở
+calendar.addEditAgencyEvent.before-and-again=sau đó và tiếp thục
+calendar.addEditAgencyEvent.before-the-event-by=sau đó cho mổi sự kiện.
+calendar.addEditAgencyEvent.do-not-send-a-reminder=Không nhắc nhở
+calendar.addEditAgencyEvent.email-address=Nhắc nhở bằng email
+calendar.addEditAgencyEvent.sms=Nhắc nhở bằng SMS
+calendar.addEditAgencyEvent.ym=Nhắc nhở bằng YM
+calendar.addEditAgencyEvent.aim=aim
+calendar.addEditAgencyEvent.icq=ICQ
+calendar.addEditAgencyEvent.msn=MSN
+
+##
+##
+##
+answer-document-receipt=Trả lời văn bản số
+file-all-doc=Tập tin toàn văn
+kyduyet=Ký duyệt
+inphieutrahoso=In phiếu trả hồ sơ
+xemthongtingopy=Xem thông tin góp ý
+documentsend_moveToAgencyLeader=Thông tin trình lãnh đạo
+documentsend_moveToDepartmentLeader=Thông tin trình trưởng phòng
+##
+## Onegate
+##
+inphieuyeucaubosung=In phiếu yêu cầu bổ sung
+hosochokyduyet=Hồ sơ chờ ký duyệt
+
+##
+sgs_startDate=Ngày bắt đầu
+sgs_endDate=Ngày kết thúc
+sgs_fileName=Tên file
+
+##
+## Level Send
+##
+javax.portlet.title.SGS_PMLLEVELSEND=Level Send
+pmllevelsend.id=Mã
+pmllevelsend.name=Tên
+pmllevelsend.filter=Lọc theo
+pmllevelsend.all=Tất cả
+pmllevelsend.search-key=Từ khóa
+pmllevelsend.add=Thêm mới
+pmllevelsend.no=#
+pmllevelsend.edit=Sửa
+pmllevelsend.delete=Xóa
+pmllevelsend.button-add=Thêm mới
+pmllevelsend.button-search=Tìm kiếm
+pmllevelsend.button-update=Cập nhật
+
+##
+## Level Send
+##
+javax.portlet.title.SGS_PMLISSUINGPLACE=Issuing Place
+pmlissuingplace.id=Mã
+pmlissuingplace.name=Tên
+pmlissuingplace.address=Địa chỉ
+pmlissuingplace.email=Email
+pmlissuingplace.telephone=Điện thoại
+pmlissuingplace.mobile=Di động
+pmlissuingplace.description=Mô tả
+pmlissuingplace.active=Hiển thị
+pmlissuingplace.filter=Lọc theo
+pmlissuingplace.all=Tất cả
+pmlissuingplace.search-key=Từ khóa
+pmlissuingplace.add=Thêm mới
+pmlissuingplace.no=#
+pmlissuingplace.edit=Sửa
+pmlissuingplace.delete=Xóa
+pmlissuingplace.button-add=Thêm mới
+pmlissuingplace.button-update=Cập nhật
+pmlissuingplace.button-search=Tìm kiếm
+
+##
+## Confidential Level
+##
+javax.portlet.title.SGS_PML_EDM_CONFIDENTIALLEVEL=Quản lý độ mật
+pml_edm_confidential_level_id=Mã độ mật
+pml_edm_confidential_level_name=Tên độ mật
+edit=Sửa
+select=Chọn
+
+##
+## PCCC Document receipt
+##
+pccc-TN-nguoinhaplieu=Người nhập liệu
+pccc-TN-hosodinhkem=Hồ sơ Đính kèm
+pccc-TN-chontaptindinhkem=Chọn hồ sơ đính kèm
+pccc-TN-tenbuoc=Tên bước
+pccc-TN-themdulieu=Thêm dữ liệu
+pccc-TN-dinhkemtaptin=Đính kèm tập tin
+pccc-TN-themtaptin=Thêm tập tin
+pccc-TN-nguoitrahoso=Người trả hồ sơ
+pccc-TN-ngaytrahoso=Ngày trả hồ sơ
+pccc-TN-nguoinhanhoso=Người nhận hồ sơ
+pccc-TN-noidungxulycuoicung=Nội dung xử lý cuối cùng
+pccc-TN-diachi=Địa chỉ
+pccc-TN-themmoihoso=Thêm mới hồ sơ
+pccc-TN-loaihoso=Loại hồ sơ
+pccc-TN-sobiennhan=Số biên nhận
+pccc-TN-tenhoso=Tên hồ sơ
+pccc-TN-nguoigiaohoso=Người giao hồ sơ
+pccc-TN-daidiendonvi=Đại diện đơn vị
+pccc-TN-dienthoai=Điện thoại
+pccc-TN-nguoinhan=Người nhận
+pccc-TN-congtrinh=Công trình
+pccc-TN-hangmuc=Hạng mục
+pccc-TN-diadiemxaydung=Địa điểm xây dựng
+pccc-TN-chudautu=Chủ đầu tư
+pccc-TN-donvithietke=Đơn vị thiết kế
+pccc-TN-sobohoso=Số bộ hồ sơ
+pccc-TN-thoigiannophoso=Thời gian nộp hồ sơ
+pccc-TN-ngaynophoso=Ngày nộp hồ sơ
+pccc-TN-ngayhentrakhach=Ngày hẹn trả khách
+pccc-TN-nguoitiepnhan=Người tiếp nhận
+pccc-TN-ngaynhaplieu=Ngày nhập liệu
+pccc-TN-ghichu=Ghi chú
+pccc-TN-tongsogioxuly=Tổng số giờ xử lý
+pccc-TN-gio=Giờ
+pccc-TN-tongsongayxuly=Tổng số ngày xử lý
+pccc-TN-ngay=Ngày
+pccc-TN-ketluan=Kết luận
+pccc-TN-hosodinhkemtudongchon=Hồ sơ đính kèm tự động chọn
+pccc-TN-stt=STT
+pccc-TN-tenhosodinhkem=Tên hồ sơ đính kèm
+pccc-TN-banchinh=Bản chính
+pccc-TN-banphu=Bản phụ
+pccc-TN-tentailieubanve=Tên tài liệu, bản vẽ
+pccc-TN-soluong=Số lượng
+pccc-TN-trinhtuxuly=Trình tự xử lý (Thông tin tham khảo)
+pccc-TN-thoigianxuly=Thời gian xử lý
+pccc-TN-xulyhoso=Xử lý hồ sơ
+pccc-TN-luuhoso=Lưu hồ sơ
+pccc-TN-xoahoso=Xóa hồ sơ
+pccc-TN-daidienchudautu=Đại diện chủ đầu tư
+pccc-TN-doihuongdan=Đội hướng dẫn, thẩm duyệt về PCCC,phòng HD
+pccc-TN-xoa-=Xóa
+pccc-TN-noidungxuly=Nội dung xử lý
+pccc-TN-trangthaihoso=Trạng thái hồ sơ
+pccc-TN-ngaynhanhoso=Ngày nhận hồ sơ
+pccc-TN-sogiayphep=Số giấy phép
+pccc-TN-ngaycapphep=Ngày cấp phép
+pccc-TN-ngaynhangiayphep=Ngày nhận giấy phép
+pccc-TN-socongvan=Số văn bản
+pccc-TN-sohoadon=Số hóa đơn
+pccc-TN-sotien=Số tiền
+pccc-TN-tentaptin=Tên tập tin
+pccc-TN-khongcohosodinhkem=Không có hồ sơ đính kèm
+pccc-TN-duongdan=Dường dẫn
+pccc-TN-quytrinhxuly=Quy trình xử lý
+pccc-TN-nguoinophoso=Người nộp hồ sơ
+pccc-TN-themtailieubanve=Thêm tài liệu, bản vẽ
+pccc-TN-tongthoigianxuly=Tổng thời gian xử lý
+pccc-TN-thanh-cong=Thêm mới hồ sơ thành công
+
+##
+## Validate alert pccc receipt form
+##
+pccc-r1-alert=Chọn loại hồ sơ!
+pccc-r2-alert=Số biên nhận!
+pccc-r3-alert=Tên hồ sơ!
+pccc-r4-alert=Chủ đầu tư!
+pccc-r5-alert=Thời gian nộp hồ sơ!
+pccc-r6-alert=Ngày nộp hồ sơ!
+pccc-r7-alert=Ngày hẹn trả khách!
+pccc-r8-alert=Người tiếp nhận!
+pccc-r9-alert=Ngày nhập liệu!
+pccc-r20-nhapbansaolaso=Nhập bản sao hồ sơ đính kèm là số
+pccc-r21-nhapbanchinhlaso=Nhập bản chính hồ sơ đính kèm là số
+Invalid-Phone-must-be-number=Vui lòng nhập đúng định dạng số điện thoại
+pccc-TN-nhaphosomoi=Nhập hồ sơ mới
+pccc-TN-thongtinhoso=Thông tin hồ sơ
+pccc-TN-thongtintrahoso=Thông tin trả hồ sơ
+pccc-TN-thongtinquanly=Thông tin quản lý
+pccc-TN-hosothietke=Hồ sơ thiết kế
+pccc-TN-thongtinthamkhao=Thông tin tham khảo
+pccc-TN-ketluanvehosothamduyet=Kết luận về hồ sơ thẩm duyệt
+
+##
+## Popup
+##
+pccc-TN-chonquytrinh=Chọn quy trình
+pccc-TN-chon=Chọn
+pccc-TN-maquytrinh=Mã quy trình
+pccc-TN-tenquytrinh=Tên quy trình
+pccc-TN-dongy=Đồng ý
+pccc-TN-boqua=Bỏ qua
+pccc-TN-thongtinchitiet=Thông tin chi tiết
+
+##
+## Danh sach ho so
+##
+pccc-DSHS-danhsachhoso=Danh sách hồ sơ
+pccc-DSHS-co=cờ
+pccc-DSHS-mahoso=Mã hồ sơ
+pccc-DSHS-ngaynhan=Ngày nhận
+pccc-DSHS-ngayhentra=Ngày hẹn trả
+pccc-DSHS-loc=Lọc
+
+##
+## Thong bao loi trong javascript
+##
+pccc-error-date=Định dạng ngày không hợp lệ (dd/MM/yyyy)
+
+##
+## Form xu ly chuyen ho so
+##
+javax.portlet.title.SGS_ONEDOORPCCCPROCESS=PCCC Xử lý hồ sơ
+javax.portlet.title.SGS_ONEDOORPCCC=PCCC Tiếp nhận hồ sơ
+category.OneDoorPCCC=PCCC Một cửa
+pccc-XL-nguoigui=Người Gửi
+pccc-XL-ngaygui=Ngày Gửi
+pccc-XL-thoigiangui=Thời Gian Gửi
+pccc-XL-nguoiNhan=Người nhận
+pccc-XL-thongtinxuly=Thông tin xử lý
+pccc-XL-chuyen=Chuyển
+pccc-XL-xulyhoso=Xử lý chuyển hồ sơ
+
+pccc-TN-tra=Trả
+pccc-XL-xulytrahoso=Xử lý trả hồ sơ
+
+##
+## Form yeu cau bo sung ho so
+##
+pccc-XL-yeucaubosunghoso=Thông tin yêu cầu xử lý, bổ sung hồ sơ
+pccc-BS-title=Thông tin yêu cầu
+pccc-BS-nguoiyeucau=Người yêu cầu
+pccc-BS-ngayyeucau=Ngày yêu cầu
+pccc-BS-thoigianyeucau=Thời gian yêu cầu
+pccc-BS-nguoisexuly=Người sẽ xử lý
+pccc-BS-veviec=Về việc
+pccc-BS-ghichu=Ghi chú
+pccc-BS-chuyen=Chuyển
+
+##
+chonnguoitiepnhanxuly=Chọn người xử lý hồ sơ
+chuyenbophanxuly=Chuyển
+chuyen=Chuyển
+xoahoso=Xóa hồ sơ
+phancongthuly=Phân công thụ lý
+trinhky1=Trình ký
+trinhky2=Trình ký
+trinhky3=Trình ký
+trinhky4=Duyệt
+chuyenvanthu=Chuyển văn thư trình
+chotrahoso=Trả hồ sơ
+hosodaluu=Hồ sơ đã lưu
+nhapsocongvan=Xin vui lòng nhập số văn bản
+nhapthongtinveviec=Nhập thông tin về việc
+chuyenlanhdao=Chuyển ban giám đốc
+soancongvandi1=Soạn văn bản đi
+soancongvandi2=Soạn văn bản đi
+
+
+chuyenchanhvanphong=Chuyển LĐ VP
+dangsoancongvandi=Đang soạn văn bản đi
+choxacnhan=Chờ xác nhận
+lanhdaoxuly=Kết thúc
+congvanluu=Lưu văn bản
+tuxuly=Tự xử lý
+tralai=Trả lại
+
+##
+## Portlet title
+##
+javax.portlet.title.SGS_PCCCDOCUMENTRECEIPT=PCCC Tiếp nhận văn bản đến
+
+##
+## PCCC Cong van den
+##
+pccc-cvdtn-nhapmoi=Nhập mới
+pccc-cvdtn-capgoi=Cấp gởi
+pccc-cvdtn-sohieu=Số ký hiệu gốc
+pccc-cvdtn-socongvan=Sổ văn bản
+pccc-cvdtn-nguoiky=Người ký
+pccc-cvdtn-ngayphathanh=Ngày phát hành
+pccc-cvdtn-dokhan=Độ khẩn
+pccc-cvdtn-trichyeu=Trích yếu
+pccc-cvdtn-toanvan=Toàn văn
+pccc-cvdtn-noiphathanh=Nơi phát hành
+pccc-cvdtn-khac=Khác
+pccc-cvdtn-loaicongvan=Loại văn bản
+pccc-cvdtn-soCVden=Số đến theo sổ
+pccc-cvdtn-ngayden=Ngày đến
+pccc-cvdtn-domat=Độ mật
+pccc-cvdtn-congvancongcong=Văn bản công cộng
+pccc-cvdtn-congvannoibo=Văn bản nội bộ
+pccc-cvdtn-luu=Lưu
+pccc-cvdtn-trove=Trở về
+pccc-cvdtn-paging=Trang
+pccc-cvdtn-tatca=Tất cả
+pccc-cvdtn-cocongvanphucdap=Văn bản phúc đáp
+pccc-cvdtn-co=Có
+pccc-cvdtn-khong=Không
+pccc-cvdtn-socongvandiphucdap=Số văn bản đi phúc đáp
+
+##
+## RB cong van den
+##
+pccc-cvdtn-RB16=Ngày phát hành phải lớn hơn hoặc bằng ngày hiện tại
+pccc-cvdtn-RB17=Ngày phát hành phải nhỏ hơn hoặc bằng ngày đến
+pccc-cvdtn-RB18=Ngày phát hành phải nhỏ hơn bằng ngày hiện tại
+
+pccc-cvdtn-RBTN=Ngày hẹn trả phải lớn hơn ngày nhận
+nochoose=Không chọn
+pccc-cvdtn-RB4=Yêu cầu nhập thông tin không để trống
+pccc-cvdtn-RB3=Nơi phát hành yêu cầu
+
+
+##
+## Pccc report
+##
+javax.portlet.title.SGS_ONEDOORPCCCREPORT=Báo Cáo Thống Kê Một Cửa
+javax.portlet.title.SGS_ONEDOORPCCCREPORT_BAOCAOHOSOTHANG=Báo cáo hồ sơ tháng
+javax.portlet.title.SGS_ONEDOORPCCCREPORT_BAOCAOHOSOTHANGLUYKE=Báo cáo hồ sơ tháng lũy kế
+javax.portlet.title.SGS_ONEDOORPCCCREPORT_TINHHINHTHULYHOSOCAPPHONG=Tình hình thụ lý hồ sơ cấp phòng
+javax.portlet.title.SGS_ONEDOORPCCCREPORT_TINHHINHTHULYHOSOCAPSO=Tình hình thụ lý hồ sơ cấp cơ quan
+onedoorpcccreport-baocaohosothang=Báo cáo hồ sơ tháng
+onedoorpcccreport-baocaohosothangluyke=Báo cáo hồ sơ tháng lũy kế
+onedoorpcccreport-tinhhinhthulyhosocapphong=Tình hình thụ lý hồ sơ cấp phòng
+onedoorpcccreport-tinhhinhthulyhosocapso=Tình hình thụ lý hồ sơ cấp cơ quan
+onedoorpcccreport-chitiethoso=CHI TIẾT HỒ SƠ
+onedoorpcccreport-chitiethoso-tondauky=CHI TIẾT HỒ SƠ TỒN ĐẦU KỲ
+onedoorpcccreport-chitiethoso-nhantrongthang=CHI TIẾT HỒ SƠ NHẬN TRONG THÁNG
+onedoorpcccreport-chitiethoso-tongcong=CHI TIẾT HỒ SƠ TỒN ĐẦU KỲ & NHẬN TRONG THÁNG
+onedoorpcccreport-chitiethoso-sodunghan=CHI TIẾT HỒ SƠ ĐÚNG HẠN
+onedoorpcccreport-chitiethoso-sotrehan=CHI TIẾT HỒ SƠ TRỄ HẠN
+onedoorpcccreport-chitiethoso-tronghan=CHI TIẾT HỒ SƠ TRONG HẠN
+onedoorpcccreport-chitiethoso-datrehan=CHI TIẾT HỒ SƠ TRỄ HẠN
+onedoorpcccreport-chitiethoso-chinhsuabosung=CHI TIẾT HỒ SƠ CHỈNH SỬA BỔ SUNG
+
+onedoorpcccreport-tinhhinhthulyhosocapphong-chuyenvien=CHI TIẾT HỒ SƠ CỦA
+onedoorpcccreport-tinhhinhthulyhosocapphong-tontruoc=CHI TIẾT HỒ SƠ TỒN TRƯỚC
+onedoorpcccreport-tinhhinhthulyhosocapphong-danhan=CHI TIẾT HỒ SƠ ĐÃ NHẬN
+onedoorpcccreport-tinhhinhthulyhosocapphong-chuanhan=CHI TIẾT HỒ SƠ CHƯA NHẬN
+onedoorpcccreport-tinhhinhthulyhosocapphong-tonghosocanxuly=CHI TIẾT HỒ SƠ CẦN XỬ LÝ
+onedoorpcccreport-tinhhinhthulyhosocapphong-tugiaiquyet=CHI TIẾT HỒ SƠ TỰ GIẢI QUYẾT
+onedoorpcccreport-tinhhinhthulyhosocapphong-nguoikhacthulythay=CHI TIẾT HỒ SƠ NGƯỜI KHÁC THỤ LÝ THAY
+onedoorpcccreport-tinhhinhthulyhosocapphong-tonghosogiaiquyet=CHI TIẾT TỔNG HỒ SƠ GIẢI QUYẾT
+onedoorpcccreport-tinhhinhthulyhosocapphong-tronghaniso=CHI TIẾT HỒ SƠ TRONG HẠN ISO
+onedoorpcccreport-tinhhinhthulyhosocapphong-quahaniso=CHI TIẾT HỒ SƠ QUÁ HẠN ISO
+onedoorpcccreport-tinhhinhthulyhosocapphong-tonghosotondong=CHI TIẾT TỔNG HỒ SƠ TỒN ĐỌNG
+
+onedoorpcccreport-tinhhinhthulyhosocapso-phongban=CHI TIẾT HỒ SƠ
+onedoorpcccreport-tinhhinhthulyhosocapso-tontruoc=CHI TIẾT HỒ SƠ TỒN TRƯỚC
+onedoorpcccreport-tinhhinhthulyhosocapso-danhan=CHI TIẾT HỒ SƠ ĐÃ NHẬN
+onedoorpcccreport-tinhhinhthulyhosocapso-chuanhan=CHI TIẾT HỒ SƠ CHƯA NHẬN
+onedoorpcccreport-tinhhinhthulyhosocapso-tonghosocanxuly=CHI TIẾT HỒ SƠ CẦN XỬ LÝ
+onedoorpcccreport-tinhhinhthulyhosocapso-hosogiaiquyet=CHI TIẾT TỔNG HỒ SƠ GIẢI QUYẾT
+onedoorpcccreport-tinhhinhthulyhosocapso-tronghaniso=CHI TIẾT HỒ SƠ TRONG HẠN ISO
+onedoorpcccreport-tinhhinhthulyhosocapso-quahaniso=CHI TIẾT HỒ SƠ QUÁ HẠN ISO
+onedoorpcccreport-tinhhinhthulyhosocapso-tonghosotondong=CHI TIẾT TỔNG HỒ SƠ TỒN ĐỌNG
+
+##
+## Tinh hinh thu ly ho so cap phong
+##
+onedoorpcccreport-tieudetinhhinhthulyhosocapphong=Tình hình thụ lý hồ sơ của các Chuyên viên trong Phòng ban
+onedoorpcccreport-chuyenvien=Chuyên viên
+onedoorpcccreport-hosocanxuly=Hồ sơ cần xử lý
+onedoorpcccreport-tontruoc=Tồn trước
+onedoorpcccreport-moichuyenden=Mới chuyển đến
+onedoorpcccreport-danhan=Đã nhận
+onedoorpcccreport-chuanhan=Chưa nhận
+onedoorpcccreport-tongcong=Tổng cộng
+onedoorpcccreport-hosogiaiquyet=Hồ sơ giải quyết
+onedoorpcccreport-tugiaiquyet=Tự giải quyết
+onedoorpcccreport-nguoikhacthulythay=Người khác thụ lý thay
+onedoorpcccreport-hosotondong=Hồ sơ tồn đọng
+onedoorpcccreport-tronghaniso=Trong hạn ISO
+onedoorpcccreport-quahaniso=Quá hạn ISO
+
+##
+## Tinh hinh thu ly ho so cap so
+##
+onedoorpcccreport-tieudetinhhinhthulyhosocapso=Tình hình thụ lý hồ sơ của các Phòng ban ngày
+onedoorpcccreport-phongban=Phòng ban
+
+##
+## Bao cao ho so thang
+##
+onedoorpcccreport-tungay=Từ ngày
+onedoorpcccreport-denngay=đến ngày
+onedoorpcccreport-xuatthongke=Xuất thống kê
+onedoorpcccreport-tieudebaocaohosothang=BẢNG THỐNG KÊ DỮ LIỆU THỤ LÝ HỒ SƠ
+onedoorpcccreport-tinhtungay=Tính từ ngày
+onedoorpcccreport-stt=STT
+onedoorpcccreport-tensanpham=Tên sản phẩm
+onedoorpcccreport-noidungthongke=NỘI DUNG THỐNG KÊ
+onedoorpcccreport-tondauky=Tồn đầu kỳ
+onedoorpcccreport-hosonhantrongthang=Hồ sơ nhận trong tháng
+onedoorpcccreport-soluonghosohoanthanh=Số lượng hồ sơ hoàn thành
+onedoorpcccreport-sodunghan=Số đúng hạn
+onedoorpcccreport-sotrehan=Số trễ hạn
+onedoorpcccreport-soluonghosodangthuly=Số lượng hồ sơ đang thụ lý (tồn)
+onedoorpcccreport-tronghan=Trong hạn
+onedoorpcccreport-datrehan=Đã trễ hạn
+onedoorpcccreport-chinhsuabosung=Chỉnh sửa, bổ sung
+onedoorpcccreport-tylehosodunghan=Tỷ lệ hồ sơ đúng hạn
+
+##
+## Bao cao ho so thang luy ke
+##
+onedoorpcccreport-baocaotheothang=Báo cáo tháng
+onedoorpcccreport-tieudebaocaohosothangluyke=BÁO CÁO TÌNH HÌNH THỰC HIỆN CHƯƠNG TRÌNH MỘT CỬA
+CỦA BỘ PHẬN TIẾP NHẬN VÀ TRẢ KẾT QUẢ - THÁNG
+onedoorpcccreport-xembaocao=Xem báo cáo
+onedoorpcccreport-mota=Bộ phận tiếp nhận và trả kết quả cáo báo tình hình thực hiện trong tháng
+onedoorpcccreport-diengiai=Diễn giải
+onedoorpcccreport-hosonhan=HỒ SƠ NHẬN
+onedoorpcccreport-trongthang=Trong tháng
+onedoorpcccreport-hosotiepnhantrongnam=Hồ sơ tiếp nhận trong năm (đến ngày b/c)
+onedoorpcccreport-trongnam=Trong năm (đến ngày b/c)
+onedoorpcccreport-hosoton=Hồ sơ tồn (đến ngày b/c)
+onedoorpcccreport-ghichu=GHI CHÚ
+
+onedoorpcccreport-xuattaptin=Xuất tập tin
+javax.portlet.title.SGS_PCCCDOCUMENTRECEIPTPROCESS=PCCC Xử lý văn bản đến
+javax.portlet.title.SGS_DELEGATE=Quản lý Uỷ Quyền
+delegate-nguoiuyquyen=Người UQ
+delegate-nguoiduocuyquyen=Người được UQ
+delegate-loaihoso=Loại hồ sơ
+delegate-ngaybatdauuyquyen=Ngày bắt đầu UQ
+delegate-ngayketthucuyquyen=Ngày kết thúc UQ
+delete-huyuyquyen=Huỷ UQ
+delegate-add=Thêm UQ
+delegate-loaihosodachon=Loại hồ sơ đã chọn
+delegate-ngayhuyuyquyen=Ngày huỷ UQ
+delegate-please-insert=Vui lòng
+delegate-select-receiver=Chọn người được UQ
+delegate-startDate-input=Nhập ngày bắt đầu
+delegate-endDate-input=Nhập ngày kết thúc
+delegate-select-file-type=Chọn loại hồ sơ
+delegate-start-date-must-before-end-date=Ngày bắt đầu phải nhỏ hơn ngày kết thúc
+delegate-incorrect-format=Định dạng ngày sai
+delegate-start-date-must-after-current-date=Ngày bắt đầu phải bằng hoặc lớn hơn ngày hiện tại
+delegate-the-date-format-should-be-dd/mm/yyyy=Định dạng ngày chuẩn là : dd/mm/yyyy
+delegate-please-enter-a-valid-month=Vui lòng nhập tháng chính xác
+delegate-please-enter-a-valid-day=Vui lòng nhập ngày chính xác
+delegate-please-enter-a-valid-4-digit-year-between=Vui lòng nhập năm với 4 con số chính xác
+delegate-please-enter-a-valid-date=Vui lòng nhập ngày chính các
+pccc-TN-dangnhapdexemdanhsach=Vui lòng đăng nhập để xem danh sách hồ sơ đã uỷ quyền !
+delegate-chuadangnhap=Bạn chưa đăng nhập!
+delegate-dinhdangchophep=Định dạng cho phép upload : html, htm, doc, docx, xls, xlsx, jpg, pmp.
+
+##
+## pccc-DRP-?
+##
+pccc-TN-tailieubanve=Tài liệu bản vẽ
+pccc-DRP-phancongconvanden=Phân văn bản bản đến
+pccc-DRP-thongtinchitietcvd=Thông tin chi tiết văn bản đến
+pccc-DRP-pccvdccpb=Phân công công căn đến cho các phòng ban
+pccc-DRP-phancongconvandenchocanbo=Phân văn bản bản đến cho các cán bộ
+donvingay=Ngày
+
+please-enter-a-valid-day=Định dạng ngày không đúng!
+Please-enter-a-valid-month=Tháng không hợp lệ!
+Please-enter-a-valid-4-digit-year=Định dạng năm không hợp lệ!
+Please-enter-a-valid-date=Định dạng ngày tháng không đúng (dd/mm/yyyy)!
+Accept-number-only=Vui lòng nhập giá trị là số!
+thoigiannophosokhongdung=Thời gian nộp hồ sơ không đúng.(HH:MM:SS)
+ngaynophosokhonghople=Ngày nộp hồ sơ không hợp lệ.(dd/mm/yyyy)
+ngayhentrakhachkhonghople=Ngày hẹn trả khách không hợp lệ.(dd/mm/yyyy)
+ngaynhaplieukhonghople=Ngày nhập liệu không hợp lệ.!
+tentailieubanvesoluong=Tên tài liệu bản vẽ, số lượng.!
+pccc-DRP-chuyencongvandenbgd=Chuyển văn bản đến BGĐ
+pccc-DRP-ngaybatdau=Ngày bắt đầu
+pccc-DRP-noidungxuly=Nội dung xử lý
+pccc-DRP-chuyenden=Chuyển đến
+
+pccc-DRP-tengoi=Tên gọi
+pccc-DRP-ngayluu=Ngày lưu
+pccc-DRP-thaotac=Thao tác
+pccc-DRP-luu=[Lưu]
+ngaynhanngaynhaplieuphainhohonngayhentra=Ngày nhận hoặc ngày nhập liệu phải nhỏ hơn ngày hẹn trả!
+pccc-TN-tentailieubanvesoluong=Vui lòng nhập tên tài liệu bản vẽ, số lượng.!
+pccc-r3nghs-alert=Người giao hồ sơ!
+
+pccc-cvdtn-trangthai=Trạng thái
+pccc-CVD-socongvanden=Số văn bản đến
+pccc-CVD-sohieucongvan=Số hiệu văn bản
+pccc-CVD-coquanphathanh=Cơ quan phát hành
+nhapthongtinxuly=Nhập thông tin xử lý
+
+qua-trinh-xy-ly=Quá trình xử lý
+xem-qua-trinh-xu-ly=Xem quá trình xử lý
+assign-dep-process=Phân công phòng ban
+chon-loai-cong-van=Chọn loại văn bản
+cong-van-den-chi-luu=Văn bản đến chỉ lưu
+cong-van-den-co-bao-cao=Văn bản đến có báo cáo
+cong-van-den-co-cong-van-di=Văn bản đến có văn bản đi
+
+owner-file-list=DS hồ sơ chờ xử lý
+delegate-file-list=DS hồ sơ đã UQ
+isdelegate-file-list=DS hồ sơ được UQ
+
+pccc-cvdtn-taptindadinhkem=Tập tin đã đính kèm
+pccc-cvdtn-dinhkemtaptinmoi=Đính kèm tập tin mới
+
+pccc-TN-vuilongchonloaihoso=Xin vui lòng chọn loại hồ sơ!!!
+
+pccc-cvdtn-suacongvan=Chỉnh sửa văn bản
+
+pccc-saidinhdang=Chỉ cho phép upload file văn bản và file hình!
+
+pccc-vuilongchontaptindinhkem=Vui lòng chọn tập tin đính kèm!
+
+##
+## Search file in one gate
+##
+skip=Bỏ qua
+pccc-TN-tennguoinop=Tên người nộp
+pccc-TN-email=Email
+pccc-TN-thongtinngaythang=Thông tin ngày tháng
+pccc-TN-ngaynhanTN=Ngày nhận TN
+pccc-TN-ngaynhantungay=Ngày nhận từ ngày
+pccc-TN-denngay=Đến ngày
+pccc-TN-ngaynhandenngay=Ngày nhận đến ngày
+pccc-TN-ngayhentraTN=Ngày hẹn trả TN
+pccc-TN-ngayhentratungay=Ngày hẹn trả từ ngày
+pccc-TN-ngayhentradenngay=Ngày hẹn trả đến ngày
+pccc-TN-ngayhoanthanhTN=Ngày hoàn thành TN
+pccc-TN-ngayhoanthanhtungay=Ngày hoàn thành từ ngày
+pccc-TN-ngayhoanthanhdenngay=Ngày hoàn thành đến ngày
+pccc-TN-ngaythuctraTN=Ngày thực trả TN
+pccc-TN-ngaythuctratungay=Ngày thực trả từ ngày
+pccc-TN-ngaythuctradenngay=ngày thực trả đến ngày
+pccc-TN-danhsachhosotimthay=Danh sách hồ sơ tìm thấy
+pccc-TN-khongtontaidulieu=Không có hồ sơ cần xử lý...
+pccc-TN-khongtontaidulieu-hs=Không có hồ sơ cần xử lý...
+pccc-TN-trangthai=TT
+Book-document-record-not-exist=Sổ văn bản phòng ban chưa có!
+vui-long-nhap-so-hieu=Vui lòng nhập vào số hiệu!
+vui-long-nhap-thong-tin-nguoi-ky=Vui lòng nhập thông tin người ký
+nhap-thong-tin-trich-yeu=Nhập thông tin trích yếu!
+ngayphathanhphainhohonhoacbangngayhientai=Ngày phát hành phải nhỏ hơn hoặc bằng ngày hiện tại
+ngaydenphainhohonhoacbangngayhientai=Ngày đến phải nhỏ hơn hoặc bằng ngày hiện tại
+
+##
+## Bao cao cong van
+##
+pccc-XL-lambaocao=Làm báo cáo
+pccc-XL-ngayxuly=Ngày xử lý
+pccc-XL-luutam=Lưu tạm
+pccc-XL-luuvaketthuc=Lưu và kết thúc
+pccc-XL-daguibaocaocholanhdao=Đã gửi báo cáo cho lãnh đạo
+
+##
+## VB Di
+##
+receipt.summary=Tóm tắt văn bản
+receipt.docref=Số và ký hiệu văn bản
+receipt.senddate=Ngày gửi
+receipt.issuingdate=Ngày ban hành
+receipt.creator=Người tạo
+receipt.department=Thuộc phòng ban
+receipt.receiveplace=Nơi nhận
+receipt.signer=Ngưòi ký văn bản
+receipt.position=Chức vụ
+receipt.docid=Mã hồ sơ
+receipt.page=Số trang
+receipt.issuingnum=Số luợng bản phát hành
+receipt.docrectype=Sổ văn bản
+receipt.doctype=Loại văn bản
+receipt.confidentallevelid=Độ mật
+receipt.previlegenlevelid=Độ khẩn
+receipt.briftcontent=Trích yếu nội dung
+receipt.answer=Trả lời cho văn bản
+receipt.comingdocid=Số hiệu văn bản đến
+receipt.internalid=Số văn bản nội bộ
+
+receipt.desc=Trích yếu
+receipt.cancel=Hủy bỏ
+receipt.detail=Chi tiết văn bản
+
+##
+## Document Record Type
+##
+javax.portlet.title.SGS_DOCUMENTRECORDTYPE=Quản trị sổ văn bản
+recordtype.code=Ký hiệu
+recordtype.name=Tên sổ văn bản
+recordtype.edit=Sửa
+recordtype.add=Thêm mới
+documentRecordType.huy=Hủy
+recordtype.delete.confirm=Bạn có muốn hủy sổ văn bản không?
+field-sua-linh-vuc-ho-so=Sửa lĩnh vực hồ sơ
+field-them-linh-vuc-ho-so=Thêm lĩnh vực hồ sơ
+
+##
+## Luan chuyen cong van
+##
+LCCV-trinhkydenghi=Trình ký - đề nghị
+LCCV-ngaygiochuyen=Ngày giờ chuyển
+LCCV-nguoichuyen=Người chuyển
+LCCV-nguoinhan=Người nhận
+chon=Chọn
+LCCV-tenphongbanchuyenvien=Tên phòng ban - Chuyên viên
+ngay=ngày
+LCCV-thoigian=Thời gian
+LCCV-tongthoigian=Tổng thời gian
+LCCV-thoigianconlai=Thời gian còn lại
+LCCV-truongphongcuaphong1=Trưởng phòng của phòng 1
+LCCV-phophong1cuaphong1=Phó phòng 1 của phòng 1
+LCCV-phophong2cuaphong1=Phó phòng 2 của phòng 1
+LCCV-chuyencongvan=Chuyển văn bản
+trove=Trở về
+chuyencongvan=Chuyển văn bản
+LCCV-thongtinluanchuyencongvan=Thông tin luân chuyển văn bản
+LCCV-yeucauxuly=Yêu cầu - xử lý
+vui-long-nhap-yeu-cau-xu-ly=Vui lòng nhập yêu cầu xử lý
+vui-long-chon-phong-ban=vui lòng chọn phòng ban
+LCCV-cach-thuc-xu-ly=Cách thức xử lý
+LCCV-cong-van-luu=Văn bản lưu tham khảo
+LCCV-cong-bao-cao=Văn bản báo cáo
+LCCV-soan-cong-van-tra-loi=Soạn văn bản trả lời
+LCCV-thoigiangiaiquyetcuaphong=Thời gian giải quyết của phòng
+LCCV-thoigiangiaiquyetcuachuyenvien=Thời gian giải quyết của chuyên viên
+LCCV-phongbanxulychinh=Phòng ban xử lý chính
+tong-so-ngay-phai-la-so-nguyen-duong=Tổng thời gian phải là số nguyên dương
+so-ngay-xu-ly-phai-la-so-nguyen-duong=Thời gian giải quyết của phòng phải là số nguyên dương
+so-ngay-xu-ly-cua-chuyen-vien-phai-la-so-nguyen-duong=Số ngày xử lý phải là số nguyên dương
+
+
+congvanbaocao=Văn bản báo cáo
+are-you-sure-you-want-to-delete-this-document=Bạn có muốn xóa văn bản này?
+are-you-sure-you-want-to-save-this-document=Bạn có muốn lưu văn bản này?
+pccc-TN-themmoicongvanthanhcong=Thêm mới văn bản thành công
+pccc-TN-suacongvanthanhcong=Sửa văn bản thành công!
+
+vui-long-nhap-so-cong-van-den=Vui lòng nhập số văn bản đến
+vui-long-nhap-ngay-phat-hanh=Vui lòng nhập ngày phát hành
+vui-long-nhap-ngay-den=Vui lòng nhập ngày đến
+
+
+pccc-cvdtn-noidungtoanvan=Nội dung toàn văn
+
+vui-long-chon-lanh-dao=Vui lòng chọn lãnh đạo
+vui-long-chon-cach-thuc-xu-ly=Vui lòng chọn cách thức xử lý
+ngay-xu-ly-phai-la-so=Ngày xử lý phải là số
+vui-long-chon-nguoi-nhan=Vui lòng chọn người nhận
+pccc-cvdct-chitiet=Chi tiết
+
+##
+## Cap cong van
+##
+javax.portlet.title.SGS_DOCUMENTLEVELSEND=Quản trị cấp văn bản
+document.level=Tên cấp văn bản
+LCCV-phongbannhan=Phòng ban nhận
+tong-so-ngay-phai-lon-hon-so-ngay-xu-ly=Tổng số ngày phải lớn hơn số ngày xử lý
+so-ngay-con-lai-phai-lon-hon-so-ngay-xu-ly=Số ngày còn lại phải lớn hơn số ngày xử lý
+nhapcapcongvan=Xin vui lòng nhập cấp văn bản
+xoacapcongvan=Bạn có muốn hủy cấp văn bản?
+
+##
+## Quan tri linh vuc
+##
+javax.portlet.title.SGS_DOCUMENTFIELD=Quản trị lĩnh vực hồ sơ
+
+field.name=Tên phân loại
+field.code=Mã phân loại
+field.department=Đơn vị phụ trách
+field.desc=Mô tả
+field.button-back=Trở về
+nhapmaphanloai=Xin vui lòng nhập mã phân loại
+nhaptenphanloai=Xin vui lòng nhập tên phân loại
+xoalinhvuc=Bạn có muốn hủy lĩnh vực?
+chonphongban=Chọn phòng ban
+nhapphongban=Xin vui lòng chọn phòng ban
+
+##
+## Phan quyen nguoi dung theo ho so
+##
+javax.portlet.title.SGS_PERMISSONUSERBYFILE=Phân quyền người dùng theo dõi hồ sơ
+permisson.account=Tài khoản
+permisson.user.name=Tên người dùng
+permisson.watchfor=Được theo dõi hồ sơ
+permisson.desc=Ghi chú
+permission.assign=Phân quyền theo dõi HS
+permisson.doctype.name=Tên loại hồ sơ
+permisson.explain=Diễn giải quyền
+permissionuserbyfile-dongbothanhcong=Quá trình đồng bộ dữ liệu thành công!
+permissionuserbyfile-dongbokhongthanhcong=Quá trình đồng bộ không thành công!
+permissionuserbyfile-dongbo=Đồng bộ
+permissionuserbyfile-luu=Lưu
+permissionuserbyfile-trove=Trở về
+permissionuserbyfile-huy=Huỷ
+
+##
+## Thong ke tinh hinh thu ly cong van
+##
+javax.portlet.title.SGS_PCCCDOCUMENTRECEIPTREPORT=Báo Cáo Thống Kê Tình Hình Thụ Lý Văn Bản
+tinhhinhthulycongvan.phongban=Phòng ban
+tinhhinhthulycongvan.toancoquan=Toàn cơ quan
+tinhhinhthulycongvan.tatcaphongban=Tất cả phòng ban
+tinhhinhthulycongvan.chuyenvien=Chuyên viên
+tinhhinhthulycongvan.chonchuyenvien=Chọn chuyên viên
+tinhhinhthulycongvan.tatcachuyenvien=Tất cả chuyên viên
+tinhhinhthulycongvan.phannhom=Phân nhóm
+tinhhinhthulycongvan.chonphannhom=Chọn phân nhóm
+tinhhinhthulycongvan.loai=Loại
+tinhhinhthulycongvan.chonloaicongvan=Chọn loại văn bản
+tinhhinhthulycongvan.congvanden=Văn bản đến
+tinhhinhthulycongvan.congvandi=Văn bản đi
+tinhhinhthulycongvan.tungay=Từ ngày
+tinhhinhthulycongvan.denngay=Đến ngày
+tinhhinhthulycongvan.tenphongban=Tên phòng ban
+tinhhinhthulycongvan.tenchuyenvien=Tên chuyên viên
+tinhhinhthulycongvan.title=THỐNG KÊ TÌNH HÌNH THỤ LÝ VĂN BẢN
+tinhhinhthulycongvan.month=THÁNG
+tinhhinhthulycongvan.xembaocao=Xem Báo Cáo
+
+tinhhinhthulycongvan.stt=STT
+tinhhinhthulycongvan.tondauky=Tồn đầu kỳ
+tinhhinhthulycongvan.nhantrongky=Nhận trong kỳ
+tinhhinhthulycongvan.dagiaiquyet=Đã xử lý
+tinhhinhthulycongvan.dunghan=Đúng hạn
+tinhhinhthulycongvan.trehan=Trễ hạn
+tinhhinhthulycongvan.tong=Tổng
+tinhhinhthulycongvan.danggiaiquyet=Chưa xử lý
+tinhhinhthulycongvan.trongquidinh=Trong qui định
+tinhhinhthulycongvan.quaquidinh=Quá qui định
+tinhhinhthulycongvan.tylephantramgiaiquyetdunghan=Tỷ lệ % xử lý đúng hạn
+tinhhinhthulycongvan.inbaocao=In Báo Cáo
+tinhhinhthulycongvan.xuatexcel=Xuất Excel
+sgs_chooseFileUpload=Chỉ upload những file xml!
+
+javax.portlet.title.SGS_PCCCDOCUMENTSEND=Soạn văn bản đi
+
+##
+## Document send
+##
+javax.portlet.title.SGS_PCCCDOCUMENTSENDPROCESS=Xử lý văn bản đi
+documentsend.stt=STT
+documentcode.code=Mã số
+documentcode.name=Tên đơn vị
+documentcode.desc=Ghi chú
+documentcode.close=Đóng
+documentcode.screenname=Người dùng
+documentcode.username=Tên người dùng
+documentcode.chooseuser=Chọn người dùng
+documentcode.list=Danh sách đơn vị liên quan hồ sơ - văn bản
+
+pccc-vuilongnhaptieude=Vui lòng nhập tiêu đề tập tin đính kèm!
+
+pccc-cvdtn-lacongvancongcong=Là văn bản công cộng
+pccc-cvdtn-lacongvannoibo=Là văn bản nội bộ
+pccc-TN-ngayhethanxuly=Ngày hết hạn xử lý
+pccc-TN-phongbanthulychinh=Phòng ban thụ lý chính
+pccc-TN-nguoithulychinh=Người thụ lý chính
+pccc-TN-ykienphanphoi=Ý kiến phân phối
+pccc-TN-trangthaigannhat=Trạng thái gần nhất
+pccc-XL-donvicanhangui=Đơn vị - cá nhân gửi
+pccc-XL-yeucauxuly=Yêu cầu xử lý
+pccc-XL-donvicanhannhan=Đơn vị - cá nhân nhận
+pccc-XL-quatrinhluanchuyencongvanden=Quá trình luân chuyển văn bản đến
+vui-long-nhap-so-va-ky-hieu-van-ban=Vui lòng nhập số và ký hiệu văn bản!
+vui-long-nhap-loai-cong-van-den=Vui lòng nhập loại văn bản đến!
+
+pccc-documentsent-filevanbandidinhkem=File văn bản đi đính kèm
+vui-long-nhap-thong-tin-noi-nhan=Vui lòng nhập thông tin nơi nhận
+pcccdocumentsend-chitiet=Thông tin văn bản đi
+receipt.attachedfiles=File đính kèm
+pcccdocumentsend-quatrinhluanchuyencongvanden=Quá trình luân chuyển văn bản đi
+pcccdocumentsend-donvicanhangui=Đơn vị - cá nhân gởi
+pcccdocumentsend-yeucauxuly=Yêu cầu xử lý
+pcccdocumentsend-donvicanhannhan=Đơn vị - cá nhân nhận
+pccc-TN-ngaynhan=Ngày nhận
+pcccdocumentsend-traloichocongvanden=Trả lời cho văn bản đến
+pcccdocumentsend-sohieucongvanden=Số hiệu văn bản đến
+pcccdocumentsend-socongvannoibo=Số văn bản nội bộ
+pcccdocumentsend-taptindinhkem=Tập tin đính kèm
+pcccdocumentsend-trichyeu=Trích yếu
+
+vui-long-chon-nguoi-xu-ly=Vui lòng chọn người xử lý!
+dakyduyet=đã ký duyệt
+chosovaphathanh=Cho số và phát hành
+Book-document-send-not-exist=Sổ văn bản chưa có!
+#
+## Department leader
+#
+javax.portlet.title.SGS_DEPARTMENTLEADER=Quản lý phòng ban
+department_code=Mã phòng ban
+department_name=Tên phòng ban
+danh-sach-nhan-vien-phong=Danh sách chuyên viên
+nhap-ma-phong-ban=Nhập mã phòng ban!
+nhap-ten-phong-ban=Nhập tên phòng ban!
+department-them-moi-phong-ban=Thêm phòng ban!
+department-sua-phong-ban=Sửa phòng ban!
+
+##some modify
+nhap-thong-tin-cong-van-den=Nhập thông tin văn bản đến
+thong-tin-cong-van=Thông tin văn bản
+sua-cong-van=Sửa văn bản
+
+#
+## PCCC Document Record To
+#
+
+javax.portlet.title.SGS_PCCCDOCUMENTRECORDTO=Sổ văn bản đến của Văn phòng Ban
+javax.portlet.title.SGS_PCCCDOCUMENTRECORDTO_SO=Sổ văn bản đến của Ban
+
+pcccdocumentrecordto-chuatao=Chưa tạo
+pcccdocumentrecordto-datao=Đã tạo
+pcccdocumentrecordto-moitiepnhan=Mới tiếp nhận
+pcccdocumentrecordto-dangxuly=Đang xử lý
+pcccdocumentrecordto-daxuly=Đã xử lý
+
+pcccdocumentrecordto-stt=STT
+pcccdocumentrecordto-socvnoibo=Sổ VB Nội Bộ
+pcccdocumentrecordto-socvden=Sổ VB Đến
+pcccdocumentrecordto-ngayden=Ngày Đến
+pcccdocumentrecordto-ngayhethan=Ngày Hết Hạn
+pcccdocumentrecordto-noibanhanh=Nơi Ban Hành
+pcccdocumentrecordto-trichyeu=Trích Yếu
+pcccdocumentrecordto-loaicv=Loại VB
+pcccdocumentrecordto-douutien=Độ Ưu Tiên
+pcccdocumentrecordto-trinhtuxuly=Trình Tự Xử Lý
+
+pcccdocumentrecordto-inbaocao=In Báo Cáo
+pcccdocumentrecordto-xuatexcell=Xuất Excel
+
+#
+## PCCC Document Send
+#
+
+javax.portlet.title.SGS_PCCCDOCUMENTSENDREPORT=Sổ văn bản Đi của Văn phòng Ban
+javax.portlet.title.SGS_PCCCDOCUMENTSENDREPORT_SO=Sổ văn bản Đi của Ban
+
+pcccdocumentsendreport-chuatrinhky=Chưa trình ký
+pcccdocumentsendreport-dangtrinhky=Đang trình ký
+pcccdocumentsendreport-yeucauchinhsua=Yêu cầu chỉnh sửa
+pcccdocumentsendreport-daduocduyet=Đã được duyệt
+pcccdocumentsendreport-chuachuyenphathanh=Chưa chuyển phát hành
+pcccdocumentsendreport-dangchuyenphathanh=Đang chuyển phát hành
+pcccdocumentsendreport-bitralai=Bị trả lại
+pcccdocumentsendreport-daphathanh=Đã phát hành
+pcccdocumentsendreport-moisoanthao=Mới soạn thảo
+pcccdocumentsendreport-dangxuly=Đang xử lý
+pcccdocumentsendreport-daxuly=Đã xử lý
+pcccdocumentsendreport-stt=STT
+pcccdocumentsendreport-socvnoibo=Sổ VB Nội Bộ
+pcccdocumentsendreport-socvdi=Sổ VB Đi
+pcccdocumentsendreport-noinhan=Nơi Nhận
+pcccdocumentsendreport-nguoiky=Người Ký
+pcccdocumentsendreport-trichyeu=Trích Yếu
+pcccdocumentsendreport-loaicv=Loại VB
+pcccdocumentsendreport-douutien=Độ Ưu Tiên
+pcccdocumentsendreport-trinhtuxuly=Trình Tự Xử Lý
+
+pcccdocumentsendreport-inbaocao=In Báo Cáo
+pcccdocumentsendreport-xuatexcell=Xuất Excel
+
+##
+## Holiday management
+##
+javax.portlet.title.SGS_HOLIDAYMANAGEMENT=Danh mục ngày nghỉ
+holiday-kieu-ngay-nghi=Kiểu ngày nghỉ
+holiday-ngay-nghi=Ngày nghỉ
+holiday-tu-ngay=Từ ngày
+holiday-den-ngay=Đến ngày
+vui-long-chon-ngay=Vui lòng chọn ngày!
+holiday-cac-ngay-trong-tuan=Các ngày trong tuần
+holiday-nghi-ca-ngay=Nghỉ cả ngày
+holiday-nghi-buoi-sang=Nghỉ buổi sáng
+holiday-nghi-buoi-chieu=Nghỉ buổi chiều
+holiday-ngay-nghi-trong-tuan=Ngày nghỉ trong tuần
+holiday-ngay-nghi-le=Ngày nghỉ lễ
+holiday-them-ngay-le=Thêm ngày lễ
+
+##
+## Pml Team
+##
+javax.portlet.title.SGS_PMLTEAM=Quản lý đội
+pmlteam-ma-doi=Mã đội
+pmlteam-ten-doi=Tên đội
+vui-long-chon-doi=vui lòng chọn đội!
+pmlteam-danh-sach-cac-doi=Danh sách các đội
+pmlteam-them-moi-doi=Thêm mới đội
+pmlteam-chinh-sua-doi=Chỉnh sửa đội
+pmlteam-nhap-ma-doi=Nhập mã đội!
+
+##
+## PmlUser
+##
+javax.portlet.title.SGS_PMLUSER=Quản lý người dùng
+pmluser-danh-sach-nguoi-dung=Danh sách người dùng
+pmluser-them-moi-nguoi-dung=Thêm mới người dùng
+vui-long-chon-nguoi-dung=Vui lòng chọn người dùng
+pmluser-thong-tin-dang-nhap=Thông tin đăng nhập
+pmluser-thong-tin-ca-nhan=Thông tin cá nhân
+re-password=Nhập lại mất khẩu
+screen-name=Tên đăng nhập
+pmluser-nhap-ten-goi=Nhập tên đăng nhập!
+pmluser-nhap-email=Nhập email!
+pmluser-nhap-mat-khau=Nhập mật khẩu!
+pmluser-nhap-lai-mat-khau=Mật khẩu nhập lại không khớp với mật khẩu đã nhập!
+pmluser-nhap-ho-nguoi-dung=Nhập họ người dùng!
+pmluser-nhap-ten-nguoi-dung=Nhập tên người dùng!
+pmluser-chon-gioi-tinh=Chọn giới tính!
+pmluser-chon-chuc-vu=Chọn chức vụ!
+pmluser-chon-phong-ban=Chọn phòng ban!
+pmluser-chon-doi=Chọn đội!
+Smluser-chinh-sua-nguoi-dung=sửa thông tin người dùng
+
+loai-quy-trinh=Loại quy trình
+quy-trinh-cong-van-den-chinh=Quy trình văn bản đến chính
+quy-trinh-cong-van-den-phu-cap-phong-ban=Quy trình văn bản đến phụ cấp phòng ban
+quy-trinh-cong-van-den-phu-cap-chuyen-vien=Quy trình văn bản đến phụ cấp chuyên viên
+quy-trinh-cong-van-di=Quy trình văn bản đi
+
+login=Tên truy nhập
+chon-trang-thai-ho-so-can-tim=[Chọn trạng thái hồ sơ cần tìm]
+chon-loai-ho-so-can-tim=[Chọn loại hồ sơ cần tìm]
+
+##
+##
+##
+vui-long-nhap-ten=Vui lòng nhập tên!
+them-moi-thanh-cong=Thêm mới thành công
+cap-nhat-thanh-cong=Cập nhật thành công
+javax.portlet.title.SGS_ISSUINGPLACE=Đơn vị liên quan văn bản
+issuing-place-ten-don-vi-lien-quan=Tên đơn vị liên quan
+issuing-place-ban-muon-xoa-don-vi-lien-quan-cong-van-nay=Bạn muốn xóa đơn vị này khỏi hệ thống?
+xoa-thanh-cong=Xóa thành công
+permission-hieu-chinh-phan-quyen=Hiệu chỉnh phân quyền
+
+
+pccc-DSHS-ngaybatdau=Ngày bắt đầu
+pccc-DSHS-ngayketthuc=Ngày kết thúc
+
+Xem-tinh-trang-xu-ly-cua-trang-thai=Xem tình trạng xử lý của trạng thái
+
+##
+## Home
+##
+#title-pccc=Sở cảnh sát pccc Thành Phố Hồ Chí Minh
+title-pccc=Ban quản lý dự án thủ thiêm
+Pccc-Address=177 Lý Chính Thắng, Quận 3, Thành phố Hồ Chí Minh.
+#Pccc-Address=258 Trần Hưng Đạo,P.NCT,Q1,TP.HCM
+
+##
+## quan ly cong van
+##
+javax.portlet.title.SGS_QUANLYCONGVAN=Quản lý văn bản Đến
+quanlycongvan-danhsachcongvan=Danh sách văn bản
+quanlycongvan-cacxulythongthuong=Xử lý thông tin văn bản
+quanlycongvan-tiepnhancongvan=Tiếp nhận VB
+quanlycongvan-soancongvandi=Soạn VB đi
+quanlycongvan-baocaodonvi=Báo cáo đơn vị
+quanlycongvan-baocaochophong=Báo cáo cho phòng
+quanlycongvan-xulythaybgd=NL thay LĐ Ban
+quanlycongvan-bangdieukhien=Bảng điều khiển
+quanlycongvan-congvandangxuly=Văn bản đang xử lý
+quanlycongvan-congvandaxuly=Văn bản đã xử lý
+quanlycongvan-congvanxulychung=Văn bản xử lý chung
+quanlycongvan-congvantrehan=Trễ hạn
+quanlycongvan-congvanvuatiepnhan=Văn bản vừa tiếp nhận
+quanlycongvan-congvandangchobutphe=Văn bản đang chờ bút phê
+quanlycongvan-congvanphongdangxuly=Văn bản phòng đang xử lý
+quanlycongvan-congvandangchuyenphathanh=Văn bản đang chuyển phát hành
+quanlycongvan-congvandahoantat=Văn bản đã hoàn tất
+quanlycongvan-congvanchophancong=Văn bản chờ phân công
+quanlycongvan-congvandangtrinhduyet=Văn bản đang trình duyệt
+quanlycongvan-congvantuxuly=Văn bản tự xử lý
+quanlycongvan-congvandangtrinh=Văn bản đang trình
+quanlycongvan-congvanchophathanh=Văn bản chờ phát hành
+quanlycongvan-congvandaphathanh=Văn bản đã phát hành
+quanlycongvan-vedautrang=Về đầu trang
+quanlycongvan-congvan=Văn bản
+
+##
+##
+##
+agency.coquan=Cơ quan
+agency.code=Mã
+agency.name=Tên
+agency.description=Mô tả
+agency.active=Hoạt động
+agency.update=Cập nhật thông tin
+agency.add=Thêm mới
+agency.display=Số dòng hiển thị
+cap-nhat-thong-tin=Cập nhật thông tin
+
+no.=STT
+code.=Mã
+name.=Tên
+description.=Mô tả
+active.=Hoạt động
+
+so-dong-hien-thi=Số dòng hiển thị
+carrer.nganhnghe=Quản lý ngành nghề
+mau-phat-sinh-ma=Mẫu phát sinh mã
+
+format.=Định dạng
+startnumber.=Số bắt đầu
+ghichu.=Ghi chú
+ma-phat-sinh=Mã phát sinh
+
+##
+## Position
+##
+chucvu.=Chức vụ
+
+dantoc.=Dân tộc
+
+country.=Quốc gia
+
+Khong-the-xoa-noi-phat-hanh-nay=Không thể xóa nơi phát hành nay!
+khong-the-xoa-dong-nay=Không thể xóa dòng này!
+
+##
+## Trang thai ho so - pmledm_filestatus
+##
+quan-ly-trang-thai-ho-so=Quản lý trạng thái hồ sơ
+Please-mpledmfilestatus=
+insert-file-status-code=Vui lòng nhập mã trạng thái
+insert-file-status-code=Vui lòng nhập mã trạng thái
+insert-file-status-name=Vui lòng nhập tên trạng thái
+quan-ly-tinh-trang=Quản lý tình trạng
+insert-state-process-code=Mã tình trạng xửlý
+insert-state-process-name=Tên tình trạng xửlý
+
+danh-muc-thanh-pho=Danh mục thành phố
+quan-ly-quan=Quản lý quận
+quan-ly-do-khan=Quản lý độ khẩn
+quan-ly-do-mat=Quản lý độ mật
+
+##
+## Filetype
+##
+dinh-nghia-loai-ho-so=Định nghĩa loại hồ sơ
+ho-so-kem-theo=Hồ sơ kèm theo
+
+##
+## Documenttype
+##
+javax.portlet.title.SGS_DOCUMENTTYPE=Danh mục sổ văn bản
+danh-muc-so-cong-van=Danh mục sổ văn bản
+xoaloaicongvan=Bạn muốn xóa sổ văn bản này?
+ten-loai-cong-van=Tên loại văn bản
+nhap-ten-loai-cong-van=Nhập tên loại văn bản
+so-cong-van-cua-phong-ban-chua-co=Sổ văn bản của phòng ban chưa có
+cap-nhat-loai-cv-thanh-cong=Cập nhật loại văn bản thành công
+cap-nhat-loai-cv-khong-thanh-cong=Cập nhật loại văn bản không thành công
+them-loai-cv-thanh-cong=Thêm loại văn bản thành công
+huy.=Hủy
+luu.=Lưu
+cap-nhat-khong-thanh-cong=Cập nhật không thành công
+xoa-khong-thanh-cong=Xóa không thành công
+ban-co-that-su-muon-xoa=Bạn có thật sự muốn xóa?
+
+danh-muc-cap-cong-van=Danh mục cấp văn bản
+danh-muc-don-vi-lien-quan=Danh mục đơn vị liên quan
+
+
+phan-quyen-theo-doi-ho-so=Phân quyền theo dõi hồ sơ
+quan-ly-uy-quyen=Quản lý ủy quyền
+quan-ly-quy-trinh-cong-van=Quản lý quy trình văn bản
+nhan-ho-so-moi=Nhận hố sơ mới
+quan-ly-quy-trinh-mot-cua=Quản lý quy trình một cửa
+soan-cong-van-di=Soạn văn bản đi
+thong-tin-chi-tiet-cong-van=Thông tin chi tiết văn bản
+
+##
+## Document Receipt Search
+##
+documentreceipt-search-stt=STT
+documentreceipt-search-socvden=Số văn bản đến
+documentreceipt-search-sovaoso=Số vào sổ
+documentreceipt-search-loaicv=Loại văn bản
+documentreceipt-search-noiphathanh=Cơ quan ban hành
+documentreceipt-search-ngayden=Ngày đến
+documentreceipt-search-trichyeu=Trích yếu
+documentreceipt-search-nguoiky=Người ký
+documentreceipt-search-toanvan=Toàn văn
+
+documentreceipt-search-tatca=Tất cả
+documentreceipt-search-khongtontaidulieu=Không tồn tại dữ liệu
+pccc-cvdtn-hosocongviec=Hồ sơ công việc
+
+##
+## Hai form tim kiem
+##
+so-cong-van-den=Số văn bản đến
+so-vao-so=Số vào sổ
+tu-ngay=Từ ngày
+so-HSCV=Sổ HSCV
+loai-cong-van=Loại văn bản
+noi-phat-hanh=Nơi phát hành
+den-ngay=Đến ngày
+trang-thai=Trạng thái
+nguoi-ky=Người ký
+trich-yeu=Trích yếu
+co-quan-ban-hanh=Cơ quan ban hành
+ngay-den=Ngày đến
+toan-van=Toàn văn
+so-phat-hanh=Số phát hành
+phong-soan-thao=Phòng soạn thảo
+noi-nhan=Nơi nhận
+ngay-phat-hanh=Ngày phát hành
+tieu-chi-tim-kiem=Tiêu chí tìm kiếm
+cong-van-den=Văn bản đến
+cong-van-di=Văn bản đi
+tra-loi-cong-van-so=Trả lời văn bản số
+tim-kiem-cong-van=Tìm kiếm văn bản
+tim-kiem-cong-van-den=Tìm kiếm văn bản đến
+tim-kiem-cong-van-di=Tìm kiếm văn bản đi
+noi-nhan-cong-van=Nơi nhận văn bản
+khoang-thoi-gian-khong-hop-le=Khoảng thời gian từ ngày đến ngày không hợp lệ
+
+##
+## Portlet name of danh muc ho so cong viec
+##
+category.HOSOCONGVIEC=Hồ sơ công việc
+javax.portlet.title.SGS_PML_TINH_CHAT=Tính chất HSCV
+javax.portlet.title.SGS_PML_TRANG_THAI_HSCV=Trạng thái HSCV
+javax.portlet.title.SGS_PML_DO_QUAN_TRONG=Độ quan trọng HSCV
+javax.portlet.title.SGS_PML_HO_SO_CONG_VIEC=Hồ sơ công việc
+
+##
+## Show search i18n.
+##
+showing-x-result=Kết quả {0}.
+showing-x-results=Kết quả {0}.
+showing-x-x-of-x-results=Kết quả {0} - {1} trong khoảng {2}.
+
+##
+## Ben truong son da ngon ngu
+##
+order_no=Số thứ tự
+pml_sohieuhscv=Số hiệu HSCV
+pml_tieude=Tiêu đề
+pml_ngaymohscv=Ngày mở HSCV
+pml_linhvuc=Lĩnh vực
+pml_vandelienquan=Vấn đề liên quan
+pml_hosocha=HSCV cha
+pml_nguoilap=Người lập
+pml_sovanban=Số văn bản
+no-pml-hscv-were-found=Không tìm thấy HSCV nào!
+pml_inputvalue=Nhập giá trị yêu cầu
+pml_kiemtra_ngaymo_hanxuly=Kiểm tra lại ngày mở và hạn xử lý
+pml_ngaymo=Ngày mở
+pml_tomtatnoidung=Tóm tắt nội dung
+pml_tinhchat=Tính chất
+pml_mucdoquantrong=Mức độ quan trọng
+pml_hanxuly=Hạn xử lý
+pml_trangthai=Trạng thái
+sohieu_phaico_khongtrung=Số hiệu phải nhập và không để trùng lặp
+ngaymo_khong_detrong=Ngày mở không để trống
+nguoilap_khong_detrong=Người lập không để trống
+tieude_khong_detrong=Tiêu đề không để trống
+hanxuly_lonhon_ngaymo=Hạn xử lý phải lớn hơn ngày mở
+pml_hoatdong=Hoạt động
+search-hosocongviec=Tìm HSCV
+add-hosocongviec=Thêm HSCV
+pml_nhap_ngay_dung_dinhdang=Nhập ngày theo đúng định dạng
+are-you-sure-you-want-to-delete-the-selected-item=Bạn có muốn xóa mục được chọn
+doituong_khong_tontai=Đối tượng không tồn tại
+khongthe_xoa_vi_rangbuoc_dulieu=Không thể xóa vì ràng buộc dữ liệu
+
+##
+## Tinh chat HSCV
+##
+order-no=Số thứ tự
+ten-tinh-chat=Tên tính chất
+no-official-dispatch-pml-tinh-chat-were-found=Không tồn tại tính chất nào
+is-add-new=Thêm mới
+please-enter-a-valid-ten-tinh-chat=Chưa nhập tên tính chất
+can-not-delete-pml-tinh-chat=Không thể xóa vì ràng buộc dữ liệu
+save=Lưu
+delete=Xóa
+are-you-sure-you-want-to-delete-the-selected-pml-tinh-chat=Bạn có muốn xóa tính chất này không?
+
+##
+## Do quan trong - Ho so cong viec
+##
+ten-do-quan-trong=Tên độ quan trọng
+please-enter-a-valid-ten-do-quan-trong=Chưa nhập tên do quan trọng
+can-not-delete-pml-do-quan-trong=Không thể xóa vì ràng buộc dữ liệu
+no-official-dispatch-pml-do-quan-trong-were-found=Không tồn tại độ quan trọng nào
+are-you-sure-you-want-to-delete-the-selected-pml-do-quan-trong=Bạn có muốn xóa độ quan trọng này không?
+
+##
+## Trang thai ho so cong viec
+##
+ten-trang-thai-hscv=Tên trạng thái hồ sơ công việc
+no-official-dispatch-pml-trang-thai-hscv-were-found=Không tồn tại trạng thái hồ sơ công việc nào
+please-enter-a-valid-ten-trang-thai-hscv=Chưa nhập tên trạng thái
+can-not-delete-pml-trang-tha-hscv=Không thể xóa vì ràng buộc dữ liệu
+are-you-sure-you-want-to-delete-the-selected-pml-trang-thai-hscv=Bạn có muốn xóa trạng thái hồ sơ công việc này không?
+
+##
+## Chi tiet ho so cong viec
+##
+STT=STT
+khong-co-cong-van-di=Không có văn bản đi
+khong-co-cong-van-den=Không có văn bản đến
+Khong-co-tap-tin-dinh-kem=Không có tập tin đính kèm
+are-you-sure-you-want-to-delete-cong-van-den=Bạn có muốn xóa văn bản đến này không?
+are-you-sure-you-want-to-delete-cong-van-di=Bạn có muốn xóa văn bản đi này không?
+cvden=Văn bản đến
+cvdi=Văn bản đi
+thong-tin-ho-so-cong-viec=Thông tin hồ sơ công việc
+so-hieu-hscv=Số hiệu HSCV
+tinh-chat=Tính chất
+tieu-de=Tiêu đề
+ngay-mo=Ngày mở
+linh-vuc=Lĩnh vực
+muc-do-quan-trong=Mức độ quan trọng
+nguoi-tao=Người tạo
+han-xu-ly=Hạn xử lý
+tinh-trang-xu-ly=Tình trạng xử lý
+van-de-lien-quan=Vấn đề liên quan
+ho-so-cha=Hồ sơ cha
+tro-ve=Trở về
+
+##
+## Trang chu
+##
+# Cong van
+official-dispatch-process=Xử lý văn bản
+od-no-receive=Số văn bản nhận
+od-processiong-in-limit=Văn bản cần xử lý trong ngày
+late-od-process=Văn bản xử lý trễ hạn
+# Ho so
+record-process=Xử lý hồ sơ
+record-not-receive=Hồ sơ chưa nhận
+record-process-in-day=Hồ sơ cần xử lý trong ngày
+late-record-process=Hồ sơ trễ hạn
+doc-expect-complete=Hồ sơ chờ bổ sung
+
+##
+## Document reciept
+##
+nhap-so-ngay-xu-ly-phai-la-so=Nhập số ngày xử lý.
+
+##
+## TSS
+##
+ngay-xu-ly-phai-lon-hon-ngay-hien-tai=Ngày xử lý phải lớn hơn ngày hiện tại
+ngay-giai-quyet-phai-nho-hon-ngay-xu-ly=Ngày giải quyết phải nhỏ hơn ngày xử lý
+ngay-giai-quyet-phai-lon-hon-ngay-hien-tai=Ngày giải quyết của chuyên viên phải lớn hơn ngày hiện tại
+ngay-xu-ly-phai-lon-hon-ngay-giai-quyet=Ngày xử lý phải lớn hơn ngày giải quyết
+ngay-giai-quyet-phai-nho-hon-tong-thoi-gian=Ngày giải quyết của chuyên viên phải nhỏ hơn tổng thời gian xử lý
+ngay-giai-quyet-phai-nho-hon-thoi-gian-con-lai=Ngày giải quyết của chuyên viên phải nhỏ hơn thời gian còn lại
+
+hscv-phongban=Tên hồ sơ công việc
+view_hscv=Phân quyền HSCV
+pccc-cvdtn-canphucdap=Cần phúc đáp
+
+##
+## Department
+##
+ban-muon-xoa-phong-ban-nay-khoi-he-thong=Bạn muốn xóa phòng ban này khỏi hệ thống?
+khong-the-xoa-dong-nay-vi-co-ren-buoc=Không thể xóa dòng này vì có ràng buộc
+
+##
+## So cong van
+##
+ten-loai-so-cong-van=Tên loại sổ văn bản
+vui-long-chon-tendonvi=Vui lòng chọn tên đơn vị!
+add-cap-gui=Đơn vị thuộc cấp gửi
+
+##
+## Phan danh cho liferay
+##
+add-application=Thêm ứng dụng
+add-organization=Thêm tổ chức
+add-password-policy=Thêm chính sách mật khẩu
+add-role=Thêm quyền
+add-user=Thêm người dùng
+add-user-group=Thêm nhóm người dùng
+address=Địa chỉ
+addresses=Địa chỉ
+any=Bất kỳ
+assign-user-roles=Phân quyền cho người dùng
+deactivate=Làm mất hiệu lực
+edit-pages-for-location=Hiệu chỉnh trang cho địa chỉ
+edit-permissions-for=Chỉnh sửa phân quyền cho
+email-addresses=Địa chỉ thư
+extension=Số nội bộ
+gender=Giới tính
+group-id=Mã nhóm
+guest=Khách
+layout-template=Mẫu bố cục trang
+location=Địa điểm
+mailing=Thư tín
+manage-pages=Quản lý trang
+match-x-of-the-following-fields=Đúng {0} trong các đặc điểm sau:
+my-community=Cộng đồng người dùng
+my-places=Vị trí người dùng
+new-name=Tên mới
+old-name=Tên hiện tại
+organizations=Tổ chức
+parent-organization=Tổ chức cha
+password-policies=Chính sách mật khẩu
+permissions=Phân quyền
+phone-numbers=Số điện thoại
+prefix=Chức danh
+primary=Chính yếu
+private-pages=Trang cá nhân
+public-pages=Trang dùng chung
+region=Vùng
+regular=Bình thường
+regular-roles=Quyền hợp lệ
+search-organizations=Tìm tổ chức
+search-password-policies=Tìm chính sách mật khẩu
+search-roles=Tìm quyền
+search-users=Tìm người dùng
+search-user-groups=Tìm nhóm người dùng
+services=Dịch vụ
+setting=Thiết lập
+street=Đường
+street1=Đường 1
+street2=Đường 2
+street3=Đường 3
+the-organization-does-not-have-any-addresses=Không có địa chỉ nào trong tổ chức.
+the-organization-does-not-have-any-email-addresses=Không có địa chỉ thư nào trong tổ chức.
+the-organization-does-not-have-any-phone-numbers=Không có số điện thoại nào trong tổ chức.
+the-organization-does-not-have-any-services=Không có dịch vụ nào trong tổ chức.
+the-organization-does-not-have-any-websites=Không có website nào trong tổ chức.
+toggle-edit-controls=Hiển thị thiết lập
+update-permissions=Cập nhật phân quyền
+user-groups=Nhóm người dùng
+view-users=Xem người dùng
+welcome=Xin chào
+welcome-x=Xin chào {0}!
+zip=Mã vùng
+
+##
+## Phan danh cho Thu Thiem
+##
+organization-address=230 - Nguyễn Trãi - Q.1 - TP.HCM
+system-management-organization-information=HỆ THỐNG QUẢN LÝ THÔNG TIN
+
+##
+## Cau hinh cong van cho nguoi dung
+##
+add-config=Thêm cấu hình
+choose=Chọn
+choose-user=Chọn người dùng
+config-for-user=Cấu hình cho người dùng
+department=Phòng ban
+have-no-items=Không có mục nào
+view-all-document-of-unit=Xem tất cả văn bản của đơn vị
+view-document-of-department=Xem văn bản của phòng ban
+
+##
+## Module lich hop
+##
+approved-calendar=Lịch dự kiến
+buoi-chieu=Chiều
+buoi-sang=Sáng
+buoi-toi=Tối
+calendar-release=Lịch chính thức
+chi-dao=Chỉ đạo
+chieu-toi=Chiều tối
+cho-duyet=Chờ duyệt
+component=Thành phần
+content=Nội dung
+da-duyet=Đã duyệt
+da-hop=Đã họp
+dang-hop=Đang họp
+doi-ngay=Dời ngày
+doi-sang=Dời sang
+duyet-lich=Duyệt lịch
+from-date=Từ ngày
+ghi-chu=Ghi chú
+lich-chua-duyet=Lịch chưa duyệt
+noi-dung-trinh=Nội dung trình
+note=Ghi chú
+or-enter-room-name=hoặc nhập tên phòng
+place=Địa điểm
+please-enter-a-valid-component=Nhập dữ liệu vào ô Thành phần
+please-enter-a-valid-content=Nhập dữ liệu vào ô Nội dung
+please-enter-a-valid-room=Nhập dữ liệu vào ô phòng
+please-enter-a-valid-sponsor=Nhập dữ liệu vào ô Người chủ trì
+print-calendar-dk=In lịch dự kiến
+quan-tri=Quản trị
+room=Phòng
+sponsor=Người chủ trì
+tai-noi=tại
+thu-ngay=Thứ/Ngày
+thu-trong-tuan=Thứ
+time=Thời gian
+tinh-trang=Tình trạng
+to-date=Đến ngày
+toan-bo-bai-da-duyet=Toàn bộ bài đã duyệt
+tra-bien-tap=Trả biên tập
+tra-chinh-sua=Trả chỉnh sửa
+trinh-duyet=Trình duyệt
+trinh-giam-doc=Trình duyệt
+trinh-truong-phong=Trình LĐ phòng
+
+javax.portlet.title.EXT_M_CAL=Lịch công tác
+
+
+
+#####
+##2009/10/18
+##
+##Quyen quan tri - Chinh sach mat khau
+##action.ASSIGN_MEMBERS=
+##assign-members=
+action.DELETE=Xóa
+action.PERMISSIONS=Phân quyền
+view=Xem
+update-associations=Cập nhật quan hệ
+no-password-policies-were-found=Không chính sách mật khẩu nào được tìm thấy
+changeable=Có thể thay đổi
+changeable-help=Nếu được bật, người dùng có thể thay đổi mật khẩu của mình.
+password-syntax-checking=Kiểm tra cú pháp mật khẩu
+syntax-checking-enabled=Bật kiểm tra cú pháp
+syntax-checking-enabled-help=Nếu được bật, mật khẩu sẽ được kiểm tra phải có độ dài và những từ nhất định.
+password-history=Lịch sử mật khẩu
+history-enabled=Bật lưu lịch sử mật khẩu
+history-enabled-help=Nếu được bật, chương trình sẽ lưu những mật khẩu cũ và ngăn không cho người dùng dùng lại.
+password-expiration=Hết hạn mật khẩu
+expiration-enabled-help=Nếu được bật, người dùng phải thay đổi mật khẩu sau một khoảng thời gian cho trước.
+expiration-enabled=Bật tính năng hết hạn
+lockout=Khóa
+lockout-enabled=Bật tính năng khóa
+lockout-enabled-help=Nếu được bật, người dùng có thể đăng nhập vào tài khoản của mình một số lần trước khi bị khóa.
+your-request-processed-successfully=Yêu cầu của bạn đã được thực hiện thành công.
+
+##Quyen quan tri - Cac thiet lap
+javax.portlet.title.130=Các thiết lập
+legal-name=Tên hợp lệ
+legal-id=Id hợp lệ
+legal-type=Kiểu hợp lệ
+allow-community-administrators-to-use-their-own-logo=Cho phép người quản trị công đồng sử dụng biểu tượng của chính họ?
+##sic-code=
+##ticket-symbol=
+##industry=
+##general=
+authenticate=Xác thực
+how-do-users-authenticate=Xác thực người dùng bằng
+by-user-id=bằng mã người dùng
+by-email-address=bằng địa chỉ email
+by-screen-name=bằng tên đăng nhập
+allow-users-to-request-forgotten-passwords=Cho phép người dùng lấy lại mật khẩu bị mất?
+allow-strangers-to-create-accounts-with-a-company-email-address=Cho phép khác tạo tài khoản với địa chỉ mail công ty?
+require-strangers-to-verify-their-email-address=Yêu cầu khách xác nhận địa chỉ mail?
+enabled=Kích hoạt
+default-values=Giá trị mặc định
+home=Trang chủ
+connection=Kết nối
+##Cac thiet lap/Authentication/LDAP,CAS,NTLM,OpenID,Open SSO, SiteMinder dich sau
+
+default-user-associations=Quan hệ người dùng mặc định
+enter-the-default-community-names-per-line-that-are-associated-with-newly-created-users=Thêm vào tên cộng đồng dùng để đặt mặc định cho người dùng vừa được tạo (mỗi tên 1 dòng).
+enter-the-default-role-names-per-line-that-are-associated-with-newly-created-users=Thêm vào tên vai trò dùng để đặt mặc định cho người dùng vừa được tạo (mỗi tên 1 dòng).
+enter-the-default-user-group-names-per-line-that-are-associated-with-newly-created-users=Thêm vào tên nhóm người dùng dùng để đặt mặc định cho người dùng vừa được tạo (mỗi tên 1 dòng).
+reserved-screen-names=Screen Names được đặt trước
+enter-one-user-email-address-per-line-to-reserve-the-user-email-address=Thêm vào mỗi dòng một địa chỉ mail để đặt trước địa chỉ đó.
+enter-one-screen-name-per-line-to-reserve-the-screen-name=Thêm vào mỗi dòng một screen name để đặt trước screen name đó.
+
+##Cac thiet lap - Thong bao
+notifications=Thông báo
+email-notifications=Thư thông báo
+account-created-notification=Thông báo đã tạo tài khoản
+subject=Chủ đề
+the-address-of-the-email-recipient=Địa chỉ người nhận
+the-name-of-the-email-recipient=Tên người nhận
+password-changed-notification=Thông báo đã đổi mật khẩu
+javax.portlet.title.131=Kiểm tra
+monitoring=Kiểm tra
+javax.portlet.title.132=Các phần mở rộng
+plugins=Các phần mở rộng
+portlet-plugins=Portlet mở rộng
+theme-plugins=Chủ đề mở rộng
+layout-template-plugins=Mẫu bố cục mở rộng
+hook-plugins=Hook mở rộng
+web-plugins=Web mở rộng
+look-and-feel=Chỉnh giao diện
+action.CONFIGURATION=Cấu hình
+configuration=Cấu hình
+
+##Danh muc ho so- Dinh nghia loai ho so
+##Please enter a value for original
+##Please enter a value for copy
+
+##Danh muc cong van- Dinh nghia loai so cong van
+chon-so-cong-van=Vui lòng chọn sổ văn bản
+
+##Danh muc cong van- Phan quyen theo doi cong van
+javax.portlet.title.SGS_PML_EDM_DOCCONFUSER=Phân quyền theo dõi văn bản
+
+##Danh muc ho so cong viec-Dinh nghia ho so cong viec
+##Expire, Edit, Delete
+
+##Lich hop- Lich chinh thuc
+meeting-content=Nội dung họp
+meeting-sponsor=Người chủ trì
+meeting-component=Thành phần họp
+no-meeting-calendar-were-found=Không tìm thấy lịch họp nào
+chi-chon-1-diem=Chỉ chọn 1 thời điểm
+do-you-want-to-approve=Bạn thật sự muốn duyệt?
+
+##porlet Co quan
+ten-nguoi-lanh-dao=Tên người lãnh đạo
+ten-co-quan=Tên cơ quan
+
+##Them ung dung
+category.admin=Quản trị
+javax.portlet.title.79=Quản trị doanh nghiệp
+javax.portlet.title.80=Quản trị tổ chức
+javax.portlet.title.99=Quản trị tags
+javax.portlet.title.111=Cài đặt phần mở rộng
+javax.portlet.title.98=Danh sách phần mềm
+javax.portlet.title.104=Quản lý cập nhật
+javax.portlet.title.59=Hiển thị bình chọn
+category.cms=Hệ thống quản lý nội dung
+javax.portlet.title.101=Đăng tin
+#javax.portlet.title.73=Breadcrumb
+javax.portlet.title.110=Hiển thị thư viện tài liệu
+javax.portlet.title.62=Quản lý bài viết
+javax.portlet.title.56=Nội dung bài viết
+javax.portlet.title.77=Tìm kiếm nội dung bài viết
+javax.portlet.title.71=Định hướng
+javax.portlet.title.118=Portlet lồng nhau
+javax.portlet.title.85=Bản đồ trang web
+javax.portlet.title.102=Nội dung XSL
+javax.portlet.title.116=Các hoạt động
+#City Management
+#Home Menu
+javax.portlet.title.121=Các yêu cầu
+javax.portlet.title.SGS_AGENCY=Cơ quan
+javax.portlet.title.SGS_ATTACHEDFILE=Hồ sơ đính kèm
+javax.portlet.title.SGS_CAREER=Nghề nghiệp
+javax.portlet.title.SGS_DOCUMENTRECORD=Sổ văn bản
+javax.portlet.title.SGS_GENEATEDOCUMENTCODE=Mã phát sinh hồ sơ
+javax.portlet.title.SGS_GENERATETEMPLATEID=Mẫu phát sinh mã
+javax.portlet.title.SGS_POSITION=Chức vụ
+javax.portlet.title.115=Tập hợp blog
+javax.portlet.title.33=Blogs
+javax.portlet.title.114=Người viết blog gần đây
+javax.portlet.title.36=Wiki
+javax.portlet.title.82=Ngôn ngữ
+javax.portlet.title.112=Đăng nhập bằng OpenID
+javax.portlet.title.109=Hình thức trang web
+javax.portlet.title.28=Đánh dấu trang
+javax.portlet.title.29=Các cộng đồng
+javax.portlet.title.100=Mời
+javax.portlet.title.107=Bình luận trang
+javax.portlet.title.108=Đánh giá trang web
+javax.portlet.title.67=Xếp hạng theo Amazon
+category.christianity=Đạo Cơ đốc
+category.religion=Tôn giáo
+javax.portlet.title.7=Kinh thánh
+javax.portlet.title.51=Tài liệu kinh thánh
+javax.portlet.title.46=Cẩm nang cho châu Á
+javax.portlet.title.21=Đoạn kinh ngẫu nhiên
+javax.portlet.title.48=IFrame
+javax.portlet.title.66=Web Proxy
+javax.portlet.title.83=Cảnh báo
+javax.portlet.title.84=Thông báo
+javax.portlet.title.39=RSS
+javax.portlet.title.61=Tính toán nợ
+javax.portlet.title.54=Hiển thị wiki
+to-add-a-portlet-to-the-page-just-drag-it=Kéo và thả portlet để đặt vào trang web.
+search-content-searches-as-you-type=Tìm kiếm (tìm theo từng ký tự gõ vào).
+search-file-entries=Tìm kiếm tập tin
+num-of-folders=số thư mục con
+actions=Hành động
+no-documents-were-found-that-matched-the-keywords-x=Không tìm thấy tài liệu trùng với từ khóa: {0}.
+
+##Tin tuc hang ngay
+##this-page-displays-the-last-x-articles,-structures,-and-templates-that-you-accessed=This page displays the last {0} articles, structures, and templates that you accessed.
+##Trang web hiển thị {0} bài viết, cấu trúc và mẫu cuối người dùng đã vào.
+
+## 2009/10/19
+pccc-cvdtn-xlcv=Lưu và xử lý
+quanlycongvan-xulythayldb=NL thay LĐ
+quanlycongvan-xulythayldvp=NL thay LĐ VP
+documentcode.chucvu=Chức vụ
+file-upload=Hồ sơ đính kèm
+focus-week=Trọng tâm tuần
+khong-co-tap-tin=Không có tập tin đính kèm
+luu-y=Lưu ý
+print-calendar=In lịch
+prior=Ưu tiên
+thu-2=Hai
+thu-3=Ba
+thu-4=Tư
+thu-5=Năm
+thu-6=Sáu
+thu-7=Bảy
+trong-tam=Trọng tâm
+trong-tam-tuan-da-co=Trọng tâm tuần này đã có!
+## Thu Thiem - Ho so cong viec
+chon-cong-van-den-can-xu-ly=Chọn văn bản đến cần xử lý
+chon-cong-van-di-can-xu-ly=Chọn văn bản đi cần xử lý
+## Thu Thiem - Trang chu
+have-no-meeting-calendar-in-day=Không có lịch họp trong ngày hôm nay!
+meeting-calendar-in-day=Lịch họp trong ngày
+now-you-have=Hiện giờ, bạn có:
+now-you-have-not-any-receive-document-need-process=Hiện giờ, bạn không có VB đến cần xử lý
+now-you-have-not-any-record-need-process=Hiện giờ, bạn không có HS nào cần xử lý
+now-you-have-not-any-send-document-need-process=Hiện giờ, bạn không có VB đi cần xử lý
+od-no-need-process=Văn bản cần xử lý
+situation-process-document=Tình hình xử lý văn bản
+situation-process-record=Tình hình xử lý hồ sơ
+LCCV-khongcanchonthoigian=Không cần chọn thời gian
+so-cong-van-phuc-dap-khong-ton-tai=Số công văn phúc đáp không tồn tại
+so-cong-van-phuc-dap-da-tontai=Số công văn phúc đáp đã tồn tại
+
+## Lich hop
+do-you-want-to-delete?=Bạn muốn xóa lịch ?
+do-you-want-to-cancel?=Bạn muốn hủy lịch ?
+entrant=Người đăng ký
+
+## SGS gui
+them-so-cvden=Tạo sổ văn bản đến
+them-so-cvdi=Tạo sổ văn bản đi
+pccc-cvdtn-socongvandencuaphong=Số văn bản của phòng
+receipt.uutien=Ưu tiên
+## SGS gui - Phan sach sach van ban - 2009/12/02
+danh-sach-cong-van=Danh sách văn bản
+trangthai_xuly=Trạng thái xử lý
+## SGS gui - 2009/12/11
+in-phieu-chuyen=In phiếu chuyển
+so-va-ky-hieu-van-ban=Số và ký hiệu văn bản
+the-date-format-should-be=Định dạng ngày: ngày/tháng/năm
+
+##
+## 2009/12/17 Hien thi lich ra ngoai
+##
+all-day=Cả ngày
+do-you-want-to-cancel=Bạn có muốn hủy không
+doi-hop=Dời họp
+huy-hop=Hủy họp
+khong-co-lich-cong-tac-nao-trong-chieu-nay=Không có lịch công tác nào trong chiều nay
+khong-co-lich-cong-tac-nao-trong-sang-nay=Không có lịch công tác nào trong sáng này
+lich-du-kien=Lịch dự kiến
+lich-ngay=Lịch ngày
+lich-tuan=Lịch tuần
+
+##
+## 2009/12/17 - Van ban di
+##
+abbreviate_name=Tên viết tắt
+document_attached_file_active=Ẩn tập tin không trình
+document_attached_file_view=Trình tập tin
+documentsend-search-khongtontaidulieu=Không tìm thấy dữ liệu!
+
+##
+## 2009/12/21 - SGS bo sung them
+##
+department_agency=Cơ quan
+are-you-sure-you-want-to-delete-nation=Bạn muốn xóa dân tộc này ra khỎi hệ thống?
+are-you-sure-you-want-to-delete-position=Bạn muốn xóa chức vụ này ra khỎi hệ thống không?
+are-you-sure-you-want-to-delete-user=Bạn muốn xóa ngừơi dùng này ra khỎi hệ thống không?
+are-you-sure-you-want-to-delete-ward=Bạn muốn xóa phừơng này ra khỎi hệ thống?
+lanh-dao-co-quan-hien-tai=Lãnh đạo cơ quan hiện tại
+lanh-dao-thay-the=Lãnh đạo thay thế
+nguoi-dung-dau-co-quan=Lãnh đạo cơ quan
+
+##
+## 2010/01/18 - Man hinh them van ban di den
+##
+add-edit=Thêm/Sửa
+chinh-sua-don-vi-da-co-trong-he-thong=Chỉnh sửa đơn vị đã có trong hệ thống
+da-cap-nhat-thong-tin-don-vi=Đã cập nhật thông tin đơn vị!
+da-them-don-vi-moi=Đã thêm đơn vị mới!
+da-them-nguoi-ky-moi=Đã thêm người ký mới!
+khong-cap-nhat-duoc-thong-tin-don-vi.vui-long-kiem-tra-du-lieu-nhap=Không cập nhật được thông tin đơn vị. Vui lòng kiểm tra dữ liệu nhập!
+khong-them-duoc-don-vi-moi.vui-long-kiem-tra-du-lieu-nhap=Không thêm được đơn vị mới. Vui lòng kiểm tra lại dữ liệu nhập!
+khong-them-duoc-nguoi-ky-moi.vui-long-kiem-tra-du-lieu-nhap=Không thêm được người ký mới. Vui lòng kiểm tra lại dữ liệu nhập!
+save-edit=Lưu hiệu chỉnh
+save-new=Lưu mới
+thuoc-cap-gui-van-ban=Thuộc cấp gửi văn bản
+vui-long-khong-thay-doi-ma-so=Vui lòng không thay đổi mã số!
+vui-long-nhap-ma-so=Vui lòng nhập mã số!
+vui-long-nhap-ten-don-vi=Vui lòng nhập tên đơn vị!
+
+##
+## 2010/02/02 - Cach thuc xu ly
+##
+cach-thuc-xu-ly=Cách thức xử lý
+javax.portlet.title.PML_PROCESSTYPE=Quản lý cách thức xử lý
+nhap-ma-so=Nhập mã số
+nhap-ma-so-tu-1-den-3=Nhập mã số từ 1 đến 3
+process.delete.confirm=Bạn muốn xóa cách thức xử lý này?
+sort=Sắp xếp
+sort.=Sắp xếp
+ten-cach-thuc-xu-ly=Tên cách thức xử lý
+them-cach-thuc-xu-ly-thanh-cong=Thêm cách thức xử lý thành công
+
+##
+## 2010/02/08 - Tim kiem lucene
+##
+documentreceipt-search-ngayphathanh=Ngày phát hành
+index-document=Chỉ mục văn bản
+javax.portlet.title.SGS_INDEXDATABASE=Chỉ mục tìm kiếm văn bản
+loading=Đang tải
+nam=Năm
+pccc-TN-vuilongchonnguoidung=Vui lòng chọn người dùng
+phat-hanh-trong=Phát hành trong
+reindex-cong-van-den=Tạo lại chỉ mục văn bản đến
+reindex-cong-van-di=Tạo lại chỉ mục văn bản đi
+thang=tháng
+
+##
+## 2010/02/08 - Van thu xu ly thay
+##
+chon-lanh-dao-can-xu-ly=Chọn lãnh đạo để nhập liệu thay
+
+##
+## 2010/03/09 - Bo danh muc
+##
+add-documentrecord=Thêm loại sổ văn bản
+add-documenttype=Thêm loại văn bản
+add-issuingplace=Thêm đơn vị liên quan
+khong-the-them-moi-vi-khong-con-mau-phat-sinh-ma=Không còn mẫu
+ho=Họ
+lanh_dao_phong=Lãnh đạo phòng
+no-web-content-were-found=Không có dữ liệu!
+ten=Tên
+vui-long-nhap-ma-loai-cv=Nhập mã loại văn bản
+vui-long-nhap-mo-ta=Nhập mô tả
+vui-long-nhap-so-bat-dau=Nhập số bắt đầu
+
+##
+## 2010/03/16 - Qui trinh
+##
+lanh-dao-khong-co-van-ban=Lãnh đạo không có văn bản
+lanh-dao-co-van-ban=Lãnh đạo có văn bản
+quy-trinh-cong-van-den-phu-cap-lanh-dao=Quy trình phụ cấp lãnh đạo
+chon-lanh-dao-phong-xu-ly-chinh=Chọn lãnh đạo phòng xử lý chính
+phan-cach-ten-bang-dau-;=phân cách tên bằng dấu ;
+### yenlt 05/04/2010
+vui-long-nhap-ma=Vui lòng nhập mã !
+vui-long-chon-tinh-thanh-pho=Vui lòng chọn Tỉnh/Thành Phố
+
+pml_edm_file_state_code=Tên trạng thái xử lý
+pml_edm_file_state_name=Trạng thái xử lý
+
+mot-cua=Một Cửa
+cong-van=Văn Bản
+cap-nhat=Cập nhật
+ma-trang-thai=Mã trạng thái
+ten-trang-thai=Tên trạng thái
+nhap-trang-thai-xu-ly=Nhập trạng thái xử lý
+ten-trang-thai-xu-ly-da-ton-tai-vui-long-chon-ten-trang-thai-xu-ly-khac=Tên trạng thái xử lý đã tồn tại vui lòng chọn tên trạng thái xử lý khác
+
+##
+## 2010/04/14 - Phong ban
+##
+department_phutrach=Phòng ban phụ trách
+pccc-TN-co-loi-khi-them-du-lieu=Có lỗi khi thêm dữ liệu!
+tinhhinhthulycongvan-chuanhan=Chưa nhận
+
+##
+## 2010/05/06
+##
+## cong van di da hoan thanh
+chonloaisocongvanbaocao=Chọn loại sổ văn bản cần báo cáo
+error-date="Từ ngày" không được lớn hơn "Đến ngày"
+baocaotonghopcongvandahoanthanh=Báo cáo tổng hợp văn bản đã hoàn thành
+congvandi=Văn bản đi
+congvanden=Văn bản đến
+ngayphathanh=Ngày phát hành
+noidung=Nội dung
+loaicongvan=Loại văn bản
+nguoikyvanban=Người ký văn bản
+nguoisoanvanban=Người soạn văn bản
+noinhan=Nơi nhận
+nguoitheodoi=Người theo dõi
+ghichu=Ghi chú
+
+## cong van den da hoan thanh
+ngayden=Ngày đến
+kyhieucongvan=Ký hiệu VB
+tinhtrangvanban=Tình trạng VB
+noiphathanh=Nơi phát hành
+nguoixulyvanban=Người xử lý VB
+butphe=Bút phê
+nguoithuchien=Người thực hiện
+cv-hoanthanh=Đã hoàn thành
+
+## bao cao tong hop ho so
+ho-so-da-hoan-thanh=Hoàn thành
+
+## ma phat sinh ho so
+nhap-nam=Nhập năm
+chi-nhap-2-con-so=Chỉ nhập 2 con số
+chi-nhap-con-so=Chỉ nhập con số
+nhap-so=Nhập số
+
+## Van ban bao cao
+trinhbaocao=Trình báo cáo
+nguoi-nhan=Người nhận
+chon-nguoi-nhan=Chọn người nhận
+ketthuc=Kết thúc
+
+##
+## 2010/05/28
+##
+## So van ban den cua phong
+vui-long-kiem-tra-ngay-nhap=Vui lòng kiểm tra ngày nhập!
+nam-cua-ngay-van-ban-den-bat-buoc-phai-nhap=Năm của ngày nhận bắt buộc phải nhập!
+nam-cua-ngay-phat-hanh-bat-buoc-phai-nhap=Năm của ngày phát hành bắt buộc phải nhập!
+
+##
+## 2010/06/04
+##
+add-city=Thêm thành phố
+them-quan-huyen=Thêm Quận/Huyện
+them-phuong-xa=Thêm Phường/Xã
+bao-cao-ho-so-thang=Báo cáo hồ sơ tháng
+bao-cao-ho-so-cap-phong=Báo cáo hồ sơ cấp phòng
+bao-cao-ho-so-cap-so=Báo cáo hồ sơ cấp cơ quan
+bao-cao-ho-so-luy-ke=Báo cáo hồ sơ lũy kế
+vui-long-nhap-documenttype-code=Vui lòng nhập mã
+The-date-format-should-be=Định dạng ngày: ngày/tháng/năm
+record-need-process=Hồ sơ cần xử lý
+
+ma_duong=Mã đường
+ten_duong=Tên đường
+nhap_ten_duong=Nhập tên đường
+nhap-ma-duong=Nhập mã đường
+khong-co-mau-phat-sinh-ma-duong=Không có mẫu phát sinh mã đường
+
+socongvanden=Sổ văn bản đến
+socongvandi=Sổ văn bản đi
+so=Cơ quan
+phongban=Phòng ban
+add-so-cong-van-di=Thêm Sổ văn bản đi
+add-so-cong-van-den=Thêm Sổ văn bản đến
+ngay-tao=Ngày tạo
+nhap-so-hien-tai=Nhập số hiện tại
+ten-lot=Tên Lót
+chuc-vu=Chức vụ
+chua-chon=Chưa chọn
+da-chon=Đã chọn
+chon-quan-huyen=Chọn quận huyện
+add-documentrecordtype=Thêm loại sổ văn bản
+city-management=Thành phố
+wards-management=Phường
+department-leader=Phòng ban
+pml-user=Người dùng
+generate-template-id=Mẫu phát sinh mã
+generate-document-code=Mã phát sinh hồ sơ
+Position=Chức vụ
+agency=Cơ quan
+document-field=Lĩnh vực
+file-status=Trạng thái
+file-type=Loại hồ sơ
+attached-file=Hồ sơ đính kèm
+document-record=Sổ văn bản
+document-level-send=Cấp gửi
+document-record-type=Loại sổ văn bản
+document-type=Loại văn bản
+issuingplace=Đơn vị liên quan
+privelegelevel-admin=Độ khẩn
+confidentiallevel=Độ mật
+doc-conf-user=Cấu hình
+javax.portlet.title.PROCESSTYPE=Cách thức xử lý
+workflow-admin=Quy trình hồ sơ
+document-process-management=Quy trình văn bản
+delegate=Ủy quyền
+report-cachthucxuly=Cách thức xử lý
+report-chuyenvienxulychinh=Người xử lý
+report-danhsachvanbanden=Danh sách văn bản đến
+report-phanmemloi=qua phần mềm lõi
+report-chuyenviendangxuly=Người xử lý
+report-danhsachvanbandi=Danh sách văn bản đi
+
+##
+## 2010/06/29
+##
+khong-the-xoa-dong-nay-vi-co-rang-buoc=Không thể xóa dòng này vì có ràng buộc
+so-van-ban-den-cua-phong=Sổ văn bản đến của phòng
+so-van-ban-di-cua-phong=Sổ văn bản đi của phòng
+bao-cao-thong-ke=Báo cáo thống kê
+cho-so-va-phat-hanh=Cho số và phát hành
+
+##
+## 2010/07/20
+##
+cannot-determine-object-processing-please-recheck=Không thể xác định được đối tượng đang thao tác. Vui lòng kiểm tra lại!
+if-not-select-all-user-can-view-detail-document=Nếu không chọn thì mọi người đều có thể xem chi tiết văn bản
+if-not-select-all-user-in-department-can-view-detail-document=Nếu không chọn thì mọi người trong phòng đều có thể xem chi tiết văn bản
+limit-view=Giới hạn xem
+limit-view-detail=Giới hạn xem chi tiết
+need-participate-process-to-view-detail=Cần tham gia xử lý để xem chi tiết
+participate-process=Tham gia xử lý
+please-input-confidential-name=Vui lòng nhập tên độ mật!
+synchronize-user=Đồng bộ người dùng
+access-system=Đăng nhập hệ thống...
+he-thong-quan-ly-thong-tin=Hệ thống quản lý thông tin
+vui-long-chon-noi-phat-hanh-truoc=Vui lòng chọn nơi phát hành trước
+
+cau-hinh-ds-nguoi-ky=Cấu hình danh sách người ký
+chon-so=Vui lòng chọn cơ quan
+nhap-ten-viet-tat=Nhập tên viết tắt
+them-moi-phong-ban=Thêm mới phòng ban
+chinh-sua-phong-ban=Chỉnh sửa phòng ban
+
+## 24/08/2010 - rang buoc file type
+fileTypeCode-nhap-ma-loai-ho-so=Nhập mã loại hồ sơ
+fileTypeName-nhap-ten-loai-ho-so=Nhập tên loại hồ sơ
+processTime-chi-nhap-con-so=Thời gian xử lý chỉ được nhập số
+processTime-nhap-so-lon-hon-0=Thời gian xử lý phải lớn hơn 0
+processTime-nhap-thoi-gian-xu-ly=Thời gian xử lý yêu cầu phải nhập
+currentReceiptNumber-nhap-so-lon-hon-0=Số biên nhận hiện tại phải lớn hơn 0
+currentReceiptNumber-chi-nhap-con-so=Số biên nhận hiện tại chỉ được nhập số
+ma-loai-ho-so-khong-duoc-trung=Mã loại hồ sơ không được trùng nhau
+
+## 25/08/2010 - rang buoc dieu kien ma trung
+ma-tinh-thanhpho-khong-duoc-trung=Mã tỉnh/thành phố không được trùng nhau
+ma-quan-huyen-khong-duoc-trung=Mã quận/huyện không được trùng nhau
+ma-phong-ban-khong-duoc-trung=Mã phòng ban không được trùng nhau
+ma-chuc-vu-khong-duoc-trung=Mã chức vụ không được trùng nhau
+ma-nganh-nghe-khong-duoc-trung=Mã ngành nghề không được trùng nhau
+ma-co-quan-khong-duoc-trung=Mã cơ quan không được trùng nhau
+ma-linh-vuc-ho-so-khong-duoc-trung=Mã lĩnh vực hồ sơ không được trùng nhau
+ma-trang-thai-khong-duoc-trung=Mã trạng thái hồ sơ không được trùng nhau
+ngay-nghi-da-ton-tai=Ngày nghỉ đã tồn tại
+ma-ho-so-dinh-kem-khong-duoc-trung=Mã hồ sơ đính kèm không được trùng nhau.
+dinh-nghia-trang-thai=Định nghĩa trạng thái
+nhap-ma-co-quan=Vui lòng nhập mã cơ quan
+nhap-ten-co-quan=Vui lòng nhập tên cơ quan
+position=Chức vụ
+
+so-hien-tai-nhap-khong-qua-muoi-chin-con-so=Số hiện tại nhập không quá 19 con số
+khong-the-bo-lanh-dao-phong-khoi-phong-ban=Không thể bỏ lãnh đạo phòng khỏi phòng ban
+## Bieu mau
+bieu-mau=Biểu mẫu
+ma-bieu-mau=Mã biểu mẫu
+ten-bieu-mau=Tên biểu mẫu
+so-van-ban=Số văn bản
+ngay-ban-hanh=Ngày ban hành
+phong-ban-hanh=Phòng ban hành
+tap-tin-dinh-kem=Tập tin đính kèm
+chon-tap-tin-dinh-kem=Chọn tập tin đính kèm
+loc-theo=Lọc theo
+tu-khoa=Từ khóa
+
+## home_report
+javax.portlet.title.SGS_HOME_REPORT=HOME REPORT VĂN BẢN
+tong-hop-tinh-hinh-xu-ly-van-ban=TỔNG HỢP TÌNH HÌNH XỬ LÝ VĂN BẢN
+tong-hop=Tổng hợp
+loai-thong-ke=Loại thống kê
+theo-chuyen-vien=Theo chuyên viên
+tong-hop-xu-ly=Tổng hợp xử lý
+danh-sach-phong-ban=Danh sách phòng ban
+ho-ten=Họ và tên
+ton-thang-truoc=Tồn tháng trước
+nhan-trong-thang=Nhận trong tháng
+da-xu-ly=Đã xử lý
+con-ton=Còn tồn
+error-fromdate=Vui lòng nhập ngày bắt đầu thống kê
+error-todate=Vui lòng nhập ngày kết thúc thống kê
+
+danh-sach-van-ban-den=Danh sách văn bản đến
+nhap-van-ban-den=Nhập văn bản đến
+tieu-thuc-lap-bao-cao=Tiêu thức lập báo cáo
+tra-cuu-van-ban=Tra cứu văn bản
+tieu-chi-tra-cuu=Tiêu chí tra cứu
+
+so-den-theo-so=Số đến theo sổ
+so-ky-hieu-goc=Số / ký hiệu gốc
+nhom-van-ban=Nhóm văn bản
+loai-van-ban=Loại văn bản
+co-quan=Cơ quan
+ngay-het-han-xu-ly=Ngày hết hạn xử lý
+tu-ngay-phai-nho-hon-hoac-bang-den-ngay=Từ ngày phải nhỏ hơn hoặc bằng đến ngày
+ngay-het-han-xu-ly-phai-lon-hon-hoac-bang-tu-ngay=Ngày hết hạn xử lý phải lớn hơn từ ngày
+
+## home_report_onedoor
+javax.portlet.title.SGS_HOME_REPORT_ONEDOOR=HOME REPORT MỘT CỬA
+tong-hop-tinh-hinh-xu-ly-ho-so=TỔNG HỢP TÌNH HÌNH XỬ LÝ HỒ SƠ PHÒNG
+tong-hop-xu-ly-ho-so-theo-chuyen-vien=Tổng hợp xử lý hồ sơ theo chuyên viên
+ton-truoc=Tồn trước
+hs-chuyen-den=Hồ sơ chuển đến
+hs-da-giai-quyet=Hồ sơ đã giải quyết
+hs-ton-dong=Hồ sơ tồn đọng
+
+## home_onedoor
+javax.portlet.title.SGS_HOME_ONEDOOR=HOME MENU MỘT CỬA
+nhac-viec=Nhắc việc
+
+pccc-trangthaihoso-hoanthanh=Hoàn thành
+ho-so-da-xu-ly=Danh sách hồ sơ đã xử lý
+ho-so-da-tra=Danh sách hồ sơ đã trả
+
+javax.portlet.title.SGS_ONEDOORRETURN = Hồ sơ đã trả
+javax.portlet.title.SGS_ONEDOORFILEPROCESSED = Hồ sơ đã xử lý
+javax.portlet.title.SGS_ONEDOORSEARCH = Tìm kiếm hồ sơ
+
+danh-muc=Danh mục
+danh-sach-ho-so-can-xu-ly=Danh sách hồ sơ cần xử lý
+tieu-thuc-tim-kiem=Tiêu thức tìm kiếm
+tiep-nhan-ho-so=Tiếp nhận hồ sơ
+them-moi=Thêm mới
+
+quan-tri-he-thong=Quản trị hệ thống
+tieu-thuc-loc-ho-so=Danh sách hồ sơ cần xử lý
+thong-tin-chi-tiet=Thông tin chi tiết
+danh-sach-ho-so-bao-cao=Danh sách hồ sơ báo cáo
+
+javax.portlet.title.SGS_HOME_DOCUMENT=HOME MENU VĂN BẢN
+
+so-ky-hieu=Số ký hiệu
+don-vi-soan-thao=Đơn vị soạn thảo
+co-quan-nhan=Cơ quan nhận
+danh-sach-van-ban-di=Danh sách văn bản đi
+vui-long-chon-lanh-dao-de-nhap-lieu-thay=Vui lòng chọn lãnh đạo để nhập liệu thay
+nhan-vien-nhap-lieu-thay-lanh-dao=Nhân viên nhập liệu thay lãnh đạo
+chon-lanh-dao=Chọn lãnh đạo
+ten-lanh-dao-can-nhap-lieu-thay=Tên lãnh đạo cần nhập liệu thay
+LCCV-chuyenvien=Tên chuyên viên
+LCCV-tenphongban=Tên phòng ban
+vui-long-chon-ngay-ban-hanh=Vui lòng chọn ngày ban hành
+ho-so-cong-viec=Hồ sơ công việc
+trang-thai-hscv=Trạng thái HSCV
+tinh-chat-hscv=Tính chất HSCV
+do-quan-trong-hscv=Độ quan trọng HSCV
+danh-chi-muc-van-ban=Đánh chỉ mục văn bản
+them-moi-bieu-mau=Thêm mới biểu mẫu
+cap-nhat-bieu-mau=Cập nhật biểu mẫu
+lanh-dao-hien-tai=Lãnh đạo hiện tại
+org-ext=Tổ chức
+org-local=Trong hệ thống
+org-publish=Ngoài hệ thống
+
+javax.portlet.title.SGS_ORGANIZATIONEXTERNAL=TỔ CHỨC LIÊN THÔNG
+to-chuc-lien-thong=Tổ chức liên thông
+ma-to-chuc=Mã tổ chức
+ten-to-chuc=Tên tổ chức
+la-don-vi-cua-minh=Là tổ chức của mình
+
+javax.portlet.title.SGS_CONNECTTOGATEWAY=KẾT NỐI GATEWAY
+connet-to-gateway=Kết nối Gateway
+create-connection-by-thread=Tạo kết nối bằng Thread
+stop-thread=Ngưng kết nối bằng Thread
+create-connection-by-timer=Tạo kết nối bằng Timer
+stop-timer=Ngưng kết nối bằng Timer
+
+van-ban=Văn bản
+to-chuc=Tổ chức
+create-connection-by-thread-eorg=Tạo kết nối tổ chức bằng Thread
+create-connection-by-timer-eorg=Tạo kết nối tổ chức bằng Timer
+stop-thread-eorg=Ngưng kết nối
+stop-timer-eorg=Ngưng kết nối
+
+cau-hinh-ket-noi=Cấu hình kết nối Gateway
+edmsgateway-url=Đường dẫn tới Gateway
+edmsgateway-username=Tên đăng nhập
+edmsgateway-password=Mật khẩu 
+timer-delay=Thời gian chờ
+timer-delay-org=Thời gian chờ của tổ chức
+edmsgateway-status-new=Trạng thái Gateway
+
+them-ho-so-cong-viec=Thêm hồ sơ công việc
+pccc-Chitiethoso=Chi tiết hồ sơ công việc
+cap-nhat-ho-so-cong-viec=Cập nhật hồ sơ công việc
+them-so-van-ban-den=Thêm sổ văn bản đến
+cap-nhat-so-van-ban-den=Cập nhật sổ văn bản đến
+them-so-van-ban-di=Thêm sổ văn bản đi
+cap-nhat-so-van-ban-di=Cập nhật sổ văn bản đi
+quanlycongvan-vanbannhanquamang=Văn bản nhận qua mạng
+
+edmsgateway-status-receive=Trạng thái nhận
+edmsgateway-fromdate=Ngày bắt đầu kết nối
+edmsgateway-todate=Ngày kết thúc kết nối
+edmsgateway-sub-company=Mã cơ quan
+
+quan-tri-he-thong-nguoi-dung=Quản trị hệ thống người dùng
+khong-ket-noi-duoc-he-thong-ben-ngoai=Không kết nối được với hệ thống bên ngoài
+phan-quyen-van-ban=Phân quyền theo dõi văn bản
+
+thong-tin-dang-ky-ten-truy-cap=Thông tin đăng ký tên truy cập
+xac-nhan-thong-tin-mat-khau=Xác nhận thông tin mật khẩu
+Chi-tiet-ho-so=Chi tiết hồ sơ
+Chinh-sua-dia-chi-website=Chỉnh sửa địa chỉ website
+Quan-tri-he-thong-to-chuc=Quản trị hệ thống tổ chức
+Chinh-sua-dia-chi=Chỉnh sửa địa chỉ
+Chinh-sua-so-dien-thoai=Chỉnh sửa số điện thoại
+Sua-dia-chi-mail=Sửa địa chỉ mail
+Dich-vu-he-thong=Dịch vụ hệ thống
+Quan-tri-he-thong-nhom-nguoi-dung=Quản trị hệ thống nhóm người dùng
+Quan-tri-he-thong-chinh-sach-mat-khau=Quản trị hệ thống chính sách mật khẩu
+Logo-hien-tai=Logo hiện tại
+Thay-doi-logo=Thay đổi logo
+screen-name-attribute=Tên hiển thị trên màn hình
+email-address-attribute=Địa chỉ mail
+first-name-attribute=Tên
+last-name-attribute=Họ
+thong-tin-he-thong=Thông tin hệ thống
+Ten-URL=Tên URL
+Thoi-gian-xu-ly=Thời gian xử lý
+Session-Attributes=Thuộc tính phiên làm việc
+Chinh-sua-Plugin=Chỉnh sửa plugin
+Quan-tri-doanh-nghiep=Quản trị doanh nghiệp
+available=Có sẵn
+archived=Có sẵn
+pccc-documentsent-add-filevanbandidinhkem=Thêm tập tin đính kèm
+
+please-enter-a-valid-password = Vui long nhập mật khẩu
+please-enter-a-valid-screen-name=Vui lòng nhập tên truy nhập
+
+print=In danh sách
+cong-van-den-va-di=Văn bản đến và đi
+su-dung-cho=Sử dụng cho
+
+category.danhmuchscv =Danh mục hồ sơ công việc
+category.danhmucvanban=Danh mục văn bản
+category.quantrivanbanpml= Quản trị văn bản
+category.vanbanden=Văn bản đến
+category.vanbandi=Văn bản đi
+category.thongke=Thống kê
+javax.portlet.title.SGS_PML_TEMPLATE=Quản trị biểu mẫu
+javax.portlet.title.SGS_PML_TEMPLATE_DISPLAY=Biểu mẫu
+javax.portlet.title.SGS_CONGVANDIDAHOANTHANH=Văn bản đi đã hoàn thành
+javax.portlet.title.SGS_SIGNER=Quản trị người ký
+javax.portlet.title.SGS_DELETEPROCESSINSTANCE=Xóa thể hiện quy trình
+vui-long-chon-van-ban=Vui lòng chọn văn bản
+
+## Gia han thoi gian xu ly van ban
+extend-process=Gia hạn
+information-extend-process-document-receipt=Thông tin gia hạn xử lý văn bản đến
+date-start-process=Ngày bắt đầu xử lý
+before-extend=Trước khi gia hạn
+number-day-process=Số ngày xử lý
+limit-date=Ngày hết hạn
+after-extend=Sau khi gia hạn
+reason-extend=Lý do gia hạn
+person-extend=Người gia hạn
+department-extend=Phòng gia hạn
+information-summary-document-receipt-need-extend=Thông tin tóm tắt văn bản đến cần gia hạn
+account-by-date-expire-process=Tính theo ngày hết hạn xử lý
+values-relate-not-valid-to-extend=Các giá trị liên quan không hợp lệ để gia hạn
+please-input-reason-extend=Vui lòng nhập lí do gia hạn
+please-input-limit-date-by-format-ddmmyyyy=Vui lòng nhập ngày hết hạn xử lý theo định dạng dd/mm/yyyy
+limit-date-extend-must-greater-than-limit-date-current=Hạn xử lý khi gia hạn phải lớn hơn hạn xử lý hiện tại
+number-day-process-extend-must-be-integer-positive=Số ngày xử lý khi gia hạn phải là số nguyên dương
+number-day-process-extend-must-greater-than-number-day-process-current=Số ngày xử lý khi gia hạn phải lớn hơn số ngày xử lý hiện tại
+
+## Thay doi cach thuc xu ly van ban
+process-type=Thay đổi cách thức xử lý
+person-processtype=Người chỉnh sửa
+department-processtype=Phòng chỉnh sửa
+date-start-processtype=Ngày chỉnh sửa
+reason-processtype=Lý do chỉnh sửa
+please-input-processtype-reason=Vui lòng nhập lý do thay đổi cách thức xử lý
+pccc-XL-thongtinthaydoicachthucxuly=Thông tin thay đổi cách thức xử lý
+processtype-before=Cách thức xử lý trước khi thay đổi
+processtype-after=Cách thức xử lý sau khi thay đổi
+ban-co-that-su-muon-cap-nhat-cach-thuc-xu-ly=Bạn có thật sự muốn cập nhật cách thức xử lý
+
+## Lien ket van ban
+view-document-of-user=Xem văn bản của người dùng
+link-document=Liên kết VB
+create-link-document-new=Tạo liên kết văn bản mới
+link-for-document-receipt=Liên kết cho văn bản đến
+link-for-document-send=Liên kết cho văn bản đi
+link-document-exist=Liên kết văn bản đã tồn tại
+select-to-delete=Chọn để xóa
+delete-link-document-old=Xóa liên kết cũ
+add-link-document-new=Thêm liên kết mới
+date-start-cannot-greater-than-date-end=Ngày bắt đầu không thể lớn hơn ngày kết thúc
+please-select-link-document-before-add=Vui lòng chọn liên kết văn bản trước khi thêm
+please-select-link-document-before-delete=Vui lòng chọn liên kết văn bản trước khi xóa
+you-want-delete-links-document=Bạn muốn xóa những liên kết văn bản này
+no-have-data=Không có dữ liệu
+rutlai=Rút lại
+quan-tri-he-thong-nguoi-ky-van-ban=Quản trị hệ thống người ký văn bản
+tao-lai-chi-muc-thanh-cong=Tạo lại chỉ mục thành công
+tao-lai-chi-muc-khong-thanh-cong=Tạo lại chỉ mục không thành công
+ten=Tên
+vui-long-chon-he-thong=Vui lòng chọn hệ thống
+
+co-gan-phan-mo-rong=Có gắn phần mở rộng
+con-han=Còn hạn
+sap-den-han=Sắp đến hạn
+tre-han=Trễ hạn
+document_timeprocess=Thời hạn xử lý
+javax.portlet.title.SGS_MESSAGE_NOT=Thông báo luân chuyển văn bản
+ban-nhan-duoc=Bạn nhận được
+van-ban-den-tu=văn bản đến từ
+van-ban-di-tu=văn bản đi từ
+
+settings=Cấu hình
+return-to-full-page=Quay lại trang chính
+new-page=Trang mới
+expand-all=Mở rộng tất cả
+collapse-all=Thu gọn tất cả
+export-import=Xuất/Nhập
+javax.portlet.title.88=Quản lý trang
+action.MANAGE_LAYOUTS=Quản lý trang
+manage-pages=Quản lý các trang
+children-pages=Trang con
+
+vui-long-chon-cau-hinh=Vui lòng chọn cấu hình.
+url-image-home= Đường dẫn liên kết
+description-image-home= Mô tả
+file-upload=Tập tin ảnh
+
+new-page=Trang mới
+display-order=Sắp xếp hiển thị
+page-display-order=Sắp xếp hiển trị trang
+update-display-order=Cập nhật hiển thị
+set-the-display-order-of-child-pages=Cấu hình săp xếp hiển trị trang.
+add-child-pages=Thêm trang con.
+edit-public-page=Sửa trang công cộng
+hidden=Ẩn
+link-to-layout=Liên kết đến trang
+layout.types.link_to_layout=Liên kết đến trang
+pages=Các trang
+chinh-sua-trang=Chỉnh sửa trang
+children-pages=Các trang con
+children=Trang con
+for-example-x=Ví dụ, {0}.
+copy-page=Copy trang
+display=Hiển thị
+no-user-groups-were-found=Không tìm thấy nhóm người dùng.
+no-users-were-found=Không tìm thấy người dùng
+website=Trang web
+websites=Trang web.
+general=Chung
+authentication=Chứng thực
+manage-top-private-pages-for=Quản lý các trang cá nhân cho
+manage-top-public-pages-for=Quản lý các trang công cộng cho
+
+## vu update 25122010
+ky-hieu-loai-van-ban-bi-trung=Ký hiệu loại văn bản bị trùng
+
+## Portal
+action.ASSIGN_MEMBERS=Gán thành viên
+action.DEFINE_PERMISSIONS=Định nghĩa quyền
+add-a-css-rule-for-all-portlets-like-this-one=Thêm qui tắc CSS cho tất cả thành phần web giống với thành phần web hiện tại.
+add-a-css-rule-for-just-this-portlet=Chỉ thêm qui tắc CSS cho thành phần web này.
+add-child-pages=Thêm trang con
+add-role=Thêm vai trò
+advanced-css-styling=Định dạng CSS nâng cao
+advanced-styling=Định dạng nâng cao
+alerts-and-announcements=Báo động và thông báo
+alignment=Canh lề
+allow-users-to-add-x-to-any-website=Cho phép người dùng thêm <b>{0}</b> vào bất cứ trang nào.
+always-use-my-user-id=Luôn sử dụng định danh người dùng của tôi.
+any-website=Bất kỳ website nào
+archived=Lưu trữ
+archived-setups=Thiết lập được đóng gói
+archived-setups=Thiết lập lưu trữ
+archive-name-for-current-setup=Tên lưu trữ cho thiết lập hiện tại
+are-you-sure-you-want-to-remove-this-component=Bạn có chắc chắn muốn gỡ bỏ thành phần này?
+assign-members=Gán thành viên
+assign-user-roles=Phân vai trò cho người dùng
+authentication=Xác thực
+authentication-search-filter=Bộ lọc tìm kiếm xác thực
+availability=Có sẵn
+available=Có sẵn
+available-categories=Các mục có sẵn
+background-color=Màu nền
+background-styles=Kiều nền
+bold=Đậm
+border-color=Màu viền
+border-style=Kiểu viền
+border-styles=Kiểu viền
+border-styling=Định dạng viền
+border-width=Độ rộng viền
+categories-and-messages=Phân loại và thông báo
+change-frequency=Chu kỳ thay đổi
+children=Trang con
+collapse-all=Thu gọn tất cả
+color=Màu
+color-schemes=Phối màu
+community=Cộng đồng
+community-roles=Vai trò trong cộng đồng
+copy-as-new=Sao chép như mới
+copy-page=Sao chép trang
+data=Dữ liệu
+data-strategy=Chiến lược cho dữ liệu
+date-range=Khoảng thời gian
+define-permissions=Định nghĩa quyền
+delete-missing-layouts=Xóa trang bị thiếu
+delete-portlet-data-before-importing=Xóa dữ liệu của thành phần web trước khi nhập
+display=Hiển thị
+display-order=Thứ tự hiển thị
+domain-controller=Bộ điều khiển Domain
+edit-private-page=Hiệu chỉnh trang cá nhân
+edit-public-page=Hiệu chỉnh trang dùng chung
+email-address-attribute=Địa chỉ email
+enter-your-custom-css=Nhập vào css tùy chỉnh của bạn
+expand-all=Mở rộng tất cả
+export-enabled=Cho xuất
+export-import=Xuất / Nhập
+export-the-selected-data-to-the-given-lar-file-name=Xuất dữ liệu được chọn ra tập tin LAR có tên sẵn
+first-name-attribute=Tên
+flags=Cờ
+font=Phông chữ
+font-style=Kiểu phông
+for-example-x=Ví dụ, {0}.
+friendly-url=Địa chỉ URL thân thiện
+general=Thông dụng
+group-mapping=Ánh xạ nhóm
+group-name=Tên nhóm
+groups-dn=DN của nhóm
+hidden=Ẩn
+html-title=Tiêu đề HTML
+icon=Biểu tượng
+if-a-user-id-does-not-exist,-then-use-my-user-id=Nếu một định danh người dùng không tồn tại thì sử dụng định danh của tôi.
+impersonate-user=Thủ vai người dùng
+import-a-lar-file-to-overwrite-the-selected-data=Nhập một tập tin LAR để ghi đè lên dữ liệu được chọn
+import-cas-users-from-ldap=Nhập người dùng CAS từ LDAP
+import-enabled=Cho nhập
+import-search-filter=Nhập bộ lọc tìm kiếm
+import-siteminder-users-from-ldap=Nhập người dùng SiteMinder từ LDAP
+include=Gộp vào
+industry=Công nghiệp
+inherit=Kế thừa
+initial-window-state=Khởi tạo tình trạng của cửa sổ
+insert-custom-css-that-will-loaded-after-the-theme=Thêm css tùy chỉnh sẽ được nạp sau giao diện
+instant-messenger=Định danh tin nhắn
+instant-messenger-ids=Định danh tin nhắn nhanh
+italic=Nghiêng
+last-name-attribute=Họ
+less-options=Giảm lựa chọn
+letter-spacing=Khoảng cách giữa các ký tự
+line-height=Chiều cao dòng
+link-portlet-urls-to-page=Liên kết URL của thành phần web với trang
+localized-language=Ngôn ngữ địa phương
+login-url=URL đăng nhập
+logout-url=URL đăng xuất
+manage-pages=Quản lý trang
+manage-top-private-pages-for=Quản lý trang cá nhân ở trên đỉnh của
+manage-top-public-pages-for=Quản lý trang dùng chung ở trên đỉnh của
+margin-and-padding=Margin và Padding
+meta-tags=Thẻ lớn
+mirror=Nhân bản
+mobile-devices=Thiết bị di động
+more-options=Lựa chọn nhiều hơn
+new-page=Trang mới
+news=Tin tức
+organization-roles=Vai trò trong tổ chức
+page-priority=Trang ưu tiên
+pages=Trang
+password-policy=Chính sách mật khẩu
+permissions=Quyền
+permissions-assigned-to-organizations-user-groups-roles-and-communities=Quyền được gán cho tổ chức, nhóm người dùng, vai trò và cộng đồng
+permissions-assigned-to-users=Quyền được gán cho người dùng
+please-enter-a-valid-password=Vui lòng nhập mật khẩu hợp lệ.
+portlet-classes=Phân lớp thành phần web
+portlet-configuration=Cấu hình thành phần web
+portlet-id=Định danh thành phần web
+portlets=Thành phần web
+portlet-title=Tiêu đề của thành phần web
+profile=Thông tin cá nhân
+ratings=Đánh giá
+regular-browsers=Trình duyệt thông thường
+regular-roles=Vai trò thông thường
+reset-values=Đăt lại giá trị
+robots=Tự động
+role=Vai trò
+role-name=Tên vai trò
+roles=Vai trò
+same-for-all=Tất cả giống nhau
+screen-name-attribute=Tên tài khoản
+search-roles=Tìm vai trò
+server-name=Tên server
+service-url=URL dịch vụ
+set-the-display-order-of-child-pages=Đặt thứ tự hiển thị của trang con
+settings=Thiết lập
+share-this-application-on-any-website=Chia sẻ ứng dụng này cho bất cứ trang nào. Chỉ cần sao chép dữ liệu bên dưới và dán vào trang web của bạn, ứng dụng sẽ được hiển thị.
+sic-code=Mã số SIC
+sitemap-protocol=Giao thức cho sơ đồ trang
+sms-messenger-id=Định danh tin nhắn SMS
+social-network-ids=Định danh mạng xã hội
+suffix=Hậu tố
+tags=Thẻ
+target=Mục tiêu
+test=Kiểm tra
+test-ldap-connection=Kiểm tra kết nối LDAP
+test-ldap-groups=Kiểm tra nhóm LDAP
+test-ldap-users=Kiểm tra người dùng LDAP
+text-styles=Kiểu chữ
+the-address-of-the-email-recipient=Địa chỉ email nhận
+theme=Giao diện
+themes=Giao diện
+the-name-of-the-email-recipient=Tên của email nhận
+there-are-no-archived-setups=Không có thiết lập lưu trữ nào.
+the-x-portlet-does-not-have-any-data-that-can-be-exported-or-does-not-include-support-for-it=Thành phần web {0} không có dữ liệu để xuất hoặc không hỗ trợ chức năng xuất.
+ticker-symbol=Mã biểu tượng
+update-display-order=Cập nhật thứ tự hiển thị
+update-my-styles-as-i-type=Cập nhật kiểu của tôi ngay khi tôi gõ.
+update-the-styles-on-this-page=Cập nhật kiểu cho trang này.
+use-custom-title=Sử dụng tiêu đề tùy chỉnh
+use-icon=Sử dụng biểu tượng
+use-ldap-password-policy=Sử dụng chính sách mật khẩu của LDAP
+user-bans=Ngăn cấm đối với người dùng
+user-default-object-classes=Lớp đối tượng mặc định của người dùng
+user-header=Mở đầu của người dùng
+user-id-strategy=Chiến lược cho định danh của người dùng
+user-mapping=Ánh xạ người dùng
+user-preferences=Sở thích của người dùng
+users-dn=ND của người dùng
+use-the-general-look-and-feel-for-the-private-pages=Sử dụng chức năng xem và cảm nhận thông dụng cho trang cá nhân?
+validate-url=URL xác nhận hợp lệ
+virtual-host=Host ảo
+wap-styling=Định dạng WAP
+what-would-you-like-to-export=Bạn muốn xuất ra cái gì?
+what-would-you-like-to-import=Bạn muốn nhập vào cái gì?
+word-spacing=Khoảng cách giữa các từ
+you-do-not-have-any-additional-email-addresses=Bạn không có thêm địa chỉ thư nào.
+you-do-not-have-any-addresses=Bạn không có địa chỉ nào.
+you-do-not-have-any-community-roles=Bạn không có vai trò nào trong cộng đồng.
+you-do-not-have-any-phone-numbers=Bạn không có số điện thoại nào.
+you-do-not-have-any-websites=Bạn không có website nào.
+your-current-portlet-information-is-as-follows=Thông tin thành phần web hiện tại của bạn như sau
+your-new-password-cannot-be-the-same-as-your-old-password-please-enter-in-a-different-password=Mật khẩu mới không thể giống mật khẩu cũ. Vui lòng nhập một mật khẩu khác.
+caps-lock-is-on = Caps lock bàn phím đang mở
+##end portal
+
+xuat-word=Xuất word
+xuat-excel=Xuất excel
+muc-do-do-mat=Thứ tự ưu tiên sắp xếp
+vui-long-nhap-muc-do-do-mat=Vui lòng nhập mức độ của độ mật
+vui-long-nhap-so-va-lon-hon-0=Vui lòng nhập số và phải lớn hơn 0
+ten-do-mat-khong-duoc-trung=Tên độ mật không được trùng
+muc-do-do-mat-khong-duoc-trung=Mức độ của độ mật không được trùng
+vb-phat-hanh-cua-giam-doc=Là văn bản phát hành của Giám đốc
+vb-phat-hanh-cua-phong-ban=Là văn bản phát hành của Phòng ban
+##uy quyen xu ly van báº£n
+thuc-hien-uy-quyen = Ủy quyền xử lý văn bản
+nguoi-uy-quyen= Người ủy quyền
+chon-ngay-uy-quyen-cu-the=Cấu hình ngày ủy quyền cho từng người dùng
+xu-dung-ngay-uy-quyen-cu-the=Bỏ chọn để dùng cùng ngày cho tất cả các người dùng
+chon-ngay-uy-quyen=Ngày bắt đầu ủy quyền
+chon-ngay-ket-thuc-uy-quyen=Ngày kết thúc ủy quyền
+nguoi-duoc-uy-quyen=Người được ủy quyền
+ngay-bat-dau-uy-quyen=Ngày bắt đầu ủy quyền
+ngay-ket-thuc-uy-quyen=Ngày kết thúc ủy quyền
+ngay-ngung-uy-quyen=Ngày ngưng ủy quyền
+pccc-XL-quatrinhluanchuyencongvanden=Luân chuyển
+chon-nguoi-nhan-bao-cao-va-nguoi-nhan-bao-cao-chinh=chọn người nhận báo cáo và ưu tiên người nhận báo cáo chính
+quy-trinh-cong-van-den-phu-bao-cao=quy trình phụ báo cáo
+nguoi-nhan-bao-cao-chinh=Người nhận báo cáo chính
+nhap-but-phe=Nhập bút phê
+chon-nguoi-de-nhap-but-phe=Chọn người cần nhập bút phê
+ten=Tên
+document-private=Nhập văn bản nội bộ
+uy-quyen-xu-ly=Ủy quyền xử lý
+pccc-cvdtn-nguoi-tao=Người tạo văn bản
+pccc-cvdtn-chua-cau-hinh-phong-ban=Người dùng chưa thuộc phòng ban nào
+chon-loai-so-van-ban=Vui lòng chọn loại sổ văn bản
+remember-me=Ghi nhớ tên tài khoản
+
+#phat hanh cong van di
+quy-trinh-cong-van-di-phu-phat-hanh=Quy trình phụ phát hành công văn đi
+cho-so-va-phat-hanh-thanh-cong=Cho số và phát hành thành công
+cho-so-va-phat-hanh-khong-thanh-cong=Cho số và phát hành không thành công
+
+#Thong tin gop y
+nhap-tieu-de=Vui lòng nhập tiêu đề
+dinh-kem-tap-tin=Chọn tập tin đính kèm
+chuaphathanh=Chưa phát hành
+van-ban-phat-hanh=Văn bản phát hành
+
+don-vi-sao-y=Đơn vị sao y
+note-nguoixylychinh =(*): Xử lý chính
+so-den-theo-so-da-ton-tai=Số đến theo sổ đã tồn tại
+#Thong bao cho nguoi dung
+ky-hieu-khong-duoc-trung=Ký hiệu không được trùng!
+vui-long-chon-cap-gui=Vui lòng chọn cấp gữi văn bản!
+so-den-theo-so-da-ton-tai=Số đến theo sổ đã tồn tại
+so-va-ky-hieu-vb-phat-hanh-da-ton-tai=Số và ký hiệu văn bản phát hành đã tồn tại
+
+##
+## Quản lý luồng
+## Quan ly luong
+##
+javax.portlet.title.SGS_RECIEVERGROUP=Quản lý luồng
+ten-luong=Tên luồng
+them-luong=Thêm luồng
+them-moi-cap-nhat-luong=Thêm mới/Cập nhật luồng
+you-do-not-have-permission=Bạn không có quyền thực hiện thao tác này
+type-is-different=Không thể thêm đơn vị/người nhận vào luồng này!
+enter-group-name=Xin nhập tên luồng
+this-name-already-exists=Tên này đã tồn tại
+ban-muon-xoa-luong-nay=Bạn muốn xóa luồng này?
+nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them=Nhấp vào để tìm kiếm đơn vị/người nhận muốn thêm

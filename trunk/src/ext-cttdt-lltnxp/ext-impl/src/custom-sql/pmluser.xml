@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pmluser.service.persistence.PmlUserFinder.countByPmlUser">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_user
+			WHERE
+				(lower(pml_user.positionid) = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.screenname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.lastname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.middlename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.firstname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pmluser.service.persistence.PmlUserFinder.findByPmlUser">
+		<![CDATA[
+			SELECT
+				pml_user.*
+			FROM
+				pml_user
+			WHERE
+				(lower(pml_user.positionid) = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.screenname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.lastname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.middlename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_user.firstname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+</custom-sql>

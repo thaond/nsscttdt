@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pmllevelsend.service.persistence.PmlEdmLevelSendFinder.countByPmlEdmLevelSend">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_levelsend 
+			WHERE
+				(lower(levelsendname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pmllevelsend.service.persistence.PmlEdmLevelSendFinder.findByPmlEdmLevelSend">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_edm_levelsend.*}
+			FROM
+				pml_edm_levelsend 
+			WHERE
+				(lower(levelsendname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+</custom-sql>

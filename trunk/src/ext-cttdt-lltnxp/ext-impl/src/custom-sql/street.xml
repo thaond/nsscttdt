@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pmlstreet.service.persistence.PmlStreetFinder.findBy_TEN_DUONG">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_street.*}
+			FROM
+				pml_street 
+			WHERE
+				(lower(streetname) LIKE ? [$AND_OR_NULL_CHECK$]) 				 	
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pmlstreet.service.persistence.PmlStreetFinder.countBy_TEN_DUONG">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_street 
+			WHERE
+				(lower(streetname) LIKE ? [$AND_OR_NULL_CHECK$]) 	
+		]]>
+	</sql>
+</custom-sql>

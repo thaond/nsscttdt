@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.receipt.service.persistence.PmlEdmLevelSendDetailFinder.checkContainLevelSend">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_levelsenddetail
+			WHERE pml_edm_levelsenddetail.levelsendid = ?
+				AND pml_edm_levelsenddetail.issuingplaceid LIKE ?
+		]]>
+	</sql>
+	
+</custom-sql>

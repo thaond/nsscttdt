@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	
+	<sql id="com.sgs.portlet.position.service.persistence.PositionFinder.findBy_CODE_NAME_DESCRIPTION">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				pml_position
+			WHERE
+				(lower(positioncode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(positionname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.position.service.persistence.PositionFinder.countBy_CODE_NAME_DESCRIPTION">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_position
+			WHERE
+				(lower(positioncode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(positionname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	
+</custom-sql>
