@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<field name="clickedcount" class="java.lang.Long"/>
+	<field name="codenum" class="java.lang.String"/>
+	<summary>
+		<band height="790">
+			<bar3DChart>
+				<chart isShowLegend="false" hyperlinkType="None">
+					<reportElement x="0" y="0" width="472" height="271"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{clickedcount}]]></seriesExpression>
+						<categoryExpression><![CDATA["Category"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{clickedcount}]]></valueExpression>
+						<itemHyperlink hyperlinkType="None"/>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot isShowLabels="false">
+					<plot/>
+				</bar3DPlot>
+			</bar3DChart>
+			<pie3DChart>
+				<chart isShowLegend="false" hyperlinkType="None">
+					<reportElement x="0" y="271" width="472" height="259"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{codenum}]]></keyExpression>
+					<valueExpression><![CDATA[$F{clickedcount}]]></valueExpression>
+					<sectionHyperlink hyperlinkType="None"/>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+				</pie3DPlot>
+			</pie3DChart>
+			<lineChart>
+				<chart isShowLegend="false" hyperlinkType="None">
+					<reportElement x="0" y="530" width="472" height="260"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{clickedcount}]]></seriesExpression>
+						<categoryExpression><![CDATA["Category"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{clickedcount}]]></valueExpression>
+						<itemHyperlink hyperlinkType="None"/>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+				</linePlot>
+			</lineChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="report_state_document"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="842"
+		 pageHeight="595"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="sgs_font" isDefault="false" fontName="SansSerif" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Arial.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="startDate" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="endDate" isForPrompting="false" class="java.util.Date"/>
+
+	<field name="subReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<field name="dataSource" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="parametersMap" class="java.util.Map"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="100"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
+						width="782"
+						height="20"
+						key="staticText-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DANH SÁCH HỒ SƠ VỪA TIẾP NHẬN]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="20"
+						width="782"
+						height="19"
+						key="textField-1"/>
+					<box></box>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font reportFont="sgs_font"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Thời gian từ ngày " + (new SimpleDateFormat("dd/MM/yyy")).format($P{startDate}) + " tới ngày " + (new SimpleDateFormat("dd/MM/yyyy")).format($P{endDate})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="0"
+						y="76"
+						width="38"
+						height="24"
+						key="staticText-2"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Stt]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="38"
+						y="76"
+						width="81"
+						height="24"
+						key="staticText-3"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Biên nhận]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="119"
+						y="76"
+						width="81"
+						height="24"
+						key="staticText-4"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Nộp hồ sơ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="460"
+						y="76"
+						width="79"
+						height="24"
+						key="staticText-5"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Ngày nhận]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="539"
+						y="76"
+						width="79"
+						height="24"
+						key="staticText-6"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Ngày hẹn trả]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="618"
+						y="76"
+						width="81"
+						height="24"
+						key="staticText-7"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Ngày xử lý]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="200"
+						y="76"
+						width="260"
+						height="24"
+						key="staticText-9"/>
+					<box>					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="sgs_font" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Địa chỉ]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="48"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="0"
+						width="699"
+						height="48"
+						key="subreport-1"/>
+					<parametersMapExpression><![CDATA[$F{parametersMap}]]></parametersMapExpression>
+					<dataSourceExpression><![CDATA[$F{dataSource}]]></dataSourceExpression>
+					<subreportExpression  class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$F{subReport}]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>
