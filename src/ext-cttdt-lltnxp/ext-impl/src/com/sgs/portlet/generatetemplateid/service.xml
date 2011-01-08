@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.generatetemplateid">
+	<namespace>IdTemplate</namespace>
+	<entity name="IdTemplate" local-service="true" remote-service="true"
+		table="PML_IDTEMPLATE">
+
+		<!-- PK fields -->
+
+		<column name="templateId" type="long" primary="true" db-name="templateId"/>
+
+		<!-- Other fields -->
+
+		<column name="format" type="String" db-name="format"/>
+		<column name="startNumber" type="String" db-name="startNumber"/>
+		<column name="len" type="long" db-name="len"/>
+		<column name="description" type="String" db-name="description"/>
+
+		<!-- Finder methods -->
+
+		<finder name="AllLike" return-type="Collection">
+			<finder-column name="format" comparator="LIKE" />
+			<finder-column name="description" comparator="LIKE" />
+		</finder>
+		<finder name="Format" return-type="Collection" >
+			<finder-column  name="format" comparator="LIKE"/>
+		</finder>
+		<finder name="FormatLike" return-type="Collection">
+			<finder-column name="format" comparator="LIKE" />
+		</finder>
+		<finder name="Description" return-type="Collection">
+			<finder-column case-sensitive="false" name="description" comparator="LIKE" />
+		</finder>
+	</entity>
+	<entity name="IdGenerated" local-service="true" remote-service="true"
+		table="PML_IDGENERATED">
+
+		<!-- PK fields -->
+
+		<column name="id" type="long" primary="true" db-name="id"/>
+
+		<!-- Other fields -->
+
+		<column name="year" type="String" db-name="year"/>
+		<column name="curValue" type="long" db-name="curvalue"/>
+		
+		<finder name="AllLike" return-type="Collection">
+			<finder-column name="year" comparator="LIKE" />
+			<finder-column name="curValue" comparator="LIKE" />
+		</finder>
+		<finder name="Year" return-type="Collection">
+			<finder-column name="year" comparator="LIKE" />
+		</finder>
+		<finder name="CurValue" return-type="Collection">
+			<finder-column name="curValue" comparator="LIKE" />
+		</finder>
+
+	</entity>
+</service-builder>
