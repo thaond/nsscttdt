@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.ext.portlet.meetingcalendar">
+	<namespace>MeetingCal</namespace>
+	<entity name="MeetingCalendar" uuid="true" local-service="true" remote-service="true">
+		<!-- PK fields -->
+		<column name="mcalId" type="long" primary="true" />
+		<!-- Group instance -->
+		<column name="groupId" type="long" />
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<!-- Other fields -->
+		<column name="state" type="int" />
+		<column name="place" type="String"/>
+		<column name="place_diff" type="String"/>
+		<column name="sponsor" type="String"/>
+		<column name="component" type="String"/>
+		<column name="note" type="String"/>
+		<column name="userApproved" type="long"/>
+		<column name="dateApproved" type="Date"/>
+		<column name="moveMcalId" type="long"/>
+		<column name="repeatWeek" type="boolean"/>
+		<column name="filename" type="String"/>
+		<column name="morning" type="boolean"/>
+		<column name="afternoon" type="boolean"/>
+		<column name="evening" type="boolean"/>
+		<column name="stt" type="int"/>
+		<column name="prior" type="boolean"/> 
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="mcalId" />
+		</order>
+		<!-- Finder methods -->
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="G_State" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="state" />
+		</finder>
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.mail" entity="Mail" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
+		<reference package-path="com.liferay.portal" entity="User" />
+		<reference package-path="com.liferay.portlet.calendar" entity="CalEvent" />
+	</entity>
+	<entity name="MeetingCalComponent" local-service="true" remote-service="true">
+		<!-- PK fields -->
+		<column name="mcalId" type="long" primary="true" />
+		<column name="groupIds" type="String" />
+		<column name="startDate" type="Date" />
+		
+		<!-- Finder methods -->
+		<finder name="mcalId" return-type="MeetingCalComponent">
+			<finder-column name="mcalId" />
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.mail" entity="Mail" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
+		<reference package-path="com.liferay.portal" entity="User" />
+		<reference package-path="com.liferay.portlet.calendar" entity="CalEvent" />
+		<reference package-path="com.liferay.portal" entity="Organization" />
+	</entity>
+	<entity name="MeetingDetailWeek" local-service="true" remote-service="true">
+		<!-- PK fields -->
+		<column name="mdweekId" type="long" primary="true" />		
+		<!-- Group instance -->
+		<column name="groupId" type="long" />
+		<!-- Audit fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<!-- Other fields -->		
+		<column name="focus" type="String"/>
+		<column name="note" type="String"/>
+		<column name="receive" type="String"/>
+		<column name="week" type="int"/>
+		<column name="year" type="int"/>
+		
+		<!-- Finder methods -->
+		<finder name="mdweekId" return-type="MeetingDetailWeek">
+			<finder-column name="mdweekId" />
+		</finder>
+		<finder name="W_Y" return-type="MeetingDetailWeek">
+			<finder-column name="week" />
+			<finder-column name="year" />
+		</finder>		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.mail" entity="Mail" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+		<reference package-path="com.liferay.portal" entity="Resource" />
+		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
+		<reference package-path="com.liferay.portal" entity="User" />
+		<reference package-path="com.liferay.portlet.calendar" entity="CalEvent" />
+		<reference package-path="com.liferay.portal" entity="Organization" />
+	</entity>
+	<exceptions>
+		<exception>DuplicateRoom</exception>
+		<exception>ContentCalendarNull</exception>
+	<exception>Focus</exception>
+		<exception>DuplicateFocus</exception>
+	</exceptions>
+</service-builder>

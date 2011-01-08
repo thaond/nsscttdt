@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.ext.portlet.processtype">
+	<namespace>processtype</namespace>
+	<entity name="ProcessType" local-service="true" remote-service="true"
+		table="pml_processtype">
+
+		<!-- PK fields -->
+
+		<column name="processTypeId" type="long" primary="true" db-name="processtypeid"/>
+
+		<!-- Other fields -->
+
+		<column name="name" type="String" db-name="name"/>
+		<column name="flagProcessType" type="int" db-name="flagprocesstype"/>
+		
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="Name" return-type="Collection">
+			<finder-column case-sensitive="false" name="name" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="FlagProcessType" return-type="Collection">
+			<finder-column name="flagProcessType" />
+		</finder>
+
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+	</entity>
+	<exceptions>
+		<exception>Name</exception>
+	</exceptions>
+</service-builder>
