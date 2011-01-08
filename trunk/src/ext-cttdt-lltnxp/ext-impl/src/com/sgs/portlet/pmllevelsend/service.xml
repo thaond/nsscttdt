@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.pmllevelsend">
+
+	<namespace>LevelSend</namespace>
+
+	<entity name="PmlEdmLevelSend" local-service="true" remote-service="true"
+		table="pml_edm_levelsend">
+
+		<!-- PK fields -->
+
+		<column name="levelSendId" type="int" primary="true" db-name="levelsendid"/>
+
+		<!-- Other fields -->
+
+		<column name="levelSendName" type="String" db-name="levelsendname"/>
+		<column name="levelSendCode" type="String" db-name="levelsendcode"/>
+
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="levelSendId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="levelSendName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="LevelSendCode" return-type="Collection">
+			<finder-column name="levelSendCode" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="LevelSendName" return-type="Collection">
+			<finder-column name="levelSendName" comparator="LIKE"/>
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>PmlEdmLevelSendCanNotDelete</exception>
+	</exceptions>
+</service-builder>

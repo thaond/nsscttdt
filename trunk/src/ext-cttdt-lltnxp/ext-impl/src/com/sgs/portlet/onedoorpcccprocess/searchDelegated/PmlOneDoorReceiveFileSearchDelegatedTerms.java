@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package com.sgs.portlet.onedoorpcccprocess.searchDelegated;
+
+import javax.portlet.RenderRequest;
+
+/**
+ * @author canhminh
+ *
+ */
+public class PmlOneDoorReceiveFileSearchDelegatedTerms extends PmlOneDoorReceiveFileSearchDelegatedDisplayTerms{
+
+	
+	public PmlOneDoorReceiveFileSearchDelegatedTerms(RenderRequest renderRequest) {
+		super(renderRequest);
+		
+	}
+
+}

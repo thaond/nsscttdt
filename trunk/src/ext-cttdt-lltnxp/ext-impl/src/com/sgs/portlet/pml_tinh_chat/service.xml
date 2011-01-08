@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_tinh_chat">
+	<namespace>pml_tinh_chat</namespace>
+	<entity name="PmlTinhChat" local-service="true" remote-service="true"
+		table="pml_tinh_chat">
+
+		<!-- PK fields -->
+
+		<column name="idTinhChat" type="long" primary="true" db-name="id_tinh_chat"/>
+
+		<!-- Other fields -->		
+		<column name="tenTinhChat" type="String" db-name="ten_tinh_chat"/>		
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="idTinhChat" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="tenTinhChat" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="TenTinhChat" return-type="Collection">
+			<finder-column name="tenTinhChat" comparator="LIKE"/>
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>	
+	<exceptions>
+		<exception>PmlTinhChatTenTinhChat</exception>
+		<exception>PmlTinhChatCanNotDelete</exception>
+	</exceptions>
+	
+</service-builder>
