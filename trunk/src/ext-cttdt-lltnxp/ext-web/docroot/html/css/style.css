@@ -1,0 +1,97 @@
+.box {
+	 border: 1px solid #cccccc;
+	 padding: 3px;	
+}
+
+.input-text {
+	width: 150px;
+	padding-left: 3px;
+	margin: 0;	
+}
+.hd-box {
+	border: 1px solid #acdfa7;
+}
+
+.hd-box td {
+	padding: 5px;
+	font-weight: bold;
+}
+
+.table-list {
+	 border: 1px solid #cccccc;	
+}
+
+.table-list td {
+	 padding-left: 5px;	
+	 padding-right: 5px;
+	 height: 25px;
+}
+
+.table-list-title {
+	background: #fff url('/html/images/bg-title.gif') repeat-x;
+	text-align: center;
+	height: 25px;
+}
+
+.table-add {
+	border: 0;
+}
+
+.table-add tr{
+	height: 35px;
+}
+
+.validate {
+	color: red;	
+}
+
+.form-text-200 {
+	width: 250px;
+	padding: 0;
+	margin: 0;	
+}
+
+.form-textarea {
+	width: 250px;
+	height: 100px;
+	padding: 0;
+	margin: 0;
+}
+
+.form-combo-100 {
+	width: 100px;
+	padding: 0;
+	margin: 0;
+}
+
+.form-combo-200 {
+	width: 250px;
+	padding: 0;
+	margin: 0;
+}
+
+.link-title {
+	color: #000;
+}
+
+.blank-height-10 {
+	height: 10px;
+}
+
+.blank-height-20 {
+	height: 20px;
+}
+
+.box-message-success {
+	border: 1px solid #acdfa7;
+	background: #fff url('/html/images/success.png') no-repeat center left;
+	width: 97%;
+	padding: 7px 7px 7px 20px;
+}
+
+.box-message-error {
+	border: 1px solid #ff0000;
+	background: #ffdddd url('/html/images/error.png') no-repeat center left;
+	width: 97%;
+	padding: 7px 7px 7px 20px;
+}
