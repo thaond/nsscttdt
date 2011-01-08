@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecFinder.countByID_T_C">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_ho_so_cong_viec 
+			WHERE
+				(? IN (
+					SELECT pml_tinh_chat.id_tinh_chat
+					FROM pml_tinh_chat
+					))		
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecFinder.countByI_S">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_ho_so_cong_viec 
+			WHERE
+				(id_ho_so_cong_viec != ?) AND 
+				(so_hieu_hscv = ?)		
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecFinder.countByS_T_N_I_V_I_I_T_H">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_ho_so_cong_viec 
+			WHERE
+				(lower(so_hieu_hscv) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(tieu_de) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(substr(cast(ngay_mo_hscv as text), 1, 10) = ?) [$AND_OR_CONNECTOR$]
+				(id_linh_vuc = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(van_de_lien_quan) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(id_do_quan_trong = ?) [$AND_OR_CONNECTOR$]
+				(id_trang_thai_hscv = ?) [$AND_OR_CONNECTOR$]
+				(lower(tom_tat_noi_dung) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(hoat_dong = ?)
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecFinder.findByS_T_N_I_V_I_I_T_H">
+		<![CDATA[
+			SELECT
+				{pml_ho_so_cong_viec.*}
+			FROM
+				pml_ho_so_cong_viec 
+			WHERE
+				(lower(so_hieu_hscv) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(tieu_de) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(substr(cast(ngay_mo_hscv as text), 1, 10) = ?) [$AND_OR_CONNECTOR$]
+				(id_linh_vuc = ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(van_de_lien_quan) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(id_do_quan_trong = ?) [$AND_OR_CONNECTOR$]
+				(id_trang_thai_hscv = ?) [$AND_OR_CONNECTOR$]
+				(lower(tom_tat_noi_dung) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(hoat_dong = ?)
+		]]>
+	</sql>
+</custom-sql>

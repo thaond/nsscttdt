@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.service.persistence.PmlFileStatusFinder.findBy_MA_TEN_CV">
+		<![CDATA[
+			SELECT
+				pml_filestatus.*
+			FROM
+				pml_filestatus 
+			WHERE 
+				(pml_filestatus.type = '1') AND
+				((lower(filestatuscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 (lower(filestatusname) LIKE ? [$AND_OR_NULL_CHECK$]))
+		]]>	 
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.service.persistence.PmlFileStatusFinder.findBy_MA_TEN_MC">
+		<![CDATA[
+			SELECT
+				pml_filestatus.*
+			FROM
+				pml_filestatus 
+			WHERE 
+				(pml_filestatus.type = '0') AND
+				((lower(filestatuscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 (lower(filestatusname) LIKE ? [$AND_OR_NULL_CHECK$])) 
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.service.persistence.PmlFileStatusFinder.countBy_MA_TEN_CV">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_filestatus 
+			WHERE 
+				(pml_filestatus.type = '1') AND
+				((lower(filestatuscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 (lower(filestatusname) LIKE ? [$AND_OR_NULL_CHECK$])) 
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.service.persistence.PmlFileStatusFinder.countBy_MA_TEN_MC">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_filestatus 
+			WHERE 
+				(pml_filestatus.type = '0') AND
+				((lower(filestatuscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 (lower(filestatusname) LIKE ? [$AND_OR_NULL_CHECK$])) 
+		]]>
+	</sql>
+	
+</custom-sql>

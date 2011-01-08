@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<resource file="resource-actions/pcccdocumentreceiptprocess.xml" />
+	<resource file="resource-actions/pcccdocumentsendprocess.xml" />
+	<resource file="resource-actions/pcccdocumentreceiptreport.xml" />
+	<resource file="resource-actions/home.xml" />
+	<resource file="resource-actions/homedocument.xml" />
+	<resource file="resource-actions/homereport.xml" />
+	<resource file="resource-actions/meetingcalendar.xml" />
+	<resource file="resource-actions/recievergroup.xml" />
+</resource-action-mapping>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeFinder.countByPmlEdmDocumentType">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_documenttype, pml_edm_documentrecordtype  
+			WHERE
+				(pml_edm_documenttype.documentrecordtypeid = pml_edm_documentrecordtype.documentrecordtypeid) AND
+				(
+					(lower(pml_edm_documenttype.documenttypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$])
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeFinder.findByPmlEdmDocumentType">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_edm_documenttype.*}, pml_edm_documentrecordtype.documentrecordtypename
+			FROM
+				pml_edm_documenttype, pml_edm_documentrecordtype 
+			WHERE
+				(pml_edm_documenttype.documentrecordtypeid = pml_edm_documentrecordtype.documentrecordtypeid) AND
+				(
+					(lower(pml_edm_documenttype.documenttypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$])
+				) 
+		]]>
+	</sql>
+</custom-sql>

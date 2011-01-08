@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.documentdelegate.service.persistence.PmlDocumentDelegateFinder.findBy_SD_TD_USERISDELEGATE">
+		<![CDATA[
+			SELECT
+				pml_edm_documentdelegate.*
+			FROM
+				pml_edm_documentdelegate
+			WHERE
+				userdelegateid = ?
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.documentdelegate.service.persistence.PmlDocumentDelegateFinder.countBy_SD_TD_USERISDELEGATE">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_documentdelegate
+			WHERE
+				userdelegateid = ?
+				
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.documentdelegate.service.persistence.PmlDocumentDelegateFinder.findByALLUSERISDELEGATE">
+		<![CDATA[
+			SELECT
+				pml_edm_documentdelegate.*
+			FROM
+				pml_edm_documentdelegate
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.documentdelegate.service.persistence.PmlDocumentDelegateFinder.countByALLUSERISDELEGATE">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_documentdelegate
+		]]>
+	</sql>
+</custom-sql>

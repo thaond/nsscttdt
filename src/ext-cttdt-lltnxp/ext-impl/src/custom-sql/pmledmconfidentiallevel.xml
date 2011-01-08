@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.receipt.service.persistence.PmlEdmConfidentialLevelFinder.countByPmlEdmConfidentialLevel">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_confidentiallevel 
+			WHERE
+				(lower(confidentiallevelname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.document.receipt.service.persistence.PmlEdmConfidentialLevelFinder.findByPmlEdmConfidentialLevel">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_edm_confidentiallevel.*}
+			FROM
+				pml_edm_confidentiallevel 
+			WHERE
+				(lower(confidentiallevelname) LIKE ? [$AND_OR_NULL_CHECK$]) 
+		]]>
+	</sql>
+</custom-sql>

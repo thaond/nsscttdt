@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.agency.service.persistence.AgencyFinder.findBy_TEN_MA_COQUAN">
+		<![CDATA[
+			SELECT
+				pml_agency.*
+			FROM
+				pml_agency ,pml_agencyleader, user_ , contact_
+			WHERE
+				(pml_agencyleader.agencyid = pml_agency.agencyid) AND
+				(user_.userid = pml_agencyleader.userid) AND
+				(contact_.contactid = user_.contactid)
+				AND (
+					(lower(contact_.lastname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(contact_.firstname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_agency.agencycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_agency.agencyname) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.agency.service.persistence.AgencyFinder.countBy_TEN_MA_COQUAN">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_agency ,pml_agencyleader, user_ , contact_
+			WHERE
+				(pml_agencyleader.agencyid = pml_agency.agencyid) AND
+				(user_.userid = pml_agencyleader.userid) AND
+				(contact_.contactid = user_.contactid)
+				AND (
+					(lower(contact_.lastname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(contact_.firstname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_agency.agencycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_agency.agencyname) LIKE ? [$AND_OR_NULL_CHECK$])
+				) 
+		]]>
+	</sql>
+</custom-sql>

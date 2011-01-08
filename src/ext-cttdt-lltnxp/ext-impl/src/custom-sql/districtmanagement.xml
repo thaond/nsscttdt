@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.districtmanagement.service.persistence.DistrictFinder.findBy_TEN_MA_MOTA_QUAN">
+		<![CDATA[
+			SELECT
+				pml_district.*
+			FROM
+				pml_district, pml_city
+			WHERE
+				1 = 1
+				AND pml_city.cityid = pml_district.cityid
+				AND (
+					(lower(pml_district.districtcode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_district.districtname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_district.description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.districtmanagement.service.persistence.DistrictFinder.countBy_TEN_MA_MOTA_QUAN">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_district, pml_city
+			WHERE
+				1 = 1
+				AND pml_city.cityid = pml_district.cityid
+				AND (
+					(lower(pml_district.districtcode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_district.districtname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_district.description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				)   
+		]]>
+	</sql>
+</custom-sql>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.citymanagement.service.persistence.CityFinder.findBy_TEN_MA_THANH_PHO">
+		<![CDATA[
+			SELECT
+				DISTINCT (pml_city.*)
+			FROM
+				pml_city
+			WHERE
+				1 = 1
+				AND (
+					(lower(pml_city.citycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_city.cityname) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				) 
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.citymanagement.service.persistence.CityFinder.countBy_TEN_MA_THANH_PHO">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_city
+			WHERE
+				1 = 1
+				AND (
+					(lower(pml_city.citycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_city.cityname) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				)
+		]]>
+	</sql>
+</custom-sql>

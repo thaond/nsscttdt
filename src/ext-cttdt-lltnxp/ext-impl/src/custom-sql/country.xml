@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.country.service.persistence.CountryFinder.findBy_TEN_MA_MOTA_QUOCGIA">
+		<![CDATA[
+			SELECT
+				pml_country.*
+			FROM
+				pml_country
+			WHERE
+				(lower(pml_country.countrycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_country.countryname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(pml_country.description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.country.service.persistence.CountryFinder.countBy_TEN_MA_MOTA_QUOCGIA">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_country
+			WHERE
+				(lower(pml_country.countrycode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_country.countryname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(pml_country.description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+		]]>
+	</sql>
+</custom-sql>

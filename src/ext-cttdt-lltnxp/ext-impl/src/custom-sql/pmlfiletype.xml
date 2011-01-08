@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.filetype.service.persistence.PmlFileTypeFinder.countByFileType">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_filetype 
+			WHERE
+				(lower(pml_filetype.filetypecode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_filetype.filetypename) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.filetype.service.persistence.PmlFileTypeFinder.findByFileType">
+		<![CDATA[
+			SELECT
+				DISTINCT {pml_filetype.*}
+			FROM
+				pml_filetype 
+			WHERE
+				(lower(pml_filetype.filetypecode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(pml_filetype.filetypename) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+</custom-sql>

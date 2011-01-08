@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+  
+  <custom-sql>
+    <sql file="custom-sql/custom.xml" />
+    <!-- Begin TS -->
+    <sql file="custom-sql/pmltinhchat.xml" />
+	<sql file="custom-sql/pmldoquantrong.xml" />
+	<sql file="custom-sql/pmltrangthaihscv.xml" />
+	<sql file="custom-sql/pmlhosocongviec.xml" />
+	<sql file="custom-sql/pmlchitiethscv.xml" />
+	<sql file="custom-sql/meeting_calendar.xml" />
+	<sql file="custom-sql/signer.xml" />
+	<sql file="custom-sql/pmlfilestatus.xml" />
+	<!-- end TS -->
+	<sql file="custom-sql/attachedfile.xml" />
+	<sql file="custom-sql/pmlonedoorworkflow.xml" />
+	<sql file="custom-sql/pmldocumentworkflow.xml" />
+	<sql file="custom-sql/pmledmlevelsend.xml" />
+	<sql file="custom-sql/pmledmdocumentrecordtype.xml" />	
+	<sql file="custom-sql/issuingplace.xml" />
+	<sql file="custom-sql/pmledmlevelsenddetail.xml" />	
+	<sql file="custom-sql/pmledmprivelegeleveladmin.xml" />	
+	<sql file="custom-sql/pmledmconfidentiallevel.xml" />
+	<sql file="custom-sql/agency.xml" />	
+	<sql file="custom-sql/pmldepartment.xml" />
+	<sql file="custom-sql/pmldocumenttype.xml" />
+	<sql file="custom-sql/position.xml" />
+	<sql file="custom-sql/idtemplate.xml" />
+	<sql file="custom-sql/pmluser.xml" />
+	<sql file="custom-sql/districtmanagement.xml" />
+	<sql file="custom-sql/wards.xml" />
+	<sql file="custom-sql/career.xml" />
+	<sql file="custom-sql/pmlfiletype.xml" />
+	<sql file="custom-sql/pmlfield.xml" />
+	<sql file="custom-sql/pmlfilestatus.xml" />
+	<sql file="custom-sql/country.xml" />
+	<sql file="custom-sql/street.xml" />
+	<sql file="custom-sql/pmledmbookdocumentrecord.xml" />
+	<sql file="custom-sql/pmledmdocumentrecordto.xml" />
+	<sql file="custom-sql/pmlnation.xml" />
+	<sql file="custom-sql/citymanagement.xml" />	
+	<sql file="custom-sql/orgexternal.xml" />	
+	<sql file="custom-sql/documentdelegate.xml" />	
+	
+	<sql file="custom-sql/recievergroup.xml" />	
+  </custom-sql>
