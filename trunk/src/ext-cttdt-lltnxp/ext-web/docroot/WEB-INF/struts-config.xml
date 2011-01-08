@@ -1008,23 +1008,18 @@
         <action path="/sgs/doccumentprivate/search" type="com.sgs.portlet.doccumentprivate.action.SearchAction">
             <forward name="portlet.sgs.doccumentprivate.view" path="portlet.sgs.doccumentprivate.view"/>
         </action>
-        
         <!-- Portlet tao luong -->
         <action path="/sgs/recievergroup/view" type="com.sgs.portlet.recievergroup.action.ViewAction">
             <forward name="portlet.sgs.recievergroup.view" path="portlet.sgs.recievergroup.view"/>
         </action>
         <action path="/sgs/recievergroup/json" type="com.sgs.portlet.recievergroup.action.JSONAction"/>
-        <action path="/sgs/recievergroup/edit_reciever_group" forward="portlet.sgs.recievergroup.edit_reciever_group"/>
-        
-        
+        <action forward="portlet.sgs.recievergroup.edit_reciever_group" path="/sgs/recievergroup/edit_reciever_group"/>
         <action path="/sgs/phathanhcongvandi/view" type="com.sgs.portlet.phathanhcongvandi.action.ViewAction">
             <forward name="portlet.sgs.phathanhcongvandi.view" path="portlet.sgs.phathanhcongvandi.view"/>
         </action>
         <action path="/sgs/tiep_nhan_giao_viec/view" type="com.sgs.portlet.tiep_nhan_giao_viec.action.ViewAction">
             <forward name="portlet.sgs.tiep_nhan_giao_viec.view" path="portlet.sgs.tiep_nhan_giao_viec.view"/>
         </action>
-        
-        <!-- Bao cao ket qua cong tac va dang ky cong tac -->
         <action path="/sgs/report_registry_work/view" type="com.sgs.portlet.report_registry_work.action.ViewAction">
             <forward name="portlet.sgs.report_registry_work.view" path="portlet.sgs.report_registry_work.view"/>
         </action>
