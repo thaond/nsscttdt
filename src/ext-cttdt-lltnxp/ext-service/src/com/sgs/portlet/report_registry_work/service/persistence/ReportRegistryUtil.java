@@ -4,15 +4,15 @@ public class ReportRegistryUtil {
     private static ReportRegistryPersistence _persistence;
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry create(
-        ReportRegistryPK reportRegistryPK) {
-        return getPersistence().create(reportRegistryPK);
+        long reportRegistryId) {
+        return getPersistence().create(reportRegistryId);
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry remove(
-        ReportRegistryPK reportRegistryPK)
+        long reportRegistryId)
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.report_registry_work.NoSuchReportRegistryException {
-        return getPersistence().remove(reportRegistryPK);
+        return getPersistence().remove(reportRegistryId);
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry remove(
@@ -56,64 +56,15 @@ public class ReportRegistryUtil {
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry findByPrimaryKey(
-        ReportRegistryPK reportRegistryPK)
+        long reportRegistryId)
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.report_registry_work.NoSuchReportRegistryException {
-        return getPersistence().findByPrimaryKey(reportRegistryPK);
+        return getPersistence().findByPrimaryKey(reportRegistryId);
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry fetchByPrimaryKey(
-        ReportRegistryPK reportRegistryPK)
-        throws com.liferay.portal.SystemException {
-        return getPersistence().fetchByPrimaryKey(reportRegistryPK);
-    }
-
-    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
         long reportRegistryId) throws com.liferay.portal.SystemException {
-        return getPersistence().findByReportRegistryId(reportRegistryId);
-    }
-
-    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
-        long reportRegistryId, int start, int end)
-        throws com.liferay.portal.SystemException {
-        return getPersistence()
-                   .findByReportRegistryId(reportRegistryId, start, end);
-    }
-
-    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
-        long reportRegistryId, int start, int end,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException {
-        return getPersistence()
-                   .findByReportRegistryId(reportRegistryId, start, end, obc);
-    }
-
-    public static com.sgs.portlet.report_registry_work.model.ReportRegistry findByReportRegistryId_First(
-        long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException {
-        return getPersistence()
-                   .findByReportRegistryId_First(reportRegistryId, obc);
-    }
-
-    public static com.sgs.portlet.report_registry_work.model.ReportRegistry findByReportRegistryId_Last(
-        long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException {
-        return getPersistence()
-                   .findByReportRegistryId_Last(reportRegistryId, obc);
-    }
-
-    public static com.sgs.portlet.report_registry_work.model.ReportRegistry[] findByReportRegistryId_PrevAndNext(
-        ReportRegistryPK reportRegistryPK, long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException {
-        return getPersistence()
-                   .findByReportRegistryId_PrevAndNext(reportRegistryPK,
-            reportRegistryId, obc);
+        return getPersistence().fetchByPrimaryKey(reportRegistryId);
     }
 
     public static java.util.List<Object> findWithDynamicQuery(
@@ -144,18 +95,8 @@ public class ReportRegistryUtil {
         return getPersistence().findAll(start, end, obc);
     }
 
-    public static void removeByReportRegistryId(long reportRegistryId)
-        throws com.liferay.portal.SystemException {
-        getPersistence().removeByReportRegistryId(reportRegistryId);
-    }
-
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
-    }
-
-    public static int countByReportRegistryId(long reportRegistryId)
-        throws com.liferay.portal.SystemException {
-        return getPersistence().countByReportRegistryId(reportRegistryId);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {
