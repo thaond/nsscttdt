@@ -3,30 +3,34 @@
 
 <service-builder package-path="com.sgs.portlet.report_registry_work">
 	<namespace>ReportRegistryWork</namespace>
-	<entity name="ReportRegistry" local-service="true" remote-service="true" table="report_registry_work">
-
+	
+	<entity name="Department" local-service="true" remote-service="true" table="department">
 		<!-- PK fields -->
-
-		<column name="reportRegistryId" type="long" primary="true" />
-
+		<column name="departmentId" type="long" primary="true"></column>
 		<!-- Other fields -->
-		
-		<column name="reportRegistryCode" type="long" primary="true" />
+		<column name="departmentCode" type="String"></column>
 		<column name="departmentName" type="String" />
-		<column name="resultWork" type="String" />
-		<column name="programWork" type="String" />
-		<column name="reportDate" type="Date" />
+		<column name="departmentDescription" type="String" />
+		<column name="reportRegistrys" type="Collection" entity="ReportRegistry" mapping-key="departmentId"></column>
 		
 		<column name="userId" type="long"/>
 	  	<column name="groupId" type="long"/>	
 		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="ReportRegistry" local-service="true" remote-service="true" table="report_registry_work">
+		<!-- PK fields -->
+		<column name="reportRegistryId" type="long" primary="true" />
+		<!-- Other fields -->
+		<column name="reportRegistryCode" type="String" />
+		<column name="resultWork" type="String" />
+		<column name="programWork" type="String" />
+		<column name="reportDate" type="Date" />
+		<column name="departmentId" type="long" />
 		
-		<!-- finder -->
-		
-		<finder return-type="Collection" name="ReportRegistryId">
-			<finder-column name="reportRegistryId"></finder-column>
-		</finder>
-		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
 	</entity>
 	
 </service-builder>
