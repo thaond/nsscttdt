@@ -1,7 +1,5 @@
 package com.sgs.portlet.report_registry_work.model;
 
-import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK;
-
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -29,11 +27,11 @@ import java.util.List;
  */
 public class ReportRegistrySoap implements Serializable {
     private long _reportRegistryId;
-    private long _reportRegistryCode;
-    private String _departmentName;
+    private String _reportRegistryCode;
     private String _resultWork;
     private String _programWork;
     private Date _reportDate;
+    private long _departmentId;
     private long _userId;
     private long _groupId;
     private long _companyId;
@@ -46,10 +44,10 @@ public class ReportRegistrySoap implements Serializable {
 
         soapModel.setReportRegistryId(model.getReportRegistryId());
         soapModel.setReportRegistryCode(model.getReportRegistryCode());
-        soapModel.setDepartmentName(model.getDepartmentName());
         soapModel.setResultWork(model.getResultWork());
         soapModel.setProgramWork(model.getProgramWork());
         soapModel.setReportDate(model.getReportDate());
+        soapModel.setDepartmentId(model.getDepartmentId());
         soapModel.setUserId(model.getUserId());
         soapModel.setGroupId(model.getGroupId());
         soapModel.setCompanyId(model.getCompanyId());
@@ -67,13 +65,12 @@ public class ReportRegistrySoap implements Serializable {
         return soapModels.toArray(new ReportRegistrySoap[soapModels.size()]);
     }
 
-    public ReportRegistryPK getPrimaryKey() {
-        return new ReportRegistryPK(_reportRegistryId, _reportRegistryCode);
+    public long getPrimaryKey() {
+        return _reportRegistryId;
     }
 
-    public void setPrimaryKey(ReportRegistryPK pk) {
-        setReportRegistryId(pk.reportRegistryId);
-        setReportRegistryCode(pk.reportRegistryCode);
+    public void setPrimaryKey(long pk) {
+        setReportRegistryId(pk);
     }
 
     public long getReportRegistryId() {
@@ -84,20 +81,12 @@ public class ReportRegistrySoap implements Serializable {
         _reportRegistryId = reportRegistryId;
     }
 
-    public long getReportRegistryCode() {
+    public String getReportRegistryCode() {
         return _reportRegistryCode;
     }
 
-    public void setReportRegistryCode(long reportRegistryCode) {
+    public void setReportRegistryCode(String reportRegistryCode) {
         _reportRegistryCode = reportRegistryCode;
-    }
-
-    public String getDepartmentName() {
-        return _departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        _departmentName = departmentName;
     }
 
     public String getResultWork() {
@@ -122,6 +111,14 @@ public class ReportRegistrySoap implements Serializable {
 
     public void setReportDate(Date reportDate) {
         _reportDate = reportDate;
+    }
+
+    public long getDepartmentId() {
+        return _departmentId;
+    }
+
+    public void setDepartmentId(long departmentId) {
+        _departmentId = departmentId;
     }
 
     public long getUserId() {

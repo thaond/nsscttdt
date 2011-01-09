@@ -2,7 +2,7 @@ package com.sgs.portlet.report_registry_work.service;
 
 
 /**
- * <a href="ReportRegistryLocalService.java.html"><b><i>View Source</i></b></a>
+ * <a href="DepartmentLocalService.java.html"><b><i>View Source</i></b></a>
  *
  * <p>
  * ServiceBuilder generated this class. Modifications in this class will be
@@ -11,7 +11,7 @@ package com.sgs.portlet.report_registry_work.service;
  *
  * <p>
  * This interface defines the service. The default implementation is
- * <code>com.sgs.portlet.report_registry_work.service.impl.ReportRegistryLocalServiceImpl</code>.
+ * <code>com.sgs.portlet.report_registry_work.service.impl.DepartmentLocalServiceImpl</code>.
  * Modify methods in that class and rerun ServiceBuilder to populate this class
  * and all other generated classes.
  * </p>
@@ -22,23 +22,23 @@ package com.sgs.portlet.report_registry_work.service;
  *
  * @author Brian Wing Shun Chan
  *
- * @see com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil
+ * @see com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceUtil
  *
  */
-public interface ReportRegistryLocalService {
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry addReportRegistry(
-        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+public interface DepartmentLocalService {
+    public com.sgs.portlet.report_registry_work.model.Department addDepartment(
+        com.sgs.portlet.report_registry_work.model.Department department)
         throws com.liferay.portal.SystemException;
 
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry createReportRegistry(
-        long reportRegistryId);
+    public com.sgs.portlet.report_registry_work.model.Department createDepartment(
+        long departmentId);
 
-    public void deleteReportRegistry(long reportRegistryId)
+    public void deleteDepartment(long departmentId)
         throws com.liferay.portal.SystemException,
             com.liferay.portal.PortalException;
 
-    public void deleteReportRegistry(
-        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+    public void deleteDepartment(
+        com.sgs.portlet.report_registry_work.model.Department department)
         throws com.liferay.portal.SystemException;
 
     public java.util.List<Object> dynamicQuery(
@@ -49,18 +49,17 @@ public interface ReportRegistryLocalService {
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
         int end) throws com.liferay.portal.SystemException;
 
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry getReportRegistry(
-        long reportRegistryId)
+    public com.sgs.portlet.report_registry_work.model.Department getDepartment(
+        long departmentId)
         throws com.liferay.portal.SystemException,
             com.liferay.portal.PortalException;
 
-    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> getReportRegistries(
+    public java.util.List<com.sgs.portlet.report_registry_work.model.Department> getDepartments(
         int start, int end) throws com.liferay.portal.SystemException;
 
-    public int getReportRegistriesCount()
-        throws com.liferay.portal.SystemException;
+    public int getDepartmentsCount() throws com.liferay.portal.SystemException;
 
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry updateReportRegistry(
-        com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
+    public com.sgs.portlet.report_registry_work.model.Department updateDepartment(
+        com.sgs.portlet.report_registry_work.model.Department department)
         throws com.liferay.portal.SystemException;
 }

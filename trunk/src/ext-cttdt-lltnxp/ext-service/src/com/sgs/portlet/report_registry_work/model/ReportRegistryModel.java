@@ -2,8 +2,6 @@ package com.sgs.portlet.report_registry_work.model;
 
 import com.liferay.portal.model.BaseModel;
 
-import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK;
-
 import java.util.Date;
 
 
@@ -28,21 +26,17 @@ import java.util.Date;
  *
  */
 public interface ReportRegistryModel extends BaseModel {
-    public ReportRegistryPK getPrimaryKey();
+    public long getPrimaryKey();
 
-    public void setPrimaryKey(ReportRegistryPK pk);
+    public void setPrimaryKey(long pk);
 
     public long getReportRegistryId();
 
     public void setReportRegistryId(long reportRegistryId);
 
-    public long getReportRegistryCode();
+    public String getReportRegistryCode();
 
-    public void setReportRegistryCode(long reportRegistryCode);
-
-    public String getDepartmentName();
-
-    public void setDepartmentName(String departmentName);
+    public void setReportRegistryCode(String reportRegistryCode);
 
     public String getResultWork();
 
@@ -55,6 +49,10 @@ public interface ReportRegistryModel extends BaseModel {
     public Date getReportDate();
 
     public void setReportDate(Date reportDate);
+
+    public long getDepartmentId();
+
+    public void setDepartmentId(long departmentId);
 
     public long getUserId();
 

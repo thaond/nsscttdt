@@ -32,15 +32,14 @@ public class ReportRegistryLocalServiceUtil {
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry createReportRegistry(
-        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK) {
-        return getService().createReportRegistry(reportRegistryPK);
+        long reportRegistryId) {
+        return getService().createReportRegistry(reportRegistryId);
     }
 
-    public static void deleteReportRegistry(
-        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK)
+    public static void deleteReportRegistry(long reportRegistryId)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException {
-        getService().deleteReportRegistry(reportRegistryPK);
+        getService().deleteReportRegistry(reportRegistryId);
     }
 
     public static void deleteReportRegistry(
@@ -62,10 +61,10 @@ public class ReportRegistryLocalServiceUtil {
     }
 
     public static com.sgs.portlet.report_registry_work.model.ReportRegistry getReportRegistry(
-        com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK reportRegistryPK)
+        long reportRegistryId)
         throws com.liferay.portal.PortalException,
             com.liferay.portal.SystemException {
-        return getService().getReportRegistry(reportRegistryPK);
+        return getService().getReportRegistry(reportRegistryId);
     }
 
     public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> getReportRegistries(

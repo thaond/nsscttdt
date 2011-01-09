@@ -2,10 +2,10 @@ package com.sgs.portlet.report_registry_work.service.persistence;
 
 public interface ReportRegistryPersistence {
     public com.sgs.portlet.report_registry_work.model.ReportRegistry create(
-        ReportRegistryPK reportRegistryPK);
+        long reportRegistryId);
 
     public com.sgs.portlet.report_registry_work.model.ReportRegistry remove(
-        ReportRegistryPK reportRegistryPK)
+        long reportRegistryId)
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.report_registry_work.NoSuchReportRegistryException;
 
@@ -42,43 +42,12 @@ public interface ReportRegistryPersistence {
         boolean merge) throws com.liferay.portal.SystemException;
 
     public com.sgs.portlet.report_registry_work.model.ReportRegistry findByPrimaryKey(
-        ReportRegistryPK reportRegistryPK)
+        long reportRegistryId)
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.report_registry_work.NoSuchReportRegistryException;
 
     public com.sgs.portlet.report_registry_work.model.ReportRegistry fetchByPrimaryKey(
-        ReportRegistryPK reportRegistryPK)
-        throws com.liferay.portal.SystemException;
-
-    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
         long reportRegistryId) throws com.liferay.portal.SystemException;
-
-    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
-        long reportRegistryId, int start, int end)
-        throws com.liferay.portal.SystemException;
-
-    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByReportRegistryId(
-        long reportRegistryId, int start, int end,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException;
-
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry findByReportRegistryId_First(
-        long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException;
-
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry findByReportRegistryId_Last(
-        long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException;
-
-    public com.sgs.portlet.report_registry_work.model.ReportRegistry[] findByReportRegistryId_PrevAndNext(
-        ReportRegistryPK reportRegistryPK, long reportRegistryId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException,
-            com.sgs.portlet.report_registry_work.NoSuchReportRegistryException;
 
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -98,13 +67,7 @@ public interface ReportRegistryPersistence {
         int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
 
-    public void removeByReportRegistryId(long reportRegistryId)
-        throws com.liferay.portal.SystemException;
-
     public void removeAll() throws com.liferay.portal.SystemException;
-
-    public int countByReportRegistryId(long reportRegistryId)
-        throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;
 
