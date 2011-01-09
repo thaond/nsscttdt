@@ -7,7 +7,6 @@ import com.liferay.portal.model.impl.BaseModelImpl;
 
 import com.sgs.portlet.report_registry_work.model.ReportRegistry;
 import com.sgs.portlet.report_registry_work.model.ReportRegistrySoap;
-import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK;
 
 import java.io.Serializable;
 
@@ -46,10 +45,7 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             { "reportRegistryId", new Integer(Types.BIGINT) },
             
 
-            { "reportRegistryCode", new Integer(Types.BIGINT) },
-            
-
-            { "departmentName", new Integer(Types.VARCHAR) },
+            { "reportRegistryCode", new Integer(Types.VARCHAR) },
             
 
             { "resultWork", new Integer(Types.VARCHAR) },
@@ -61,6 +57,9 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             { "reportDate", new Integer(Types.TIMESTAMP) },
             
 
+            { "departmentId", new Integer(Types.BIGINT) },
+            
+
             { "userId", new Integer(Types.BIGINT) },
             
 
@@ -69,7 +68,7 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
 
             { "companyId", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table report_registry_work (reportRegistryId LONG not null,reportRegistryCode LONG not null,departmentName VARCHAR(75) null,resultWork VARCHAR(75) null,programWork VARCHAR(75) null,reportDate DATE null,userId LONG,groupId LONG,companyId LONG,primary key (reportRegistryId, reportRegistryCode))";
+    public static final String TABLE_SQL_CREATE = "create table report_registry_work (reportRegistryId LONG not null primary key,reportRegistryCode VARCHAR(75) null,resultWork VARCHAR(75) null,programWork VARCHAR(75) null,reportDate DATE null,departmentId LONG,userId LONG,groupId LONG,companyId LONG)";
     public static final String TABLE_SQL_DROP = "drop table report_registry_work";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -80,11 +79,11 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
     public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
                 "lock.expiration.time.com.sgs.portlet.report_registry_work.model.ReportRegistry"));
     private long _reportRegistryId;
-    private long _reportRegistryCode;
-    private String _departmentName;
+    private String _reportRegistryCode;
     private String _resultWork;
     private String _programWork;
     private Date _reportDate;
+    private long _departmentId;
     private long _userId;
     private long _groupId;
     private long _companyId;
@@ -97,10 +96,10 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
 
         model.setReportRegistryId(soapModel.getReportRegistryId());
         model.setReportRegistryCode(soapModel.getReportRegistryCode());
-        model.setDepartmentName(soapModel.getDepartmentName());
         model.setResultWork(soapModel.getResultWork());
         model.setProgramWork(soapModel.getProgramWork());
         model.setReportDate(soapModel.getReportDate());
+        model.setDepartmentId(soapModel.getDepartmentId());
         model.setUserId(soapModel.getUserId());
         model.setGroupId(soapModel.getGroupId());
         model.setCompanyId(soapModel.getCompanyId());
@@ -118,17 +117,16 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
         return models;
     }
 
-    public ReportRegistryPK getPrimaryKey() {
-        return new ReportRegistryPK(_reportRegistryId, _reportRegistryCode);
+    public long getPrimaryKey() {
+        return _reportRegistryId;
     }
 
-    public void setPrimaryKey(ReportRegistryPK pk) {
-        setReportRegistryId(pk.reportRegistryId);
-        setReportRegistryCode(pk.reportRegistryCode);
+    public void setPrimaryKey(long pk) {
+        setReportRegistryId(pk);
     }
 
     public Serializable getPrimaryKeyObj() {
-        return new ReportRegistryPK(_reportRegistryId, _reportRegistryCode);
+        return new Long(_reportRegistryId);
     }
 
     public long getReportRegistryId() {
@@ -141,26 +139,16 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
         }
     }
 
-    public long getReportRegistryCode() {
-        return _reportRegistryCode;
+    public String getReportRegistryCode() {
+        return GetterUtil.getString(_reportRegistryCode);
     }
 
-    public void setReportRegistryCode(long reportRegistryCode) {
-        if (reportRegistryCode != _reportRegistryCode) {
+    public void setReportRegistryCode(String reportRegistryCode) {
+        if (((reportRegistryCode == null) && (_reportRegistryCode != null)) ||
+                ((reportRegistryCode != null) && (_reportRegistryCode == null)) ||
+                ((reportRegistryCode != null) && (_reportRegistryCode != null) &&
+                !reportRegistryCode.equals(_reportRegistryCode))) {
             _reportRegistryCode = reportRegistryCode;
-        }
-    }
-
-    public String getDepartmentName() {
-        return GetterUtil.getString(_departmentName);
-    }
-
-    public void setDepartmentName(String departmentName) {
-        if (((departmentName == null) && (_departmentName != null)) ||
-                ((departmentName != null) && (_departmentName == null)) ||
-                ((departmentName != null) && (_departmentName != null) &&
-                !departmentName.equals(_departmentName))) {
-            _departmentName = departmentName;
         }
     }
 
@@ -200,6 +188,16 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
                 ((reportDate != null) && (_reportDate != null) &&
                 !reportDate.equals(_reportDate))) {
             _reportDate = reportDate;
+        }
+    }
+
+    public long getDepartmentId() {
+        return _departmentId;
+    }
+
+    public void setDepartmentId(long departmentId) {
+        if (departmentId != _departmentId) {
+            _departmentId = departmentId;
         }
     }
 
@@ -243,11 +241,11 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             model.setEscapedModel(true);
 
             model.setReportRegistryId(getReportRegistryId());
-            model.setReportRegistryCode(getReportRegistryCode());
-            model.setDepartmentName(HtmlUtil.escape(getDepartmentName()));
+            model.setReportRegistryCode(HtmlUtil.escape(getReportRegistryCode()));
             model.setResultWork(HtmlUtil.escape(getResultWork()));
             model.setProgramWork(HtmlUtil.escape(getProgramWork()));
             model.setReportDate(getReportDate());
+            model.setDepartmentId(getDepartmentId());
             model.setUserId(getUserId());
             model.setGroupId(getGroupId());
             model.setCompanyId(getCompanyId());
@@ -265,10 +263,10 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
 
         clone.setReportRegistryId(getReportRegistryId());
         clone.setReportRegistryCode(getReportRegistryCode());
-        clone.setDepartmentName(getDepartmentName());
         clone.setResultWork(getResultWork());
         clone.setProgramWork(getProgramWork());
         clone.setReportDate(getReportDate());
+        clone.setDepartmentId(getDepartmentId());
         clone.setUserId(getUserId());
         clone.setGroupId(getGroupId());
         clone.setCompanyId(getCompanyId());
@@ -283,9 +281,15 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
 
         ReportRegistryImpl reportRegistry = (ReportRegistryImpl) obj;
 
-        ReportRegistryPK pk = reportRegistry.getPrimaryKey();
+        long pk = reportRegistry.getPrimaryKey();
 
-        return getPrimaryKey().compareTo(pk);
+        if (getPrimaryKey() < pk) {
+            return -1;
+        } else if (getPrimaryKey() > pk) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public boolean equals(Object obj) {
@@ -301,9 +305,9 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             return false;
         }
 
-        ReportRegistryPK pk = reportRegistry.getPrimaryKey();
+        long pk = reportRegistry.getPrimaryKey();
 
-        if (getPrimaryKey().equals(pk)) {
+        if (getPrimaryKey() == pk) {
             return true;
         } else {
             return false;
@@ -311,6 +315,6 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
     }
 
     public int hashCode() {
-        return getPrimaryKey().hashCode();
+        return (int) getPrimaryKey();
     }
 }
