@@ -855,4 +855,24 @@
 		<field name="viewName" type="String" />
 		<field name="recieverType" type="int" />
 	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.Department">
+		<field name="departmentId" type="long" />
+		<field name="departmentCode" type="String" />
+		<field name="departmentName" type="String" />
+		<field name="departmentDescription" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.ReportRegistry">
+		<field name="reportRegistryId" type="long" />
+		<field name="reportRegistryCode" type="String" />
+		<field name="resultWork" type="String" />
+		<field name="programWork" type="String" />
+		<field name="reportDate" type="Date" />
+		<field name="departmentId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
 </model-hints>
