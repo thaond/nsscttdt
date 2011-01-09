@@ -10,8 +10,8 @@ import com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersis
 import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence;
 
 
-public abstract class ReportRegistryServiceBaseImpl extends PrincipalBean
-    implements ReportRegistryService {
+public abstract class DepartmentServiceBaseImpl extends PrincipalBean
+    implements DepartmentService {
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl")
     protected DepartmentLocalService departmentLocalService;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentService.impl")

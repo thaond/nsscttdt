@@ -5,9 +5,11 @@ import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
 import com.sgs.portlet.report_registry_work.model.ReportRegistry;
+import com.sgs.portlet.report_registry_work.service.DepartmentLocalService;
+import com.sgs.portlet.report_registry_work.service.DepartmentService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryService;
-import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPK;
+import com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence;
 import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence;
 
 import java.util.List;
@@ -15,6 +17,12 @@ import java.util.List;
 
 public abstract class ReportRegistryLocalServiceBaseImpl
     implements ReportRegistryLocalService {
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl")
+    protected DepartmentLocalService departmentLocalService;
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentService.impl")
+    protected DepartmentService departmentService;
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence.impl")
+    protected DepartmentPersistence departmentPersistence;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl")
     protected ReportRegistryLocalService reportRegistryLocalService;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.ReportRegistryService.impl")
@@ -29,14 +37,13 @@ public abstract class ReportRegistryLocalServiceBaseImpl
         return reportRegistryPersistence.update(reportRegistry, false);
     }
 
-    public ReportRegistry createReportRegistry(
-        ReportRegistryPK reportRegistryPK) {
-        return reportRegistryPersistence.create(reportRegistryPK);
+    public ReportRegistry createReportRegistry(long reportRegistryId) {
+        return reportRegistryPersistence.create(reportRegistryId);
     }
 
-    public void deleteReportRegistry(ReportRegistryPK reportRegistryPK)
+    public void deleteReportRegistry(long reportRegistryId)
         throws PortalException, SystemException {
-        reportRegistryPersistence.remove(reportRegistryPK);
+        reportRegistryPersistence.remove(reportRegistryId);
     }
 
     public void deleteReportRegistry(ReportRegistry reportRegistry)
@@ -55,9 +62,9 @@ public abstract class ReportRegistryLocalServiceBaseImpl
             start, end);
     }
 
-    public ReportRegistry getReportRegistry(ReportRegistryPK reportRegistryPK)
+    public ReportRegistry getReportRegistry(long reportRegistryId)
         throws PortalException, SystemException {
-        return reportRegistryPersistence.findByPrimaryKey(reportRegistryPK);
+        return reportRegistryPersistence.findByPrimaryKey(reportRegistryId);
     }
 
     public List<ReportRegistry> getReportRegistries(int start, int end)
@@ -74,6 +81,32 @@ public abstract class ReportRegistryLocalServiceBaseImpl
         reportRegistry.setNew(false);
 
         return reportRegistryPersistence.update(reportRegistry, true);
+    }
+
+    public DepartmentLocalService getDepartmentLocalService() {
+        return departmentLocalService;
+    }
+
+    public void setDepartmentLocalService(
+        DepartmentLocalService departmentLocalService) {
+        this.departmentLocalService = departmentLocalService;
+    }
+
+    public DepartmentService getDepartmentService() {
+        return departmentService;
+    }
+
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+
+    public DepartmentPersistence getDepartmentPersistence() {
+        return departmentPersistence;
+    }
+
+    public void setDepartmentPersistence(
+        DepartmentPersistence departmentPersistence) {
+        this.departmentPersistence = departmentPersistence;
     }
 
     public ReportRegistryLocalService getReportRegistryLocalService() {

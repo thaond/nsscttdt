@@ -36,7 +36,6 @@ public class ReportRegistryJSONSerializer {
 
         jsonObj.put("reportRegistryId", model.getReportRegistryId());
         jsonObj.put("reportRegistryCode", model.getReportRegistryCode());
-        jsonObj.put("departmentName", model.getDepartmentName());
         jsonObj.put("resultWork", model.getResultWork());
         jsonObj.put("programWork", model.getProgramWork());
 
@@ -49,6 +48,7 @@ public class ReportRegistryJSONSerializer {
         }
 
         jsonObj.put("reportDate", reportDateJSON);
+        jsonObj.put("departmentId", model.getDepartmentId());
         jsonObj.put("userId", model.getUserId());
         jsonObj.put("groupId", model.getGroupId());
         jsonObj.put("companyId", model.getCompanyId());
