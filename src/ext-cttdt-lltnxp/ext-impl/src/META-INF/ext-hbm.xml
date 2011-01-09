@@ -1123,4 +1123,30 @@
 		<property name="viewName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="recieverType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
+	<class name="com.sgs.portlet.report_registry_work.model.impl.DepartmentImpl" table="department">
+		<cache usage="read-write" />
+		<id name="departmentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="departmentCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="departmentDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.report_registry_work.model.impl.ReportRegistryImpl" table="report_registry_work">
+		<cache usage="read-write" />
+		<id name="reportRegistryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="reportRegistryCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resultWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="programWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="reportDate" type="org.hibernate.type.TimestampType" />
+		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 </hibernate-mapping>

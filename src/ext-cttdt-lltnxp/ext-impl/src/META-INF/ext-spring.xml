@@ -2312,4 +2312,52 @@
 	<bean id="com.sgs.portlet.recievergroup.service.persistence.RecieverFinderUtil" class="com.sgs.portlet.recievergroup.service.persistence.RecieverFinderUtil">
 		<property name="finder" ref="com.sgs.portlet.recievergroup.service.persistence.RecieverFinder.impl" />
 	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl" class="com.sgs.portlet.report_registry_work.service.impl.DepartmentLocalServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceFactory" class="com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceUtil" class="com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentService.impl" class="com.sgs.portlet.report_registry_work.service.impl.DepartmentServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.DepartmentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentServiceFactory" class="com.sgs.portlet.report_registry_work.service.DepartmentServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.DepartmentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.DepartmentServiceUtil" class="com.sgs.portlet.report_registry_work.service.DepartmentServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.DepartmentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence.impl" class="com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentUtil" class="com.sgs.portlet.report_registry_work.service.persistence.DepartmentUtil">
+		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" class="com.sgs.portlet.report_registry_work.service.impl.ReportRegistryLocalServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceFactory" class="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil" class="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryService.impl" class="com.sgs.portlet.report_registry_work.service.impl.ReportRegistryServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryServiceFactory" class="com.sgs.portlet.report_registry_work.service.ReportRegistryServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryServiceUtil" class="com.sgs.portlet.report_registry_work.service.ReportRegistryServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence.impl" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryUtil">
+		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence.impl" />
+	</bean>
 </beans>
