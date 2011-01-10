@@ -87,3 +87,7 @@ Liferay.Service.RecieverGroup.Reciever = {
 Liferay.Service.IssuingPlace = {
 	servicePackage: "com.sgs.portlet.pmlissuingplace.service.http."
 };
+
+Liferay.Service.ReportRegistryWork = {
+	servicePackage: "com.sgs.portlet.report_registry_work.service.http."
+};
