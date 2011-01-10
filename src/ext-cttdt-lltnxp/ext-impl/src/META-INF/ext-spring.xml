@@ -2336,6 +2336,10 @@
 	<bean id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentUtil" class="com.sgs.portlet.report_registry_work.service.persistence.DepartmentUtil">
 		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence.impl" />
 	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinder.impl" class="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinderImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinderUtil" class="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinderUtil">
+		<property name="finder" ref="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinder.impl" />
+	</bean>
 	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" class="com.sgs.portlet.report_registry_work.service.impl.ReportRegistryLocalServiceImpl" />
 	<bean id="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
 		<property name="target" ref="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService.impl" />
@@ -2359,5 +2363,9 @@
 	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence.impl" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryUtil">
 		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.impl" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinderImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinderUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinderUtil">
+		<property name="finder" ref="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.impl" />
 	</bean>
 </beans>

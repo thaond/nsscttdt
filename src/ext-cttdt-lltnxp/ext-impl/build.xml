@@ -257,6 +257,11 @@
 				<param name="service.file" value="src/com/sgs/portlet/recievergroup/service.xml" />
 			</antcall>
 	</target>
+	<target name="build-service-portlet-reportregistrywork">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/report_registry_work/service.xml" />
+			</antcall>
+	</target>
 	
 	<!-- Language -->
 	<target name="build-lang-native2ascii-vi">
