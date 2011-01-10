@@ -740,6 +740,53 @@ create table MBThread (
 )
 go
 
+create table MeetingCalComponent (
+	mcalId decimal(20,0) not null primary key,
+	groupIds varchar(75) null,
+	startDate datetime null
+)
+go
+
+create table MeetingCalendar (
+	uuid_ varchar(75) null,
+	mcalId decimal(20,0) not null primary key,
+	groupId decimal(20,0),
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	userName varchar(75) null,
+	state int,
+	place varchar(75) null,
+	place_diff varchar(75) null,
+	sponsor varchar(75) null,
+	component varchar(75) null,
+	note varchar(75) null,
+	userApproved decimal(20,0),
+	dateApproved datetime null,
+	moveMcalId decimal(20,0),
+	repeatWeek int,
+	filename varchar(75) null,
+	morning int,
+	afternoon int,
+	evening int,
+	stt int,
+	prior int
+)
+go
+
+create table MeetingDetailWeek (
+	mdweekId decimal(20,0) not null primary key,
+	groupId decimal(20,0),
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	userName varchar(75) null,
+	focus varchar(75) null,
+	note varchar(75) null,
+	receive varchar(75) null,
+	week int,
+	year int
+)
+go
+
 create table MembershipRequest (
 	membershipRequestId decimal(20,0) not null primary key,
 	companyId decimal(20,0),
@@ -802,6 +849,45 @@ create table OrgLabor (
 	friClose int,
 	satOpen int,
 	satClose int
+)
+go
+
+create table PML_Country (
+	countryId varchar(75) not null primary key,
+	countryCode varchar(75) null,
+	countryName varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table PML_FILETYPE (
+	fileTypeId varchar(75) not null primary key,
+	fileTypeCode varchar(75) null,
+	fileTypeName varchar(75) null,
+	fieldId varchar(75) null,
+	templateId varchar(75) null,
+	processTime varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null,
+	currentReceiptNumber varchar(75) null,
+	receiptTemplate varchar(75) null
+)
+go
+
+create table PML_IDGENERATED (
+	id decimal(20,0) not null primary key,
+	year varchar(75) null,
+	curvalue decimal(20,0)
+)
+go
+
+create table PML_IDTEMPLATE (
+	templateId decimal(20,0) not null primary key,
+	format varchar(75) null,
+	startNumber varchar(75) null,
+	len decimal(20,0),
+	description varchar(75) null
 )
 go
 
@@ -972,6 +1058,13 @@ create table RatingsStats (
 	totalEntries int,
 	totalScore float,
 	averageScore float
+)
+go
+
+create table RecieverGroups_Recievers (
+	recieverGroupId decimal(20,0) not null,
+	recieverId decimal(20,0) not null,
+	primary key (recieverGroupId, recieverId)
 )
 go
 
@@ -1639,6 +1732,944 @@ create table WikiPageResource (
 	resourcePrimKey decimal(20,0) not null primary key,
 	nodeId decimal(20,0),
 	title varchar(75) null
+)
+go
+
+create table department (
+	departmentId decimal(20,0) not null primary key,
+	departmentCode varchar(75) null,
+	departmentName varchar(75) null,
+	departmentDescription varchar(75) null,
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
+)
+go
+
+create table pml_Reciever (
+	recieverId decimal(20,0) not null primary key,
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	userName varchar(75) null,
+	createDate datetime null,
+	modifiedDate datetime null,
+	recieverUserId decimal(20,0),
+	recieverUserName varchar(75) null,
+	viewName varchar(75) null,
+	recieverType int
+)
+go
+
+create table pml_RecieverGroup (
+	recieverGroupId decimal(20,0) not null primary key,
+	companyId decimal(20,0),
+	userId decimal(20,0),
+	userName varchar(75) null,
+	createDate datetime null,
+	modifiedDate datetime null,
+	recieverGroupName varchar(75) null,
+	description varchar(75) null,
+	type_ int,
+	active_ int
+)
+go
+
+create table pml_agency (
+	agencyid varchar(75) not null primary key,
+	agencycode varchar(75) null,
+	agencyname varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_agencyleader (
+	agencyId varchar(75) not null primary key,
+	userId decimal(20,0)
+)
+go
+
+create table pml_attachedfile (
+	attachedfileid varchar(75) not null primary key,
+	attachedfilecode varchar(75) null,
+	attachedfilename varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_career (
+	careerid varchar(75) not null primary key,
+	careercode varchar(75) null,
+	careername varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_chi_tiet_hscv (
+	id_chi_tiet_hscv decimal(20,0) not null primary key,
+	id_ho_so_cong_viec decimal(20,0),
+	id_cong_van_den decimal(20,0),
+	id_cong_van_di decimal(20,0),
+	di_den varchar(75) null
+)
+go
+
+create table pml_city (
+	cityID varchar(75) not null primary key,
+	cityCode varchar(75) null,
+	cityName varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null,
+	countryid varchar(75) null
+)
+go
+
+create table pml_conf_phongban_hscv (
+	pmlDepartmentHSCVId decimal(20,0) not null primary key,
+	departmentsId varchar(75) null,
+	id_ho_so_cong_viec decimal(20,0),
+	description varchar(75) null
+)
+go
+
+create table pml_delegate (
+	delegateid decimal(20,0) not null primary key,
+	assigner decimal(20,0),
+	receiver decimal(20,0),
+	startdate datetime null,
+	enddate datetime null,
+	canceldate datetime null,
+	canceldelegate varchar(75) null,
+	datecreated datetime null
+)
+go
+
+create table pml_departmentleader (
+	departmentsId varchar(75) not null,
+	userId decimal(20,0) not null,
+	clericalid decimal(20,0),
+	main int,
+	primary key (departmentsId, userId)
+)
+go
+
+create table pml_departments (
+	departmentsid varchar(75) not null primary key,
+	departmentsparentid varchar(75) null,
+	departmentscode varchar(75) null,
+	departmentsname varchar(75) null,
+	abbreviatename varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null,
+	agencyid varchar(75) null,
+	roleid decimal(20,0),
+	hasteam varchar(75) null
+)
+go
+
+create table pml_district (
+	districtId varchar(75) not null primary key,
+	districtCode varchar(75) null,
+	districtName varchar(75) null,
+	cityID varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_do_quan_trong (
+	id_do_quan_trong decimal(20,0) not null primary key,
+	ten_do_quan_trong varchar(75) null
+)
+go
+
+create table pml_documentreceipt_log (
+	documentreceiptlogid decimal(20,0) not null primary key,
+	documentreceiptid decimal(20,0),
+	transition_ int,
+	processer decimal(20,0),
+	dateprocess datetime null,
+	processinfomation varchar(75) null,
+	receiver decimal(20,0),
+	receivedate datetime null,
+	stateprocessidbefore decimal(20,0),
+	stateprocessidafter decimal(20,0),
+	type_ int,
+	expireddate datetime null,
+	numdateprocess int,
+	processinstanceid decimal(20,0),
+	maindepartmentprocessid varchar(75) null,
+	mainuserprocessid decimal(20,0),
+	senddatebefore datetime null,
+	departmentreceiveid varchar(75) null,
+	departmentprocessid varchar(75) null,
+	dateProcessTime datetime null,
+	receiveDateTime datetime null,
+	directProcesserId decimal(20,0),
+	step int
+)
+go
+
+create table pml_documentreceipt_wf (
+	processid decimal(20,0) not null primary key,
+	documentreceiptid decimal(20,0),
+	ismain varchar(75) null
+)
+go
+
+create table pml_documentsend_log (
+	documentsendlogid decimal(20,0) not null primary key,
+	documentsendid decimal(20,0),
+	transition_ int,
+	processer decimal(20,0),
+	dateprocess datetime null,
+	processinfomation varchar(75) null,
+	receiver decimal(20,0),
+	receivedate datetime null,
+	stateprocessidbefore decimal(20,0),
+	stateprocessidafter decimal(20,0),
+	expireddate datetime null,
+	numdateprocess int,
+	processinstanceid decimal(20,0),
+	type_ int,
+	senddatebefore datetime null,
+	departmentreceiveid varchar(75) null,
+	departmentprocessid varchar(75) null,
+	dateprocesstime datetime null,
+	receivedatetime datetime null,
+	directProcesserId decimal(20,0),
+	step int
+)
+go
+
+create table pml_documentsend_wf (
+	documentsendid decimal(20,0) not null primary key,
+	processid decimal(20,0),
+	isMain varchar(75) null
+)
+go
+
+create table pml_edm_answerdetail (
+	documentreceiptid decimal(20,0) not null primary key,
+	documentsendid decimal(20,0)
+)
+go
+
+create table pml_edm_attachedfile (
+	attachedfileid decimal(20,0) not null primary key,
+	objectcontentid decimal(20,0),
+	objecttype varchar(75) null,
+	attachedfilename varchar(75) null,
+	path varchar(75) null,
+	datecreated datetime null,
+	filetype varchar(75) null,
+	fileid int,
+	title varchar(75) null,
+	displayorhidden int
+)
+go
+
+create table pml_edm_bookdocumentrecordto (
+	documentreceiptid decimal(20,0) not null,
+	documentrecordtoid decimal(20,0) not null,
+	datecreate datetime null,
+	datecomplete datetime null,
+	soCongVanDenPhongHienTai int,
+	primary key (documentreceiptid, documentrecordtoid)
+)
+go
+
+create table pml_edm_bookdocumentsend (
+	bookdocumentsendid decimal(20,0) not null primary key,
+	datecreated datetime null,
+	currentrecord decimal(20,0),
+	departmentsid varchar(75) null,
+	documentrecordtypeid int,
+	yearinuse varchar(75) null,
+	active varchar(75) null,
+	isagency varchar(75) null,
+	agencyid varchar(75) null
+)
+go
+
+create table pml_edm_cadre (
+	userid decimal(20,0) not null primary key,
+	positionid varchar(75) null,
+	departmentsid varchar(75) null,
+	handphone varchar(75) null,
+	note varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_edm_confidentiallevel (
+	confidentiallevelid varchar(75) not null primary key,
+	confidentiallevelname varchar(75) null,
+	limitviewdetail int,
+	haveprocess int,
+	confidentiallevelsymbol int
+)
+go
+
+create table pml_edm_documentdelegate (
+	documentDelegateId decimal(20,0) not null primary key,
+	userDelegateId decimal(20,0),
+	userIsDelegateId decimal(20,0),
+	documentId int,
+	fromtDate datetime null,
+	toDate datetime null,
+	cancelDate datetime null
+)
+go
+
+create table pml_edm_documentreceipt (
+	documentReceiptId decimal(20,0) not null primary key,
+	levelsendid int,
+	documenttypeid decimal(20,0),
+	documentreference varchar(75) null,
+	issuingplaceid varchar(75) null,
+	issuingdate datetime null,
+	datearrive datetime null,
+	signer varchar(75) null,
+	privilegelevelid varchar(75) null,
+	confidentiallevelid varchar(75) null,
+	opinion varchar(75) null,
+	briefcontent varchar(75) null,
+	ispublic varchar(75) null,
+	numberdocumentreceipt varchar(75) null,
+	processtime int,
+	status varchar(75) null,
+	active varchar(75) null,
+	numberlocaldocumentreceipt varchar(75) null,
+	issuingplaceothername varchar(75) null,
+	documenttype varchar(75) null,
+	datebutphe datetime null,
+	datehoanthanh datetime null,
+	statusid decimal(20,0),
+	thoigiannhancvden varchar(75) null,
+	socongvandiphucdap varchar(75) null,
+	generalorderno decimal(20,0),
+	maindepartmentprocessid varchar(75) null,
+	mainuserprocessid decimal(20,0),
+	orgexternalid decimal(20,0),
+	docreceipttempid decimal(20,0),
+	donvisaoy varchar(75) null
+)
+go
+
+create table pml_edm_documentreceipt_temp (
+	documentReceiptId decimal(20,0) not null primary key,
+	levelsendid int,
+	documenttypeid decimal(20,0),
+	documentreference varchar(75) null,
+	issuingplaceid varchar(75) null,
+	issuingdate datetime null,
+	datearrive datetime null,
+	signer varchar(75) null,
+	privilegelevelid varchar(75) null,
+	confidentiallevelid varchar(75) null,
+	opinion varchar(75) null,
+	briefcontent varchar(75) null,
+	ispublic varchar(75) null,
+	numberdocumentreceipt varchar(75) null,
+	processtime int,
+	status varchar(75) null,
+	active varchar(75) null,
+	numberlocaldocumentreceipt varchar(75) null,
+	issuingplaceothername varchar(75) null,
+	documenttype varchar(75) null,
+	datebutphe datetime null,
+	datehoanthanh datetime null,
+	statusid decimal(20,0),
+	thoigiannhancvden varchar(75) null,
+	socongvandiphucdap varchar(75) null,
+	generalorderno decimal(20,0),
+	maindepartmentprocessid varchar(75) null,
+	mainuserprocessid decimal(20,0),
+	orgexternalid decimal(20,0)
+)
+go
+
+create table pml_edm_documentreceiptextend (
+	documentreceiptextendid decimal(20,0) not null primary key,
+	documentreceiptid decimal(20,0),
+	documentreceiptlogid decimal(20,0),
+	extendorderno int,
+	startprocessdate datetime null,
+	numdayprocessbef int,
+	limitdatebef datetime null,
+	extendreason varchar(75) null,
+	numdayprocessaft int,
+	limitdateaft datetime null,
+	leanonlimitdate int,
+	extenduserid decimal(20,0),
+	extenddepartmentid varchar(75) null
+)
+go
+
+create table pml_edm_documentreceiptprocesstype (
+	docReceiptProcessTypeId decimal(20,0) not null primary key,
+	documentReceiptId decimal(20,0),
+	documentReceiptLogId decimal(20,0),
+	processTypeOrderNo int,
+	dateEdit datetime null,
+	processTypeIdBefore varchar(75) null,
+	processTypeIdAfter varchar(75) null,
+	processTypeReason varchar(75) null,
+	processerId decimal(20,0),
+	departmentId varchar(75) null
+)
+go
+
+create table pml_edm_documentrecordto (
+	documentrecordtoid decimal(20,0) not null primary key,
+	datecreate datetime null,
+	currentrecord decimal(20,0),
+	departmentsid varchar(75) null,
+	documentrecordtypeid int,
+	yearinuse varchar(75) null,
+	active varchar(75) null,
+	isagency varchar(75) null,
+	agencyid varchar(75) null
+)
+go
+
+create table pml_edm_documentrecordtype (
+	documentrecordtypeid int not null primary key,
+	documentrecordtypename varchar(75) null,
+	documentrecordtypecode varchar(75) null
+)
+go
+
+create table pml_edm_documentrelation (
+	documentrelationid decimal(20,0) not null primary key,
+	docleftid decimal(20,0),
+	docrightid decimal(20,0),
+	leftisreceipt int,
+	rightisreceipt int
+)
+go
+
+create table pml_edm_documentsend (
+	documentsendid decimal(20,0) not null primary key,
+	briefcontent varchar(75) null,
+	documentreference varchar(75) null,
+	receivingplace varchar(75) null,
+	issuingdate datetime null,
+	opinion varchar(75) null,
+	editorid decimal(20,0),
+	signerid decimal(20,0),
+	documenttypeid decimal(20,0),
+	privilegelevelid varchar(75) null,
+	confidentiallevelid varchar(75) null,
+	datecreated datetime null,
+	islocal int,
+	active varchar(75) null,
+	senddate datetime null,
+	signername varchar(75) null,
+	position_ varchar(75) null,
+	numberpage varchar(75) null,
+	numberpublish varchar(75) null,
+	documentsendcode varchar(75) null,
+	statusid decimal(20,0),
+	iscongvanphucdap int,
+	numofdocref decimal(20,0),
+	ispublish int,
+	orgexternalid decimal(20,0),
+	numofdirector int
+)
+go
+
+create table pml_edm_documenttype (
+	documenttypeid decimal(20,0) not null primary key,
+	documenttypename varchar(75) null,
+	documentsymbol varchar(75) null,
+	documentrecordtypeid int,
+	sendreceiptdistinction int,
+	HaveDepartExtends int
+)
+go
+
+create table pml_edm_issuingplace (
+	issuingplaceid varchar(75) not null primary key,
+	issuingplacename varchar(75) null,
+	tablephone varchar(75) null,
+	handphone varchar(75) null,
+	email varchar(75) null,
+	address varchar(75) null,
+	active varchar(75) null,
+	note varchar(75) null,
+	issuingplacecode varchar(75) null,
+	signer varchar(75) null
+)
+go
+
+create table pml_edm_levelsend (
+	levelsendid int not null primary key,
+	levelsendname varchar(75) null,
+	levelsendcode varchar(75) null
+)
+go
+
+create table pml_edm_levelsenddetail (
+	levelsendid int not null,
+	issuingPlaceId varchar(75) not null,
+	primary key (levelsendid, issuingPlaceId)
+)
+go
+
+create table pml_edm_privilegelevel (
+	privilegelevelid varchar(75) not null primary key,
+	privilegelevelname varchar(75) null
+)
+go
+
+create table pml_edm_processdocumentreceiptdetail (
+	id decimal(20,0) not null primary key,
+	documentreceiptid decimal(20,0),
+	userid decimal(20,0),
+	note varchar(75) null,
+	datecreated datetime null,
+	dateupdate datetime null
+)
+go
+
+create table pml_edm_writedocumentsend (
+	bookdocumentsendid decimal(20,0) not null,
+	documentsendid decimal(20,0) not null,
+	datecreated datetime null,
+	soCongVanDiPhongHienTai int,
+	primary key (bookdocumentsendid, documentsendid)
+)
+go
+
+create table pml_field (
+	fieldId varchar(75) not null primary key,
+	fieldCode varchar(75) null,
+	fieldName varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null,
+	departmentsId varchar(75) null
+)
+go
+
+create table pml_file (
+	fileId varchar(75) not null primary key,
+	cityId varchar(75) null,
+	districtId varchar(75) null,
+	wardsId varchar(75) null,
+	streetId varchar(75) null,
+	exactReturningDate datetime null,
+	receiverId decimal(20,0),
+	validDate datetime null,
+	expectedReturningDate datetime null,
+	applicationDate datetime null,
+	otherContent varchar(75) null,
+	briefContent varchar(75) null,
+	applicantName varchar(75) null,
+	organization varchar(75) null,
+	authorisedLetter varchar(75) null,
+	idNumber varchar(75) null,
+	issuingDate datetime null,
+	issuingPlace varchar(75) null,
+	telephone varchar(75) null,
+	gender varchar(75) null,
+	streetNumber varchar(75) null,
+	permanentAddress varchar(75) null,
+	contactInfomation varchar(75) null,
+	oldNumberReceipt varchar(75) null,
+	numberReceipt varchar(75) null,
+	fileTypeId varchar(75) null,
+	fieldId varchar(75) null,
+	solvingTime int,
+	amendedContent varchar(75) null,
+	landCheckingDate datetime null,
+	decisionNotice varchar(75) null,
+	receiver varchar(75) null,
+	dateCreated datetime null,
+	lastUpdate datetime null,
+	lasttestprocessinfo varchar(75) null,
+	active varchar(75) null,
+	generalorderno decimal(20,0)
+)
+go
+
+create table pml_file_attachedfile (
+	fileAttachedFileId varchar(75) not null primary key,
+	fileId varchar(75) null,
+	original int,
+	copy_ int,
+	attachedFileId varchar(75) null,
+	attachedFileName varchar(75) null,
+	note varchar(75) null
+)
+go
+
+create table pml_file_pccc (
+	fileid varchar(75) not null primary key,
+	fileName varchar(75) null,
+	applicantrepresentation varchar(75) null,
+	applicanttelephone varchar(75) null,
+	receiverrepresentation varchar(75) null,
+	receivertelephone varchar(75) null,
+	projectname varchar(75) null,
+	applicantcategory varchar(75) null,
+	addressbuilder varchar(75) null,
+	investor varchar(75) null,
+	designCop varchar(75) null,
+	filenumber int,
+	inputdatadate datetime null,
+	noteinformationmanagement varchar(75) null,
+	totalhour int,
+	totaldate int,
+	conclusion varchar(75) null,
+	receiveofunit varchar(75) null,
+	applicanttime varchar(75) null
+)
+go
+
+create table pml_filepccc_attachedfile (
+	attachedfileid decimal(20,0) not null primary key,
+	filepcccid varchar(75) null,
+	objecttype varchar(75) null,
+	attachedfilename varchar(75) null,
+	path varchar(75) null,
+	datecreated datetime null,
+	filetype varchar(75) null,
+	title varchar(75) null
+)
+go
+
+create table pml_filereturninginfo (
+	filereturninginfoid decimal(20,0) not null primary key,
+	fileid varchar(75) null,
+	filesender varchar(75) null,
+	licensenumber varchar(75) null,
+	issuingdatelicense datetime null,
+	receivelicensedate datetime null,
+	documentnumber varchar(75) null,
+	billnumber varchar(75) null,
+	numbermoney decimal(20,0),
+	note varchar(75) null,
+	conclude varchar(75) null
+)
+go
+
+create table pml_filestatus (
+	filestatusid decimal(20,0) not null primary key,
+	filestatuscode varchar(75) null,
+	filestatusname varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null,
+	type varchar(75) null
+)
+go
+
+create table pml_filestatus_stateprocess (
+	id decimal(20,0) not null primary key,
+	filestatusid decimal(20,0),
+	stateprocessid decimal(20,0),
+	description varchar(75) null
+)
+go
+
+create table pml_filetype_attachedfile (
+	filetypeAttachedFileId varchar(75) not null primary key,
+	fileTypeId varchar(75) null,
+	original int,
+	copy_ int,
+	attachedFileId varchar(75) null,
+	attachedFileName varchar(75) null,
+	note varchar(75) null
+)
+go
+
+create table pml_filetypedelegate (
+	filetypedelegateid decimal(20,0) not null primary key,
+	filetypeid varchar(75) null,
+	delegateid decimal(20,0)
+)
+go
+
+create table pml_ho_so_cong_viec (
+	id_ho_so_cong_viec decimal(20,0) not null primary key,
+	userId decimal(20,0),
+	userName varchar(75) null,
+	id_hscv_cha decimal(20,0),
+	so_hieu_hscv varchar(75) null,
+	tieu_de varchar(75) null,
+	ngay_mo_hscv datetime null,
+	han_xu_ly datetime null,
+	id_linh_vuc varchar(75) null,
+	van_de_lien_quan varchar(75) null,
+	id_do_quan_trong decimal(20,0),
+	id_tinh_chat decimal(20,0),
+	id_trang_thai_hscv decimal(20,0),
+	tom_tat_noi_dung varchar(75) null,
+	hoat_dong varchar(75) null
+)
+go
+
+create table pml_holiday (
+	holidayid decimal(20,0) not null primary key,
+	holiday_type varchar(75) null,
+	holiday_value varchar(75) null,
+	from_date datetime null,
+	to_date datetime null
+)
+go
+
+create table pml_main_support (
+	processid decimal(20,0) not null primary key,
+	processid_main decimal(20,0),
+	type_ varchar(75) null,
+	supportinfomation varchar(75) null
+)
+go
+
+create table pml_manage_documentworkflow (
+	managedocumentworkflowid decimal(20,0) not null primary key,
+	workflowname varchar(75) null,
+	version_ int,
+	type_ int,
+	description varchar(75) null,
+	startdate datetime null,
+	enddate datetime null
+)
+go
+
+create table pml_nation (
+	nationid varchar(75) not null primary key,
+	nationcode varchar(75) null,
+	nationname varchar(75) null,
+	countryid varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_paintdocument (
+	paintdocumentid decimal(20,0) not null primary key,
+	fileid varchar(75) null,
+	paintdocumentname varchar(75) null,
+	quantity int,
+	note varchar(75) null
+)
+go
+
+create table pml_position (
+	positionid varchar(75) not null primary key,
+	positioncode varchar(75) null,
+	positionname varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_processdispose (
+	processdisposeid decimal(20,0) not null primary key,
+	fileid varchar(75) null,
+	transition_ int,
+	processer decimal(20,0),
+	dateprocess datetime null,
+	processinfomation varchar(75) null,
+	receiver decimal(20,0),
+	receivedate datetime null,
+	stateprocessidbefore decimal(20,0),
+	stateprocessidafter decimal(20,0),
+	expireddate datetime null,
+	delegateuser decimal(20,0),
+	senddate datetime null
+)
+go
+
+create table pml_processtype (
+	processtypeid decimal(20,0) not null primary key,
+	name varchar(75) null,
+	flagprocesstype int
+)
+go
+
+create table pml_role (
+	roleid varchar(75) not null primary key,
+	rolecode varchar(75) null,
+	rolename varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_saveprocesstype (
+	sptid decimal(20,0) not null primary key,
+	docId decimal(20,0),
+	flagprocesstype decimal(20,0),
+	flag int
+)
+go
+
+create table pml_signer (
+	signerid decimal(20,0) not null primary key,
+	userid decimal(20,0)
+)
+go
+
+create table pml_state_department (
+	departmentid varchar(75) not null,
+	statewfid decimal(20,0) not null,
+	primary key (departmentid, statewfid)
+)
+go
+
+create table pml_state_wf (
+	statewfid decimal(20,0) not null primary key,
+	workflow varchar(75) null,
+	stateprocessid decimal(20,0),
+	solvingtime int,
+	version_ int
+)
+go
+
+create table pml_stateprocess (
+	stateprocessid decimal(20,0) not null primary key,
+	stateprocesscode varchar(75) null,
+	stateprocessname varchar(75) null,
+	filestatusid decimal(20,0),
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_street (
+	streetId varchar(75) not null primary key,
+	streetName varchar(75) null
+)
+go
+
+create table pml_team (
+	teamid decimal(20,0) not null primary key,
+	departmentid varchar(75) null,
+	teamname varchar(75) null,
+	description varchar(75) null,
+	organizationid decimal(20,0),
+	companyid decimal(20,0),
+	specialteam varchar(75) null,
+	teamcode varchar(75) null
+)
+go
+
+create table pml_teamleader (
+	teamid decimal(20,0) not null primary key,
+	userid decimal(20,0)
+)
+go
+
+create table pml_template (
+	templateId decimal(20,0) not null primary key,
+	templateCode varchar(75) null,
+	templateName varchar(75) null,
+	numberOfDocument int,
+	publishDate datetime null,
+	departmentId varchar(75) null
+)
+go
+
+create table pml_template_file (
+	fileTemplateId decimal(20,0) not null primary key,
+	templateId decimal(20,0),
+	tenFile varchar(75) null,
+	kichThuoc decimal(20,0),
+	duongDan varchar(75) null
+)
+go
+
+create table pml_tinh_chat (
+	id_tinh_chat decimal(20,0) not null primary key,
+	ten_tinh_chat varchar(75) null
+)
+go
+
+create table pml_trang_thai_hscv (
+	id_trang_thai_hscv decimal(20,0) not null primary key,
+	ten_trang_thai_hscv varchar(75) null
+)
+go
+
+create table pml_transition (
+	transitionid decimal(20,0) not null primary key,
+	transitionname varchar(75) null,
+	filetypeid varchar(75) null,
+	notransition int,
+	stateprocesscurrent decimal(20,0),
+	stateprocessnext decimal(20,0),
+	version_ varchar(75) null
+)
+go
+
+create table pml_user (
+	userId decimal(20,0) not null primary key,
+	positionId varchar(75) null,
+	departmentsId varchar(75) null,
+	roleId varchar(75) null,
+	handphone varchar(75) null,
+	note varchar(75) null,
+	teamid decimal(20,0),
+	active int,
+	screenname varchar(75) null,
+	firstname varchar(75) null,
+	middlename varchar(75) null,
+	lastname varchar(75) null,
+	male int,
+	birthday datetime null
+)
+go
+
+create table pml_user_file_type (
+	userid decimal(20,0) not null,
+	filetypeid varchar(75) not null,
+	description varchar(75) null,
+	primary key (userid, filetypeid)
+)
+go
+
+create table pml_wards (
+	wardsId varchar(75) not null primary key,
+	wardsCode varchar(75) null,
+	wardsName varchar(75) null,
+	districtId varchar(75) null,
+	description varchar(75) null,
+	active varchar(75) null
+)
+go
+
+create table pml_wf_onedoor (
+	fileId varchar(75) not null primary key,
+	processId decimal(20,0),
+	nodeId decimal(20,0)
+)
+go
+
+create table pml_workflow (
+	workflowId decimal(20,0) not null primary key,
+	fileTypeId varchar(75) null,
+	workflow varchar(75) null,
+	version_ int,
+	startDate datetime null,
+	endDate datetime null
+)
+go
+
+create table report_registry_work (
+	reportRegistryId decimal(20,0) not null primary key,
+	reportRegistryCode varchar(75) null,
+	resultWork varchar(75) null,
+	programWork varchar(75) null,
+	reportDate datetime null,
+	departmentId decimal(20,0),
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
 )
 go
 
@@ -7600,6 +8631,23 @@ go
 create index IX_CB854772 on MBThread (categoryId)
 go
 
+create index IX_FA179180 on MeetingCalComponent (mcalId)
+go
+
+create index IX_F199C38B on MeetingCalendar (groupId)
+go
+create index IX_3B1B516 on MeetingCalendar (groupId, state)
+go
+create index IX_5AD0BCD5 on MeetingCalendar (uuid_)
+go
+create index IX_A1E35775 on MeetingCalendar (uuid_, groupId)
+go
+
+create index IX_67E076A0 on MeetingDetailWeek (mdweekId)
+go
+create index IX_D15DC0FF on MeetingDetailWeek (week, year)
+go
+
 create index IX_8A1CC4B on MembershipRequest (groupId)
 go
 create index IX_C28C72EC on MembershipRequest (groupId, statusId)
@@ -7625,6 +8673,44 @@ go
 create index IX_E301BDF5 on Organization_ (companyId, name)
 go
 create index IX_418E4522 on Organization_ (companyId, parentOrganizationId)
+go
+
+create index IX_D7390C66 on PML_Country (active)
+go
+create index IX_3A155227 on PML_Country (countryCode)
+go
+create index IX_10E0D02 on PML_Country (countryCode, countryName, description)
+go
+create index IX_4C196F45 on PML_Country (countryName)
+go
+create index IX_DA792540 on PML_Country (description)
+go
+
+create index IX_88570760 on PML_FILETYPE (description)
+go
+create index IX_128135D9 on PML_FILETYPE (fieldId)
+go
+create index IX_3D91D363 on PML_FILETYPE (fileTypeCode)
+go
+create index IX_5686E658 on PML_FILETYPE (fileTypeCode, fileTypeName)
+go
+create index IX_4F95F081 on PML_FILETYPE (fileTypeName)
+go
+create index IX_D75327B6 on PML_FILETYPE (receiptTemplate)
+go
+
+create index IX_4A476C8F on PML_IDGENERATED (curvalue)
+go
+create index IX_2502809B on PML_IDGENERATED (year)
+go
+create index IX_B91244C0 on PML_IDGENERATED (year, curvalue)
+go
+
+create index IX_584A1DA1 on PML_IDTEMPLATE (description)
+go
+create index IX_9C8A9C16 on PML_IDTEMPLATE (format)
+go
+create index IX_80B4ACD6 on PML_IDTEMPLATE (format, description)
 go
 
 create index IX_3FBFA9F4 on PasswordPolicy (companyId, name)
@@ -8015,6 +9101,908 @@ create index IX_9C0E478F on WikiPage (uuid_)
 go
 
 create index IX_21277664 on WikiPageResource (nodeId, title)
+go
+
+create index IX_94534BCC on pml_Reciever (userId, recieverType)
+go
+create index IX_635945DD on pml_Reciever (userId, recieverUserId, recieverType)
+go
+create index IX_4935BC8D on pml_Reciever (userId, recieverUserName, recieverType)
+go
+create index IX_23C602BC on pml_Reciever (userName, recieverType)
+go
+create index IX_31E01CCD on pml_Reciever (userName, recieverUserId, recieverType)
+go
+create index IX_9162977D on pml_Reciever (userName, recieverUserName, recieverType)
+go
+
+create index IX_1A370FF8 on pml_RecieverGroup (userId)
+go
+create index IX_C41AA2EB on pml_RecieverGroup (userId, recieverGroupName)
+go
+create index IX_B2E1F2DD on pml_RecieverGroup (userId, type_)
+go
+create index IX_713072A8 on pml_RecieverGroup (userName)
+go
+create index IX_DFC52A2D on pml_RecieverGroup (userName, type_)
+go
+
+create index IX_F88C2FA1 on pml_agency (agencycode)
+go
+create index IX_F036A8A7 on pml_agency (agencycode, agencyname, description)
+go
+create index IX_A904CBF on pml_agency (agencyname)
+go
+create index IX_64EE6A51 on pml_agency (description)
+go
+
+create index IX_B1E9DBB8 on pml_agencyleader (agencyId)
+go
+create index IX_39E841FE on pml_agencyleader (userId)
+go
+
+create index IX_DAEDA857 on pml_attachedfile (attachedfilecode)
+go
+create index IX_3B085E76 on pml_attachedfile (attachedfilecode, attachedfilename, description)
+go
+create index IX_ECF1C575 on pml_attachedfile (attachedfilename)
+go
+create index IX_3648AFD6 on pml_attachedfile (description)
+go
+
+create index IX_8A35C013 on pml_career (careercode)
+go
+create index IX_5E23A45C on pml_career (careercode, careername, description)
+go
+create index IX_9C39DD31 on pml_career (careername)
+go
+create index IX_F31FDB8 on pml_career (description)
+go
+
+create index IX_923002F7 on pml_chi_tiet_hscv (id_cong_van_den)
+go
+create index IX_C2A6BC7F on pml_chi_tiet_hscv (id_cong_van_di)
+go
+create index IX_F7D3D244 on pml_chi_tiet_hscv (id_ho_so_cong_viec)
+go
+create index IX_1B406F27 on pml_chi_tiet_hscv (id_ho_so_cong_viec, id_cong_van_den)
+go
+create index IX_7CC00A4F on pml_chi_tiet_hscv (id_ho_so_cong_viec, id_cong_van_di)
+go
+
+create index IX_3461E29B on pml_city (active)
+go
+create index IX_FDA6104D on pml_city (cityCode)
+go
+create index IX_3FA09675 on pml_city (cityCode, cityName, description)
+go
+create index IX_FAA2D6B on pml_city (cityName)
+go
+create index IX_B4C69D60 on pml_city (countryid)
+go
+create index IX_FDD6E82B on pml_city (description)
+go
+
+create index IX_B0F6ED33 on pml_conf_phongban_hscv (departmentsId)
+go
+
+create index IX_5C17FC4B on pml_delegate (assigner)
+go
+create index IX_99BC9FAE on pml_delegate (assigner, receiver)
+go
+create index IX_771BE1E7 on pml_delegate (assigner, receiver, startdate, enddate)
+go
+create index IX_200281EE on pml_delegate (canceldelegate)
+go
+create index IX_45A908CF on pml_delegate (datecreated)
+go
+create index IX_2B691F9E on pml_delegate (receiver)
+go
+create index IX_1DD7D351 on pml_delegate (receiver, canceldelegate)
+go
+create index IX_A14C32B1 on pml_delegate (receiver, startdate, canceldate, canceldelegate)
+go
+create index IX_2BF909D7 on pml_delegate (receiver, startdate, enddate)
+go
+create index IX_5B262B8A on pml_delegate (receiver, startdate, enddate, canceldelegate)
+go
+
+create index IX_448EF07B on pml_departmentleader (clericalid)
+go
+create index IX_D88249DB on pml_departmentleader (departmentsId)
+go
+create index IX_BA719715 on pml_departmentleader (departmentsId, userId)
+go
+create index IX_BA1D974B on pml_departmentleader (userId)
+go
+
+create index IX_F958ACE1 on pml_departments (abbreviatename)
+go
+create index IX_CC20E6B1 on pml_departments (active)
+go
+create index IX_6B9E2EEB on pml_departments (agencyId)
+go
+create index IX_6BACBACB on pml_departments (agencyid)
+go
+create index IX_14823E3F on pml_departments (departmentsParentId)
+go
+create index IX_8D4EA2A7 on pml_departments (departmentscode)
+go
+create index IX_9EEF10DB on pml_departments (departmentscode, agencyId)
+go
+create index IX_9EFD9CBB on pml_departments (departmentscode, agencyid)
+go
+create index IX_63A5BF8D on pml_departments (departmentscode, departmentsname, abbreviatename, description)
+go
+create index IX_A696C777 on pml_departments (departmentscode, departmentsname, description)
+go
+create index IX_9F52BFC5 on pml_departments (departmentsname)
+go
+create index IX_9DBEEDFF on pml_departments (departmentsparentid)
+go
+create index IX_5E6501D5 on pml_departments (description)
+go
+create index IX_D3074E90 on pml_departments (hasteam)
+go
+create index IX_1EFA98FC on pml_departments (roleid)
+go
+
+create index IX_57BED4FE on pml_district (active)
+go
+create index IX_65B319BE on pml_district (cityID)
+go
+create index IX_31B0FBA8 on pml_district (description)
+go
+create index IX_1A5F56D3 on pml_district (districtCode)
+go
+create index IX_E7D49132 on pml_district (districtCode, districtName, cityID, description)
+go
+create index IX_2C6373F1 on pml_district (districtName)
+go
+
+create index IX_7DDBAE38 on pml_do_quan_trong (ten_do_quan_trong)
+go
+
+create index IX_61702019 on pml_documentreceipt_log (dateprocess)
+go
+create index IX_F2B17075 on pml_documentreceipt_log (departmentprocess)
+go
+create index IX_C34DE10 on pml_documentreceipt_log (departmentprocessid)
+go
+create index IX_5DA377E9 on pml_documentreceipt_log (departmentreceive)
+go
+create index IX_82C2D884 on pml_documentreceipt_log (departmentreceiveid)
+go
+create index IX_9AC1A170 on pml_documentreceipt_log (documentreceiptid)
+go
+create index IX_F13EA49C on pml_documentreceipt_log (documentreceiptid, processer)
+go
+create index IX_60F6FFCE on pml_documentreceipt_log (documentreceiptid, processer, receivedate, stateprocessidafter)
+go
+create index IX_51D1F577 on pml_documentreceipt_log (documentreceiptid, processer, stateprocessidafter)
+go
+create index IX_B32A8F5C on pml_documentreceipt_log (documentreceiptid, processer, step)
+go
+create index IX_4569DA93 on pml_documentreceipt_log (documentreceiptid, receiver)
+go
+create index IX_5130EFE0 on pml_documentreceipt_log (documentreceiptid, receiver, stateprocessidafter)
+go
+create index IX_D3E3577A on pml_documentreceipt_log (documentreceiptid, receiver, stateprocessidafter, transition_)
+go
+create index IX_402827C on pml_documentreceipt_log (documentreceiptid, stateprocessidbefore)
+go
+create index IX_BEAAE410 on pml_documentreceipt_log (documentreceiptid, stateprocessidbefore, processer)
+go
+create index IX_1A7DDC9F on pml_documentreceipt_log (documentreceiptid, stateprocessidbefore, receiver)
+go
+create index IX_24299D30 on pml_documentreceipt_log (documentreceiptid, step)
+go
+create index IX_F97BAFEA on pml_documentreceipt_log (documentreceiptid, transition_)
+go
+create index IX_5BF8A5E2 on pml_documentreceipt_log (documentreceiptid, transition_, processer)
+go
+create index IX_9F0F4A65 on pml_documentreceipt_log (documentreceiptid, type_)
+go
+create index IX_1C2DC0EB on pml_documentreceipt_log (expireddate)
+go
+create index IX_5B3152F7 on pml_documentreceipt_log (maindepartmentprocessid)
+go
+create index IX_189C629E on pml_documentreceipt_log (mainuserprocessid)
+go
+create index IX_BE581447 on pml_documentreceipt_log (numdateprocess)
+go
+create index IX_EB41C334 on pml_documentreceipt_log (processer)
+go
+create index IX_8A503D37 on pml_documentreceipt_log (processinstanceid)
+go
+create index IX_1DCAA8B5 on pml_documentreceipt_log (processinstanceid, stateprocessidafter, dateprocess)
+go
+create index IX_990CD0CE on pml_documentreceipt_log (processinstanceid, stateprocessidbefore, dateprocess)
+go
+create index IX_C9F630BE on pml_documentreceipt_log (processinstanceid, type_)
+go
+create index IX_2A554629 on pml_documentreceipt_log (receivedate)
+go
+create index IX_55BC88FB on pml_documentreceipt_log (receiver)
+go
+create index IX_DC6AC441 on pml_documentreceipt_log (senddatebefore)
+go
+create index IX_DF02C5BB on pml_documentreceipt_log (stateprocessidafter)
+go
+create index IX_1CFAD4E4 on pml_documentreceipt_log (stateprocessidbefore)
+go
+create index IX_B5D974FD on pml_documentreceipt_log (type_)
+go
+
+create index IX_F9949A1 on pml_documentreceipt_wf (documentreceiptid)
+go
+create index IX_813F3D38 on pml_documentreceipt_wf (documentreceiptid, ismain)
+go
+
+create index IX_BF3D5193 on pml_documentsend_log (dateprocess)
+go
+create index IX_EDDF58A on pml_documentsend_log (departmentprocessid)
+go
+create index IX_856BEFFE on pml_documentsend_log (departmentreceiveid)
+go
+create index IX_95446B90 on pml_documentsend_log (documentsendid)
+go
+create index IX_D42E467C on pml_documentsend_log (documentsendid, processer)
+go
+create index IX_166629AE on pml_documentsend_log (documentsendid, processer, receivedate, stateprocessidafter)
+go
+create index IX_B9A43F97 on pml_documentsend_log (documentsendid, processer, stateprocessidafter)
+go
+create index IX_7B91493C on pml_documentsend_log (documentsendid, processer, step)
+go
+create index IX_970E7CB3 on pml_documentsend_log (documentsendid, receiver)
+go
+create index IX_BA24F49C on pml_documentsend_log (documentsendid, stateprocessidbefore)
+go
+create index IX_825026BF on pml_documentsend_log (documentsendid, stateprocessidbefore, receiver)
+go
+create index IX_DF0A59CA on pml_documentsend_log (documentsendid, transition_)
+go
+create index IX_79FAF265 on pml_documentsend_log (expireddate)
+go
+create index IX_87E8B88D on pml_documentsend_log (numdateprocess)
+go
+create index IX_6BC10B2E on pml_documentsend_log (processer)
+go
+create index IX_9727582F on pml_documentsend_log (processinstanceid, stateprocessidafter, dateprocess)
+go
+create index IX_4B461094 on pml_documentsend_log (processinstanceid, stateprocessidbefore, dateprocess)
+go
+create index IX_882277A3 on pml_documentsend_log (receivedate)
+go
+create index IX_309759C1 on pml_documentsend_log (receiver)
+go
+create index IX_A5FB6887 on pml_documentsend_log (senddatebefore)
+go
+create index IX_E1ABDD35 on pml_documentsend_log (stateprocessidafter)
+go
+create index IX_6F74ACAA on pml_documentsend_log (stateprocessidbefore)
+go
+
+create index IX_EF559A19 on pml_documentsend_wf (processid)
+go
+
+create index IX_DF61BFE8 on pml_edm_answerdetail (documentsendid)
+go
+
+create index IX_9A5F97E6 on pml_edm_attachedfile (attachedfilename)
+go
+create index IX_9AA1EC3 on pml_edm_attachedfile (datecreated)
+go
+create index IX_BC68EC12 on pml_edm_attachedfile (fileid)
+go
+create index IX_59EC5531 on pml_edm_attachedfile (filetype)
+go
+create index IX_38A173FE on pml_edm_attachedfile (objectcontentid)
+go
+create index IX_3B07BA2B on pml_edm_attachedfile (objectcontentid, objecttype)
+go
+create index IX_F431D674 on pml_edm_attachedfile (objecttype)
+go
+create index IX_45D87F60 on pml_edm_attachedfile (path)
+go
+
+create index IX_B6759412 on pml_edm_bookdocumentrecordto (datecomplete)
+go
+create index IX_AA87ECD5 on pml_edm_bookdocumentrecordto (datecreate)
+go
+create index IX_3104DFB1 on pml_edm_bookdocumentrecordto (documentreceiptid)
+go
+create index IX_896B2527 on pml_edm_bookdocumentrecordto (documentreceiptid, documentrecordtoid)
+go
+create index IX_E6BAE7AD on pml_edm_bookdocumentrecordto (documentrecordtoid)
+go
+
+create index IX_C213CCC7 on pml_edm_bookdocumentsend (agencyid)
+go
+create index IX_6951E23A on pml_edm_bookdocumentsend (agencyid, departmentsid, documentrecordtypeid)
+go
+create index IX_C2147AA3 on pml_edm_bookdocumentsend (agencyid, yearinuse, documentrecordtypeid)
+go
+create index IX_B3B1DB27 on pml_edm_bookdocumentsend (currentrecord)
+go
+create index IX_12A9A257 on pml_edm_bookdocumentsend (datecreated)
+go
+create index IX_7E34CBD9 on pml_edm_bookdocumentsend (departmentsid)
+go
+create index IX_DB1A8728 on pml_edm_bookdocumentsend (documentrecordtypeid)
+go
+create index IX_217A93FC on pml_edm_bookdocumentsend (documentrecordtypeid, agencyid)
+go
+create index IX_BD633DC4 on pml_edm_bookdocumentsend (documentrecordtypeid, departmentsid)
+go
+create index IX_5C6A0756 on pml_edm_bookdocumentsend (yearinuse, agencyid)
+go
+create index IX_D6B7D2AA on pml_edm_bookdocumentsend (yearinuse, departmentsid)
+go
+create index IX_79A204DF on pml_edm_bookdocumentsend (yearinuse, departmentsid, documentrecordtypeid)
+go
+
+create index IX_CE3025EE on pml_edm_cadre (departmentsid)
+go
+create index IX_EA107351 on pml_edm_cadre (handphone)
+go
+create index IX_393FE4B6 on pml_edm_cadre (positionid)
+go
+
+create index IX_F30AEFD6 on pml_edm_confidentiallevel (confidentiallevelname)
+go
+
+create index IX_F635B970 on pml_edm_documentdelegate (userIsDelegateId)
+go
+
+create index IX_6C706605 on pml_edm_documentreceipt (confidentiallevelid)
+go
+create index IX_A5806B65 on pml_edm_documentreceipt (docreceipttempid)
+go
+create index IX_F7702835 on pml_edm_documentreceipt (docreceipttempid, orgexternalid)
+go
+create index IX_195C7CCB on pml_edm_documentreceipt (documenttype)
+go
+create index IX_344E2CE6 on pml_edm_documentreceipt (documenttypeid)
+go
+create index IX_F4D3AF82 on pml_edm_documentreceipt (issuingplaceid)
+go
+create index IX_44318C15 on pml_edm_documentreceipt (levelsendid)
+go
+create index IX_5095AB4D on pml_edm_documentreceipt (maindepartmentprocessid)
+go
+create index IX_A4E73374 on pml_edm_documentreceipt (mainuserprocessid)
+go
+create index IX_FE328031 on pml_edm_documentreceipt (numberlocaldocumentreceipt)
+go
+create index IX_1C937938 on pml_edm_documentreceipt (orgexternalid)
+go
+create index IX_7D644D84 on pml_edm_documentreceipt (privilegelevelid)
+go
+create index IX_41D2A81C on pml_edm_documentreceipt (socongvandiphucdap)
+go
+create index IX_FF31DE83 on pml_edm_documentreceipt (statusid)
+go
+
+create index IX_8ABCB96A on pml_edm_documentreceipt_temp (confidentiallevelid)
+go
+create index IX_4B990106 on pml_edm_documentreceipt_temp (documenttype)
+go
+create index IX_C97A8E61 on pml_edm_documentreceipt_temp (documenttypeid)
+go
+create index IX_8A0010FD on pml_edm_documentreceipt_temp (issuingplaceid)
+go
+create index IX_1C86147A on pml_edm_documentreceipt_temp (levelsendid)
+go
+create index IX_FC432 on pml_edm_documentreceipt_temp (maindepartmentprocessid)
+go
+create index IX_1C8B1C19 on pml_edm_documentreceipt_temp (mainuserprocessid)
+go
+create index IX_BA18BC33 on pml_edm_documentreceipt_temp (numberdocumentreceipt, orgexternalid)
+go
+create index IX_6FC9812C on pml_edm_documentreceipt_temp (numberlocaldocumentreceipt)
+go
+create index IX_31E77C5D on pml_edm_documentreceipt_temp (orgexternalid)
+go
+create index IX_78FE3C3F on pml_edm_documentreceipt_temp (privilegelevelid)
+go
+create index IX_BEABD417 on pml_edm_documentreceipt_temp (socongvandiphucdap)
+go
+create index IX_FFB7B83E on pml_edm_documentreceipt_temp (statusid)
+go
+
+create index IX_3CFED46C on pml_edm_documentreceiptextend (documentreceiptid)
+go
+
+create index IX_26138E35 on pml_edm_documentreceiptprocesstype (documentReceiptId)
+go
+
+create index IX_38A6EC62 on pml_edm_documentrecordto (agencyid)
+go
+create index IX_909AF77F on pml_edm_documentrecordto (agencyid, departmentsid, documentrecordtypeid)
+go
+create index IX_59EE8497 on pml_edm_documentrecordto (agencyid, documentrecordtypeid)
+go
+create index IX_84DCFA68 on pml_edm_documentrecordto (agencyid, yearinuse, documentrecordtypeid)
+go
+create index IX_4FB9446C on pml_edm_documentrecordto (currentrecord)
+go
+create index IX_E515482C on pml_edm_documentrecordto (datecreate)
+go
+create index IX_1A3C351E on pml_edm_documentrecordto (departmentsid)
+go
+create index IX_544C1643 on pml_edm_documentrecordto (documentrecordtypeid)
+go
+create index IX_5643D57 on pml_edm_documentrecordto (documentrecordtypeid, agencyid)
+go
+create index IX_E1643549 on pml_edm_documentrecordto (documentrecordtypeid, departmentsid)
+go
+create index IX_62D856C7 on pml_edm_documentrecordto (yearinuse)
+go
+create index IX_478CA8DB on pml_edm_documentrecordto (yearinuse, agencyid)
+go
+create index IX_30065C45 on pml_edm_documentrecordto (yearinuse, departmentsid)
+go
+create index IX_3B7B983A on pml_edm_documentrecordto (yearinuse, departmentsid, documentrecordtypeid)
+go
+
+create index IX_ACE905D4 on pml_edm_documentrecordtype (documentrecordtypecode)
+go
+create index IX_BEED22F2 on pml_edm_documentrecordtype (documentrecordtypename)
+go
+
+
+create index IX_96281CBD on pml_edm_documentsend (confidentiallevelid)
+go
+create index IX_7FB46F6 on pml_edm_documentsend (documentreference)
+go
+create index IX_ABCFC10E on pml_edm_documentsend (documentsendcode)
+go
+create index IX_665D232E on pml_edm_documentsend (documenttypeid)
+go
+create index IX_609C46C6 on pml_edm_documentsend (editorid)
+go
+create index IX_1D01FC6A on pml_edm_documentsend (issuingdate)
+go
+create index IX_348309D6 on pml_edm_documentsend (numberpage)
+go
+create index IX_1C0C48C on pml_edm_documentsend (numberpublish)
+go
+create index IX_FD2899F0 on pml_edm_documentsend (orgexternalid)
+go
+create index IX_E564F13C on pml_edm_documentsend (position_)
+go
+create index IX_678ED1CC on pml_edm_documentsend (privilegelevelid)
+go
+create index IX_F6373734 on pml_edm_documentsend (senddate)
+go
+create index IX_83BE6E03 on pml_edm_documentsend (signerid)
+go
+create index IX_965879F3 on pml_edm_documentsend (signername)
+go
+create index IX_CC292ACB on pml_edm_documentsend (statusid)
+go
+
+create index IX_FC3F0EF1 on pml_edm_documenttype (documentrecordtypeid)
+go
+create index IX_189CF563 on pml_edm_documenttype (documentsymbol)
+go
+create index IX_2DA48310 on pml_edm_documenttype (documenttypename)
+go
+create index IX_CA49CA8C on pml_edm_documenttype (sendreceiptdistinction)
+go
+
+create index IX_7506C14C on pml_edm_issuingplace (address)
+go
+create index IX_E2A13874 on pml_edm_issuingplace (email)
+go
+create index IX_D322EF77 on pml_edm_issuingplace (handphone)
+go
+create index IX_51947C2A on pml_edm_issuingplace (issuingplacecode)
+go
+create index IX_63989948 on pml_edm_issuingplace (issuingplacename)
+go
+create index IX_40E6F8AC on pml_edm_issuingplace (tablephone)
+go
+
+create index IX_6B1386B8 on pml_edm_levelsend (levelsendcode)
+go
+create index IX_7D17A3D6 on pml_edm_levelsend (levelsendname)
+go
+
+create index IX_96C78722 on pml_edm_levelsenddetail (issuingPlaceId)
+go
+create index IX_A510EC75 on pml_edm_levelsenddetail (levelsendid)
+go
+create index IX_6FFCD535 on pml_edm_levelsenddetail (levelsendid, issuingPlaceId)
+go
+
+create index IX_55886F8C on pml_edm_privilegelevel (privilegelevelname)
+go
+
+create index IX_707D1D62 on pml_edm_processdocumentreceiptdetail (documentreceiptid)
+go
+create index IX_F222C540 on pml_edm_processdocumentreceiptdetail (userid)
+go
+
+create index IX_F963C762 on pml_edm_writedocumentsend (bookdocumentsendid)
+go
+create index IX_438BB903 on pml_edm_writedocumentsend (datecreated)
+go
+create index IX_34A68AF9 on pml_edm_writedocumentsend (documentsendid)
+go
+
+create index IX_15C023FC on pml_field (departmentsId)
+go
+create index IX_4483E71C on pml_field (description)
+go
+create index IX_C99E25E7 on pml_field (fieldCode)
+go
+create index IX_4D7208CE on pml_field (fieldCode, fieldName)
+go
+create index IX_DBA24305 on pml_field (fieldName)
+go
+
+create index IX_596B556B on pml_file (applicantName)
+go
+create index IX_D45EFE9C on pml_file (applicationDate)
+go
+create index IX_4D50D500 on pml_file (authorisedLetter)
+go
+create index IX_A972ABD8 on pml_file (dateCreated)
+go
+create index IX_5351F437 on pml_file (fileTypeId)
+go
+create index IX_5F9DE377 on pml_file (fileTypeId, applicationDate)
+go
+create index IX_E3AD19AC on pml_file (fileTypeId, exactReturningDate)
+go
+create index IX_A4791A88 on pml_file (fileTypeId, numberReceipt)
+go
+create index IX_B02ADD59 on pml_file (organization)
+go
+create index IX_38EB14CC on pml_file (permanentAddress)
+go
+
+create index IX_61D51B08 on pml_file_attachedfile (attachedFileId)
+go
+create index IX_4977F9B8 on pml_file_attachedfile (attachedFileName)
+go
+create index IX_56516844 on pml_file_attachedfile (fileId)
+go
+
+create index IX_71CC95A4 on pml_file_pccc (applicantcategory)
+go
+create index IX_41FD1EE7 on pml_file_pccc (fileName)
+go
+create index IX_F0267148 on pml_file_pccc (projectname)
+go
+create index IX_AACDDDA2 on pml_file_pccc (receiveofunit)
+go
+
+create index IX_84D37C45 on pml_filepccc_attachedfile (attachedfilename)
+go
+create index IX_2D22BB04 on pml_filepccc_attachedfile (datecreated)
+go
+create index IX_582E144 on pml_filepccc_attachedfile (filepcccid)
+go
+create index IX_C0016E71 on pml_filepccc_attachedfile (filepcccid, objecttype)
+go
+create index IX_665E0890 on pml_filepccc_attachedfile (filetype)
+go
+create index IX_AB042E13 on pml_filepccc_attachedfile (objecttype)
+go
+create index IX_40B0BA3F on pml_filepccc_attachedfile (path)
+go
+
+create index IX_1D541E7E on pml_filereturninginfo (billnumber)
+go
+create index IX_6C028719 on pml_filereturninginfo (conclude)
+go
+create index IX_18347992 on pml_filereturninginfo (documentnumber)
+go
+create index IX_31A6CC45 on pml_filereturninginfo (fileid)
+go
+create index IX_674A1FCA on pml_filereturninginfo (fileid, filereturninginfoid)
+go
+create index IX_E90EDEDF on pml_filereturninginfo (filesender)
+go
+create index IX_415DBCEB on pml_filereturninginfo (issuingdatelicense)
+go
+create index IX_870F0CC0 on pml_filereturninginfo (licensenumber)
+go
+create index IX_62C25CE0 on pml_filereturninginfo (note)
+go
+create index IX_CA4BAECD on pml_filereturninginfo (numbermoney)
+go
+create index IX_4B4BAA1A on pml_filereturninginfo (receivelicensedate)
+go
+
+create index IX_5935E6C8 on pml_filestatus (description)
+go
+create index IX_22A22EF3 on pml_filestatus (filestatuscode)
+go
+create index IX_267CE161 on pml_filestatus (filestatuscode, type)
+go
+create index IX_34A64C11 on pml_filestatus (filestatusname)
+go
+create index IX_8037DA92 on pml_filestatus (type)
+go
+
+create index IX_1AB3D3C2 on pml_filestatus_stateprocess (filestatusid)
+go
+create index IX_CC0394F on pml_filestatus_stateprocess (filestatusid, stateprocessid)
+go
+create index IX_46DF2252 on pml_filestatus_stateprocess (stateprocessid)
+go
+
+create index IX_3F989A8E on pml_filetype_attachedfile (attachedFileId)
+go
+create index IX_C459AFBE on pml_filetype_attachedfile (attachedFileName)
+go
+create index IX_685D30A4 on pml_filetype_attachedfile (attachedFileName, note)
+go
+create index IX_8EEEF5BD on pml_filetype_attachedfile (attachedFileName, original, copy_, note)
+go
+create index IX_16CE77B on pml_filetype_attachedfile (copy_)
+go
+create index IX_1D1C5FC0 on pml_filetype_attachedfile (copy_, fileTypeId)
+go
+create index IX_A8123DA4 on pml_filetype_attachedfile (fileTypeId)
+go
+create index IX_C87FFF85 on pml_filetype_attachedfile (note)
+go
+create index IX_7969B8CA on pml_filetype_attachedfile (note, fileTypeId)
+go
+create index IX_96238524 on pml_filetype_attachedfile (original)
+go
+create index IX_204EC7E9 on pml_filetype_attachedfile (original, fileTypeId)
+go
+
+create index IX_EEEA49C5 on pml_filetypedelegate (delegateid)
+go
+create index IX_8711D276 on pml_filetypedelegate (filetypeid)
+go
+create index IX_4F36494A on pml_filetypedelegate (filetypeid, delegateid)
+go
+
+create index IX_22B22256 on pml_ho_so_cong_viec (id_do_quan_trong)
+go
+create index IX_4B004359 on pml_ho_so_cong_viec (id_hscv_cha)
+go
+create index IX_E4A110BA on pml_ho_so_cong_viec (id_linh_vuc)
+go
+create index IX_3583860E on pml_ho_so_cong_viec (id_tinh_chat)
+go
+create index IX_F5AC1C84 on pml_ho_so_cong_viec (id_trang_thai_hscv)
+go
+create index IX_6641DAF3 on pml_ho_so_cong_viec (so_hieu_hscv)
+go
+
+create index IX_6FE7F965 on pml_holiday (from_date)
+go
+create index IX_DA2F71DD on pml_holiday (from_date, to_date)
+go
+create index IX_BE96F7E3 on pml_holiday (holiday_type)
+go
+create index IX_B000EB7 on pml_holiday (holiday_type, holiday_value)
+go
+create index IX_54EFF34C on pml_holiday (holiday_value)
+go
+create index IX_AC2C1974 on pml_holiday (to_date)
+go
+
+create index IX_B6A8CE01 on pml_main_support (processid_main)
+go
+create index IX_2B8908B4 on pml_main_support (processid_main, type_)
+go
+create index IX_3DADA2F6 on pml_main_support (supportinfomation)
+go
+create index IX_B29867F6 on pml_main_support (type_)
+go
+
+create index IX_2070F48B on pml_manage_documentworkflow (type_)
+go
+create index IX_55510545 on pml_manage_documentworkflow (version_)
+go
+create index IX_56BF56C8 on pml_manage_documentworkflow (workflowname)
+go
+
+create index IX_9E1C1904 on pml_nation (countryid)
+go
+create index IX_E7BC0ACF on pml_nation (description)
+go
+create index IX_7BB3C125 on pml_nation (nationcode)
+go
+create index IX_AD004521 on pml_nation (nationcode, nationname, description)
+go
+create index IX_B64C62E0 on pml_nation (nationcode, nationname, description, countryid)
+go
+create index IX_8DB7DE43 on pml_nation (nationname)
+go
+
+create index IX_1A4A0D1A on pml_paintdocument (fileid)
+go
+create index IX_9AF230CE on pml_paintdocument (quantity)
+go
+
+create index IX_F9124CAD on pml_position (description)
+go
+create index IX_C722BFA9 on pml_position (positioncode)
+go
+create index IX_40E870BB on pml_position (positioncode, positionname, description)
+go
+create index IX_D926DCC7 on pml_position (positionname)
+go
+
+create index IX_16BA87EB on pml_processdispose (dateprocess)
+go
+create index IX_5A6F9F0A on pml_processdispose (delegateuser)
+go
+create index IX_D17828BD on pml_processdispose (expireddate)
+go
+create index IX_86178411 on pml_processdispose (fileid)
+go
+create index IX_ACA8C122 on pml_processdispose (fileid, stateprocessidafter)
+go
+create index IX_414465D on pml_processdispose (fileid, stateprocessidbefore)
+go
+create index IX_B8C0DAE9 on pml_processdispose (fileid, transition_)
+go
+create index IX_947F786 on pml_processdispose (processer)
+go
+create index IX_DF9FADFB on pml_processdispose (receivedate)
+go
+create index IX_DAD58269 on pml_processdispose (receiver)
+go
+create index IX_73C1DF0 on pml_processdispose (senddate)
+go
+create index IX_D3193B8D on pml_processdispose (stateprocessidafter)
+go
+create index IX_ABB31952 on pml_processdispose (stateprocessidbefore)
+go
+create index IX_347BF054 on pml_processdispose (transition_)
+go
+
+create index IX_6740CD8E on pml_processtype (flagprocesstype)
+go
+create index IX_6F02DFE on pml_processtype (name)
+go
+
+create index IX_8189A9C0 on pml_role (description)
+go
+create index IX_3EA90583 on pml_role (rolecode)
+go
+create index IX_5A584BB4 on pml_role (rolecode, rolename, description)
+go
+create index IX_50AD22A1 on pml_role (rolename)
+go
+
+create index IX_7C75D901 on pml_saveprocesstype (docId)
+go
+create index IX_2F8EFE4B on pml_saveprocesstype (flagprocesstype)
+go
+
+create index IX_D9BC27D7 on pml_state_department (departmentid)
+go
+create index IX_D57677B5 on pml_state_department (statewfid)
+go
+
+create index IX_923D54E6 on pml_state_wf (solvingtime)
+go
+create index IX_E95EB980 on pml_state_wf (stateprocessid)
+go
+create index IX_DDD4126 on pml_state_wf (workflow)
+go
+create index IX_FFD4EEAE on pml_state_wf (workflow, stateprocessid, version_)
+go
+create index IX_83F19D61 on pml_state_wf (workflow, version_)
+go
+
+create index IX_9225FC78 on pml_stateprocess (description)
+go
+create index IX_7608CFF1 on pml_stateprocess (filestatusid)
+go
+create index IX_75268613 on pml_stateprocess (stateprocesscode)
+go
+create index IX_D2E7C250 on pml_stateprocess (stateprocesscode, stateprocessname)
+go
+create index IX_872AA331 on pml_stateprocess (stateprocessname)
+go
+
+create index IX_C8F855DB on pml_street (streetName)
+go
+
+create index IX_81CDA715 on pml_team (companyid)
+go
+create index IX_5F105874 on pml_team (departmentid)
+go
+create index IX_4F4A1B2 on pml_team (departmentid, teamcode)
+go
+create index IX_F351D895 on pml_team (organizationid)
+go
+create index IX_8D369D91 on pml_team (teamcode)
+go
+create index IX_9F3ABAAF on pml_team (teamname)
+go
+
+create index IX_8A699036 on pml_teamleader (userid)
+go
+
+create index IX_9088E4B1 on pml_template (departmentId)
+go
+
+create index IX_723E8560 on pml_template_file (templateId)
+go
+
+create index IX_81341A38 on pml_tinh_chat (ten_tinh_chat)
+go
+
+create index IX_787D1D78 on pml_trang_thai_hscv (ten_trang_thai_hscv)
+go
+
+create index IX_39228010 on pml_transition (filetypeid)
+go
+create index IX_994CBFCB on pml_transition (filetypeid, version_)
+go
+create index IX_8BB21315 on pml_transition (notransition)
+go
+create index IX_20816340 on pml_transition (stateprocesscurrent)
+go
+create index IX_40267CB0 on pml_transition (stateprocessnext)
+go
+create index IX_D61160DF on pml_transition (transitionname)
+go
+create index IX_96AFFA06 on pml_transition (version_)
+go
+
+create index IX_4871D6EB on pml_user (departmentsId)
+go
+create index IX_4A13A6AE on pml_user (handphone)
+go
+create index IX_8EF417A7 on pml_user (note)
+go
+create index IX_D9949119 on pml_user (positionId)
+go
+create index IX_54858438 on pml_user (positionId, departmentsId, roleId)
+go
+create index IX_3439E366 on pml_user (roleId)
+go
+create index IX_E0B7E5AD on pml_user (teamid)
+go
+
+create index IX_25F95C64 on pml_user_file_type (filetypeid)
+go
+create index IX_82420779 on pml_user_file_type (userid)
+go
+
+create index IX_E695A0FF on pml_wards (description)
+go
+create index IX_A171A34A on pml_wards (districtId)
+go
+create index IX_D65D0747 on pml_wards (wardsCode)
+go
+create index IX_139E1304 on pml_wards (wardsCode, wardsName, districtId, description)
+go
+create index IX_E8612465 on pml_wards (wardsName)
+go
+
+create index IX_6F3C858B on pml_wf_onedoor (nodeId)
+go
+create index IX_30AE8040 on pml_wf_onedoor (processId)
+go
+
+create index IX_4C98D3A on pml_workflow (fileTypeId)
+go
+create index IX_5BD98D66 on pml_workflow (fileTypeId, startDate)
+go
+create index IX_4ACCE075 on pml_workflow (fileTypeId, version_)
+go
+create index IX_77A8AE63 on pml_workflow (workflow, version_)
+go
+
+create index IX_CDE798CE on report_registry_work (reportRegistryId)
 go
 
 
