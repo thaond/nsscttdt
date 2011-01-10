@@ -19,6 +19,7 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.sgs.portlet.report_registry_work.model.ReportRegistry;
 import com.sgs.portlet.report_registry_work.util.ReportRegistrySearchUtil;
 
+
 public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 	
 	static List<String> headerNames = new ArrayList<String>();
