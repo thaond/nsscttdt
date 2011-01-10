@@ -1,3 +1,6 @@
+<%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
+<%@page import="com.liferay.portal.model.User"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil"%>
 <%@page import="com.sgs.portlet.report_registry_work.model.ReportRegistry"%>
 <%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearchTerms"%>
@@ -188,6 +191,7 @@
 					
 					List<ResultRow> resultRows = reportRegistrySearch.getResultRows();
 					ResultRow row = null;
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					
 					for(int i = 0; i < listReportRegistry.size(); i++){
 						ReportRegistry reportRegistry = listReportRegistry.get(i);
@@ -199,11 +203,32 @@
 						//code
 						row.addText(reportRegistry.getReportRegistryCode());
 						
+						//user create
+						long userId = reportRegistry.getUserId();
+						String username = "";
+						if(userId != 0){
+							try{
+								User userCreate = UserLocalServiceUtil.getUser(userId);
+								username = userCreate.getFullName();
+							}catch(Exception e){
+							}
+						}
+						row.addText(username);
+						
 						// resultwork
 						row.addText(reportRegistry.getResultWork());
 						
 						// programwork
 						row.addText(reportRegistry.getProgramWork());
+						
+						// date
+						String dateNow = "";
+						if(reportRegistry.getReportDate() != null){
+							dateNow = simpleDateFormat.format(reportRegistry.getReportDate());
+							row.addText(dateNow);
+						}else{
+							row.addText("");
+						}
 						
 						// edit
 						//URL update
@@ -218,7 +243,7 @@
 						
 						String updateAction = "<a href='"+ rowURLEdit.toString()+"'><img src='/html/images/edit.png' />&nbsp;</a>";
 						
-						row.addText(updateAction);
+						//row.addText(updateAction);
 						
 						// delete
 						//URL delete
