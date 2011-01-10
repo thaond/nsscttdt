@@ -20,7 +20,7 @@
 	<c:when test='<%=tab.equals("edit_department") %>'>
 		<liferay-util:include page="/html/portlet/ext/report_registry_work/edit_department.jsp"></liferay-util:include>
 	</c:when>
-	<c:when test='<%=tab.equals("view_reportregistry") %>'>
-		<liferay-util:include page="/html/portlet/ext/report_registry_work/view_report_registry.jsp"></liferay-util:include>
+	<c:when test='<%=tab.equals("add_report_registry") %>'>
+		<liferay-util:include page="/html/portlet/ext/report_registry_work/add_report_registry.jsp"></liferay-util:include>
 	</c:when>
 </c:choose>
