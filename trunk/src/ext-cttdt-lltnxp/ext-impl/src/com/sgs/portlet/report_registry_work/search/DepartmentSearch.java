@@ -25,6 +25,7 @@ public class DepartmentSearch extends SearchContainer<Department>{
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 	
 	static{
+		headerNames.add("stt");
 		headerNames.add("department-code");
 		headerNames.add("department-name");
 		headerNames.add("department-description");
