@@ -83,6 +83,43 @@ public class DepartmentLocalServiceUtil {
         return getService().updateDepartment(department);
     }
 
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> getReportRegistries(
+        long departmentId) throws com.liferay.portal.SystemException {
+        return getService().getReportRegistries(departmentId);
+    }
+
+    public static int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException {
+        return getService().countByKeyword(keywords);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.Department> findByKeyword(
+        java.lang.String keywords, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().findByKeyword(keywords, start, end, obc);
+    }
+
+    public static int countDepartment(java.lang.String departmentCodes,
+        java.lang.String departmentNames,
+        java.lang.String departmentDescriptions, boolean andOperator)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .countDepartment(departmentCodes, departmentNames,
+            departmentDescriptions, andOperator);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.Department> findDepartment(
+        java.lang.String departmentCodes, java.lang.String departmentNames,
+        java.lang.String departmentDescriptions, int start, int end,
+        boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .findDepartment(departmentCodes, departmentNames,
+            departmentDescriptions, start, end, andOperator, obc);
+    }
+
     public static DepartmentLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("DepartmentLocalService is not set");
