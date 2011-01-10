@@ -42,17 +42,24 @@ public class ViewAction extends PortletAction {
 		String cmd = ParamUtil.getString(req, Constants.CMD);
 		String varAction = ParamUtil.getString(req, "varAction");
 		
-		if (!Validator.isNull(cmd) && varAction.equals("department")) {
-			if(cmd.equals(Constants.ADD)){
-				addDepartment(req);
-				sendRedirect(req, res, redirect);
-			}else if(cmd.equals(Constants.EDIT)){
-				editDepartment(req);
-			}else if(cmd.equals(Constants.UPDATE)){
-				updateDepartment(req, res);
-				sendRedirect(req, res, redirect);
-			}else if(cmd.equals(Constants.DELETE)){
-				deleteDepartment(req, res, redirect);
+		if (!Validator.isNull(cmd)) {
+			if(varAction.equals("department")){
+				if(cmd.equals(Constants.ADD)){
+					addDepartment(req);
+					sendRedirect(req, res, redirect);
+				}else if(cmd.equals(Constants.EDIT)){
+					editDepartment(req);
+				}else if(cmd.equals(Constants.UPDATE)){
+					updateDepartment(req, res);
+					sendRedirect(req, res, redirect);
+				}else if(cmd.equals(Constants.DELETE)){
+					deleteDepartment(req, res, redirect);
+				}
+			}else if(varAction.equals("reportregistry")){
+				if(cmd.equals(Constants.ADD)){
+					addReportRegistry(req);
+					sendRedirect(req, res, redirect);
+				}
 			}
 		}
 	}
@@ -134,6 +141,12 @@ public class ViewAction extends PortletAction {
 			_log.error("ERROR IN METHOD deleteDepartment OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
+	
+
+	public void addReportRegistry(ActionRequest req) {
+		// TODO Auto-generated method stub
+	}
+
 
 	public ActionForward render(ActionMapping mapping, ActionForm form,
 			PortletConfig config, RenderRequest req, RenderResponse res)
