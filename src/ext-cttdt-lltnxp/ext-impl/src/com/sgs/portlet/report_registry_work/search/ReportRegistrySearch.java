@@ -26,13 +26,15 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 	
 	static{
-		headerNames.add("report-registry-work");
+		headerNames.add("stt");
+		headerNames.add("report-registry-code");
+		headerNames.add("user-create");
 		headerNames.add("result-work");
 		headerNames.add("program-work");
 		headerNames.add("report-date");
 		headerNames.add("delete");
 		
-		orderableHeaders.put("report-registry-work", "reportRegistryCode");
+		orderableHeaders.put("report-registry-code", "reportRegistryCode");
 		orderableHeaders.put("result-work", "resultWork");
 		orderableHeaders.put("program-work", "programWork");
 		orderableHeaders.put("report-date", "reportDate");
