@@ -83,6 +83,37 @@ public class ReportRegistryLocalServiceUtil {
         return getService().updateReportRegistry(reportRegistry);
     }
 
+    public static int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException {
+        return getService().countByKeyword(keywords);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByKeyword(
+        java.lang.String keywords, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService().findByKeyword(keywords, start, end, obc);
+    }
+
+    public static int countReportRegistry(
+        java.lang.String reportRegistryCodes, java.lang.String resultWorks,
+        java.lang.String programWorks, boolean andOperator)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .countReportRegistry(reportRegistryCodes, resultWorks,
+            programWorks, andOperator);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findReportRegistry(
+        java.lang.String reportRegistryCodes, java.lang.String resultWorks,
+        java.lang.String programWorks, int start, int end, boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .findReportRegistry(reportRegistryCodes, resultWorks,
+            programWorks, start, end, andOperator, obc);
+    }
+
     public static ReportRegistryLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("ReportRegistryLocalService is not set");

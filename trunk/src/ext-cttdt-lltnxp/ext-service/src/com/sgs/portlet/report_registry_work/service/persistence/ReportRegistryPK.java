@@ -8,12 +8,12 @@ import java.io.Serializable;
 public class ReportRegistryPK implements Comparable<ReportRegistryPK>,
     Serializable {
     public long reportRegistryId;
-    public String reportRegistryCode;
+    public long reportRegistryCode;
 
     public ReportRegistryPK() {
     }
 
-    public ReportRegistryPK(long reportRegistryId, String reportRegistryCode) {
+    public ReportRegistryPK(long reportRegistryId, long reportRegistryCode) {
         this.reportRegistryId = reportRegistryId;
         this.reportRegistryCode = reportRegistryCode;
     }
@@ -26,11 +26,11 @@ public class ReportRegistryPK implements Comparable<ReportRegistryPK>,
         this.reportRegistryId = reportRegistryId;
     }
 
-    public String getReportRegistryCode() {
+    public long getReportRegistryCode() {
         return reportRegistryCode;
     }
 
-    public void setReportRegistryCode(String reportRegistryCode) {
+    public void setReportRegistryCode(long reportRegistryCode) {
         this.reportRegistryCode = reportRegistryCode;
     }
 
@@ -53,7 +53,13 @@ public class ReportRegistryPK implements Comparable<ReportRegistryPK>,
             return value;
         }
 
-        value = reportRegistryCode.compareTo(pk.reportRegistryCode);
+        if (reportRegistryCode < pk.reportRegistryCode) {
+            value = -1;
+        } else if (reportRegistryCode > pk.reportRegistryCode) {
+            value = 1;
+        } else {
+            value = 0;
+        }
 
         if (value != 0) {
             return value;
@@ -76,7 +82,7 @@ public class ReportRegistryPK implements Comparable<ReportRegistryPK>,
         }
 
         if ((reportRegistryId == pk.reportRegistryId) &&
-                (reportRegistryCode.equals(pk.reportRegistryCode))) {
+                (reportRegistryCode == pk.reportRegistryCode)) {
             return true;
         } else {
             return false;

@@ -62,4 +62,27 @@ public interface DepartmentLocalService {
     public com.sgs.portlet.report_registry_work.model.Department updateDepartment(
         com.sgs.portlet.report_registry_work.model.Department department)
         throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> getReportRegistries(
+        long departmentId) throws com.liferay.portal.SystemException;
+
+    public int countByKeyword(java.lang.String keywords)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.report_registry_work.model.Department> findByKeyword(
+        java.lang.String keywords, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public int countDepartment(java.lang.String departmentCodes,
+        java.lang.String departmentNames,
+        java.lang.String departmentDescriptions, boolean andOperator)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.report_registry_work.model.Department> findDepartment(
+        java.lang.String departmentCodes, java.lang.String departmentNames,
+        java.lang.String departmentDescriptions, int start, int end,
+        boolean andOperator,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
 }
