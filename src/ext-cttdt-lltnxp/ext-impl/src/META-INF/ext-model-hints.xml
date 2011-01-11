@@ -875,4 +875,14 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.ResultProgram">
+		<field name="resultProgramId" type="long" />
+		<field name="resultProgramTitle" type="String" />
+		<field name="resultProgramPath" type="String" />
+		<field name="resultProgramCheck" type="String" />
+		<field name="reportRegistryId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
 </model-hints>

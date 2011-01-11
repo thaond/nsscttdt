@@ -2368,4 +2368,28 @@
 	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinderUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinderUtil">
 		<property name="finder" ref="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.impl" />
 	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.impl" class="com.sgs.portlet.report_registry_work.service.impl.ResultProgramLocalServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceFactory" class="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil" class="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramService.impl" class="com.sgs.portlet.report_registry_work.service.impl.ResultProgramServiceImpl" />
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.report_registry_work.service.ResultProgramService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramServiceFactory" class="com.sgs.portlet.report_registry_work.service.ResultProgramServiceFactory">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ResultProgramService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.ResultProgramServiceUtil" class="com.sgs.portlet.report_registry_work.service.ResultProgramServiceUtil">
+		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ResultProgramService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl" class="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramUtil">
+		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl" />
+	</bean>
 </beans>
