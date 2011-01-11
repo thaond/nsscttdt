@@ -103,6 +103,38 @@ public class ReportRegistryUtil {
         return getPersistence().countAll();
     }
 
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk) throws com.liferay.portal.SystemException {
+        return getPersistence().getResultPrograms(pk);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end) throws com.liferay.portal.SystemException {
+        return getPersistence().getResultPrograms(pk, start, end);
+    }
+
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().getResultPrograms(pk, start, end, obc);
+    }
+
+    public static int getResultProgramsSize(long pk)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().getResultProgramsSize(pk);
+    }
+
+    public static boolean containsResultProgram(long pk, long resultProgramPK)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().containsResultProgram(pk, resultProgramPK);
+    }
+
+    public static boolean containsResultPrograms(long pk)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().containsResultPrograms(pk);
+    }
+
     public static void registerListener(
         com.liferay.portal.model.ModelListener listener) {
         getPersistence().registerListener(listener);
