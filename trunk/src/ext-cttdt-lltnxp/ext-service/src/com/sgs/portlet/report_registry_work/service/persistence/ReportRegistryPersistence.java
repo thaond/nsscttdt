@@ -71,6 +71,26 @@ public interface ReportRegistryPersistence {
 
     public int countAll() throws com.liferay.portal.SystemException;
 
+    public java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public int getResultProgramsSize(long pk)
+        throws com.liferay.portal.SystemException;
+
+    public boolean containsResultProgram(long pk, long resultProgramPK)
+        throws com.liferay.portal.SystemException;
+
+    public boolean containsResultPrograms(long pk)
+        throws com.liferay.portal.SystemException;
+
     public void registerListener(
         com.liferay.portal.model.ModelListener listener);
 
