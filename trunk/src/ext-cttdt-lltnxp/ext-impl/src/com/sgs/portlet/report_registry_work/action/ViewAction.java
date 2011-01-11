@@ -159,16 +159,24 @@ public class ViewAction extends PortletAction {
 	public void addReportRegistry(ActionRequest req) throws SystemException, IOException, PortalException {
 		String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
 		long departmentId = ParamUtil.getLong(req, "department");
+		
 		String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
 		nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
 		String titleFiles  = ParamUtil.getString(req, "titleFiles");
 		titleFiles = StringUtil.encodeHtml(titleFiles);
+		
+		String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
+		nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
+		String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
+		titleFiles1 = StringUtil.encodeHtml(titleFiles1);
 		
 		long reportRegistryId = CounterLocalServiceUtil.increment();
 		ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.createReportRegistry(reportRegistryId);
 		
 		Date date = new Date();
 		Timestamp timeNow = new Timestamp(date.getTime());
+		
+		String checkResultProgram = "";
 		
 		long userId = PortalUtil.getUserId(req);
 		if(userId != 0){
@@ -182,6 +190,7 @@ public class ViewAction extends PortletAction {
 				_log.error("ERROR IN METHOD addReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 			}
 			if (!"".equals(nameFieldRow)) {
+				checkResultProgram = "resultwork";
 				String [] nameFieldRowArr = nameFieldRow.split("_");
 				String [] titleFilesArr = titleFiles.split("#");
 				if (titleFilesArr.length == 0) {
@@ -191,14 +200,28 @@ public class ViewAction extends PortletAction {
 					}
 				}
 				for (int i = 0; i < nameFieldRowArr.length; i++) {
-					uploadFileResult(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i]);
+					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+				}
+			}
+			if (!"".equals(nameFieldRow1)) {
+				checkResultProgram = "programwork";
+				String [] nameFieldRowArr = nameFieldRow1.split("_");
+				String [] titleFilesArr = titleFiles1.split("#");
+				if (titleFilesArr.length == 0) {
+					titleFilesArr = new String [nameFieldRowArr.length];
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						titleFilesArr[i] = "";
+					}
+				}
+				for (int i = 0; i < nameFieldRowArr.length; i++) {
+					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
 				}
 			}
 		}
 	}
 
 
-	public void uploadFileResult(ActionRequest req, long reportRegistryId, long userId, String nameFieldUpload, String titleFile) throws SystemException, IOException, PortalException {
+	public void uploadFile(ActionRequest req, long reportRegistryId, long userId, String nameFieldUpload, String titleFile, String checkResultProgram) throws SystemException, IOException, PortalException {
 		try {
 			UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(req);
 			File myFile = uploadRequest.getFile(nameFieldUpload);
@@ -209,7 +232,7 @@ public class ViewAction extends PortletAction {
 			System.out.println("fileName====="+fileName);
 			String pathFile = getServlet().getServletContext().getRealPath("/") + "upload";
 			System.out.println("pathFile-----"+pathFile);
-			File destFile = new File(pathFile + "/" + fileName);
+			File destFile = new File(pathFile + "/" + titleFile);
 			System.out.println("destFile-----"+destFile);
 			if (!(new File(pathFile)).exists()) {
 				(new File(pathFile)).mkdir();
@@ -220,7 +243,7 @@ public class ViewAction extends PortletAction {
 			long resultProgramId = CounterLocalServiceUtil.increment();
 			resultProgram.setResultProgramId(resultProgramId);
 			resultProgram.setReportRegistryId(reportRegistryId);
-			resultProgram.setResultProgramCheck("resultwork");
+			resultProgram.setResultProgramCheck(checkResultProgram);
 			
 			User user = UserLocalServiceUtil.getUser(userId);
 			String userName = user.getScreenName();
