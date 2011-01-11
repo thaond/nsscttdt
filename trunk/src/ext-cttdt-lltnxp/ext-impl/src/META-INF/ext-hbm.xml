@@ -1149,4 +1149,17 @@
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
+	<class name="com.sgs.portlet.report_registry_work.model.impl.ResultProgramImpl" table="result_program_file">
+		<cache usage="read-write" />
+		<id name="resultProgramId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="resultProgramTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resultProgramPath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resultProgramCheck" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="reportRegistryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
 </hibernate-mapping>
