@@ -4,7 +4,7 @@ import com.liferay.portal.PortalException;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 
-import com.sgs.portlet.report_registry_work.model.ReportRegistry;
+import com.sgs.portlet.report_registry_work.model.ResultProgram;
 import com.sgs.portlet.report_registry_work.service.DepartmentLocalService;
 import com.sgs.portlet.report_registry_work.service.DepartmentService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService;
@@ -20,8 +20,8 @@ import com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPer
 import java.util.List;
 
 
-public abstract class ReportRegistryLocalServiceBaseImpl
-    implements ReportRegistryLocalService {
+public abstract class ResultProgramLocalServiceBaseImpl
+    implements ResultProgramLocalService {
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl")
     protected DepartmentLocalService departmentLocalService;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentService.impl")
@@ -45,57 +45,57 @@ public abstract class ReportRegistryLocalServiceBaseImpl
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl")
     protected ResultProgramPersistence resultProgramPersistence;
 
-    public ReportRegistry addReportRegistry(ReportRegistry reportRegistry)
+    public ResultProgram addResultProgram(ResultProgram resultProgram)
         throws SystemException {
-        reportRegistry.setNew(true);
+        resultProgram.setNew(true);
 
-        return reportRegistryPersistence.update(reportRegistry, false);
+        return resultProgramPersistence.update(resultProgram, false);
     }
 
-    public ReportRegistry createReportRegistry(long reportRegistryId) {
-        return reportRegistryPersistence.create(reportRegistryId);
+    public ResultProgram createResultProgram(long resultProgramId) {
+        return resultProgramPersistence.create(resultProgramId);
     }
 
-    public void deleteReportRegistry(long reportRegistryId)
+    public void deleteResultProgram(long resultProgramId)
         throws PortalException, SystemException {
-        reportRegistryPersistence.remove(reportRegistryId);
+        resultProgramPersistence.remove(resultProgramId);
     }
 
-    public void deleteReportRegistry(ReportRegistry reportRegistry)
+    public void deleteResultProgram(ResultProgram resultProgram)
         throws SystemException {
-        reportRegistryPersistence.remove(reportRegistry);
+        resultProgramPersistence.remove(resultProgram);
     }
 
     public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
-        return reportRegistryPersistence.findWithDynamicQuery(dynamicQuery);
+        return resultProgramPersistence.findWithDynamicQuery(dynamicQuery);
     }
 
     public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
         int end) throws SystemException {
-        return reportRegistryPersistence.findWithDynamicQuery(dynamicQuery,
+        return resultProgramPersistence.findWithDynamicQuery(dynamicQuery,
             start, end);
     }
 
-    public ReportRegistry getReportRegistry(long reportRegistryId)
+    public ResultProgram getResultProgram(long resultProgramId)
         throws PortalException, SystemException {
-        return reportRegistryPersistence.findByPrimaryKey(reportRegistryId);
+        return resultProgramPersistence.findByPrimaryKey(resultProgramId);
     }
 
-    public List<ReportRegistry> getReportRegistries(int start, int end)
+    public List<ResultProgram> getResultPrograms(int start, int end)
         throws SystemException {
-        return reportRegistryPersistence.findAll(start, end);
+        return resultProgramPersistence.findAll(start, end);
     }
 
-    public int getReportRegistriesCount() throws SystemException {
-        return reportRegistryPersistence.countAll();
+    public int getResultProgramsCount() throws SystemException {
+        return resultProgramPersistence.countAll();
     }
 
-    public ReportRegistry updateReportRegistry(ReportRegistry reportRegistry)
+    public ResultProgram updateResultProgram(ResultProgram resultProgram)
         throws SystemException {
-        reportRegistry.setNew(false);
+        resultProgram.setNew(false);
 
-        return reportRegistryPersistence.update(reportRegistry, true);
+        return resultProgramPersistence.update(resultProgram, true);
     }
 
     public DepartmentLocalService getDepartmentLocalService() {

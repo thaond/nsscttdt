@@ -1,10 +1,7 @@
 package com.sgs.portlet.report_registry_work.service.base;
 
-import com.liferay.portal.PortalException;
-import com.liferay.portal.SystemException;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.service.base.PrincipalBean;
 
-import com.sgs.portlet.report_registry_work.model.ReportRegistry;
 import com.sgs.portlet.report_registry_work.service.DepartmentLocalService;
 import com.sgs.portlet.report_registry_work.service.DepartmentService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService;
@@ -17,11 +14,9 @@ import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFi
 import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence;
 import com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence;
 
-import java.util.List;
 
-
-public abstract class ReportRegistryLocalServiceBaseImpl
-    implements ReportRegistryLocalService {
+public abstract class ResultProgramServiceBaseImpl extends PrincipalBean
+    implements ResultProgramService {
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentLocalService.impl")
     protected DepartmentLocalService departmentLocalService;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.DepartmentService.impl")
@@ -44,59 +39,6 @@ public abstract class ReportRegistryLocalServiceBaseImpl
     protected ResultProgramService resultProgramService;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl")
     protected ResultProgramPersistence resultProgramPersistence;
-
-    public ReportRegistry addReportRegistry(ReportRegistry reportRegistry)
-        throws SystemException {
-        reportRegistry.setNew(true);
-
-        return reportRegistryPersistence.update(reportRegistry, false);
-    }
-
-    public ReportRegistry createReportRegistry(long reportRegistryId) {
-        return reportRegistryPersistence.create(reportRegistryId);
-    }
-
-    public void deleteReportRegistry(long reportRegistryId)
-        throws PortalException, SystemException {
-        reportRegistryPersistence.remove(reportRegistryId);
-    }
-
-    public void deleteReportRegistry(ReportRegistry reportRegistry)
-        throws SystemException {
-        reportRegistryPersistence.remove(reportRegistry);
-    }
-
-    public List<Object> dynamicQuery(DynamicQuery dynamicQuery)
-        throws SystemException {
-        return reportRegistryPersistence.findWithDynamicQuery(dynamicQuery);
-    }
-
-    public List<Object> dynamicQuery(DynamicQuery dynamicQuery, int start,
-        int end) throws SystemException {
-        return reportRegistryPersistence.findWithDynamicQuery(dynamicQuery,
-            start, end);
-    }
-
-    public ReportRegistry getReportRegistry(long reportRegistryId)
-        throws PortalException, SystemException {
-        return reportRegistryPersistence.findByPrimaryKey(reportRegistryId);
-    }
-
-    public List<ReportRegistry> getReportRegistries(int start, int end)
-        throws SystemException {
-        return reportRegistryPersistence.findAll(start, end);
-    }
-
-    public int getReportRegistriesCount() throws SystemException {
-        return reportRegistryPersistence.countAll();
-    }
-
-    public ReportRegistry updateReportRegistry(ReportRegistry reportRegistry)
-        throws SystemException {
-        reportRegistry.setNew(false);
-
-        return reportRegistryPersistence.update(reportRegistry, true);
-    }
 
     public DepartmentLocalService getDepartmentLocalService() {
         return departmentLocalService;

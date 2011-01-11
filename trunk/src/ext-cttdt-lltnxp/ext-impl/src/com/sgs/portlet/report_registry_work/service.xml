@@ -27,6 +27,21 @@
 		<column name="programWork" type="String" />
 		<column name="reportDate" type="Date" />
 		<column name="departmentId" type="long" />
+		<column name="resultPrograms" type="Collection" entity="ResultProgram" mapping-key="reportRegistryId"></column>
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="ResultProgram" local-service="true" remote-service="true" table="result_program_file">
+		<!-- PK fields -->
+		<column name="resultProgramId" type="long" primary="true" />
+		<!-- Other fields -->
+		<column name="resultProgramTitle" type="String" />
+		<column name="resultProgramPath" type="String" />
+		<column name="resultProgramCheck" type="String" />
+		<column name="reportRegistryId" type="long" />
 		
 		<column name="userId" type="long"/>
 	  	<column name="groupId" type="long"/>	
