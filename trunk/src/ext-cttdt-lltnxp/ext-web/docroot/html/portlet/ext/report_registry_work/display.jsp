@@ -209,7 +209,7 @@
 						if(userId != 0){
 							try{
 								User userCreate = UserLocalServiceUtil.getUser(userId);
-								username = userCreate.getFullName();
+								username = userCreate.getScreenName();
 							}catch(Exception e){
 							}
 						}
