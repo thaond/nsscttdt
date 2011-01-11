@@ -1,11 +1,17 @@
 package com.sgs.portlet.report_registry_work.service.persistence;
 
 import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.dao.jdbc.MappingSqlQuery;
+import com.liferay.portal.kernel.dao.jdbc.MappingSqlQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.jdbc.RowMapper;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -21,6 +27,8 @@ import com.sgs.portlet.report_registry_work.model.impl.ReportRegistryModelImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.sql.Types;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -29,7 +37,11 @@ import java.util.List;
 
 public class ReportRegistryPersistenceImpl extends BasePersistenceImpl
     implements ReportRegistryPersistence {
+    private static final String _SQL_GETRESULTPROGRAMS = "SELECT {result_program_file.*} FROM result_program_file INNER JOIN report_registry_work ON (report_registry_work.reportRegistryId = result_program_file.reportRegistryId) WHERE (report_registry_work.reportRegistryId = ?)";
+    private static final String _SQL_GETRESULTPROGRAMSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM result_program_file WHERE reportRegistryId = ?";
+    private static final String _SQL_CONTAINSRESULTPROGRAM = "SELECT COUNT(*) AS COUNT_VALUE FROM result_program_file WHERE reportRegistryId = ? AND resultProgramId = ?";
     private static Log _log = LogFactory.getLog(ReportRegistryPersistenceImpl.class);
+    protected ContainsResultProgram containsResultProgram;
     private ModelListener[] _listeners = new ModelListener[0];
 
     public ReportRegistry create(long reportRegistryId) {
@@ -392,6 +404,193 @@ public class ReportRegistryPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk) throws SystemException {
+        return getResultPrograms(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+    }
+
+    public List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end) throws SystemException {
+        return getResultPrograms(pk, start, end, null);
+    }
+
+    public List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long pk, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = com.sgs.portlet.report_registry_work.model.impl.ResultProgramModelImpl.CACHE_ENABLED;
+
+        String finderClassName = com.sgs.portlet.report_registry_work.model.ResultProgram.class.getName();
+
+        String finderMethodName = "getResultPrograms";
+        String[] finderParams = new String[] {
+                Long.class.getName(), "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(pk), String.valueOf(start), String.valueOf(end),
+                String.valueOf(obc)
+            };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.append(_SQL_GETRESULTPROGRAMS);
+
+                if (obc != null) {
+                    sb.append("ORDER BY ");
+                    sb.append(obc.getOrderBy());
+                }
+
+                String sql = sb.toString();
+
+                SQLQuery q = session.createSQLQuery(sql);
+
+                q.addEntity("result_program_file",
+                    com.sgs.portlet.report_registry_work.model.impl.ResultProgramImpl.class);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(pk);
+
+                List<com.sgs.portlet.report_registry_work.model.ResultProgram> list =
+                    (List<com.sgs.portlet.report_registry_work.model.ResultProgram>) QueryUtil.list(q,
+                        getDialect(), start, end);
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<com.sgs.portlet.report_registry_work.model.ResultProgram>) result;
+        }
+    }
+
+    public int getResultProgramsSize(long pk) throws SystemException {
+        boolean finderClassNameCacheEnabled = com.sgs.portlet.report_registry_work.model.impl.ResultProgramModelImpl.CACHE_ENABLED;
+
+        String finderClassName = com.sgs.portlet.report_registry_work.model.ResultProgram.class.getName();
+
+        String finderMethodName = "getResultProgramsSize";
+        String[] finderParams = new String[] { Long.class.getName() };
+        Object[] finderArgs = new Object[] { new Long(pk) };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                SQLQuery q = session.createSQLQuery(_SQL_GETRESULTPROGRAMSSIZE);
+
+                q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(pk);
+
+                Long count = null;
+
+                Iterator<Long> itr = q.list().iterator();
+
+                if (itr.hasNext()) {
+                    count = itr.next();
+                }
+
+                if (count == null) {
+                    count = new Long(0);
+                }
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, count);
+
+                return count.intValue();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return ((Long) result).intValue();
+        }
+    }
+
+    public boolean containsResultProgram(long pk, long resultProgramPK)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = com.sgs.portlet.report_registry_work.model.impl.ResultProgramModelImpl.CACHE_ENABLED;
+
+        String finderClassName = com.sgs.portlet.report_registry_work.model.ResultProgram.class.getName();
+
+        String finderMethodName = "containsResultPrograms";
+        String[] finderParams = new String[] {
+                Long.class.getName(),
+                
+                Long.class.getName()
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(pk),
+                
+                new Long(resultProgramPK)
+            };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            try {
+                Boolean value = Boolean.valueOf(containsResultProgram.contains(
+                            pk, resultProgramPK));
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, value);
+
+                return value.booleanValue();
+            } catch (Exception e) {
+                throw processException(e);
+            }
+        } else {
+            return ((Boolean) result).booleanValue();
+        }
+    }
+
+    public boolean containsResultPrograms(long pk) throws SystemException {
+        if (getResultProgramsSize(pk) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void registerListener(ModelListener listener) {
         List<ModelListener> listeners = ListUtil.fromArray(_listeners);
 
@@ -426,6 +625,37 @@ public class ReportRegistryPersistenceImpl extends BasePersistenceImpl
             } catch (Exception e) {
                 _log.error(e);
             }
+        }
+
+        containsResultProgram = new ContainsResultProgram(this);
+    }
+
+    protected class ContainsResultProgram {
+        private MappingSqlQuery _mappingSqlQuery;
+
+        protected ContainsResultProgram(
+            ReportRegistryPersistenceImpl persistenceImpl) {
+            super();
+
+            _mappingSqlQuery = MappingSqlQueryFactoryUtil.getMappingSqlQuery(getDataSource(),
+                    _SQL_CONTAINSRESULTPROGRAM,
+                    new int[] { Types.BIGINT, Types.BIGINT }, RowMapper.COUNT);
+        }
+
+        protected boolean contains(long reportRegistryId, long resultProgramId) {
+            List<Integer> results = _mappingSqlQuery.execute(new Object[] {
+                        new Long(reportRegistryId), new Long(resultProgramId)
+                    });
+
+            if (results.size() > 0) {
+                Integer count = results.get(0);
+
+                if (count.intValue() > 0) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

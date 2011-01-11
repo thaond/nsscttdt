@@ -9,10 +9,13 @@ import com.sgs.portlet.report_registry_work.service.DepartmentLocalService;
 import com.sgs.portlet.report_registry_work.service.DepartmentService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryLocalService;
 import com.sgs.portlet.report_registry_work.service.ReportRegistryService;
+import com.sgs.portlet.report_registry_work.service.ResultProgramLocalService;
+import com.sgs.portlet.report_registry_work.service.ResultProgramService;
 import com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinder;
 import com.sgs.portlet.report_registry_work.service.persistence.DepartmentPersistence;
 import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder;
 import com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryPersistence;
+import com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence;
 
 import java.util.List;
 
@@ -35,6 +38,12 @@ public abstract class DepartmentLocalServiceBaseImpl
     protected ReportRegistryPersistence reportRegistryPersistence;
     @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.impl")
     protected ReportRegistryFinder reportRegistryFinder;
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.ResultProgramLocalService.impl")
+    protected ResultProgramLocalService resultProgramLocalService;
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.ResultProgramService.impl")
+    protected ResultProgramService resultProgramService;
+    @javax.annotation.Resource(name = "com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl")
+    protected ResultProgramPersistence resultProgramPersistence;
 
     public Department addDepartment(Department department)
         throws SystemException {
@@ -157,5 +166,32 @@ public abstract class DepartmentLocalServiceBaseImpl
     public void setReportRegistryFinder(
         ReportRegistryFinder reportRegistryFinder) {
         this.reportRegistryFinder = reportRegistryFinder;
+    }
+
+    public ResultProgramLocalService getResultProgramLocalService() {
+        return resultProgramLocalService;
+    }
+
+    public void setResultProgramLocalService(
+        ResultProgramLocalService resultProgramLocalService) {
+        this.resultProgramLocalService = resultProgramLocalService;
+    }
+
+    public ResultProgramService getResultProgramService() {
+        return resultProgramService;
+    }
+
+    public void setResultProgramService(
+        ResultProgramService resultProgramService) {
+        this.resultProgramService = resultProgramService;
+    }
+
+    public ResultProgramPersistence getResultProgramPersistence() {
+        return resultProgramPersistence;
+    }
+
+    public void setResultProgramPersistence(
+        ResultProgramPersistence resultProgramPersistence) {
+        this.resultProgramPersistence = resultProgramPersistence;
     }
 }

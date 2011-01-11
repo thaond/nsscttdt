@@ -1,5 +1,9 @@
 package com.sgs.portlet.report_registry_work.action;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
@@ -8,13 +12,18 @@ import javax.portlet.PortletConfig;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.ext.portlet.util.StringUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.PortalException;
+import com.liferay.portal.SystemException;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,7 +33,11 @@ import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.util.PortalUtil;
 import com.sgs.portlet.report_registry_work.model.Department;
 import com.sgs.portlet.report_registry_work.model.ReportRegistry;
+import com.sgs.portlet.report_registry_work.model.ResultProgram;
+import com.sgs.portlet.report_registry_work.model.impl.ResultProgramImpl;
 import com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceUtil;
+import com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil;
+import com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil;
 
 public class ViewAction extends PortletAction {
 	private static Log _log = LogFactory.getLog(ViewAction.class);
@@ -143,10 +156,84 @@ public class ViewAction extends PortletAction {
 	}
 	
 
-	public void addReportRegistry(ActionRequest req) {
-		// TODO Auto-generated method stub
+	public void addReportRegistry(ActionRequest req) throws SystemException, IOException, PortalException {
+		String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
+		long departmentId = ParamUtil.getLong(req, "department");
+		String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
+		nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
+		String titleFiles  = ParamUtil.getString(req, "titleFiles");
+		titleFiles = StringUtil.encodeHtml(titleFiles);
+		
+		long reportRegistryId = CounterLocalServiceUtil.increment();
+		ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.createReportRegistry(reportRegistryId);
+		
+		Date date = new Date();
+		Timestamp timeNow = new Timestamp(date.getTime());
+		
+		long userId = PortalUtil.getUserId(req);
+		if(userId != 0){
+			reportRegistry.setReportRegistryCode(reportRegistryCode);
+			reportRegistry.setReportDate(timeNow);
+			reportRegistry.setUserId(userId);
+			reportRegistry.setDepartmentId(departmentId);
+			try {
+				ReportRegistryLocalServiceUtil.addReportRegistry(reportRegistry);
+			} catch (Exception e) {
+				_log.error("ERROR IN METHOD addReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+			}
+			if (!"".equals(nameFieldRow)) {
+				String [] nameFieldRowArr = nameFieldRow.split("_");
+				String [] titleFilesArr = titleFiles.split("#");
+				if (titleFilesArr.length == 0) {
+					titleFilesArr = new String [nameFieldRowArr.length];
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						titleFilesArr[i] = "";
+					}
+				}
+				for (int i = 0; i < nameFieldRowArr.length; i++) {
+					uploadFileResult(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i]);
+				}
+			}
+		}
 	}
 
+
+	public void uploadFileResult(ActionRequest req, long reportRegistryId, long userId, String nameFieldUpload, String titleFile) throws SystemException, IOException, PortalException {
+		try {
+			UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(req);
+			File myFile = uploadRequest.getFile(nameFieldUpload);
+			String fileNames = uploadRequest.getFileName(nameFieldUpload);
+			System.out.println("fileNames----"+fileNames);
+			String dateValue = com.sgs.portlet.report_registry_work.util.Constants.getDateTime();
+			String fileName = dateValue + fileNames;			
+			System.out.println("fileName====="+fileName);
+			String pathFile = getServlet().getServletContext().getRealPath("/") + "upload";
+			System.out.println("pathFile-----"+pathFile);
+			File destFile = new File(pathFile + "/" + fileName);
+			System.out.println("destFile-----"+destFile);
+			if (!(new File(pathFile)).exists()) {
+				(new File(pathFile)).mkdir();
+			}
+			FileUtils.copyFile(myFile, destFile);
+			
+			ResultProgram resultProgram =new ResultProgramImpl();
+			long resultProgramId = CounterLocalServiceUtil.increment();
+			resultProgram.setResultProgramId(resultProgramId);
+			resultProgram.setReportRegistryId(reportRegistryId);
+			resultProgram.setResultProgramCheck("resultwork");
+			
+			User user = UserLocalServiceUtil.getUser(userId);
+			String userName = user.getScreenName();
+			resultProgram.setResultProgramPath("/upload" + "/" + fileName);
+			String fullTitle = titleFile + "_" + userName + "_" + dateValue;
+			System.out.println("fullTitle----"+fullTitle);
+			resultProgram.setResultProgramTitle(fullTitle);
+			
+			ResultProgramLocalServiceUtil.addResultProgram(resultProgram);
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD uploadFile OF " + ViewAction.class + " " + e.getMessage());
+		}
+	}
 
 	public ActionForward render(ActionMapping mapping, ActionForm form,
 			PortletConfig config, RenderRequest req, RenderResponse res)
