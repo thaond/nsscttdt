@@ -188,17 +188,10 @@
 				<%
 				int count = 0;
 				List<ReportRegistry> listReportRegistry = new ArrayList<ReportRegistry>();
-				
-					if (!displayTerms.isAdvancedSearch()) {
-						count = ReportRegistryLocalServiceUtil.countByKeyword(searchTerms.getKeywords());
-						listReportRegistry = ReportRegistryLocalServiceUtil.findByKeyword(searchTerms.getKeywords(),reportRegistrySearch.getStart(),
-									reportRegistrySearch.getEnd(),reportRegistrySearch.getOrderByComparator());
-					} else {
-						count = ReportRegistryLocalServiceUtil.countReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),searchTerms.isAndOperator());
-						listReportRegistry = ReportRegistryLocalServiceUtil.findReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),
+				count = ReportRegistryLocalServiceUtil.countReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),searchTerms.isAndOperator());
+				listReportRegistry = ReportRegistryLocalServiceUtil.findReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),
 									reportRegistrySearch.getStart(), reportRegistrySearch.getEnd(),searchTerms.isAndOperator(),reportRegistrySearch.getOrderByComparator());
-					}
-					
+						
 					List<ReportRegistry> temp = new ArrayList<ReportRegistry>();
 					if(departmentIdRequest != 0){
 						for(ReportRegistry reportRegistry : listReportRegistry){
