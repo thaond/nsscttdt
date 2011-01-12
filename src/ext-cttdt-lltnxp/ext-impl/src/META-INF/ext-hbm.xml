@@ -1141,8 +1141,7 @@
 			<generator class="assigned" />
 		</id>
 		<property name="reportRegistryCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="resultWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="programWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userCreate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reportDate" type="org.hibernate.type.TimestampType" />
 		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
