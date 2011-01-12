@@ -869,6 +869,9 @@
     <definition extends="portlet" name="portlet.sgs.report_registry_work.view">
         <put name="portlet_content" value="/portlet/ext/report_registry_work/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.sgs.document_manager.view">
+        <put name="portlet_content" value="/portlet/ext/document_manager/view.jsp"/>
+    </definition>
     <definition extends="portlet" name="portlet.sgs.callportletother.view">
         <put name="portlet_content" value="/portlet/ext/callportletother/view.jsp"/>
     </definition>
