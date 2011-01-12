@@ -32,12 +32,13 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 		headerNames.add("result-work");
 		headerNames.add("program-work");
 		headerNames.add("report-date");
+		headerNames.add("edit");
 		headerNames.add("delete");
 		
 		orderableHeaders.put("report-registry-code", "reportRegistryCode");
-		orderableHeaders.put("result-work", "resultWork");
-		orderableHeaders.put("program-work", "programWork");
-		orderableHeaders.put("report-date", "reportDate");
+		//orderableHeaders.put("result-work", "resultWork");
+		//orderableHeaders.put("program-work", "programWork");
+		//orderableHeaders.put("report-date", "reportDate");
 	}
 
 	public static final String EMPTY_RESULTS_MESSAGE = "no-report-registry-work-were-found";
