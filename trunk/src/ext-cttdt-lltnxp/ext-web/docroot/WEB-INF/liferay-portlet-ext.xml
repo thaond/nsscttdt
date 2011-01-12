@@ -991,6 +991,11 @@
         <use-default-template>false</use-default-template>
     </portlet>
     <portlet>
+        <portlet-name>SGS_DOCUMENT_MANAGER</portlet-name>
+        <struts-path>sgs/document_manager</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
         <portlet-name>SGS_CALLPORTLETOTHER</portlet-name>
         <struts-path>sgs/callportletother</struts-path>
         <configuration-action-class>

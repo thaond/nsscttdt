@@ -1023,6 +1023,9 @@
         <action path="/sgs/report_registry_work/view" type="com.sgs.portlet.report_registry_work.action.ViewAction">
             <forward name="portlet.sgs.report_registry_work.view" path="portlet.sgs.report_registry_work.view"/>
         </action>
+        <action path="/sgs/document_manager/view" type="com.sgs.portlet.document_manager.action.ViewAction">
+            <forward name="portlet.sgs.document_manager.view" path="portlet.sgs.document_manager.view"/>
+        </action>
         <action path="/sgs/callportletother/view" type="com.sgs.portlet.callportletother.action.ViewAction">
             <forward name="portlet.sgs.callportletother.view" path="portlet.sgs.callportletother.view"/>
         </action>
