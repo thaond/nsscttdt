@@ -867,8 +867,7 @@
 	<model name="com.sgs.portlet.report_registry_work.model.ReportRegistry">
 		<field name="reportRegistryId" type="long" />
 		<field name="reportRegistryCode" type="String" />
-		<field name="resultWork" type="String" />
-		<field name="programWork" type="String" />
+		<field name="userCreate" type="String" />
 		<field name="reportDate" type="Date" />
 		<field name="departmentId" type="long" />
 		<field name="userId" type="long" />
