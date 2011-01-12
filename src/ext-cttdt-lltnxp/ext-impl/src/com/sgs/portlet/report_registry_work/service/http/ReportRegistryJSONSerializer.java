@@ -36,8 +36,7 @@ public class ReportRegistryJSONSerializer {
 
         jsonObj.put("reportRegistryId", model.getReportRegistryId());
         jsonObj.put("reportRegistryCode", model.getReportRegistryCode());
-        jsonObj.put("resultWork", model.getResultWork());
-        jsonObj.put("programWork", model.getProgramWork());
+        jsonObj.put("userCreate", model.getUserCreate());
 
         Date reportDate = model.getReportDate();
 
