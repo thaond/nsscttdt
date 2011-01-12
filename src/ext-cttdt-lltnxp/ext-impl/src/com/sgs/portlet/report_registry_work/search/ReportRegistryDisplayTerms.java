@@ -8,22 +8,24 @@ import com.liferay.portal.kernel.util.ParamUtil;
 public class ReportRegistryDisplayTerms extends DisplayTerms {
 
 	public static final String REPORTREGISTRYCODE = "reportRegistryCode";
+	public static final String USERCREATE = "userCreate";
 	public static final String RESULTWORK = "resultWork";
 	public static final String PROGRAMWORK = "programWork";
-	public static final String REPORTDATE = "reportDate";
+	public static final String DEPARTMENT = "department";
 
 	protected String reportRegistryCode;
+	protected String userCreate;
 	protected String resultWork;
 	protected String programWork;
-	protected String reportDate;
+	protected String department;
 
 	public ReportRegistryDisplayTerms(RenderRequest renderRequest) {
 		super(renderRequest);
 		reportRegistryCode = ParamUtil.getString(renderRequest, REPORTREGISTRYCODE);
+		userCreate = ParamUtil.getString(renderRequest, USERCREATE);
 		resultWork = ParamUtil.getString(renderRequest, RESULTWORK);
 		programWork = ParamUtil.getString(renderRequest, PROGRAMWORK);
-		reportDate = ParamUtil.getString(renderRequest, REPORTDATE);
-
+		department = ParamUtil.getString(renderRequest, DEPARTMENT);
 	}
 
 	public String getReportRegistryCode() {
@@ -50,12 +52,19 @@ public class ReportRegistryDisplayTerms extends DisplayTerms {
 		this.programWork = programWork;
 	}
 
-	public String getReportDate() {
-		return reportDate;
+	public String getUserCreate() {
+		return userCreate;
 	}
 
-	public void setReportDate(String reportDate) {
-		this.reportDate = reportDate;
+	public void setUserCreate(String userCreate) {
+		this.userCreate = userCreate;
 	}
 
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 }
