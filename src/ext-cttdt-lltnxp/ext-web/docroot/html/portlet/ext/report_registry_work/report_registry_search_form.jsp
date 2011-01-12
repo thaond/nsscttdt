@@ -23,7 +23,6 @@
 	if(departmentSelect != null){
 		try{
 			 departmentIdRequest = Long.parseLong(departmentSelect);
-			 System.out.println("vvvvvvvvvvvvvvvvvvvv "+departmentIdRequest);
 		}catch(Exception e){
 			
 		}
@@ -49,7 +48,8 @@
 		</tr>
 		<tr>
 			<td><liferay-ui:message key="user-create" />&nbsp;</td>
-			<td><input name="<portlet:namespace/>userCreate" style="width: 90%" type="text" value="" /></td>
+			<td><input name="<portlet:namespace/><%=ReportRegistryDisplayTerms.USERCREATE%>" 
+				style="width: 90%" type="text" value="<%=HtmlUtil.escape(displayTerms.getUserCreate())%>" /></td>
 
 			<td><liferay-ui:message key="date-from" />&nbsp;</td>
 			<td>
