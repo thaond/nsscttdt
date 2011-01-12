@@ -56,15 +56,15 @@
 			if(form.<portlet:namespace/>departmentCode.value=="" || form.<portlet:namespace/>departmentCode.value==null){
 				alert("<liferay-ui:message key='input-department-code'/>");
 				return false;
-			}
-	    }
+		}
+	 }
 	 
 	 function checkName(form){
 			if(form.<portlet:namespace/>departmentName.value=="" || form.<portlet:namespace/>departmentName.value==null){
 				alert("<liferay-ui:message key='input-department-name'/>");
 				return false;
-			}
-	    }
+		}
+	 }
 	 
 	function checkDescription(form){
 		if(form.<portlet:namespace/>departmentDescription.value=="" || form.<portlet:namespace/>departmentDescription.value==null){
