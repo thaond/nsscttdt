@@ -38,13 +38,9 @@ public interface ReportRegistryModel extends BaseModel {
 
     public void setReportRegistryCode(String reportRegistryCode);
 
-    public String getResultWork();
+    public String getUserCreate();
 
-    public void setResultWork(String resultWork);
-
-    public String getProgramWork();
-
-    public void setProgramWork(String programWork);
+    public void setUserCreate(String userCreate);
 
     public Date getReportDate();
 
