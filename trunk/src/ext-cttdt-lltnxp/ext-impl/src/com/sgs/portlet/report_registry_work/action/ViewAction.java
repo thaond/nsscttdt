@@ -72,6 +72,15 @@ public class ViewAction extends PortletAction {
 				if(cmd.equals(Constants.ADD)){
 					addReportRegistry(req);
 					sendRedirect(req, res, redirect);
+				}else if(cmd.equals(Constants.EDIT)){
+					editReportRegistry(req);
+				}else if(cmd.equals(Constants.UPDATE)){
+					updateReportRegistry(req, res);
+					sendRedirect(req, res, redirect);
+				}else if(cmd.equals(Constants.DELETE)){
+					deleteReportRegistry(req, res, redirect);
+				}else if(cmd.equals("SELECT")){
+					selectReportRegistry(req, res);
 				}
 			}
 		}
@@ -144,7 +153,7 @@ public class ViewAction extends PortletAction {
 			if(userId != 0){
 				Department department = DepartmentLocalServiceUtil.getDepartment(departmentId);
 				List<ReportRegistry> reportRegistries = DepartmentLocalServiceUtil.getReportRegistries(departmentId);
-				if(reportRegistries.size()>0){
+				if(reportRegistries.size() == 0){
 					DepartmentLocalServiceUtil.deleteDepartment(department);
 				}else{
 					req.setAttribute("error_delete_department", "error_delete_department");
@@ -226,14 +235,15 @@ public class ViewAction extends PortletAction {
 			UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(req);
 			File myFile = uploadRequest.getFile(nameFieldUpload);
 			String fileNames = uploadRequest.getFileName(nameFieldUpload);
-			System.out.println("fileNames----"+fileNames);
+			//System.out.println("fileNames----"+fileNames);
 			String dateValue = com.sgs.portlet.report_registry_work.util.Constants.getDateTime();
-			String fileName = dateValue + fileNames;			
-			System.out.println("fileName====="+fileName);
+			String fileName = dateValue + fileNames;		
+			fileName= fileName.replace(" ", "");
+			//System.out.println("fileName====="+fileName);
 			String pathFile = getServlet().getServletContext().getRealPath("/") + "upload";
-			System.out.println("pathFile-----"+pathFile);
-			File destFile = new File(pathFile + "/" + titleFile);
-			System.out.println("destFile-----"+destFile);
+			//System.out.println("pathFile-----"+pathFile);
+			File destFile = new File(pathFile + "/" + fileName);
+			//System.out.println("destFile-----"+destFile);
 			if (!(new File(pathFile)).exists()) {
 				(new File(pathFile)).mkdir();
 			}
@@ -249,7 +259,7 @@ public class ViewAction extends PortletAction {
 			String userName = user.getScreenName();
 			resultProgram.setResultProgramPath("/upload" + "/" + fileName);
 			String fullTitle = titleFile + "_" + userName + "_" + dateValue;
-			System.out.println("fullTitle----"+fullTitle);
+			//System.out.println("fullTitle----"+fullTitle);
 			resultProgram.setResultProgramTitle(fullTitle);
 			
 			ResultProgramLocalServiceUtil.addResultProgram(resultProgram);
@@ -257,7 +267,117 @@ public class ViewAction extends PortletAction {
 			_log.error("ERROR IN METHOD uploadFile OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
+	
+	public void editReportRegistry(ActionRequest req) {
+		long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
+		long userId = PortalUtil.getUserId(req);
+		try {
+			if(userId != 0){
+				ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.getReportRegistry(reportRegistryId);
+				req.setAttribute("reportRegistry", reportRegistry);
+			}
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD editReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+		}	
+	}
+	
+	public void updateReportRegistry(ActionRequest req, ActionResponse res) throws SystemException, PortalException, IOException {
+		long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
+		String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
+		long departmentId = ParamUtil.getLong(req, "department");
+		
+		String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
+		nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
+		String titleFiles  = ParamUtil.getString(req, "titleFiles");
+		titleFiles = StringUtil.encodeHtml(titleFiles);
+		
+		String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
+		nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
+		String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
+		titleFiles1 = StringUtil.encodeHtml(titleFiles1);
+		
+		ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.getReportRegistry(reportRegistryId);
+		
+		Date date = new Date();
+		Timestamp timeNow = new Timestamp(date.getTime());
+		
+		String checkResultProgram = "";
+		
+		long userId = PortalUtil.getUserId(req);
+		if(userId != 0){
+			reportRegistry.setReportRegistryCode(reportRegistryCode);
+			reportRegistry.setReportDate(timeNow);
+			reportRegistry.setUserId(userId);
+			reportRegistry.setDepartmentId(departmentId);
+			try {
+				ReportRegistryLocalServiceUtil.updateReportRegistry(reportRegistry);
+			} catch (Exception e) {
+				_log.error("ERROR IN METHOD updateReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+			}
+			if (!"".equals(nameFieldRow)) {
+				checkResultProgram = "resultwork";
+				String [] nameFieldRowArr = nameFieldRow.split("_");
+				String [] titleFilesArr = titleFiles.split("#");
+				if (titleFilesArr.length == 0) {
+					titleFilesArr = new String [nameFieldRowArr.length];
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						titleFilesArr[i] = "";
+					}
+				}
+				for (int i = 0; i < nameFieldRowArr.length; i++) {
+					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+				}
+			}
+			if (!"".equals(nameFieldRow1)) {
+				checkResultProgram = "programwork";
+				String [] nameFieldRowArr = nameFieldRow1.split("_");
+				String [] titleFilesArr = titleFiles1.split("#");
+				if (titleFilesArr.length == 0) {
+					titleFilesArr = new String [nameFieldRowArr.length];
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						titleFilesArr[i] = "";
+					}
+				}
+				for (int i = 0; i < nameFieldRowArr.length; i++) {
+					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+				}
+			}
+		}
+	}
 
+	public void deleteReportRegistry(ActionRequest req, ActionResponse res,	String redirect) {
+		long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
+		long userId = PortalUtil.getUserId(req);
+		try {
+			if(userId != 0){
+				ReportRegistryLocalServiceUtil.deleteReportRegistry(reportRegistryId);
+				List<ResultProgram> resultPrograms = ReportRegistryLocalServiceUtil.getResultPrograms(reportRegistryId);
+				String pathFile = getServlet().getServletContext().getRealPath("/");
+				if(resultPrograms.size() > 0){
+					for(ResultProgram resultProgram : resultPrograms){
+						ResultProgramLocalServiceUtil.deleteResultProgram(resultProgram);
+						String fileName = resultProgram.getResultProgramPath();
+						String pathServer = pathFile + fileName;
+						File file = new File(pathServer);
+						file.delete();
+					}
+				}
+			}
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD deleteReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+		}
+	}
+	
+
+	public void selectReportRegistry(ActionRequest req, ActionResponse res) {
+		try {
+			long departmentId = ParamUtil.getLong(req, "department");
+			req.setAttribute("departmentId", String.valueOf(departmentId));
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD selectReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+		}
+	}
+	
 	public ActionForward render(ActionMapping mapping, ActionForm form,
 			PortletConfig config, RenderRequest req, RenderResponse res)
 			throws Exception {

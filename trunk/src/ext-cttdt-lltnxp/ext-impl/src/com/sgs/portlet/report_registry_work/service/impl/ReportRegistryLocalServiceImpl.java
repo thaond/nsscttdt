@@ -5,10 +5,15 @@ import java.util.List;
 import com.liferay.portal.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.sgs.portlet.report_registry_work.model.ReportRegistry;
+import com.sgs.portlet.report_registry_work.model.ResultProgram;
 import com.sgs.portlet.report_registry_work.service.base.ReportRegistryLocalServiceBaseImpl;
 
 
 public class ReportRegistryLocalServiceImpl extends ReportRegistryLocalServiceBaseImpl {
+	
+	public List<ResultProgram> getResultPrograms(long reportRegistryId) throws SystemException{
+		return reportRegistryPersistence.getResultPrograms(reportRegistryId);
+	}
 	public int countByKeyword(String keywords) throws SystemException{
 		return reportRegistryFinder.countByKeywords(keywords);
 	}
