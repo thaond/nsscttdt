@@ -17,6 +17,8 @@ create table report_registry_work (
 	reportRegistryId bigint not null primary key,
 	reportRegistryCode varchar(75) null,
 	userCreate varchar(75) null,
+	resultWorks varchar(75) null,
+	programWorks varchar(75) null,
 	reportDate timestamp null,
 	departmentId bigint,
 	userId bigint,
