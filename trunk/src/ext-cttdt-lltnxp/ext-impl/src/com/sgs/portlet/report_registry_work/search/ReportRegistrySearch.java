@@ -36,9 +36,7 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 		headerNames.add("delete");
 		
 		orderableHeaders.put("report-registry-code", "reportRegistryCode");
-		//orderableHeaders.put("result-work", "resultWork");
-		//orderableHeaders.put("program-work", "programWork");
-		//orderableHeaders.put("report-date", "reportDate");
+		orderableHeaders.put("user-create", "userCreate");
 	}
 
 	public static final String EMPTY_RESULTS_MESSAGE = "no-report-registry-work-were-found";
@@ -50,9 +48,10 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 			ReportRegistryDisplayTerms displayTerms = (ReportRegistryDisplayTerms)getDisplayTerms();
 			
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.REPORTREGISTRYCODE, displayTerms.getReportRegistryCode());
+			iteratorURL.setParameter(ReportRegistryDisplayTerms.USERCREATE, displayTerms.getUserCreate());
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.RESULTWORK, displayTerms.getResultWork());
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.PROGRAMWORK, displayTerms.getProgramWork());
-			iteratorURL.setParameter(ReportRegistryDisplayTerms.REPORTDATE, displayTerms.getReportDate());
+			iteratorURL.setParameter(ReportRegistryDisplayTerms.DEPARTMENT, displayTerms.getDepartment());
 			
 			try {
 				PortalPreferences preferences = PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
