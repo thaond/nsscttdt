@@ -83,6 +83,11 @@ public class ReportRegistryLocalServiceUtil {
         return getService().updateReportRegistry(reportRegistry);
     }
 
+    public static java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long reportRegistryId) throws com.liferay.portal.SystemException {
+        return getService().getResultPrograms(reportRegistryId);
+    }
+
     public static int countByKeyword(java.lang.String keywords)
         throws com.liferay.portal.SystemException {
         return getService().countByKeyword(keywords);

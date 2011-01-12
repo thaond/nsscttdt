@@ -64,6 +64,9 @@ public interface ReportRegistryLocalService {
         com.sgs.portlet.report_registry_work.model.ReportRegistry reportRegistry)
         throws com.liferay.portal.SystemException;
 
+    public java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
+        long reportRegistryId) throws com.liferay.portal.SystemException;
+
     public int countByKeyword(java.lang.String keywords)
         throws com.liferay.portal.SystemException;
 
