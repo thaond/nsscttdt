@@ -2071,7 +2071,7 @@
         <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
         <init-param>
             <name>view-action</name>
-            <value>/sgs/document_manager</value>
+            <value>/sgs/document_manager/view</value>
         </init-param>
         <expiration-cache>0</expiration-cache>
         <supports>
