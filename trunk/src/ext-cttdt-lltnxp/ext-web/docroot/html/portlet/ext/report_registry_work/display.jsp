@@ -1,3 +1,8 @@
+<%@ include file="/html/portlet/ext/report_registry_work/init.jsp" %>
+
+<%@page import="java.io.File"%>
+<%@page import="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil"%>
+<%@page import="com.sgs.portlet.report_registry_work.model.ResultProgram"%>
 <%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
 <%@page import="com.liferay.portal.model.User"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -6,7 +11,6 @@
 <%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearchTerms"%>
 <%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistryDisplayTerms"%>
 <%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearch"%>
-<%@ include file="/html/portlet/ext/report_registry_work/init.jsp" %>
 
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,6 +39,15 @@
 	request.setAttribute("portletURL", portletURL);
 	
 	String error_delete_department = (String) request.getAttribute("error_delete_department");
+	String departmentSelect = (String) request.getAttribute("departmentId");
+	long departmentIdRequest = 0;
+	if(departmentSelect != null){
+		try{
+			 departmentIdRequest = Long.parseLong(departmentSelect);
+		}catch(Exception e){
+			
+		}
+	}
 %>
 
 <% if(error_delete_department != null){ %>
@@ -45,7 +58,7 @@
 	
 <c:choose>
 	<c:when test='<%=tabs1.equals("Department") %>'>
-		<form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
+		<form action="<%= portletURL.toString() %>"  method="post">
     	<%
 			DepartmentSearch departmentSearch = new DepartmentSearch(renderRequest, portletURL);
     		DepartmentDisplayTerms displayTerms = (DepartmentDisplayTerms)departmentSearch.getDisplayTerms();
@@ -167,9 +180,10 @@
 				addURL.setWindowState(WindowState.NORMAL);
 				addURL.setParameter("struts_action", "/sgs/report_registry_work/view");
 				addURL.setParameter("tab", "add_report_registry");
+				addURL.setParameter("tabs1", "Report-Registry");
 				addURL.setParameter("redirect", reportRegistrySearch.getIteratorURL().toString());
 			%>
-		<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="add-report_registry"/>' /></span></a>
+		<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="add-report-registry"/>' /></span></a>
 		<div class="separator"></div>
 				<%
 				int count = 0;
@@ -185,6 +199,16 @@
 									reportRegistrySearch.getStart(), reportRegistrySearch.getEnd(),searchTerms.isAndOperator(),reportRegistrySearch.getOrderByComparator());
 					}
 					
+					List<ReportRegistry> temp = new ArrayList<ReportRegistry>();
+					if(departmentIdRequest != 0){
+						for(ReportRegistry reportRegistry : listReportRegistry){
+							if(reportRegistry.getDepartmentId() == departmentIdRequest){
+								temp.add(reportRegistry);
+							}
+						}
+						listReportRegistry = temp;
+					}
+					
 					reportRegistrySearch.setTotal(count);
 					reportRegistrySearch.setResults(listReportRegistry);
 					portletURL.setParameter(reportRegistrySearch.getCurParam(), String.valueOf(reportRegistrySearch.getCurValue()));
@@ -196,6 +220,8 @@
 					for(int i = 0; i < listReportRegistry.size(); i++){
 						ReportRegistry reportRegistry = listReportRegistry.get(i);
 						long reportRegistryId = reportRegistry.getReportRegistryId();
+						List<ResultProgram> resultPrograms = ReportRegistryLocalServiceUtil.getResultPrograms(reportRegistryId);
+						
 						row = new ResultRow(reportRegistry, reportRegistryId, i);
 						// STT
 						row.addText(String.valueOf(i + 1));
@@ -215,11 +241,27 @@
 						}
 						row.addText(username);
 						
+						String linkResultWork = "";
+						String linkProgramWork = "";
+						
+						for(ResultProgram resultProgram : resultPrograms){
+							String title = resultProgram.getResultProgramPath();
+							if(resultProgram.getResultProgramCheck().equals("resultwork")){
+								if(!resultProgram.getResultProgramTitle().equals("")){
+									linkResultWork += "<a href =" + resultProgram.getResultProgramPath() + ">" +resultProgram.getResultProgramTitle().subSequence(0,resultProgram.getResultProgramTitle().indexOf("_")) + "</a>" + "<br>";
+								}
+							}else if(resultProgram.getResultProgramCheck().equals("programwork")){
+								if(!resultProgram.getResultProgramTitle().equals("")){
+									linkProgramWork += "<a href =" + resultProgram.getResultProgramPath() + ">" + resultProgram.getResultProgramTitle().subSequence(0,resultProgram.getResultProgramTitle().indexOf("_")) + "</a>" + "<br>";
+								}
+							}
+						}
+						
 						// resultwork
-						row.addText(reportRegistry.getResultWork());
+						row.addText(linkResultWork);
 						
 						// programwork
-						row.addText(reportRegistry.getProgramWork());
+						row.addText(linkProgramWork);
 						
 						// date
 						String dateNow = "";
@@ -237,13 +279,14 @@
 						rowURLEdit.setParameter(Constants.CMD,Constants.EDIT);
 						rowURLEdit.setParameter("struts_action","/sgs/report_registry_work/view");
 						rowURLEdit.setParameter("reportRegistryId", String.valueOf(reportRegistryId));
-						rowURLEdit.setParameter("varAction","reportRegistry");
+						rowURLEdit.setParameter("varAction","reportregistry");
 						rowURLEdit.setParameter("redirect", reportRegistrySearch.getIteratorURL().toString());
 						rowURLEdit.setParameter("tab", "edit_report_registry");
+						rowURLEdit.setParameter("tabs1","Report-Registry");
 						
 						String updateAction = "<a href='"+ rowURLEdit.toString()+"'><img src='/html/images/edit.png' />&nbsp;</a>";
 						
-						//row.addText(updateAction);
+						row.addText(updateAction);
 						
 						// delete
 						//URL delete
@@ -251,7 +294,8 @@
 						rowURLDelete.setWindowState(WindowState.NORMAL);
 						rowURLDelete.setParameter("struts_action","/sgs/report_registry_work/view");
 						rowURLDelete.setParameter(Constants.CMD,Constants.DELETE);
-						rowURLDelete.setParameter("varAction","reportRegistry");
+						rowURLDelete.setParameter("varAction","reportregistry");
+						rowURLDelete.setParameter("tabs1","Report-Registry");
 						rowURLDelete.setParameter("reportRegistryId", String.valueOf(reportRegistryId));
 						
 						String deleteAction = "<a  href='javascript: ;' onclick=deleteConfirm('"+ rowURLDelete.toString() +"')><u>"+ "<img src='/html/images/delete.png'/>" +"</u></a>";
