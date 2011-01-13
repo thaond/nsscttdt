@@ -55,11 +55,11 @@
 	long dateFromComparator = 0;
 	long dateToComparator = 0;
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	if(dateFrom != null){
+	if(dateFrom != null && !dateFrom.equals("")){
 		Date dFrom = simpleDateFormat.parse(dateFrom);	
 		dateFromComparator = dFrom.getTime();
 	}
-	if(dateTo != null){
+	if(dateTo != null && !dateTo.equals("")){
 		Date dTo = simpleDateFormat.parse(dateTo);	
 		dateToComparator = dTo.getTime();
 	}
