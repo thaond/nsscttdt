@@ -3545,3 +3545,13 @@ enter-group-name=Xin nhập tên luồng
 this-name-already-exists=Tên này đã tồn tại
 ban-muon-xoa-luong-nay=Bạn muốn xóa luồng này?
 nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them=Nhấp vào để tìm kiếm đơn vị/người nhận muốn thêm
+
+check-all-user=Chọn bất kỳ chuyên viên
+
+##lanh dao chuyen cho lanh dao
+chon-lanh-dao-xu-ly-chinh=Chọn lãnh đạo xử lý chính
+lanh-dao-xu-ly-chinh=Lãnh đạo xử lý chính
+chanhvanphong=LĐ VP
+lanhdao=Ban giám đốc
+
+nhap-lieu-thay=Nhập liệu thay
