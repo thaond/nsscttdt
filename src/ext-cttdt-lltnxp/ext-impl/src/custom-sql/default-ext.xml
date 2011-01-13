@@ -43,5 +43,6 @@
 	<sql file="custom-sql/documentdelegate.xml" />	
 	
 	<sql file="custom-sql/recievergroup.xml" />
-	<sql file="custom-sql/reportregistrywork.xml" />		
+	<sql file="custom-sql/reportregistrywork.xml" />
+	<sql file="custom-sql/documentmanager.xml" />			
   </custom-sql>
