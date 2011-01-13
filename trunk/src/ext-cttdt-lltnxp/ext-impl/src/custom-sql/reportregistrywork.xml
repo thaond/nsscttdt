@@ -31,6 +31,7 @@
 		FROM report_registry_work
 		WHERE 
 		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
 		]]>
@@ -43,6 +44,7 @@
 		FROM report_registry_work
 		WHERE 
 		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
 		ORDER BY reportRegistryCode ASC
