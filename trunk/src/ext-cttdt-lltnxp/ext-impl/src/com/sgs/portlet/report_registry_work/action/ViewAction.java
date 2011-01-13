@@ -391,9 +391,13 @@ public class ViewAction extends PortletAction {
 	public ActionForward render(ActionMapping mapping, ActionForm form, PortletConfig config, RenderRequest req, RenderResponse res) throws Exception {
 			try {
 				long departmentId = ParamUtil.getLong(req, "department");
+				String dateFrom = ParamUtil.getString(req, "dateFrom");
+				String dateTo = ParamUtil.getString(req, "dateTo");
 				req.setAttribute("departmentId", String.valueOf(departmentId));
+				req.setAttribute("dateFrom", dateFrom);
+				req.setAttribute("dateTo", dateTo);
 			} catch (Exception e) {
-				_log.error("------------------ERROR render departmentId OF " + ViewAction.class + " " + e.getMessage());
+				_log.error("------------------ERROR render OF " + ViewAction.class + " " + e.getMessage());
 			}
 			if (getForward(req) != null && !getForward(req).equals("")) {
 				return mapping.findForward(getForward(req));
