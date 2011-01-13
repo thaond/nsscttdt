@@ -379,6 +379,16 @@
             <forward
                 name="portlet.sgs.pcccdocumentreceiptprocess.xulythayld" path="portlet.sgs.pcccdocumentreceiptprocess.xulythayld"/>
         </action>
+        <!-- chanh van phong chuyen chanh van phong -->
+        <action path="/sgs/pcccdocumentreceiptprocess/cvptocvp" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.CVPToCVP">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp" path="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp"/>
+        </action>
+        <!-- lanh dao chuyen lanh dao -->
+        <action path="/sgs/pcccdocumentreceiptprocess/agencytoagency" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.AgencyToAgency">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency" path="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency"/>
+        </action>
         <!-- ####### end ############## -->
         <!-- ####### MOT CUA ########### -->
         <!-- one door -->
@@ -1023,11 +1033,11 @@
         <action path="/sgs/report_registry_work/view" type="com.sgs.portlet.report_registry_work.action.ViewAction">
             <forward name="portlet.sgs.report_registry_work.view" path="portlet.sgs.report_registry_work.view"/>
         </action>
-        <action path="/sgs/document_manager/view" type="com.sgs.portlet.document_manager.action.ViewAction">
-            <forward name="portlet.sgs.document_manager.view" path="portlet.sgs.document_manager.view"/>
-        </action>
         <action path="/sgs/callportletother/view" type="com.sgs.portlet.callportletother.action.ViewAction">
             <forward name="portlet.sgs.callportletother.view" path="portlet.sgs.callportletother.view"/>
+        </action>
+        <action path="/sgs/document_manager/view" type="com.sgs.portlet.document_manager.action.ViewAction">
+            <forward name="portlet.sgs.document_manager.view" path="portlet.sgs.document_manager.view"/>
         </action>
     </action-mappings>
 </struts-config>
