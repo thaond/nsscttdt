@@ -868,6 +868,8 @@
 		<field name="reportRegistryId" type="long" />
 		<field name="reportRegistryCode" type="String" />
 		<field name="userCreate" type="String" />
+		<field name="resultWork" type="String" />
+		<field name="programWork" type="String" />
 		<field name="reportDate" type="Date" />
 		<field name="departmentId" type="long" />
 		<field name="userId" type="long" />
@@ -880,6 +882,27 @@
 		<field name="resultProgramPath" type="String" />
 		<field name="resultProgramCheck" type="String" />
 		<field name="reportRegistryId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document_manager.model.DocumentManager">
+		<field name="documentManagerId" type="long" />
+		<field name="documentManagerCode" type="String" />
+		<field name="documentManagerCategory" type="String" />
+		<field name="documentManagerStyle" type="String" />
+		<field name="documentManagerDescription" type="String" />
+		<field name="documentManagerDateCreate" type="Date" />
+		<field name="documentManagerTitle" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document_manager.model.AttactFileDocument">
+		<field name="attactFileDocumentId" type="long" />
+		<field name="attactFileDocumentTitle" type="String" />
+		<field name="attactFileDocumentPath" type="String" />
+		<field name="documentManagerId" type="long" />
 		<field name="userId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />

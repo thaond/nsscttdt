@@ -2392,4 +2392,56 @@
 	<bean id="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramUtil" class="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramUtil">
 		<property name="persistence" ref="com.sgs.portlet.report_registry_work.service.persistence.ResultProgramPersistence.impl" />
 	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerLocalService.impl" class="com.sgs.portlet.document_manager.service.impl.DocumentManagerLocalServiceImpl" />
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.document_manager.service.DocumentManagerLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerLocalServiceFactory" class="com.sgs.portlet.document_manager.service.DocumentManagerLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerLocalServiceUtil" class="com.sgs.portlet.document_manager.service.DocumentManagerLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" class="com.sgs.portlet.document_manager.service.impl.DocumentManagerServiceImpl" />
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerServiceFactory" class="com.sgs.portlet.document_manager.service.DocumentManagerServiceFactory">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.DocumentManagerServiceUtil" class="com.sgs.portlet.document_manager.service.DocumentManagerServiceUtil">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerPersistence.impl" class="com.sgs.portlet.document_manager.service.persistence.DocumentManagerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerUtil" class="com.sgs.portlet.document_manager.service.persistence.DocumentManagerUtil">
+		<property name="persistence" ref="com.sgs.portlet.document_manager.service.persistence.DocumentManagerPersistence.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.impl" class="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinderImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinderUtil" class="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinderUtil">
+		<property name="finder" ref="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalService.impl" class="com.sgs.portlet.document_manager.service.impl.AttactFileDocumentLocalServiceImpl" />
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalServiceFactory" class="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalServiceUtil" class="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" class="com.sgs.portlet.document_manager.service.impl.AttactFileDocumentServiceImpl" />
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentServiceFactory" class="com.sgs.portlet.document_manager.service.AttactFileDocumentServiceFactory">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.AttactFileDocumentServiceUtil" class="com.sgs.portlet.document_manager.service.AttactFileDocumentServiceUtil">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.document_manager.service.persistence.AttactFileDocumentPersistence.impl" class="com.sgs.portlet.document_manager.service.persistence.AttactFileDocumentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.document_manager.service.persistence.AttactFileDocumentUtil" class="com.sgs.portlet.document_manager.service.persistence.AttactFileDocumentUtil">
+		<property name="persistence" ref="com.sgs.portlet.document_manager.service.persistence.AttactFileDocumentPersistence.impl" />
+	</bean>
 </beans>
