@@ -17,7 +17,7 @@ public class ReportRegistryDisplayTerms extends DisplayTerms {
 	protected String userCreate;
 	protected String resultWork;
 	protected String programWork;
-	protected String department;
+	protected Long department;
 
 	public ReportRegistryDisplayTerms(RenderRequest renderRequest) {
 		super(renderRequest);
@@ -25,7 +25,8 @@ public class ReportRegistryDisplayTerms extends DisplayTerms {
 		userCreate = ParamUtil.getString(renderRequest, USERCREATE);
 		resultWork = ParamUtil.getString(renderRequest, RESULTWORK);
 		programWork = ParamUtil.getString(renderRequest, PROGRAMWORK);
-		department = ParamUtil.getString(renderRequest, DEPARTMENT);
+		department = ParamUtil.getLong(renderRequest, DEPARTMENT);
+
 	}
 
 	public String getReportRegistryCode() {
@@ -60,11 +61,11 @@ public class ReportRegistryDisplayTerms extends DisplayTerms {
 		this.userCreate = userCreate;
 	}
 
-	public String getDepartment() {
+	public Long getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartmentId(Long department) {
 		this.department = department;
 	}
 }

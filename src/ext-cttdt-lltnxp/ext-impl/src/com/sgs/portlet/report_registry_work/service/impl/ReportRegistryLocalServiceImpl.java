@@ -14,16 +14,16 @@ public class ReportRegistryLocalServiceImpl extends ReportRegistryLocalServiceBa
 	public List<ResultProgram> getResultPrograms(long reportRegistryId) throws SystemException{
 		return reportRegistryPersistence.getResultPrograms(reportRegistryId);
 	}
-	public int countByKeyword(String keywords) throws SystemException{
-		return reportRegistryFinder.countByKeywords(keywords);
+//	public int countByKeyword(String keywords) throws SystemException{
+//		return reportRegistryFinder.countByKeywords(keywords);
+//	}
+//	public List<ReportRegistry> findByKeyword(String keywords, int start, int end, OrderByComparator obc) throws SystemException{
+//		return reportRegistryFinder.findByKeywords(keywords, start, end, obc);
+//	}
+	public int countReportRegistry(String reportRegistryCodes, String userCreates, String resultWorks, String programWorks, Long departmentId, boolean andOperator) throws SystemException{
+		return reportRegistryFinder.count_report_registry(reportRegistryCodes, userCreates, resultWorks, programWorks, departmentId, andOperator);
 	}
-	public List<ReportRegistry> findByKeyword(String keywords, int start, int end, OrderByComparator obc) throws SystemException{
-		return reportRegistryFinder.findByKeywords(keywords, start, end, obc);
-	}
-	public int countReportRegistry(String reportRegistryCodes, String resultWorks, String programWorks, boolean andOperator) throws SystemException{
-		return reportRegistryFinder.count_report_registry(reportRegistryCodes, resultWorks, programWorks, andOperator);
-	}
-	public List<ReportRegistry> findReportRegistry(String reportRegistryCodes, String resultWorks, String programWorks, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
-		return reportRegistryFinder.find_report_registry(reportRegistryCodes, resultWorks, programWorks, start, end, andOperator, obc);
+	public List<ReportRegistry> findReportRegistry(String reportRegistryCodes, String userCreates, String resultWorks, String programWorks, Long departmentId, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
+		return reportRegistryFinder.find_report_registry(reportRegistryCodes, userCreates, resultWorks, programWorks, departmentId, start, end, andOperator, obc);
 	}
 }

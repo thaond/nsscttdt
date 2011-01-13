@@ -37,6 +37,8 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 		
 		orderableHeaders.put("report-registry-code", "reportRegistryCode");
 		orderableHeaders.put("user-create", "userCreate");
+		orderableHeaders.put("result-work", "resultWork");
+		orderableHeaders.put("program-work", "programWork");
 	}
 
 	public static final String EMPTY_RESULTS_MESSAGE = "no-report-registry-work-were-found";
@@ -51,7 +53,7 @@ public class ReportRegistrySearch extends SearchContainer<ReportRegistry>{
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.USERCREATE, displayTerms.getUserCreate());
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.RESULTWORK, displayTerms.getResultWork());
 			iteratorURL.setParameter(ReportRegistryDisplayTerms.PROGRAMWORK, displayTerms.getProgramWork());
-			iteratorURL.setParameter(ReportRegistryDisplayTerms.DEPARTMENT, displayTerms.getDepartment());
+			iteratorURL.setParameter(ReportRegistryDisplayTerms.DEPARTMENT, String.valueOf(displayTerms.getDepartment()));
 			
 			try {
 				PortalPreferences preferences = PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
