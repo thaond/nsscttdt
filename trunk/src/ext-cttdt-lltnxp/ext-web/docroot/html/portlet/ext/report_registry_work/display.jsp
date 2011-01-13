@@ -275,7 +275,7 @@
 						// date
 						if(reportRegistry.getReportDate() != null){
 							Date dateCreate = reportRegistry.getReportDate();
-							System.out.println("dateCreate "+dateCreate);
+							System.out.println("dateCreate "+dateCreate.getTime());
 							String dateNow = simpleDateFormat.format(dateCreate);
 							row.addText(dateNow);
 						}else{
