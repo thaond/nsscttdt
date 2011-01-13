@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
 <%@ include file="/html/portlet/ext/report_registry_work/init.jsp" %>
 
 <%@page import="java.io.File"%>
@@ -48,6 +50,21 @@
 			
 		}
 	}
+	String dateFrom = (String) request.getAttribute("dateFrom");
+	String dateTo= (String) request.getAttribute("dateTo");
+	long dateFromComparator = 0;
+	long dateToComparator = 0;
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	if(dateFrom != null){
+		Date dFrom = simpleDateFormat.parse(dateFrom);	
+		dateFromComparator = dFrom.getTime();
+	}
+	if(dateTo != null){
+		Date dTo = simpleDateFormat.parse(dateTo);	
+		dateToComparator = dTo.getTime();
+	}
+	System.out.println("dateFromComparator "+dateFromComparator);
+	System.out.println("dateToComparator "+dateToComparator);
 %>
 
 <% if(error_delete_department != null){ %>
@@ -208,7 +225,6 @@
 					
 					List<ResultRow> resultRows = reportRegistrySearch.getResultRows();
 					ResultRow row = null;
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 					
 					for(int i = 0; i < listReportRegistry.size(); i++){
 						ReportRegistry reportRegistry = listReportRegistry.get(i);
@@ -257,9 +273,10 @@
 						row.addText(linkProgramWork);
 						
 						// date
-						String dateNow = "";
 						if(reportRegistry.getReportDate() != null){
-							dateNow = simpleDateFormat.format(reportRegistry.getReportDate());
+							Date dateCreate = reportRegistry.getReportDate();
+							System.out.println("dateCreate "+dateCreate);
+							String dateNow = simpleDateFormat.format(dateCreate);
 							row.addText(dateNow);
 						}else{
 							row.addText("");
