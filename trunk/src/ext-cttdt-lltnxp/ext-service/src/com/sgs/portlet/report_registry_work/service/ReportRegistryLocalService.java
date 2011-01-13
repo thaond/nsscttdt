@@ -67,21 +67,15 @@ public interface ReportRegistryLocalService {
     public java.util.List<com.sgs.portlet.report_registry_work.model.ResultProgram> getResultPrograms(
         long reportRegistryId) throws com.liferay.portal.SystemException;
 
-    public int countByKeyword(java.lang.String keywords)
-        throws com.liferay.portal.SystemException;
-
-    public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByKeyword(
-        java.lang.String keywords, int start, int end,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException;
-
     public int countReportRegistry(java.lang.String reportRegistryCodes,
-        java.lang.String resultWorks, java.lang.String programWorks,
+        java.lang.String userCreates, java.lang.String resultWorks,
+        java.lang.String programWorks, java.lang.Long departmentId,
         boolean andOperator) throws com.liferay.portal.SystemException;
 
     public java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findReportRegistry(
-        java.lang.String reportRegistryCodes, java.lang.String resultWorks,
-        java.lang.String programWorks, int start, int end, boolean andOperator,
+        java.lang.String reportRegistryCodes, java.lang.String userCreates,
+        java.lang.String resultWorks, java.lang.String programWorks,
+        java.lang.Long departmentId, int start, int end, boolean andOperator,
         com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException;
 }

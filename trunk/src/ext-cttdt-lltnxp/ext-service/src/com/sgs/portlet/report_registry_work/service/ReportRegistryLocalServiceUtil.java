@@ -88,35 +88,26 @@ public class ReportRegistryLocalServiceUtil {
         return getService().getResultPrograms(reportRegistryId);
     }
 
-    public static int countByKeyword(java.lang.String keywords)
-        throws com.liferay.portal.SystemException {
-        return getService().countByKeyword(keywords);
-    }
-
-    public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findByKeyword(
-        java.lang.String keywords, int start, int end,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException {
-        return getService().findByKeyword(keywords, start, end, obc);
-    }
-
     public static int countReportRegistry(
-        java.lang.String reportRegistryCodes, java.lang.String resultWorks,
-        java.lang.String programWorks, boolean andOperator)
+        java.lang.String reportRegistryCodes, java.lang.String userCreates,
+        java.lang.String resultWorks, java.lang.String programWorks,
+        java.lang.Long departmentId, boolean andOperator)
         throws com.liferay.portal.SystemException {
         return getService()
-                   .countReportRegistry(reportRegistryCodes, resultWorks,
-            programWorks, andOperator);
+                   .countReportRegistry(reportRegistryCodes, userCreates,
+            resultWorks, programWorks, departmentId, andOperator);
     }
 
     public static java.util.List<com.sgs.portlet.report_registry_work.model.ReportRegistry> findReportRegistry(
-        java.lang.String reportRegistryCodes, java.lang.String resultWorks,
-        java.lang.String programWorks, int start, int end, boolean andOperator,
+        java.lang.String reportRegistryCodes, java.lang.String userCreates,
+        java.lang.String resultWorks, java.lang.String programWorks,
+        java.lang.Long departmentId, int start, int end, boolean andOperator,
         com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException {
         return getService()
-                   .findReportRegistry(reportRegistryCodes, resultWorks,
-            programWorks, start, end, andOperator, obc);
+                   .findReportRegistry(reportRegistryCodes, userCreates,
+            resultWorks, programWorks, departmentId, start, end, andOperator,
+            obc);
     }
 
     public static ReportRegistryLocalService getService() {
