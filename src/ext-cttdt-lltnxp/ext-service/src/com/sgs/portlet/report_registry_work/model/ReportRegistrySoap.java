@@ -29,6 +29,8 @@ public class ReportRegistrySoap implements Serializable {
     private long _reportRegistryId;
     private String _reportRegistryCode;
     private String _userCreate;
+    private String _resultWork;
+    private String _programWork;
     private Date _reportDate;
     private long _departmentId;
     private long _userId;
@@ -44,6 +46,8 @@ public class ReportRegistrySoap implements Serializable {
         soapModel.setReportRegistryId(model.getReportRegistryId());
         soapModel.setReportRegistryCode(model.getReportRegistryCode());
         soapModel.setUserCreate(model.getUserCreate());
+        soapModel.setResultWork(model.getResultWork());
+        soapModel.setProgramWork(model.getProgramWork());
         soapModel.setReportDate(model.getReportDate());
         soapModel.setDepartmentId(model.getDepartmentId());
         soapModel.setUserId(model.getUserId());
@@ -93,6 +97,22 @@ public class ReportRegistrySoap implements Serializable {
 
     public void setUserCreate(String userCreate) {
         _userCreate = userCreate;
+    }
+
+    public String getResultWork() {
+        return _resultWork;
+    }
+
+    public void setResultWork(String resultWork) {
+        _resultWork = resultWork;
+    }
+
+    public String getProgramWork() {
+        return _programWork;
+    }
+
+    public void setProgramWork(String programWork) {
+        _programWork = programWork;
     }
 
     public Date getReportDate() {
