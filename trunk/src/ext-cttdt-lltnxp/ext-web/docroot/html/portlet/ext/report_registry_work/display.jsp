@@ -188,9 +188,9 @@
 				<%
 				int count = 0;
 				List<ReportRegistry> listReportRegistry = new ArrayList<ReportRegistry>();
-				count = ReportRegistryLocalServiceUtil.countReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),searchTerms.isAndOperator());
-				listReportRegistry = ReportRegistryLocalServiceUtil.findReportRegistry(searchTerms.getReportRegistryCode(),searchTerms.getResultWork(),searchTerms.getProgramWork(),
-									reportRegistrySearch.getStart(), reportRegistrySearch.getEnd(),searchTerms.isAndOperator(),reportRegistrySearch.getOrderByComparator());
+				count = ReportRegistryLocalServiceUtil.countReportRegistry(searchTerms.getReportRegistryCode(), searchTerms.getUserCreate(), searchTerms.getResultWork(), searchTerms.getProgramWork(), searchTerms.getDepartment(), searchTerms.isAndOperator());
+				listReportRegistry = ReportRegistryLocalServiceUtil.findReportRegistry(searchTerms.getReportRegistryCode(), searchTerms.getUserCreate(), searchTerms.getResultWork(), searchTerms.getProgramWork(), searchTerms.getDepartment(),
+									reportRegistrySearch.getStart(), reportRegistrySearch.getEnd(), searchTerms.isAndOperator(), reportRegistrySearch.getOrderByComparator());
 						
 					List<ReportRegistry> temp = new ArrayList<ReportRegistry>();
 					if(departmentIdRequest != 0){
@@ -201,7 +201,7 @@
 						}
 						listReportRegistry = temp;
 					}
-					
+					count = listReportRegistry.size();
 					reportRegistrySearch.setTotal(count);
 					reportRegistrySearch.setResults(listReportRegistry);
 					portletURL.setParameter(reportRegistrySearch.getCurParam(), String.valueOf(reportRegistrySearch.getCurValue()));
