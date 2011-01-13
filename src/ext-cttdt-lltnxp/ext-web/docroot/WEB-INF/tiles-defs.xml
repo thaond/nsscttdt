@@ -251,6 +251,14 @@
     <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.printlist">
         <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/indsphieuchuyen.jsp"/>
     </definition>
+    <!-- chanh van phong chuyen chanh van phong -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/cvptocvp.jsp"/>
+    </definition>
+    <!-- lanh dao chuyen lanh dao -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/agencytoagency.jsp"/>
+    </definition>
     <!-- ####### End ################## -->
     <!-- ######## MOT CUA ############ -->
     <definition extends="portlet" name="portlet.sgs.onedoorreceive.view">
@@ -869,10 +877,10 @@
     <definition extends="portlet" name="portlet.sgs.report_registry_work.view">
         <put name="portlet_content" value="/portlet/ext/report_registry_work/view.jsp"/>
     </definition>
-    <definition extends="portlet" name="portlet.sgs.document_manager.view">
-        <put name="portlet_content" value="/portlet/ext/document_manager/view.jsp"/>
-    </definition>
     <definition extends="portlet" name="portlet.sgs.callportletother.view">
         <put name="portlet_content" value="/portlet/ext/callportletother/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.document_manager.view">
+        <put name="portlet_content" value="/portlet/ext/document_manager/view.jsp"/>
     </definition>
 </tiles-definitions>

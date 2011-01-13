@@ -1082,4 +1082,28 @@
 		<property name="service" ref="com.sgs.portlet.report_registry_work.service.ResultProgramService.impl" />
 		<property name="serviceInterface" value="com.sgs.portlet.report_registry_work.service.ResultProgramService" />
 	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_DocumentManagerService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.DocumentManagerService" />
+	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_DocumentManagerService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.DocumentManagerService" />
+	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_DocumentManagerService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.DocumentManagerService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.DocumentManagerService" />
+	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_AttactFileDocumentService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.AttactFileDocumentService" />
+	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_AttactFileDocumentService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.AttactFileDocumentService" />
+	</bean>
+	<bean name="/com_sgs_portlet_document_manager_service_spring_AttactFileDocumentService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.document_manager.service.AttactFileDocumentService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.document_manager.service.AttactFileDocumentService" />
+	</bean>
 </beans>
