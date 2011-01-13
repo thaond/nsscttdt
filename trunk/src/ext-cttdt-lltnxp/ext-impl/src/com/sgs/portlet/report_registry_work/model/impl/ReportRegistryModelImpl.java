@@ -51,6 +51,12 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             { "userCreate", new Integer(Types.VARCHAR) },
             
 
+            { "resultWork", new Integer(Types.VARCHAR) },
+            
+
+            { "programWork", new Integer(Types.VARCHAR) },
+            
+
             { "reportDate", new Integer(Types.TIMESTAMP) },
             
 
@@ -65,7 +71,7 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
 
             { "companyId", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table report_registry_work (reportRegistryId LONG not null primary key,reportRegistryCode VARCHAR(75) null,userCreate VARCHAR(75) null,reportDate DATE null,departmentId LONG,userId LONG,groupId LONG,companyId LONG)";
+    public static final String TABLE_SQL_CREATE = "create table report_registry_work (reportRegistryId LONG not null primary key,reportRegistryCode VARCHAR(75) null,userCreate VARCHAR(75) null,resultWork VARCHAR(75) null,programWork VARCHAR(75) null,reportDate DATE null,departmentId LONG,userId LONG,groupId LONG,companyId LONG)";
     public static final String TABLE_SQL_DROP = "drop table report_registry_work";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -78,6 +84,8 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
     private long _reportRegistryId;
     private String _reportRegistryCode;
     private String _userCreate;
+    private String _resultWork;
+    private String _programWork;
     private Date _reportDate;
     private long _departmentId;
     private long _userId;
@@ -93,6 +101,8 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
         model.setReportRegistryId(soapModel.getReportRegistryId());
         model.setReportRegistryCode(soapModel.getReportRegistryCode());
         model.setUserCreate(soapModel.getUserCreate());
+        model.setResultWork(soapModel.getResultWork());
+        model.setProgramWork(soapModel.getProgramWork());
         model.setReportDate(soapModel.getReportDate());
         model.setDepartmentId(soapModel.getDepartmentId());
         model.setUserId(soapModel.getUserId());
@@ -157,6 +167,32 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
                 ((userCreate != null) && (_userCreate != null) &&
                 !userCreate.equals(_userCreate))) {
             _userCreate = userCreate;
+        }
+    }
+
+    public String getResultWork() {
+        return GetterUtil.getString(_resultWork);
+    }
+
+    public void setResultWork(String resultWork) {
+        if (((resultWork == null) && (_resultWork != null)) ||
+                ((resultWork != null) && (_resultWork == null)) ||
+                ((resultWork != null) && (_resultWork != null) &&
+                !resultWork.equals(_resultWork))) {
+            _resultWork = resultWork;
+        }
+    }
+
+    public String getProgramWork() {
+        return GetterUtil.getString(_programWork);
+    }
+
+    public void setProgramWork(String programWork) {
+        if (((programWork == null) && (_programWork != null)) ||
+                ((programWork != null) && (_programWork == null)) ||
+                ((programWork != null) && (_programWork != null) &&
+                !programWork.equals(_programWork))) {
+            _programWork = programWork;
         }
     }
 
@@ -225,6 +261,8 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
             model.setReportRegistryId(getReportRegistryId());
             model.setReportRegistryCode(HtmlUtil.escape(getReportRegistryCode()));
             model.setUserCreate(HtmlUtil.escape(getUserCreate()));
+            model.setResultWork(HtmlUtil.escape(getResultWork()));
+            model.setProgramWork(HtmlUtil.escape(getProgramWork()));
             model.setReportDate(getReportDate());
             model.setDepartmentId(getDepartmentId());
             model.setUserId(getUserId());
@@ -245,6 +283,8 @@ public class ReportRegistryModelImpl extends BaseModelImpl {
         clone.setReportRegistryId(getReportRegistryId());
         clone.setReportRegistryCode(getReportRegistryCode());
         clone.setUserCreate(getUserCreate());
+        clone.setResultWork(getResultWork());
+        clone.setProgramWork(getProgramWork());
         clone.setReportDate(getReportDate());
         clone.setDepartmentId(getDepartmentId());
         clone.setUserId(getUserId());

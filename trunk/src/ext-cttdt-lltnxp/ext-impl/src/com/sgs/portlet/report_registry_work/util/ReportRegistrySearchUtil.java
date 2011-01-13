@@ -17,8 +17,10 @@ public class ReportRegistrySearchUtil {
 			orderByComparator = new ReportRegistryCodeComparator(orderByAsc);
 		} else if (orderByCol.equals("userCreate")) {
 			orderByComparator = new UserCreateComparator(orderByAsc);
-		} else if (orderByCol.equals("reportDate")) {
-			orderByComparator = new ReportDateComparator(orderByAsc);
+		} else if (orderByCol.equals("resultWork")) {
+			orderByComparator = new ResultWorkComparator(orderByAsc);
+		} else if (orderByCol.equals("programWork")) {
+			orderByComparator = new ProgramWorkComparator(orderByAsc);
 		}
 
 		return orderByComparator;

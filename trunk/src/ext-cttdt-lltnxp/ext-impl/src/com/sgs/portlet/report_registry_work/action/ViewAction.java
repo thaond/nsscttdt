@@ -166,66 +166,76 @@ public class ViewAction extends PortletAction {
 	
 
 	public void addReportRegistry(ActionRequest req) throws SystemException, IOException, PortalException {
-		String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
-		long departmentId = ParamUtil.getLong(req, "department");
-		
-		String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
-		nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
-		String titleFiles  = ParamUtil.getString(req, "titleFiles");
-		titleFiles = StringUtil.encodeHtml(titleFiles);
-		
-		String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
-		nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
-		String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
-		titleFiles1 = StringUtil.encodeHtml(titleFiles1);
-		
-		long reportRegistryId = CounterLocalServiceUtil.increment();
-		ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.createReportRegistry(reportRegistryId);
-		
-		Date date = new Date();
-		Timestamp timeNow = new Timestamp(date.getTime());
-		
-		String checkResultProgram = "";
-		
-		long userId = PortalUtil.getUserId(req);
-		if(userId != 0){
-			reportRegistry.setReportRegistryCode(reportRegistryCode);
-			reportRegistry.setReportDate(timeNow);
-			reportRegistry.setUserId(userId);
-			reportRegistry.setDepartmentId(departmentId);
-			try {
-				ReportRegistryLocalServiceUtil.addReportRegistry(reportRegistry);
-			} catch (Exception e) {
-				_log.error("ERROR IN METHOD addReportRegistry OF " + ViewAction.class + " " + e.getMessage());
-			}
-			if (!"".equals(nameFieldRow)) {
-				checkResultProgram = "resultwork";
-				String [] nameFieldRowArr = nameFieldRow.split("_");
-				String [] titleFilesArr = titleFiles.split("#");
-				if (titleFilesArr.length == 0) {
-					titleFilesArr = new String [nameFieldRowArr.length];
-					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						titleFilesArr[i] = "";
+		try {
+			String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
+			long departmentId = ParamUtil.getLong(req, "department");
+			
+			String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
+			nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
+			String titleFiles  = ParamUtil.getString(req, "titleFiles");
+			titleFiles = StringUtil.encodeHtml(titleFiles);
+			
+			String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
+			nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
+			String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
+			titleFiles1 = StringUtil.encodeHtml(titleFiles1);
+			
+			long reportRegistryId = CounterLocalServiceUtil.increment();
+			ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.createReportRegistry(reportRegistryId);
+			
+			Date date = new Date();
+			Timestamp timeNow = new Timestamp(date.getTime());
+			
+			String checkResultProgram = "";
+			
+			long userId = PortalUtil.getUserId(req);
+			if(userId != 0){
+				User user = UserLocalServiceUtil.getUser(userId);
+				String userName = user.getScreenName();
+				reportRegistry.setReportRegistryCode(reportRegistryCode);
+				reportRegistry.setReportDate(timeNow);
+				reportRegistry.setUserId(userId);
+				reportRegistry.setUserCreate(userName);
+				reportRegistry.setDepartmentId(departmentId);
+				if (!"".equals(nameFieldRow)) {
+					checkResultProgram = "resultwork";
+					String [] nameFieldRowArr = nameFieldRow.split("_");
+					String [] titleFilesArr = titleFiles.split("#");
+					if (titleFilesArr.length == 0) {
+						titleFilesArr = new String [nameFieldRowArr.length];
+						for (int i = 0; i < nameFieldRowArr.length; i++) {
+							titleFilesArr[i] = "";
+						}
 					}
-				}
-				for (int i = 0; i < nameFieldRowArr.length; i++) {
-					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
-				}
-			}
-			if (!"".equals(nameFieldRow1)) {
-				checkResultProgram = "programwork";
-				String [] nameFieldRowArr = nameFieldRow1.split("_");
-				String [] titleFilesArr = titleFiles1.split("#");
-				if (titleFilesArr.length == 0) {
-					titleFilesArr = new String [nameFieldRowArr.length];
+					String resultTitles = "";
 					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						titleFilesArr[i] = "";
+						resultTitles += titleFilesArr[i];
+						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
 					}
+					reportRegistry.setResultWork(resultTitles);
 				}
-				for (int i = 0; i < nameFieldRowArr.length; i++) {
-					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+				if (!"".equals(nameFieldRow1)) {
+					checkResultProgram = "programwork";
+					String [] nameFieldRowArr = nameFieldRow1.split("_");
+					String [] titleFilesArr = titleFiles1.split("#");
+					if (titleFilesArr.length == 0) {
+						titleFilesArr = new String [nameFieldRowArr.length];
+						for (int i = 0; i < nameFieldRowArr.length; i++) {
+							titleFilesArr[i] = "";
+						}
+					}
+					String programTitles = "";
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						programTitles += titleFilesArr[i];
+						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+					}
+					reportRegistry.setProgramWork(programTitles);
 				}
-			}
+				
+					ReportRegistryLocalServiceUtil.addReportRegistry(reportRegistry);
+				}
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD addReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
 
@@ -378,9 +388,13 @@ public class ViewAction extends PortletAction {
 		}
 	}
 	
-	public ActionForward render(ActionMapping mapping, ActionForm form,
-			PortletConfig config, RenderRequest req, RenderResponse res)
-			throws Exception {
+	public ActionForward render(ActionMapping mapping, ActionForm form, PortletConfig config, RenderRequest req, RenderResponse res) throws Exception {
+			try {
+				long departmentId = ParamUtil.getLong(req, "department");
+				req.setAttribute("departmentId", String.valueOf(departmentId));
+			} catch (Exception e) {
+				_log.error("------------------ERROR render departmentId OF " + ViewAction.class + " " + e.getMessage());
+			}
 			if (getForward(req) != null && !getForward(req).equals("")) {
 				return mapping.findForward(getForward(req));
 			} else {

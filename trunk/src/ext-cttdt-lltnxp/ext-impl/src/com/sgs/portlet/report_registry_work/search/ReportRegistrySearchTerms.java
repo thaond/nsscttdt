@@ -12,6 +12,6 @@ public class ReportRegistrySearchTerms extends ReportRegistryDisplayTerms {
 		userCreate = DAOParamUtil.getLike(renderRequest, USERCREATE);
 		resultWork = DAOParamUtil.getLike(renderRequest, RESULTWORK);
 		programWork = DAOParamUtil.getLike(renderRequest, PROGRAMWORK);
-		department = DAOParamUtil.getLike(renderRequest, DEPARTMENT);
+		department = DAOParamUtil.getLong(renderRequest, DEPARTMENT);
 	}
 }

@@ -24,6 +24,8 @@
 		<!-- Other fields -->
 		<column name="reportRegistryCode" type="String" />
 		<column name="userCreate" type="String" />
+		<column name="resultWork" type="String" />
+		<column name="programWork" type="String" />
 		<column name="reportDate" type="Date" />
 		<column name="departmentId" type="long" />
 		<column name="resultPrograms" type="Collection" entity="ResultProgram" mapping-key="reportRegistryId"></column>

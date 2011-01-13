@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document_manager">
+	<namespace>DocumentManager</namespace>
+	
+	<entity name="DocumentManager" local-service="true" remote-service="true" table="document_manager">
+		<!-- PK fields -->
+		<column name="documentManagerId" type="long" primary="true" />
+		<!-- Other fields -->
+		<column name="documentManagerCode" type="String" />
+		<column name="documentManagerCategory" type="String" />
+		<column name="documentManagerStyle" type="String" />
+		<column name="documentManagerDescription" type="String" />
+		<column name="documentManagerDateCreate" type="Date" />
+		<column name="documentManagerTitle" type="String" />
+		<column name="attactFileDocuments" type="Collection" entity="AttactFileDocument" mapping-key="documentManagerId" />
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="AttactFileDocument" local-service="true" remote-service="true" table="attact_file_document">
+		<!-- PK fields -->
+		<column name="attactFileDocumentId" type="long" primary="true" />
+		<!-- Other fields -->
+		<column name="attactFileDocumentTitle" type="String" />
+		<column name="attactFileDocumentPath" type="String" />
+		<column name="documentManagerId" type="long" />
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+</service-builder>

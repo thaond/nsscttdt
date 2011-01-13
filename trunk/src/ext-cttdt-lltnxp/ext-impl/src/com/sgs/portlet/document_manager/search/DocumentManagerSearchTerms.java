@@ -1,0 +1,16 @@
+package com.sgs.portlet.document_manager.search;
+
+import javax.portlet.RenderRequest;
+
+import com.liferay.portal.kernel.dao.search.DAOParamUtil;
+
+public class DocumentManagerSearchTerms extends DocumentManagerDisplayTerms {
+	
+	public DocumentManagerSearchTerms(RenderRequest renderRequest) {
+		super(renderRequest);
+		documentManagerCode = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERCODE);
+		documentManagerDescription = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERDESCRIPTION);
+		documentManagerTitle = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERTITLE);
+	}
+}
+
