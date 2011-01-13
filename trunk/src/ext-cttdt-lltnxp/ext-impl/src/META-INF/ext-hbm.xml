@@ -1142,6 +1142,8 @@
 		</id>
 		<property name="reportRegistryCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="userCreate" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="resultWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="programWork" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reportDate" type="org.hibernate.type.TimestampType" />
 		<property name="departmentId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -1157,6 +1159,33 @@
 		<property name="resultProgramPath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="resultProgramCheck" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="reportRegistryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.document_manager.model.impl.DocumentManagerImpl" table="document_manager">
+		<cache usage="read-write" />
+		<id name="documentManagerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="documentManagerCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="documentManagerCategory" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="documentManagerStyle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="documentManagerDescription" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="documentManagerDateCreate" type="org.hibernate.type.TimestampType" />
+		<property name="documentManagerTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.document_manager.model.impl.AttactFileDocumentImpl" table="attact_file_document">
+		<cache usage="read-write" />
+		<id name="attactFileDocumentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="attactFileDocumentTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="attactFileDocumentPath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="documentManagerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
