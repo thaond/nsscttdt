@@ -58,8 +58,7 @@ public class ViewAction extends PortletAction {
 		if (!Validator.isNull(cmd)) {
 			if(varAction.equals("department")){
 				if(cmd.equals(Constants.ADD)){
-					addDepartment(req);
-					sendRedirect(req, res, redirect);
+					addDepartment(req, res, redirect);
 				}else if(cmd.equals(Constants.EDIT)){
 					editDepartment(req);
 				}else if(cmd.equals(Constants.UPDATE)){
@@ -70,14 +69,14 @@ public class ViewAction extends PortletAction {
 				}
 			}else if(varAction.equals("reportregistry")){
 				if(cmd.equals(Constants.ADD)){
-					addReportRegistry(req);
-					sendRedirect(req, res, redirect);
+					addReportRegistry(req, res, redirect);
 				}else if(cmd.equals(Constants.EDIT)){
 					editReportRegistry(req);
 				}else if(cmd.equals(Constants.UPDATE)){
 					updateReportRegistry(req, res);
 					sendRedirect(req, res, redirect);
 				}else if(cmd.equals(Constants.DELETE)){
+					System.out.println("nhay vao delete reportregistry");
 					deleteReportRegistry(req, res, redirect);
 				}else if(cmd.equals("SELECT")){
 					selectReportRegistry(req, res);
@@ -86,7 +85,7 @@ public class ViewAction extends PortletAction {
 		}
 	}
 
-	public void addDepartment(ActionRequest req) {
+	public void addDepartment(ActionRequest req, ActionResponse res, String redirect) {
 		String code = ParamUtil.getString(req, "departmentCode");
 		String name = ParamUtil.getString(req, "departmentName");
 		String description = ParamUtil.getString(req, "departmentDescription");
@@ -94,18 +93,34 @@ public class ViewAction extends PortletAction {
 		long companyId = 0;
 
 		try {
-			userId = PortalUtil.getUserId(req);
-			if (userId != 0) {
-				User user = UserLocalServiceUtil.getUser(userId);
-				companyId = user.getCompanyId();
-				long departmentId = CounterLocalServiceUtil.increment();
-				Department department = DepartmentLocalServiceUtil.createDepartment(departmentId);
-				department.setDepartmentCode(code);
-				department.setDepartmentName(name);
-				department.setDepartmentDescription(description);
-				department.setUserId(userId);
-				department.setCompanyId(companyId);
-				DepartmentLocalServiceUtil.addDepartment(department);
+			List<Department> departments = DepartmentLocalServiceUtil.getDepartments(-1, -1);
+			boolean checkDepartmentCode = false;
+			for(Department dp : departments){
+				if(dp.getDepartmentCode().equals(code)){
+					checkDepartmentCode = true;
+				}
+			}
+			if(!checkDepartmentCode){
+				userId = PortalUtil.getUserId(req);
+				if (userId != 0) {
+					User user = UserLocalServiceUtil.getUser(userId);
+					companyId = user.getCompanyId();
+					long departmentId = CounterLocalServiceUtil.increment();
+					Department department = DepartmentLocalServiceUtil.createDepartment(departmentId);
+					department.setDepartmentCode(code);
+					department.setDepartmentName(name);
+					department.setDepartmentDescription(description);
+					department.setUserId(userId);
+					department.setCompanyId(companyId);
+					DepartmentLocalServiceUtil.addDepartment(department);
+					sendRedirect(req, res, redirect);
+				}
+			}else{
+				req.setAttribute("duplicate_department_code", "duplicate_department_code");
+				req.setAttribute("tabAddDepartment", "add_department");
+				req.setAttribute("departmentCode", code);
+				req.setAttribute("departmentName", name);
+				req.setAttribute("departmentDescription", description);
 			}
 		} catch (Exception e) {
 			_log.error("ERROR IN METHOD addDepartment OF " + ViewAction.class + " " + e.getMessage());
@@ -165,7 +180,7 @@ public class ViewAction extends PortletAction {
 	}
 	
 
-	public void addReportRegistry(ActionRequest req) throws SystemException, IOException, PortalException {
+	public void addReportRegistry(ActionRequest req, ActionResponse res, String redirect) throws SystemException, IOException, PortalException {
 		try {
 			String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
 			long departmentId = ParamUtil.getLong(req, "department");
@@ -186,54 +201,68 @@ public class ViewAction extends PortletAction {
 			Date date = new Date();
 			Timestamp timeNow = new Timestamp(date.getTime());
 			
-			String checkResultProgram = "";
+			List<ReportRegistry> reportRegistries = ReportRegistryLocalServiceUtil.getReportRegistries(-1, -1);
+			boolean checkReportRegistryCode = false;
+			for(ReportRegistry rr : reportRegistries){
+				if(rr.getReportRegistryCode().equals(reportRegistryCode)){
+					checkReportRegistryCode = true;
+				}
+			}
 			
-			long userId = PortalUtil.getUserId(req);
-			if(userId != 0){
-				User user = UserLocalServiceUtil.getUser(userId);
-				String userName = user.getScreenName();
-				reportRegistry.setReportRegistryCode(reportRegistryCode);
-				reportRegistry.setReportDate(timeNow);
-				reportRegistry.setUserId(userId);
-				reportRegistry.setUserCreate(userName);
-				reportRegistry.setDepartmentId(departmentId);
-				if (!"".equals(nameFieldRow)) {
-					checkResultProgram = "resultwork";
-					String [] nameFieldRowArr = nameFieldRow.split("_");
-					String [] titleFilesArr = titleFiles.split("#");
-					if (titleFilesArr.length == 0) {
-						titleFilesArr = new String [nameFieldRowArr.length];
-						for (int i = 0; i < nameFieldRowArr.length; i++) {
-							titleFilesArr[i] = "";
+			if(!checkReportRegistryCode){
+				long userId = PortalUtil.getUserId(req);
+				if(userId != 0){
+					User user = UserLocalServiceUtil.getUser(userId);
+					String userName = user.getScreenName();
+					reportRegistry.setReportRegistryCode(reportRegistryCode);
+					reportRegistry.setReportDate(timeNow);
+					reportRegistry.setUserId(userId);
+					reportRegistry.setUserCreate(userName);
+					reportRegistry.setDepartmentId(departmentId);
+					String checkResultProgram = "";
+					if (!"".equals(nameFieldRow)) {
+						checkResultProgram = "resultwork";
+						String [] nameFieldRowArr = nameFieldRow.split("_");
+						String [] titleFilesArr = titleFiles.split("#");
+						if (titleFilesArr.length == 0) {
+							titleFilesArr = new String [nameFieldRowArr.length];
+							for (int i = 0; i < nameFieldRowArr.length; i++) {
+								titleFilesArr[i] = "";
+							}
 						}
-					}
-					String resultTitles = "";
-					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						resultTitles += titleFilesArr[i];
-						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
-					}
-					reportRegistry.setResultWork(resultTitles);
-				}
-				if (!"".equals(nameFieldRow1)) {
-					checkResultProgram = "programwork";
-					String [] nameFieldRowArr = nameFieldRow1.split("_");
-					String [] titleFilesArr = titleFiles1.split("#");
-					if (titleFilesArr.length == 0) {
-						titleFilesArr = new String [nameFieldRowArr.length];
+						String resultTitles = "";
 						for (int i = 0; i < nameFieldRowArr.length; i++) {
-							titleFilesArr[i] = "";
+							resultTitles += titleFilesArr[i];
+							uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
 						}
+						reportRegistry.setResultWork(resultTitles);
 					}
-					String programTitles = "";
-					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						programTitles += titleFilesArr[i];
-						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+					if (!"".equals(nameFieldRow1)) {
+						checkResultProgram = "programwork";
+						String [] nameFieldRowArr = nameFieldRow1.split("_");
+						String [] titleFilesArr = titleFiles1.split("#");
+						if (titleFilesArr.length == 0) {
+							titleFilesArr = new String [nameFieldRowArr.length];
+							for (int i = 0; i < nameFieldRowArr.length; i++) {
+								titleFilesArr[i] = "";
+							}
+						}
+						String programTitles = "";
+						for (int i = 0; i < nameFieldRowArr.length; i++) {
+							programTitles += titleFilesArr[i];
+							uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+						}
+						reportRegistry.setProgramWork(programTitles);
 					}
-					reportRegistry.setProgramWork(programTitles);
-				}
-				
 					ReportRegistryLocalServiceUtil.addReportRegistry(reportRegistry);
+					sendRedirect(req, res, redirect);
 				}
+			}else{
+				req.setAttribute("duplicate_report_registry_code", "duplicate_report_registry_code");
+				req.setAttribute("tabAddReportRegistry", "add_report_registry");
+				req.setAttribute("reportRegistryCode", reportRegistryCode);
+				req.setAttribute("departmentId", String.valueOf(departmentId));
+			}
 		} catch (Exception e) {
 			_log.error("ERROR IN METHOD addReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 		}
@@ -292,66 +321,74 @@ public class ViewAction extends PortletAction {
 	}
 	
 	public void updateReportRegistry(ActionRequest req, ActionResponse res) throws SystemException, PortalException, IOException {
-		long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
-		String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
-		long departmentId = ParamUtil.getLong(req, "department");
-		
-		String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
-		nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
-		String titleFiles  = ParamUtil.getString(req, "titleFiles");
-		titleFiles = StringUtil.encodeHtml(titleFiles);
-		
-		String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
-		nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
-		String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
-		titleFiles1 = StringUtil.encodeHtml(titleFiles1);
-		
-		ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.getReportRegistry(reportRegistryId);
-		
-		Date date = new Date();
-		Timestamp timeNow = new Timestamp(date.getTime());
-		
-		String checkResultProgram = "";
-		
-		long userId = PortalUtil.getUserId(req);
-		if(userId != 0){
-			reportRegistry.setReportRegistryCode(reportRegistryCode);
-			reportRegistry.setReportDate(timeNow);
-			reportRegistry.setUserId(userId);
-			reportRegistry.setDepartmentId(departmentId);
-			try {
+		try {
+			long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
+			String reportRegistryCode = ParamUtil.getString(req, "reportRegistryCode");
+			long departmentId = ParamUtil.getLong(req, "department");
+			
+			String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
+			nameFieldRow = StringUtil.encodeHtml(nameFieldRow);
+			String titleFiles  = ParamUtil.getString(req, "titleFiles");
+			titleFiles = StringUtil.encodeHtml(titleFiles);
+			
+			String nameFieldRow1 = ParamUtil.getString(req, "nameFieldRow1");
+			nameFieldRow1 = StringUtil.encodeHtml(nameFieldRow1);
+			String titleFiles1  = ParamUtil.getString(req, "titleFiles1");
+			titleFiles1 = StringUtil.encodeHtml(titleFiles1);
+			
+			ReportRegistry reportRegistry = ReportRegistryLocalServiceUtil.getReportRegistry(reportRegistryId);
+			
+			Date date = new Date();
+			Timestamp timeNow = new Timestamp(date.getTime());
+			
+			long userId = PortalUtil.getUserId(req);
+			if(userId != 0){
+				User user = UserLocalServiceUtil.getUser(userId);
+				String userName = user.getScreenName();
+				reportRegistry.setReportRegistryCode(reportRegistryCode);
+				reportRegistry.setReportDate(timeNow);
+				reportRegistry.setUserId(userId);
+				reportRegistry.setUserCreate(userName);
+				reportRegistry.setDepartmentId(departmentId);
+				String checkResultProgram = "";
+				if (!"".equals(nameFieldRow)) {
+					checkResultProgram = "resultwork";
+					String [] nameFieldRowArr = nameFieldRow.split("_");
+					String [] titleFilesArr = titleFiles.split("#");
+					if (titleFilesArr.length == 0) {
+						titleFilesArr = new String [nameFieldRowArr.length];
+						for (int i = 0; i < nameFieldRowArr.length; i++) {
+							titleFilesArr[i] = "";
+						}
+					}
+					String resultTitles = "";
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						resultTitles += titleFilesArr[i];
+						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+					}
+					reportRegistry.setResultWork(resultTitles);
+				}
+				if (!"".equals(nameFieldRow1)) {
+					checkResultProgram = "programwork";
+					String [] nameFieldRowArr = nameFieldRow1.split("_");
+					String [] titleFilesArr = titleFiles1.split("#");
+					if (titleFilesArr.length == 0) {
+						titleFilesArr = new String [nameFieldRowArr.length];
+						for (int i = 0; i < nameFieldRowArr.length; i++) {
+							titleFilesArr[i] = "";
+						}
+					}
+					String programTitles = "";
+					for (int i = 0; i < nameFieldRowArr.length; i++) {
+						programTitles += titleFilesArr[i];
+						uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
+					}
+					reportRegistry.setProgramWork(programTitles);
+				}
 				ReportRegistryLocalServiceUtil.updateReportRegistry(reportRegistry);
-			} catch (Exception e) {
-				_log.error("ERROR IN METHOD updateReportRegistry OF " + ViewAction.class + " " + e.getMessage());
-			}
-			if (!"".equals(nameFieldRow)) {
-				checkResultProgram = "resultwork";
-				String [] nameFieldRowArr = nameFieldRow.split("_");
-				String [] titleFilesArr = titleFiles.split("#");
-				if (titleFilesArr.length == 0) {
-					titleFilesArr = new String [nameFieldRowArr.length];
-					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						titleFilesArr[i] = "";
-					}
-				}
-				for (int i = 0; i < nameFieldRowArr.length; i++) {
-					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
-				}
-			}
-			if (!"".equals(nameFieldRow1)) {
-				checkResultProgram = "programwork";
-				String [] nameFieldRowArr = nameFieldRow1.split("_");
-				String [] titleFilesArr = titleFiles1.split("#");
-				if (titleFilesArr.length == 0) {
-					titleFilesArr = new String [nameFieldRowArr.length];
-					for (int i = 0; i < nameFieldRowArr.length; i++) {
-						titleFilesArr[i] = "";
-					}
-				}
-				for (int i = 0; i < nameFieldRowArr.length; i++) {
-					uploadFile(req, reportRegistryId, userId, nameFieldRowArr[i], titleFilesArr[i], checkResultProgram);
-				}
-			}
+			}	
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD updateReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
 
@@ -359,8 +396,8 @@ public class ViewAction extends PortletAction {
 		long reportRegistryId = ParamUtil.getLong(req, "reportRegistryId");
 		long userId = PortalUtil.getUserId(req);
 		try {
-			if(userId != 0){
-				ReportRegistryLocalServiceUtil.deleteReportRegistry(reportRegistryId);
+			if(userId != 0 && reportRegistryId > 0){
+				System.out.println("nhay vao day");
 				List<ResultProgram> resultPrograms = ReportRegistryLocalServiceUtil.getResultPrograms(reportRegistryId);
 				String pathFile = getServlet().getServletContext().getRealPath("/");
 				if(resultPrograms.size() > 0){
@@ -372,6 +409,8 @@ public class ViewAction extends PortletAction {
 						file.delete();
 					}
 				}
+				ReportRegistryLocalServiceUtil.deleteReportRegistry(reportRegistryId);
+				System.out.println("xoa xong reportregistry");
 			}
 		} catch (Exception e) {
 			_log.error("ERROR IN METHOD deleteReportRegistry OF " + ViewAction.class + " " + e.getMessage());
@@ -389,20 +428,20 @@ public class ViewAction extends PortletAction {
 	}
 	
 	public ActionForward render(ActionMapping mapping, ActionForm form, PortletConfig config, RenderRequest req, RenderResponse res) throws Exception {
-			try {
-				long departmentId = ParamUtil.getLong(req, "department");
-				String dateFrom = ParamUtil.getString(req, "dateFrom");
-				String dateTo = ParamUtil.getString(req, "dateTo");
-				req.setAttribute("departmentId", String.valueOf(departmentId));
-				req.setAttribute("dateFrom", dateFrom);
-				req.setAttribute("dateTo", dateTo);
-			} catch (Exception e) {
-				_log.error("------------------ERROR render OF " + ViewAction.class + " " + e.getMessage());
-			}
-			if (getForward(req) != null && !getForward(req).equals("")) {
-				return mapping.findForward(getForward(req));
-			} else {
-				return mapping.findForward("portlet.sgs.report_registry_work.view");
-			}
+		try {
+			long departmentId = ParamUtil.getLong(req, "department");
+			String dateFrom = ParamUtil.getString(req, "dateFrom");
+			String dateTo = ParamUtil.getString(req, "dateTo");
+			req.setAttribute("departmentId", String.valueOf(departmentId));
+			req.setAttribute("dateFrom", dateFrom);
+			req.setAttribute("dateTo", dateTo);
+		} catch (Exception e) {
+			_log.error("ERROR IN RENDER OF " + ViewAction.class + " " + e.getMessage());
+		}
+		if (getForward(req) != null && !getForward(req).equals("")) {
+			return mapping.findForward(getForward(req));
+		} else {
+			return mapping.findForward("portlet.sgs.report_registry_work.view");
+		}	
 	}
 }
