@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@ include file="/html/portlet/ext/report_registry_work/init.jsp" %>
 
 <%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistryDisplayTerms"%>
@@ -27,6 +29,9 @@
 			
 		}
 	}
+	String dateFrom = (String) request.getAttribute("dateFrom");
+	String dateTo= (String) request.getAttribute("dateTo");
+	
 %>
 
 	<table cellspacing="0" width="100%">
@@ -53,13 +58,13 @@
 
 			<td><liferay-ui:message key="date-from" />&nbsp;</td>
 			<td>
-				<input name="<portlet:namespace />dateFrom" id="<portlet:namespace />cal_from_date" size="12" type="text" value="" style="width: 125px" maxlength="10" onFocus="javascript:vDateType='3'" onKeyUp="DateFormat(this,this.value,event,false,'3')"/>
+				<input name="<portlet:namespace />dateFrom"  value="<%= (dateFrom != null) ? dateFrom : "" %>" id="<portlet:namespace />cal_from_date" size="12" type="text" value="" style="width: 125px" maxlength="10" onFocus="javascript:vDateType='3'" onKeyUp="DateFormat(this,this.value,event,false,'3')"/>
 				<img align="top" src="/html/images/cal.gif" style="cursor: pointer;" id="cal-button-FromDate" onClick="callCalendar('<portlet:namespace/>cal_from_date','cal-button-FromDate')" />
 			</td>
 			
 			<td><liferay-ui:message key="date-to" />&nbsp;</td>
 			<td>
-				<input name="<portlet:namespace />dateTo" id="<portlet:namespace />cal_to_date" size="12" type="text" value="" style="width: 125px" maxlength="10" onFocus="javascript:vDateType='3'" onKeyUp="DateFormat(this,this.value,event,false,'3')"/>
+				<input name="<portlet:namespace />dateTo"  value="<%= (dateTo != null) ? dateTo : "" %>" id="<portlet:namespace />cal_to_date" size="12" type="text" value="" style="width: 125px" maxlength="10" onFocus="javascript:vDateType='3'" onKeyUp="DateFormat(this,this.value,event,false,'3')"/>
 				<img align="top" src="/html/images/cal.gif" id="cal-button-ToDate" style="cursor: pointer;" onClick="callCalendar('<portlet:namespace/>cal_to_date','cal-button-ToDate')" />
 			</td>
 		</tr>

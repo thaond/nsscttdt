@@ -52,19 +52,6 @@
 	}
 	String dateFrom = (String) request.getAttribute("dateFrom");
 	String dateTo= (String) request.getAttribute("dateTo");
-	long dateFromComparator = 0;
-	long dateToComparator = 0;
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-	if(dateFrom != null && !dateFrom.equals("")){
-		Date dFrom = simpleDateFormat.parse(dateFrom);	
-		dateFromComparator = dFrom.getTime();
-	}
-	if(dateTo != null && !dateTo.equals("")){
-		Date dTo = simpleDateFormat.parse(dateTo);	
-		dateToComparator = dTo.getTime();
-	}
-	System.out.println("dateFromComparator "+dateFromComparator);
-	System.out.println("dateToComparator "+dateToComparator);
 %>
 
 <% if(error_delete_department != null){ %>
@@ -218,6 +205,39 @@
 						}
 						listReportRegistry = temp;
 					}
+					
+					DateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					Date dFrom = null;
+					Date dTo = null;
+					if(dateFrom != null && !dateFrom.equals("")){
+						dFrom = simpleDateFormat.parse(dateFrom);	
+					}
+					if(dateTo != null && !dateTo.equals("")){
+						dTo = simpleDateFormat.parse(dateTo);	
+						dTo.setDate(dTo.getDate() + 1);
+					}
+					
+					List<ReportRegistry> tempDate = new ArrayList<ReportRegistry>();
+					for(ReportRegistry reportRegistry : listReportRegistry){
+						Date dateCreate = reportRegistry.getReportDate(); 
+						if(dFrom == null){
+							if(dTo == null){
+								tempDate.add(reportRegistry);
+							}else if(dateCreate.before(dTo)){
+								tempDate.add(reportRegistry);
+							}
+						}else if(dTo == null){
+							if(dateCreate.after(dFrom)){
+								tempDate.add(reportRegistry);
+							}
+						}else if(dTo != null){
+							if(dateCreate.after(dFrom) && dateCreate.before(dTo)){
+								tempDate.add(reportRegistry);
+							}
+						}
+					}
+					listReportRegistry = tempDate;
+					
 					count = listReportRegistry.size();
 					reportRegistrySearch.setTotal(count);
 					reportRegistrySearch.setResults(listReportRegistry);
@@ -274,9 +294,7 @@
 						
 						// date
 						if(reportRegistry.getReportDate() != null){
-							Date dateCreate = reportRegistry.getReportDate();
-							System.out.println("dateCreate "+dateCreate.getTime());
-							String dateNow = simpleDateFormat.format(dateCreate);
+							String dateNow = simpleDateFormat.format(reportRegistry.getReportDate());
 							row.addText(dateNow);
 						}else{
 							row.addText("");
