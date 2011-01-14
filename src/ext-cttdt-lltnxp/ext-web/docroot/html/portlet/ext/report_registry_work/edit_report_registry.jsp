@@ -40,11 +40,10 @@
 <table>
 	<tr>
 		<td><liferay-ui:message key="report-registry-code" /></td>
-		<td><input type="text" size="50" name="<portlet:namespace/>reportRegistryCode" value="<%=reportRegistry.getReportRegistryCode()%>"></td>
+		<td><input type="text" readonly="readonly" size="50" name="<portlet:namespace/>reportRegistryCode" value="<%=reportRegistry.getReportRegistryCode()%>"></td>
 		<td><liferay-ui:message key="department-name" /></td>
 		<td>
 		<select name="<portlet:namespace/>department">
-			<option value=""><liferay-ui:message key="select-department" /></option>
 			<% if(departments.size() >0 ){ %>
 				<% for(int i = 0; i < departments.size(); i++){ %>
 					<option value="<%=departments.get(i).getDepartmentId()%>" <%= (departments.get(i).getDepartmentId() == reportRegistry.getDepartmentId() ? "selected" : "") %>><%=departments.get(i).getDepartmentName()%></option>		
@@ -88,5 +87,6 @@
 <br>
 
 <input type="submit" value='<liferay-ui:message key="edit-report-registry"/>' onclick="return checkValidate()">
+<a href="<%=redirect %>>"><input type="button" value='<liferay-ui:message key="back"/>'></a>
 </form>
 <%} %>

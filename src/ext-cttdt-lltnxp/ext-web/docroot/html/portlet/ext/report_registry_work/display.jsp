@@ -1,29 +1,29 @@
-<%@page import="java.util.Date"%>
-<%@page import="java.text.DateFormat"%>
 <%@ include file="/html/portlet/ext/report_registry_work/init.jsp" %>
+<%@ include file="/html/portlet/ext/report_registry_work/js/report_registry.jsp" %>
 
 <%@page import="java.io.File"%>
-<%@page import="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil"%>
-<%@page import="com.sgs.portlet.report_registry_work.model.ResultProgram"%>
-<%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
-<%@page import="com.liferay.portal.model.User"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil"%>
-<%@page import="com.sgs.portlet.report_registry_work.model.ReportRegistry"%>
-<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearchTerms"%>
-<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistryDisplayTerms"%>
-<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearch"%>
-
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.portlet.WindowState"%>
 <%@page import="javax.portlet.PortletURL"%>
 
+<%@page import="com.liferay.portal.service.UserLocalServiceUtil"%>
+<%@page import="com.liferay.portal.model.User"%>
 <%@page import="com.liferay.portal.kernel.search.Sort"%>
 <%@page import="com.liferay.portal.kernel.util.ParamUtil"%>
 <%@page import="com.liferay.portal.kernel.util.Constants"%>
 <%@page import="com.liferay.portal.kernel.dao.search.ResultRow"%>
 
+<%@page import="com.sgs.portlet.report_registry_work.service.ResultProgramLocalServiceUtil"%>
+<%@page import="com.sgs.portlet.report_registry_work.model.ResultProgram"%>
+<%@page import="com.sgs.portlet.report_registry_work.service.ReportRegistryLocalServiceUtil"%>
+<%@page import="com.sgs.portlet.report_registry_work.model.ReportRegistry"%>
+<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearchTerms"%>
+<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistryDisplayTerms"%>
+<%@page import="com.sgs.portlet.report_registry_work.search.ReportRegistrySearch"%>
 <%@page import="com.sgs.portlet.report_registry_work.service.DepartmentLocalServiceUtil"%>
 <%@page import="com.sgs.portlet.report_registry_work.model.Department"%>
 <%@page import="com.sgs.portlet.report_registry_work.search.DepartmentSearchTerms"%>
@@ -162,7 +162,7 @@
 	</c:when>
 		
 	<c:when test='<%=tabs1.equals("Report-Registry") %>'>
-		<form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" >
+		<form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm">
     	<%
 			ReportRegistrySearch reportRegistrySearch = new ReportRegistrySearch(renderRequest, portletURL);
     		ReportRegistryDisplayTerms displayTerms = (ReportRegistryDisplayTerms)reportRegistrySearch.getDisplayTerms();
@@ -338,11 +338,3 @@
 		</form>
 	</c:when>
 </c:choose>
-
-<script type="text/javascript">
-	function deleteConfirm(url) {
-		if (confirm("<liferay-ui:message key='ban-co-that-su-muon-xoa'/>")) {
-			location.href = url;
-		}
-	}
-</script> 

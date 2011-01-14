@@ -18,7 +18,18 @@
 	String portletURLString = portletURL.toString();
 	
 	List<Department> departments = DepartmentLocalServiceUtil.getDepartments(-1,-1);
+	String duplicateReportRegistryCode = (String) request.getAttribute("duplicate_report_registry_code");
+	String reportRegistryCode = (String) request.getAttribute("reportRegistryCode");
+	String departmentId = (String) request.getAttribute("departmentId");
+	long departmentIdSelect = 0;
+	if(departmentId != null){
+		departmentIdSelect = Long.parseLong(departmentId);	
+	}
 %>
+
+<% if(duplicateReportRegistryCode != null){ %>
+	<div style="color: red"><liferay-ui:message key="not-add-report-registry"/></div>
+<%} %>
 
 <liferay-ui:tabs names="Department,Report-Registry" url="<%= portletURLString %>" />
 
@@ -36,14 +47,13 @@
 <table>
 	<tr>
 		<td><liferay-ui:message key="report-registry-code" /></td>
-		<td><input type="text" size="50" name="<portlet:namespace/>reportRegistryCode"></td>
+		<td><input type="text" size="50" name="<portlet:namespace/>reportRegistryCode" value="<%= (reportRegistryCode != null) ? reportRegistryCode : "" %>"></td>
 		<td><liferay-ui:message key="department-name" /></td>
 		<td>
 		<select name="<portlet:namespace/>department">
-			<option value=""><liferay-ui:message key="select-department" /></option>
 			<% if(departments.size() >0 ){ %>
 				<% for(int i = 0; i < departments.size(); i++){ %>
-					<option value="<%=departments.get(i).getDepartmentId()%>"><%=departments.get(i).getDepartmentName()%></option>		
+					<option value="<%=departments.get(i).getDepartmentId()%>" <%=(departmentId != null && departmentIdSelect == departments.get(i).getDepartmentId()) ? "selected" : "" %>><%=departments.get(i).getDepartmentName()%></option>		
 				<%} %> 
 			<%} %> 
 		</select>
@@ -84,6 +94,6 @@
 <br>
 
 <input type="submit" value='<liferay-ui:message key="add-report-registry"/>' onclick="return checkValidate()">
+<a href="<%=redirect %>>"><input type="button" value='<liferay-ui:message key="back"/>'></a>
 </form>
-
 

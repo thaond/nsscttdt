@@ -27,13 +27,13 @@
 	<portlet:param name="redirect" value="<%=redirect %>" />
 </portlet:actionURL>
 
-<form action="<%=edit_department%>" onsubmit="return check(this);" method="post">
+<form action="<%=edit_department%>" onsubmit="return check(this);" method="post" name="<portlet:namespace />fm">
 <% if(department != null){ %>
 <input type="hidden" name="<portlet:namespace/>departmentId" value="<%=department.getDepartmentId()%>">
 <table>
 	<tr>
 		<td><liferay-ui:message key="department-code" /></td>
-		<td><input type="text" name="<portlet:namespace/>departmentCode" value="<%=department.getDepartmentCode()%>"></td>
+		<td><input type="text" readonly="readonly" name="<portlet:namespace/>departmentCode" value="<%=department.getDepartmentCode()%>"></td>
 	</tr>
 	<tr>
 		<td><liferay-ui:message key="department-name" /></td>
@@ -44,15 +44,15 @@
 		<td><input type="text" name="<portlet:namespace/>departmentDescription" value="<%=department.getDepartmentDescription()%>"></td>
 	</tr>
 </table>
-<%}else{ %>
-rong
-<%} %>
+<%}%>
 <br>
-<input type="submit" value="edit-department"></form>
+<input type="submit" value='<liferay-ui:message key="edit-department" />'>
+<a href="<%=redirect %>"><input type="button" value='<liferay-ui:message key="back"/>'></a>
+</form>
 
 <script type="text/javascript" language="JavaScript">
 	 function check(form){
-		 if((checkCode(form)==false) || checkName(form)==false || (checkDescription(form)==false)){
+		 if((checkCode(form)==false) || (checkName(form)==false)){
 			return false;			 
 		 }else{
 			 return true;

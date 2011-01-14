@@ -12,7 +12,16 @@
 	portletURL.setParameter("struts_action", "/sgs/report_registry_work/view");
 	portletURL.setParameter("tabs1", tabs1);
 	String portletURLString = portletURL.toString();
+	
+	String departmentCode = (String) request.getAttribute("departmentCode");
+	String departmentName = (String) request.getAttribute("departmentName");
+	String departmentDescription = (String) request.getAttribute("departmentDescription");
+	String duplicateDepartmentCode = (String) request.getAttribute("duplicate_department_code");
 %>
+
+<% if(duplicateDepartmentCode != null){ %>
+	<div style="color: red"><liferay-ui:message key="not-add-department"/></div>
+<%} %>
 
 <liferay-ui:tabs names="Department,Report-Registry" url="<%= portletURLString %>" />
 
@@ -25,27 +34,30 @@
 	<portlet:param name="redirect" value="<%=redirect %>" />
 </portlet:actionURL>
 
-<form action="<%=add_department%>" onsubmit="return check(this);" method="post">
+<form action="<%=add_department%>" onsubmit="return check(this);" method="post" name="<portlet:namespace />fm">
 <table>
 	<tr>
 		<td><liferay-ui:message key="department-code" /></td>
-		<td><input type="text" name="<portlet:namespace/>departmentCode"></td>
+		<td><input type="text" name="<portlet:namespace/>departmentCode" value="<%= (departmentCode != null) ? departmentCode : "" %>"></td>
 	</tr>
 	<tr>
 		<td><liferay-ui:message key="department-name" /></td>
-		<td><input type="text" name="<portlet:namespace/>departmentName"></td>
+		<td><input type="text" name="<portlet:namespace/>departmentName" value="<%= (departmentName != null) ? departmentName : "" %>"></td>
 	</tr>
 	<tr>
 		<td><liferay-ui:message key="department-description" /></td>
-		<td><input type="text" name="<portlet:namespace/>departmentDescription"></td>
+		<td><input type="text" name="<portlet:namespace/>departmentDescription" value="<%= (departmentDescription != null) ? departmentDescription : "" %>"></td>
 	</tr>
 </table>
 <div class="separator"></div>
-<input type="submit" value='<liferay-ui:message key="add-department"/>'></form>
+<input type="submit" value='<liferay-ui:message key="add-department"/>'>
+<a href="<%=redirect %>"><input type="button" value='<liferay-ui:message key="back"/>'></a>
+</form>
+
 
 <script type="text/javascript" language="JavaScript">
 	 function check(form){
-		 if((checkCode(form)==false) || checkName(form)==false || (checkDescription(form)==false)){
+		 if((checkCode(form)==false) || (checkName(form)==false)){
 			return false;			 
 		 }else{
 			 return true;
