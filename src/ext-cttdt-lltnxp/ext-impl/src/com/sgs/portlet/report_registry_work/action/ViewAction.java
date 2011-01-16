@@ -76,10 +76,13 @@ public class ViewAction extends PortletAction {
 					updateReportRegistry(req, res);
 					sendRedirect(req, res, redirect);
 				}else if(cmd.equals(Constants.DELETE)){
-					System.out.println("nhay vao delete reportregistry");
 					deleteReportRegistry(req, res, redirect);
 				}else if(cmd.equals("SELECT")){
 					selectReportRegistry(req, res);
+				}
+			}else if(varAction.equals("resultprogram")){
+				if(cmd.equals(Constants.DELETE)){
+					deleteResultProgram(req);
 				}
 			}
 		}
@@ -397,7 +400,6 @@ public class ViewAction extends PortletAction {
 		long userId = PortalUtil.getUserId(req);
 		try {
 			if(userId != 0 && reportRegistryId > 0){
-				System.out.println("nhay vao day");
 				List<ResultProgram> resultPrograms = ReportRegistryLocalServiceUtil.getResultPrograms(reportRegistryId);
 				String pathFile = getServlet().getServletContext().getRealPath("/");
 				if(resultPrograms.size() > 0){
@@ -410,10 +412,9 @@ public class ViewAction extends PortletAction {
 					}
 				}
 				ReportRegistryLocalServiceUtil.deleteReportRegistry(reportRegistryId);
-				System.out.println("xoa xong reportregistry");
 			}
 		} catch (Exception e) {
-			_log.error("ERROR IN METHOD deleteReportRegistry OF " + ViewAction.class + " " + e.getMessage());
+			//_log.error("ERROR IN METHOD deleteReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
 	
@@ -426,6 +427,17 @@ public class ViewAction extends PortletAction {
 			_log.error("ERROR IN METHOD selectReportRegistry OF " + ViewAction.class + " " + e.getMessage());
 		}
 	}
+	
+	public void deleteResultProgram(ActionRequest req) {
+		try {
+			long resultProgramId = ParamUtil.getLong(req,"resultProgramId");
+			ResultProgramLocalServiceUtil.deleteResultProgram(resultProgramId);
+			editReportRegistry(req);
+		} catch (Exception e) {
+			_log.error("ERROR IN METHOD deleteResultProgram OF " + ViewAction.class + " " + e.getMessage());
+		}
+	}
+
 	
 	public ActionForward render(ActionMapping mapping, ActionForm form, PortletConfig config, RenderRequest req, RenderResponse res) throws Exception {
 		try {
