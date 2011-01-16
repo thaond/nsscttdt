@@ -320,14 +320,14 @@
 						//URL delete
 						PortletURL rowURLDelete = renderResponse.createActionURL();
 						rowURLDelete.setWindowState(WindowState.NORMAL);
-						rowURLDelete.setParameter("struts_action","/sgs/report_registry_work/view");
 						rowURLDelete.setParameter(Constants.CMD,Constants.DELETE);
-						rowURLDelete.setParameter("varAction","reportregistry");
-						rowURLDelete.setParameter("tabs1","Report-Registry");
+						rowURLDelete.setParameter("struts_action","/sgs/report_registry_work/view");
 						rowURLDelete.setParameter("reportRegistryId", String.valueOf(reportRegistryId));
+						rowURLDelete.setParameter("varAction","reportregistry");
+						rowURLDelete.setParameter("redirect", reportRegistrySearch.getIteratorURL().toString());
+						rowURLDelete.setParameter("tabs1","Report-Registry");
 						
 						String deleteAction = "<a  href='javascript: ;' onclick=deleteConfirm('"+ rowURLDelete.toString() +"')><u>"+ "<img src='/html/images/delete.png'/>" +"</u></a>";
-						
 						row.addText(deleteAction);
 						
 						resultRows.add(row);
