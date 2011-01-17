@@ -9,6 +9,7 @@ public class DocumentManagerSearchTerms extends DocumentManagerDisplayTerms {
 	public DocumentManagerSearchTerms(RenderRequest renderRequest) {
 		super(renderRequest);
 		documentManagerCode = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERCODE);
+		documentManagerCategory = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERCATEGORY);
 		documentManagerDescription = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERDESCRIPTION);
 		documentManagerTitle = DAOParamUtil.getLike(renderRequest, DOCUMENTMANAGERTITLE);
 	}

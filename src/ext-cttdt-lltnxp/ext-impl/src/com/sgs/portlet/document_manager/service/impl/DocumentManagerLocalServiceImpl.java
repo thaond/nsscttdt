@@ -15,11 +15,11 @@ public class DocumentManagerLocalServiceImpl extends DocumentManagerLocalService
 		return documentManagerPersistence.getAttactFileDocuments(documentManagerId);
 	}
 	
-	public int countDocumentManager(String documentManagerCodes, String documentManagerDescriptions, String documentManagerTitles, boolean andOperator) throws SystemException{
-		return documentManagerFinder.count_document_manager(documentManagerCodes, documentManagerDescriptions, documentManagerTitles, andOperator);
+	public int countDocumentManager(String documentManagerCodes, String documentManagerCategorys, String documentManagerDescriptions, String documentManagerTitles, String documentManagerStyles, boolean andOperator) throws SystemException{
+		return documentManagerFinder.count_document_manager(documentManagerCodes, documentManagerCategorys, documentManagerDescriptions, documentManagerTitles, documentManagerStyles, andOperator);
 	}
 	
-	public List<DocumentManager> findDocumentManager(String documentManagerCodes, String documentManagerDescriptions, String documentManagerTitles, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
-		return documentManagerFinder.find_document_manager(documentManagerCodes, documentManagerDescriptions, documentManagerTitles, start, end, andOperator, obc);
+	public List<DocumentManager> findDocumentManager(String documentManagerCodes, String documentManagerCategorys, String documentManagerDescriptions, String documentManagerTitles, String documentManagerStyles, int start, int end, boolean andOperator, OrderByComparator obc) throws SystemException{
+		return documentManagerFinder.find_document_manager(documentManagerCodes, documentManagerCategorys, documentManagerDescriptions, documentManagerTitles, documentManagerStyles, start, end, andOperator, obc);
 	}
 }
