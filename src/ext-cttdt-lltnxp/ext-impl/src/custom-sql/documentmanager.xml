@@ -7,8 +7,10 @@
 		FROM document_manager
 		WHERE 
 		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
 		]]>
 	</sql>
 
@@ -19,8 +21,10 @@
 		FROM document_manager
 		WHERE
 		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
 		ORDER BY documentManagerCode ASC
 		]]>
 	</sql>
