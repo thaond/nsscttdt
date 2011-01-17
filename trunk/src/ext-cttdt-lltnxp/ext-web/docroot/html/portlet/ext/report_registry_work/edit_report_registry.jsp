@@ -129,8 +129,6 @@
 </form>
 <%} %>
 
-<% long resultProgramIdAction = 0; %>
-
 <script type="text/javascript">
 	function deleteConfirm(resultProgramId) {
 		document.<portlet:namespace/>fm.<portlet:namespace/>resultProgramId.value = resultProgramId;
@@ -145,6 +143,7 @@
 			<portlet:param name="tabs1" value="Report-Registry" />
 			<portlet:param name="varAction" value="resultprogram" />
 			<portlet:param name="tab" value="edit_report_registry" />
+			<portlet:param name="redirect" value="<%=redirect%>" />
 			<portlet:param name="reportRegistryId" value="<%=String.valueOf(reportRegistry.getReportRegistryId())%>" />
 			<portlet:param name="<%=Constants.CMD%>" value="<%=Constants.DELETE%>" />
 			</portlet:actionURL>");
