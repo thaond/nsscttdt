@@ -15,7 +15,9 @@ public class DocumentManagerSearchUtil {
 
 		if (orderByCol.equals("documentManagerCode")) {
 			orderByComparator = new DocumentManagerCodeComparator(orderByAsc);
-		} else if (orderByCol.equals("documentManagerDescription")) {
+		} else if (orderByCol.equals("documentManagerCategory")) {
+			orderByComparator = new DocumentManagerCategoryComparator(orderByAsc);
+		}  else if (orderByCol.equals("documentManagerDescription")) {
 			orderByComparator = new DocumentManagerDescriptionComparator(orderByAsc);
 		} else if (orderByCol.equals("documentManagerTitle")) {
 			orderByComparator = new DocumentManagerTitleComparator(orderByAsc);

@@ -65,8 +65,7 @@ public class DocumentManagerPersistenceImpl extends BasePersistenceImpl
 
             if (documentManager == null) {
                 if (_log.isWarnEnabled()) {
-                    _log.warn("No DocumentManager exists with the primary key " +
-                        documentManagerId);
+//                    _log.warn("No DocumentManager exists with the primary key " + documentManagerId);
                 }
 
                 throw new NoSuchException(

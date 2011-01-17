@@ -7,16 +7,19 @@ import com.liferay.portal.kernel.util.ParamUtil;
 
 public class DocumentManagerDisplayTerms extends DisplayTerms {
 	public static final String DOCUMENTMANAGERCODE = "documentManagerCode";
+	public static final String DOCUMENTMANAGERCATEGORY = "documentManagerCategory";
 	public static final String DOCUMENTMANAGERDESCRIPTION = "documentManagerDescription";
-	public static final String DOCUMENTMANAGERTITLE = "documentManagerDateTitle";
+	public static final String DOCUMENTMANAGERTITLE = "documentManagerTitle";
 
 	protected String documentManagerCode;
+	protected String documentManagerCategory;
 	protected String documentManagerDescription;
 	protected String documentManagerTitle;
 
 	public DocumentManagerDisplayTerms(RenderRequest renderRequest) {
 		super(renderRequest);
 		documentManagerCode = ParamUtil.getString(renderRequest, DOCUMENTMANAGERCODE);
+		documentManagerCategory = ParamUtil.getString(renderRequest, DOCUMENTMANAGERCATEGORY);
 		documentManagerDescription = ParamUtil.getString(renderRequest, DOCUMENTMANAGERDESCRIPTION);
 		documentManagerTitle = ParamUtil.getString(renderRequest, DOCUMENTMANAGERTITLE);
 
@@ -44,5 +47,13 @@ public class DocumentManagerDisplayTerms extends DisplayTerms {
 
 	public void setDocumentManagerTitle(String documentManagerDateTitle) {
 		this.documentManagerTitle = documentManagerDateTitle;
+	}
+
+	public String getDocumentManagerCategory() {
+		return documentManagerCategory;
+	}
+
+	public void setDocumentManagerCategory(String documentManagerCategory) {
+		this.documentManagerCategory = documentManagerCategory;
 	}
 }

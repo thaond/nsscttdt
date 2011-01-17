@@ -65,8 +65,7 @@ public class ReportRegistryPersistenceImpl extends BasePersistenceImpl
 
             if (reportRegistry == null) {
                 if (_log.isWarnEnabled()) {
-                    _log.warn("No ReportRegistry exists with the primary key " +
-                        reportRegistryId);
+//                    _log.warn("remove1 No ReportRegistry exists with the primary key " + reportRegistryId);
                 }
 
                 throw new NoSuchReportRegistryException(
