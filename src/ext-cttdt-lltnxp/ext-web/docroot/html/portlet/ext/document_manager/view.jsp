@@ -2,8 +2,13 @@
 
 <%
 	String tab = ParamUtil.getString(request, "tab");
-	if (Validator.isNull(tab))
+	String tabAddDocumentManager = (String) request.getAttribute("tabAddDocumentManager");
+	if (Validator.isNull(tab)){
 		tab = "view_document_manager";
+	}
+	if(tabAddDocumentManager != null){
+		tab = "add_document_manager";
+	}
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("tab", tab);
