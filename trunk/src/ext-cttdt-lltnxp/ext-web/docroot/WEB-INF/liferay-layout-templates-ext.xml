@@ -13,5 +13,10 @@
 			<wap-template-path>/layouttpl/custom/1_5_1_columns.wap.tpl</wap-template-path>
 			<thumbnail-path>/layouttpl/custom/1_5_1_columns.png</thumbnail-path>
 		</layout-template>
+		<layout-template id="sgs-layout-2-2-Log" name="sgs-layout-2-2-Log">
+			<template-path>/layouttpl/custom/2_2_Log_columns.tpl</template-path>
+			<wap-template-path>/layouttpl/custom/2_2_Log_columns.wap.tpl</wap-template-path>
+			<thumbnail-path>/layouttpl/custom/2_2_Log_columns.png</thumbnail-path>
+		</layout-template>
 	</custom>
 </layout-templates>

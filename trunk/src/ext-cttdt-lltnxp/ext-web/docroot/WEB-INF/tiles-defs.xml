@@ -862,11 +862,11 @@
     <definition extends="portlet" name="portlet.sgs.doccumentprivate.viewDetail">
         <put name="portlet_content" value="/portlet/sgs/doccumentprivate/viewDetail.jsp"/>
     </definition>
-    <definition extends="portlet" name="portlet.sgs.recievergroup.view">
-        <put name="portlet_content" value="/portlet/sgs/recievergroup/view.jsp"/>
+    <definition extends="portlet" name="portlet.sgs.receivergroup.view">
+        <put name="portlet_content" value="/portlet/sgs/receivergroup/view.jsp"/>
     </definition>
-    <definition extends="portlet" name="portlet.sgs.recievergroup.edit_reciever_group">
-        <put name="portlet_content" value="/portlet/sgs/recievergroup/edit_reciever_group.jsp"/>
+    <definition extends="portlet" name="portlet.sgs.receivergroup.edit_receiver_group">
+        <put name="portlet_content" value="/portlet/sgs/receivergroup/edit_receiver_group.jsp"/>
     </definition>
     <definition extends="portlet" name="portlet.sgs.phathanhcongvandi.view">
         <put name="portlet_content" value="/portlet/ext/phathanhcongvandi/view.jsp"/>
@@ -877,10 +877,16 @@
     <definition extends="portlet" name="portlet.sgs.report_registry_work.view">
         <put name="portlet_content" value="/portlet/ext/report_registry_work/view.jsp"/>
     </definition>
+    <definition extends="portlet" name="portlet.sgs.report_registry_work_index.view">
+        <put name="portlet_content" value="/portlet/ext/report_registry_work_index/view.jsp"/>
+    </definition>
     <definition extends="portlet" name="portlet.sgs.callportletother.view">
         <put name="portlet_content" value="/portlet/ext/callportletother/view.jsp"/>
     </definition>
     <definition extends="portlet" name="portlet.sgs.document_manager.view">
         <put name="portlet_content" value="/portlet/ext/document_manager/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.document_manager_index.view">
+        <put name="portlet_content" value="/portlet/ext/document_manager_index/view.jsp"/>
     </definition>
 </tiles-definitions>

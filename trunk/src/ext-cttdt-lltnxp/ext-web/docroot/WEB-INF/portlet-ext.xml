@@ -1936,12 +1936,12 @@
         </security-role-ref>
     </portlet>
     <portlet>
-        <portlet-name>SGS_RECIEVERGROUP</portlet-name>
+        <portlet-name>SGS_RECEIVERGROUP</portlet-name>
         <display-name>Sender Group</display-name>
         <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
         <init-param>
             <name>view-action</name>
-            <value>/sgs/recievergroup/view</value>
+            <value>/sgs/receivergroup/view</value>
         </init-param>
         <expiration-cache>0</expiration-cache>
         <supports>
@@ -2040,6 +2040,32 @@
         </security-role-ref>
     </portlet>
     <portlet>
+        <portlet-name>SGS_REPORT_REGISTRY_WORK_INDEX</portlet-name>
+        <display-name>report_registry_work_index</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/sgs/report_registry_work_index/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <portlet>
         <portlet-name>SGS_CALLPORTLETOTHER</portlet-name>
         <display-name>callportletother</display-name>
         <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
@@ -2072,6 +2098,32 @@
         <init-param>
             <name>view-action</name>
             <value>/sgs/document_manager/view</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+        <resource-bundle>com.liferay.portlet.StrutsResourceBundle</resource-bundle>
+        <portlet-preferences>
+            <preference>
+                <name>test</name>
+                <value>123</value>
+            </preference>
+        </portlet-preferences>
+        <security-role-ref>
+            <role-name>power-user</role-name>
+        </security-role-ref>
+        <security-role-ref>
+            <role-name>user</role-name>
+        </security-role-ref>
+    </portlet>
+    <portlet>
+        <portlet-name>SGS_DOCUMENT_MANAGER_INDEX</portlet-name>
+        <display-name>document_manager_index</display-name>
+        <portlet-class>com.liferay.portlet.StrutsPortlet</portlet-class>
+        <init-param>
+            <name>view-action</name>
+            <value>/sgs/document_manager_index/view</value>
         </init-param>
         <expiration-cache>0</expiration-cache>
         <supports>
