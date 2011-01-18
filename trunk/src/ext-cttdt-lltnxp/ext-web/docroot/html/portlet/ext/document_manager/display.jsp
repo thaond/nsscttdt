@@ -217,10 +217,10 @@
 				addURL.setWindowState(WindowState.NORMAL);
 				addURL.setParameter("struts_action", "/sgs/document_manager/view");
 				addURL.setParameter("tab", "add_document_manager");
-				addURL.setParameter("tabs1", "DocumentSend");
+				addURL.setParameter("tabs1", "DocumentReceived");
 				addURL.setParameter("redirect", documentManagerSearch.getIteratorURL().toString());
 			%>
-		<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="add-document-send"/>' /></span></a>
+		<a href="<%= addURL.toString() %>"><span><input class="button-width" type="button" value='<liferay-ui:message key="add-document-received"/>' /></span></a>
 		<div class="separator"></div>
 				<%
 				int count = DocumentManagerLocalServiceUtil.countDocumentManager(searchTerms.getDocumentManagerCode(), searchTerms.getDocumentManagerCategory(), searchTerms.getDocumentManagerDescription(), searchTerms.getDocumentManagerTitle(),"received", searchTerms.isAndOperator());
@@ -305,7 +305,7 @@
 						rowURLEdit.setParameter(Constants.CMD,Constants.EDIT);
 						rowURLEdit.setParameter("varAction","documentManagerSend");
 						rowURLEdit.setParameter("tab", "edit_document_manager");
-						rowURLEdit.setParameter("tabs1","DocumentSend");
+						rowURLEdit.setParameter("tabs1","DocumentReceived");
 						rowURLEdit.setParameter("documentManagerId", String.valueOf(documentManagerId));
 						rowURLEdit.setParameter("redirect", documentManagerSearch.getIteratorURL().toString());
 						
@@ -319,7 +319,7 @@
 						rowURLDelete.setParameter("struts_action","/sgs/document_manager/view");
 						rowURLDelete.setParameter(Constants.CMD,Constants.DELETE);
 						rowURLDelete.setParameter("varAction","documentManagerSend");
-						rowURLDelete.setParameter("tabs1","DocumentSend");
+						rowURLDelete.setParameter("tabs1","DocumentReceived");
 						rowURLDelete.setParameter("documentManagerId", String.valueOf(documentManagerId));
 						
 						String deleteAction = "<a  href='javascript: ;' onclick=deleteConfirm('"+ rowURLDelete.toString() +"')><u>"+ "<img src='/html/images/delete.png'/>" +"</u></a>";
