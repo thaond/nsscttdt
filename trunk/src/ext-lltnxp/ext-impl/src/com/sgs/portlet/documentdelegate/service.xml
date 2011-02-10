@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.documentdelegate">
+	<namespace>PmlDocumentDelegate</namespace>
+	<entity name="PmlDocumentDelegate" local-service="true" table="pml_edm_documentdelegate" >
+		<column name="documentDelegateId" type="long" primary="true"/>
+		
+		<column name="userDelegateId" type="long" />
+		<column name="userIsDelegateId" type="long" />
+		<column name="documentId" type="int" />
+		<column name="fromtDate" type="Date" />
+		<column name="toDate" type="Date" />
+		<column name="cancelDate" type="Date" />
+		
+		<finder return-type="Collection" name="UserIsDelegateId">
+			<finder-column name="userIsDelegateId"></finder-column>
+		</finder>
+	</entity>
+		
+</service-builder>

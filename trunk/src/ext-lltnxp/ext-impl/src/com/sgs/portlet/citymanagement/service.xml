@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.citymanagement">
+
+	<namespace>CityManagement</namespace>
+
+	<entity name="City" table="pml_city" local-service="true">
+		<!-- fields -->
+		<column name="cityID" type="String" primary="true" db-name="cityID" />
+		<column name="cityCode" type="String" db-name="cityCode" />
+		<column name="cityName" type="String" db-name="cityName" />
+		<column name="description" type="String" db-name="description" />
+		<column name="active" type="String" db-name="active" />
+		<column name="countryId" type="String" db-name="countryid" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="cityName" case-sensitive="false" />
+		</order>
+
+		<!-- methods --> 
+		<finder return-type="Collection" name="CityActive">
+			<finder-column name="active" />
+		</finder>
+		<!-- 
+			change AND to OR 
+			add '%column-name%'
+		-->
+		<finder return-type="Collection" name="C_N_D">
+			<finder-column name="cityCode" comparator="LIKE" />
+			<finder-column name="cityName" comparator="LIKE" />
+			<finder-column name="description" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Code">
+			<finder-column name="cityCode" comparator="LIKE" case-sensitive="false"/>
+		</finder>
+		<finder return-type="Collection" name="Name">
+			<finder-column name="cityName" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="Description">
+			<finder-column name="description" comparator="LIKE" />
+		</finder>
+		<finder return-type="Collection" name="CountryId">
+			<finder-column name="countryId" comparator="LIKE" />
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>CityCanNotDelete</exception>
+		<exception>CityCodeSameCode</exception>
+	</exceptions>
+</service-builder>

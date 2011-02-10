@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document.manageworkflow">
+	<namespace>PmlManageWorkDocumentFlow</namespace>
+	<entity name="PmlManageWorkDocumentFlow" local-service="true" remote-service="true"
+		table="pml_manage_documentworkflow">
+
+		<!-- PK fields -->
+
+		<column name="manageDocumentWorkFlowId" type="long" primary="true" db-name="managedocumentworkflowid"/>
+
+		<!-- Other fields -->
+
+		<column name="workFlowName" type="String" db-name="workflowname"/>
+		<column name="version" type="int" db-name="version_"/>
+		<column name="type" type="int" db-name="type_"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="startDate" type="Date" db-name="startdate"/>
+		<column name="endDate" type="Date" db-name="enddate"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="manageDocumentWorkFlowId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="WorkFlowName" return-type="Collection">
+			<finder-column name="workFlowName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="version" return-type="Collection">
+			<finder-column name="version" />
+		</finder>
+		
+		<finder name="type" return-type="Collection">
+			<finder-column name="type" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	<exceptions>
+		<exception>PmlManageWorkDocumentFlowCanNotDelete</exception>
+	</exceptions>
+</service-builder>

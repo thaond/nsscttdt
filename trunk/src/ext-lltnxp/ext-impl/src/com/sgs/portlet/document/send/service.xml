@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document.send">
+	<namespace>PmlDocumentSend</namespace>
+	<entity name="PmlEdmBookDocumentSend" local-service="true" remote-service="true"
+		table="pml_edm_bookdocumentsend">
+
+		<!-- PK fields -->
+
+		<column name="bookDocumentSendId" type="long" primary="true" db-name="bookdocumentsendid"/>
+
+		<!-- Other fields -->
+
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="currentRecord" type="long" db-name="currentrecord"/>
+		<column name="departmentsId" type="String" db-name="departmentsid"/>
+		<column name="documentRecordTypeId" type="int" db-name="documentrecordtypeid"/>
+		<column name="yearInUse" type="String" db-name="yearinuse"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="isAgency" type="String" db-name="isagency"/>
+		<column name="agencyId" type="String" db-name="agencyid"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="bookDocumentSendId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="DateCreated" return-type="Collection">
+			<finder-column name="dateCreated" />
+		</finder>
+		
+		<finder name="CurrentRecord" return-type="Collection">
+			<finder-column name="currentRecord" />
+		</finder>
+		
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DocumentRecordTypeId" return-type="Collection">
+			<finder-column name="documentRecordTypeId" />
+		</finder>
+		
+		<finder name="AgencyId" return-type="Collection">
+			<finder-column name="agencyId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="DepartDocYear" return-type="Collection">
+			<finder-column name="yearInUse" comparator="LIKE"/>
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+		
+		<finder name="DepartDocAgency" return-type="Collection">
+			<finder-column name="agencyId" comparator="LIKE"/>
+			<finder-column name="departmentsId" comparator="LIKE"/>
+			<finder-column name="documentRecordTypeId" comparator="="/>
+		</finder>
+		
+		<finder name="AgencyId_YearInUse_DocumentRecordTypeId" return-type="Collection">
+			<finder-column name="agencyId" />
+			<finder-column name="yearInUse" />
+			<finder-column name="documentRecordTypeId" />
+		</finder>	
+		
+		
+		<finder name="DocumentRecordTypeId_DepartmentsId" return-type="PmlEdmBookDocumentSend">
+			<finder-column name="documentRecordTypeId" />
+			<finder-column name="departmentsId" />
+		</finder>
+		
+		
+		<finder name="DocumentRecordTypeId_AgencyId" return-type="PmlEdmBookDocumentSend">
+			<finder-column name="documentRecordTypeId" />
+			<finder-column name="agencyId" />
+		</finder>
+		
+		<!--  24/05/2010 -->
+		<finder name="YearInUse_AgencyId" return-type="Collection">
+			<finder-column name="yearInUse" />
+			<finder-column name="agencyId" />
+		</finder>
+		
+		<finder name="YearInUse_DepartmentsId" return-type="Collection">
+			<finder-column name="yearInUse" />
+			<finder-column name="departmentsId" />
+		</finder>
+		<!-- end  -->
+		
+		<!-- References -->
+		
+	</entity>
+	
+	<entity name="PmlEdmCadre" local-service="true" remote-service="true"
+		table="pml_edm_cadre">
+
+		<!-- PK fields -->
+
+		<column name="userId" type="long" primary="true" db-name="userid"/>
+
+		<!-- Other fields -->
+
+		<column name="positionId" type="String" db-name="positionid"/>
+		<column name="departmentsId" type="String" db-name="departmentsid"/>
+		<column name="handPhone" type="String" db-name="handphone"/>
+		<column name="note" type="String" db-name="note"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="userId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="PositionId" return-type="Collection">
+			<finder-column name="positionId" comparator="LIKE"/>
+		</finder>
+		<finder name="DepartmentsId" return-type="Collection">
+			<finder-column name="departmentsId" comparator="LIKE"/>
+		</finder>
+		<finder name="HandPhone" return-type="Collection">
+			<finder-column name="handPhone" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+
+	</entity>
+	
+	<entity name="PmlEdmWriteDocumentSend" local-service="true" remote-service="true"
+		table="pml_edm_writedocumentsend">
+
+		<!-- PK fields -->
+
+		<column name="bookDocumentSendId" type="long" primary="true" db-name="bookdocumentsendid"/>
+		<column name="documentSendId" type="long" primary="true" db-name="documentsendid"/>
+
+		<!-- Other fields -->
+
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="soCongVanDiPhongHienTai" type="int" />
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="bookDocumentSendId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="BookDocumentSendId" return-type="Collection">
+			<finder-column name="bookDocumentSendId" />
+		</finder>
+		
+		<finder name="DocumentSendId" return-type="Collection">
+			<finder-column name="documentSendId" />
+		</finder>
+		
+		<finder name="DateCreated" return-type="Collection">
+			<finder-column name="dateCreated" />
+		</finder>
+	</entity>
+	
+	<entity name="PmlEdmDocumentSend" local-service="true" remote-service="true"
+		table="pml_edm_documentsend">
+
+		<!-- PK fields -->
+
+		<column name="documentSendId" type="long" primary="true" db-name="documentsendid"/>
+
+		<!-- Other fields -->
+		
+		<column name="briefContent" type="String" db-name="briefcontent"/>
+		<column name="documentReference" type="String" db-name="documentreference"/>
+		<column name="receivingPlace" type="String" db-name="receivingplace"/>
+		<column name="issuingDate" type="Date" db-name="issuingdate"/>
+		<column name="opinion" type="String" db-name="opinion"/>
+		<column name="editorId" type="long" db-name="editorid"/>
+		<column name="signerId" type="long" db-name="signerid"/>
+		<column name="documentTypeId" type="long" db-name="documenttypeid"/>
+		<column name="privilegeLevelId" type="String" db-name="privilegelevelid"/>
+		<column name="confidentialLevelId" type="String" db-name="confidentiallevelid"/>
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="isLocal" type="boolean" db-name="islocal"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="sendDate" type="Date" db-name="senddate"/>
+		<column name="signerName" type="String" db-name="signername"/>
+		<column name="position" type="String" db-name="position_"/>
+		<column name="numberPage" type="String" db-name="numberpage"/>
+		<column name="numberPublish" type="String" db-name="numberpublish"/>
+		<column name="documentSendCode" type="String" db-name="documentsendcode"/>
+		<column name="statusId" type="long" db-name="statusid" />
+		<column name="iscongvanphucdap" type="boolean" db-name="iscongvanphucdap" />
+		<column name="numOfDocRef" type="long" db-name="numofdocref" />
+		<column name="isPublish" type="boolean" db-name="ispublish" />
+		<column name="orgExternalId" type="long" db-name="orgexternalid"/>
+		<column name="numOfDirector" type="boolean" db-name="numofdirector"/>
+		<column name="documentRecordTypeId" type="int" db-name="documentrecordtypeid"/>
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="documentSendId" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="DocumentSendCode" return-type="Collection">
+			<finder-column name="documentSendCode" comparator="LIKE"/>
+		</finder>
+		<finder name="NumberPublish" return-type="Collection">
+			<finder-column name="numberPublish" comparator="LIKE"/>
+		</finder>
+		<finder name="NumberPage" return-type="Collection">
+			<finder-column name="numberPage" comparator="LIKE"/>
+		</finder>
+		<finder name="Position" return-type="Collection">
+			<finder-column name="position" comparator="LIKE"/>
+		</finder>
+		<finder name="SignerName" return-type="Collection">
+			<finder-column name="signerName" comparator="LIKE"/>
+		</finder>
+		<finder name="SendDate" return-type="Collection">
+			<finder-column name="sendDate" />
+		</finder>
+		<finder name="DocumentReference" return-type="Collection">
+			<finder-column name="documentReference" comparator="LIKE"/>
+		</finder>
+		<finder name="EditorId" return-type="Collection">
+			<finder-column name="editorId" />
+		</finder>
+		<finder name="SignerId" return-type="Collection">
+			<finder-column name="signerId" />
+		</finder>
+		<finder name="DocumentTypeId" return-type="Collection">
+			<finder-column name="documentTypeId" />
+		</finder>
+		<finder name="PrivilegeLevelId" return-type="Collection">
+			<finder-column name="privilegeLevelId" comparator="LIKE"/>
+		</finder>
+		<finder name="ConfidentialLevelId" return-type="Collection">
+			<finder-column name="confidentialLevelId" comparator="LIKE"/>
+		</finder>
+		<finder name="IssuingDate" return-type="Collection">
+			<finder-column name="issuingDate" />
+		</finder>
+		<finder name="StatusId" return-type="Collection">
+			<finder-column name="statusId" comparator="="/>
+		</finder>	
+		<finder name="IsCongVanPhucDap" return-type="Collection">
+			<finder-column name="iscongvanphucdap" comparator="="/>
+		</finder>	
+		<finder name="OrgExternalId" return-type="Collection">
+			<finder-column name="orgExternalId" comparator="="/>
+		</finder>	
+	</entity>
+	
+	<entity name="PmlEdmAnswerDetail" local-service="true" remote-service="true"
+		table="pml_edm_answerdetail">
+
+		<!-- PK fields -->
+
+		<column name="documentReceiptId" type="long" primary="true" db-name="documentreceiptid"/>
+
+		<!-- Other fields -->
+		<column name="documentSendId" type="long" db-name="documentsendid"/>
+
+		<!-- Finder methods -->
+		<finder name="DocumentSendId" return-type="Collection">
+			<finder-column name="documentSendId" />
+		</finder>
+
+	</entity>
+	<exceptions>
+		<exception>PmlEdmBookDocumentSendCanNotDelete</exception>
+		<exception>PmlEdmDocumentSendCanNotPublish</exception>
+	</exceptions>
+</service-builder>
