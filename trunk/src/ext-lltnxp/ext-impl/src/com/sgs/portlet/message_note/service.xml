@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.message_note">
+	<namespace>MessageNote</namespace>
+	<entity name="PmlMessage" local-service="true" remote-service="false" table="pml_message_note">
+
+		<!-- PK fields -->
+
+		<column name="messageId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="documentId" type="long"></column>
+		<column name="fromUserId" type="long" />
+		<column name="toUserId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="objectType" type="String" />
+		<column name="isAlert" type="boolean" />
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="DocumentId" return-type="Collection">
+			<finder-column name="documentId" />
+		</finder>
+		
+		<finder name="CreateDate" return-type="Collection">
+			<finder-column name="createDate" />
+		</finder>
+		
+		<finder name="FromUserId" return-type="Collection">
+			<finder-column name="fromUserId" />
+		</finder>
+		
+		<finder name="ToUserId" return-type="Collection">
+			<finder-column name="toUserId" />
+		</finder>
+		
+		<finder name="DocumentId_FromUserId_ObjectType" return-type="Collection">
+			<finder-column name="documentId" />
+			<finder-column name="fromUserId" />
+			<finder-column name="objectType" />
+		</finder>
+		
+		<finder name="FromUserId_DocumentId" return-type="Collection">
+			<finder-column name="fromUserId"></finder-column>
+			<finder-column name="documentId"></finder-column>
+		</finder>
+		
+	</entity>
+	
+</service-builder>
