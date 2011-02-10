@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.holiday">
+	<namespace>PmlHoliday</namespace>
+	<entity name="PmlHoliday" local-service="true" remote-service="true"
+		table="pml_holiday">
+
+		<!-- PK fields -->
+
+		<column name="holidayId" type="long" primary="true" db-name="holidayid"/>
+
+		<!-- Other fields -->
+
+		<column name="holiday_type" type="String" db-name="holiday_type"/>
+		<column name="holiday_value" type="String" db-name="holiday_value"/>
+		<column name="from_date" type="Date" db-name="from_date"/>
+		<column name="to_date" type="Date" db-name="to_date"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="holidayId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="Holiday_Type" return-type="Collection">
+			<finder-column name="holiday_type" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Holiday_Value" return-type="Collection">
+			<finder-column name="holiday_value" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="From_Date" return-type="Collection">
+			<finder-column name="from_date" />
+		</finder>
+		
+		<finder name="To_Date" return-type="Collection">
+			<finder-column name="to_date" />
+		</finder>
+		
+		<finder name="FromDate_ToDate" return-type="Collection">
+			<finder-column name="from_date" />
+			<finder-column name="to_date" />
+		</finder>
+		<finder name="HolidayType_HolidayValue" return-type="Collection">
+			<finder-column name="holiday_type" comparator="LIKE"/>
+			<finder-column name="holiday_value" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+</service-builder>
