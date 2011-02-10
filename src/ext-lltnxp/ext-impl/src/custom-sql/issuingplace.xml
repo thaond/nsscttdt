@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pmlissuingplace.service.persistence.PmlEdmIssuingPlaceFinder.findBy_MA_TEN">
+		<![CDATA[
+			SELECT
+				pml_edm_issuingplace.*
+			FROM
+				pml_edm_issuingplace
+			WHERE
+				(lower(pml_edm_issuingplace.issuingplacecode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(pml_edm_issuingplace.issuingplacename) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pmlissuingplace.service.persistence.PmlEdmIssuingPlaceFinder.countBy_MA_TEN">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_issuingplace
+			WHERE
+				(lower(pml_edm_issuingplace.issuingplacecode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+			 	(lower(pml_edm_issuingplace.issuingplacename) LIKE ? [$AND_OR_NULL_CHECK$])	
+		]]>
+	</sql>
+</custom-sql>

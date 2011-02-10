@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.career.service.persistence.CareerFinder.findBy_TEN_MA_NGHENGHIEP">
+		<![CDATA[
+			SELECT
+				pml_career.*
+			FROM
+				pml_career
+			WHERE
+				1=1
+				AND (
+					(lower(careercode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(careername) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.career.service.persistence.CareerFinder.countBy_TEN_MA_NGHENGHIEP">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_career
+			WHERE
+				1=1
+				AND (
+					(lower(careercode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(careername) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])			 	
+				) 
+		]]>
+	</sql>
+</custom-sql>

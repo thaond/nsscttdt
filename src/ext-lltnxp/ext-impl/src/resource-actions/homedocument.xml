@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<portlet-resource>
+		<portlet-name>SGS_HOME_DOCUMENT</portlet-name>
+		<supports>
+			<action-key>TIEPNHANCV</action-key>
+			<action-key>SOANCVDI</action-key>
+			<action-key>BAOCAODONVI</action-key>
+			<action-key>BAOCAOCHOPHONG</action-key>
+			<action-key>XLTHAYBGD</action-key>
+			<action-key>TIMKIEM</action-key>
+			<action-key>CONFIGURATION</action-key>
+			<action-key>VIEW</action-key>
+			<action-key>VANTHU</action-key>
+			<action-key>TRUONGPHONGREPORT</action-key>
+			<action-key>CHUYENVIENREPORT</action-key>
+			<action-key>GIAMDOCREPORT</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>TIEPNHANCV</action-key>
+			<action-key>SOANCVDI</action-key>
+			<action-key>BAOCAODONVI</action-key>
+			<action-key>BAOCAOCHOPHONG</action-key>
+			<action-key>XLTHAYBGD</action-key>
+			<action-key>TIMKIEM</action-key>
+			<action-key>CONFIGURATION</action-key>
+			<action-key>VANTHU</action-key>
+			<action-key>TRUONGPHONGREPORT</action-key>
+			<action-key>CHUYENVIENREPORT</action-key>
+			<action-key>GIAMDOCREPORT</action-key>
+		</guest-unsupported>
+	</portlet-resource>
+</resource-action-mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlChiTietHSCVFinder.findByCVDen">
+		<![CDATA[
+			 SELECT doc.*
+			  FROM pml_edm_documentreceipt doc inner join pml_chi_tiet_hscv cthscv 
+			 on doc.documentreceiptid = cthscv.id_cong_van_den  
+			 WHERE (cthscv.id_ho_so_cong_viec = ?)    
+			 ORDER BY datearrive ASC	
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlChiTietHSCVFinder.countByCVDen">
+		<![CDATA[
+			 SELECT COUNT( * ) AS COUNT_VALUE
+			  FROM pml_edm_documentreceipt doc inner join pml_chi_tiet_hscv cthscv 
+			 on doc.documentreceiptid = cthscv.id_cong_van_den  
+			 WHERE (cthscv.id_ho_so_cong_viec = ?) 
+		]]>
+	</sql>
+		<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlChiTietHSCVFinder.findByCVDi">
+		<![CDATA[
+			 SELECT doc.*
+ 				FROM pml_edm_documentsend doc inner join pml_chi_tiet_hscv cthscv 
+			    on doc.documentsendid = cthscv.id_cong_van_di  
+			 WHERE (cthscv.id_ho_so_cong_viec = ?)    
+ 			 ORDER BY receivingplace ASC	
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlChiTietHSCVFinder.countByCVDi">
+		<![CDATA[
+			 SELECT COUNT( * ) AS COUNT_VALUE
+ 				FROM pml_edm_documentsend doc inner join pml_chi_tiet_hscv cthscv 
+ 				on doc.documentsendid = cthscv.id_cong_van_di  
+			 WHERE (cthscv.id_ho_so_cong_viec = ?) 
+		]]>
+	</sql>
+</custom-sql>

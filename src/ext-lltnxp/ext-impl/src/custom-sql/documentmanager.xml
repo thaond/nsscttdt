@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.COUNT_DOCUMENT_MANAGER">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM document_manager
+		WHERE 
+		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.FIND_DOCUMENT_MANAGER">
+		<![CDATA[
+		SELECT *
+		FROM document_manager
+		WHERE
+		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
+		ORDER BY documentManagerCode ASC
+		]]>
+	</sql>
+	
+	<sql
+		id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.COUNT_DOCUMENT_MANAGER_TEST">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM document_manager
+		WHERE 
+		(documentManagerDateCreate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(documentManagerDateCreate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.document_manager.service.persistence.DocumentManagerFinder.FIND_DOCUMENT_MANAGER_TEST">
+		<![CDATA[
+		SELECT *
+		FROM document_manager
+		WHERE
+		(documentManagerDateCreate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(documentManagerDateCreate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerCategory) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerDescription) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(documentManagerTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		AND documentManagerStyle = ?
+		ORDER BY documentManagerCode ASC
+		]]>
+	</sql>
+</custom-sql>

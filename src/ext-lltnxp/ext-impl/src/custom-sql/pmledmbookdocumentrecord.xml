@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmBookDocumentSendFinder.findBy_LOAI_SO">
+		<![CDATA[
+			SELECT pml_edm_bookdocumentsend.*
+			FROM 
+				pml_edm_bookdocumentsend, pml_agency, pml_edm_documentrecordtype
+			WHERE 
+				(pml_edm_bookdocumentsend.isagency = '1') AND
+				(pml_agency.agencyid = pml_edm_bookdocumentsend.agencyid) AND
+			 	(pml_edm_documentrecordtype.documentrecordtypeid = pml_edm_bookdocumentsend.documentrecordtypeid)
+				AND (
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_agency.agencyname) LIKE ? [$AND_OR_NULL_CHECK$])		
+			 	)
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmBookDocumentSendFinder.countBy_LOAI_SO">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM 
+				pml_edm_bookdocumentsend, pml_agency, pml_edm_documentrecordtype
+			WHERE 
+				(pml_edm_bookdocumentsend.isagency = '1') AND
+				(pml_agency.agencyid = pml_edm_bookdocumentsend.agencyid) AND
+			 	(pml_edm_documentrecordtype.documentrecordtypeid = pml_edm_bookdocumentsend.documentrecordtypeid)
+				AND (
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_agency.agencyname) LIKE ? [$AND_OR_NULL_CHECK$])		
+			 	)
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmBookDocumentSendFinder.findBy_LOAI_PB">
+		<![CDATA[
+			SELECT pml_edm_bookdocumentsend.*
+			FROM 
+				pml_edm_bookdocumentsend, pml_departments, pml_edm_documentrecordtype
+			WHERE 
+				(pml_edm_bookdocumentsend.isagency = '0') AND
+				(pml_departments.departmentsid = pml_edm_bookdocumentsend.departmentsid) AND
+			 	(pml_edm_documentrecordtype.documentrecordtypeid = pml_edm_bookdocumentsend.documentrecordtypeid)
+				AND (
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_departments.departmentsname) LIKE ? [$AND_OR_NULL_CHECK$])		
+			 	)
+			
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmBookDocumentSendFinder.countBy_LOAI_PB">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM 
+				pml_edm_bookdocumentsend, pml_departments, pml_edm_documentrecordtype
+			WHERE 
+				(pml_edm_bookdocumentsend.isagency = '0') AND
+				(pml_departments.departmentsid = pml_edm_bookdocumentsend.departmentsid) AND
+			 	(pml_edm_documentrecordtype.documentrecordtypeid = pml_edm_bookdocumentsend.documentrecordtypeid)
+				AND (
+					(lower(pml_edm_documentrecordtype.documentrecordtypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_departments.departmentsname) LIKE ? [$AND_OR_NULL_CHECK$])		
+			 	)
+		]]>
+	</sql>
+	
+</custom-sql>

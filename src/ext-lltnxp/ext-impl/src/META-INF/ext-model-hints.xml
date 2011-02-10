@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<model-hints>
+	<hint-collection name="TITLE">
+		<hint name="max-length">255</hint>
+	</hint-collection>
+	<model name="com.ext.portlet.reports.model.ReportsEntry">
+		<field name="entryId" type="String" />
+		<field name="companyId" type="String" />
+		<field name="userId" type="String" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="name" type="String" />
+	</model>
+	<model name="com.sgs.portlet.agency.model.Agency">
+		<field name="agencyId" type="String" />
+		<field name="agencyCode" type="String" />
+		<field name="agencyName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.attachedfile.model.AttachedFile">
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileCode" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.career.model.Career">
+		<field name="careerId" type="String" />
+		<field name="careerCode" type="String" />
+		<field name="careerName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.citymanagement.model.City">
+		<field name="cityID" type="String" />
+		<field name="cityCode" type="String" />
+		<field name="cityName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="countryId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.country.model.Country">
+		<field name="countryId" type="String" />
+		<field name="countryCode" type="String" />
+		<field name="countryName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.districtmanagement.model.District">
+		<field name="districtId" type="String" />
+		<field name="districtCode" type="String" />
+		<field name="districtName" type="String" />
+		<field name="cityID" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlDocumentReceiptWF">
+		<field name="processId" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="isMain" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlDocumentSendWF">
+		<field name="documentSendId" type="long" />
+		<field name="processId" type="long" />
+		<field name="isMain" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlMainSupport">
+		<field name="processId" type="long" />
+		<field name="processId_Main" type="long" />
+		<field name="type_" type="String" />
+		<field name="supportInfomation" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlFileStatus">
+		<field name="fileStatusId" type="long" />
+		<field name="fileStatusCode" type="String" />
+		<field name="fileStatusName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="type" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlStateProcess">
+		<field name="stateProcessId" type="long" />
+		<field name="stateProcessCode" type="String" />
+		<field name="stateProcessName" type="String" />
+		<field name="fileStatusId" type="long" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlProcessDispose">
+		<field name="processDisposeId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="transition_" type="int" />
+		<field name="processer" type="long" />
+		<field name="dateProcess" type="Date" />
+		<field name="processInfomation" type="String" />
+		<field name="receiver" type="long" />
+		<field name="receiveDate" type="Date" />
+		<field name="stateProcessIdBefore" type="long" />
+		<field name="stateProcessIdAfter" type="long" />
+		<field name="expiredDate" type="Date" />
+		<field name="delegateUser" type="long" />
+		<field name="sendDate" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlStateWorkFlow">
+		<field name="stateWfId" type="long" />
+		<field name="workflow" type="String" />
+		<field name="stateProcessId" type="long" />
+		<field name="solvingTime" type="int" />
+		<field name="version_" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlStateDepartment">
+		<field name="departmentId" type="String" />
+		<field name="stateWfId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlDocumentReceiptLog">
+		<field name="documentReceiptLogId" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="transition_" type="int" />
+		<field name="processer" type="long" />
+		<field name="dateProcess" type="Date" />
+		<field name="processInfomation" type="String" />
+		<field name="receiver" type="long" />
+		<field name="receiveDate" type="Date" />
+		<field name="stateProcessIdBefore" type="long" />
+		<field name="stateProcessIdAfter" type="long" />
+		<field name="type_" type="int" />
+		<field name="expiredDate" type="Date" />
+		<field name="numDateProcess" type="int" />
+		<field name="processInstanceId" type="long" />
+		<field name="mainDepartmentProcessId" type="String" />
+		<field name="mainUserProcessId" type="long" />
+		<field name="sendDateBefore" type="Date" />
+		<field name="departmentReceiveId" type="String" />
+		<field name="departmentProcessId" type="String" />
+		<field name="dateProcessTime" type="Date" />
+		<field name="receiveDateTime" type="Date" />
+		<field name="directProcesserId" type="long" />
+		<field name="step" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog">
+		<field name="documentReceiptIssuingPlaceLogId" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="processor" type="long" />
+		<field name="directProcessorId" type="long" />
+		<field name="dateProcess" type="Date" />
+		<field name="processInfomation" type="String" />
+		<field name="receiver" type="String" />
+		<field name="type_" type="int" />
+		<field name="step" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlDocumentSendLog">
+		<field name="documentSendLogId" type="long" />
+		<field name="documentSendId" type="long" />
+		<field name="transition_" type="int" />
+		<field name="processer" type="long" />
+		<field name="dateProcess" type="Date" />
+		<field name="processInfomation" type="String" />
+		<field name="receiver" type="long" />
+		<field name="receiveDate" type="Date" />
+		<field name="stateProcessIdBefore" type="long" />
+		<field name="stateProcessIdAfter" type="long" />
+		<field name="expiredDate" type="Date" />
+		<field name="numDateProcess" type="int" />
+		<field name="processInstanceId" type="long" />
+		<field name="type_" type="int" />
+		<field name="sendDateBefore" type="Date" />
+		<field name="departmentReceiveId" type="String" />
+		<field name="departmentProcessId" type="String" />
+		<field name="dateProcessTime" type="Date" />
+		<field name="receiveDateTime" type="Date" />
+		<field name="directProcesserId" type="long" />
+		<field name="step" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.model.PmlEdmDocumentRelation">
+		<field name="documentRelationId" type="long" />
+		<field name="docLeftId" type="long" />
+		<field name="docRightId" type="long" />
+		<field name="leftIsReceipt" type="boolean" />
+		<field name="rightIsReceipt" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.field.model.PmlField">
+		<field name="fieldId" type="String" />
+		<field name="fieldCode" type="String" />
+		<field name="fieldName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="departmentsId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.filetype.model.PmlFileType">
+		<field name="fileTypeId" type="String" />
+		<field name="fileTypeCode" type="String" />
+		<field name="fileTypeName" type="String" />
+		<field name="fieldId" type="String" />
+		<field name="templateId" type="String" />
+		<field name="processTime" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="currentReceiptNumber" type="String" />
+		<field name="receiptTemplate" type="String" />
+	</model>
+	<model name="com.sgs.portlet.generatetemplateid.model.IdTemplate">
+		<field name="templateId" type="long" />
+		<field name="format" type="String" />
+		<field name="startNumber" type="String" />
+		<field name="len" type="long" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.sgs.portlet.generatetemplateid.model.IdGenerated">
+		<field name="id" type="long" />
+		<field name="year" type="String" />
+		<field name="curValue" type="long" />
+	</model>
+	<model name="com.sgs.portlet.holiday.model.PmlHoliday">
+		<field name="holidayId" type="long" />
+		<field name="holiday_type" type="String" />
+		<field name="holiday_value" type="String" />
+		<field name="from_date" type="Date" />
+		<field name="to_date" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.nation.model.Nation">
+		<field name="nationId" type="String" />
+		<field name="nationCode" type="String" />
+		<field name="nationName" type="String" />
+		<field name="countryId" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlOneDoorReceiveFile">
+		<field name="fileId" type="String" />
+		<field name="cityId" type="String" />
+		<field name="districtId" type="String" />
+		<field name="wardsId" type="String" />
+		<field name="streetId" type="String" />
+		<field name="exactReturningDate" type="Date" />
+		<field name="receiverId" type="long" />
+		<field name="validDate" type="Date" />
+		<field name="expectedReturningDate" type="Date" />
+		<field name="applicationDate" type="Date" />
+		<field name="otherContent" type="String" />
+		<field name="briefContent" type="String" />
+		<field name="applicantName" type="String" />
+		<field name="organization" type="String" />
+		<field name="authorisedLetter" type="String" />
+		<field name="idNumber" type="String" />
+		<field name="issuingDate" type="Date" />
+		<field name="issuingPlace" type="String" />
+		<field name="telephone" type="String" />
+		<field name="gender" type="String" />
+		<field name="streetNumber" type="String" />
+		<field name="permanentAddress" type="String" />
+		<field name="contactInfomation" type="String" />
+		<field name="oldNumberReceipt" type="String" />
+		<field name="numberReceipt" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="fieldId" type="String" />
+		<field name="solvingTime" type="int" />
+		<field name="amendedContent" type="String" />
+		<field name="landCheckingDate" type="Date" />
+		<field name="decisionNotice" type="String" />
+		<field name="receiver" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="lastUpdate" type="Date" />
+		<field name="lastTestProcessInfo" type="String" />
+		<field name="active" type="String" />
+		<field name="generalorderno" type="long" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlFileAttachedFile">
+		<field name="fileAttachedFileId" type="String" />
+		<field name="fileId" type="String" />
+		<field name="original" type="int" />
+		<field name="copy_" type="int" />
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlWfOnedoorProcess">
+		<field name="fileId" type="String" />
+		<field name="processId" type="long" />
+		<field name="nodeId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlDepartmentsLeader">
+		<field name="departmentsId" type="String" />
+		<field name="userId" type="long" />
+		<field name="clericalId" type="long" />
+		<field name="main" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlAgencyLeader">
+		<field name="agencyId" type="String" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlFileTypeAttachedFile">
+		<field name="filetypeAttachedFileId" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="original" type="int" />
+		<field name="copy_" type="int" />
+		<field name="attachedFileId" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlWorkflow">
+		<field name="workflowId" type="long" />
+		<field name="fileTypeId" type="String" />
+		<field name="workflow" type="String" />
+		<field name="version_" type="int" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.model.PmlTeam">
+		<field name="teamId" type="long" />
+		<field name="departmentId" type="String" />
+		<field name="teamName" type="String" />
+		<field name="description" type="String" />
+		<field name="organizationId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="specialTeam" type="String" />
+		<field name="teamCode" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlPaintDocument">
+		<field name="paintDocumentId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="paintDocumentName" type="String" />
+		<field name="quantity" type="int" />
+		<field name="note" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlFilePCCC">
+		<field name="fileId" type="String" />
+		<field name="fileName" type="String" />
+		<field name="applicantRepresentation" type="String" />
+		<field name="applicantTelephone" type="String" />
+		<field name="receiverRepresentation" type="String" />
+		<field name="receiverTelephone" type="String" />
+		<field name="projectName" type="String" />
+		<field name="applicantCategory" type="String" />
+		<field name="addressBuilder" type="String" />
+		<field name="investor" type="String" />
+		<field name="designCop" type="String" />
+		<field name="fileNumber" type="int" />
+		<field name="inputDataDate" type="Date" />
+		<field name="noteInformationManagement" type="String" />
+		<field name="totalHour" type="int" />
+		<field name="totalDate" type="int" />
+		<field name="conclusion" type="String" />
+		<field name="receiveOfUnit" type="String" />
+		<field name="applicantTime" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlTransition">
+		<field name="transitionId" type="long" />
+		<field name="transitionName" type="String" />
+		<field name="fileTypeId" type="String" />
+		<field name="noTransition" type="int" />
+		<field name="stateProcessCurrent" type="long" />
+		<field name="stateProcessNext" type="long" />
+		<field name="version_" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlFileReturningInfo">
+		<field name="fileReturningInfoId" type="long" />
+		<field name="fileId" type="String" />
+		<field name="fileSender" type="String" />
+		<field name="licenseNumber" type="String" />
+		<field name="issuingDateLicense" type="Date" />
+		<field name="receiveLicenseDate" type="Date" />
+		<field name="documentNumber" type="String" />
+		<field name="billNumber" type="String" />
+		<field name="numberMoney" type="long" />
+		<field name="note" type="String" />
+		<field name="conclude" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlFilePCCCAttachedFile">
+		<field name="attachedFileId" type="long" />
+		<field name="filePcccId" type="String" />
+		<field name="objectType" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="path" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="fileType" type="String" />
+		<field name="title" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoorpccc.model.PmlTeamLeader">
+		<field name="teamId" type="long" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.pmlstreet.model.PmlStreet">
+		<field name="streetId" type="String" />
+		<field name="streetName" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pmluser.model.PmlUser">
+		<field name="userId" type="long" />
+		<field name="positionId" type="String" />
+		<field name="departmentsId" type="String" />
+		<field name="roleId" type="String" />
+		<field name="handPhone" type="String" />
+		<field name="note" type="String" />
+		<field name="teamId" type="long" />
+		<field name="active" type="boolean" />
+		<field name="screenName" type="String" />
+		<field name="firstName" type="String" />
+		<field name="middleName" type="String" />
+		<field name="lastName" type="String" />
+		<field name="male" type="boolean" />
+		<field name="birthday" type="Date" />
+		<field name="isLeaderMetting" type="boolean" />
+		<field name="isVanThuPhong" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.position.model.Position">
+		<field name="positionId" type="String" />
+		<field name="positionCode" type="String" />
+		<field name="positionName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.wardsmanagement.model.Wards">
+		<field name="wardsId" type="String" />
+		<field name="wardsCode" type="String" />
+		<field name="wardsName" type="String" />
+		<field name="districtId" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace">
+		<field name="issuingPlaceId" type="String" />
+		<field name="issuingPlaceName" type="String" />
+		<field name="tablePhone" type="String" />
+		<field name="handPhone" type="String" />
+		<field name="email" type="String" />
+		<field name="address" type="String" />
+		<field name="active" type="String" />
+		<field name="note" type="String" />
+		<field name="issuingPlaceCode" type="String" />
+		<field name="signer" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pmllevelsend.model.PmlEdmLevelSend">
+		<field name="levelSendId" type="int" />
+		<field name="levelSendName" type="String" />
+		<field name="levelSendCode" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmBookDocumentRecordTo">
+		<field name="documentReceiptId" type="long" />
+		<field name="documentRecordToId" type="long" />
+		<field name="dateCreate" type="Date" />
+		<field name="dateComplete" type="Date" />
+		<field name="soCongVanDenPhongHienTai" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmLevelSendDetail">
+		<field name="levelSendId" type="int" />
+		<field name="issuingPlaceId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordTo">
+		<field name="documentRecordToId" type="long" />
+		<field name="dateCreate" type="Date" />
+		<field name="currentRecord" type="long" />
+		<field name="departmentsId" type="String" />
+		<field name="documentRecordTypeId" type="int" />
+		<field name="yearInUse" type="String" />
+		<field name="active" type="String" />
+		<field name="isAgency" type="String" />
+		<field name="agencyId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType">
+		<field name="documentRecordTypeId" type="int" />
+		<field name="documentRecordTypeName" type="String" />
+		<field name="documentRecordTypeCode" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceipt">
+		<field name="documentReceiptId" type="long" />
+		<field name="levelSendId" type="int" />
+		<field name="documentTypeId" type="long" />
+		<field name="documentReference" type="String" />
+		<field name="issuingPlaceId" type="String" />
+		<field name="issuingDate" type="Date" />
+		<field name="dateArrive" type="Date" />
+		<field name="signer" type="String" />
+		<field name="privilegeLevelId" type="String" />
+		<field name="confidentialLevelId" type="String" />
+		<field name="opinion" type="String" />
+		<field name="briefContent" type="String" />
+		<field name="isPublic" type="String" />
+		<field name="numberDocumentReceipt" type="String" />
+		<field name="processTime" type="int" />
+		<field name="status" type="String" />
+		<field name="active" type="String" />
+		<field name="numberLocalDocumentReceipt" type="String" />
+		<field name="issuingPlaceOtherName" type="String" />
+		<field name="documentType" type="String" />
+		<field name="dateButPhe" type="Date" />
+		<field name="dateHoanThanh" type="Date" />
+		<field name="statusId" type="long" />
+		<field name="thoigiannhancvden" type="String" />
+		<field name="socongvandiphucdap" type="String" />
+		<field name="generalOrderNo" type="long" />
+		<field name="mainDepartmentProcessId" type="String" />
+		<field name="mainUserProcessId" type="long" />
+		<field name="orgExternalId" type="long" />
+		<field name="docReceiptTempId" type="long" />
+		<field name="documentRecordTypeId" type="int" />
+		<field name="donViSaoY" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceiptTemp">
+		<field name="documentReceiptId" type="long" />
+		<field name="levelSendId" type="int" />
+		<field name="documentTypeId" type="long" />
+		<field name="documentReference" type="String" />
+		<field name="issuingPlaceId" type="String" />
+		<field name="issuingDate" type="Date" />
+		<field name="dateArrive" type="Date" />
+		<field name="signer" type="String" />
+		<field name="privilegeLevelId" type="String" />
+		<field name="confidentialLevelId" type="String" />
+		<field name="opinion" type="String" />
+		<field name="briefContent" type="String" />
+		<field name="isPublic" type="String" />
+		<field name="numberDocumentReceipt" type="String" />
+		<field name="processTime" type="int" />
+		<field name="status" type="String" />
+		<field name="active" type="String" />
+		<field name="numberLocalDocumentReceipt" type="String" />
+		<field name="issuingPlaceOtherName" type="String" />
+		<field name="documentType" type="String" />
+		<field name="dateButPhe" type="Date" />
+		<field name="dateHoanThanh" type="Date" />
+		<field name="statusId" type="long" />
+		<field name="thoigiannhancvden" type="String" />
+		<field name="socongvandiphucdap" type="String" />
+		<field name="generalOrderNo" type="long" />
+		<field name="mainDepartmentProcessId" type="String" />
+		<field name="mainUserProcessId" type="long" />
+		<field name="orgExternalId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceiptExtend">
+		<field name="documentReceiptExtendId" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="documentReceiptLogId" type="long" />
+		<field name="extendOrderNo" type="int" />
+		<field name="startProcessDate" type="Date" />
+		<field name="numDayProcessBef" type="int" />
+		<field name="limitDateBef" type="Date" />
+		<field name="extendReason" type="String" />
+		<field name="numDayProcessAft" type="int" />
+		<field name="limitDateAft" type="Date" />
+		<field name="leanOnLimitDate" type="boolean" />
+		<field name="extendUserId" type="long" />
+		<field name="extendDepartmentId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType">
+		<field name="documentTypeId" type="long" />
+		<field name="documentTypeName" type="String" />
+		<field name="documentSymbol" type="String" />
+		<field name="documentRecordTypeId" type="int" />
+		<field name="sendReceiptDistinction" type="int" />
+		<field name="HaveDepartExtends" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmProcessDocumentReceiptDetail">
+		<field name="id" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="userId" type="long" />
+		<field name="note" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="dateUpdate" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel">
+		<field name="confidentialLevelId" type="String" />
+		<field name="confidentialLevelName" type="String" />
+		<field name="limitViewDetail" type="boolean" />
+		<field name="haveProcess" type="boolean" />
+		<field name="confidentialLevelSymbol" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmPrivilegeLevel">
+		<field name="privilegeLevelId" type="String" />
+		<field name="privilegeLevelName" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmAttachedFile">
+		<field name="attachedFileId" type="long" />
+		<field name="objectContentId" type="long" />
+		<field name="objectType" type="String" />
+		<field name="attachedFileName" type="String" />
+		<field name="path" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="fileType" type="String" />
+		<field name="fileId" type="int" />
+		<field name="title" type="String" />
+		<field name="displayOrHidden" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlFileStatusStateProcess">
+		<field name="id" type="long" />
+		<field name="fileStatusId" type="long" />
+		<field name="stateProcessId" type="long" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceiptProcessType">
+		<field name="docReceiptProcessTypeId" type="long" />
+		<field name="documentReceiptId" type="long" />
+		<field name="documentReceiptLogId" type="long" />
+		<field name="processTypeOrderNo" type="int" />
+		<field name="dateEdit" type="Date" />
+		<field name="processTypeIdBefore" type="String" />
+		<field name="processTypeIdAfter" type="String" />
+		<field name="processTypeReason" type="String" />
+		<field name="processerId" type="long" />
+		<field name="departmentId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.send.model.PmlEdmBookDocumentSend">
+		<field name="bookDocumentSendId" type="long" />
+		<field name="dateCreated" type="Date" />
+		<field name="currentRecord" type="long" />
+		<field name="departmentsId" type="String" />
+		<field name="documentRecordTypeId" type="int" />
+		<field name="yearInUse" type="String" />
+		<field name="active" type="String" />
+		<field name="isAgency" type="String" />
+		<field name="agencyId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.send.model.PmlEdmCadre">
+		<field name="userId" type="long" />
+		<field name="positionId" type="String" />
+		<field name="departmentsId" type="String" />
+		<field name="handPhone" type="String" />
+		<field name="note" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.document.send.model.PmlEdmWriteDocumentSend">
+		<field name="bookDocumentSendId" type="long" />
+		<field name="documentSendId" type="long" />
+		<field name="dateCreated" type="Date" />
+		<field name="soCongVanDiPhongHienTai" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.send.model.PmlEdmDocumentSend">
+		<field name="documentSendId" type="long" />
+		<field name="briefContent" type="String" />
+		<field name="documentReference" type="String" />
+		<field name="receivingPlace" type="String" />
+		<field name="issuingDate" type="Date" />
+		<field name="opinion" type="String" />
+		<field name="editorId" type="long" />
+		<field name="signerId" type="long" />
+		<field name="documentTypeId" type="long" />
+		<field name="privilegeLevelId" type="String" />
+		<field name="confidentialLevelId" type="String" />
+		<field name="dateCreated" type="Date" />
+		<field name="isLocal" type="boolean" />
+		<field name="active" type="String" />
+		<field name="sendDate" type="Date" />
+		<field name="signerName" type="String" />
+		<field name="position" type="String" />
+		<field name="numberPage" type="String" />
+		<field name="numberPublish" type="String" />
+		<field name="documentSendCode" type="String" />
+		<field name="statusId" type="long" />
+		<field name="iscongvanphucdap" type="boolean" />
+		<field name="numOfDocRef" type="long" />
+		<field name="isPublish" type="boolean" />
+		<field name="orgExternalId" type="long" />
+		<field name="numOfDirector" type="boolean" />
+		<field name="documentRecordTypeId" type="int" />
+	</model>
+	<model name="com.sgs.portlet.document.send.model.PmlEdmAnswerDetail">
+		<field name="documentReceiptId" type="long" />
+		<field name="documentSendId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document.delegate.pmldelegate.model.PmlDelegate">
+		<field name="delegateId" type="long" />
+		<field name="assigner" type="long" />
+		<field name="receiver" type="long" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="cancelDate" type="Date" />
+		<field name="cancelDelegate" type="String" />
+		<field name="dateCreated" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.document.delegate.pmlfiletypedelegate.model.PmlFileTypeDelegate">
+		<field name="fileTypeDelegateId" type="long" />
+		<field name="fileTypeId" type="String" />
+		<field name="delegateId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document.manageworkflow.model.PmlManageWorkDocumentFlow">
+		<field name="manageDocumentWorkFlowId" type="long" />
+		<field name="workFlowName" type="String" />
+		<field name="version" type="int" />
+		<field name="type" type="int" />
+		<field name="description" type="String" />
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.country.pmluserfiletype.model.PmlUserFileType">
+		<field name="userId" type="long" />
+		<field name="fileTypeId" type="String" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.sgs.portlet.onedoor.role.model.PmlRole">
+		<field name="roleId" type="String" />
+		<field name="roleCode" type="String" />
+		<field name="roleName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+	</model>
+	<model name="com.sgs.portlet.department.model.Department">
+		<field name="departmentsId" type="String" />
+		<field name="departmentsParentId" type="String" />
+		<field name="departmentsCode" type="String" />
+		<field name="departmentsName" type="String" />
+		<field name="abbreviateName" type="String" />
+		<field name="description" type="String" />
+		<field name="active" type="String" />
+		<field name="agencyId" type="String" />
+		<field name="roleId" type="long" />
+		<field name="hasTeam" type="String" />
+	</model>
+	<model name="com.sgs.portlet.department.model.PmlDepartmentHSCV">
+		<field name="pmlDepartmentHSCVId" type="long" />
+		<field name="departmentsId" type="String" />
+		<field name="id_ho_so_cong_viec" type="long" />
+		<field name="description" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_do_quan_trong.model.PmlDoQuanTrong">
+		<field name="idDoQuanTrong" type="long" />
+		<field name="tenDoQuanTrong" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec">
+		<field name="idHoSoCongViec" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="idHSCVCha" type="long" />
+		<field name="soHieuHSCV" type="String" />
+		<field name="tieuDe" type="String" />
+		<field name="ngayMoHSCV" type="Date" />
+		<field name="hanXuLy" type="Date" />
+		<field name="idLinhVuc" type="String" />
+		<field name="vanDeLienQuan" type="String" />
+		<field name="idDoQuanTrong" type="long" />
+		<field name="idTinhChat" type="long" />
+		<field name="idTrangThaiHSCV" type="long" />
+		<field name="tomTatNoiDung" type="String" />
+		<field name="hoatDong" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV">
+		<field name="idChiTietHSCV" type="long" />
+		<field name="idHoSoCongViec" type="long" />
+		<field name="idCongVanDen" type="long" />
+		<field name="idCongVanDi" type="long" />
+		<field name="diDen" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_tinh_chat.model.PmlTinhChat">
+		<field name="idTinhChat" type="long" />
+		<field name="tenTinhChat" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_trang_thai_hscv.model.PmlTrangThaiHSCV">
+		<field name="idTrangThaiHSCV" type="long" />
+		<field name="tenTrangThaiHSCV" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_edm_docconfuser.model.PmlEdmDocConfUser">
+		<field name="dcuId" type="long" />
+		<field name="userId" type="long" />
+		<field name="viewAllDoc" type="boolean" />
+		<field name="viewDepDoc" type="String" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingCalendar">
+		<field name="uuid" type="String" />
+		<field name="mcalId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="state" type="int" />
+		<field name="place" type="String" />
+		<field name="place_diff" type="String" />
+		<field name="sponsor" type="String" />
+		<field name="component" type="String" />
+		<field name="note" type="String" />
+		<field name="userApproved" type="long" />
+		<field name="dateApproved" type="Date" />
+		<field name="moveMcalId" type="long" />
+		<field name="repeatWeek" type="boolean" />
+		<field name="filename" type="String" />
+		<field name="morning" type="boolean" />
+		<field name="afternoon" type="boolean" />
+		<field name="evening" type="boolean" />
+		<field name="stt" type="int" />
+		<field name="prior" type="boolean" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingCalComponent">
+		<field name="mcalId" type="long" />
+		<field name="groupIds" type="String" />
+		<field name="startDate" type="Date" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.MeetingDetailWeek">
+		<field name="mdweekId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="focus" type="String" />
+		<field name="note" type="String" />
+		<field name="receive" type="String" />
+		<field name="week" type="int" />
+		<field name="year" type="int" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.PmlScreenCalendarHeight">
+		<field name="screenCalendarHeightId" type="long" />
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.RoomResource">
+		<field name="roomId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="roomName" type="String">
+			<hint-collection name="TITLE" />
+		</field>
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+	<model name="com.ext.portlet.meetingcalendar.model.CarResource">
+		<field name="carId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="carName" type="String">
+			<hint-collection name="TITLE" />
+		</field>
+		<field name="carCode" type="String" />
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+	</model>
+	<model name="com.sgs.portlet.signer.model.Signer">
+		<field name="signerId" type="long" />
+		<field name="userId" type="long" />
+	</model>
+	<model name="com.ext.portlet.processtype.model.ProcessType">
+		<field name="processTypeId" type="long" />
+		<field name="name" type="String" />
+		<field name="flagProcessType" type="int" />
+	</model>
+	<model name="com.ext.portlet.saveprocesstype.model.SaveProcessType">
+		<field name="sptId" type="long" />
+		<field name="docId" type="long" />
+		<field name="flagProcessType" type="long" />
+		<field name="flag" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.pml_template.model.PmlTemplate">
+		<field name="templateId" type="long" />
+		<field name="templateCode" type="String" />
+		<field name="templateName" type="String" />
+		<field name="numberOfDocument" type="int" />
+		<field name="publishDate" type="Date" />
+		<field name="departmentId" type="String" />
+	</model>
+	<model name="com.sgs.portlet.pml_template.model.FileTemplate">
+		<field name="fileTemplateId" type="long" />
+		<field name="templateId" type="long" />
+		<field name="tenFile" type="String" />
+		<field name="kichThuoc" type="long" />
+		<field name="duongDan" type="String" />
+	</model>
+	<model name="com.sgs.portlet.organizationexternal.model.OrganizationExternal">
+		<field name="orgExternalId" type="long" />
+		<field name="orgExternalCode" type="String" />
+		<field name="orgExternalName" type="String" />
+		<field name="isOwnerOrg" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.message_note.model.PmlMessage">
+		<field name="messageId" type="long" />
+		<field name="documentId" type="long" />
+		<field name="fromUserId" type="long" />
+		<field name="toUserId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="objectType" type="String" />
+		<field name="isAlert" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.documentdelegate.model.PmlDocumentDelegate">
+		<field name="documentDelegateId" type="long" />
+		<field name="userDelegateId" type="long" />
+		<field name="userIsDelegateId" type="long" />
+		<field name="documentId" type="int" />
+		<field name="fromtDate" type="Date" />
+		<field name="toDate" type="Date" />
+		<field name="cancelDate" type="Date" />
+	</model>
+	<model name="com.sgs.portlet.receivergroup.model.ReceiverGroup">
+		<field name="receiverGroupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="receiverGroupName" type="String" />
+		<field name="description" type="String" />
+		<field name="type" type="int" />
+		<field name="active" type="boolean" />
+	</model>
+	<model name="com.sgs.portlet.receivergroup.model.Receiver">
+		<field name="receiverId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="receiverUserId" type="long" />
+		<field name="receiverUserName" type="String" />
+		<field name="viewName" type="String" />
+		<field name="receiverType" type="int" />
+	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.Department">
+		<field name="departmentId" type="long" />
+		<field name="departmentCode" type="String" />
+		<field name="departmentName" type="String" />
+		<field name="departmentDescription" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.ReportRegistry">
+		<field name="reportRegistryId" type="long" />
+		<field name="reportRegistryCode" type="String" />
+		<field name="userCreate" type="String" />
+		<field name="resultWork" type="String" />
+		<field name="programWork" type="String" />
+		<field name="reportDate" type="Date" />
+		<field name="departmentId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.report_registry_work.model.ResultProgram">
+		<field name="resultProgramId" type="long" />
+		<field name="resultProgramTitle" type="String" />
+		<field name="resultProgramPath" type="String" />
+		<field name="resultProgramCheck" type="String" />
+		<field name="reportRegistryId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document_manager.model.DocumentManager">
+		<field name="documentManagerId" type="long" />
+		<field name="documentManagerCode" type="String" />
+		<field name="documentManagerCategory" type="String" />
+		<field name="documentManagerStyle" type="String" />
+		<field name="documentManagerDescription" type="String" />
+		<field name="documentManagerDateCreate" type="Date" />
+		<field name="documentManagerTitle" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.document_manager.model.AttactFileDocument">
+		<field name="attactFileDocumentId" type="long" />
+		<field name="attactFileDocumentTitle" type="String" />
+		<field name="attactFileDocumentPath" type="String" />
+		<field name="documentManagerId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.holiday_calendar.model.HolidayCalendar">
+		<field name="holidayCalendarId" type="long" />
+		<field name="holidayCalendarCode" type="String" />
+		<field name="holidayCalendarDateCreate" type="Date" />
+		<field name="holidayCalendarTitle" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.holiday_calendar.model.AttactFileHoliday">
+		<field name="attactFileHolidayId" type="long" />
+		<field name="attactFileHolidayTitle" type="String" />
+		<field name="attactFileHolidayPath" type="String" />
+		<field name="holidayCalendarId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+</model-hints>

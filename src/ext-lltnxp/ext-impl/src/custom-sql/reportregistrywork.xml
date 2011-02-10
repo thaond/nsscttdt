@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinder.COUNT_DEPARTMENT_BOOK">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM department 
+		WHERE 
+		(lower(departmentCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(departmentName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(departmentDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.DepartmentFinder.FIND_DEPARTMENT_BOOK">
+		<![CDATA[
+		SELECT *
+		FROM department 
+		WHERE 
+		(lower(departmentCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(departmentName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(departmentDescription) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY departmentCode ASC
+		]]>
+	</sql>
+	
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.COUNT_REPORT_REGISTRY_BOOK">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM report_registry_work
+		WHERE 
+		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.FIND_REPORT_REGISTRY_BOOK">
+		<![CDATA[
+		SELECT *
+		FROM report_registry_work
+		WHERE 
+		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY reportRegistryCode ASC
+		]]>
+	</sql>
+	
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.COUNT_REPORT_REGISTRY">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM report_registry_work
+		WHERE 
+		(departmentId = ?) AND
+		(reportDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(reportDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.report_registry_work.service.persistence.ReportRegistryFinder.FIND_REPORT_REGISTRY">
+		<![CDATA[
+		SELECT *
+		FROM report_registry_work
+		WHERE 
+		(departmentId = ?) AND
+		(reportDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(reportDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(reportRegistryCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(userCreate) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(resultWork) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(programWork) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY reportRegistryCode ASC
+		]]>
+	</sql>
+</custom-sql>

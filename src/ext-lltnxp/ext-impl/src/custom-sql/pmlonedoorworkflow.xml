@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.onedoor.service.persistence.PmlWorkflowFinder.countByOneDoorWorkflow">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_workflow ,pml_filetype 
+			WHERE
+				(pml_workflow.filetypeid = pml_filetype.filetypeid)
+				AND (
+				 	(lower(pml_filetype.filetypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_workflow.workflow) LIKE ? [$AND_OR_NULL_CHECK$])
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.onedoor.service.persistence.PmlWorkflowFinder.findByOneDoorWorkflow">
+		<![CDATA[
+			SELECT
+				pml_workflow.*
+			FROM
+				pml_workflow ,pml_filetype 
+			WHERE
+				(pml_workflow.filetypeid = pml_filetype.filetypeid)
+				AND (
+				 	(lower(pml_filetype.filetypename) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_workflow.workflow) LIKE ? [$AND_OR_NULL_CHECK$])
+				) 
+		]]>
+	</sql>
+</custom-sql>
