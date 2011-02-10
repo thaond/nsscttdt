@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.onedoorpccc">
+	<namespace>PmlFilePCCC</namespace>
+	<!-- PML_FILE -->
+	
+	<!-- PML_PAINT_DOCUMENT -->
+	<entity name="PmlPaintDocument" local-service="true" remote-service="true"
+		table="pml_paintdocument">
+
+		<!-- PK fields -->
+
+		<column name="paintDocumentId" type="long" primary="true" db-name="paintdocumentid"/>
+
+		<!-- Other fields -->
+		<column name="fileId" type="String" db-name="fileid"/>
+		<column name="paintDocumentName" type="String" db-name="paintdocumentname"/>
+		<column name="quantity" type="int" db-name="quantity"/>
+		<column name="note" type="String" db-name="note"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="paintDocumentId" />
+		</order>
+		
+		<!-- finder -->
+		
+		<finder return-type="Collection" name="Quantity">
+			<finder-column name="quantity" />
+		</finder>
+		
+		<finder return-type="Collection" name="FileId">
+			<finder-column name="fileId" comparator="LIKE"/>
+		</finder>
+		<!-- References -->		
+	</entity>
+	
+	<!-- PML_FILE_PCCC -->
+	<entity name="PmlFilePCCC" local-service="true" remote-service="true"
+		table="pml_file_pccc">
+
+		<!-- PK fields -->
+
+		<column name="fileId" type="String" primary="true" db-name="fileid"/>
+
+		<!-- Other fields -->
+		<column name="fileName" type="String" db-name="fileName"/>
+		<column name="applicantRepresentation" type="String" db-name="applicantrepresentation"/>
+		<column name="applicantTelephone" type="String" db-name="applicanttelephone"/>
+		
+		<column name="receiverRepresentation" type="String" db-name="receiverrepresentation"/>
+		<column name="receiverTelephone" type="String" db-name="receivertelephone"/>
+		<column name="projectName" type="String" db-name="projectname"/>
+		<column name="applicantCategory" type="String" db-name="applicantcategory"/>
+		<column name="addressBuilder" type="String" db-name="addressbuilder"/>
+		<column name="investor" type="String" db-name="investor"/>
+		<column name="designCop" type="String" db-name="designCop"/>
+		<column name="fileNumber" type="int" db-name="filenumber"/>
+		<column name="inputDataDate" type="Date" db-name="inputdatadate"/>
+		<column name="noteInformationManagement" type="String" db-name="noteinformationmanagement"/>
+		<column name="totalHour" type="int" db-name="totalhour"/>
+		<column name="totalDate" type="int" db-name="totaldate"/>
+		<column name="conclusion" type="String" db-name="conclusion"/>
+		<column name="receiveOfUnit" type="String" db-name="receiveofunit"/>
+		<column name="applicantTime" type="String" db-name="applicanttime"/>
+		<!-- Order -->
+		
+		<order by="desc">
+			<order-column name="fileId" />
+		</order>
+		
+		<!-- finder -->
+		<finder return-type="Collection" name="FileName">
+			<finder-column name="fileName" />
+		</finder>
+		
+		<finder return-type="Collection" name="ProjectName">
+			<finder-column name="projectName" />
+		</finder>
+		
+		<finder return-type="Collection" name="ApplicantCategory">
+			<finder-column name="applicantCategory" />
+		</finder>
+		
+		<finder return-type="Collection" name="ReceiveOfUnit">
+			<finder-column name="receiveOfUnit" />
+		</finder>
+	</entity>
+	
+	<!-- PML_TRANSITION -->
+	<entity name="PmlTransition" local-service="true" remote-service="true"
+		table="pml_transition">
+
+		<!-- PK fields -->
+
+		<column name="transitionId" type="long" primary="true" db-name="transitionid"/>
+
+		<!-- Other fields -->
+
+		<column name="transitionName" type="String" db-name="transitionname"/>
+		<column name="fileTypeId" type="String" db-name="filetypeid"/>
+		<column name="noTransition" type="int" db-name="notransition"/>
+		<column name="stateProcessCurrent" type="long" db-name="stateprocesscurrent"/>
+		<column name="stateProcessNext" type="long" db-name="stateprocessnext"/>
+		<column name="version_" type="String" db-name="version_"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="transitionId" />
+		</order>
+		
+		<!-- finder -->
+		<finder return-type="Collection" name="FileTypeId_Version">
+			<finder-column name="fileTypeId" />
+			<finder-column name="version_" />
+		</finder>
+		
+		<finder return-type="Collection" name="Version_">
+			<finder-column name="version_" />
+		</finder>		
+		
+		<finder return-type="Collection" name="TransitionName">
+			<finder-column name="transitionName" />
+		</finder>
+		
+		<finder return-type="Collection" name="FileTypeId">
+			<finder-column name="fileTypeId" />
+		</finder>
+		
+		<finder return-type="Collection" name="NoTransition">
+			<finder-column name="noTransition" />
+		</finder>
+		
+		<finder return-type="Collection" name="StateProcessCurrent">
+			<finder-column name="stateProcessCurrent" />
+		</finder>
+		
+		<finder return-type="Collection" name="StateProcessNext">
+			<finder-column name="stateProcessNext" />
+		</finder>
+		<!-- References -->		
+	</entity>
+	
+	<entity name="PmlFileReturningInfo" local-service="true" remote-service="true"
+		table="pml_filereturninginfo">
+
+		<!-- PK fields -->
+
+		<column name="fileReturningInfoId" type="long" primary="true" db-name="filereturninginfoid"/>
+
+		<!-- Other fields -->
+
+		<column name="fileId" type="String" db-name="fileid"/>
+		<column name="fileSender" type="String" db-name="filesender"/>
+		<column name="licenseNumber" type="String" db-name="licensenumber"/>
+		<column name="issuingDateLicense" type="Date" db-name="issuingdatelicense"/>
+		<column name="receiveLicenseDate" type="Date" db-name="receivelicensedate"/>
+		<column name="documentNumber" type="String" db-name="documentnumber"/>
+		<column name="billNumber" type="String" db-name="billnumber"/>
+		<column name="numberMoney" type="long" db-name="numbermoney"/>
+		<column name="note" type="String" db-name="note"/>
+		<column name="conclude" type="String" db-name="conclude"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="fileReturningInfoId" />
+		</order>
+		
+		<!-- finder -->
+		
+		<finder name="FileId" return-type="Collection">
+			<finder-column name="fileId" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="FileSender" return-type="Collection">
+			<finder-column name="fileSender" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="LicenseNumber" return-type="Collection">
+			<finder-column name="licenseNumber" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="IssuingDateLicense" return-type="Collection">
+			<finder-column name="issuingDateLicense" />
+		</finder>
+		
+		<finder name="ReceiveLicenseDate" return-type="Collection">
+			<finder-column name="receiveLicenseDate" />
+		</finder>
+		
+		<finder name="DocumentNumber" return-type="Collection">
+			<finder-column name="documentNumber" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="BillNumber" return-type="Collection">
+			<finder-column name="billNumber" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="NumberMoney" return-type="Collection">
+			<finder-column name="numberMoney" />
+		</finder>
+		
+		<finder name="Note" return-type="Collection">
+			<finder-column name="note" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Conclude" return-type="Collection">
+			<finder-column name="conclude" comparator="LIKE"/>
+		</finder>
+		<finder name="FileReturningInfoIdFileId" return-type="PmlFileReturningInfo">
+			<finder-column name="fileId" comparator="="/>
+			<finder-column name="fileReturningInfoId" comparator="="/>
+		</finder>
+				
+		<!-- References -->
+
+		
+	</entity>
+	
+	<entity name="PmlFilePCCCAttachedFile" local-service="true" remote-service="true"
+		table="pml_filepccc_attachedfile">
+
+		<!-- PK fields -->
+
+		<column name="attachedFileId" type="long" primary="true" db-name="attachedfileid"/>
+
+		<!-- Other fields -->
+
+		<column name="filePcccId" type="String" db-name="filepcccid"/>
+		<column name="objectType" type="String" db-name="objecttype"/>
+		<column name="attachedFileName" type="String" db-name="attachedfilename"/>
+		<column name="path" type="String" db-name="path"/>
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		<column name="fileType" type="String" db-name="filetype"/>
+		<column name="title" type="String" db-name="title"/>
+		
+		<!-- Order -->
+
+		<!-- finder -->
+		<finder name="FilePcccId" return-type="Collection">
+			<finder-column name="filePcccId" comparator="LIKE"/>
+		</finder>
+		<finder name="ObjectType" return-type="Collection">
+			<finder-column name="objectType" comparator="LIKE"/>
+		</finder>
+		<finder name="AttachedFileName" return-type="Collection">
+			<finder-column name="attachedFileName" comparator="LIKE"/>
+		</finder>
+		<finder name="Path" return-type="Collection">
+			<finder-column name="path" comparator="LIKE"/>
+		</finder>
+		<finder name="DateCreated" return-type="Collection">
+			<finder-column name="dateCreated" />
+		</finder>
+		<finder name="FileType" return-type="Collection">
+			<finder-column name="fileType" comparator="LIKE"/>
+		</finder>
+		<finder name="FilePcccId_ObjectType" return-type="Collection">
+			<finder-column name="filePcccId" />
+			<finder-column name="objectType" />
+		</finder>
+		
+	</entity>
+	
+	<!-- Pml_TeamLeader -->
+	<entity name="PmlTeamLeader" local-service="true" remote-service="true"
+		table="pml_teamleader">
+
+		<!-- PK fields -->
+
+		<column name="teamId" type="long" primary="true" db-name="teamid"/>
+
+		<!-- Other fields -->
+
+		<column name="userId" type="long" db-name="userid"/>
+		
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="teamId" />
+		</order>
+		
+		<!-- finder -->
+		
+		<finder return-type="Collection" name="UserId">
+			<finder-column name="userId" />
+		</finder>
+	</entity>
+	
+</service-builder>
