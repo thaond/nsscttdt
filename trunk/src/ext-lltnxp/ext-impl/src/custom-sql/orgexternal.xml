@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.organizationexternal.service.persistence.OrganizationExternalFinder.findDonViLienThong">
+		<![CDATA[
+			SELECT
+				pml_organization_external.*
+			FROM
+				pml_organization_external
+			WHERE
+				(lower(orgexternalcode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(orgexternalname) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	
+	<sql id="com.sgs.portlet.organizationexternal.service.persistence.OrganizationExternalFinder.countDonViLienThong">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_organization_external
+			WHERE
+				(lower(orgexternalcode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(orgexternalname) LIKE ? [$AND_OR_NULL_CHECK$])	 	
+		]]>
+	</sql>
+</custom-sql>

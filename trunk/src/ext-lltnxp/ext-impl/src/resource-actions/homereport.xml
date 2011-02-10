@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<resource-action-mapping>
+	<portlet-resource>
+		<portlet-name>SGS_HOME_REPORT</portlet-name>
+		<supports>
+			<action-key>CHUYENVIEN</action-key>
+			<action-key>TRUONGPHONG</action-key>
+			<action-key>GIAMDOC</action-key>
+			<action-key>VIEW</action-key>
+			<action-key>VANTHU</action-key>
+			<action-key>VIEWREPORTALL</action-key>
+		</supports>
+		<community-defaults>
+			<action-key>VIEW</action-key>
+		</community-defaults>
+		<guest-defaults>
+			<action-key>VIEW</action-key>
+		</guest-defaults>
+		<guest-unsupported>
+			<action-key>CHUYENVIEN</action-key>
+			<action-key>TRUONGPHONG</action-key>
+			<action-key>GIAMDOC</action-key>
+			<action-key>VANTHU</action-key>
+			<action-key>VIEWREPORTALL</action-key>
+		</guest-unsupported>
+	</portlet-resource>	
+</resource-action-mapping>

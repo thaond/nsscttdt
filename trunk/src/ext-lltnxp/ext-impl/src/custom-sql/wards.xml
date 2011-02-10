@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.wardsmanagement.service.persistence.WardsFinder.findBy_TEN_MA_MOTA_PHUONG">
+		<![CDATA[
+			SELECT
+				pml_wards.*
+			FROM
+				pml_wards, pml_district
+			WHERE
+				1 = 1
+				AND pml_district.districtid = pml_wards.districtid
+				AND (
+					(lower(pml_wards.wardscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_wards.wardsname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_wards.description) LIKE ? [$AND_OR_NULL_CHECK$])				 	
+				) 
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.wardsmanagement.service.persistence.WardsFinder.countBy_TEN_MA_MOTA_PHUONG">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_wards, pml_district
+			WHERE
+				1 = 1 
+				AND pml_district.districtid = pml_wards.districtid 
+				AND (
+					(lower(pml_wards.wardscode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(pml_wards.wardsname) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				 	(lower(pml_wards.description) LIKE ? [$AND_OR_NULL_CHECK$])			 	
+				)  
+		]]>
+	</sql>
+</custom-sql>

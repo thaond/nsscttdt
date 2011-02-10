@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.sgs.portlet.holiday_calendar.service.persistence.HolidayCalendarFinder.COUNT_HOLIDAY_CALENDAR_TEST">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM holiday_calendar
+		WHERE
+		(holidayCalendarDateCreate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(holidayCalendarDateCreate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(holidayCalendarCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(holidayCalendarTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.sgs.portlet.holiday_calendar.service.persistence.HolidayCalendarFinder.FIND_HOLIDAY_CALENDAR_TEST">
+		<![CDATA[
+		SELECT *
+		FROM holiday_calendar
+		WHERE
+		(holidayCalendarDateCreate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(holidayCalendarDateCreate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(holidayCalendarCode) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(holidayCalendarTitle) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY holidayCalendarCode ASC
+		]]>
+	</sql>
+</custom-sql>

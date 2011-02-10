@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<custom-sql>
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmDocumentSendFinder.countBy_R_B_F_T">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				pml_edm_documentsend
+			WHERE
+				(datecreated >= ?) AND
+				(datecreated <= ?) AND
+				(lower(documentreference) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(briefcontent) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+	<sql id="com.sgs.portlet.document.send.service.persistence.PmlEdmDocumentSendFinder.findBy_R_B_F_T">
+		<![CDATA[
+			SELECT
+				pml_edm_documentsend.*
+			FROM
+				pml_edm_documentsend
+			WHERE
+				(datecreated >= ?) AND
+				(datecreated <= ?) AND
+				(lower(documentreference) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+				(lower(briefcontent) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+</custom-sql>
