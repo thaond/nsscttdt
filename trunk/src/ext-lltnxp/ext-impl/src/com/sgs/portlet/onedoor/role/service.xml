@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.onedoor.role">
+	<namespace>Role</namespace>
+	<entity name="PmlRole" local-service="true" remote-service="true"
+		table="pml_role">
+
+		<!-- PK fields -->
+
+		<column name="roleId" type="String" primary="true" db-name="roleid"/>
+
+		<!-- Other fields -->
+
+		<column name="roleCode" type="String" db-name="rolecode"/>
+		<column name="roleName" type="String" db-name="rolename"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="roleId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="roleName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="RoleCode" return-type="Collection">
+			<finder-column name="roleCode" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="RoleName" return-type="Collection">
+			<finder-column name="roleName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="C_N_D" return-type="Collection">
+			<finder-column name="roleCode" comparator="LIKE"/>
+			<finder-column name="roleName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+	</entity>
+</service-builder>
