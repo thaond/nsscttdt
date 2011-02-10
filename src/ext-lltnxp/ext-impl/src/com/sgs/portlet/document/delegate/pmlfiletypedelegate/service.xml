@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document.delegate.pmlfiletypedelegate">
+	<namespace>PmlFileTypeDelegate</namespace>
+	<entity name="PmlFileTypeDelegate" local-service="true" remote-service="true"
+		table="pml_filetypedelegate">
+
+		<!-- PK fields -->
+
+		<column name="fileTypeDelegateId" type="long" primary="true" db-name="filetypedelegateid"/>
+
+		<!-- Other fields -->
+
+		<column name="fileTypeId" type="String" db-name="filetypeid"/>
+		<column name="delegateId" type="long" db-name="delegateid"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="fileTypeDelegateId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="FileTypeId_DelegateId" return-type="Collection">
+			<finder-column name="fileTypeId" />
+			<finder-column name="delegateId" />
+		</finder>
+		
+		<finder name="FileTypeId" return-type="Collection">
+			<finder-column name="fileTypeId" />
+		</finder>
+		
+		<finder name="DelegateId" return-type="Collection">
+			<finder-column name="delegateId" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+</service-builder>

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.document.delegate.pmldelegate">
+	<namespace>PmlDelegate</namespace>
+	<entity name="PmlDelegate" local-service="true" remote-service="true"
+		table="pml_delegate">
+
+		<!-- PK fields -->
+
+		<column name="delegateId" type="long" primary="true" db-name="delegateid"/>
+
+		<!-- Other fields -->
+
+		<column name="assigner" type="long" db-name="assigner"/>
+		<column name="receiver" type="long" db-name="receiver"/>
+		<column name="startDate" type="Date" db-name="startdate"/>
+		<column name="endDate" type="Date" db-name="enddate"/>
+		<column name="cancelDate" type="Date" db-name="canceldate"/>
+		<column name="cancelDelegate" type="String" db-name="canceldelegate"/>
+		<column name="dateCreated" type="Date" db-name="datecreated"/>
+		
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="delegateId" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="Receive_StartDate_CancelDate_CancelDelegate" return-type="Collection">
+			<finder-column name="receiver"/>
+			<finder-column name="startDate" comparator="&lt;="/>
+			<finder-column name="cancelDate" comparator="&gt;="/>
+			<finder-column name="cancelDelegate" />
+		</finder>
+		
+		<finder name="Receive_StartDate_EndDate_CancelDelegate" return-type="Collection">
+			<finder-column name="receiver"/>
+			<finder-column name="startDate" comparator="&lt;="/>
+			<finder-column name="endDate" comparator="&gt;="/>
+			<finder-column name="cancelDelegate" />
+		</finder>
+		
+		<finder name="Receive_StartDate_EndDate" return-type="Collection">
+			<finder-column name="receiver"/>
+			<finder-column name="startDate" comparator="&lt;="/>
+			<finder-column name="endDate" comparator="&gt;="/>
+		</finder>
+		
+		<finder name="DateCreated" return-type="Collection">
+			<finder-column name="dateCreated"/>
+		</finder>
+		
+		<finder name="CancelDelegate" return-type="Collection">
+			<finder-column name="cancelDelegate"/>
+		</finder>
+		
+		<finder name="Assigner_Receiver_StartDate_EndDate" return-type="Collection">
+			<finder-column name="assigner" />
+			<finder-column name="receiver" />
+			<finder-column name="startDate" />
+			<finder-column name="endDate" />
+		</finder>
+		
+		<finder name="Assigner" return-type="Collection">
+			<finder-column name="assigner" />
+		</finder>
+		
+		<finder name="Receiver" return-type="Collection">
+			<finder-column name="receiver" />
+		</finder>
+		
+		<finder name="Assigner_Receiver" return-type="Collection">
+			<finder-column name="assigner" />
+			<finder-column name="receiver" />
+		</finder>
+		
+		<!-- 06/04/2010 -->
+		<finder name="Receiver_CancelDelegate" return-type="Collection">
+			<finder-column name="receiver" />
+			<finder-column name="cancelDelegate" />
+		</finder>
+		
+		<!-- References -->
+
+		
+	</entity>
+	
+</service-builder>
