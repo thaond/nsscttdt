@@ -1,0 +1,56 @@
+/* su dung All styles begin with hscv_*/ 
+
+/* ---------- General styles ---------- */
+.hscv_content {
+	color:#FFKKRR;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:12px;
+	text-transform:capitalize;
+	padding-left:6px;
+	vertical-align:top;
+	background-color:#F9F1E6;
+}
+.hscv_content_title {
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:12px;
+	text-transform:capitalize;
+	vertical-align:top;
+	padding-left:6px;
+	background-color:#B6D4DF;
+}
+.hscv_btn_fix {
+	background-color:white;
+	border:1px outset #7F9DB9;
+	font-family:Tahoma,Georgia,Times,serif;
+	font-size:8pt;
+	padding:0 4px;
+	text-transform:capitalize;
+	width:7.5em;
+}
+.hscv_btn_trove {
+	padding-top: 15px;
+}
+.hscv_form_title {/**dinh dang tieu de cho td_headTitle**/
+	background-color:#6CA1B4;
+	color:white;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:1px;
+	padding:4px 2px 4px 4px;
+	text-align:center !important; 
+}
+.hscv_table_fix {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	padding-top: 2px;
+}
+
+/* ---------- div styles ---------- */
+.
+/* ---------- span styles ---------- */
+
+/* ---------- table styles ---------- */
+.
+/* ---------- tr styles ---------- */
