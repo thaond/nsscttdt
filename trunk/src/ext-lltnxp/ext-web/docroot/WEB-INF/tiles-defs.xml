@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+                                   "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+    <!-- Reports -->
+    <!-- minh update 20101123
+    <definition extends="portlet" name="portlet.ext.reports.view">
+        <put name="portlet_content" value="/portlet/ext/reports/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.ext.reports.view_reports">
+        <put name="portlet_content" value="/portlet/ext/reports/view_reports.jsp"/>
+    </definition>
+     -->
+    <!-- ####### DM HSCV ########## -->
+    <!-- pmlTinhChat -->
+    <definition extends="portlet" name="portlet.sgs.pml_tinh_chat.view">
+        <put name="portlet_content" value="/portlet/ext/pml_tinh_chat/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_tinh_chat.error">
+        <put name="portlet_content" value="/portlet/ext/pml_tinh_chat/error.jsp"/>
+    </definition>
+    <!-- pmlTrangThaiHSCV -->
+    <definition extends="portlet" name="portlet.sgs.pml_trang_thai_hscv.view">
+        <put name="portlet_content" value="/portlet/ext/pml_trang_thai_hscv/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_trang_thai_hscv.error">
+        <put name="portlet_content" value="/portlet/ext/pml_trang_thai_hscv/error.jsp"/>
+    </definition>
+    <!-- pmlDoQuanTrong -->
+    <definition extends="portlet" name="portlet.sgs.pml_do_quan_trong.view">
+        <put name="portlet_content" value="/portlet/ext/pml_do_quan_trong/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_do_quan_trong.error">
+        <put name="portlet_content" value="/portlet/ext/pml_do_quan_trong/error.jsp"/>
+    </definition>
+    <!-- pml_ho_so_cong_viec -->
+    <definition extends="portlet" name="portlet.sgs.pml_ho_so_cong_viec"/>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.view">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/view.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.edit">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/edit.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.viewdetail">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/viewdetail.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.error">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/error.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.detail">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/detail.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.detailSend">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/detailSend.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvden">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/thu_thap_cvden.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_ho_so_cong_viec" name="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvdi">
+        <put name="portlet_content" value="/portlet/ext/pml_ho_so_cong_viec/thu_thap_cvdi.jsp"/>
+    </definition>
+    <!-- end TS -->
+    <!-- ##### End ######### -->
+    <!-- ######## NHAP MOI CV DI ########### -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendreport.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendreport/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendreport.detail">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendreport/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendreport_so.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendreport_so/view.jsp"/>
+    </definition>
+    <!--  ### Tiep nhan ### -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsend.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsend/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsend.viewpopup">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsend/popup1.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsend.viewpopupuser">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsend/popupuser.jsp"/>
+    </definition>
+    <!--  ### Xu ly ### -->
+    <!-- chuyen lanh dao -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.changeagency">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/changeagency.jsp"/>
+    </definition>
+    <!-- transition to departments -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.changedeparments">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/changedeparments.jsp"/>
+    </definition>
+    <!-- transition to users -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.changeusers">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/changeusers.jsp"/>
+    </definition>
+    <!-- Xem danh sach -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.list">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/list.jsp"/>
+    </definition>
+    <!-- Xem chi tiet -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.detail">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/detail.jsp"/>
+    </definition>
+    <!-- Sua cong van di -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.update">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/update.jsp"/>
+    </definition>
+    <!-- Trinh truong doi & Trinh truong phong & trinh lanh dao & yeu cau bo sung & chuyen phat hanh-->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.trans">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/trans.jsp"/>
+    </definition>
+    <!-- Cho so va phat hanh -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.saveAndPublish">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/saveAndPublish.jsp"/>
+    </definition>
+    <!-- tra lai -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.backDocumentAction">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/backdocumentsend.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.search">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/search.jsp"/>
+    </definition>
+    <!-- Sua cong van di cho phan search van thu-->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.updatesearch">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/updatesearch.jsp"/>
+    </definition>
+    <!-- process change leadership -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.xulythayld">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/xulythayld.jsp"/>
+    </definition>
+    <!-- Document relation -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.documentrelation">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/documentrelation.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.error">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/error.jsp"/>
+    </definition>
+    <!-- ######## end ########### -->
+    <!-- ######## NHAP MOI CV DEN ########### -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentrecordto.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentrecordto/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentrecordto.detail">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentrecordto/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentrecordto_so.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentrecordto_so/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptreport.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptreport/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentreceiptdetails">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptreport/pcccdocumentreceipt_details.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptreport.details">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptreport/details.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentsenddetails">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptreport/pcccdocumentsend_details.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptreport.detailsend">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptreport/detailsend.jsp"/>
+    </definition>
+    <!-- pccc document receive process -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.list">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/list.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.listdoctemp">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/listdoctemp.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.detail">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.detaildoctemp">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/detaildoctemp.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.trans">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/trans.jsp"/>
+    </definition>
+    <!-- transition to cvp -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.transcvp">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/trans.jsp"/>
+    </definition>
+    <!-- lanh dao tu xu ly -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.changeagency">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/changeagencys.jsp"/>
+    </definition>
+    <!-- transition to departments -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.changedeparments">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/changedeparments.jsp"/>
+    </definition>
+    <!-- transition to users -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.changeusers">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/changeusers.jsp"/>
+    </definition>
+    <!-- update document receipt -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.update">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.reportdocumentreceipt">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/report.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.process">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/process.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.search">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.writeDocument">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/writeDocument.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.delegate.view">
+        <put name="portlet_content" value="/portlet/ext/delegate/view.jsp"/>
+    </definition>
+    <!-- gia han thoi gian xu ly vb -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.viewextend">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/viewextend.jsp"/>
+    </definition>
+    <!-- thay doi cach thuc xu ly -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.editprocesstype">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/editprocesstype.jsp"/>
+    </definition>
+    <!-- Document relation -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.documentrelation">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/documentrelation.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.error">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/error.jsp"/>
+    </definition>
+    <!--  thong tin gop y cua cong van den -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.supportInformation">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/supportInformation.jsp"/>
+    </definition>
+    <!-- tra lai cong van -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.backDocumentReceipt">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/backdocumentreceipt.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceipt.view">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceipt/view.jsp"/>
+    </definition>
+    <!-- update document receipt -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.updatesearch">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/editsearch.jsp"/>
+    </definition>
+    <!-- process change leadership -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.xulythayld">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/xulythayld.jsp"/>
+    </definition>
+    <!-- in nhieu phieu chuyen -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.printlist">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/indsphieuchuyen.jsp"/>
+    </definition>
+    <!-- chanh van phong chuyen chanh van phong -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/cvptocvp.jsp"/>
+    </definition>
+    <!-- lanh dao chuyen lanh dao -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/agencytoagency.jsp"/>
+    </definition>
+    <!-- chuyen cho cac van thu phong -->
+    <definition extends="portlet" name="portlet.sgs.pcccdocumentreceiptprocess.changevanthudeparment">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentreceiptprocess/changevanthudeparments.jsp"/>
+    </definition>
+    <!-- ####### End ################## -->
+    <!-- ######## MOT CUA ############ -->
+    <definition extends="portlet" name="portlet.sgs.onedoorreceive.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorreceive/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/view.jsp"/>
+    </definition>
+    <!-- Them moi ho so -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpccc.add">
+        <put name="portlet_content" value="/portlet/ext/onedoorpccc/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.edit">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.approve">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/approve.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.process">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/changeProcess.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.additionalRequirement">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/additionalRequirement.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.assign">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/assign.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.additional">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/additional.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.trinhky">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/trinhky.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.sign">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/sign.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.returnFile">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/returnFile.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.returnFileForPeople">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/returnFileForPeople.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorprocess.delete">
+        <put name="portlet_content" value="/portlet/ext/onedoorprocess/delete.jsp"/>
+    </definition>
+    <!-- PCCC Report -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothang.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothang/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothang/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails_detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothang/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothang.search">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothang/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothang.searchresult">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothang/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothangluyke/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothangluyke/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails_detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothangluyke/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.search">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothangluyke/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.searchresult">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_baocaohosothangluyke/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapphong/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapphong/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails_detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapphong/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.search">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapphong/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.searchresult">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapphong/searchresult.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapso/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapso/filedetails.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails_detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapso/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.search">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapso/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.searchresult">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccreport_tinhhinhthulyhosocapso/searchresult.jsp"/>
+    </definition>
+    <!-- End PCCC Report -->
+    <!-- *** Xu li ho so *** -->
+    <!-- Xem danh sach ho so -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/view.jsp"/>
+    </definition>
+    <!-- Xem thong tin chi tiet -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/detail.jsp"/>
+    </definition>
+    <!-- Chuyen xu li -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.transfer">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/transfer.jsp"/>
+    </definition>
+    <!-- Cap nhat ho so -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.update">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/edit.jsp"/>
+    </definition>
+    <!-- tra ho so -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.returndocument">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/returndocument.jsp"/>
+    </definition>
+    <!-- yeu cau bo sung ho so -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.implementation">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/implementation.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.implementinformation">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/implementinformation.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.search">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/search.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorpcccprocess.searchresult">
+        <put name="portlet_content" value="/portlet/ext/onedoorpcccprocess/searchresult.jsp"/>
+    </definition>
+    <!-- End one door pccc process -->
+    <!-- *** Tiep nhan mot cua *** -->
+    <definition extends="portlet" name="portlet.sgs.onedoorpccc.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorpccc/view.jsp"/>
+    </definition>
+    <!-- ########### End ############# -->
+    <!-- ############ TRANG CHU ############# -->
+    <definition extends="portlet" name="portlet.sgs.home.view">
+        <put name="portlet_content" value="/portlet/ext/home/view.jsp"/>
+    </definition>
+    <!-- ######## End ############## -->
+    <!-- ###### DM CV ############## -->
+    <definition extends="portlet" name="portlet.sgs.issuingplace.view">
+        <put name="portlet_content" value="/portlet/ext/issuingplace/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.issuingplace.error">
+        <put name="portlet_content" value="/portlet/ext/issuingplace/error.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.issuingplace.addlevelsend">
+        <put name="portlet_content" value="/portlet/ext/issuingplace/addlevelsend.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.view">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.error">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/error.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documenttype.view">
+        <put name="portlet_content" value="/portlet/ext/documenttype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documenttype.error">
+        <put name="portlet_content" value="/portlet/ext/documenttype/error.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_edm_confidentiallevel.view">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_confidentiallevel/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_edm_privelegeleveladmin.view">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_privelegeleveladmin/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_edm_privelegeleveladmin.error">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_privelegeleveladmin/error.jsp"/>
+    </definition>
+    <!-- record type -->
+    <definition extends="portlet" name="portlet.sgs.documentrecordtype.view">
+        <put name="portlet_content" value="/portlet/ext/documentrecordtype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecordtype.error">
+        <put name="portlet_content" value="/portlet/ext/documentrecordtype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentlevelsend.view">
+        <put name="portlet_content" value="/portlet/ext/documentlevelsend/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentlevelsend.error">
+        <put name="portlet_content" value="/portlet/ext/documentlevelsend/error.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentlevelsend.error">
+        <put name="portlet_content" value="/portlet/ext/documentlevelsend/error.jsp"/>
+    </definition>
+    <!-- them so cong van cho phong ban va so -->
+    <!-- phmphuc 24/05/2010 -->
+    <definition extends="portlet" name="portlet.sgs.documentrecord.view">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvanden">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvanden.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvanden_add">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvanden_add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvanden_edit">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvanden_edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvandi">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvandi.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvandi_add">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvandi_add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.socongvandi_edit">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/socongvandi_edit.jsp"/>
+    </definition>
+    <!-- end -->
+    <definition extends="portlet" name="portlet.sgs.documenttype.view">
+        <put name="portlet_content" value="/portlet/ext/documenttype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_edm_confidentiallevel.error">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_confidentiallevel/error.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_edm_privelegeleveladmin.view">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_privelegeleveladmin/view.jsp"/>
+    </definition>
+    <!-- record type -->
+    <definition extends="portlet" name="portlet.sgs.documentrecordtype.view">
+        <put name="portlet_content" value="/portlet/ext/documentrecordtype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentlevelsend.view">
+        <put name="portlet_content" value="/portlet/ext/documentlevelsend/view.jsp"/>
+    </definition>
+    <!-- them so cong van cho phong ban va so -->
+    <definition extends="portlet" name="portlet.sgs.documentrecord.AddDocumentRecordSend">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/themsocongvandi.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentrecord.AddDocumentRecordTo">
+        <put name="portlet_content" value="/portlet/ext/documentrecord/themsocongvanden.jsp"/>
+    </definition>
+    <!-- ######## End ################ -->
+    <!-- ####### DM HO SO ############### -->
+    <definition extends="portlet" name="portlet.sgs.permissonuserbyfile.view">
+        <put name="portlet_content" value="/portlet/ext/permissonuserbyfile/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.permissonuserbyfile.edit">
+        <put name="portlet_content" value="/portlet/ext/permissonuserbyfile/edit.jsp"/>
+    </definition>
+    <!-- begin file status & state process -->
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.view">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_stateprocess.view">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/viewstateprocess.jsp"/>
+    </definition>
+    <!--#################### Yen 2010-04-06 -->
+    <!-- file status document -->
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.display_stateprocess_document">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/display_stateprocess_document.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.add_stateprocess_document">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/add_stateprocess_document.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.edit_filestatus_document">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/edit_filestatus_document.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.add_filestatus_document">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/add_filestatus_document.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.edit_stateprocess_document">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/edit_stateprocess_document.jsp"/>
+    </definition>
+    <!-- file status onedoor -->
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.display_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/display_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.add_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/add_stateprocess_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.add_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/add_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.edit_filestatus_onedoor">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/edit_filestatus_onedoor.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmledm_filestatus.edit_stateprocess_onedoor">
+        <put name="portlet_content" value="/portlet/ext/pmledm_filestatus/edit_stateprocess_onedoor.jsp"/>
+    </definition>
+    <!-- end Yen 2010-04-06 ###############-->
+    <definition extends="portlet" name="portlet.sgs.holidaymanagement.view">
+        <put name="portlet_content" value="/portlet/ext/holidaymanagement/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.holidaymanagement.add">
+        <put name="portlet_content" value="/portlet/ext/holidaymanagement/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.holidaymanagement.edit">
+        <put name="portlet_content" value="/portlet/ext/holidaymanagement/edit.jsp"/>
+    </definition>
+    <!-- file type -->
+    <definition extends="portlet" name="portlet.sgs.filetype.view">
+        <put name="portlet_content" value="/portlet/ext/filetype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.filetype.add">
+        <put name="portlet_content" value="/portlet/ext/filetype/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.filetype.edit">
+        <put name="portlet_content" value="/portlet/ext/filetype/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentfield.view">
+        <put name="portlet_content" value="/portlet/ext/documentfield/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentfield.addfield">
+        <put name="portlet_content" value="/portlet/ext/documentfield/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentfield.editfield">
+        <put name="portlet_content" value="/portlet/ext/documentfield/edit.jsp"/>
+    </definition>
+    <!-- ########## End ################# -->
+    <!-- ##### QUAN LY UY QUYEN ###### -->
+    <definition extends="portlet" name="portlet.sgs.workflow_admin.view">
+        <put name="portlet_content" value="/portlet/ext/workflow_admin/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentprocessmanagement.view">
+        <put name="portlet_content" value="/portlet/ext/documentprocessmanagement/view.jsp"/>
+    </definition>
+    <!-- Yenlt 06/04/2010 -->
+    <definition extends="portlet" name="portlet.sgs.delegate.add">
+        <put name="portlet_content" value="/portlet/ext/delegate/add.jsp"/>
+    </definition>
+    <!-- end 06/04/2010 -->
+    <!-- ######### End ############# -->
+    <!-- ######## DMDC ############# -->
+    <definition extends="portlet" name="portlet.sgs.departmentleader.viewdepartmenthscv">
+        <put name="portlet_content" value="/portlet/ext/departmentleader/hscvdepartment.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmluser.view">
+        <put name="portlet_content" value="/portlet/ext/pmluser/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.position.view">
+        <put name="portlet_content" value="/portlet/ext/position/view.jsp"/>
+    </definition>
+    <!-- ######### phucphm 28-01-2010 ############# -->
+    <definition extends="portlet" name="portlet.sgs.position.add">
+        <put name="portlet_content" value="/portlet/ext/position/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.wardsmanagement.view">
+        <put name="portlet_content" value="/portlet/ext/wardsmanagement/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.nation.view">
+        <put name="portlet_content" value="/portlet/ext/nation/view.jsp"/>
+    </definition>
+    <!-- generate template id -->
+    <definition extends="portlet" name="portlet.sgs.generatetemplateid.view">
+        <put name="portlet_content" value="/portlet/ext/generatetemplateid/view.jsp"/>
+    </definition>
+    <!-- Yenlt 27/01/2010 -->
+    <definition extends="portlet" name="portlet.sgs.generatetemplateid.add_edit_idtemplate">
+        <put name="portlet_content" value="/portlet/ext/generatetemplateid/add_edit_idtemplate.jsp"/>
+    </definition>
+    <!-- end generate template id -->
+    <!--  geneate document code -->
+    <definition extends="portlet" name="portlet.sgs.geneatedocumentcode.view">
+        <put name="portlet_content" value="/portlet/ext/geneatedocumentcode/view.jsp"/>
+    </definition>
+    <!-- Yenlt 28/01/2010 -->
+    <definition extends="portlet" name="portlet.sgs.geneatedocumentcode.add_edit">
+        <put name="portlet_content" value="/portlet/ext/geneatedocumentcode/add_edit.jsp"/>
+    </definition>
+    <!-- end -->
+    <!-- district -->
+    <definition extends="portlet" name="portlet.sgs.districtmanagement.view">
+        <put name="portlet_content" value="/portlet/ext/districtmanagement/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.districtmanagement.error">
+        <put name="portlet_content" value="/portlet/ext/districtmanagement/error.jsp"/>
+    </definition>
+    <!-- phmphuc 07/09/2010 -->
+    <definition extends="portlet" name="portlet.sgs.districtmanagement.add">
+        <put name="portlet_content" value="/portlet/ext/districtmanagement/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.districtmanagement.edit">
+        <put name="portlet_content" value="/portlet/ext/districtmanagement/edit.jsp"/>
+    </definition>
+    <!-- end phumphuc -->
+    <!-- Department leader -->
+    <definition extends="portlet" name="portlet.sgs.departmentleader.view">
+        <put name="portlet_content" value="/portlet/ext/departmentleader/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.departmentleader.add">
+        <put name="portlet_content" value="/portlet/ext/departmentleader/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.departmentleader.edit">
+        <put name="portlet_content" value="/portlet/ext/departmentleader/edit.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.departmentleader.setleader">
+        <put name="portlet_content" value="/portlet/ext/departmentleader/setleader.jsp"/>
+    </definition>
+    <!-- country -->
+    <definition extends="portlet" name="portlet.sgs.country.view">
+        <put name="portlet_content" value="/portlet/ext/country/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.country.country_add">
+        <put name="portlet_content" value="/portlet/ext/country/country_add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.country.country_update">
+        <put name="portlet_content" value="/portlet/ext/country/country_update.jsp"/>
+    </definition>
+    <!-- city -->
+    <definition extends="portlet" name="portlet.sgs.citymanagement.view">
+        <put name="portlet_content" value="/portlet/ext/citymanagement/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.citymanagement.districtmanagement">
+        <put name="portlet_content" value="/portlet/ext/citymanagement/district.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.citymanagement.wardmanagement">
+        <put name="portlet_content" value="/portlet/ext/citymanagement/ward.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.career.view">
+        <put name="portlet_content" value="/portlet/ext/career/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.career.add">
+        <put name="portlet_content" value="/portlet/ext/career/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.agency.view">
+        <put name="portlet_content" value="/portlet/ext/agency/view.jsp"/>
+    </definition>
+    <!-- Yenlt update 26/01/2010 -->
+    <definition extends="portlet" name="portlet.sgs.agency.add">
+        <put name="portlet_content" value="/portlet/ext/agency/add.jsp"/>
+    </definition>
+    <!-- ######## end ##############  -->
+    <definition extends="portlet" name="portlet.sgs.pml_edm_docconfuser.view">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_docconfuser/view.jsp"/>
+    </definition>
+    <!-- pml_edm_docconfuser -->
+    <definition extends="portlet" name="portlet.sgs.pml_edm_docconfuser"/>
+    <definition extends="portlet.sgs.pml_edm_docconfuser" name="portlet.sgs.pml_edm_docconfuser.view">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_docconfuser/view.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_edm_docconfuser" name="portlet.sgs.pml_edm_docconfuser.edit">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_docconfuser/edit.jsp"/>
+    </definition>
+    <definition extends="portlet.sgs.pml_edm_docconfuser" name="portlet.sgs.pml_edm_docconfuser.error">
+        <put name="portlet_content" value="/portlet/ext/pml_edm_docconfuser/error.jsp"/>
+    </definition>
+    <!-- attached file -->
+    <definition extends="portlet" name="portlet.sgs.attachedfile.view">
+        <put name="portlet_content" value="/portlet/ext/attachedfile/view.jsp"/>
+    </definition>
+    <!-- Yenlt 28/01/2010 -->
+    <definition extends="portlet" name="portlet.sgs.attachedfile.add">
+        <put name="portlet_content" value="/portlet/ext/attachedfile/add.jsp"/>
+    </definition>
+    <!-- end -->
+    <!-- Meeting Calendar -->
+    <definition extends="portlet" name="portlet.ext.meeting_calendar"/>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.week_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/week.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.edit_focus_week">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/edit_focus.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.error">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/error.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.view_event">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/view_event.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.search">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/search.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.print_DK">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/print_DK.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.select_organization">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/select_organization.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meeting_calendar" name="portlet.ext.meeting_calendar.manage_resources">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar/manage_resources.jsp"/>
+    </definition>
+    <!-- Meeting Calendar View -->
+    <definition extends="portlet" name="portlet.ext.meetingcalendarview"/>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/view.jsp"/>
+    </definition>
+    <definition extends="portlet.ext.meetingcalendarview" name="portlet.ext.meetingcalendarview.edit_view">
+        <put name="portlet_content" value="/portlet/ext/meeting_calendar_view/edit_view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.signer.view">
+        <put name="portlet_content" value="/portlet/ext/signer/view.jsp"/>
+    </definition>
+    <!-- process type -->
+    <definition extends="portlet" name="portlet.ext.processtype.view">
+        <put name="portlet_content" value="/portlet/ext/processtype/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.indexdatabase.view">
+        <put name="portlet_content" value="/portlet/ext/indexdatabase/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.congvandidahoanthanh.view">
+        <put name="portlet_content" value="/portlet/ext/congvandidahoanthanh/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pmlstreet.view">
+        <put name="portlet_content" value="/portlet/ext/pmlstreet/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.deleteprocessinstance.view">
+        <put name="portlet_content" value="/portlet/ext/deleteprocessinstance/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.deleteprocessinstance.detail">
+        <put name="portlet_content" value="/portlet/ext/deleteprocessinstance/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report.view">
+        <put name="portlet_content" value="/portlet/ext/home_report/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report.documentreceiptviewlist">
+        <put name="portlet_content" value="/portlet/ext/home_report/documentreceiptviewlist.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report.receiptdetail">
+        <put name="portlet_content" value="/portlet/ext/home_report/receiptdetail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report.documentsendviewlist">
+        <put name="portlet_content" value="/portlet/ext/home_report/documentsendviewlist.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report.senddetail">
+        <put name="portlet_content" value="/portlet/ext/home_report/senddetail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_template.view">
+        <put name="portlet_content" value="/portlet/ext/pml_template/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.pml_template_display.view">
+        <put name="portlet_content" value="/portlet/ext/pml_template_display/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_report_onedoor.view">
+        <put name="portlet_content" value="/portlet/ext/home_report_onedoor/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorfileprocessed.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorfileprocessed/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorfileprocessed.detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorfileprocessed/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorreturn.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorreturn/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorreturn.detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorreturn/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorsearch.view">
+        <put name="portlet_content" value="/portlet/ext/onedoorsearch/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.onedoorsearch.detail">
+        <put name="portlet_content" value="/portlet/ext/onedoorsearch/detail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_onedoor.view">
+        <put name="portlet_content" value="/portlet/ext/home_onedoor/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.home_document.view">
+        <put name="portlet_content" value="/portlet/ext/home_document/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.organizationexternal.view">
+        <put name="portlet_content" value="/portlet/ext/organizationexternal/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.organizationexternal.add">
+        <put name="portlet_content" value="/portlet/ext/organizationexternal/add.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.connecttogateway.view">
+        <put name="portlet_content" value="/portlet/ext/connecttogateway/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.message_note.view">
+        <put name="portlet_content" value="/portlet/ext/message_note/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.message_note.show">
+        <put name="portlet_content" value="/portlet/ext/message_note/show.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.imagehome.view">
+        <put name="portlet_content" value="/portlet/ext/imagehome/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.documentdelegate.view">
+        <put name="portlet_content" value="/portlet/ext/documentdelegate/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.doccumentprivate.view">
+        <put name="portlet_content" value="/portlet/sgs/doccumentprivate/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.doccumentprivate.viewDetail">
+        <put name="portlet_content" value="/portlet/sgs/doccumentprivate/viewDetail.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.receivergroup.view">
+        <put name="portlet_content" value="/portlet/sgs/receivergroup/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.receivergroup.edit_receiver_group">
+        <put name="portlet_content" value="/portlet/sgs/receivergroup/edit_receiver_group.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.phathanhcongvandi.view">
+        <put name="portlet_content" value="/portlet/ext/phathanhcongvandi/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.tiep_nhan_giao_viec.view">
+        <put name="portlet_content" value="/portlet/ext/tiep_nhan_giao_viec/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.report_registry_work.view">
+        <put name="portlet_content" value="/portlet/ext/report_registry_work/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.report_registry_work_index.view">
+        <put name="portlet_content" value="/portlet/ext/report_registry_work_index/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.callportletother.view">
+        <put name="portlet_content" value="/portlet/ext/callportletother/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.document_manager.view">
+        <put name="portlet_content" value="/portlet/ext/document_manager/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.document_manager_index.view">
+        <put name="portlet_content" value="/portlet/ext/document_manager_index/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.holiday_calendar.view">
+        <put name="portlet_content" value="/portlet/ext/holiday_calendar/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.holiday_calendar_index.view">
+        <put name="portlet_content" value="/portlet/ext/holiday_calendar_index/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.vanbannoibo.view">
+        <put name="portlet_content" value="/portlet/ext/vanbannoibo/view.jsp"/>
+    </definition>
+</tiles-definitions>

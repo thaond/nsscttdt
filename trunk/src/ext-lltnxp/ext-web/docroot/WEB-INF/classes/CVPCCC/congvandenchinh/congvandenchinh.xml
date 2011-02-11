@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="" name="congvandenchinh">
+
+	<start-state name="start">
+		<transition to="vuatiepnhan" name="tiepnhan"></transition>
+	</start-state>
+
+
+	<task-node name="vuatiepnhan">
+		<task name="suacongvan:suacongvan:none">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		
+		<task name="none:xoacongvan:none">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		
+		<task name="chuyenlanhdao:chuyenlanhdao:choghibutphe">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="chuyenchanhvanphong:chuyenchanhvanphong:chanhvanphong">
+			<assignment
+					class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+				<!-- <type>DDP</type>
+				<codedepartment>VPBQL</codedepartment> -->	
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="chuyenphongban:chuyenphongban:chuyenphongban">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<transition to="choxacnhan" name="choghibutphe"></transition>
+		<transition to="chanhvanphong" name="chanhvanphong"></transition>
+		<transition to="chophancong" name="chuyenphongban"></transition>
+	</task-node>
+
+	<task-node name="chophancong">
+		<!-- phan cho LDP -->	
+		<task name="phancong:phancong:daphancong">
+			<assignment
+					class="com.sgs.liferay.jbpm.handler.documentpccc.ManagerAssignmentHandler">				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<!-- phan cho PTB -->
+		<task name="chuyenphongban:chuyenphongban:chuyenphongban">
+			<assignment
+					class="com.sgs.liferay.jbpm.handler.documentpccc.LanhDaoAssignmentHandler">				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+			
+		<!-- phan chung  -->
+		<task name="none:congvanluu:xuly">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="congvanbaocao:congvanbaocao:trinhbaocao">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<!-- phan cho LDP -->
+		<task name="soancongvandi:soancongvandi:soancongvantraloi">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.documentpccc.ManagerAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:rutlai:rutlai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>			
+		<transition to="daphancong" name="daphancong"></transition>
+		<transition to="hoanthanh" name="xuly"></transition>
+		<transition to="chophancong" name="chuyenphongban"></transition>
+		<transition to="trinhbaocao" name="trinhbaocao"></transition>
+		<transition to="dangsoancongvantraloi" name="soancongvantraloi"></transition>
+		<transition to="vuatiepnhan" name="vuatiepnhan"></transition>
+		<transition to="chanhvanphong" name="chanhvanphong"></transition>
+		<transition to="choxacnhan" name="choxacnhan"></transition>
+		
+	</task-node>
+
+	<task-node name="daphancong">
+		<task name="none:congvanluu:xuly">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="congvanbaocao:congvanbaocao:trinhbaocao">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="soancongvandi:soancongvandi:soancongvantraloi">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:rutlai:rutlai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<transition to="hoanthanh" name="xuly"></transition>
+		<transition to="dangsoancongvantraloi" name="soancongvantraloi"></transition>
+		<transition to="chophancong" name="chophancong"></transition>
+		<transition to="trinhbaocao" name="trinhbaocao"></transition>
+		<transition to="choxacnhan" name="choxacnhan"></transition>
+	</task-node>
+
+	<task-node name="choxacnhan">
+		<task name="chuyenphongban:chuyenphongban:chophancong">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="none:lanhdaoxuly:xuly">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="suacongvan:suacongvan:none">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		<task name="tuxuly:tuxuly:daphancong">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="tralai:tralai:tralai">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:rutlai:rutlai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="chuyenchanhvanphong:chuyenchanhvanphong:chanhvanphong">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end"><action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" /></event>
+		</task>
+		<task name="lanhdao:lanhdao:choghibutphe">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end"> 
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		
+		<transition to="chophancong" name="chophancong"></transition>
+		<transition to="hoanthanh" name="xuly"></transition>
+		<transition to="daphancong" name="daphancong"></transition>
+		<transition to="chanhvanphong" name="chanhvanphong"></transition>
+		<transition to="vuatiepnhan" name="vuatiepnhan"></transition>
+		<transition to="choxacnhan" name="choghibutphe"></transition>
+		
+	</task-node>
+
+	<task-node name="dangsoancongvantraloi">
+		<task>
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+		</task>
+		<transition to="hoanthanh"></transition>
+	</task-node>
+
+	<task-node name="chanhvanphong">
+		<task name="chuyenphongban:chuyenphongban:chuyenphongban">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="chuyenlanhdao:chuyenlanhdao:choghibutphe">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:rutlai:rutlai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="chanhvanphong:chanhvanphong:chanhvanphong">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>		
+		
+		<transition to="choxacnhan" name="choghibutphe"></transition>
+		<transition to="chophancong" name="chuyenphongban"></transition>
+		<transition to="vuatiepnhan" name="vuatiepnhan"></transition>
+		<transition to="chanhvanphong" name="chanhvanphong"></transition>
+	</task-node>
+
+	<task-node name="trinhbaocao">
+		<task name="none:ketthuc:xuly">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="congvanbaocao:congvanbaocao:trinhbaocao">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment
+			 	class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="none:rutlai:rutlai">
+			<assignment 
+				class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<transition to="hoanthanh" name="xuly"></transition>
+		<transition to="chophancong" name="chophancong"></transition>
+		<transition to="daphancong" name="daphancong"></transition>
+		<transition to="trinhbaocao" name="trinhbaocao"></transition>
+	</task-node>
+
+	<end-state name="hoanthanh"></end-state>
+</process-definition>
