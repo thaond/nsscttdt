@@ -1,0 +1,45 @@
+/* This file is used for qlcv module. All styles begin with qlcv- */ 
+
+/* ---------- General styles ---------- */
+
+.qlcv-form-field { /* form field: textbox, select */
+	width: 70%;	
+}
+
+.qlcv-label-title { /* tieu de */
+	color:#333366;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.qlcv-table-general {
+	border:0;
+}
+
+.qlcv-tr-general {
+	height:25;
+}
+
+.qlcv-td-title-general {
+	padding: 1px 3px 1px 3px !important;
+
+
+
+	color:#2200CC;
+}
+
+.qlcv-td-content-general {
+	padding:1px 3px 1px 3px !important;
+}
+
+.qlcv-text-96 {
+	width: 96%;
+}
+
+.qlcv-text-97 {
+	width: 97%;
+}
+
+.qlcv-text-98 {
+	width: 98%;
+}

@@ -1,0 +1,206 @@
+/* This file is used for official dispatch module. All styles begin with od- */ 
+
+/* ---------- General styles ---------- */
+
+.od-required-field {
+	color:#FF0000;
+}
+.form-title {/**dinh dang tieu de cho td_headTitle**/
+	background-color:#6CA1B4;
+	color:white;
+	font-size:11px;
+	font-weight:bold;
+	letter-spacing:1px;
+	padding:4px 2px 4px 4px;
+}
+.formField { /** dinh dang textbox hien thi **/
+	/*
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width:98%;
+	*/
+	width: 98%;	
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;	
+}
+.formField_odSum {
+	/*
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width:98%;
+	*/
+	width: 97%;	
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	height: 70px;
+}
+.btn-fix {
+	background-color:white;
+	border:1px outset #7F9DB9;
+	font-family:Tahoma,Georgia,Times,serif;
+	font-size:8pt;
+	padding:0 4px;
+	text-transform:capitalize;
+	width:7.5em;
+}
+.odsend_radxl{
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:13px;
+	text-transform:capitalize;
+	text-align:center;
+	padding-left:6px;	
+}
+.odsend_inp_hour {
+	width: 35px;
+}
+/* ---------- div styles ---------- */
+.div_odsend_contain_content {
+	width: 100%;
+	height: 100%;
+}
+
+.div_odsend_content {
+	width:100%;
+	height:150px;
+	overflow:auto;
+	overflow-x:hidden;
+	z-index:1;
+}
+/* ---------- span styles ---------- */
+
+/* ---------- table styles ---------- */
+.odin_tab_fix {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+.odin_tab_fix_att {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	padding-left: 5px;
+	padding-right: 5px;	
+}
+/* ---------- td styles ---------- */
+.odsend_content_fix {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.td-div-auto { /** dinh dang td bao ben ngoai div co scrollbar**/
+ 	width:100%;
+	/*
+	height:300px;
+	*/
+	vertical-align: top;
+}
+.td_content_1 {
+	width: 49%;
+	vertical-align: top;
+	padding-top: 10px;	
+	padding-bottom: 10px;
+}
+.td_content_2 {
+	width: 49%;
+	vertical-align: top;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.odin_content {
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	width:28%;
+	vertical-align:top;
+}
+.od_td_organenforce_in {
+	width: 85%;
+	text-align: left;
+}
+.od_td_organenforce_but {
+	text-align: right;
+	padding-right: 2px;
+	width: 15%;
+}
+.odin_att {
+	background-color:#6CA1B4;
+	color:white;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:9pt;
+	font-weight:bold;
+	letter-spacing:1px;
+	text-align:center;
+	text-decoration:none;
+	text-transform:none;
+}
+.odin_attAddRow {
+	background-color:#EEF3F8;
+	color:#000066;
+	cursor:pointer;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:8pt;
+}
+.odsend_trky {
+	/*
+	background-color:#FAFAFA;
+	border:1px inset #4C8194;
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	font-size:8.5pt !important;
+	padding:0px 0px 1px 2px !important;
+	width:98%;
+	*/
+	width: 99%;	
+	font-family:Tahoma,Arial,Geneva,Helvetica,sans-serif !important;
+	height: 70px;
+		
+}
+.odsend_lable {
+	width: 19%;
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;
+	vertical-align:top;
+}
+.odsend_titlechkRC {
+	text-align: center;
+	width: 20%;	
+}
+.odsend_titlechkRCcontent {
+	text-align: center;
+	width: 80%;
+}
+.odsend_chkRC {
+	text-align: center;
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;	
+}
+.odsend_chkRCcontent {
+	color:#000080;
+	font-family:tahoma,arial,Geneva,Helvetica,sans-serif;
+	font-size:11px;
+	text-transform:capitalize;
+	padding-left:6px;	
+}
+.odsend_content_hoursend {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+/* ---------- tr styles ---------- */
+.odsend_content_list_1 {
+	background-color:#E4F5FF;		
+}
+.odsend_content_list_2 {
+	background-color:#FFEAE0;
+	
+}
