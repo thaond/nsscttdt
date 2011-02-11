@@ -1,0 +1,30 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+<service-builder package-path="com.sgs.portlet.tiep_nhan_giao_viec">
+	<namespace>tiep_nhan_giao_viec</namespace>
+	<entity name="CongViec" local-service="true" remote-service="false">
+		<!-- PK fields -->
+
+		<column name="maCV" type="String" primary="true" db-name="macv"/>
+
+		<!-- Other fields -->
+		
+		<column name="tenCV" type="String" db-name="tencv"/>
+		<column name="linhVucId" type="String" db-name="linhvucid"/>
+		<column name="nguoiTao" type="long" db-name="nguoitao"/>
+		<column name="ngayTao" type="Date" db-name="ngaytao"/>
+		<column name="ngayHetHan" type="Date" db-name="ngayhethan"/>
+		<column name="nguoiChiDao" type="long" db-name="nguoichidao"/>
+		<column name="doiThucHien" type="String" db-name="doithuchien"/>
+		<column name="yKienChiDao" type="String" db-name="ykienchidao"/>
+		<column name="baoCaoChiDao" type="String" db-name="baocaochidao"/>
+		<column name="chiDaoThem" type="String" db-name="chidaothem"/>
+		
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="maCV" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+	</entity>
+</service-builder>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.position">
+	<namespace>position</namespace>
+	<entity name="Position" local-service="true" remote-service="true"
+		table="pml_position">
+
+		<!-- PK fields -->
+
+		<column name="positionId" type="String" primary="true" db-name="positionid"/>
+
+		<!-- Other fields -->
+		
+		<column name="positionCode" type="String" db-name="positioncode"/>
+		<column name="positionName" type="String" db-name="positionname"/>
+		<column name="description" type="String" db-name="description"/>
+		<column name="active" type="String" db-name="active"/>
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="positionId" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="positionName" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="PositionCode" return-type="Collection">
+			<finder-column name="positionCode" case-sensitive="false" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="PositionName" return-type="Collection">
+			<finder-column name="positionName" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Description" return-type="Collection">
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+		
+		<finder name="Allfilter" return-type="Collection">
+			<finder-column name="positionCode" comparator="LIKE"/>
+			<finder-column name="positionName" comparator="LIKE"/>
+			<finder-column name="description" comparator="LIKE"/>
+		</finder>
+	</entity>
+	<exceptions>
+		<exception>PositionCanNotDelete</exception>
+		<exception>PositionCodeSameCode</exception>
+	</exceptions>
+</service-builder>
