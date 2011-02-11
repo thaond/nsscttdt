@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.receivergroup">
+	<namespace>ReceiverGroup</namespace>
+	<entity name="ReceiverGroup" local-service="true" remote-service="true"
+		table="pml_ReceiverGroup">
+
+		<!-- PK fields -->
+
+		<column name="receiverGroupId" type="long" primary="true"/>
+		
+		<!-- Audit Fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+		
+		<column name="receiverGroupName" type="String"/>
+		<column name="description" type="String"/>
+		<column name="type" type="int"/>
+		<column name="active" type="boolean"/>
+		
+		<column name="receivers" type="Collection" entity="Receiver" mapping-table="ReceiverGroups_Receivers"></column>
+		
+		<!-- Order -->
+		<order>
+			<order-column name="receiverGroupName" order-by="asc" />
+		</order>
+		
+		<!-- Finders -->
+		<finder return-type="ReceiverGroup" name="UID_Name">
+			<finder-column name="userId"/>
+			<finder-column name="receiverGroupName"/>
+		</finder>
+		<finder return-type="Collection" name="UserId">
+			<finder-column name="userId"/>
+		</finder>
+		<finder return-type="Collection" name="UserId_Type">
+			<finder-column name="userId"/>
+			<finder-column name="type"/>
+		</finder>
+		<finder return-type="Collection" name="UserId_Type_Active">
+			<finder-column name="userId"/>
+			<finder-column name="type"/>
+			<finder-column name="active"/>
+		</finder>
+		<finder return-type="Collection" name="UserId_Active">
+			<finder-column name="userId"/>
+			<finder-column name="active"/>
+		</finder>
+		<finder return-type="Collection" name="UserName">
+			<finder-column name="userName"/>
+		</finder>
+		<finder return-type="Collection" name="UserName_Type">
+			<finder-column name="userName"/>
+			<finder-column name="type"/>
+		</finder>
+		<finder return-type="Collection" name="UserName_Active">
+			<finder-column name="userName"/>
+			<finder-column name="active"/>
+		</finder>
+	</entity>
+	<entity name="Receiver" local-service="true" remote-service="true" table="pml_Receiver">
+		<!-- PK Fields -->
+		<column name="receiverId" type="long" primary="true"/>
+		
+		<!-- Audit Fields -->
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		
+		<!-- Other Fields -->
+		<column name="receiverUserId" type="long" />
+		<column name="receiverUserName" type="String" />
+		<column name="viewName" type="String" />
+		<column name="receiverType" type="int" />
+		
+		<column name="receiverGroups" type="Collection" entity="ReceiverGroup" mapping-table="ReceiverGroups_Receivers"/>
+		
+		<!-- Finders -->
+		<finder return-type="Collection" name="UID_Type">
+			<finder-column name="userId"/>
+			<finder-column name="receiverType"/>
+		</finder>		
+		<finder return-type="Receiver" name="UID_RUID_Type">
+			<finder-column name="userId"/>
+			<finder-column name="receiverUserId"/>
+			<finder-column name="receiverType"/>
+		</finder>		
+		<finder return-type="Receiver" name="UID_RCN_Type">
+			<finder-column name="userId"/>
+			<finder-column name="receiverUserName"/>
+			<finder-column name="receiverType"/>
+		</finder>
+		<finder return-type="Collection" name="UCN_Type">
+			<finder-column name="userName"/>
+			<finder-column name="receiverType"/>
+		</finder>		
+		<finder return-type="Receiver" name="UCN_RUID_Type">
+			<finder-column name="userName"/>
+			<finder-column name="receiverUserId"/>
+			<finder-column name="receiverType"/>
+		</finder>		
+		<finder return-type="Receiver" name="UCN_RCN_Type">
+			<finder-column name="userName"/>
+			<finder-column name="receiverUserName"/>
+			<finder-column name="receiverType"/>
+		</finder>
+	</entity>
+</service-builder>
