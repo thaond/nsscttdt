@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_ho_so_cong_viec">
+	<namespace>pml_ho_so_cong_viec</namespace>
+	<entity name="PmlHoSoCongViec" local-service="true" remote-service="true"
+		table="pml_ho_so_cong_viec">
+
+		<!-- PK fields -->
+
+		<column name="idHoSoCongViec" type="long" primary="true" db-name="id_ho_so_cong_viec"/>
+
+		<!-- Other fields -->
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="idHSCVCha" type="long" db-name="id_hscv_cha"/>
+		<column name="soHieuHSCV" type="String" db-name="so_hieu_hscv"/>
+		<column name="tieuDe" type="String" db-name="tieu_de"/>
+		<column name="ngayMoHSCV" type="Date" db-name="ngay_mo_hscv"/>
+		<column name="hanXuLy" type="Date" db-name="han_xu_ly"/>				
+		<column name="idLinhVuc" type="String" db-name="id_linh_vuc"/>
+		<column name="vanDeLienQuan" type="String" db-name="van_de_lien_quan"/>
+		<column name="idDoQuanTrong" type="long" db-name="id_do_quan_trong"/>
+		<column name="idTinhChat" type="long" db-name="id_tinh_chat"/>		
+		<column name="idTrangThaiHSCV" type="long" db-name="id_trang_thai_hscv"/>		
+		<column name="tomTatNoiDung" type="String" db-name="tom_tat_noi_dung"/>				
+		<column name="hoatDong" type="String" db-name="hoat_dong"/>	
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="idHoSoCongViec" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="tieuDe" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="IdHSCVCha" return-type="Collection">
+			<finder-column name="idHSCVCha" comparator="="/>
+		</finder>
+		<finder name="SoHieuHSCV" return-type="Collection">
+			<finder-column name="soHieuHSCV" comparator="="/>
+		</finder>
+		<finder name="IdDoQuanTrong" return-type="Collection">
+			<finder-column name="idDoQuanTrong" comparator="="/>
+		</finder>
+		<finder name="IdTinhChat" return-type="Collection">
+			<finder-column name="idTinhChat" comparator="="/>
+		</finder>
+		<finder name="IdTrangThaiHSCV" return-type="Collection">
+			<finder-column name="idTrangThaiHSCV" comparator="="/>
+		</finder>
+		<finder name="IdLinhVuc" return-type="Collection">
+			<finder-column name="idLinhVuc" comparator="="/>
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" comparator="="/>
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="User" />	
+	</entity>
+	<entity name="PmlChiTietHSCV" local-service="true" remote-service="true"
+		table="pml_chi_tiet_hscv">
+
+		<!-- PK fields -->
+
+		<column name="idChiTietHSCV" type="long" primary="true" db-name="id_chi_tiet_hscv"/>
+
+		<!-- Other fields -->
+
+		<column name="idHoSoCongViec" type="long" db-name="id_ho_so_cong_viec"/>
+		<column name="idCongVanDen" type="long" db-name="id_cong_van_den"/>
+		<column name="idCongVanDi" type="long" db-name="id_cong_van_di"/>			
+		<column name="diDen" type="String" db-name="di_den"/>	
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="idChiTietHSCV" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="IdHoSoCongViec" return-type="Collection">
+			<finder-column name="idHoSoCongViec" comparator="="/>
+		</finder>
+		<finder name="H_DEN" return-type="PmlChiTietHSCV">
+			<finder-column name="idHoSoCongViec" />
+			<finder-column name="idCongVanDen" />
+		</finder>
+		<finder name="H_DI" return-type="PmlChiTietHSCV">
+			<finder-column name="idHoSoCongViec" />
+			<finder-column name="idCongVanDi" />
+		</finder>
+		
+		<finder name="IdCongVanDen" return-type="Collection">
+			<finder-column name="idCongVanDen" />
+		</finder>
+		
+		<finder name="IdCongVanDi" return-type="Collection">
+			<finder-column name="idCongVanDi" />
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />	
+	</entity>
+	<exceptions>
+		<exception>PmlHoSoCongViecUserId</exception>
+		<exception>PmlHoSoCongViecSoHieuHSCV</exception>
+		<exception>PmlHoSoCongViecTieuDe</exception>
+		<exception>PmlHoSoCongViecNgayMoHSCV</exception>
+		<exception>PmlHoSoCongViecHanXuLy</exception>
+		<exception>PmlHoSoCongViecReference</exception>
+	</exceptions>
+</service-builder>

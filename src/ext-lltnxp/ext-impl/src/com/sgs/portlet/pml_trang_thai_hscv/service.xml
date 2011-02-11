@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_trang_thai_hscv">
+	<namespace>pml_trang_thai_hscv</namespace>
+	<entity name="PmlTrangThaiHSCV" local-service="true" remote-service="true"
+		table="pml_trang_thai_hscv">
+
+		<!-- PK fields -->
+
+		<column name="idTrangThaiHSCV" type="long" primary="true" db-name="id_trang_thai_hscv"/>
+
+		<!-- Other fields -->		
+		<column name="tenTrangThaiHSCV" type="String" db-name="ten_trang_thai_hscv"/>		
+		
+		<!-- Order -->
+
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="idTrangThaiHSCV" />
+		</order>
+		-->
+		<order by="asc">
+			<order-column name="tenTrangThaiHSCV" case-sensitive="false" />
+		</order>
+		
+		<!-- finder -->
+		<finder name="TenTrangThaiHSCV" return-type="Collection">
+			<finder-column name="tenTrangThaiHSCV" comparator="LIKE"/>
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="User" />
+	</entity>	
+	<exceptions>
+		<exception>PmlTrangThaiHSCVTenTrangThaiHSCV</exception>
+		<exception>PmlTrangThaiHSCVCanNotDelete</exception>
+	</exceptions>	
+	
+</service-builder>
