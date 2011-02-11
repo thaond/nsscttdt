@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition  xmlns=""  name="thutucgiodat,thuedat,capgiaychungnhanquyensudungdat">
+
+
+	<start-state name="start">
+		<transition to="vuatiepnhan:8" name="tiepnhan%1"></transition>
+	</start-state>
+
+
+	<task-node name="chophancong:8">
+		<task name="phancongthuly:phancongthuly:daphancong%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<codedepartment>
+					DDMT
+				</codedepartment>
+				<type>
+					DV
+				</type>
+			</assignment>	
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="daphancong:72" name="daphancong%1"></transition>
+		<transition to="vuatiepnhan:8" name="tralai"></transition>
+	</task-node>
+
+	<task-node name="daphancong:72">
+		<task name="yeucaubosung:yeucaubosung:chobosunghoso">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">				
+				<codedepartment>
+					BPMC
+				</codedepartment>
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="trinhky2:trinhky2:trinhtruongphong%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<type>DDP</type>
+				<codedepartment>
+					DDMT
+				</codedepartment>				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="trinhtruongphong:8" name="trinhtruongphong%1"></transition>
+		<transition to="chobosung" name="chobosunghoso"></transition>
+		<transition to="chophancong:8" name="tralai"></transition>
+	</task-node>
+
+	<task-node name="chobosung">
+		<task name="suahoso:suahoso:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+			</assignment>
+		</task>
+		<task name="bosunghoso:bosunghoso:chophancong">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<type>DDP</type>
+				<codedepartment>
+					DDMT
+				</codedepartment>		
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<transition to="chophancong:8" name="chophancong"></transition>
+	</task-node>
+
+	<task-node name="trinhtruongphong:8">
+		<task name="yeucauchinhsua:yeucauchinhsua:daphancong">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<type>DV</type>
+				<codedepartment>
+					DDMT
+				</codedepartment>
+			</assignment>
+			
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+				
+		</task>
+		<task name="trinhky3:trinhky3:hosochokyduyet%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<type>LDP</type>
+				<codedepartment>
+					DDMT
+				</codedepartment>				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="tralai:tralai:tralai">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
+		<transition to="hosochokyduyet:16" name="hosochokyduyet%1"></transition>
+		<transition to="daphancong:72" name="daphancong"></transition>
+		<transition to="daphancong:72" name="tralai"></transition>
+	</task-node>
+
+	<task-node name="hosochokyduyet:16">
+		<task name="yeucauchinhsua:yeucauchinhsua:trinhtruongphong">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<type>
+					DDP
+				</type>
+				<codedepartment>
+					DDMT
+				</codedepartment>
+			</assignment>
+			
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="chuyenvanthu:chuyenvanthu:hosodakyduyet%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<codedepartment>
+					BPMC
+				</codedepartment>
+			</assignment>
+			
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>		
+		</task>
+		<transition to="hosodakyduyet:8" name="hosodakyduyet%1"></transition>
+		<transition to="trinhtruongphong:8" name="trinhtruongphong"></transition>
+	</task-node>
+
+	<task-node name="hosodakyduyet:8">
+		<task name="chotrahoso:chotrahoso:trahoso%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		<task name="suahoso:suahoso:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">				
+			</assignment>
+		</task>
+		
+		<transition to="ketthuc" name="trahoso%1"></transition>
+	</task-node>
+
+	<task-node name="vuatiepnhan:8">
+		<task name="none:inbiennhan:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+			</assignment>
+		</task>
+		<task name="suahoso:suahoso:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">				
+			</assignment>
+		</task>
+		<task name="chuyenbophanxuly:chuyenbophanxuly:chophancong%1">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">
+				<codedepartment>
+					DDMT
+				</codedepartment>
+				<type>
+					DDP
+				</type>
+			</assignment>
+			
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+		
+		<task name="none:xoahoso:none">
+			<assignment class="com.sgs.liferay.jbpm.handler.GetTypeAndCodePCCC">				
+			</assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
+			</event>
+		</task>
+				
+		<transition to="chophancong:8" name="chophancong%1"></transition>
+	</task-node>
+
+
+	<end-state name="ketthuc"></end-state>
+
+
+</process-definition>

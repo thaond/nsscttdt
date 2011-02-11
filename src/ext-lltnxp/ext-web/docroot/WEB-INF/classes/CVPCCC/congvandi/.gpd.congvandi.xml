@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="congvandi" width="1046" height="450">
+  <node name="start" x="80" y="15" width="157" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="dangsoancongvandi" x="80" y="142" width="155" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-136" h1="-8" w2="-589" h2="-180"/>
+      <bendpoint w1="-132" h1="256" w2="-585" h2="84"/>
+      <bendpoint w1="453" h1="245" w2="0" h2="73"/>
+    </edge>
+  </node>
+  <node name="dangxuly" x="91" y="321" width="132" height="36">
+    <edge>
+      <label x="4" y="-36"/>
+      <bendpoint w1="-107" h1="3" w2="-107" h2="219"/>
+      <bendpoint w1="-110" h1="-173" w2="-110" h2="6"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="chophathanh" x="890" y="303" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="-31" y="-23"/>
+      <bendpoint w1="-118" h1="86" w2="228" h2="75"/>
+      <bendpoint w1="-249" h1="86" w2="97" h2="75"/>
+    </edge>
+  </node>
+  <node name="trinhky" x="455" y="129" width="132" height="36">
+    <edge>
+      <label x="-20" y="-11"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-53" h1="107" w2="145" h2="-2"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-49" h1="-87" w2="150" h2="-16"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="chopheduyet" x="544" y="314" width="132" height="36">
+    <edge>
+      <label x="-32" y="-23"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-1" h1="-135" w2="203" h2="-3"/>
+    </edge>
+    <edge>
+      <label x="-19" y="-13"/>
+      <bendpoint w1="1" h1="44" w2="493" h2="44"/>
+      <bendpoint w1="-136" h1="47" w2="356" h2="47"/>
+      <bendpoint w1="-310" h1="49" w2="182" h2="49"/>
+      <bendpoint w1="-451" h1="47" w2="2" h2="40"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="1" h1="102" w2="454" h2="274"/>
+      <bendpoint w1="-482" h1="116" w2="-29" h2="288"/>
+      <bendpoint w1="-598" h1="115" w2="-145" h2="287"/>
+      <bendpoint w1="-602" h1="-186" w2="-149" h2="-14"/>
+    </edge>
+  </node>
+  <node name="hoanthanh" x="889" y="124" width="132" height="36"/>
+</root-container>

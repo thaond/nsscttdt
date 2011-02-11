@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+ "http://getahead.org/dwr//dwr20.dtd">
+
+<dwr>
+
+	<allow>
+
+		<!-- <create creator="new" javascript="NewsClient">
+			<param name="class" value="com.ext.portlet.news.model.News" />
+		</create> -->
+
+		<create creator="new" javascript="ViewActionCareerClient">
+			<param name="class" value="com.sgs.portlet.career.action.ViewAction" />
+		</create>
+		<convert converter="bean" match="com.sgs.portlet.career.model.Career" />
+
+		<!-- receive document -->
+		<create creator="new" javascript="OneDoorUtilClient"> 
+			<param name="class" value="com.sgs.portlet.onedoor.ajax.OnedoorDwr" />
+		</create>
+		
+		<!-- pccc -->
+		<create creator="new" javascript="OneDoorUtilClientpccc"> 
+			<param name="class" value="com.sgs.portlet.onedoorpccc.ajax.OnedoorDwr" />
+		</create>
+		
+		<convert converter="bean"
+			match="com.sgs.portlet.onedoorpccc.model.PmlFileTypeAttachedFile" />
+			
+		<convert converter="bean"
+			match="com.sgs.portlet.filetype.model.PmlFileType" />
+			
+		<convert converter="bean"
+			match="com.sgs.portlet.onedoorpccc.ajax.ProcessTransition" />
+			
+		<!-- pccc -->
+		<convert converter="bean"
+			match="com.sgs.portlet.onedoor.model.PmlFileTypeAttachedFile" />
+		<convert converter="bean"
+			match="com.sgs.portlet.attachedfile.model.AttachedFile" />
+
+		<!-- <create creator="new" javascript="DWR">
+			<param name="class" value="com.sgs.portlet.calendar.ajax.DWR" />
+		</create>
+		<convert match="com.sgs.portlet.calendar.ajax.Option" converter="bean" /> -->
+		
+		<!-- pccc document -->
+		<create creator="new" javascript="pcccdocumentreceiptClient">
+			<param name="class" value="com.sgs.portlet.pcccdocumentreceipt.util.PCCCDocumentUtil" />
+		</create>
+		
+		<!-- <convert converter="bean" match="com.sgs.portlet.document.receipt.model.PmlEdmIssuingPlace" />
+		<convert converter="bean" match="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" />
+		 -->
+		<!--  end pccc document -->
+		
+		<!-- pccc document send-->
+		<create creator="new" javascript="pcccdocumentsendClient">
+			<param name="class" value="com.sgs.portlet.pcccdocumentreceipt.util.PCCCDocumentUtil" />
+		</create>
+		<convert converter="bean" match="com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace" />
+		<convert converter="bean" match="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" />
+		
+		<!--  end pccc document -->
+		
+		<!-- pccc documentrecordtype -->
+		<create javascript="pcccDocumentRecordTypeClient" creator="new">
+			<param name="class" value="com.sgs.portlet.documentrecordtype.util.DocumentRecordTypeUtil" />
+		</create>
+		<!-- end pccc documentrecordtype -->
+		
+		<!-- pccc documenttype -->
+		<create javascript="pcccDocumentTypeClient" creator="new">
+			<param name="class" value="com.sgs.portlet.documenttype.util.DocumentTypeUtil" />
+		</create>
+		<convert match="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" converter="bean"/>
+		<!-- end pccc documenttype-->
+		
+		<!-- pccc documentlevelsend -->
+		<create javascript="pcccDocumentLevelSendClient" creator="new">
+			<param name="class" value="com.sgs.portlet.documentlevelsend.util.DocumentLevelSendUtil" />
+		</create>
+		<!-- end pccc documentlevelsend -->
+		
+		<!-- tinhhinhthulycongvan -->
+		<create javascript="tinhHinhThuLyCongVanClient" creator="new">
+			<param name="class" value="com.sgs.portlet.pcccdocumentreceiptreport.util.TinhHinhThuLyCongVanDWRUtil" />
+		</create>
+		<convert match="com.liferay.portal.model.User" converter="bean" />
+		<convert match="com.sgs.portlet.pmluser.model.PmlUser" converter="bean" />
+		<create javascript="pmlUserUtilClient" creator="new">
+			<param name="class" value="com.sgs.portlet.pmluser.ajax.UserAjaxUtil" />
+		</create>
+		<convert match="java.util.Locale" converter="bean" />
+		<convert match="sun.util.calendar.ZoneInfo" converter="bean" />
+		<!-- end tinhhinhthulycongvan -->
+		
+		<!-- pccc documentsend popup -->
+		<create creator="new" javascript="documentSendUtilClient"> 
+			<param name="class" value="com.sgs.portlet.pcccdocumentsend.util.DocumendSendUtil" />
+		</create>
+		<convert match="com.sgs.portlet.pcccdocumentsend.dto.UserDTO" converter="bean"/>
+		<convert converter="bean" match="com.sgs.portlet.document.send.model.PmlEdmDocumentSend" />
+		<!-- end pccc documentsend popup -->
+		
+		<!-- idGenerated -->
+		<create javascript="idGenerated" creator="new">
+			<param name="class" value="com.sgs.portlet.geneatedocumentcode.util.GenerateDocumentCodeUtil" />
+		</create>
+		<convert match="com.sgs.portlet.generatetemplateid.model.IdGenerated" converter="bean"/>
+		<!-- end idGenerated -->
+		
+		<!-- idGenerated -->
+		<create javascript="cityManagement" creator="new">
+			<param name="class" value="com.sgs.portlet.citymanagement.util.CityUtil" />
+		</create>
+		<convert match="com.sgs.portlet.citymanagement.model.City" converter="bean"/>
+		<!-- end idGenerated -->
+		
+                <!-- processtype -->
+		<create javascript="processTypeClient" creator="new">
+			<param name="class" value="com.ext.portlet.processtype.util.PmlProcessTypeUtil" />
+		</create>
+
+                <!-- indexDocument -->
+		<create javascript="IndexUtil" creator="new">
+			<param name="class" value="com.sgs.portlet.indexdatabase.ajax.IndexUtil"></param>
+		</create>
+		
+		<!-- PmlFileStatusStateProcess -->
+		<create javascript="PmlFileStatusStateProcessUtilClient" creator="new">
+			<param name="class" value="com.sgs.portlet.document.util.PmlFileStatusStateProcessUtil"></param>
+		</create>
+		<convert match="com.sgs.portlet.document.model.PmlFileStatusStateProcess" converter="bean"></convert>
+		<!-- end PmlFileStatusStateProcess -->
+		
+		<!-- yenlt PhieuChuyenDWR -->
+		<create javascript="PhieuChuyenClient" creator="new">
+			<param name="class" value="com.sgs.portlet.onedoorpcccprocess.util.PhieuChuyenDWR"></param>
+		</create>
+		
+		<!-- user for generate template id Yenlt 27/04/2010 -->
+		<create creator="new" javascript="pmlTemplateIdDwrClient"> 
+			<param name="class" value="com.sgs.portlet.generatetemplateid.util.PmlTemplateIdDwr" />
+		</create>
+		
+		<!-- fileType DWR -->
+		<create creator="new" javascript="fileTypeDWRClient">
+			<param name="class" value="com.sgs.portlet.filetype.service.impl.PmlFileTypeLocalServiceImpl" />
+		</create>
+		
+		<!-- city management DWR -->
+		<create creator="new" javascript="cityDWRClient">
+			<param name="class" value="com.sgs.portlet.citymanagement.service.impl.CityLocalServiceImpl" />
+		</create>
+		
+		<!-- department DWR -->
+		<create creator="new" javascript="departmentDWRClient">
+			<param name="class" value="com.sgs.portlet.department.service.impl.DepartmentLocalServiceImpl" />
+		</create>
+		
+		<!-- agency DWR -->
+		<create creator="new" javascript="agencyDWRClient">
+			<param name="class" value="com.sgs.portlet.agency.service.impl.AgencyLocalServiceImpl" />
+		</create>
+		
+		<!-- file status DWR -->
+		<create creator="new" javascript="fileStatusDWRClient">
+			<param name="class" value="com.sgs.portlet.document.service.impl.PmlFileStatusLocalServiceImpl" />
+		</create>
+		
+		<!-- holiday management DWR -->
+		<create creator="new" javascript="holidayDWRClient">
+			<param name="class" value="com.sgs.portlet.holiday.service.impl.PmlHolidayLocalServiceImpl" />
+		</create>
+		
+		<create creator="new" javascript="pmlDepartmentsLeaderDWRClient">
+			<param name="class" value="com.sgs.portlet.onedoor.service.impl.PmlDepartmentsLeaderLocalServiceImpl" />
+		</create>
+		
+		<!-- pccc document send process -->
+		<create creator="new" javascript="pcccdocumentsendprocessClient">
+			<param name="class" value="com.sgs.portlet.pcccdocumentsendprocess.util.DocumentSendProcessDWRUtil" />
+		</create>
+		
+		<create creator="new" javascript="meetingCalendarDWRUtilClient">
+			<param name="class" value="com.ext.portlet.meetingcalendar.util.MeetingCalendarDWRUtil" />
+		</create>
+	</allow>
+
+</dwr>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="CVDI" width="806" height="430">
+  <node name="start" x="107" y="14" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="luutam" x="109" y="132" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="-58" y="-18"/>
+    </edge>
+  </node>
+  <node name="dangxuly" x="114" y="327" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="-134" h1="0" w2="-135" h2="163"/>
+      <bendpoint w1="-132" h1="-201" w2="-143" h2="-2"/>
+    </edge>
+    <edge>
+      <label x="-21" y="-13"/>
+    </edge>
+    <edge>
+      <label x="-91" y="-39"/>
+      <bendpoint w1="100" h1="1" w2="100" h2="1"/>
+      <bendpoint w1="103" h1="67" w2="103" h2="67"/>
+      <bendpoint w1="1" h1="66" w2="1" h2="66"/>
+    </edge>
+  </node>
+  <node name="chophathanh" x="444" y="131" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="dakyduyet" x="444" y="322" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="hoanthanh" x="445" y="17" width="132" height="36"/>
+</root-container>

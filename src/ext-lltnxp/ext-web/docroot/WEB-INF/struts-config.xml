@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+                               "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+    <form-beans>
+        <!-- newstag -->
+        <form-bean name="newsBean" type="com.ext.portlet.news.formbeans.NewsBean"/>
+        <!-- weblink -->
+        <form-bean name="websitelinkForm" type="com.sgs.portlet.linkwebsite.form.WebsiteLinkForm"/>
+        <!-- qaadmin -->
+        <form-bean name="qaCategoryForm" type="com.sgs.portlet.qaadmin.form.AddEditCategoryForm"/>
+        <form-bean name="qaadminCategoryForm" type="com.sgs.portlet.qaadmin.form.AddEditCategoryForm"/>
+        <form-bean name="qaadminQuestionForm" type="com.sgs.portlet.qaadmin.form.AddEditQuestionForm"/>
+        <!-- qa -->
+        <!-- legal document management -->
+        <form-bean name="legalDocumentTypeForm" type="com.sgs.portlet.legaldocumentmanagement.form.LegalDocumentTypeForm"/>
+        <form-bean name="legalDocCategoryForm" type="com.sgs.portlet.legaldocumentmanagement.form.LegalDocCategoryForm"/>
+        <form-bean name="legalDocumentForm" type="com.sgs.portlet.legaldocumentmanagement.form.LegalDocumentForm"/>
+        <form-bean name="qaquestionForm" type="com.sgs.portlet.qa.form.QAQuestionForm"/>
+        <!-- field -->
+        <form-bean name="fieldForm" type="com.sgs.portlet.field.form.FieldForm"/>
+        <!-- file type -->
+        <form-bean name="fileTypeForm" type="com.sgs.portlet.filetype.form.FileTypeForm"/>
+        <!-- city -->
+        <form-bean name="cityForm" type="com.sgs.portlet.citymanagement.form.CityForm"/>
+        <!-- district -->
+        <form-bean name="districtForm" type="com.sgs.portlet.districtmanagement.form.DistrictForm"/>
+        <!-- wards -->
+        <form-bean name="wardsForm" type="com.sgs.portlet.wardsmanagement.form.WardsForm"/>
+        <!-- workflow -->
+        <form-bean name="workflowForm" type="com.sgs.portlet.workflow_admin.form.PmlWorkFlowForm"/>
+    </form-beans>
+    <action-mappings>
+        <!-- Reports -->
+        <!--  minh update 20101123
+        	<action path="/ext/reports/view_reports" type="com.ext.portlet.reports.action.ViewReportsAction">
+            <forward name="portlet.ext.reports.view" path="portlet.ext.reports.view"/>
+            <forward name="portlet.ext.reports.view_reports" path="portlet.ext.reports.view_reports"/>
+        </action>-->
+        <!-- ### DN HSCV ####### -->
+        <!-- pmlTinhChat -->
+        <action path="/sgs/pml_tinh_chat/view" type="com.sgs.portlet.pml_tinh_chat.action.ViewAction">
+            <forward name="portlet.sgs.pml_tinh_chat.view" path="portlet.sgs.pml_tinh_chat.view"/>
+            <forward name="portlet.sgs.pml_tinh_chat.error" path="portlet.sgs.pml_tinh_chat.error"/>
+        </action>
+        <!-- PmlDoQuanTrong -->
+        <action path="/sgs/pml_do_quan_trong/view" type="com.sgs.portlet.pml_do_quan_trong.action.ViewAction">
+            <forward name="portlet.sgs.pml_do_quan_trong.view" path="portlet.sgs.pml_do_quan_trong.view"/>
+            <forward name="portlet.sgs.pml_do_quan_trong.error" path="portlet.sgs.pml_do_quan_trong.error"/>
+        </action>
+        <!-- pmlTrangThaiHSCV -->
+        <action path="/sgs/pml_trang_thai_hscv/view" type="com.sgs.portlet.pml_trang_thai_hscv.action.ViewAction">
+            <forward name="portlet.sgs.pml_trang_thai_hscv.view" path="portlet.sgs.pml_trang_thai_hscv.view"/>
+            <forward name="portlet.sgs.pml_trang_thai_hscv.error" path="portlet.sgs.pml_trang_thai_hscv.error"/>
+        </action>
+        <!-- pml_ho_so_cong_viec -->
+        <action forward="portlet.sgs.pml_ho_so_cong_viec.view" path="/sgs/pml_ho_so_cong_viec/view"/>
+        <action path="/sgs/pml_ho_so_cong_viec/edit" type="com.sgs.portlet.pml_ho_so_cong_viec.action.EditAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.edit" path="portlet.sgs.pml_ho_so_cong_viec.edit"/>
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.view" path="portlet.sgs.pml_ho_so_cong_viec.view"/>
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.error" path="portlet.sgs.pml_ho_so_cong_viec.error"/>
+        </action>
+        <action path="/sgs/pml_ho_so_cong_viec/viewdetail" type="com.sgs.portlet.pml_ho_so_cong_viec.action.ViewDetailAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.viewdetail" path="portlet.sgs.pml_ho_so_cong_viec.viewdetail"/>
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.error" path="portlet.sgs.pml_ho_so_cong_viec.error"/>
+        </action>
+        <action path="/sgs/pml_ho_so_cong_viec/thu_thap_cvden" type="com.sgs.portlet.pml_ho_so_cong_viec.action.ThuThapCVDenAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvden" path="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvden"/>
+        </action>
+        <action path="/sgs/pml_ho_so_cong_viec/thu_thap_cvdi" type="com.sgs.portlet.pml_ho_so_cong_viec.action.ThuThapCVDiAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvdi" path="portlet.sgs.pml_ho_so_cong_viec.thu_thap_cvdi"/>
+        </action>
+        <!-- end TS -->
+        <!-- Xem chi tiet -->
+        <action path="/sgs/pml_ho_so_cong_viec/detail" type="com.sgs.portlet.pml_ho_so_cong_viec.action.DetailAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.detail" path="portlet.sgs.pml_ho_so_cong_viec.detail"/>
+        </action>
+        <action path="/sgs/pml_ho_so_cong_viec/detailSend" type="com.sgs.portlet.pml_ho_so_cong_viec.action.DetailSendAction">
+            <forward name="portlet.sgs.pml_ho_so_cong_viec.detailSend" path="portlet.sgs.pml_ho_so_cong_viec.detailSend"/>
+        </action>
+        <!-- ######### end ############ -->
+        <!-- ###### NHAP MOI CV DI ######## -->
+        <action path="/sgs/pcccdocumentsendreport/view" type="com.sgs.portlet.pcccdocumentsendreport.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentsendreport.view" path="portlet.sgs.pcccdocumentsendreport.view"/>
+        </action>
+        <action path="/sgs/pcccdocumentsendreport/detail" type="com.sgs.portlet.pcccdocumentsendreport.action.DetailAction">
+            <forward name="portlet.sgs.pcccdocumentsendreport.detail" path="portlet.sgs.pcccdocumentsendreport.detail"/>
+        </action>
+        <action path="/sgs/pcccdocumentsendreport_so/view" type="com.sgs.portlet.pcccdocumentsendreport_so.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentsendreport_so.view" path="portlet.sgs.pcccdocumentsendreport_so.view"/>
+        </action>
+        <!-- ### Soan cong van di portlet ### -->
+        <action path="/sgs/pcccdocumentsend/view" type="com.sgs.portlet.pcccdocumentsend.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentsend.view" path="portlet.sgs.pcccdocumentsend.view"/>
+        </action>
+        <action path="/sgs/pcccdocumentsend/popup1" type="com.sgs.portlet.pcccdocumentsend.action.ViewPopUpAction">
+            <forward name="portlet.sgs.pcccdocumentsend.viewpopup" path="portlet.sgs.pcccdocumentsend.viewpopup"/>
+        </action>
+        <action path="/sgs/pcccdocumentsend/popupUser" type="com.sgs.portlet.pcccdocumentsend.action.ViewPopUpUserAction">
+            <forward name="portlet.sgs.pcccdocumentsend.viewpopupuser" path="portlet.sgs.pcccdocumentsend.viewpopupuser"/>
+        </action>
+        <!-- ### Xu li cong van di portlet ### -->
+        <!-- Xem danh sach -->
+        <action path="/sgs/pcccdocumentsendprocess/view" type="com.sgs.portlet.pcccdocumentsendprocess.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.view" path="portlet.sgs.pcccdocumentsendprocess.view"/>
+        </action>
+        <action path="/sgs/pcccdocumentsendprocess/list" type="com.sgs.portlet.pcccdocumentsendprocess.action.ViewListDocumentSendAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.list" path="portlet.sgs.pcccdocumentsendprocess.list"/>
+        </action>
+        <!-- Xem chi tiet -->
+        <action path="/sgs/pcccdocumentsendprocess/detail" type="com.sgs.portlet.pcccdocumentsendprocess.action.DetailAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.detail" path="portlet.sgs.pcccdocumentsendprocess.detail"/>
+        </action>
+        <!-- Xoa cong van di -->
+        <action path="/sgs/pcccdocumentsendprocess/delete" type="com.sgs.portlet.pcccdocumentsendprocess.action.DeleteAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.delete" path="portlet.sgs.pcccdocumentsendprocess.delete"/>
+        </action>
+        <!-- Sua cong van di -->
+        <action path="/sgs/pcccdocumentsendprocess/update" type="com.sgs.portlet.pcccdocumentsendprocess.action.UpdateAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.update" path="portlet.sgs.pcccdocumentsendprocess.update"/>
+        </action>
+        <!-- Trinh truong doi -->
+        <action path="/sgs/pcccdocumentsendprocess/moveToTeamLeader" type="com.sgs.portlet.pcccdocumentsendprocess.action.MoveToTeamLeaderAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- Trinh truong phong -->
+        <action
+            path="/sgs/pcccdocumentsendprocess/moveToDepartmentLeader" type="com.sgs.portlet.pcccdocumentsendprocess.action.MoveToDepartmentLeaderAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- Trinh lanh dao -->
+        <action path="/sgs/pcccdocumentsendprocess/moveToAgencyLeader" type="com.sgs.portlet.pcccdocumentsendprocess.action.MoveToAgencyLeaderAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- transition to departmetns -->
+        <action path="/sgs/pcccdocumentsendprocess/changedeparments" type="com.sgs.portlet.pcccdocumentsendprocess.action.ChangeAssignDepartmentAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.changedeparments" path="portlet.sgs.pcccdocumentsendprocess.changedeparments"/>
+        </action>
+        <!-- transition to users -->
+        <action path="/sgs/pcccdocumentsendprocess/changeusers" type="com.sgs.portlet.pcccdocumentsendprocess.action.ChangeAssignUserAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.changeusers" path="portlet.sgs.pcccdocumentsendprocess.changeusers"/>
+        </action>
+        <!--  trinh chanh van phong -->
+        <action path="/sgs/pcccdocumentsendprocess/transcvp" type="com.sgs.portlet.pcccdocumentsendprocess.action.TransCVPAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- yeu cau bo sung -->
+        <action path="/sgs/pcccdocumentsendprocess/requestAdditional" type="com.sgs.portlet.pcccdocumentsendprocess.action.RequestAdditionalAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- Ky duyet -->
+        <action path="/sgs/pcccdocumentsendprocess/approve" type="com.sgs.portlet.pcccdocumentsendprocess.action.ApproveAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- chuyen phat hanh -->
+        <action path="/sgs/pcccdocumentsendprocess/moveToPublish" type="com.sgs.portlet.pcccdocumentsendprocess.action.MoveToPublishAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+        </action>
+        <!-- Document relation -->
+        <action path="/sgs/pcccdocumentsendprocess/documentrelation" type="com.sgs.portlet.pcccdocumentsendprocess.action.DocumentRelationAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.documentrelation" path="portlet.sgs.pcccdocumentsendprocess.documentrelation"/>
+            <forward name="portlet.sgs.pcccdocumentsendprocess.error" path="portlet.sgs.pcccdocumentsendprocess.error"/>
+        </action>
+        <!-- them so cong van cho phong ban va so -->
+        <action path="/sgs/documentrecord/addscvdi" type="com.sgs.portlet.documentrecord.action.AddDocumentRecordSend">
+            <forward
+                name="portlet.sgs.documentrecord.AddDocumentRecordSend" path="portlet.sgs.documentrecord.AddDocumentRecordSend"/>
+        </action>
+        <!-- phmphuc 24/05/2010 -->
+        <action path="/sgs/documentrecord/addscvden" type="com.sgs.portlet.documentrecord.action.AddDocumentRecordTo">
+            <forward name="portlet.sgs.documentrecord.view" path="portlet.sgs.documentrecord.view"/>
+            <forward name="portlet.sgs.documentrecord.error" path="portlet.sgs.documentrecord.error"/>
+            <forward name="portlet.sgs.documentrecord.socongvanden" path="portlet.sgs.documentrecord.socongvanden"/>
+            <forward name="portlet.sgs.documentrecord.socongvanden_edit" path="portlet.sgs.documentrecord.socongvanden_edit"/>
+            <forward name="portlet.sgs.documentrecord.socongvanden_add" path="portlet.sgs.documentrecord.socongvanden_add"/>
+            <forward
+                name="portlet.sgs.documentrecord.AddDocumentRecordTo" path="portlet.sgs.documentrecord.AddDocumentRecordTo"/>
+        </action>
+        <action path="/sgs/documentrecord/addscvdi" type="com.sgs.portlet.documentrecord.action.AddDocumentRecordSend">
+            <forward name="portlet.sgs.documentrecord.view" path="portlet.sgs.documentrecord.view"/>
+            <forward name="portlet.sgs.documentrecord.error" path="portlet.sgs.documentrecord.error"/>
+            <forward name="portlet.sgs.documentrecord.socongvandi" path="portlet.sgs.documentrecord.socongvandi"/>
+            <forward name="portlet.sgs.documentrecord.socongvandi_edit" path="portlet.sgs.documentrecord.socongvandi_edit"/>
+            <forward name="portlet.sgs.documentrecord.socongvandi_add" path="portlet.sgs.documentrecord.socongvandi_add"/>
+            <forward
+                name="portlet.sgs.documentrecord.AddDocumentRecordSend" path="portlet.sgs.documentrecord.AddDocumentRecordSend"/>
+        </action>
+        <!-- end -->
+        <!-- Cho so va phat hanh cong van di -->
+        <action path="/sgs/pcccdocumentsendprocess/saveAndPublish" type="com.sgs.portlet.pcccdocumentsendprocess.action.SaveAndPublishAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.saveAndPublish" path="portlet.sgs.pcccdocumentsendprocess.saveAndPublish"/>
+        </action>
+        <action path="/sgs/pcccdocumentsendprocess/backDocumentAction" type="com.sgs.portlet.pcccdocumentsendprocess.action.BackDocumentAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.backDocumentAction" path="portlet.sgs.pcccdocumentsendprocess.backDocumentAction"/>
+        </action>
+        <action path="/sgs/pcccdocumentsendprocess/search" type="com.sgs.portlet.pcccdocumentsendprocess.action.SearchAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.search" path="portlet.sgs.pcccdocumentsendprocess.search"/>
+        </action>
+        <!-- Sua cong van di cho phan search-->
+        <action path="/sgs/pcccdocumentsendprocess/updatesearch" type="com.sgs.portlet.pcccdocumentsendprocess.action.UpdateSearchAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.updatesearch" path="portlet.sgs.pcccdocumentsendprocess.updatesearch"/>
+        </action>
+        <action
+            forward="/portlet/ext/pcccdocumentsendprocess/viewxlt.jsp" path="/sgs/pcccdocumentsendprocess/viewxlt"/>
+        <action path="/sgs/pcccdocumentsendprocess/xulythayld" type="com.sgs.portlet.pcccdocumentsendprocess.action.surrogateProcessAction">
+            <forward
+                name="portlet.sgs.pcccdocumentsendprocess.xulythayld" path="portlet.sgs.pcccdocumentsendprocess.xulythayld"/>
+        </action>
+        <!-- Cho phep xoa van ban di khi tim kiem -->
+        <action path="/sgs/pcccdocumentsendprocess/deletefromsearch" type="com.sgs.portlet.pcccdocumentsendprocess.action.DeleteFromSearchAction">
+            <forward name="portlet.sgs.pcccdocumentsendprocess.search" path="portlet.sgs.pcccdocumentsendprocess.search"/>
+        </action>
+        <!-- ###### End ######## -->
+        <!-- ###### NHAP MOI CV DEN ######## -->
+        <action path="/sgs/pcccdocumentrecordto/view" type="com.sgs.portlet.pcccdocumentrecordto.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentrecordto.view" path="portlet.sgs.pcccdocumentrecordto.view"/>
+        </action>
+        <action path="/sgs/pcccdocumentrecordto/detail" type="com.sgs.portlet.pcccdocumentrecordto.action.DetailAction">
+            <forward name="portlet.sgs.pcccdocumentrecordto.detail" path="portlet.sgs.pcccdocumentrecordto.detail"/>
+        </action>
+        <action path="/sgs/pcccdocumentrecordto_so/view" type="com.sgs.portlet.pcccdocumentrecordto_so.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentrecordto_so.view" path="portlet.sgs.pcccdocumentrecordto_so.view"/>
+        </action>
+        <!-- pccc document receipt process -->
+        <!-- display list of document receipt -->
+        <action path="/sgs/pcccdocumentreceiptprocess/view" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentreceiptprocess.view" path="portlet.sgs.pcccdocumentreceiptprocess.view"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/list" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ViewListDocumentReceiptAction">
+            <forward name="portlet.sgs.pcccdocumentreceiptprocess.list" path="portlet.sgs.pcccdocumentreceiptprocess.list"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/listdoctemp" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ViewListDocumentReceiptTempAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.listdoctemp" path="portlet.sgs.pcccdocumentreceiptprocess.listdoctemp"/>
+        </action>
+        <!-- show detail document -->
+        <action path="/sgs/pcccdocumentreceiptprocess/detail" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.DetailAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.detail" path="portlet.sgs.pcccdocumentreceiptprocess.detail"/>
+        </action>
+        <!-- show detail document temp-->
+        <action path="/sgs/pcccdocumentreceiptprocess/detaildoctemp" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.DetailDocTempAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.detaildoctemp" path="portlet.sgs.pcccdocumentreceiptprocess.detaildoctemp"/>
+        </action>
+        <!-- transition document -->
+        <action path="/sgs/pcccdocumentreceiptprocess/trans" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.TransAction">
+            <forward name="portlet.sgs.pcccdocumentreceiptprocess.trans" path="portlet.sgs.pcccdocumentreceiptprocess.trans"/>
+        </action>
+        <!-- transition to CVP -->
+        <action path="/sgs/pcccdocumentreceiptprocess/transcvp" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.TransCVPAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.transcvp" path="portlet.sgs.pcccdocumentreceiptprocess.transcvp"/>
+        </action>
+        <!-- lanh dao tu xu ly -->
+        <action path="/sgs/pcccdocumentreceiptprocess/changeagency" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ChangeagencyAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.changeagency" path="portlet.sgs.pcccdocumentreceiptprocess.changeagency"/>
+        </action>
+        <!-- transition to departmetns -->
+        <action path="/sgs/pcccdocumentreceiptprocess/changedeparments" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ChangeAssignDepartmentAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.changedeparments" path="portlet.sgs.pcccdocumentreceiptprocess.changedeparments"/>
+        </action>
+        <!-- transition to user -->
+        <action path="/sgs/pcccdocumentreceiptprocess/changeusers" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ChangeAssignUserAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.changeusers" path="portlet.sgs.pcccdocumentreceiptprocess.changeusers"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/update" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.UpdateAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.update" path="portlet.sgs.pcccdocumentreceiptprocess.update"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/process" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ProcessAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.process" path="portlet.sgs.pcccdocumentreceiptprocess.process"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/search" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.SearchAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.search" path="portlet.sgs.pcccdocumentreceiptprocess.search"/>
+        </action>
+        <!-- ### lanh dao tu xu ly ###-->
+        <action path="/sgs/pcccdocumentreceiptprocess/agencyprocess" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.AgencyProcessAction"/>
+        <!-- ### xoa cong van den### -->
+        <action path="/sgs/pcccdocumentreceiptprocess/delete" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.DeleteAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.delete" path="portlet.sgs.pcccdocumentreceiptprocess.view"/>
+        </action>
+        <!-- ### tra loi cong van den### -->
+        <action path="/sgs/pcccdocumentreceiptprocess/writeDocument" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.WriteDocumentAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.writeDocument" path="portlet.sgs.pcccdocumentreceiptprocess.writeDocument"/>
+        </action>
+        <!--  ### Thong Tin gop y: form & action ### -->
+        <action
+            path="/sgs/pcccdocumentreceiptprocess/supportInformation" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.SupportInformationAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.supportInformation" path="portlet.sgs.pcccdocumentreceiptprocess.supportInformation"/>
+        </action>
+        <!-- ### Nguoi xu li phu xac nhan da xem cong van ### -->
+        <action path="/sgs/pcccdocumentreceiptprocess/confirmView" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ConfirmViewAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.confirmView" path="portlet.sgs.pcccdocumentreceiptprocess.view.view"/>
+        </action>
+        <action
+            path="/sgs/pcccdocumentreceiptprocess/reportdocumentreceipt" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ReportDocumentReceiptAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.reportdocumentreceipt" path="portlet.sgs.pcccdocumentreceiptprocess.reportdocumentreceipt"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/updatesearch" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.UpdateSearchAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.updatesearch" path="portlet.sgs.pcccdocumentreceiptprocess.updatesearch"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/deletefromsearch" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.DeleteFromSearchAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.search" path="portlet.sgs.pcccdocumentreceiptprocess.search"/>
+        </action>
+        <!-- Trang gia han khi xu ly van ban den -->
+        <action path="/sgs/pcccdocumentreceiptprocess/viewextend" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ViewExtendAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.viewextend" path="portlet.sgs.pcccdocumentreceiptprocess.viewextend"/>
+        </action>
+        <!-- trang chinh sua cach thuc xu ly khi xu ly van ban den -->
+        <action path="/sgs/pcccdocumentreceiptprocess/editprocesstype" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.EditProcessTypeAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.editprocesstype" path="portlet.sgs.pcccdocumentreceiptprocess.editprocesstype"/>
+        </action>
+        <!-- Document relation -->
+        <action path="/sgs/pcccdocumentreceiptprocess/documentrelation" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.DocumentRelationAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.documentrelation" path="portlet.sgs.pcccdocumentreceiptprocess.documentrelation"/>
+            <forward name="portlet.sgs.pcccdocumentreceiptprocess.error" path="portlet.sgs.pcccdocumentreceiptprocess.error"/>
+        </action>
+        <!-- receipt report -->
+        <action path="/sgs/pcccdocumentreceiptreport/view" type="com.sgs.portlet.pcccdocumentreceiptreport.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentreceiptreport.view" path="portlet.sgs.pcccdocumentreceiptreport.view"/>
+        </action>
+        <action
+            forward="/portlet/ext/pcccdocumentreceiptreport/viewlist.jsp" path="/sgs/pcccdocumentreceiptreport/pcccdocumentreceiptviewlist"/>
+        <action
+            path="/sgs/pcccdocumentreceiptreport/pcccdocumentreceiptdetails" type="com.sgs.portlet.pcccdocumentreceiptreport.action.PCCCDocumentReceiptDetailsAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentreceiptdetails" path="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentreceiptdetails"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptreport/details" type="com.sgs.portlet.pcccdocumentreceiptreport.action.DetailsAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptreport.details" path="portlet.sgs.pcccdocumentreceiptreport.details"/>
+        </action>
+        <action
+            path="/sgs/pcccdocumentreceiptreport/pcccdocumentsenddetails" type="com.sgs.portlet.pcccdocumentreceiptreport.action.PCCCDocumentSendDetailsAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentsenddetails" path="portlet.sgs.pcccdocumentreceiptreport.pcccdocumentsenddetails"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptreport/detailsend" type="com.sgs.portlet.pcccdocumentreceiptreport.action.DetailSendAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptreport.detailsend" path="portlet.sgs.pcccdocumentreceiptreport.detailsend"/>
+        </action>
+        <!-- tra lai cong van -->
+        <action
+            path="/sgs/pcccdocumentreceiptprocess/backDocumentReceipt" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.BackDocumentReceiptAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.backDocumentReceipt" path="portlet.sgs.pcccdocumentreceiptprocess.backDocumentReceipt"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceipt/view" type="com.sgs.portlet.pcccdocumentreceipt.action.ViewAction">
+            <forward name="portlet.sgs.pcccdocumentreceipt.view" path="portlet.sgs.pcccdocumentreceipt.view"/>
+        </action>
+        <!-- in phieu chuyen -->
+        <action path="/sgs/pcccdocumentreceiptprocess/inphieuchuyen" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.PrintPhieuChuyen">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.transcvp" path="portlet.sgs.pcccdocumentreceiptprocess.transcvp"/>
+        </action>
+        <action path="/sgs/pcccdocumentreceiptprocess/indsphieuchuyen" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.PrintDSPhieuChuyen">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.printlist" path="portlet.sgs.pcccdocumentreceiptprocess.printlist"/>
+        </action>
+        <action
+            forward="/portlet/ext/pcccdocumentreceiptprocess/viewxlt.jsp" path="/sgs/pcccdocumentreceiptprocess/viewxlt"/>
+        <action path="/sgs/pcccdocumentreceiptprocess/xulythayld" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.surrogateProcessAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.xulythayld" path="portlet.sgs.pcccdocumentreceiptprocess.xulythayld"/>
+        </action>
+        <!-- chanh van phong chuyen chanh van phong -->
+        <action path="/sgs/pcccdocumentreceiptprocess/cvptocvp" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.CVPToCVP">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp" path="portlet.sgs.pcccdocumentreceiptprocess.cvptocvp"/>
+        </action>
+        <!-- lanh dao chuyen lanh dao -->
+        <action path="/sgs/pcccdocumentreceiptprocess/agencytoagency" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.AgencyToAgency">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency" path="portlet.sgs.pcccdocumentreceiptprocess.agencytoagency"/>
+        </action>
+        
+        <!--  chuyen cho cac van thu phong -->
+         <action path="/sgs/pcccdocumentreceiptprocess/changevanthudeparment" type="com.sgs.portlet.pcccdocumentreceiptprocess.action.ChangeAssignVanThuDepartmentAction">
+            <forward
+                name="portlet.sgs.pcccdocumentreceiptprocess.changevanthudeparment" path="portlet.sgs.pcccdocumentreceiptprocess.changevanthudeparment"/>
+        </action>
+        <!-- ####### end ############## -->
+        <!-- ####### MOT CUA ########### -->
+        <!-- one door -->
+        <action path="/sgs/onedoorreceive/view" type="com.sgs.portlet.onedoorreceive.action.ViewAction">
+            <forward name="portlet.sgs.onedoorreceive.view" path="portlet.sgs.onedoorreceive.view"/>
+        </action>
+        <action path="/sgs/onedoorprocess/view" type="com.sgs.portlet.onedoorprocess.action.ViewAction">
+            <forward name="portlet.sgs.onedoorprocess.view" path="portlet.sgs.onedoorprocess.view"/>
+        </action>
+        <!-- Them ho so -->
+        <action path="/sgs/onedoorpccc/add" type="com.sgs.portlet.onedoorpccc.action.AddAction">
+            <forward name="portlet.sgs.onedoorpccc.add" path="portlet.sgs.onedoorpccc.add"/>
+        </action>
+        <!-- ### xem chi tiet ### -->
+        <action path="/sgs/onedoorprocess/detail" type="com.sgs.portlet.onedoorprocess.action.DetailAction">
+            <forward name="portlet.sgs.onedoorprocess.detail" path="portlet.sgs.onedoorprocess.detail"/>
+        </action>
+        <!-- ### cap nhat ### -->
+        <action path="/sgs/onedoorprocess/update" type="com.sgs.portlet.onedoorprocess.action.UpdateAction">
+            <forward name="portlet.sgs.onedoorprocess.edit" path="portlet.sgs.onedoorprocess.edit"/>
+        </action>
+        <action path="/sgs/onedoorprocess/approve" type="com.sgs.portlet.onedoorprocess.action.ApproveAction">
+            <forward name="portlet.sgs.onedoorprocess.approve" path="portlet.sgs.onedoorprocess.approve"/>
+        </action>
+        <!-- ### chuyen xu ly ### -->
+        <action path="/sgs/onedoorprocess/process" type="com.sgs.portlet.onedoorprocess.action.ProcessAction">
+            <forward name="portlet.sgs.onedoorprocess.process" path="portlet.sgs.onedoorprocess.process"/>
+        </action>
+        <!-- ### yeu cau bo sung ### -->
+        <action path="/sgs/onedoorprocess/additionalRequirement" type="com.sgs.portlet.onedoorprocess.action.AdditionalRequirementAction">
+            <forward
+                name="portlet.sgs.onedoorprocess.additionalRequirement" path="portlet.sgs.onedoorprocess.additionalRequirement"/>
+        </action>
+        <!-- ### phan cong ### -->
+        <action path="/sgs/onedoorprocess/assign" type="com.sgs.portlet.onedoorprocess.action.AssignAction">
+            <forward name="portlet.sgs.onedoorprocess.assign" path="portlet.sgs.onedoorprocess.assign"/>
+        </action>
+        <!-- ### in bien nhan ### -->
+        <action path="/sgs/onedoorprocess/inbiennhan" type="com.sgs.portlet.onedoorprocess.action.InBienNhanAction"/>
+        <!-- ### in phieu yeu cau bo sung ### -->
+        <action path="/sgs/onedoorprocess/inphieuyeucaubosung" type="com.sgs.portlet.onedoorprocess.action.InPhieuYeuCauBoSungAction"/>
+        <!-- ### bo xung ho so ### -->
+        <action path="/sgs/onedoorprocess/additional" type="com.sgs.portlet.onedoorprocess.action.AdditionalAction">
+            <forward name="portlet.sgs.onedoorprocess.additional" path="portlet.sgs.onedoorprocess.additional"/>
+        </action>
+        <!-- ### cho bo sung ### -->
+        <action path="/sgs/onedoorprocess/waitAdditional" type="com.sgs.portlet.onedoorprocess.action.WaitAdditionalAction"/>
+        <!-- ### trinh ky ### -->
+        <action path="/sgs/onedoorprocess/trinhky" type="com.sgs.portlet.onedoorprocess.action.TrinhKyAction">
+            <forward name="portlet.sgs.onedoorprocess.trinhky" path="portlet.sgs.onedoorprocess.trinhky"/>
+        </action>
+        <!-- ### ky duyet ### -->
+        <action path="/sgs/onedoorprocess/sign" type="com.sgs.portlet.onedoorprocess.action.SignAction">
+            <forward name="portlet.sgs.onedoorprocess.sign" path="portlet.sgs.onedoorprocess.sign"/>
+        </action>
+        <!-- ### tra ho so ### -->
+        <action path="/sgs/onedoorprocess/returnFile" type="com.sgs.portlet.onedoorprocess.action.ReturnFileAction">
+            <forward name="portlet.sgs.onedoorprocess.returnFile" path="portlet.sgs.onedoorprocess.returnFile"/>
+        </action>
+        <!-- ### tra ho so cho dan ### -->
+        <action path="/sgs/onedoorprocess/returnFileForPeople" type="com.sgs.portlet.onedoorprocess.action.ReturnFileForPeopleAction">
+            <forward
+                name="portlet.sgs.onedoorprocess.returnFileForPeople" path="portlet.sgs.onedoorprocess.returnFileForPeople"/>
+        </action>
+        <!-- ### in phieu tra ho so ### -->
+        <action path="/sgs/onedoorprocess/inphieutrahoso" type="com.sgs.portlet.onedoorprocess.action.InPhieuTraHoSoAction"/>
+        <!-- ### xoa ho so ### -->
+        <action path="/sgs/onedoorprocess/delete" type="com.sgs.portlet.onedoorprocess.action.DeleteAction">
+            <forward name="portlet.sgs.onedoorprocess.delete" path="portlet.sgs.onedoorprocess.delete"/>
+        </action>
+        <!-- PCCC Report -->
+        <action path="/sgs/onedoorpcccreport_baocaohosothang/view" type="com.sgs.portlet.onedoorpcccreport_baocaohosothang.action.ViewAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothang.view" path="portlet.sgs.onedoorpcccreport_baocaohosothang.view"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothang/filedetails" type="com.sgs.portlet.onedoorpcccreport_baocaohosothang.action.FileDetailsAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails" path="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothang/filedetails_detail" type="com.sgs.portlet.onedoorpcccreport_baocaohosothang.action.DetailAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails_detail" path="portlet.sgs.onedoorpcccreport_baocaohosothang.filedetails_detail"/>
+        </action>
+        <action path="/sgs/onedoorpcccreport_baocaohosothang/search" type="com.sgs.portlet.onedoorpcccreport_baocaohosothang.action.SearchAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothang.search" path="portlet.sgs.onedoorpcccreport_baocaohosothang.search"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothang/searchresult" type="com.sgs.portlet.onedoorpcccreport_baocaohosothang.action.SearchResultAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothang.searchresult" path="portlet.sgs.onedoorpcccreport_baocaohosothang.searchresult"/>
+        </action>
+        <action path="/sgs/onedoorpcccreport_baocaohosothangluyke/view" type="com.sgs.portlet.onedoorpcccreport_baocaohosothangluyke.action.ViewAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.view" path="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.view"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothangluyke/filedetails" type="com.sgs.portlet.onedoorpcccreport_baocaohosothangluyke.action.FileDetailsAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails" path="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothangluyke/filedetails_detail" type="com.sgs.portlet.onedoorpcccreport_baocaohosothangluyke.action.DetailAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails_detail" path="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.filedetails_detail"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothangluyke/search" type="com.sgs.portlet.onedoorpcccreport_baocaohosothangluyke.action.SearchAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.search" path="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.search"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_baocaohosothangluyke/searchresult" type="com.sgs.portlet.onedoorpcccreport_baocaohosothangluyke.action.SearchResultAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.searchresult" path="portlet.sgs.onedoorpcccreport_baocaohosothangluyke.searchresult"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapphong/view" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapphong.action.ViewAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.view" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.view"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapphong/filedetails" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapphong.action.FileDetailsAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapphong/filedetails_detail" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapphong.action.DetailAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails_detail" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.filedetails_detail"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapphong/search" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapphong.action.SearchAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.search" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.search"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapphong/searchresult" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapphong.action.SearchResultAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.searchresult" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapphong.searchresult"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapso/view" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapso.action.ViewAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.view" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.view"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapso/filedetails" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapso.action.FileDetailsAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapso/filedetails_detail" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapso.action.DetailAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails_detail" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.filedetails_detail"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapso/search" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapso.action.SearchAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.search" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.search"/>
+        </action>
+        <action
+            path="/sgs/onedoorpcccreport_tinhhinhthulyhosocapso/searchresult" type="com.sgs.portlet.onedoorpcccreport_tinhhinhthulyhosocapso.action.SearchResultAction">
+            <forward
+                name="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.searchresult" path="portlet.sgs.onedoorpcccreport_tinhhinhthulyhosocapso.searchresult"/>
+        </action>
+        <!-- End PCCC Report -->
+        <!-- *** Xu li ho so *** -->
+        <!-- Xem danh sach ho so -->
+        <action path="/sgs/onedoorpcccprocess/view" type="com.sgs.portlet.onedoorpcccprocess.action.ViewAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.view" path="portlet.sgs.onedoorpcccprocess.view"/>
+        </action>
+        <!-- in phieu chuyen yenlt 15-04-2010 -->
+        <action path="/sgs/onedoorpcccprocess/inphieuchuyen" type="com.sgs.portlet.onedoorpcccprocess.action.InPhieuChuyenAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.view" path="portlet.sgs.onedoorpcccprocess.view"/>
+        </action>
+        <!-- Chi chi tiet ho so -->
+        <action path="/sgs/onedoorpcccprocess/detail" type="com.sgs.portlet.onedoorpcccprocess.action.DetailAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.detail" path="portlet.sgs.onedoorpcccprocess.detail"/>
+        </action>
+        <!-- Chuyen xu li -->
+        <action path="/sgs/onedoorpcccprocess/transfer" type="com.sgs.portlet.onedoorpcccprocess.action.TransferAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.transfer" path="portlet.sgs.onedoorpcccprocess.transfer"/>
+        </action>
+        <!-- Trinh lanh dao -->
+        <action path="/sgs/onedoorpcccprocess/transagency" type="com.sgs.portlet.onedoorpcccprocess.action.TransAgencyAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.transfer" path="portlet.sgs.onedoorpcccprocess.transfer"/>
+        </action>
+        <!-- Tra lai ho so -->
+        <action path="/sgs/onedoorpcccprocess/backfile" type="com.sgs.portlet.onedoorpcccprocess.action.BackFileAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.transfer" path="portlet.sgs.onedoorpcccprocess.transfer"/>
+        </action>
+        <!-- Cap nhat thong tin ho so -->
+        <action path="/sgs/onedoorpcccprocess/update" type="com.sgs.portlet.onedoorpcccprocess.action.UpdateAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.update" path="portlet.sgs.onedoorpcccprocess.update"/>
+        </action>
+        <!-- in bien nhan -->
+        <action path="/sgs/onedoorpcccprocess/inbiennhan" type="com.sgs.portlet.onedoorpcccprocess.action.InBienNhanAction"/>
+        <!-- *** xoa ho so *** -->
+        <action path="/sgs/onedoorpcccprocess/delete" type="com.sgs.portlet.onedoorpcccprocess.action.DeleteAction"/>
+        <!-- tra ho so -->
+        <action path="/sgs/onedoorpcccprocess/returndocument" type="com.sgs.portlet.onedoorpcccprocess.action.ReturnDocumentAction">
+            <forward
+                name="portlet.sgs.onedoorpcccprocess.returndocument" path="portlet.sgs.onedoorpcccprocess.returndocument"/>
+        </action>
+        <!-- ****** Search Action****** -->
+        <action path="/sgs/onedoorpcccprocess/search" type="com.sgs.portlet.onedoorpcccprocess.action.SearchAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.search" path="portlet.sgs.onedoorpcccprocess.search"/>
+        </action>
+        <action path="/sgs/onedoorpcccprocess/searchresult" type="com.sgs.portlet.onedoorpcccprocess.action.SearchResultAction">
+            <forward name="portlet.sgs.onedoorpcccprocess.searchresult" path="portlet.sgs.onedoorpcccprocess.searchresult"/>
+        </action>
+        <!-- yeu cau bo sung ho so -->
+        <action path="/sgs/onedoorpcccprocess/implementation" type="com.sgs.portlet.onedoorpcccprocess.action.ImplementationAction">
+            <forward
+                name="portlet.sgs.onedoorpcccprocess.implementation" path="portlet.sgs.onedoorpcccprocess.implementation"/>
+        </action>
+        <action path="/sgs/onedoorpcccprocess/implementinformation" type="com.sgs.portlet.onedoorpcccprocess.action.ImplementInformation">
+            <forward
+                name="portlet.sgs.onedoorpcccprocess.implementinformation" path="portlet.sgs.onedoorpcccprocess.implementinformation"/>
+        </action>
+        <!-- *** Tiep nhan mot cua *** -->
+        <action path="/sgs/onedoorpccc/view" type="com.sgs.portlet.onedoorpccc.action.ViewAction">
+            <forward name="portlet.sgs.onedoorpccc.view" path="portlet.sgs.onedoorpccc.view"/>
+        </action>
+        <!-- ########### End ############# -->
+        <!-- ###### TRANG CHU ######## -->
+        <action path="/sgs/home/view" type="com.sgs.portlet.home.action.ViewAction">
+            <forward name="portlet.sgs.home.view" path="portlet.sgs.home.view"/>
+        </action>
+        <!-- ###### End ######## -->
+        <!-- ######## DM CV ######### -->
+        <!-- admin issuing place -->
+        <action path="/sgs/issuingplace/view" type="com.sgs.portlet.issuingplace.action.ViewAction">
+            <forward name="portlet.sgs.issuingplace.view" path="portlet.sgs.issuingplace.view"/>
+            <forward name="portlet.sgs.issuingplace.error" path="portlet.sgs.issuingplace.error"/>
+        </action>
+        <action path="/sgs/issuingplace/addlevelsend" type="com.sgs.portlet.issuingplace.action.AddLevelSend">
+            <forward name="portlet.sgs.issuingplace.addlevelsend" path="portlet.sgs.issuingplace.addlevelsend"/>
+        </action>
+        <action path="/sgs/documentrecord/view" type="com.sgs.portlet.documentrecord.action.ViewAction">
+            <forward name="portlet.sgs.documentrecord.view" path="portlet.sgs.documentrecord.view"/>
+            <forward name="portlet.sgs.documentrecord.error" path="portlet.sgs.documentrecord.error"/>
+        </action>
+        <!-- admin document type -->
+        <action path="/sgs/documenttype/view" type="com.sgs.portlet.documenttype.action.ViewAction">
+            <forward name="portlet.sgs.documenttype.view" path="portlet.sgs.documenttype.view"/>
+            <forward name="portlet.sgs.documenttype.error" path="portlet.sgs.documenttype.error"/>
+        </action>
+        <action path="/sgs/pml_edm_confidentiallevel/view" type="com.sgs.portlet.pml_edm_confidentiallevel.action.ViewAction">
+            <forward name="portlet.sgs.pml_edm_confidentiallevel.view" path="portlet.sgs.pml_edm_confidentiallevel.view"/>
+            <forward name="portlet.sgs.pml_edm_confidentiallevel.error" path="portlet.sgs.pml_edm_confidentiallevel.error"/>
+        </action>
+        <action path="/sgs/pml_edm_privelegeleveladmin/view" type="com.sgs.portlet.pml_edm_privelegeleveladmin.action.ViewAction">
+            <forward name="portlet.sgs.pml_edm_privelegeleveladmin.view" path="portlet.sgs.pml_edm_privelegeleveladmin.view"/>
+            <forward
+                name="portlet.sgs.pml_edm_privelegeleveladmin.error" path="portlet.sgs.pml_edm_privelegeleveladmin.error"/>
+        </action>
+        <!-- admin record type -->
+        <action path="/sgs/documentrecordtype/view" type="com.sgs.portlet.documentrecordtype.action.ViewAction">
+            <forward name="portlet.sgs.documentrecordtype.view" path="portlet.sgs.documentrecordtype.view"/>
+            <forward name="portlet.sgs.documentrecordtype.error" path="portlet.sgs.documentrecordtype.error"/>
+        </action>
+        <!-- admin level send -->
+        <action path="/sgs/documentlevelsend/view" type="com.sgs.portlet.documentlevelsend.action.ViewAction">
+            <forward name="portlet.sgs.documentlevelsend.view" path="portlet.sgs.documentlevelsend.view"/>
+            <forward name="portlet.sgs.documentlevelsend.error" path="portlet.sgs.documentlevelsend.error"/>
+        </action>
+        <!-- ####### End ############ -->
+        <!-- ######## DM HS -->
+        <!-- admin permisson by file -->
+        <action path="/sgs/permissonuserbyfile/view" type="com.sgs.portlet.permissonuserbyfile.action.ViewAction">
+            <forward name="portlet.sgs.permissonuserbyfile.view" path="portlet.sgs.permissonuserbyfile.view"/>
+        </action>
+        <action path="/sgs/permissonuserbyfile/edit" type="com.sgs.portlet.permissonuserbyfile.action.EditAction">
+            <forward name="portlet.sgs.permissonuserbyfile.edit" path="portlet.sgs.permissonuserbyfile.edit"/>
+        </action>
+        <!-- file status & state process -->
+        <action path="/sgs/pmledm_filestatus/view" type="com.sgs.portlet.pmledm_filestatus.action.ViewAction">
+            <forward name="portlet.sgs.pmledm_filestatus.view" path="portlet.sgs.pmledm_filestatus.view"/>
+        </action>
+        <action path="/sgs/pmledm_filestatus/pmledm_stateprocess_view" type="com.sgs.portlet.pmledm_filestatus.action.ViewStateProcessAction">
+            <forward name="portlet.sgs.pmledm_stateprocess.view" path="portlet.sgs.pmledm_stateprocess.view"/>
+        </action>
+        <!-- file status document yenlt -->
+        <action
+            path="/sgs/pmledm_filestatus/display_stateprocess_document" type="com.sgs.portlet.pmledm_filestatus.action.DisplayAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.display_stateprocess_document" path="portlet.sgs.pmledm_filestatus.display_stateprocess_document"/>
+        </action>
+        <action path="/sgs/pmledm_filestatus/add_filestatus_document" type="com.sgs.portlet.pmledm_filestatus.action.AddFileStatusDocumentAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.add_filestatus_document" path="portlet.sgs.pmledm_filestatus.add_filestatus_document"/>
+        </action>
+        <action path="/sgs/pmledm_filestatus/edit_filestatus_document" type="com.sgs.portlet.pmledm_filestatus.action.EditFileStatusDocumentAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.edit_filestatus_document" path="portlet.sgs.pmledm_filestatus.edit_filestatus_document"/>
+            <forward name="portlet.sgs.pmledm_filestatus.view" path="portlet.sgs.pmledm_filestatus.view"/>
+        </action>
+        <action
+            forward="portlet.sgs.pmledm_filestatus.add_stateprocess_document" path="/sgs/pmledm_filestatus/add_stateprocess_document"/>
+        <action
+            forward="portlet.sgs.pmledm_filestatus.edit_stateprocess_document" path="/sgs/pmledm_filestatus/edit_stateprocess_document"/>
+        <!-- file status onedoor yenlt -->
+        <action path="/sgs/pmledm_filestatus/add_filestatus_onedoor" type="com.sgs.portlet.pmledm_filestatus.action.AddFileStatusOnedoorAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.add_filestatus_onedoor" path="portlet.sgs.pmledm_filestatus.add_filestatus_onedoor"/>
+        </action>
+        <action path="/sgs/pmledm_filestatus/edit_filestatus_onedoor" type="com.sgs.portlet.pmledm_filestatus.action.EditFileStatusOnedoorAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.edit_filestatus_onedoor" path="portlet.sgs.pmledm_filestatus.edit_filestatus_onedoor"/>
+            <forward name="portlet.sgs.pmledm_filestatus.view" path="portlet.sgs.pmledm_filestatus.view"/>
+        </action>
+        <action
+            path="/sgs/pmledm_filestatus/display_stateprocess_onedoor" type="com.sgs.portlet.pmledm_filestatus.action.EditStateProcessOnedoorAction">
+            <forward
+                name="portlet.sgs.pmledm_filestatus.display_stateprocess_onedoor" path="portlet.sgs.pmledm_filestatus.display_stateprocess_onedoor"/>
+        </action>
+        <action
+            forward="portlet.sgs.pmledm_filestatus.add_stateprocess_onedoor" path="/sgs/pmledm_filestatus/add_stateprocess_onedoor"/>
+        <action
+            forward="portlet.sgs.pmledm_filestatus.edit_stateprocess_onedoor" path="/sgs/pmledm_filestatus/edit_stateprocess_onedoor"/>
+        <action path="/sgs/holidaymanagement/view" type="com.sgs.portlet.holidaymanagement.action.ViewAction">
+            <forward name="portlet.sgs.holidaymanagement.view" path="portlet.sgs.holidaymanagement.view"/>
+            <forward name="portlet.sgs.holidaymanagement.add" path="portlet.sgs.holidaymanagement.add"/>
+            <forward name="portlet.sgs.holidaymanagement.edit" path="portlet.sgs.holidaymanagement.edit"/>
+        </action>
+        <!-- File type -->
+        <action name="fileTypeForm" path="/sgs/filetype/view"
+            type="com.sgs.portlet.filetype.action.ViewAction" validate="true">
+            <forward name="portlet.sgs.filetype.view" path="portlet.sgs.filetype.view"/>
+            <forward name="portlet.sgs.filetype.add" path="portlet.sgs.filetype.add"/>
+            <forward name="portlet.sgs.filetype.edit" path="portlet.sgs.filetype.edit"/>
+        </action>
+        <!-- document field -->
+        <action path="/sgs/documentfield/view" type="com.sgs.portlet.documentfield.action.ViewAction">
+            <forward name="portlet.sgs.documentfield.view" path="portlet.sgs.documentfield.view"/>
+        </action>
+        <action path="/sgs/documentfield/addfield" type="com.sgs.portlet.documentfield.action.AddAction">
+            <forward name="portlet.sgs.documentfield.addfield" path="portlet.sgs.documentfield.addfield"/>
+        </action>
+        <action path="/sgs/documentfield/editfield" type="com.sgs.portlet.documentfield.action.EditAction">
+            <forward name="portlet.sgs.documentfield.editfield" path="portlet.sgs.documentfield.editfield"/>
+        </action>
+        <action path="/sgs/documentfield/deletefield" type="com.sgs.portlet.documentfield.action.DeleteAction">
+            <forward name="portlet.sgs.documentfield.view" path="portlet.sgs.documentfield.view"/>
+        </action>
+        <!-- ######## End ############# -->
+        <!-- ####### QUAN LY UY QUYEM -->
+        <action name="workflowForm" path="/sgs/workflow_admin/view" type="com.sgs.portlet.workflow_admin.action.ViewAction">
+            <forward name="portlet.sgs.workflow_admin.view" path="portlet.sgs.workflow_admin.view"/>
+        </action>
+        <action path="/sgs/documentprocessmanagement/view" type="com.sgs.portlet.documentprocessmanagement.action.ViewAction">
+            <forward name="portlet.sgs.documentprocessmanagement.view" path="portlet.sgs.documentprocessmanagement.view"/>
+        </action>
+        <!-- delegate 06/04/2010-->
+        <action path="/sgs/delegate/view" type="com.sgs.portlet.delegate.action.ViewAction">
+            <forward name="portlet.sgs.delegate.view" path="portlet.sgs.delegate.view"/>
+            <forward name="portlet.sgs.delegate.add" path="portlet.sgs.delegate.add"/>
+        </action>
+        <!-- ####### End ############ -->
+        <!-- ######### DMDC ######### -->
+        <action path="/sgs/pmluser/view" type="com.sgs.portlet.pmluser.action.ViewAction">
+            <forward name="portlet.sgs.pmluser.view" path="portlet.sgs.pmluser.view"/>
+        </action>
+        <action path="/sgs/position/view" type="com.sgs.portlet.position.action.ViewAction">
+            <forward name="portlet.sgs.position.view" path="portlet.sgs.position.view"/>
+            <forward name="portlet.sgs.position.add" path="portlet.sgs.position.add"/>
+        </action>
+        <!-- wards -->
+        <action name="wardsForm" path="/sgs/wardsmanagement/view"
+            type="com.sgs.portlet.wardsmanagement.action.ViewAction" validate="true">
+            <forward name="portlet.sgs.wardsmanagement.view" path="portlet.sgs.wardsmanagement.view"/>
+        </action>
+        <!-- nation -->
+        <action path="/sgs/nation/view" type="com.sgs.portlet.nation.action.ViewAction">
+            <forward name="portlet.sgs.nation.view" path="portlet.sgs.nation.view"/>
+        </action>
+        <!-- generate template id -->
+        <action path="/sgs/generatetemplateid/view" type="com.sgs.portlet.generatetemplateid.action.ViewAction">
+            <forward name="portlet.sgs.generatetemplateid.view" path="portlet.sgs.generatetemplateid.view"/>
+        </action>
+        <!-- Yenlt 27/01/2010 -->
+        <action
+            forward="portlet.sgs.generatetemplateid.add_edit_idtemplate" path="/sgs/generatetemplateid/add_edit_idtemplate"/>
+        <!-- end -->
+        <!-- generated document code -->
+        <action path="/sgs/geneatedocumentcode/view" type="com.sgs.portlet.geneatedocumentcode.action.ViewAction">
+            <forward name="portlet.sgs.geneatedocumentcode.view" path="portlet.sgs.geneatedocumentcode.view"/>
+            <forward name="portlet.sgs.geneatedocumentcode.add_edit" path="portlet.sgs.geneatedocumentcode.add_edit"/>
+        </action>
+        <!-- districtmanagement -->
+        <action name="districtForm" path="/sgs/districtmanagement/view"
+            type="com.sgs.portlet.districtmanagement.action.ViewAction" validate="true">
+            <forward name="portlet.sgs.districtmanagement.view" path="portlet.sgs.districtmanagement.view"/>
+            <forward name="portlet.sgs.districtmanagement.error" path="portlet.sgs.districtmanagement.error"/>
+            <forward name="portlet.sgs.districtmanagement.add" path="portlet.sgs.districtmanagement.add"/>
+            <forward name="portlet.sgs.districtmanagement.edit" path="portlet.sgs.districtmanagement.edit"/>
+        </action>
+        <!-- Department leader -->
+        <action path="/sgs/departmentleader/departmenthscv" type="com.sgs.portlet.departmentleader.action.AssignDepartmentHSCV">
+            <forward
+                name="portlet.sgs.departmentleader.viewdepartmenthscv" path="portlet.sgs.departmentleader.viewdepartmenthscv"/>
+        </action>
+        <action path="/sgs/departmentleader/view" type="com.sgs.portlet.departmentleader.action.ViewAction">
+            <forward name="portlet.sgs.departmentleader.view" path="portlet.sgs.departmentleader.view"/>
+        </action>
+        <action path="/sgs/departmentleader/add" type="com.sgs.portlet.departmentleader.action.AddAction">
+            <forward name="portlet.sgs.departmentleader.add" path="portlet.sgs.departmentleader.add"/>
+        </action>
+        <action path="/sgs/departmentleader/edit" type="com.sgs.portlet.departmentleader.action.EditAction">
+            <forward name="portlet.sgs.departmentleader.edit" path="portlet.sgs.departmentleader.edit"/>
+        </action>
+        <action path="/sgs/departmentleader/setleader" type="com.sgs.portlet.departmentleader.action.SetLeaderAction">
+            <forward name="portlet.sgs.departmentleader.setleader" path="portlet.sgs.departmentleader.setleader"/>
+        </action>
+        <!-- End department leader -->
+        <!-- country -->
+        <action path="/sgs/country/view" type="com.sgs.portlet.country.action.ViewAction">
+            <forward name="portlet.sgs.country.view" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_add" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_add" path="portlet.sgs.country.country_add"/>
+        </action>
+        <action path="/sgs/country/country_delete" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_delete" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_update" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_update" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_edit" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_edit" path="portlet.sgs.country.country_update"/>
+        </action>
+        <action path="/sgs/country/country_cancel" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_cancel" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_active" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_active" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_create" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_create" path="portlet.sgs.country.view"/>
+        </action>
+        <action path="/sgs/country/country_find" type="com.sgs.portlet.country.action.EditCountryAction">
+            <forward name="portlet.sgs.country.country_find" path="portlet.sgs.country.view"/>
+        </action>
+        <!-- city -->
+        <action path="/sgs/citymanagement/districtmanagement"
+            type="com.sgs.portlet.citymanagement.action.DistrictManagementAction" validate="true">
+            <forward
+                name="portlet.sgs.citymanagement.districtmanagement" path="portlet.sgs.citymanagement.districtmanagement"/>
+        </action>
+        <action path="/sgs/citymanagement/view"
+            type="com.sgs.portlet.citymanagement.action.ViewAction" validate="true">
+            <forward name="portlet.sgs.citymanagement.view" path="portlet.sgs.citymanagement.view"/>
+        </action>
+        <action path="/sgs/citymanagement/wardmanagement"
+            type="com.sgs.portlet.citymanagement.action.WardManagementAction" validate="true">
+            <forward name="portlet.sgs.citymanagement.wardmanagement" path="portlet.sgs.citymanagement.wardmanagement"/>
+        </action>
+        <action path="/sgs/career/view" type="com.sgs.portlet.career.action.ViewAction">
+            <forward name="portlet.sgs.career.view" path="portlet.sgs.career.view"/>
+            <forward name="portlet.sgs.career.add" path="portlet.sgs.career.add"/>
+        </action>
+        <action path="/sgs/agency/view" type="com.sgs.portlet.agency.action.ViewAction">
+            <forward name="portlet.sgs.agency.view" path="portlet.sgs.agency.view"/>
+            <forward name="portlet.sgs.agency.add" path="portlet.sgs.agency.add"/>
+        </action>
+        <!-- ######### End ############## -->
+        <action path="/sgs/pml_edm_docconfuser/view" type="com.sgs.portlet.pml_edm_docconfuser.action.ViewAction">
+            <forward name="portlet.sgs.pml_edm_docconfuser.view" path="portlet.sgs.pml_edm_docconfuser.view"/>
+        </action>
+        <!-- pml_edm_docconfuser -->
+        <action forward="portlet.sgs.pml_edm_docconfuser.view" path="/sgs/pml_edm_docconfuser/view"/>
+        <action path="/sgs/pml_edm_docconfuser/edit" type="com.sgs.portlet.pml_edm_docconfuser.action.EditAction">
+            <forward name="portlet.sgs.pml_edm_docconfuser.edit" path="portlet.sgs.pml_edm_docconfuser.edit"/>
+            <forward name="portlet.sgs.pml_edm_docconfuser.view" path="portlet.sgs.pml_edm_docconfuser.view"/>
+            <forward name="portlet.sgs.pml_edm_docconfuser.error" path="portlet.sgs.pml_edm_docconfuser.error"/>
+        </action>
+        <!-- Attached file -->
+        <action path="/sgs/attachedfile/view" type="com.sgs.portlet.attachedfile.action.ViewAction">
+            <forward name="portlet.sgs.attachedfile.view" path="portlet.sgs.attachedfile.view"/>
+            <forward name="portlet.sgs.attachedfile.add" path="portlet.sgs.attachedfile.add"/>
+        </action>
+        <!--Meeting Calenar  -->
+        <action path="/ext/meeting_calendar/edit_event" type="com.ext.portlet.meetingcalendar.action.EditMeetingCalendarAction">
+            <forward name="portlet.ext.meeting_calendar.edit_event" path="portlet.ext.meeting_calendar.edit_event"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action path="/ext/meeting_calendar/edit_focus_week" type="com.ext.portlet.meetingcalendar.action.EditMeetingDetailWeekAction">
+            <forward name="portlet.ext.meeting_calendar.view_focus_week" path="portlet.ext.meeting_calendar.view_focus_week"/>
+            <forward name="portlet.ext.meeting_calendar.edit_focus_week" path="portlet.ext.meeting_calendar.edit_focus_week"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action forward="portlet.ext.meeting_calendar.week_view" path="/ext/meeting_calendar/week_view"/>
+        <action forward="portlet.ext.meeting_calendar.view_focus_week" path="/ext/meeting_calendar/view_focus_week"/>
+        <action forward="portlet.ext.meeting_calendar.search" path="/ext/meeting_calendar/search"/>
+        <action path="/ext/meeting_calendar/export_events" type="com.ext.portlet.meetingcalendar.action.ExportEventsAction"/>
+        <action path="/ext/meeting_calendar/find_event" type="com.ext.portlet.meetingcalendar.action.FindEventAction"/>
+        <action path="/ext/meeting_calendar/import_events" type="com.ext.portlet.calendar.action.ImportEventsAction">
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action forward="portlet.ext.meeting_calendar.view" path="/ext/meeting_calendar/view"/>
+        <action path="/ext/meeting_calendar/view_event" type="com.ext.portlet.meeting_calendar.action.EditEventAction">
+            <forward name="portlet.ext.meeting_calendar.edit_event" path="portlet.ext.meeting_calendar.view_event"/>
+            <forward name="portlet.ext.meeting_calendar.error" path="portlet.ext.meeting_calendar.error"/>
+        </action>
+        <action path="/ext/meeting_calendar/print_cal" type="com.ext.portlet.meetingcalendar.action.PrintCalAction"/>
+        <action forward="portlet.ext.meeting_calendar.print" path="/ext/meeting_calendar/print"/>
+        <action forward="portlet.ext.meeting_calendar.print_DK" path="/ext/meeting_calendar/print_DK"/>
+        <action path="/ext/meeting_calendar/download" type="com.ext.portlet.meetingcalendar.action.GetMCalAttachmentAction"/>
+        <action
+            forward="portlet.ext.meeting_calendar.select_organization" path="/ext/meeting_calendar/select_organization"/>
+        <action path="/ext/meeting_calendar/manage_resources" forward="portlet.ext.meeting_calendar.manage_resources"/>
+        <!-- Meeting Calendar View -->
+        <action path="/ext/meeting_calendar_view/view" type="com.ext.portlet.meetingcalendarview.action.ViewAction">
+            <forward name="portlet.ext.meetingcalendarview.view" path="portlet.ext.meetingcalendarview.view"/>
+        </action>
+        <action path="/ext/meeting_calendar_view/edit_view" type="com.ext.portlet.meetingcalendarview.action.EditViewAction">
+            <forward name="portlet.ext.meetingcalendarview.edit_view" path="portlet.ext.meetingcalendarview.edit_view"/>
+        </action>
+        <action path="/ext/journalhotnews/view" type="com.ext.portlet.journalhotnews.action.ViewAction">
+            <forward name="portlet.ext.journalhotnews.view" path="portlet.ext.journalhotnews.view"/>
+        </action>
+        <action path="/sgs/signer/view" type="com.sgs.portlet.signer.action.ViewAction">
+            <forward name="portlet.sgs.signer.view" path="portlet.sgs.signer.view"/>
+        </action>
+        <!-- ProcessType -->
+        <!-- quan ly cach thuc xu ly -->
+        <action path="/ext/processtype/view" type="com.ext.portlet.processtype.action.ViewAction">
+            <forward name="portlet.ext.processtype.view" path="portlet.ext.processtype.view"/>
+        </action>
+        <action path="/sgs/indexdatabase/view" type="com.sgs.portlet.indexdatabase.action.ViewAction">
+            <forward name="portlet.sgs.indexdatabase.view" path="portlet.sgs.indexdatabase.view"/>
+        </action>
+        <action path="/sgs/congvandidahoanthanh/view" type="com.sgs.portlet.congvandidahoanthanh.action.ViewAction">
+            <forward name="portlet.sgs.congvandidahoanthanh.view" path="portlet.sgs.congvandidahoanthanh.view"/>
+        </action>
+        <action path="/sgs/pmlstreet/view" type="com.sgs.portlet.pmlstreet.action.ViewAction">
+            <forward name="portlet.sgs.pmlstreet.view" path="portlet.sgs.pmlstreet.view"/>
+        </action>
+        <action path="/sgs/deleteprocessinstance/view" type="com.sgs.portlet.deleteprocessinstance.action.ViewAction">
+            <forward name="portlet.sgs.deleteprocessinstance.view" path="portlet.sgs.deleteprocessinstance.view"/>
+        </action>
+        <action path="/sgs/deleteprocessinstance/detail" type="com.sgs.portlet.deleteprocessinstance.action.DetailAction">
+            <forward name="portlet.sgs.deleteprocessinstance.detail" path="portlet.sgs.deleteprocessinstance.detail"/>
+        </action>
+        <!-- home report document -->
+        <action path="/sgs/home_report/view" type="com.sgs.portlet.home_report.action.ViewAction">
+            <forward name="portlet.sgs.home_report.view" path="portlet.sgs.home_report.view"/>
+        </action>
+        <action forward="/portlet/ext/home_report/viewlist.jsp" path="/sgs/home_report/homereportviewlist"/>
+        <action path="/sgs/home_report/documentreceiptviewlist" type="com.sgs.portlet.home_report.action.DocumentReceiptViewListAction">
+            <forward
+                name="portlet.sgs.home_report.documentreceiptviewlist" path="portlet.sgs.home_report.documentreceiptviewlist"/>
+        </action>
+        <action path="/sgs/home_report/receiptdetail" type="com.sgs.portlet.home_report.action.ReceiptDetailAction">
+            <forward name="portlet.sgs.home_report.receiptdetail" path="portlet.sgs.home_report.receiptdetail"/>
+        </action>
+        <action path="/sgs/home_report/documentsendviewlist" type="com.sgs.portlet.home_report.action.DocumentSendViewListAction">
+            <forward name="portlet.sgs.home_report.documentsendviewlist" path="portlet.sgs.home_report.documentsendviewlist"/>
+        </action>
+        <action path="/sgs/home_report/senddetail" type="com.sgs.portlet.home_report.action.SendDetailAction">
+            <forward name="portlet.sgs.home_report.senddetail" path="portlet.sgs.home_report.senddetail"/>
+        </action>
+        <!-- end home report document -->
+        <action path="/sgs/pml_template/view" type="com.sgs.portlet.pml_template.action.ViewAction">
+            <forward name="portlet.sgs.pml_template.view" path="portlet.sgs.pml_template.view"/>
+        </action>
+        <action path="/sgs/pml_template_display/view" type="com.sgs.portlet.pml_template_display.action.ViewAction">
+            <forward name="portlet.sgs.pml_template_display.view" path="portlet.sgs.pml_template_display.view"/>
+        </action>
+        <action path="/sgs/home_report_onedoor/view" type="com.sgs.portlet.home_report_onedoor.action.ViewAction">
+            <forward name="portlet.sgs.home_report_onedoor.view" path="portlet.sgs.home_report_onedoor.view"/>
+        </action>
+        <action path="/sgs/onedoorfileprocessed/view" type="com.sgs.portlet.onedoorfileprocessed.action.ViewAction">
+            <forward name="portlet.sgs.onedoorfileprocessed.view" path="portlet.sgs.onedoorfileprocessed.view"/>
+        </action>
+        <action path="/sgs/onedoorfileprocessed/detail" type="com.sgs.portlet.onedoorfileprocessed.action.DetailAction">
+            <forward name="portlet.sgs.onedoorfileprocessed.detail" path="portlet.sgs.onedoorfileprocessed.detail"/>
+        </action>
+        <action path="/sgs/onedoorreturn/view" type="com.sgs.portlet.onedoorreturn.action.ViewAction">
+            <forward name="portlet.sgs.onedoorreturn.view" path="portlet.sgs.onedoorreturn.view"/>
+        </action>
+        <action path="/sgs/onedoorreturn/detail" type="com.sgs.portlet.onedoorreturn.action.DetailAction">
+            <forward name="portlet.sgs.onedoorreturn.detail" path="portlet.sgs.onedoorreturn.detail"/>
+        </action>
+        <action path="/sgs/onedoorsearch/view" type="com.sgs.portlet.onedoorsearch.action.ViewAction">
+            <forward name="portlet.sgs.onedoorsearch.view" path="portlet.sgs.onedoorsearch.view"/>
+        </action>
+        <action path="/sgs/onedoorsearch/detail" type="com.sgs.portlet.onedoorsearch.action.DetailAction">
+            <forward name="portlet.sgs.onedoorsearch.detail" path="portlet.sgs.onedoorsearch.detail"/>
+        </action>
+        <action path="/sgs/home_onedoor/view" type="com.sgs.portlet.home_onedoor.action.ViewAction">
+            <forward name="portlet.sgs.home_onedoor.view" path="portlet.sgs.home_onedoor.view"/>
+        </action>
+        <action path="/sgs/home_document/view" type="com.sgs.portlet.home_document.action.ViewAction">
+            <forward name="portlet.sgs.home_document.view" path="portlet.sgs.home_document.view"/>
+        </action>
+        <action path="/sgs/organizationexternal/view" type="com.sgs.portlet.organizationexternal.action.ViewAction">
+            <forward name="portlet.sgs.organizationexternal.view" path="portlet.sgs.organizationexternal.view"/>
+            <forward name="portlet.sgs.organizationexternal.add" path="portlet.sgs.organizationexternal.add"/>
+        </action>
+        <action path="/sgs/connecttogateway/view" type="com.sgs.portlet.connecttogateway.action.ViewAction">
+            <forward name="portlet.sgs.connecttogateway.view" path="portlet.sgs.connecttogateway.view"/>
+        </action>
+        <action path="/sgs/message_note/view" type="com.sgs.portlet.message_note.action.ViewAction">
+            <forward name="portlet.sgs.message_note.view" path="portlet.sgs.message_note.view"/>
+        </action>
+        <action path="/sgs/message_note/show" type="com.sgs.portlet.message_note.action.ShowAction">
+            <forward name="portlet.sgs.message_note.show" path="portlet.sgs.message_note.show"/>
+        </action>
+        <!-- CAS -->
+        <action path="/portal/caslogout" type="com.liferay.portal.action.LogoutAction"/>
+        <action path="/sgs/imagehome/view" type="com.sgs.portlet.imagehome.action.ViewAction">
+            <forward name="portlet.sgs.imagehome.view" path="portlet.sgs.imagehome.view"/>
+        </action>
+        <action path="/sgs/documentdelegate/view" type="com.sgs.portlet.documentdelegate.action.ViewAction">
+            <forward name="portlet.sgs.documentdelegate.view" path="portlet.sgs.documentdelegate.view"/>
+        </action>
+        <action path="/sgs/doccumentprivate/view" type="com.sgs.portlet.doccumentprivate.action.ViewAction">
+            <forward name="portlet.sgs.doccumentprivate.view" path="portlet.sgs.doccumentprivate.view"/>
+        </action>
+        <action path="/sgs/doccumentprivate/detail" type="com.sgs.portlet.doccumentprivate.action.DetailAction">
+            <forward name="portlet.sgs.doccumentprivate.viewDetail" path="portlet.sgs.doccumentprivate.viewDetail"/>
+        </action>
+        <action path="/sgs/doccumentprivate/search" type="com.sgs.portlet.doccumentprivate.action.SearchAction">
+            <forward name="portlet.sgs.doccumentprivate.view" path="portlet.sgs.doccumentprivate.view"/>
+        </action>
+        <!-- Portlet tao luong -->
+        <action path="/sgs/receivergroup/view" type="com.sgs.portlet.receivergroup.action.ViewAction">
+            <forward name="portlet.sgs.receivergroup.view" path="portlet.sgs.receivergroup.view"/>
+        </action>
+        <action path="/sgs/receivergroup/json" type="com.sgs.portlet.receivergroup.action.JSONAction"/>
+        <action forward="portlet.sgs.receivergroup.edit_receiver_group" path="/sgs/receivergroup/edit_receiver_group"/>
+        <action path="/sgs/phathanhcongvandi/view" type="com.sgs.portlet.phathanhcongvandi.action.ViewAction">
+            <forward name="portlet.sgs.phathanhcongvandi.view" path="portlet.sgs.phathanhcongvandi.view"/>
+        </action>
+        <action path="/sgs/tiep_nhan_giao_viec/view" type="com.sgs.portlet.tiep_nhan_giao_viec.action.ViewAction">
+            <forward name="portlet.sgs.tiep_nhan_giao_viec.view" path="portlet.sgs.tiep_nhan_giao_viec.view"/>
+        </action>
+        <action path="/sgs/report_registry_work/view" type="com.sgs.portlet.report_registry_work.action.ViewAction">
+            <forward name="portlet.sgs.report_registry_work.view" path="portlet.sgs.report_registry_work.view"/>
+        </action>
+        <action path="/sgs/report_registry_work_index/view" type="com.sgs.portlet.report_registry_work_index.action.ViewAction">
+            <forward name="portlet.sgs.report_registry_work_index.view" path="portlet.sgs.report_registry_work_index.view"/>
+        </action>
+        <action path="/sgs/callportletother/view" type="com.sgs.portlet.callportletother.action.ViewAction">
+            <forward name="portlet.sgs.callportletother.view" path="portlet.sgs.callportletother.view"/>
+        </action>
+        <action path="/sgs/document_manager/view" type="com.sgs.portlet.document_manager.action.ViewAction">
+            <forward name="portlet.sgs.document_manager.view" path="portlet.sgs.document_manager.view"/>
+        </action>
+        <action path="/sgs/document_manager_index/view" type="com.sgs.portlet.document_manager_index.action.ViewAction">
+            <forward name="portlet.sgs.document_manager_index.view" path="portlet.sgs.document_manager_index.view"/>
+        </action>
+        <action path="/sgs/holiday_calendar/view" type="com.sgs.portlet.holiday_calendar.action.ViewAction">
+            <forward name="portlet.sgs.holiday_calendar.view" path="portlet.sgs.holiday_calendar.view"/>
+        </action>
+        <action path="/sgs/holiday_calendar_index/view" type="com.sgs.portlet.holiday_calendar_index.action.ViewAction">
+            <forward name="portlet.sgs.holiday_calendar_index.view" path="portlet.sgs.holiday_calendar_index.view"/>
+        </action>
+        <action path="/sgs/vanbannoibo/view" type="com.sgs.portlet.vanbannoibo.action.ViewAction">
+            <forward name="portlet.sgs.vanbannoibo.view" path="portlet.sgs.vanbannoibo.view"/>
+        </action>
+    </action-mappings>
+</struts-config>
