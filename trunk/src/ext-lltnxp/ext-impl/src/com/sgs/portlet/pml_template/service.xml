@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_template">
+	<namespace>PmlTemplate</namespace>
+	<entity name="PmlTemplate" local-service="true" remote-service="true" table="pml_template" >
+
+		<!-- PK fields -->
+		<column name="templateId" type="long" primary="true" />
+
+		<!-- Other fields -->
+		<column name="templateCode" type="String" />
+		<column name="templateName" type="String" />
+		<column name="numberOfDocument" type="int" />
+		<column name="publishDate" type="Date" />
+		<column name="departmentId" type="String" />
+
+		<!-- finder -->
+		<finder name="DepartmentId" return-type="Collection">
+			<finder-column name="departmentId" />
+		</finder>
+	</entity>
+	<entity name="FileTemplate" local-service="true" remote-service="true" table="pml_template_file">
+		<column name="fileTemplateId" type="long" primary="true" />		
+		<column name="templateId" type="long" />
+		<column name="tenFile" type="String" />
+		<column name="kichThuoc" type="long" />		
+		<column name="duongDan" type="String" />
+		
+		<!-- Order -->
+		<!-- Finder methods -->
+	    <finder name="TemplateId" return-type="Collection">
+	   		<finder-column name="templateId"/>
+	    </finder>
+	</entity>
+</service-builder>

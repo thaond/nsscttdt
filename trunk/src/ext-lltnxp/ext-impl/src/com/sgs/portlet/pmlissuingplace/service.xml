@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+<service-builder
+	package-path="com.sgs.portlet.pmlissuingplace">
+
+	<namespace>IssuingPlace</namespace>
+
+	<entity name="PmlEdmIssuingPlace" local-service="true" remote-service="true"
+		table="pml_edm_issuingplace">
+
+		<!-- PK fields -->
+
+		<column name="issuingPlaceId" type="String" primary="true" db-name="issuingplaceid"/>
+
+		<!-- Other fields -->
+
+		<column name="issuingPlaceName" type="String" db-name="issuingplacename"/>
+		<column name="tablePhone" type="String" db-name="tablephone"/>
+		<column name="handPhone" type="String" db-name="handphone"/>
+		<column name="email" type="String" db-name="email"/>
+		<column name="address" type="String" db-name="address"/>
+		<column name="active" type="String" db-name="active"/>
+		<column name="note" type="String" db-name="note"/>
+		<column name="issuingPlaceCode" type="String" db-name="issuingplacecode"/>
+		<column name="signer" type="String" />
+		
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="issuingPlaceName" case-sensitive="false" />
+		</order>
+		<!-- xuancong close
+		<order by="desc">
+			<order-column name="issuingPlaceId" />
+		</order>
+		-->
+		
+		<!-- finder -->
+		<finder name="IssuingPlaceCode" return-type="Collection">
+			<finder-column name="issuingPlaceCode" comparator="LIKE"/>
+		</finder>
+		<finder name="IssuingPlaceName" return-type="Collection">
+			<finder-column name="issuingPlaceName" comparator="LIKE"/>
+		</finder>
+		<finder name="TablePhone" return-type="Collection">
+			<finder-column name="tablePhone" comparator="LIKE"/>
+		</finder>
+		<finder name="HandPhone" return-type="Collection">
+			<finder-column name="handPhone" comparator="LIKE"/>
+		</finder>
+		<finder name="Address" return-type="Collection">
+			<finder-column name="address" comparator="LIKE"/>
+		</finder>
+		<finder name="Email" return-type="Collection">
+			<finder-column name="email" comparator="LIKE"/>
+		</finder>
+		
+		
+		<!-- References -->
+
+	</entity>
+	<exceptions>
+		<exception>PmlEdmIssuingPlaceCanNotDelete</exception>
+	</exceptions>
+</service-builder>
