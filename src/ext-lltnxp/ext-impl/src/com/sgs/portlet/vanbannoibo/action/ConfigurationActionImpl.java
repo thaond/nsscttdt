@@ -20,8 +20,8 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		PortletPreferences pref = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 
-		String vbnb = ParamUtil.getString(request,"actionVanBanNoiBo", "");
-		pref.setValue("actionVanBanNoiBo", String.valueOf(vbnb));
+		String actionVanBanNoiBo = ParamUtil.getString(request,"actionVanBanNoiBo", "");
+		pref.setValue("actionVanBanNoiBo", String.valueOf(actionVanBanNoiBo));
 		if (SessionErrors.isEmpty(request)) {
 			pref.store();
 			SessionMessages.add(request, config.getPortletName() + ".doConfigure");
