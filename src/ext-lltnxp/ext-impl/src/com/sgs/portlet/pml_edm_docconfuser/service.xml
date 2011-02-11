@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.pml_edm_docconfuser">
+	<namespace>PmlEdm</namespace>
+	<entity name="PmlEdmDocConfUser" local-service="true" remote-service="true" 
+	table="pml_edm_docconfuser" >
+
+		<!-- PK fields -->
+		<column name="dcuId" type="long" primary="true" />
+
+		<!-- Other fields -->
+		<column name="userId" type="long" />
+		<column name="viewAllDoc" type="boolean" />
+		<column name="viewDepDoc" type="String" />
+
+		<!-- finder -->
+		<finder name="UserId" return-type="PmlEdmDocConfUser">
+			<finder-column name="userId" />
+		</finder>
+		
+		<!-- References -->
+		<reference package-path="com.liferay.counter" entity="Counter" />
+		<reference package-path="com.liferay.portal" entity="User" />	
+	</entity>
+	<exceptions>
+		<exception>PmlEdmDocConfUserUserId</exception>
+	</exceptions>
+</service-builder>
