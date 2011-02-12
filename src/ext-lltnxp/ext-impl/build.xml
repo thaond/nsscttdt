@@ -272,6 +272,11 @@
 				<param name="service.file" value="src/com/sgs/portlet/holiday_calendar/service.xml" />
 			</antcall>
 	</target>
+	<target name="build-service-portlet-vanbannoibo">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/vanbannoibo/service.xml" />
+			</antcall>
+	</target>
 	
 	<!-- Language -->
 	<target name="build-lang-native2ascii-vi">
