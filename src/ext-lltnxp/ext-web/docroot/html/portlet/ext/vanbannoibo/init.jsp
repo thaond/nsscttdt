@@ -39,5 +39,6 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String actionVanBanNoiBo = PrefsParamUtil.getString(prefs, request, "actionVanBanNoiBo","");
+String kyHieuVaoSo = PrefsParamUtil.getString(prefs, request, "kyHieuVaoSo","");
 
 %>

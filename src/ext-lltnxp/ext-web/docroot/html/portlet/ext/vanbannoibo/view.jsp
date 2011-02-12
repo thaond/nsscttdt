@@ -1,7 +1,5 @@
 <%@ include file="/html/portlet/ext/vanbannoibo/init.jsp" %>
 
-<%= actionVanBanNoiBo%>
-
 <c:choose>
 	<c:when test='<%= actionVanBanNoiBo.equals("tiepNhan") %>'>
 			<%@ include file="/html/portlet/ext/vanbannoibo/tiepnhanvanbannoibo/tiepnhanvanbannoibo.jsp" %>						
