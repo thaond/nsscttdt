@@ -2592,4 +2592,76 @@
 	<bean id="com.sgs.portlet.holiday_calendar.service.persistence.AttactFileHolidayUtil" class="com.sgs.portlet.holiday_calendar.service.persistence.AttactFileHolidayUtil">
 		<property name="persistence" ref="com.sgs.portlet.holiday_calendar.service.persistence.AttactFileHolidayPersistence.impl" />
 	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.VanBanNoiBoLocalServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalServiceFactory" class="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalServiceUtil" class="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.VanBanNoiBoServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoServiceFactory" class="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoServiceUtil" class="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoPersistence.impl" class="com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoUtil" class="com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoUtil">
+		<property name="persistence" ref="com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoPersistence.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.FileDinhKemVanBanNoiBoLocalServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalServiceFactory" class="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalServiceUtil" class="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.FileDinhKemVanBanNoiBoServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoServiceFactory" class="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoServiceUtil" class="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoPersistence.impl" class="com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoUtil" class="com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoUtil">
+		<property name="persistence" ref="com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoPersistence.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.LogVanBanNoiBoLocalServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalServiceFactory" class="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalServiceUtil" class="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoLocalService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" class="com.sgs.portlet.vanbannoibo.service.impl.LogVanBanNoiBoServiceImpl" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.velocity" class="org.springframework.aop.framework.ProxyFactoryBean" parent="baseVelocityService">
+		<property name="target" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoServiceFactory" class="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoServiceFactory">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoServiceUtil" class="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoServiceUtil">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+	</bean>
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoPersistence.impl" class="com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoPersistenceImpl" parent="basePersistence" />
+	<bean id="com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoUtil" class="com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoUtil">
+		<property name="persistence" ref="com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoPersistence.impl" />
+	</bean>
 </beans>

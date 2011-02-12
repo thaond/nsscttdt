@@ -1009,6 +1009,7 @@
 		<property name="evening" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="stt" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="prior" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="deleted" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.ext.portlet.meetingcalendar.model.impl.MeetingCalComponentImpl" table="MeetingCalComponent">
 		<cache usage="read-write" />
@@ -1259,6 +1260,70 @@
 		<property name="attactFileHolidayTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="attactFileHolidayPath" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="holidayCalendarId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.vanbannoibo.model.impl.VanBanNoiBoImpl" table="pml_edm_vanbannoibo">
+		<cache usage="read-write" />
+		<id name="vanBanNoiBoId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="loaiVanBanNoiBo" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ngayTao" type="org.hibernate.type.TimestampType" />
+		<property name="ngayKy" type="org.hibernate.type.TimestampType" />
+		<property name="trichYeu" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="nguoiKy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ghiChu" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="soVanBanNoiBo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="soPhatSinhTheoNam" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.vanbannoibo.model.impl.FileDinhKemVanBanNoiBoImpl" table="pml_edm_file_dinh_kem_vanbannoibo">
+		<cache usage="read-write" />
+		<id name="fileDinhKemVanBanNoiBoId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tenFileFull" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tenFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="duongDanFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tieuDe" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ngayTao" type="org.hibernate.type.TimestampType" />
+		<property name="loaiFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="mucDichFile" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="vanBanNoiBoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+	</class>
+	<class name="com.sgs.portlet.vanbannoibo.model.impl.LogVanBanNoiBoImpl" table="pml_edm_log_vanbannoibo">
+		<cache usage="read-write" />
+		<id name="logVanBanNoiBoId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="buocLuanChuyen" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="nguoiXuLy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ngayXuLy" type="org.hibernate.type.TimestampType" />
+		<property name="nguoiNhan" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ngayNhan" type="org.hibernate.type.TimestampType" />
+		<property name="trangThaiTruoc" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="trangThaiSau" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ngayGui" type="org.hibernate.type.TimestampType" />
+		<property name="phongXuLyChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="nguoiXuLyChinh" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="loaiQuyTrinh" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="ngayHetHan" type="org.hibernate.type.TimestampType" />
+		<property name="soNgayXuLy" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="processInstanceId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="thongTinXuLy" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="step" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="nguoiXuLyTrucTiep" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="phongXuLy" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="phongNhan" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="vanBanHoanThanhHayChua" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="vanBanNoiBoId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
