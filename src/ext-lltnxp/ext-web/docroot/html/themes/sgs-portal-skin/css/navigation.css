@@ -1,0 +1,10 @@
+.nav-menu-style-1 li {
+	background: url("../images/imgbasic/iconsub1.png") no-repeat left 1px;padding: 0 0 0 18px;margin: 7px 0;
+}
+.nav-menu-style-1 li:hover {
+	background: url("../images/imgbasic/iconsub1_hover.png") no-repeat left 1px;
+}
+.nav-menu-style-1 li.selected {background: url("../images/imgbasic/iconsub1_hover.png") no-repeat left 1px;}
+.nav-menu-style-1 li a {color: #369;}
+.nav-menu-style-1 li a:hover {color: #ff5a00;}
+.nav-menu-style-1 li a.selected {color: #ff5a00;font-weight: bold;}

@@ -1,0 +1,14 @@
+.portlet-msg-success {
+	background: #F4FDEF url(../images/messages/success.png) no-repeat 6px 50%;
+	border: 1px solid #ACDFA7;
+	color: #384F34;
+	display: block;
+	font-weight: bold;
+	margin: 2px auto 14px;
+	padding: 6px 6px 6px 30px;
+	text-align: left;
+}
+.portlet-msg-error {
+	background: url(../images/messages/logb_error.png) no-repeat left top;	color: #f4830b;	font-weight: bold;padding: 6px 6px 6px 30px;text-align: left;width: 294px;font-size: 11px;display: block;
+}
+.portlet {background: url(../images/imgbasic/bgwapper.jpg) repeat 0 -26px;}

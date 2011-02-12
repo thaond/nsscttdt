@@ -1,0 +1,77 @@
+input[type="button"], input[type="submit"], input[type="reset"] {
+	cursor: pointer;background:#b3f2ff url("../images/imgbasic/bgbutton.jpg") repeat-x bottom left;border: 1px solid #60bffc;padding: 1px 12px;margin: 2px 0px 2px 4px ; color: #004470;font-weight: bold;text-shadow: 0 1px 0 #bef3ff;font-size: 11.5px;font-family: Arial, Verdana, Tahoma;
+}
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+	background:#f95905 url("../images/imgbasic/bgbutton_hv.jpg") repeat-x bottom left;border: 1px solid #f64c00; color: #fff;font-weight: bold;text-shadow: 0 1px 0 #e64800;
+}
+.ie7 input[type="button"],.ie7 input[type="submit"],.ie7 input[type="reset"] {
+	cursor: pointer;background:#b3f2ff url("../images/imgbasic/bgbutton.jpg") repeat-x bottom left;border: 1px solid #60bffc;padding: 1px 0;margin: 2px 0 2px 4px ; color: #004470;font-weight: bold;text-shadow: 0 1px 0 #bef3ff;font-size: 11.5px;font-family: Arial, Verdana, Tahoma;
+}
+.ie7 input[type="button"]:hover,.ie7 input[type="submit"]:hover,.ie7 input[type="reset"]:hover {
+	background:#f95905 url("../images/imgbasic/bgbutton_hv.jpg") repeat-x bottom left;border: 1px solid #f64c00;color: #fff;font-weight: bold;text-shadow: 0 1px 0 #e64800;
+}
+
+input[type="text"],textarea,input[type="file"],textarea[type="textarea"],input[type="password"] {
+	font-family: arial, sans-serif;padding: 3px 3px 2px;background: #fff; border-style: solid solid; border-color: #7bd5eb #96e0f0 #d4fbfd #96e0f0; border-width: 1px 1px;
+}
+input[type="text"].focus,textarea.focus,input[type="file"].focus,textarea[type="textarea"].focus,input[type="password"].focus {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
+input[type="text"]:hover,textarea:hover,input[type="file"]:hover,textarea[type="textarea"]:hover,input[type="password"]:hover {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
+
+.ie7 select,select {
+	font-family: arial, sans-serif;background: #fff;padding: 1px; border-style: solid solid; border-color: #7bd5eb #96e0f0 #d4fbfd #96e0f0; border-width: 1px 1px;
+}
+.ie7 select,select:hover {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
+.ie7 select,select.focus {
+	border-style: solid solid; border-color: #00aeff #26bdff #b7f8fe #26bdff; border-width: 1px 1px;
+}
+.ie7 select, .ie8 select, .ie7 textarea, .ie8 textarea {overflow-x: hidden;overflow-y: auto; }
+input,select,textarea,button,keygen,isindex {
+	font-size: 11.5px;
+}
+input.txtlogin,input.txtpass,input.txtlogin:hover,input.txtpass:hover,input.txtlogin.focus,input.txtpass.focus {
+	border-style: none;width: 150px;
+}
+input[disabled], textarea[disabled], option[disabled], optgroup[disabled], select[disabled]  {background: #f9ffff;color: #efefef;}
+
+#cal-button-FromDate,#cal-button-ToDate {
+	vertical-align: top;
+}
+fieldset {
+	padding: 0;margin: 0;	
+}
+.filborder {border: 1px solid #60bffc;padding: 10px;margin: 15px 0;display: block;}
+.filborder .laborder {background: #f9ffff;top: -20px;padding: 0 15px; position: relative;color: #004571;font-weight: bold;text-transform: uppercase;}
+textarea.textarea-display {border: 1px solid #D4FBFD;background: #fff; height: 70px;;width: 90%; padding: 0 5px;border-style: none;font-family: "Times New Roman", Times, serif, Tahoma, Verdana, Arial; font-size: 14px;color: #222;}
+select > option {padding: 1px 5px;border-collapse: separate;background: #f9ffff;}
+.ie7 select > option, .ie8 select > option {background: none;width: 100%;}
+.tr_two td {background: #daf5fd;}
+.filborder_div {border: 1px solid #60BFFC;display: table;padding: 10px;}
+.filborder_div li,.filnoborder_div li {float: left;}
+.filborder_divie {display: block;border: 1px solid #60BFFC;padding: 10px;}
+.filnoborder_div {display: table;}
+.edit_xl {display:table ;width: 100%;}
+.edit_xl li {float: left;}
+.bor_rgh td.width-label {font-weight: bold;text-align: right;padding-right: 10px;}
+.colped-3,.colped-5,.colped-6,.colped-7,.tr_dt-1,.tr_dt-5,.tr_dt-6,.tr_dt-7,.tr_xl-5,.tr_xl-6,
+.tr_xl-7,.tr_xl-8,.tr_xl-9,.col-1,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,
+.col_cp-2,.col_cp-3,.col_cp-4,.col_cp-5,.col_cp-6, .col_cp-7,.col_cp-8,.col_cp-9,.col_cp-10,.col_cp-11,.rpt_th-5,.rpt_th-6,.rpt_th-7
+,.rpt_ph-5,.rpt_ph-6,.rpt_ph-7,.rpt_lk-2,.rpt_lk-3,.rpt_lk-4,.rpt_lk-5,.rpt_lk-6,.rpt_lk-7,.rpt_lk-8,.fslk-1,.fslk-5,.fslk-6,.fslk-7,
+.rptso-2,.rptso-3,.rptso-4,.rptso-5,.rptso-6,.rptso-7,.rptso-8,.rptso-9 {text-align: center;}
+.rptso-1 {font-weight: bold;}
+.srch_xl-1,.resrch-1 {width: 35px;text-align: center;}
+#listdiv {display:table ;width: 100%; padding: 10px 0 20px 0;}
+#listdiv li {float: left;}
+#tbl_DocDrawing {border-top: 1px solid #60bffc;}
+Select#_SGS_PML_HO_SO_CONG_VIEC_ngayMoHSCVMonth,Select#_SGS_PML_HO_SO_CONG_VIEC_hanXuLyMonth {width: 85px !important;font-size: 11px;}
+Select#_SGS_PML_HO_SO_CONG_VIEC_ngayMoHSCVDay,Select#_SGS_PML_HO_SO_CONG_VIEC_hanXuLyDay {width: 45px !important;font-size: 11px;}
+Select#_SGS_PML_HO_SO_CONG_VIEC_ngayMoHSCVYear,Select#_SGS_PML_HO_SO_CONG_VIEC_hanXuLyYear {width: 55px !important;font-size: 11px;}
+img.ui-datepicker-trigger {vertical-align: middle;}
+a.dwld {}
+a.dwld:hover {text-decoration: underline;}
+.rad-span-letter-base {cursor: pointer;}
