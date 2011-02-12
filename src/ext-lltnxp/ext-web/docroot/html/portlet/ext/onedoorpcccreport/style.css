@@ -1,0 +1,25 @@
+.report-table-list {
+	border: 1px solid #aaa;
+}
+
+.report-table-list td {
+	padding: 3px;
+}
+
+.report-bg-header-footer {
+	background-color: #6ca1b4;
+	padding: 3px;
+}
+
+.report-title {
+	font-weight: bold;
+	font-size: large;	
+}
+
+.blank-height-20 {
+	height: 20px;
+}
+
+.blank-height-40 {
+	height: 40px;
+}
