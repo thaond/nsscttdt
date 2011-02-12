@@ -12,6 +12,7 @@
 		<column name="ngayTao" type="Date" />
 		<column name="ngayKy" type="Date" />
 		<column name="trichYeu" type="String" />
+		<column name="nguoiKy" type="long" />
 		<column name="ghiChu" type="String" />
 		<column name="soVanBanNoiBo" type="String" />
 		<column name="soPhatSinhTheoNam" type="String" />
@@ -22,7 +23,7 @@
 		<column name="companyId" type="long"/>
 	</entity>
 	
-	<entity name="FileDinhKemVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_file_dinh_kem_van_ban_noi_bo">
+	<entity name="FileDinhKemVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_file_dinh_kem_vanbannoibo">
 		<!-- PK fields -->
 		<column name="fileDinhKemVanBanNoiBoId" type="long" primary="true" />
 		<!-- Other fields -->
@@ -32,7 +33,7 @@
 		<column name="tieuDe" type="String" />
 		<column name="ngayTao" type="Date" />
 		<column name="loaiFile" type="String" />
-		<column name="yNghiaFileDinhKem" type="String" />
+		<column name="mucDichFile" type="String" />
 		<column name="vanBanNoiBoId" type="long" />
 		
 		<column name="userId" type="long"/>
@@ -40,7 +41,7 @@
 		<column name="companyId" type="long"/>
 	</entity>
 	
-	<entity name="LogVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_log_van_ban_noi_bo">
+	<entity name="LogVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_log_vanbannoibo">
 		<!-- PK fields -->
 		<column name="logVanBanNoiBoId" type="long" primary="true" />
 		<!-- Other fields -->
