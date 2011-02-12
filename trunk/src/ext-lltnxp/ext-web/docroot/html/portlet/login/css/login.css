@@ -1,0 +1,37 @@
+.bgcolorlog {/*background: #1e7db5*/;width: 100%; height: 100%;padding: 50px 0 0;}
+#containerlog {
+	width: 330px;height: 210px;/*background: url(../images/bglog.jpg) no-repeat top left;*/margin: 0 auto 0;padding: 130px 265px 110px 385px;
+}
+.error_log {
+	height: 40px;
+}
+.box_put {
+	width: 260px;float: left;
+}
+.box_put li {
+	float: left;padding: 4px 0;
+}
+.btlog {
+	width: 70px; float: right;padding: 1px 0 0;
+}
+#submit-button {
+	background: url("../images/buttongo.png") no-repeat top left; height: 55px; width: 69px;border-style: none;padding: 0;
+}
+.txtli {
+	width: 95px;margin-top: 3px;color: #fff;text-transform: capitalize;
+}
+.add_remember {
+	padding: 10px 0 0 50px;width: 280px;clear: both;
+}
+.add_remember img {
+	padding: 0 5px 0 20px;
+}
+.add_remember a {
+	color: #8bf3ff;font-size: 11px;
+}
+.add_remember a:hover {
+	color: #fff;
+}
+.addresslog {
+	padding-top: 60px;font-size: 11px; color: #dcf2fe;width: 330px;clear: both;
+}
