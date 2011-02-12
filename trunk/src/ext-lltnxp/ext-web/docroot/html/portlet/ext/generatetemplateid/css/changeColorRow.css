@@ -1,0 +1,47 @@
+.rowOne{
+	background-color: #F0F5F7;
+}
+
+.rowTwo{
+	background-color: #F0F5F7;
+}
+
+.focusRow{
+	background-color:#A8D6ED;
+}
+
+/*---------------------------------------------phan mem loi-----------------------------------------------*/
+input[disabled] {
+	border: 1px solid #999;
+	background-color: #ddd;
+}
+.pos{
+text-align:left;
+padding-right:10px;
+border:0px solid #CCCCCC;
+padding-left:10px;
+
+
+}
+.pos td{
+padding-right:10px;
+text-align:left;
+
+}
+.pos th{
+background: transparent url(/html/images/pmltitle.png) repeat-x 0 0 ;
+text-align:center;
+/*background-color:#548A4D; 004499*/
+color:#fff;
+border:1px solid #E9E9E9;
+height:40px;
+}
+.tdcolor{
+color:#367875;
+font-size:14px;
+font-weight:bold;
+}
+.posdiv{
+text-align:center;
+
+}
