@@ -1,0 +1,108 @@
+<%
+	String emptyResults = "khong-co-cong-van-den";
+	List headerNames = new ArrayList();
+	headerNames.add("STT");
+	headerNames.add("select");
+	headerNames.add("date");
+	headerNames.add("trich-yeu");
+	headerNames.add("toan-van");
+	
+	SearchContainer searchContainer = new SearchContainer(renderRequest, new DisplayTerms(renderRequest), new DisplayTerms(renderRequest), "cur", 1, portletURL, headerNames, emptyResults);
+	searchContainer.setDelta(20); 
+	
+	int total = PmlChiTietHSCVLocalServiceUtil.searchChiTietHSCVCVDENCount(idHoSoCongViec, true);
+	
+	searchContainer.setTotal(total);
+	
+	List<PmlEdmDocumentReceipt> results = null;
+	
+	results = PmlChiTietHSCVLocalServiceUtil.findChiTietHSCVCVDEN(idHoSoCongViec, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	
+	searchContainer.setResults(results); 
+
+	List<ResultRow> resultRows = searchContainer.getResultRows();
+	PmlEdmDocumentReceipt pmlEdmDocumentReceipt = null;
+	for (int i = 0; i < results.size(); i ++){
+		pmlEdmDocumentReceipt = results.get(i);
+		pmlEdmDocumentReceipt = pmlEdmDocumentReceipt.toEscapedModel();
+		
+		long pmlEdmDocumentReceiptId = pmlEdmDocumentReceipt.getDocumentReceiptId();
+		
+		ResultRow row = new ResultRow(pmlEdmDocumentReceipt, pmlEdmDocumentReceiptId, i);	
+		
+		row.addText(String.valueOf(i + 1));
+		
+		StringBuilder selectSB = new StringBuilder();	
+		selectSB.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDen('"); 
+		selectSB.append(String.valueOf(pmlEdmDocumentReceiptId));
+		selectSB.append("');\" name=\"CVDenRad\" /></div>");	
+		row.addText(selectSB.toString() + "");
+		
+		String dateArriveStr = "";
+		Date dateArrive = pmlEdmDocumentReceipt.getDateArrive();
+		
+		if (Validator.isNotNull(dateArrive)) {
+			dateArriveStr = df.format(dateArrive);
+		}
+		row.addText(dateArriveStr);
+		
+		PortletURL detailUrl = renderResponse.createRenderURL();
+		detailUrl.setWindowState(WindowState.NORMAL);
+		detailUrl.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/detail");
+		detailUrl.setParameter("redirect", currentURL);
+		detailUrl.setParameter("documentReceiptId", String.valueOf(pmlEdmDocumentReceiptId));
+		detailUrl.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+		
+		row.addText(pmlEdmDocumentReceipt.getBriefContent(),detailUrl);
+		
+		List<PmlEdmAttachedFile> attachedFiles = PmlEdmAttachedFileLocalServiceUtil.findByObjectContentId_ObjectType(pmlEdmDocumentReceiptId, PmlEdmDocumentReceiptImpl.class.getName());
+		int size = attachedFiles.size();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		if (size == 1) {
+			PmlEdmAttachedFile attachedFile = attachedFiles.get(0);
+			
+			String fileName = attachedFile.getAttachedFileName();
+			fileName = fileName.substring(14);
+			
+			sb.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+					attachedFile.getPath() + "\" >" + fileName);
+			sb.append("<img title=\"Down load\" style=\"cursor:pointer;padding-left:10px\" ");
+			sb.append("border=\"0\" src=\"/html/_img/download.png\"");
+			sb.append("height=\"14px\" width=\"14px\"");
+			sb.append("> </a>");
+		} else if (size > 1) {
+			for (int j = 0; j < attachedFiles.size(); j++) {
+				PmlEdmAttachedFile attachedFile = attachedFiles.get(j);
+				
+				String fileName = attachedFile.getAttachedFileName();
+				fileName = fileName.substring(14);
+				
+				sb.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+						attachedFile.getPath() + "\" > " + fileName );
+				sb.append("<img title=\"Down load\"  style=\"cursor:pointer;padding-left:10px\" ");
+				sb.append("border=\"0\" src=\"/html/_img/download.png\"");
+				sb.append("height=\"14px\" width=\"14px\"");
+				sb.append("> </a> <br/>");
+			}
+		} else {
+			sb.append(LanguageUtil.get(pageContext, "khong-co-tap-tin-dinh-kem"));
+		}
+		
+		row.addText(sb.toString());
+		
+		resultRows.add(row);
+	}
+	
+	PortletURL thuThapCVDenUrl = renderResponse.createRenderURL();
+	thuThapCVDenUrl.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvden");
+	thuThapCVDenUrl.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+	thuThapCVDenUrl.setParameter("redirect", portletURL.toString());
+%>
+	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" /> 
+	<br>
+	<div align="right">
+		<input type="button" value="<liferay-ui:message key="thu-thap" />" onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDenUrl.toString() %>');"/>
+		<input type="button" value="<liferay-ui:message key="delete" />" onclick="<portlet:namespace />deleteCVDen()" />
+	</div>

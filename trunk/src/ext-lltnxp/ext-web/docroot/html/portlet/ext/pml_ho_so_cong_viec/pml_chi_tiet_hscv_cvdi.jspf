@@ -1,0 +1,117 @@
+<%
+	List<String> headerNames = new ArrayList<String>(); 
+	headerNames.add("STT");
+	headerNames.add("chon");
+	headerNames.add("date");
+	headerNames.add("trich-yeu");
+	headerNames.add("toan-van");
+	
+	String dateDocSend = "";
+	String dayDS = "";
+	String monthDS = "";
+	String yearDS = "";
+	
+	SearchContainer searchContainer = new SearchContainer(renderRequest, new DisplayTerms(renderRequest), new DisplayTerms(renderRequest), "cur", 1, portletURL, headerNames, "khong-co-cong-van-di");
+	searchContainer.setDelta(20);
+	
+	pmlHoSoCongViec = PmlHoSoCongViecLocalServiceUtil.getPmlHoSoCongViec(idHoSoCongViec);
+	
+	int total = PmlChiTietHSCVLocalServiceUtil.searchChiTietHSCVCVDICount(pmlHoSoCongViec.getIdHoSoCongViec(), true);
+	List<PmlEdmDocumentSend> results = PmlChiTietHSCVLocalServiceUtil.findChiTietHSCVCVDI(pmlHoSoCongViec.getIdHoSoCongViec(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	
+	searchContainer.setTotal(total);
+	searchContainer.setResults(results);
+	
+	List<ResultRow> resultRows = searchContainer.getResultRows();
+	PmlEdmDocumentSend pmlEdmDocumentSend = null;
+	
+	for (int i = 0; i < results.size(); i++) {
+		pmlEdmDocumentSend = results.get(i);
+		
+		pmlEdmDocumentSend = pmlEdmDocumentSend.toEscapedModel();
+		
+		long pmlEdmDocumentSendId = pmlEdmDocumentSend.getDocumentSendId();
+		
+		ResultRow row = new ResultRow(pmlEdmDocumentSend, pmlEdmDocumentSendId, i);
+		
+		row.addText(String.valueOf(i + 1));
+		
+		StringBuilder radioSB = new StringBuilder();	
+		radioSB.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDi('"); 
+		radioSB.append(String.valueOf(pmlEdmDocumentSendId));
+		radioSB.append("');\" name=\"CVDiRad\" /></div>");	
+		row.addText(radioSB.toString());
+		
+		String dateCreateStr = "";
+		
+		Date dateCreate = pmlEdmDocumentSend.getDateCreated();
+		
+		if (Validator.isNotNull(dateCreate)) {
+			dateCreateStr = df.format (dateCreate);
+		}
+		
+		row.addText(dateCreateStr);
+		
+		PortletURL detailDocumentSendURL = renderResponse.createRenderURL();
+
+		detailDocumentSendURL.setWindowState(WindowState.NORMAL);
+		detailDocumentSendURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/detailSend");
+		detailDocumentSendURL.setParameter("redirect", currentURL);
+		detailDocumentSendURL.setParameter("documentSendId", String.valueOf(pmlEdmDocumentSendId));
+		detailDocumentSendURL.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+		
+		row.addText(pmlEdmDocumentSend.getBriefContent(), detailDocumentSendURL);
+		
+		List<PmlEdmAttachedFile> attachedFiles = PmlEdmAttachedFileLocalServiceUtil.findByObjectContentId_ObjectType(pmlEdmDocumentSendId, PmlEdmDocumentSendImpl.class.getName());
+		int size = attachedFiles.size();
+		
+		StringBuilder sb = new StringBuilder();
+		
+		if (size == 1) {
+			PmlEdmAttachedFile attachedFile = attachedFiles.get(0);
+			
+			String fileName = attachedFile.getAttachedFileName();
+			fileName = fileName.substring(14);
+			
+			sb.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+					attachedFile.getPath() + "\" >" + fileName);
+			sb.append("<img title=\"Down load\" style=\"cursor:pointer;padding-left:10px\" ");
+			sb.append("border=\"0\" src=\"/html/_img/download.png\"");
+			sb.append("height=\"14px\" width=\"14px\"");
+			sb.append("> </a>");
+		} else if (size > 1) {
+			for (int j = 0; j < attachedFiles.size(); j++) {
+				PmlEdmAttachedFile attachedFile = attachedFiles.get(j);
+				
+				String fileName = attachedFile.getAttachedFileName();
+				fileName = fileName.substring(14);
+				
+				sb.append("- <a class=\"dwld\" title=\"Down load\" style=\"cursor:pointer;\" href=\"" + 
+						attachedFile.getPath() + "\" > " + fileName );
+				sb.append("<img title=\"Down load\"  style=\"cursor:pointer;padding-left:10px\" ");
+				sb.append("border=\"0\" src=\"/html/_img/download.png\"");
+				sb.append("height=\"14px\" width=\"14px\"");
+				sb.append("> </a> <br/>");
+			}
+		} else {
+			sb.append(LanguageUtil.get(pageContext, "khong-co-tap-tin-dinh-kem"));
+		}
+		
+		row.addText(sb.toString());
+		
+		resultRows.add(row);
+	}
+	
+	PortletURL thuThapCVDiUrl = renderResponse.createRenderURL();
+	thuThapCVDiUrl.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvdi");
+	thuThapCVDiUrl.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+	thuThapCVDiUrl.setParameter("redirect", portletURL.toString());
+	%>
+
+	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" /> 
+	<br>
+	<div align="right">
+		<input type="button" value="<liferay-ui:message key="thu-thap" />" onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDiUrl.toString() %>');"/>
+		<input type="button" value="<liferay-ui:message key="delete" />" onclick="<portlet:namespace />deleteCVDi()" />
+	</div>
+	
