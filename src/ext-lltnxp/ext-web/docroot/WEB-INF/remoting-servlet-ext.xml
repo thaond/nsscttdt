@@ -1178,4 +1178,40 @@
 		<property name="service" ref="com.sgs.portlet.holiday_calendar.service.AttactFileHolidayService.impl" />
 		<property name="serviceInterface" value="com.sgs.portlet.holiday_calendar.service.AttactFileHolidayService" />
 	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_VanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_VanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_VanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_FileDinhKemVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_FileDinhKemVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_FileDinhKemVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_LogVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_LogVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_vanbannoibo_service_spring_LogVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService" />
+	</bean>
 </beans>
