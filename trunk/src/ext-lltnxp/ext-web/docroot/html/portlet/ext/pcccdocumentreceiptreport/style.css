@@ -1,0 +1,41 @@
+.input-text {
+	width: 95px;	
+}
+
+.report-table-list {
+	border: 1px solid #aaa;
+}
+
+.report-table-list td {
+	padding: 3px;
+}
+
+.report-bg-header-footer {
+	background-color: #6ca1b4;
+	padding: 3px;
+}
+
+.report-title {
+	font-weight: bold;
+	font-size: large;	
+}
+
+.twenty-five {
+	width: 25%;
+}
+
+.table-component {
+	
+}
+
+.table-component tr{
+	height: 45px;
+}
+
+.blank-height-10 {
+	height: 10px
+}
+
+.blank-height-5 {
+	height: 5px
+}
