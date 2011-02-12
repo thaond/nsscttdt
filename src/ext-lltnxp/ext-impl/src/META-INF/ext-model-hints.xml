@@ -777,6 +777,7 @@
 		<field name="evening" type="boolean" />
 		<field name="stt" type="int" />
 		<field name="prior" type="boolean" />
+		<field name="deleted" type="boolean" />
 	</model>
 	<model name="com.ext.portlet.meetingcalendar.model.MeetingCalComponent">
 		<field name="mcalId" type="long" />
@@ -969,6 +970,61 @@
 		<field name="attactFileHolidayTitle" type="String" />
 		<field name="attactFileHolidayPath" type="String" />
 		<field name="holidayCalendarId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.vanbannoibo.model.VanBanNoiBo">
+		<field name="vanBanNoiBoId" type="long" />
+		<field name="loaiVanBanNoiBo" type="long" />
+		<field name="ngayTao" type="Date" />
+		<field name="ngayKy" type="Date" />
+		<field name="trichYeu" type="String" />
+		<field name="nguoiKy" type="long" />
+		<field name="ghiChu" type="String" />
+		<field name="soVanBanNoiBo" type="String" />
+		<field name="soPhatSinhTheoNam" type="String" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.vanbannoibo.model.FileDinhKemVanBanNoiBo">
+		<field name="fileDinhKemVanBanNoiBoId" type="long" />
+		<field name="tenFileFull" type="String" />
+		<field name="tenFile" type="String" />
+		<field name="duongDanFile" type="String" />
+		<field name="tieuDe" type="String" />
+		<field name="ngayTao" type="Date" />
+		<field name="loaiFile" type="String" />
+		<field name="mucDichFile" type="String" />
+		<field name="vanBanNoiBoId" type="long" />
+		<field name="userId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+	</model>
+	<model name="com.sgs.portlet.vanbannoibo.model.LogVanBanNoiBo">
+		<field name="logVanBanNoiBoId" type="long" />
+		<field name="buocLuanChuyen" type="int" />
+		<field name="nguoiXuLy" type="long" />
+		<field name="ngayXuLy" type="Date" />
+		<field name="nguoiNhan" type="long" />
+		<field name="ngayNhan" type="Date" />
+		<field name="trangThaiTruoc" type="String" />
+		<field name="trangThaiSau" type="String" />
+		<field name="ngayGui" type="Date" />
+		<field name="phongXuLyChinh" type="long" />
+		<field name="nguoiXuLyChinh" type="long" />
+		<field name="loaiQuyTrinh" type="int" />
+		<field name="ngayHetHan" type="Date" />
+		<field name="soNgayXuLy" type="int" />
+		<field name="processInstanceId" type="long" />
+		<field name="thongTinXuLy" type="String" />
+		<field name="step" type="int" />
+		<field name="nguoiXuLyTrucTiep" type="long" />
+		<field name="phongXuLy" type="long" />
+		<field name="phongNhan" type="long" />
+		<field name="vanBanHoanThanhHayChua" type="boolean" />
+		<field name="vanBanNoiBoId" type="long" />
 		<field name="userId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
