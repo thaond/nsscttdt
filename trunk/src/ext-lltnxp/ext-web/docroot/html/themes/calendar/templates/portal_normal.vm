@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+#parse ($init)
+
+<html class="nojs" dir="#language ("lang.dir")" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>$company_name - $the_title</title>
+
+	$theme.include($top_head_include)
+
+	#css ($css_main_file)
+	#js ($js_main_file)
+
+	<script type="text/javascript">
+		// <![CDATA
+			$page_javascript_1
+			$page_javascript_2
+			$page_javascript_3
+		// ]]>
+	</script>
+
+	#if ($company_logo != "")
+		<style type="text/css">
+			/* <![CDATA[ */
+				#banner .logo {
+					padding: 0.52em 0.6em 0.53em;
+				}
+				
+				#banner .logo a {
+					background: url($company_logo) no-repeat;
+					display: block;
+					font-size: 0;
+					height: ${company_logo_height}px;
+					text-indent: -9999em;
+					width: ${company_logo_width}px;
+				}
+				#banners .vHeaderLink a{
+					color: #FFF;
+					margin-right: 1px;
+				}
+				#ie6_png_fix()
+			/* ]]> */
+		</style>
+	#end
+</head>
+
+<body class="$css_class">
+
+$theme.include($top_messages_include)
+
+<div id="wrapper">
+
+	#if ($selectable)
+		$theme.include($content_include)
+	#else
+		$portletDisplay.recycle()
+
+		$portletDisplay.setTitle($the_title)
+
+		$theme.wrapPortlet("portlet.vm", $content_include)
+	#end
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-8198164-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+#js ($js_main_file)
+
+</html>

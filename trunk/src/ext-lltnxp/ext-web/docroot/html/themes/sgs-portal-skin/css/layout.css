@@ -1,0 +1,8 @@
+.lfr-grid {
+	width: auto;
+}
+
+.lfr-grid.dragging .lfr-column {
+	height: 100px;
+	min-height: 100px;
+}
