@@ -1,0 +1,8 @@
+.table-doc-doc-auto-content-base {display: table;width: 100%;background: #B5EDFB;}
+.table-doc-doc-auto-content-base li,.boxhiden_show li {float: left;}
+.boxhiden_show {display: table;width: 100%}
+.onli1,.onli01 {height: 25px;padding: 10px 0 0 1%;}
+.onli2 {height: 28px;padding: 7px 0 0 0.9%;}
+span.rad-span-letter-base {font-weight: bold;text-transform: uppercase;}
+.bgtablil tr.tr_tab1 td {background: #daf5fd;padding-left: 10px;}
+.bgtablil tr.tr_tab2 td {background: #daf5fd;padding-left: 10px;}
