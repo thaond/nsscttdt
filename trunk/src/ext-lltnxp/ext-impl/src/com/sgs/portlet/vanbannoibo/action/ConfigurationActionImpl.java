@@ -22,6 +22,10 @@ public class ConfigurationActionImpl implements ConfigurationAction {
 
 		String actionVanBanNoiBo = ParamUtil.getString(request,"actionVanBanNoiBo", "");
 		pref.setValue("actionVanBanNoiBo", String.valueOf(actionVanBanNoiBo));
+		
+		String kyHieuVaoSo = ParamUtil.getString(request,"kyHieuVaoSo", "");
+		pref.setValue("kyHieuVaoSo", String.valueOf(kyHieuVaoSo));
+		
 		if (SessionErrors.isEmpty(request)) {
 			pref.store();
 			SessionMessages.add(request, config.getPortletName() + ".doConfigure");
