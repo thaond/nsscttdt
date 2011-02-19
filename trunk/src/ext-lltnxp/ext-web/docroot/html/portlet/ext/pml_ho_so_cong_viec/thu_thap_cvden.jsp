@@ -14,11 +14,18 @@ function <portlet:namespace />thuThapCVDen(url)
 }
 </script>
 <%
-	String redirect = ParamUtil.getString(renderRequest, "redirect");
 	long idHoSoCongViec = ParamUtil.getLong(renderRequest, "idHoSoCongViec"); 
+
+	PortletURL redirect = renderResponse.createRenderURL();
+	redirect.setWindowState(WindowState.NORMAL);
+	redirect.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/viewdetail");
+	redirect.setParameter("tabs", "cvden");
+	redirect.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
 
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvden");
+	portletURL.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+	portletURL.setParameter("redirect", redirect.toString());
 	
 	PmlEdmDocumentReceiptSearch searchContainer = new PmlEdmDocumentReceiptSearch(renderRequest, portletURL);
 	PmlEdmDocumentReceiptSearchTerms searchTerms = (PmlEdmDocumentReceiptSearchTerms)searchContainer.getSearchTerms();
@@ -27,7 +34,7 @@ function <portlet:namespace />thuThapCVDen(url)
 	
 	PortletURL thuThapURL = renderResponse.createActionURL();
 	thuThapURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvden");
-	thuThapURL.setParameter("redirect", redirect);
+	thuThapURL.setParameter("redirect", redirect.toString());
 	
 %>
 
@@ -44,7 +51,6 @@ function <portlet:namespace />thuThapCVDen(url)
 <br><br>
 <%
 	int total = PmlEdmDocumentReceiptLocalServiceUtil.countBy_R_B_F_T(searchTerms.getDocumentReference(), searchTerms.getBriefContent(), searchTerms.getFromDate(), searchTerms.getToDate(), searchTerms.isAndOperator());
-
 	List<PmlEdmDocumentReceipt> results = PmlEdmDocumentReceiptLocalServiceUtil.findBy_R_B_F_T(searchTerms.getDocumentReference(), searchTerms.getBriefContent(), searchTerms.getFromDate(), searchTerms.getToDate(), searchTerms.isAndOperator(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 	
 	searchContainer.setTotal(total);

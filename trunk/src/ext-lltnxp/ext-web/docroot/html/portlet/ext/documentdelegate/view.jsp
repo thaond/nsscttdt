@@ -50,6 +50,7 @@
 	portletURL.setParameter("dateAllUser", String.valueOf(dateAllUser));
 	
 	boolean checkAllUser = ParamUtil.getBoolean(renderRequest, "checkAllUser", false);
+	
 %>
 <div class="title_categ"><liferay-ui:message key="uy-quyen"/></div>
 <div class="boxcontent">
@@ -57,12 +58,12 @@
 <form action="<%= portletURL.toString() %>"  method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;" class="retureadd">
 		<input name="<portlet:namespace/>addUserIsDelegate"  type="hidden" value=""/>
 		<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="thuc-hien-uy-quyen"/></label>
+			<legend class="laborder"><liferay-ui:message key="thuc-hien-uy-quyen"/></legend>
 				<table cellspacing="0" width="100%">
 					<tr>
 					  	<td width="20%"><liferay-ui:message key="nguoi-uy-quyen"/>&nbsp;:</td>
 					  	<td>			  
-					  		<select name='<portlet:namespace/>userDelelegate' id="<portlet:namespace/>userDelelegate" onchange="javascript:submitForm(document.hrefFm, this.value)">
+					  		<select name='<portlet:namespace/>userDelelegate' id="<portlet:namespace/>userDelelegate" onchange="javascript:submitForm(document.hrefFm, this.value + '&checkAllUser='+ document.getElementById('checkAllUser').checked)">
 					  			<%
 					  			 if (pmlUserDelegates.size() > 1) {
 					  			%>
@@ -203,8 +204,12 @@
 			 total =PmlDocumentDelegateLocalServiceUtil.countPmlDocumentDelegate_SD_TD_USERISDELEGATE(userDelelegate, 
 					pmlDocumentDelegateSearchTerms.getFromDateDelegate(), pmlDocumentDelegateSearchTerms.getToDateDelegate(), pmlDocumentDelegateSearchTerms.getListUserIsDelegate());
 	    } else {
-	    	results = PmlDocumentDelegateLocalServiceUtil.getPmlDocumentDelegates(pmlDocumentDelegateSearch.getStart(), pmlDocumentDelegateSearch.getEnd());
+	    	// minh update 20110214
+	    	//results = PmlDocumentDelegateLocalServiceUtil.getPmlDocumentDelegates(pmlDocumentDelegateSearch.getStart(), pmlDocumentDelegateSearch.getEnd());
+	    	results = PmlDocumentDelegateLocalServiceUtil.getPmlDocumentDelegate_ALLUSERISDELEGATE(pmlDocumentDelegateSearch.getStart(), pmlDocumentDelegateSearch.getEnd(), pmlDocumentDelegateSearch.getOrderByComparator());
+	    	// end minh update 20110214
 	    	total =PmlDocumentDelegateLocalServiceUtil.getPmlDocumentDelegatesCount();
+	    
 	    	
 	    }
 		pmlDocumentDelegateSearch.setTotal(total);

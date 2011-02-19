@@ -125,12 +125,12 @@
 		<table width="100%" class="ctrl-holder" cellspacing="0" cellpadding="0">
 		  <tr>
 		    <td class="txtli"><label for="login"><liferay-ui:message key="login" /></label></td>
-		    <td><input class="txtlogin" id="login" name="login" type="text" value="<%= HtmlUtil.escape(login) %>" /></td>
-		    <td rowspan="2"  class="button-holder"><input class="submit-button" type="submit" value="<liferay-ui:message key="" />" /></td>
+		    <td><input class="txtlogin" id="login" name="login" type="text" tabindex="1" value="<%= HtmlUtil.escape(login) %>" /></td>
+		    <td rowspan="2"  class="button-holder"><input class="submit-button" type="submit" tabindex="4" value="<liferay-ui:message key="" />" /></td>
 		  </tr>
 		  <tr>
 		    <td class="txtli"><label for='<%= passwordParam %>'><liferay-ui:message key="password" /></label></td>
-		    <td><input class="txtlogin" id="<%= passwordParam %>" name="<%= passwordParam %>" type="password" value="" /></td>
+		    <td><input class="txtlogin" id="<%= passwordParam %>" name="<%= passwordParam %>" type="password" tabindex="2" value="" /></td>
 		  </tr>
 		  <tr id="passwordCapsLockSpan" style="display: none;">
 		  	<td></td>
@@ -140,7 +140,7 @@
 		    <td>&nbsp;</td>
 		    <td colspan="2" class="addmb">
 				<c:if test="<%= company.isAutoLogin() && !PropsValues.SESSION_DISABLED %>">
-						<input <%= rememberMe ? "checked=\"checked\"" : "" %> id="rememberMeCheckbox" type="checkbox" />
+						<input <%= rememberMe ? "checked=\"checked\"" : "" %> id="rememberMeCheckbox" type="checkbox" tabindex="3" />
 						<label class="add_remember" for="rememberMeCheckbox"><liferay-ui:message key="remember-me" /></label>
 				</c:if>
 			</td>
@@ -176,7 +176,7 @@
 		</form>
 	</c:if>
 </div>
-<span class="addresslog"><liferay-ui:message key="dia-chi-don-vi-dang-trien-khai-he-thong" /></span> 
+<span class="addresslog"><liferay-ui:message key="dia-chi-dang-trien-khai-he-thong" /></span> 
 <script type="text/javascript">
 	jQuery(
 		function() {

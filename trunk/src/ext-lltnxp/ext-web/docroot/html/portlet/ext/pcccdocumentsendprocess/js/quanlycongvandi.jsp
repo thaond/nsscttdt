@@ -423,6 +423,11 @@ function getParamForListDocumentAction(url) {
 		objToDate = sgs.stringToDate(strToDate, "dmy");
 	}	
 
+	if(isDate(tuNgay) == false || isDate(denNgay) == false) {
+		alert('<liferay-ui:message key="pccc-error-date"/>');
+		return false;
+	}
+
 	if (objFromDate > objToDate) {
 		alert('<liferay-ui:message key="tu-ngay-phai-nho-hon-hoac-bang-den-ngay"/>');
 		return false;

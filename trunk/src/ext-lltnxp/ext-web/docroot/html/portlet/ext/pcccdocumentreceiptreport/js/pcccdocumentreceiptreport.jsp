@@ -231,7 +231,7 @@ function <portlet:namespace />addReportActionFrom1(url, reportType) {
  * phmphuc them 11/11/2010
  * lay so cong van theo loai cong van duoc chon
  */
-function getDocumentRecordByDocTypeId() {
+function getDocumentRecordByDocTypeId(userId) {
 	var type = DWRUtil.getValue('<portlet:namespace/>loaiCongVan');
 	var nhomcongvanselect = DWRUtil.getValue('nhomcongvanselect');
 	
@@ -247,7 +247,7 @@ function getDocumentRecordByDocTypeId() {
 	// add new all elements select
 	nhomCongVan.options[0] = new Option('<liferay-ui:message key="tinhhinhthulycongvan.chonphannhom" />', 0);
 
-	tinhHinhThuLyCongVanClient.getDocumentRecordByDocType(type, function (data) {
+	tinhHinhThuLyCongVanClient.getDocumentRecordByDocType(userId, type, function (data) {
 		if (data != null) {
 			for (var i = 0; i < data.length; i ++) {
 				nhomCongVan.options[i+1] = new Option(data[i].documentRecordTypeName, data[i].documentRecordTypeId);

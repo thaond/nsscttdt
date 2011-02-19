@@ -117,7 +117,7 @@
 		addWards.setParameter("redirect", wardsSearch.getIteratorURL().toString());
 	%>
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="them-phuong-xa" /></label>
+		<legend class="laborder"><liferay-ui:message key="them-phuong-xa" /></legend>
 		<table cellspacing="0" width="100%">
 			<tr>
 				<td width="15%"  align="right">

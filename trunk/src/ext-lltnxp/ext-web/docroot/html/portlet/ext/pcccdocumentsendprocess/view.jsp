@@ -8,8 +8,6 @@
 <%@page import="com.sgs.portlet.document.service.persistence.PmlFileStatusUtil"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType"%>
-<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
 <%@page import="javax.portlet.PortletURL"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -17,6 +15,13 @@
 <%@page import="com.sgs.portlet.department.service.DepartmentLocalServiceUtil"%>
 <%@page import="com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace"%>
 <%@page import="com.sgs.portlet.pmlissuingplace.service.PmlEdmIssuingPlaceLocalServiceUtil"%>
+
+<%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
+<%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
+<%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
+
 <liferay-util:include page="/html/portlet/ext/pcccdocumentsendprocess/js/quanlycongvandi.jsp"></liferay-util:include>
 <link type="text/css" rel="stylesheet" href="/html/portlet/ext/pcccdocumentsendprocess/css/letter.css" />
 <script type="text/javascript"	src="/html/js/calendar.js"></script>
@@ -169,13 +174,14 @@ window.onload = function () {
 <div class="title_categ"><liferay-ui:message key="danh-sach-van-ban-di"/></div>
 <div class="boxcontent">
 <fieldset class="filborder">
-		<label class="laborder">
+		<legend class="laborder">
 		<span class="act_hv" onclick="showhideformsearch()">			
 			<liferay-ui:message key="tieu-thuc-tim-kiem"/>			
 		</span>
-		</label>
+		</legend>
 <!-- start form search -->
 <%
+	/*
 	List<PmlEdmDocumentType> pmlEdmDocumentTypeList = new ArrayList<PmlEdmDocumentType>();
 	try {
 		// phmphuc close 11/11/2010
@@ -185,7 +191,7 @@ window.onload = function () {
 	} catch (Exception e) {
 		pmlEdmDocumentTypeList = new ArrayList<PmlEdmDocumentType>();
 	}
-
+	*/
 	List<Department> departments = new ArrayList<Department>();
 	try {
 		departments = DepartmentLocalServiceUtil.getDepartments(-1, -1);
@@ -211,17 +217,31 @@ window.onload = function () {
 		fromDate = tuNgay;
 		toDate = denNgay;
 	} 
+	
+	/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+	long userId = PortalUtil.getUserId(renderRequest);
+	PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userId);		
+	Department department = null;
+	try {
+		department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+	} catch (Exception e) { }
+	
+	List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+	if (department != null) {
+		pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), yearSearch);
+	}
+	// end phmphuc update 16/02/2011
 %>
 <div id="searchform">
 <table cellspacing="0" width="100%">
 		<tr>
-			<td width="15%"><liferay-ui:message key="loai-van-ban"/>&nbsp;:</td>
+			<td width="15%"><liferay-ui:message key="receipt.docrectype"/>&nbsp;:</td>
 			<td width="35%">
 				<select name="<portlet:namespace/>loaisocongvan" id="<portlet:namespace/>loaiVB" style="width: 92%">
       				<option value="<%= 0 %>" ></option>
-		        	<% if (!pmlEdmDocumentTypeList.isEmpty()) { 
-		        		for (PmlEdmDocumentType pmlEdmDocumentType : pmlEdmDocumentTypeList) { %>
-	      				<option value="<%= pmlEdmDocumentType.getDocumentTypeId() %>" <%=  pmlEdmDocumentType.getDocumentTypeId() == loaiVB ? "selected" : "" %>> <%= pmlEdmDocumentType.getDocumentTypeName() %> </option>
+		        	<% if (!pmlEdmDocumentRecordTypeList.isEmpty()) { 
+		        		for (PmlEdmDocumentRecordType documentRecordType : pmlEdmDocumentRecordTypeList) { %>
+	      				<option value="<%= documentRecordType.getDocumentRecordTypeId() %>" <%=  documentRecordType.getDocumentRecordTypeId() == loaiVB ? "selected" : "" %>> <%= documentRecordType.getDocumentRecordTypeName() %> </option>
 	     			<% 	} 
 	     				}%>
 		      	</select>
@@ -403,7 +423,7 @@ window.onload = function () {
 						<input type="hidden" name="<portlet:namespace />timkiemtheotieuchi" id="<portlet:namespace/>timkiemtheotieuchi" value="<%= String.valueOf(timkiemtheotieuchi) %>"/><!-- yenlt 20101021 -->
 						<input type="hidden" name="<portlet:namespace />tabChung" id="<portlet:namespace/>tabChung" value="<%= tabChung %>"/> <!-- yenlt 20101021 -->
 						<fieldset class="filborder">
-						<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></label>		
+						<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></legend>		
 						<table width="100%" cellspacing="0" class="bgtablil">	
 						
 						<%
@@ -469,7 +489,7 @@ window.onload = function () {
 						
 						<!-- Cong van dang xu ly && Tu xu ly -->
 						<fieldset class="filborder">
-						<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></label>	
+						<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></legend>	
 						<table class="bgtablil" width="100%" cellspacing="0">
 						
 						<%	
@@ -535,7 +555,7 @@ window.onload = function () {
 						
 						<!-- Cong van da xu ly && xu ly chung -->
 						<fieldset class="filborder">
-						<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></label>
+						<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></legend>
 						<table width="100%" cellspacing="0" class="bgtablil">
 						
 						<%
@@ -593,7 +613,7 @@ window.onload = function () {
 						
 						<!-- Cong van da xu ly && tu xu ly -->
 						<fieldset class="filborder">
-						<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></label>
+						<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></legend>
 						<table width="100%" cellspacing="0" class="bgtablil">
 						
 						<%

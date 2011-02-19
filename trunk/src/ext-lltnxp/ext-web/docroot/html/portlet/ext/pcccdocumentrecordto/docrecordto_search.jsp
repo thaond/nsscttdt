@@ -5,8 +5,6 @@
 <%@page import="com.sgs.portlet.pmllevelsend.service.persistence.PmlEdmLevelSendUtil"%>
 <%@page import="com.sgs.portlet.document.receipt.model.PmlEdmPrivilegeLevel"%>
 <%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmPrivilegeLevelUtil"%>
-<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType"%>
-<%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil"%>
 <%@page import="com.sgs.portlet.department.model.Department"%>
 <%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
@@ -14,7 +12,14 @@
 <%@page import="com.liferay.portal.model.User"%>
 <%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
 <%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
-<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%><style>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
+
+<style>
 	<%@ include file="/html/_css/qlcvmodule/module.css"%>
 </style>
 <script type="text/javascript" src="/html/js/_libJS/_libJS.js"></script>
@@ -27,12 +32,30 @@
 	List<PmlEdmPrivilegeLevel> privLevels = PmlEdmPrivilegeLevelUtil.findAll();
 	// phmphuc close 11/11/2010
 	// List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeUtil.findAll(); 
-	List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
+	// List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
 	// end phmphuc update 11/11/2010
+	
+	/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(new Date());
+	int currentYear = calendar.get(Calendar.YEAR);
+
+	long userIdLogin = PortalUtil.getUserId(renderRequest);
+	PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userIdLogin);		
+	Department department = null;
+	try {
+		department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+	} catch (Exception e) { }
+	
+	List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+	if (department != null) {
+		pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbden", department.getAgencyId(), currentYear);
+	}
+	
 	List<Department> departments = DepartmentUtil.findAll(); 
 %>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="tieu-thuc-tim-kiem"/></label>
+<legend class="laborder"><liferay-ui:message key="tieu-thuc-tim-kiem"/></legend>
 <table cellspacing="0" width="100%">
 	<tr>
 		<td width="13%"><liferay-ui:message key="pccc-cvdtn-soCVden" />&nbsp;:</td>
@@ -94,16 +117,16 @@
 				%>
 			</select>			
 		</td>
-		<td><liferay-ui:message key="loai-cong-van" />&nbsp;:</td>
+		<td><liferay-ui:message key="pccc-cvdtn-socongvan" />&nbsp;:</td>
 		<td >
 			<select name="<portlet:namespace /><%= displayTerms.LOAIVB %>" style="width: 96%;">
 				<option value="0">&nbsp;</option>
 				<%
-				if (!docTypes.isEmpty()) {
-					for (int idx = 0; idx < docTypes.size(); idx ++) {
-						PmlEdmDocumentType dTItem = (PmlEdmDocumentType) docTypes.get(idx);
+				if (!pmlEdmDocumentRecordTypeList.isEmpty()) {
+					for (int idx = 0; idx < pmlEdmDocumentRecordTypeList.size(); idx ++) {
+						PmlEdmDocumentRecordType dTItem = (PmlEdmDocumentRecordType) pmlEdmDocumentRecordTypeList.get(idx);
 				%>
-						<option value="<%= dTItem.getDocumentTypeId() %>" <%= dTItem.getDocumentTypeId() == displayTerms.getLoaiVB() ? "selected" : ""%>><%= dTItem.getDocumentTypeName() %></option>
+						<option value="<%= dTItem.getDocumentRecordTypeId() %>" <%= dTItem.getDocumentRecordTypeId() == displayTerms.getLoaiVB() ? "selected" : ""%>><%= dTItem.getDocumentRecordTypeName() %></option>
 				<%
 					}
 				}

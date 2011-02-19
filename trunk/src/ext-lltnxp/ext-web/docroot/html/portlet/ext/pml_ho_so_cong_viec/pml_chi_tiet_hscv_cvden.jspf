@@ -2,7 +2,6 @@
 	String emptyResults = "khong-co-cong-van-den";
 	List headerNames = new ArrayList();
 	headerNames.add("STT");
-	headerNames.add("select");
 	headerNames.add("date");
 	headerNames.add("trich-yeu");
 	headerNames.add("toan-van");
@@ -10,13 +9,13 @@
 	SearchContainer searchContainer = new SearchContainer(renderRequest, new DisplayTerms(renderRequest), new DisplayTerms(renderRequest), "cur", 1, portletURL, headerNames, emptyResults);
 	searchContainer.setDelta(20); 
 	
+	searchContainer.setRowChecker(new RowChecker(renderResponse));
+	
 	int total = PmlChiTietHSCVLocalServiceUtil.searchChiTietHSCVCVDENCount(idHoSoCongViec, true);
 	
 	searchContainer.setTotal(total);
 	
-	List<PmlEdmDocumentReceipt> results = null;
-	
-	results = PmlChiTietHSCVLocalServiceUtil.findChiTietHSCVCVDEN(idHoSoCongViec, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	List<PmlEdmDocumentReceipt> results = PmlChiTietHSCVLocalServiceUtil.findChiTietHSCVCVDEN(idHoSoCongViec, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 	
 	searchContainer.setResults(results); 
 
@@ -32,11 +31,11 @@
 		
 		row.addText(String.valueOf(i + 1));
 		
-		StringBuilder selectSB = new StringBuilder();	
-		selectSB.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDen('"); 
-		selectSB.append(String.valueOf(pmlEdmDocumentReceiptId));
-		selectSB.append("');\" name=\"CVDenRad\" /></div>");	
-		row.addText(selectSB.toString() + "");
+		//StringBuilder selectSB = new StringBuilder();	
+		//selectSB.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDen('"); 
+		//selectSB.append(String.valueOf(pmlEdmDocumentReceiptId));
+		//selectSB.append("');\" name=\"CVDenRad\" /></div>");	
+		//row.addText(selectSB.toString() + "");
 		
 		String dateArriveStr = "";
 		Date dateArrive = pmlEdmDocumentReceipt.getDateArrive();
@@ -98,11 +97,10 @@
 	PortletURL thuThapCVDenUrl = renderResponse.createRenderURL();
 	thuThapCVDenUrl.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvden");
 	thuThapCVDenUrl.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
-	thuThapCVDenUrl.setParameter("redirect", portletURL.toString());
 %>
-	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" /> 
+	<liferay-ui:search-iterator page="/html/portlet/ext/pml_ho_so_cong_viec/search_iterator/page.jsp" searchContainer="<%= searchContainer %>" /> 
 	<br>
 	<div align="right">
-		<input type="button" value="<liferay-ui:message key="thu-thap" />" onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDenUrl.toString() %>');"/>
+		<input type="button" value="<liferay-ui:message key="thu-thap" />" <%= isThuThap ? "" : "disabled"%> onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDenUrl.toString() %>');"/>
 		<input type="button" value="<liferay-ui:message key="delete" />" onclick="<portlet:namespace />deleteCVDen()" />
 	</div>

@@ -6,6 +6,8 @@
 <%--script type='text/javascript'src='/dwr/interface/pcccdocumentsendprocessClient.js'></script--%>
 
 <script type='text/javascript'src='/dwr/interface/documentSendUtilClient.js'></script>
+<script type='text/javascript'src='/dwr/interface/tinhHinhThuLyCongVanClient.js'></script>
+
 <script type='text/javascript' >
 var incstt = 0;
 
@@ -18,6 +20,13 @@ function validateFormEdit() {
 	var ngaybanhanh =document.getElementById('ngaybanhanhcvdtn');
 	//var noinhancvdtn = document.getElementById('receiveplace');
 	var trichyeucvdtn = document.getElementById('trichyeucvdtn');
+	var creator = document.getElementById('creator');
+
+	if (creator.value == 0) {
+		alert("<liferay-ui:message key='chon-nguoi-soan-van-ban'/>");
+		creator.focus();
+		return false;
+	}
 
 	/*
 	if (sovakyhieuvanban.value.trim() == "" || isNaN(sovakyhieuvanban.value) || sovakyhieuvanban.value < 1) {
@@ -399,7 +408,8 @@ function changeDocumentRecordType() {
 function changeDocumentTypeSend() {
 	var documentTypeId =  DWRUtil.getValue('loaicongvancvdtn');
 	var documentRecordTypeId = DWRUtil.getValue('socongvancvdtn');
-	var userId = DWRUtil.getValue('userId');
+	//var userId = DWRUtil.getValue('userId');
+	var dept = DWRUtil.getValue('dept');
 	
 	var <portlet:namespace/>documentRecordTypeCode = document.getElementById('<portlet:namespace/>documentRecordTypeCode').value;
 	var <portlet:namespace/>documentTypeCode = document.getElementById('<portlet:namespace/>documentTypeCode').value;
@@ -407,19 +417,22 @@ function changeDocumentTypeSend() {
 	var <portlet:namespace/>departmentCode = document.getElementById('<portlet:namespace/>departmentCode').value;
 	var <portlet:namespace/>useYear = document.getElementById('<portlet:namespace/>useYear').value;
 	var <portlet:namespace/>documentRecordTypeIdHidden = document.getElementById('<portlet:namespace/>documentRecordTypeIdHidden').value;
+	// minh upate 20110215
+	var <portlet:namespace/>soVanBanCuaPhong = document.getElementById('soVanBanCuaPhong').checked;
+	//var departmentsId = document.getElementById('departmentsId').value;
 	
 	//var departmentsId = document.getElementById('departmentsId').value;
-	pcccdocumentreceiptClient.getNumberPublish(documentRecordTypeId, documentTypeId, userId,<portlet:namespace/>documentRecordTypeIdHidden, <portlet:namespace/>documentRecordTypeCode, <portlet:namespace/>documentTypeCode, <portlet:namespace/>textAdd, <portlet:namespace/>departmentCode, <portlet:namespace/>useYear, function (data){
-		
+	//pcccdocumentreceiptClient.getNumberPublish(documentRecordTypeId, documentTypeId, userId,<portlet:namespace/>documentRecordTypeIdHidden, <portlet:namespace/>documentRecordTypeCode, <portlet:namespace/>documentTypeCode, <portlet:namespace/>textAdd, <portlet:namespace/>departmentCode, <portlet:namespace/>useYear, function (data){
+	pcccdocumentreceiptClient.getNumberPublish(documentRecordTypeId, documentTypeId, dept, "", 
+			<portlet:namespace/>documentRecordTypeIdHidden, <portlet:namespace/>documentRecordTypeCode, <portlet:namespace/>documentTypeCode, 
+			<portlet:namespace/>textAdd, <portlet:namespace/>departmentCode, <portlet:namespace/>useYear,<portlet:namespace/>soVanBanCuaPhong, function (data){
 		if (data != null) {
 			document.getElementById('sohieucvdtn').value = data;
 		}
 		else {
 			//alert ("khong co so hieu cong van");
 		}		
-		
 	});
-	
 }
 
 //check book document send exist ??? use ajax synchronied
@@ -447,4 +460,75 @@ var setValuesDocumentSendAgencyInDWR = function (data){
  		document.getElementById('isBookDocumentSend').value = true;
  	}
 };
+
+function getUsersByChangeDepartment() {
+	// minh upate 20110218
+	dwr.engine.beginBatch();
+	// end minh upate 20110218
+
+	var dept =  DWRUtil.getValue('dept');
+	var elementSelect = document.getElementById('creator');
+	dwr.util.removeAllOptions("creator");
+
+	elementSelect.options[0] = new Option("<liferay-ui:message key='tinhhinhthulycongvan.chonchuyenvien'/>", 0);
+
+	tinhHinhThuLyCongVanClient.getUserOfDepartment(dept, function (data){
+		if (data.length > 0) {
+			for ( var i = 0; i < data.length; i++) {
+				var text = data[i].lastName + ' ' + data[i].middleName + ' ' + data[i].firstName;
+				elementSelect.options[i] = new Option(text, data[i].userId);
+			}
+		}
+		else {
+			//alert("khong co docment type")
+		}		
+	});
+	dwr.engine.endBatch({
+		  async:false
+		});
+	
+	// minh upate 20110218
+	dwr.engine.beginBatch();
+	//changeDocumentTypeSend();
+	var departmentCode = document.getElementById('<portlet:namespace/>departmentCode').value;
+	var vauleChecked = document.getElementById('soVanBanCuaPhong').checked;
+	if (departmentCode) {
+		if (vauleChecked) {
+			loadDocumentRecordType();
+		}
+	}
+	// end minh upate 20110218
+	
+	dwr.engine.endBatch({
+		  async:false
+		});
+	
+}
+
+/*
+ * minh update 20100215
+ */
+// load so van ban the do vi hay la phong
+
+	function loadDocumentRecordType() {
+		var  valueChecked = document.getElementById("soVanBanCuaPhong").checked;
+		var  userIdLogin = document.getElementById("creator").value;
+		var  socongvancvdtnSelect = document.getElementById("socongvancvdtn");
+		
+		DWRUtil.removeAllOptions("socongvancvdtn");
+		DWRUtil.removeAllOptions("loaicongvancvdtn");
+		pcccdocumentreceiptClient.loadDocumentRecordType(userIdLogin, valueChecked, function (data){
+			if (data.length > 0) {
+				for ( var i = 0; i < data.length; i++) {
+					socongvancvdtnSelect.options[i] = new Option(data[i].documentRecordTypeName, data[i].documentRecordTypeId);
+				}
+				// load lai loai van ban theo so cua so hoac phong
+				changeDocumentRecordType();
+			}
+	
+			else {
+				//alert("khong co docment type")
+			}		
+		});
+	}
 </script>

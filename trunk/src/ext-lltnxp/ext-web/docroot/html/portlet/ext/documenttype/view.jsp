@@ -60,7 +60,7 @@
 	</portlet:actionURL>
 	
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="add-documenttype" /></label>
+		<legend class="laborder"><liferay-ui:message key="add-documenttype" /></legend>
 		
 		<table cellspacing="0" width="100%">
 			<tr>

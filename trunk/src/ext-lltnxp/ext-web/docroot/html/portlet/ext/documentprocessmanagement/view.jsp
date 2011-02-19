@@ -163,6 +163,7 @@ function deleteDocumentWorkflow(url) {
 							<option value="0"><liferay-ui:message key="quy-trinh-cong-van-di"/></option>
 							<option value="5"><liferay-ui:message key="quy-trinh-cong-van-den-phu-bao-cao"/></option>
 							<option value="6"><liferay-ui:message key="quy-trinh-cong-van-di-phu-phat-hanh"/></option>
+							<option value="7"><liferay-ui:message key="quy-trinh-van-ban-noi-bo-chinh"/></option>
 						</select>
 					</td>
 				</tr>

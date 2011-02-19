@@ -113,7 +113,7 @@ window.onload = function () {
 		<td class="td-right"><%=sendDTO.getConfidentialLevel() %></td>
 </tr>
 <tr>
-		<td class="td-left"><label><liferay-ui:message key="receipt.creator"/>:</label></td>
+		<td class="td-left"><label><liferay-ui:message key="nguoi-soan"/>:</label></td>
 		<td class="td-right"><%=sendDTO.getEditor() %></td>
 		<td class="td-left"><label><liferay-ui:message key="receipt.previlegenlevelid"/>:</label></td>
 		<td class="td-right"><%=sendDTO.getPrivilegel() %></td>
@@ -200,7 +200,7 @@ window.onload = function () {
 %>
 <br>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></legend>
 <table cellspacing="0" width="100%">
 <tr valign="top">
 	<td  class="td-left" width="18%">
@@ -229,7 +229,7 @@ window.onload = function () {
 %>
 <br/>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 <div class="Scrollbarauto">
 <table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 	<tr class="portlet-section-header results-header" >
@@ -302,7 +302,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 %>
 <c:if test="<%= !docRecIdsRelation.isEmpty() || !docSendIdsRelation.isEmpty() %>">
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 <div class="Scrollbarauto">
 
 			<%
@@ -374,7 +374,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 					<td colspan="4"><liferay-ui:message key="cvdi" /></td>
 				</tr>
 				<tr class="portlet-section-header results-header" >
-					<td width="15%"><liferay-ui:message key="receipt.creator" /></td>
+					<td width="15%"><liferay-ui:message key="nguoi-soan" /></td>
 					<td width="20%"><liferay-ui:message key="receipt.department" /></td>
 					<td width="25%"><liferay-ui:message key="receipt.receiveplace" /></td>
 					<td><liferay-ui:message key="receipt.briftcontent" /></td>

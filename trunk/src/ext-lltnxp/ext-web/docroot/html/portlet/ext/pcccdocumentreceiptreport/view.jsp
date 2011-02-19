@@ -68,7 +68,7 @@ function <portlet:namespace />setActionFrom() {
 
 	// phmphuc update 22/09/2010
 	PortletURL portletURL = renderResponse.createRenderURL();
-	portletURL.setWindowState(WindowState.MAXIMIZED);
+	portletURL.setWindowState(WindowState.NORMAL);
 	portletURL.setParameter("struts_action","/sgs/pcccdocumentreceiptreport/view");
 	portletURL.setParameter("view","yes");
 	// end phmphuc update

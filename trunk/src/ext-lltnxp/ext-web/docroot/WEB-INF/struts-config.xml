@@ -156,7 +156,7 @@
         </action>
         <!-- chuyen phat hanh -->
         <action path="/sgs/pcccdocumentsendprocess/moveToPublish" type="com.sgs.portlet.pcccdocumentsendprocess.action.MoveToPublishAction">
-            <forward name="portlet.sgs.pcccdocumentsendprocess.trans" path="portlet.sgs.pcccdocumentsendprocess.trans"/>
+            <forward name="portlet.sgs.pcccdocumentsendprocess.movetopublish" path="portlet.sgs.pcccdocumentsendprocess.movetopublish"/>
         </action>
         <!-- Document relation -->
         <action path="/sgs/pcccdocumentsendprocess/documentrelation" type="com.sgs.portlet.pcccdocumentsendprocess.action.DocumentRelationAction">
@@ -1066,6 +1066,15 @@
         </action>
         <action path="/sgs/vanbannoibo/view" type="com.sgs.portlet.vanbannoibo.action.ViewAction">
             <forward name="portlet.sgs.vanbannoibo.view" path="portlet.sgs.vanbannoibo.view"/>
+        </action>
+        <action path="/sgs/vanbannoibo/tiepnhanvanbannoibo" type="com.sgs.portlet.vanbannoibo.tiepnhanvanbannoibo.action.ViewAction">
+            <forward name="portlet.sgs.vanbannoibo.tiepnhanvanbannoibo" path="portlet.sgs.vanbannoibo.tiepnhanvanbannoibo"/>
+        </action>
+        <action path="/sgs/sovanbannoibo/view" type="com.sgs.portlet.sovanbannoibo.action.ViewAction">
+            <forward name="portlet.sgs.sovanbannoibo.view" path="portlet.sgs.sovanbannoibo.view"/>
+        </action>
+        <action path="/sgs/loaivanbannoibo/view" type="com.sgs.portlet.loaivanbannoibo.action.ViewAction">
+            <forward name="portlet.sgs.loaivanbannoibo.view" path="portlet.sgs.loaivanbannoibo.view"/>
         </action>
     </action-mappings>
 </struts-config>

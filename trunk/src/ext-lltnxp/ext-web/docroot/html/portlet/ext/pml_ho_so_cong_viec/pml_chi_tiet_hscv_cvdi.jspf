@@ -1,7 +1,6 @@
 <%
 	List<String> headerNames = new ArrayList<String>(); 
 	headerNames.add("STT");
-	headerNames.add("chon");
 	headerNames.add("date");
 	headerNames.add("trich-yeu");
 	headerNames.add("toan-van");
@@ -13,6 +12,8 @@
 	
 	SearchContainer searchContainer = new SearchContainer(renderRequest, new DisplayTerms(renderRequest), new DisplayTerms(renderRequest), "cur", 1, portletURL, headerNames, "khong-co-cong-van-di");
 	searchContainer.setDelta(20);
+	
+	searchContainer.setRowChecker(new RowChecker(renderResponse));
 	
 	pmlHoSoCongViec = PmlHoSoCongViecLocalServiceUtil.getPmlHoSoCongViec(idHoSoCongViec);
 	
@@ -35,12 +36,6 @@
 		ResultRow row = new ResultRow(pmlEdmDocumentSend, pmlEdmDocumentSendId, i);
 		
 		row.addText(String.valueOf(i + 1));
-		
-		StringBuilder radioSB = new StringBuilder();	
-		radioSB.append("<div align='center'><input type=\"radio\" onClick=\"setValueCVDi('"); 
-		radioSB.append(String.valueOf(pmlEdmDocumentSendId));
-		radioSB.append("');\" name=\"CVDiRad\" /></div>");	
-		row.addText(radioSB.toString());
 		
 		String dateCreateStr = "";
 		
@@ -105,13 +100,12 @@
 	PortletURL thuThapCVDiUrl = renderResponse.createRenderURL();
 	thuThapCVDiUrl.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvdi");
 	thuThapCVDiUrl.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
-	thuThapCVDiUrl.setParameter("redirect", portletURL.toString());
-	%>
+%>
 
-	<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" /> 
+	<liferay-ui:search-iterator page="/html/portlet/ext/pml_ho_so_cong_viec/search_iterator/page.jsp" searchContainer="<%= searchContainer %>" /> 
 	<br>
 	<div align="right">
-		<input type="button" value="<liferay-ui:message key="thu-thap" />" onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDiUrl.toString() %>');"/>
+		<input type="button" value="<liferay-ui:message key="thu-thap" />" <%= isThuThap ? "" : "disabled"%> onclick="javascript: submitForm (document.hrefFm, '<%= thuThapCVDiUrl.toString() %>');"/>
 		<input type="button" value="<liferay-ui:message key="delete" />" onclick="<portlet:namespace />deleteCVDi()" />
 	</div>
 	

@@ -57,7 +57,7 @@
 	<input type="hidden" name="<portlet:namespace /><%= Constants.CMD %>" />
 	<input type="hidden" name="<portlet:namespace />redirect" value='<%= redirectURL %>'/>
 	<fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="process-type"/></label>
+	<legend class="laborder"><liferay-ui:message key="process-type"/></legend>
 			<table cellspacing="0" width="100%">
 				<%
 				// Lay ma so phong, ten phong, ten nguoi dung

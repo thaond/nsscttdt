@@ -189,7 +189,7 @@ window.onload = function () {
 								<td onClick='getDataHelpSigneOnRow(this)' id="td3_<%= idx %>" >
 									<div align='left'><%= userDTO.getUserName() %></div></td>
 								<td onClick='getDataHelpSigneOnRow(this)' id="td4_<%= idx %>">
-									<div align='left'><%= userDTO.getPosition() %></div></td>
+									<div align='left' ><%= userDTO.getPosition() %></div></td>
 							</tr>
 					<%
 						} // end for
@@ -207,3 +207,39 @@ window.onload = function () {
 			</div>
 </div>
 </div>
+
+<script type='text/javascript'>
+// vu update 20110211
+	function getDataSigner(){	
+		var chkArr = document.getElementsByName('chk');
+		var position = "";
+		var signer = "";
+		for (i = 0; i < chkArr.length; i++) {
+			if (chkArr[i].checked) {
+				arr = chkArr[i].value.split("#");
+				position = arr[2];
+				signer = arr[0];
+				break;
+			}		
+		}
+		window.opener.document.getElementById('signer').value = signer;
+		window.opener.document.getElementById('position').value = position;
+		window.close();
+		}
+	function getDataHelpSigneOnRow(tdTable){	
+		var position = "";
+		var signer = "";
+		var idRow = (tdTable.id.split('_'))[1];	
+		var elementRadioChecked = document.getElementById("chk_"+idRow);
+		elementRadioChecked.checked = true;
+		var arr = elementRadioChecked.value.split("#");
+		position = arr[2];
+		signer = arr[0];
+		window.opener.document.getElementById('signer').value = signer;
+		window.opener.document.getElementById('position').value = position;		
+		window.close();
+	}
+	// end vu update 20110211
+</script>
+
+

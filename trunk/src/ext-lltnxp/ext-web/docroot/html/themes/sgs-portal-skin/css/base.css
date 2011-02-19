@@ -18,7 +18,7 @@ a,a:hover {
 	color:#0484db; text-decoration: none;cursor: pointer;
 }
 table {padding: 0; margin: 0; }
-td {padding: 4px 0 4px 2px;vertical-align: top;}
+td {padding: 2px 0px 2px 2px;vertical-align: middle;}
 #banner h1.logo {
 	display: block;
 }

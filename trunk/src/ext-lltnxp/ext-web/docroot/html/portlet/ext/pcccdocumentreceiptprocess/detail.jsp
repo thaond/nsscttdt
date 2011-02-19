@@ -360,7 +360,7 @@
 
 
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+	<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 	<div class="Scrollbarauto">
 	<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 		<tr class="portlet-section-header results-header" >
@@ -450,7 +450,7 @@ List<PmlEdmDocumentReceiptExtend> dREs = PmlEdmDocumentReceiptExtendUtil.findByD
 if (!dREs.isEmpty()) {
 %>
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></label>
+	<legend class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></legend>
 	<div class="Scrollbarauto">
 	<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 		<tr class="portlet-section-header results-header" >
@@ -523,7 +523,7 @@ Doc ds thay doi cach thuc xu ly -->
 	if (!docProcessTypeList.isEmpty()) {
 %>
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></label>
+	<legend class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></legend>
 		<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 							<tr class="portlet-section-header results-header" >
@@ -636,7 +636,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 
 <c:if test="<%= !docRecIdsRelation.isEmpty() || !docSendIdsRelation.isEmpty() %>">
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+	<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 		<div class="Scrollbarauto">
 			<%
 			if (!docRecIdsRelation.isEmpty()) {
@@ -950,9 +950,11 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 			},
 			"plugins" : [ "themes", "html_data" ]
 		});
-		jQuery(".ttip").tooltip({bodyHandler: function(){			
-			return jQuery("#" + jQuery(this).attr('tname')).html();
-		}});
+		$jq("#<portlet:namespace/>workflow_tree").bind("loaded.jstree",function(){
+			jQuery(".ttip").tooltip({bodyHandler: function(){			
+				return jQuery("#" + jQuery(this).attr('tname')).html() || jQuery(this).text();
+			}});
+		});
 	});
 </script>
 <a>
@@ -975,17 +977,15 @@ public String getHtml(DocumentReceiptLogNode root) {
 		sb.append(" current_node");
 	}
 	sb.append("'><a title='' class='ttip' tname='");
-	sb.append(root.getParent() != null ? receiptLog.getPrimaryKey() : "");
+	sb.append(root.getParent() != null ? receiptLog.getPrimaryKey() : "_root_");
 	sb.append("'>");
 	sb.append(root.getProcesserName());
 	sb.append("</a>");
-	if (root.getParent() != null) {
-		sb.append("<div id='");
-		sb.append(receiptLog.getPrimaryKey());
-		sb.append("' style='display: none;'>");
-		sb.append(root.getInformation());
-		sb.append("</div>");
-	}
+	sb.append("<div id='");
+	sb.append(root.getParent() != null ? receiptLog.getPrimaryKey() : "_root_");
+	sb.append("' style='display: none;'>");
+	sb.append(root.getInformation());
+	sb.append("</div>");
 	List<DocumentReceiptLogNode> children = root.getChildren();
 	if (children.size() > 0) {
 		sb.append("<ul>");

@@ -190,8 +190,8 @@ function checkCurrentNumberRecord(){
 		return false;
 	}
 	
-	if (currentRecordTrim == "0"){
-		alert("<liferay-ui:message key='nhap-so-lon-hon-0'/>")
+	if (currentRecordTrim < 0){
+		alert("<liferay-ui:message key='nhap-so-lon-hon-hoac-bang-0'/>")
 		currentRecord.focus();
 		return false;		
 	}

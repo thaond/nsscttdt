@@ -2,6 +2,7 @@
 <script type='text/javascript' src='/dwr/engine.js'></script>
 <script type='text/javascript' src='/dwr/util.js'></script>
 <script type='text/javascript'src='/dwr/interface/pcccdocumentreceiptClient.js'></script>
+<script type='text/javascript'src='/dwr/interface/documentSendUtilClient.js'></script>
 
 <script type="text/javascript">
  

@@ -1,0 +1,37 @@
+/*
+ * jQuery UI Tabs @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Tabs#theming
+ */
+.ui-tabs-144 { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs-144 .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
+.ui-tabs-144 .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+.ui-tabs-144 .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+.ui-tabs-144 .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
+.ui-tabs-144 .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs-144 .ui-tabs-nav li.ui-state-disabled a, .ui-tabs-144 .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+.ui-tabs-144 .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs-144 .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
+.ui-tabs-144 .ui-tabs-hide { display: none !important; }
+/*
+#tabs {-moz-border-radius: 0;background: url("/html/css/jqueryui/images/tabLuong.jpg") repeat-x top left;padding: 10px 0 0; margin: 0}
+#tabs .ui-widget-header ,#tabs .ui-corner-all{background: none;border-style: none;-moz-border-radius: 0;}
+#tabs .ui-tabs-nav {margin: 0; padding: 0 10px;}
+#tabs .ui-tabs-panel{padding: 0; margin: 0}
+#tabs .ui-tabs-nav li a {padding: 4px 15px; font-weight: bold;}
+#tabs .ui-state-default,#tabs .ui-state-default,#tabs .ui-widget-header .ui-state-default {background: none;border-style: none;}
+#tabs .ui-state-active, #tabs .ui-state-active,#tabs .ui-widget-header .ui-state-active {border-style: none;background:url("/html/css/jqueryui/images/lefttabul.png") no-repeat top left;padding-left: 6px; }
+#tabs .ui-state-active a,#tabs .ui-tabs-selected a{border-style: none;background:url("/html/css/jqueryui/images/righttabul.png") no-repeat top right; color: #00aeff; font-weight: bold;}
+#tabs .ui-tabs-nav li.ui-tabs-selected {padding-bottom: 0; margin-bottom: 0}
+#tabs #tabs-1,#tabs #tabs-2  {padding: 0 1px 1px; margin: 0; border-width: 0 2px 2px;border-color: #b8e2ff; border-style:  solid;  }
+#tabs #tabs-1 .ui-widget-header, #tabs #tabs-1 .ui-corner-all,#tabs #tabs-2 .ui-widget-header, #tabs #tabs-2 .ui-corner-all {background: #e6fbfb;}
+#tabs #tabs-1 .ui-state-active, #tabs #tabs-1 .ui-state-active,#tabs #tabs-1 .ui-widget-header .ui-state-active, #tabs #tabs-2 .ui-state-active, #tabs #tabs-2 .ui-state-active,#tabs #tabs-2 .ui-widget-header .ui-state-active {background: none;padding-left: 0;}
+#tabs #tabs-1 .ui-state-active a,#tabs #tabs-1 .ui-tabs-selected a,#tabs #tabs-2 .ui-state-active a,#tabs #tabs-2 .ui-tabs-selected a {background: url("/html/css/jqueryui/images/icontabl.jpg") no-repeat left 9px;color: #00aeff; font-weight: normal;padding-bottom: 10px;}
+#tabs #tabs-1 #tabs-1-1,#tabs #tabs-2 #tabs-1-1 {padding: 1px 0 0;}
+#tabs #tabs-1 li a,#tabs #tabs-2 li a {background: url("/html/css/jqueryui/images/icontabl.jpg") no-repeat left 9px; font-weight: normal;}
+#tabs #tabs-1 .ui-corner-all,#tabs .ui-corner-all,#tabs #tabs-2 .ui-corner-all,#tabs .ui-corner-all {-moz-border-radius: 0;}
+#tabs #tabs-1 li.branch a,#tabs #tabs-2 li.branch a {background: none; padding: 5px;}*/
+

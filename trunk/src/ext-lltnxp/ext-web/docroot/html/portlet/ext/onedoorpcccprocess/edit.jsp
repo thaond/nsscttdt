@@ -49,7 +49,7 @@
 	<ul>
 		<li style="width: 49.6%; margin-right: 0.8%">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></legend>
 		<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 			<td class="td0-left"><label><liferay-ui:message key='pccc-TN-loaihoso'/></label> 
@@ -121,7 +121,7 @@
 		</fieldset>
 		
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-hosothietke" /></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-hosothietke" /></legend>
 		<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 			<td class="td0-left"><label><liferay-ui:message key='pccc-TN-congtrinh'/></label>:</td>
@@ -164,7 +164,7 @@
 		</li>
 		<li style="width: 49.6%;">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinquanly" /></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinquanly" /></legend>
 		<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td0-left"><label><liferay-ui:message key='pccc-TN-thoigiannophoso'/></label> <font color="#FF0000" size="1">(*)</font>:</td>
@@ -220,7 +220,7 @@
 			</fieldset>
 			
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinthamkhao" /></label>
+			<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinthamkhao" /></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td0-left"><label><liferay-ui:message key='pccc-TN-tongsogioxuly'/></label>:</td>
@@ -232,7 +232,7 @@
 			</table>
 			</fieldset>	
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="pccc-TN-ketluanvehosothamduyet" /></label>
+			<legend class="laborder"><liferay-ui:message key="pccc-TN-ketluanvehosothamduyet" /></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td valign="top" class="td0-left"><label><liferay-ui:message key='pccc-TN-ketluan'/></label>:</td>
@@ -244,7 +244,7 @@
 			</fieldset>
 			
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="pccc-TN-dinhkemtaptin" /></label>
+			<legend class="laborder"><liferay-ui:message key="pccc-TN-dinhkemtaptin" /></legend>
 			<input type="hidden" name="<portlet:namespace/>str_fileattachedfile" id="str_fileattachedfile" value="" />
 			<table cellspacing="0" width="100%" class="bor_rgh">
 <%
@@ -291,7 +291,7 @@
 	<ul>
 		<li style="width: 100%">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-hosodinhkem" /></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-hosodinhkem" /></legend>
 		<input type="hidden" id="str_attachedfile" name="<portlet:namespace />str_attachedfile" value="" />
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
@@ -392,7 +392,7 @@
 	<ul>
 		<li style="width: 100%">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-trinhtuxuly" /></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-trinhtuxuly" /></legend>
 					<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
 							<td width="35px" align="center"><liferay-ui:message key="pccc-TN-stt"/></td>

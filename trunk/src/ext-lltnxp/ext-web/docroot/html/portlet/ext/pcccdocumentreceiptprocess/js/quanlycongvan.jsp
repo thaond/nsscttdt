@@ -464,7 +464,8 @@ function goToPageDocumentReceipt(form, url) {
 function changeDocumentRecordType() {
 	var documentRecordTypeId =  DWRUtil.getValue('socongvancvdtn');
 	var elementSelect = document.getElementById('loaicongvancvdtn');
-	
+
+	dwr.util.removeAllOptions('loaicongvancvdtn');
 	pcccdocumentreceiptClient.getDocumentType(documentRecordTypeId, function (data) {
 		if (data.length > 0) {
 			for ( var i = 0; i < data.length; i++) {
@@ -491,6 +492,11 @@ function getParamForListDocumentAction(url) {
 		strToDate = denngay.toString();
 		objToDate = sgs.stringToDate(strToDate, "dmy");
 	}	
+
+	if(isDate(tungay) == false || isDate(denngay) == false) {
+		alert('<liferay-ui:message key="pccc-error-date"/>');
+		return false;
+	}
 
 	if (objFromDate > objToDate) {
 		alert('<liferay-ui:message key="tu-ngay-phai-nho-hon-hoac-bang-den-ngay"/>');

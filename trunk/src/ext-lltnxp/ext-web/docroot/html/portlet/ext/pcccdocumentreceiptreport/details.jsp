@@ -69,7 +69,7 @@
 <div class="boxcontent">
 <form method="post" id="<portlet:namespace/>fm" name="<portlet:namespace/>fm">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-cvdtn-socongvandencuaphong"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-cvdtn-socongvandencuaphong"/></legend>
 		<table cellspacing="0" width="100%" class="tabldtail">
 				<tr>	  
 				    <td class="td-left" width="18%"><label><liferay-ui:message key="pccc-cvdtn-capgoi"/>: </label></td>
@@ -267,7 +267,7 @@
 		</fieldset>
 		<br>
 		<fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 	<div class="Scrollbarauto">
 				<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 						<tr class="portlet-section-header results-header" >
@@ -327,7 +327,7 @@ Doc danh sach gia han (neu co) de xuat ra trang chi tiet -->
 	if (!dREs.isEmpty()) {
 %>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></label>
+<legend class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></legend>
 	<div class="Scrollbarauto">
 				<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 						<tr class="portlet-section-header results-header" >
@@ -402,7 +402,7 @@ Doc ds thay doi cach thuc xu ly -->
 %>
 
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></label>
+<legend class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></legend>
 	<div class="Scrollbarauto">
 				<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 						<tr class="portlet-section-header results-header" >
@@ -515,7 +515,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 
 <c:if test="<%= !docRecIdsRelation.isEmpty() || !docSendIdsRelation.isEmpty() %>">
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 	<div class="Scrollbarauto">
 	<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 				

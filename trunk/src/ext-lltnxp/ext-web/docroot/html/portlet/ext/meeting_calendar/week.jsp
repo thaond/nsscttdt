@@ -574,6 +574,9 @@ for (int i = 0; i < 7; i++) {
 					MeetingCalendar mcale = null;
 					try {
 						mcale = MeetingCalendarLocalServiceUtil.getMeetingCalendar(cale1.getEventId());
+						if (mcale.isDeleted()) {
+							mcale = null;
+						}
 					}
 					catch (Exception ex) {
 						// Do nothing
@@ -777,7 +780,7 @@ for (int i = 0; i < 7; i++) {
 									<%
 									if (!event.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 									%>
-										&nbsp;<span class="sponsor" data='<%= HtmlUtil.escape(event.getTitle()).trim() %>'> <%= HtmlUtil.escape(event.getTitle()).trim() %></span>
+										&nbsp;<span class="sponsor" data='<%= HtmlUtil.escape(event.getTitle()).trim() %>'> <%= HtmlUtil.escape(event.getTitle()).trim() %></span><br/>
 									<% 
 									}
 									%>
@@ -801,12 +804,12 @@ for (int i = 0; i < 7; i++) {
 									}
 									if (!title.equals(StringPool.BLANK)) {
 									%>
-										<%= title%>
+										<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= title%>
 									<%
 									}
 									else {
 									%>
-										<%= event.getDescription()%> 
+										<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= event.getDescription()%> 
 									<%
 									}
 									%>
@@ -971,11 +974,11 @@ for (int i = 0; i < 7; i++) {
 											<td  style="padding-left: 2px;" bgcolor ="<%=duplicateBgr %>"></td>
 											<td valign="top" align="left" width="99%">
 												<i>
-												<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "content") %>:</b>
+												<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "sponsor") %>:</b>
 												<%
 												if (!event.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 												%>
-													&nbsp;<%= event.getTitle() %>
+													&nbsp;<span class="sponsor" data='<%= HtmlUtil.escape(event.getTitle()).trim() %>'><%= event.getTitle() %></span><br/>
 												<% 
 												}
 												%>
@@ -999,20 +1002,30 @@ for (int i = 0; i < 7; i++) {
 												}
 												if (!title.equals(StringPool.BLANK)) {
 												%>
-													<%= title%>
+													<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= title%>
 												<%
 												}
 												else {
 												%>
-													<%= event.getDescription()%> 
+													<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= event.getDescription()%> 
 												<%
 												}
 												%>
 												&nbsp;
 												<%
 												if (Validator.isNotNull(mcal.getPlace()) || Validator.isNotNull(mcal.getPlace_diff())) { 
+													String taiNoi = mcal.getPlace();
+													try {
+														if (taiNoi != null) {
+															RoomResource roomResource = RoomResourceLocalServiceUtil.getRoomResource(Long.valueOf(taiNoi));
+															taiNoi = roomResource.getRoomName();
+														}
+													} catch(Exception e) {
+														
+													}
+												
 												%>
-												<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</font>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal.getPlace()) ? LanguageUtil.get(pageContext, mcal.getPlace()): mcal.getPlace_diff() %>'><%= Validator.isNotNull(mcal.getPlace()) ? LanguageUtil.get(pageContext, mcal.getPlace()): mcal.getPlace_diff() %></span>
+												<font class="textinfoCal" color="#000080"><b style="text-transform: capitalize;"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</b></font>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal.getPlace()) ? taiNoi: mcal.getPlace_diff() %>'><%= Validator.isNotNull(mcal.getPlace()) ? taiNoi: mcal.getPlace_diff() %></span>
 												<%
 												} 
 												%>
@@ -1026,8 +1039,16 @@ for (int i = 0; i < 7; i++) {
 												%>
 												<%
 												if (Validator.isNotNull(mcal.getNote())) { 
+													String carCode = mcal.getNote();
+													try {
+														if (carCode != null) {
+															CarResource carResource = CarResourceLocalServiceUtil.getCarResource(Long.valueOf(carCode));
+															carCode = carResource.getCarCode();
+														}
+													}catch(Exception e){}
+												
 												%>
-													<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal.getNote() %><Br>
+													<span style='display: <%= "0".equals(carCode) ? "none":"block"%>''><font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal.getNote() %><Br></span>
 												<%
 												} 
 												%>
@@ -1162,11 +1183,11 @@ for (int i = 0; i < 7; i++) {
 											<td style="padding-left: 2px;" bgcolor ="<%=duplicateBgr %>"></td>
 											<td valign="top" align="left" width="99%">
 												<i>
-												<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "content") %>:</b>
+												<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "sponsor") %>:</b>
 												<%
 												if (!event.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 												%>
-													&nbsp;<%= event.getTitle() %>
+													&nbsp;<span class="sponsor" data='<%= HtmlUtil.escape(event.getTitle()).trim() %>'><%= event.getTitle() %></span><br/>
 												<% 
 												}
 												%>
@@ -1190,20 +1211,30 @@ for (int i = 0; i < 7; i++) {
 												}
 												if (!title.equals(StringPool.BLANK)) {
 												%>
-													<%= title %>
+													<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= title %>
 												<%
 												}
 												else {
 												%>
-													<%= event.getDescription()%> 
+													<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= event.getDescription()%> 
 												<%
 												}
 												%>
 												&nbsp;
 												<%
 												if (Validator.isNotNull(mcal.getPlace()) || Validator.isNotNull(mcal.getPlace_diff())) { 
+													String taiNoi = mcal.getPlace();
+													try {
+														if (taiNoi != null) {
+															RoomResource roomResource = RoomResourceLocalServiceUtil.getRoomResource(Long.valueOf(taiNoi));
+															taiNoi = roomResource.getRoomName();
+														}
+													} catch(Exception e) {
+														
+													}
+												
 												%>
-												<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</font>&nbsp; <%= Validator.isNotNull(mcal.getPlace()) ? LanguageUtil.get(pageContext, mcal.getPlace()): mcal.getPlace_diff() %>
+												<font class="textinfoCal" color="#000080"><b style="text-transform: capitalize;"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</b></font>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal.getPlace()) ? taiNoi : mcal.getPlace_diff() %>'><%= Validator.isNotNull(mcal.getPlace()) ? taiNoi: mcal.getPlace_diff() %></span>
 												<%
 												} 
 												%>
@@ -1217,8 +1248,16 @@ for (int i = 0; i < 7; i++) {
 												%>
 												<%
 												if (Validator.isNotNull(mcal.getNote())) { 
+													String carCode = mcal.getNote();
+													try {
+														if (carCode != null) {
+															CarResource carResource = CarResourceLocalServiceUtil.getCarResource(Long.valueOf(carCode));
+															carCode = carResource.getCarCode();
+														}
+													}catch(Exception e){}
+												
 												%>
-													<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal.getNote() %><Br>
+													<span style='display: <%= "0".equals(carCode) ? "none":"block"%>''><font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal.getNote() %><Br></span>
 												<%
 												} 
 												%>
@@ -1273,6 +1312,9 @@ for (int i = 0; i < 7; i++) {
 				MeetingCalendar mcal_E = null;
 				try {
 					mcal_E = MeetingCalendarLocalServiceUtil.getMeetingCalendar(event_E.getEventId());
+					if (mcal_E.isDeleted()) {
+						mcal_E = null;
+					}
 				}
 				catch (Exception ex) {
 					mcal_E = null;
@@ -1408,11 +1450,11 @@ for (int i = 0; i < 7; i++) {
 							</td>
 							<td style="padding-left: 2px;<%= nightBgr_E%>" bgcolor="<%=duplicateBgr_E%>"></td>
 							<td valign="top" width="99%" style="<%= nightBgr_E%>">
-								<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "content") %>:</b>
+								<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "sponsor") %>:</b>
 								<%
 								if (!event_E.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 								%>
-									&nbsp; <%= event_E.getTitle() %>
+									&nbsp; <span class="sponsor" data='<%= HtmlUtil.escape(event_E.getTitle()).trim() %>'><%= event_E.getTitle() %></span><br/>
 								<%
 								} 
 								%>
@@ -1436,20 +1478,30 @@ for (int i = 0; i < 7; i++) {
 								}
 								if (!title_E.equals(StringPool.BLANK)) {
 								%>
-									<%= title_E%>
+									<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= title_E%>
 								<%
 								}
 								else {
 								%>
-									<%= event_E.getDescription()%> 
+									<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= event_E.getDescription()%> 
 								<%
 								}
 								%>
 								&nbsp;
 								<%
 								if (Validator.isNotNull(mcal_E.getPlace()) || Validator.isNotNull(mcal_E.getPlace_diff())) { 
+									String taiNoi = mcal_E.getPlace();
+									try {
+										if (taiNoi != null) {
+											RoomResource roomResource = RoomResourceLocalServiceUtil.getRoomResource(Long.valueOf(taiNoi));
+											taiNoi = roomResource.getRoomName();
+										}
+									} catch(Exception e) {
+										
+									}
+								
 								%>
-									<%= LanguageUtil.get(pageContext, "tai-noi") %>:&nbsp; <%= Validator.isNotNull(mcal_E.getPlace()) ? LanguageUtil.get(pageContext, mcal_E.getPlace()): mcal_E.getPlace_diff() %>
+									<b style="text-transform: capitalize;"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</b>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi : mcal_E.getPlace_diff() %>'><%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi: mcal_E.getPlace_diff() %></span>
 								<%
 								} 
 								%>
@@ -1463,8 +1515,16 @@ for (int i = 0; i < 7; i++) {
 								%>
 								<%
 								if (Validator.isNotNull(mcal_E.getNote())) { 
+									String carCode = mcal_E.getNote();
+									try {
+										if (carCode != null) {
+											CarResource carResource = CarResourceLocalServiceUtil.getCarResource(Long.valueOf(carCode));
+											carCode = carResource.getCarCode();
+										}
+									}catch(Exception e){}
+								
 								%>
-									<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br>
+									<span style='display: <%= "0".equals(carCode) ? "none":"block"%>''><font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br></span>
 								<%
 								} 
 								%>
@@ -1585,11 +1645,11 @@ for (int i = 0; i < 7; i++) {
 										<td style="padding-left: 2px;" bgcolor="<%=duplicateBgr_E%>"></td>
 										<td valign="top" width="99%">
 											<i>
-											<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "content") %>:</b>
+											<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "sponsor") %>:</b>
 											<%
 											if (!event_E.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 											%>
-												&nbsp; <%= event_E.getTitle() %>
+												&nbsp; <span class="sponsor" data='<%= HtmlUtil.escape(event_E.getTitle()).trim() %>'><%= HtmlUtil.escape(event_E.getTitle()) %></span><br/>
 											<%
 											} 
 											%>
@@ -1613,7 +1673,7 @@ for (int i = 0; i < 7; i++) {
 											}
 											if (!title_E.equals(StringPool.BLANK)) {
 											%>
-												<%= title_E%>
+												<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= HtmlUtil.escape(title_E)%>
 											<%
 											}
 											else {
@@ -1624,13 +1684,25 @@ for (int i = 0; i < 7; i++) {
 												descDoi = descDoi.replaceAll("'", "&quot;");
 												descDoi = descDoi.replaceAll("\n", "<br />");
 											%>
-												<%= descDoi %> 
+												<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= descDoi %> 
 											<%
 											}
 											%>
 											&nbsp;
-											<%if (Validator.isNotNull(mcal_E.getPlace()) || Validator.isNotNull(mcal_E.getPlace_diff())) { %>
-											<%= LanguageUtil.get(pageContext, "tai-noi") %>:&nbsp; <%= Validator.isNotNull(mcal_E.getPlace()) ? LanguageUtil.get(pageContext, mcal_E.getPlace()): mcal_E.getPlace_diff() %>
+											<%if (Validator.isNotNull(mcal_E.getPlace()) || Validator.isNotNull(mcal_E.getPlace_diff())) { 
+												String taiNoi = mcal_E.getPlace();
+												try {
+													if (taiNoi != null) {
+														RoomResource roomResource = RoomResourceLocalServiceUtil.getRoomResource(Long.valueOf(taiNoi));
+														taiNoi = roomResource.getRoomName();
+													}
+												} catch(Exception e) {
+													
+												}
+											
+											%>
+											
+											<b style="text-transform: capitalize;"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</b>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi : mcal_E.getPlace_diff() %>'><%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi: mcal_E.getPlace_diff() %></span>
 											<%
 											} %>
 											<br>
@@ -1658,8 +1730,16 @@ for (int i = 0; i < 7; i++) {
 											%>
 											<%
 											if (Validator.isNotNull(mcal_E.getNote())) { 
+												String carCode = mcal_E.getNote();
+												try {
+													if (carCode != null) {
+														CarResource carResource = CarResourceLocalServiceUtil.getCarResource(Long.valueOf(carCode));
+														carCode = carResource.getCarCode();
+													}
+												}catch(Exception e){}
+											
 											%>
-												<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br>
+												<span style='display: <%= "0".equals(carCode) ? "none":"block"%>''><font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br></span>
 											<%
 											} 
 
@@ -1779,11 +1859,11 @@ for (int i = 0; i < 7; i++) {
 										<td style="padding-left: 2px;" bgcolor="<%=duplicateBgr_E%>"></td>
 										<td valign="top" width="99%">
 											<i>
-											<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "content") %>:</b>
+											<font class="textinfoCal" color="#000080"><b><%= LanguageUtil.get(pageContext, "sponsor") %>:</b>
 											<%
 											if (!event_E.getTitle().equals(MeetingCalendarKey.KHONG_CO_CHU_TRI)) { 
 											%>
-												&nbsp; <%= event_E.getTitle() %>
+												&nbsp; <span class="sponsor" data='<%= HtmlUtil.escape(event_E.getTitle()).trim() %>'><%= event_E.getTitle() %></span><br/>
 											<%
 											} 
 											%>
@@ -1797,6 +1877,7 @@ for (int i = 0; i < 7; i++) {
 											if (indexKeywordQuot != -1) {
 												title_E = event_E.getDescription().replaceAll("&#039;","&quot;");
 											}
+											
 											if (indexKeywordBr != -1) {
 												if (!title_E.equals(StringPool.BLANK)) {
 													title_E = title_E.replaceAll("\n","<br />");
@@ -1807,20 +1888,30 @@ for (int i = 0; i < 7; i++) {
 											}
 											if (!title_E.equals(StringPool.BLANK)) {
 											%>
-												<%= title_E%>
+												<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= title_E%>
 											<%
 											}
 											else {
 											%>
-												<%= event_E.getDescription()%> 
+												<b><%= LanguageUtil.get(pageContext, "content") %>:&nbsp;</b><%= event_E.getDescription()%> 
 											<%
 											}
 											%>
 											&nbsp;
 											<%
 											if (Validator.isNotNull(mcal_E.getPlace()) || Validator.isNotNull(mcal_E.getPlace_diff())) { 
+												String taiNoi = mcal_E.getPlace();
+												try {
+													if (taiNoi != null) {
+														RoomResource roomResource = RoomResourceLocalServiceUtil.getRoomResource(Long.valueOf(taiNoi));
+														taiNoi = roomResource.getRoomName();
+													}
+												} catch(Exception e) {
+													
+												}
+											
 											%>
-											<%= LanguageUtil.get(pageContext, "tai-noi") %>:&nbsp; <%= Validator.isNotNull(mcal_E.getPlace()) ? LanguageUtil.get(pageContext, mcal_E.getPlace()): mcal_E.getPlace_diff() %>
+											<b style="text-transform: capitalize;"><%= LanguageUtil.get(pageContext, "tai-noi") %>:</b>&nbsp; <span class="room" data='<%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi : mcal_E.getPlace_diff() %>'><%= Validator.isNotNull(mcal_E.getPlace()) ? taiNoi: mcal_E.getPlace_diff() %></span>
 											<%
 											} 
 											%>
@@ -1834,8 +1925,16 @@ for (int i = 0; i < 7; i++) {
 											%>
 											<%
 											if (Validator.isNotNull(mcal_E.getNote())) { 
+												String carCode = mcal_E.getNote();
+												try {
+													if (carCode != null) {
+														CarResource carResource = CarResourceLocalServiceUtil.getCarResource(Long.valueOf(carCode));
+														carCode = carResource.getCarCode();
+													}
+												}catch(Exception e){}
+											
 											%>
-												<font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br>
+												<span style='display: <%= "0".equals(carCode) ? "none":"block"%>''><font class="textinfoCal" color="#000080"><%= LanguageUtil.get(pageContext, "note") %>:</font>&nbsp;<%=mcal_E.getNote() %><Br></span>
 											<%
 											} 
 											%>

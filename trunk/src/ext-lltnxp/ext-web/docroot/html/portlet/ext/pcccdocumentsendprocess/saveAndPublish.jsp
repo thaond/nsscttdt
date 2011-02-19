@@ -59,21 +59,60 @@ window.onload = function () {
 				return noiNhan;
 			}
 		});
+		// vu close code 20110215
+		//documentSendUtilClient.getSignerName( function (data){
+			//if (data.length > 0) {
+				//nguoiKy = [data.length];
+				//for ( var i = 0; i < data.length; i++) {
+					//nguoiKy[i] = data[i] + "";			
+				//}
+				//return nguoiKy;
+			//}
+			
+		//});
+		// end vu close code 20110215
 		
-		documentSendUtilClient.getSignerName( function (data){
+	// vu update 20110215  chon nguoi ki van ban se hien thi them chuc vu
+		documentSendUtilClient.getSigner( function (data){
 			if (data.length > 0) {
 				nguoiKy = [data.length];
 				for ( var i = 0; i < data.length; i++) {
-					nguoiKy[i] = data[i] + "";			
+					nguoiKy[i] = data[i].userName + "";					
 				}
 				return nguoiKy;
 			}
 			
 		});
+				
+	// end vu update 20110215	
 		
 	dwr.engine.endBatch({
 	  async:false
 	});
+	
+	// vu update 20110215  chon nguoi ki van ban se hien thi them chuc vu
+		function chucVu(){
+		var signer = document.getElementById('signer').value;
+		var chucVu = "";
+		dwr.engine.beginBatch();
+		documentSendUtilClient.getSigner( function (data){
+			if (data.length > 0) {				
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].userName == signer){		
+						chucVu = data[i].position;
+						break;
+					}						
+				}				
+			}
+			
+		});
+		dwr.engine.endBatch({
+			  async:false
+			});
+		document.getElementById('position').value = chucVu;
+		
+	}
+	// end vu update 20112015
 	
 	$().ready(function() {
 		jQuerythoind("#receiveplace").autocomplete(noiNhan, {
@@ -83,12 +122,15 @@ window.onload = function () {
 			matchContains: true,
 			autoFill: true}
 			);
-		jQuerythoind("#signer").autocomplete(nguoiKy, {		
-			minChars: 0,
-			matchContains: true,
-			autoFill: true});
+		$jq("#signer").autocomplete({
+			source: nguoiKy,
+			select: function(even, ui){
+				setTimeout('chucVu()',150);	
+			}
+			});
 	});
 </script>
+
 <portlet:actionURL var="saveAndPublish">
 </portlet:actionURL>
 
@@ -119,6 +161,8 @@ window.onload = function () {
 <input type="hidden" id="isBookDocumentSend"  value="">
 <input type="hidden" id="departmentsId"  value="<%= departmentsId %>">
 <input type="hidden" id="documentSendId"  value="<%= documentDTO.getDocumentSendId() %>">
+<input type="hidden" id="sohieuHidden" value="">
+<input type="hidden" id="phanmorongHidden" value="">
 
 <input type="hidden" name="<portlet:namespace/>userId" id="userIdCreator" value="<%= String.valueOf(creatorId) %>" />
 <input id="<portlet:namespace/>documentRecordTypeCode"  type="hidden"" value="<%=  HtmlUtil.escape(String.valueOf(documentRecordTypeCode))%>"  />
@@ -127,7 +171,9 @@ window.onload = function () {
 <input id="<portlet:namespace/>departmentCode"  type="hidden"" value="<%=  HtmlUtil.escape(String.valueOf(departmentCode))%>"  />
 <input id="<portlet:namespace/>useYear"  type="hidden"" value="<%=  HtmlUtil.escape(String.valueOf(useYear))%>"  />
 <input type="hidden" id="<portlet:namespace/>documentRecordTypeIdHidden"  value="0"/>
-
+<!-- minh upate 20110215 -->
+<input type="hidden" id="<portlet:namespace/>soVanBanCuaPhong" name="<portlet:namespace/>soVanBanCuaPhong" value="<%= String.valueOf(documentDTO.isDocOfDepartment()) %>"/>
+<!-- end minh upate 20110215 -->
 <div class="title_categ"><liferay-ui:message key="cho-so-va-phat-hanh"/></div>
 <div class="boxcontent">
 	<table width="100%" cellspacing="0">
@@ -222,13 +268,15 @@ window.onload = function () {
 			</td>
 		</tr>
 		<tr>
-			<td><div align="left"><label><liferay-ui:message key="receipt.creator"/>:</label></div></td>
+			<td><div align="left"><label><liferay-ui:message key="nguoi-soan"/>:</label></div></td>
 			<td>
-				<input style="width: 79%" type="text" name="<portlet:namespace/>creatorName" id="creator" value='<%=documentDTO.getEditor() != null ? documentDTO.getEditor() : "" %>' >	
+				<input style="width: 92%" type="text" name="<portlet:namespace/>creatorName" id="creator" value='<%=documentDTO.getEditor() != null ? documentDTO.getEditor() : "" %>' readonly="readonly">	
 				<input style="6%" type="hidden" id="creatorIdSP"  name="<portlet:namespace />creatorId" value='<%=creatorId %>'>
+				<%--
 				<span style="cursor: pointer">
 					<input  id="btn_creator" type="button" value="..."  onclick="mypopupCreator()" style="width: 10%">
 				</span>
+				--%>
 			</td>     
 			<td><div align="left"><label><liferay-ui:message key="receipt.previlegenlevelid"/><font color="#FF0000" size="1">(*)</font>:</label></div></td>
 			<td>
@@ -241,7 +289,7 @@ window.onload = function () {
 		</tr>
 		<tr>
 			<td><div align="left"><label><liferay-ui:message key="receipt.department"/>:</label></div></td>
-			<td><input style="width: 92%" type="text" maxlength="50" name="<portlet:namespace/>department" id="dept" value='<%=departmentName != null ? departmentName : "" %>'></td>
+			<td><input style="width: 92%" type="text" maxlength="50" name="<portlet:namespace/>department" id="dept" value='<%=departmentName != null ? departmentName : "" %>' readonly="readonly"></td>
 			   
 			<td><label><liferay-ui:message key="receipt.docid"/>:</label></td>
 			<td>
@@ -270,7 +318,7 @@ window.onload = function () {
 		<tr>
 			<td><label><liferay-ui:message key="receipt.signer"/>:</label></td>
 			<td>
-					<input style="width: 79%" type="text" name="<portlet:namespace/>signerName" id="signer" value='<%=documentDTO.getSigner() != null ? documentDTO.getSigner() : "" %>' >	
+					<input style="width: 79%" type="text" name="<portlet:namespace/>signerName" id="signer" value='<%=documentDTO.getSigner() != null ? documentDTO.getSigner() : "" %>' onchange="chucVu();">	
 					<input style="6%" type="hidden" id="signerId"  name="<portlet:namespace />signerId" >
 					<span style="cursor: pointer">
 						<input  id="btn_signer" type="button" value="..."  onclick="mypopupSigner()" style="width: 10%">

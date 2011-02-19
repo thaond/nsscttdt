@@ -43,7 +43,7 @@ window.onload = function () {
 <ul>
 	<li style="width: 49.6%; margin-right: 0.8%" >
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message	key="pccc-TN-thongtinhoso" /></label>			
+		<legend class="laborder"><liferay-ui:message	key="pccc-TN-thongtinhoso" /></legend>			
 						<table cellspacing="0" width="100%" class="bor_rgh">						
 							<tr>
 								<td width="33%" class="width-label"><label><liferay-ui:message key='pccc-TN-loaihoso' /> <font color="#FF0000" size="1">(*)</font>:</label></td>
@@ -105,7 +105,7 @@ window.onload = function () {
 			</fieldset>
 			
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="pccc-TN-hosothietke" /></label>
+			<legend class="laborder"><liferay-ui:message key="pccc-TN-hosothietke" /></legend>
 						<table cellspacing="0" width="100%" class="bor_rgh">						
 							<tr>
 								<td width="33%" class="width-label"><label><liferay-ui:message	key='pccc-TN-congtrinh' />:</label></td>
@@ -150,7 +150,7 @@ window.onload = function () {
 	</li>
 	<li style="width: 49.6%;">
 		<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message	key="pccc-TN-thongtinquanly" /></label>
+			<legend class="laborder"><liferay-ui:message	key="pccc-TN-thongtinquanly" /></legend>
 						<table cellspacing="0" width="100%" class="bor_rgh">						
 							<tr>
 								<td width="37%" class="width-label"><label><liferay-ui:message	key='pccc-TN-thoigiannophoso' /> <font color="#FF0000" size="1">(*)</font>:</label></td>
@@ -197,7 +197,7 @@ window.onload = function () {
 			</fieldset>
 						
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message	key="pccc-TN-thongtinthamkhao" /></label>
+			<legend class="laborder"><liferay-ui:message	key="pccc-TN-thongtinthamkhao" /></legend>
 						<table cellspacing="0" width="100%" class="bor_rgh">						
 							<tr>
 								<td width="37%" class="width-label"><label ><liferay-ui:message key='pccc-TN-tongsogioxuly' />:</label></td>
@@ -218,7 +218,7 @@ window.onload = function () {
 			</fieldset>	
 						
 			<fieldset class="filborder">
-						<label class="laborder"><liferay-ui:message	key="pccc-TN-ketluanvehosothamduyet" /></label>
+						<legend class="laborder"><liferay-ui:message	key="pccc-TN-ketluanvehosothamduyet" /></legend>
 						<table cellspacing="0" width="100%" class="bor_rgh">
 							<tr>
 								<td width="37%" valign="top" class="width-label"><LABEL><liferay-ui:message
@@ -234,13 +234,13 @@ window.onload = function () {
 <ul>
 	<li style="width: 100%">
 	<fieldset class="filborder">
-			<label class="laborder" style="float: left;">
+			<legend class="laborder" style="float: left;">
 			<span onclick="showhideAttachfile()" style="float: left;">
 					<div id="up"><img style="cursor: pointer;" src="/html/themes/sgs-portal-skin/images/imgbasic/up.png" /></div>
 					<div id="down" style="display: none;"><img style="cursor: pointer;" src="/html/themes/sgs-portal-skin/images/imgbasic/down.png" /></div>
 			</span>
 				<a class="style-top-title" onclick="showhideAttachfile()" style="float: left;padding: 2px 0 0 10px;cursor: pointer;"><liferay-ui:message key='pccc-TN-hosodinhkemtudongchon' /></a>
-			</label>
+			</legend>
 			<div id="div-title">
 				<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%" style="float: left;">	
 					<tr class="portlet-section-header results-header" >
@@ -291,7 +291,7 @@ window.onload = function () {
 						</table>
 						-->
 			<fieldset class="filborder">
-			<label class="laborder" style="float: left;">
+			<legend class="laborder" style="float: left;">
 				<span onclick="showHideDrawFile()" style="float: left;">
 					<div id="up-bv"><img style="cursor: pointer;" src="/html/themes/sgs-portal-skin/images/imgbasic/up.png" /></div>
 					<div id="down-bv" style="display: none;">
@@ -301,7 +301,7 @@ window.onload = function () {
 				<a class="style-top-title"	onclick="showHideDrawFile()" style="float: left;padding: 2px 0 0 10px;cursor: pointer;">
 					<liferay-ui:message key="pccc-TN-tailieubanve" />
 				</a>
-			</label>
+			</legend>
 				<div id="div-draw">
 					<table id="adddraw" class="taglib-search-iterator table-pml" cellspacing="0" width="100%" style="float: left;border-right: 1px solid #60BFFC;">	
 					<tr class="portlet-section-header results-header" >
@@ -330,7 +330,7 @@ window.onload = function () {
 <ul>
 	<li style="width: 100%">
 	<fieldset class="filborder">
-			<label class="laborder" style="float: left;">
+			<legend class="laborder" style="float: left;">
 			<span onclick="showHideSortFile()" style="float: left;">
 					<div id="up-st"><img style="cursor: pointer;" src="/html/themes/sgs-portal-skin/images/imgbasic/up.png" /></div>
 					<div id="down-st" style="display: none;">
@@ -340,7 +340,7 @@ window.onload = function () {
 				<a class="style-top-title"	onclick="showHideSortFile()" style="float: left;padding: 2px 0 0 10px;cursor: pointer;">
 					<liferay-ui:message	key='pccc-TN-trinhtuxuly' />
 				</a>
-			</label>
+			</legend>
 			<div id="div-sort">
 			<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%" style="float: left;border-right: 1px solid #60BFFC;">	
 					<tr class="portlet-section-header results-header" >

@@ -1,18 +1,20 @@
 <%@ include file="/html/portlet/ext/pcccdocumentsendprocess/init.jsp"%>
 
-<%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
-<%@page import="com.sgs.portlet.pmllevelsend.service.persistence.PmlEdmLevelSendUtil"%>
 <%@page import="com.sgs.portlet.pcccdocumentsendprocess.search.PcccDocumentSendProcessSearch"%>
 <%@page import="com.sgs.portlet.pcccdocumentsendprocess.search.PcccDocumentSendProcessSearchDisplayTerms"%>
 
-<%@page import="com.sgs.portlet.pmllevelsend.model.PmlEdmLevelSend"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
 <%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentRecordTypeUtil"%>
 <%@page import="java.util.ArrayList"%>
 
-<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType"%>
-<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
+<%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
+<%@page import="com.sgs.portlet.department.model.Department"%>
+<%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
 
 <%
@@ -26,7 +28,9 @@
 	if (vtxulythayldvp || vtxulythayldb) {
 %>	
 
-	<select onchange="viewListDocumentSendXLT(this.value)"  name="<portlet:namespace /><%=PcccDocumentSendProcessSearchDisplayTerms.LOAISOCONGVAN %>" style="width: 100px;">
+	
+
+<select onchange="viewListDocumentSendXLT(this.value)"  name="<portlet:namespace /><%=PcccDocumentSendProcessSearchDisplayTerms.LOAISOCONGVAN %>" style="width: 100px;">
 <% } else { %>
 	<select onchange="viewListDocumentSend(this.value)" name="<portlet:namespace /><%= PcccDocumentSendProcessSearchDisplayTerms.LOAISOCONGVAN %>" style="width: 100px;">
 <% } %>
@@ -34,12 +38,12 @@
 	<%
 		// phmphuc update loai so van ban - 11/11/2010
 		// lay loai VB thuoc VB den
-		List<PmlEdmDocumentType> documentTypeList = new ArrayList<PmlEdmDocumentType>();
-		PmlEdmDocumentType documentType = null;
+		//List<PmlEdmDocumentType> documentTypeList = new ArrayList<PmlEdmDocumentType>();
+		//PmlEdmDocumentType documentType = null;
 		//List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
 		//PmlEdmDocumentRecordType recordType = null; 
-		try {
-			documentTypeList = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
+		//try {
+			//documentTypeList = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
 			
 			// lay so VB theo loai VB
 			/*
@@ -53,9 +57,9 @@
 				} catch (Exception e1) { }
 			}
 			*/
-		} catch (Exception e) {
-			documentTypeList = new ArrayList<PmlEdmDocumentType>();
-		}
+		//} catch (Exception e) {
+			//documentTypeList = new ArrayList<PmlEdmDocumentType>();
+		//}
 		
 		/*
 		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = null;
@@ -73,16 +77,35 @@
 			PmlEdmDocumentRecordType pmlDocumentRecordType = pmlEdmDocumentRecordTypeList.get(i);
 			String selected = displayTerms.getLoaiSoCongVan() == pmlDocumentRecordType.getDocumentRecordTypeId() ? "selected" : "";
 		*/	
-		for (int i = 0; i < documentTypeList.size(); i++) {
-			documentType = documentTypeList.get(i);
-			String selected = displayTerms.getLoaiSoCongVan() == documentType.getDocumentTypeId() ? "selected" : "";
+		
+		/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int yearSearch = calendar.get(Calendar.YEAR);
+		
+		long userId = PortalUtil.getUserId(renderRequest);
+		PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userId);		
+		Department department = null;
+		try {
+			department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+		} catch (Exception e) { }
+		
+		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+		if (department != null) {
+			pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), yearSearch);
+		}
+		// end phmphuc update 16/02/2011
+		
+		for (int i = 0; i < pmlEdmDocumentRecordTypeList.size(); i++) {
+			PmlEdmDocumentRecordType documentRecordType = pmlEdmDocumentRecordTypeList.get(i);
+			String selected = displayTerms.getLoaiSoCongVan() == documentRecordType.getDocumentRecordTypeId() ? "selected" : "";
 		
 	%>		
-			<option <%= selected %> value="<%= portletURLStringFilter + "&" + PcccDocumentSendProcessSearchDisplayTerms.LOAISOCONGVAN + "=" + documentType.getDocumentTypeId() %>" > 
-				<%= documentType.getDocumentTypeName() %>
+			<option <%= selected %> value="<%= portletURLStringFilter + "&" + 
+				PcccDocumentSendProcessSearchDisplayTerms.LOAISOCONGVAN + "=" + documentRecordType.getDocumentRecordTypeId() %>" > 
+				<%= documentRecordType.getDocumentRecordTypeName() %>
 			</option>
 	<%		
 		}
-		
 	%>
 </select>

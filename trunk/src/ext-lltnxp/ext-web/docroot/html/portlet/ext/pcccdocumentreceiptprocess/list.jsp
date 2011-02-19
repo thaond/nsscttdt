@@ -271,9 +271,6 @@ long statusIdDangXuLy = ParamUtil.getLong(renderRequest, "statusIdDangXuLy");
 		rowURL.setParameter("struts_action", "/sgs/pcccdocumentreceiptprocess/detail");
 		rowURL.setParameter("documentReceiptId", String.valueOf(documentReceiptId));
 		rowURL.setParameter(com.sgs.liferay.jbpm.util.Constants.WORKFLOW_RENDER, "true");				
-		// minh update 20110119
-		rowURL.setParameter("redirect", portletURLRedirect.toString()+"&statusId="+String.valueOf(statusId)+"&hienTrang="+hienTrang + "&"+ searchContainer.getCurParam() +"="+ searchContainer.getCurValue() +"&statusIdDangXuLy=" + String.valueOf(statusIdDangXuLy));
-		// end minh update 20110119
 		rowURL.setParameter("statusId", String.valueOf(statusId));	
 		// minh update 20110119
 		rowURL.setParameter("statusIdDangXuLy", String.valueOf(statusIdDangXuLy));	
@@ -281,6 +278,9 @@ long statusIdDangXuLy = ParamUtil.getLong(renderRequest, "statusIdDangXuLy");
 		rowURL.setParameter("tabChung", tabChung);	
 		rowURL.setParameter("hienTrang", hienTrang);
 		rowURL.setParameter("cachThucXuLy", cachThucXuLy);
+		// minh update 20110119
+		rowURL.setParameter("redirect", portletURLRedirect.toString()+"&statusId="+String.valueOf(statusId)+"&hienTrang="+hienTrang + "&"+ searchContainer.getCurParam() +"="+ searchContainer.getCurValue() +"&statusIdDangXuLy=" + String.valueOf(statusIdDangXuLy));
+		// end minh update 20110119
 		
 		// yenlt update chuc nang rut lai 20101119
 		boolean rutLai = false;

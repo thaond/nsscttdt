@@ -126,6 +126,27 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 
 <table width="100%" cellspacing="0">
 	<tr>
+		<td><label><liferay-ui:message key="pccc-cvdtn-socongvan"/>:</label></td>
+		<td>
+			<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:96%" onchange="changeDocumentRecordType();">
+				<logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
+			    	<option <%= Integer.parseInt(documentRecordTypeId) == pmlEdmDocumentRecordType.getDocumentRecordTypeId() ? "selected" : ""%> 
+			    			value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"><%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %></option>
+	  			</logic:iterate>
+			</select>
+	  	</td>
+		<td width="18%"><div align="left"><label><liferay-ui:message key="pccc-cvdtn-loaicongvan"/>:</label></div></td>
+		<td width="32%">
+	    	<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:96%" onchange="changeDocumentType();">
+	    		<logic:iterate id="documentType" name="documentTypes" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
+			    	<option <%= documentReceiptDTO.getDocumentTypeName().equals(documentType.getDocumentTypeName()) ? "selected" : ""%> 
+			    			value="<%= documentType.getDocumentTypeId() %>"><%=documentType.getDocumentTypeName() %></option>
+     			</logic:iterate>
+	    	</select>
+		</td>
+	 </tr>
+
+	<tr>
   		<td><liferay-ui:message key="pccc-cvdtn-soCVden"/>&nbsp;:</td>
 		<td>
 			<input type="text" name="<portlet:namespace/>numberDocumentReceipt" id="soCVdencvdtn" style="width:92%" 
@@ -138,15 +159,6 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
   	</tr>
   	
   	<tr>
-		<td><label><liferay-ui:message key="pccc-cvdtn-socongvan"/>:</label></td>
-		<td>
-			<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:96%" onchange="changeDocumentRecordType();">
-				<logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
-			    	<option <%= Integer.parseInt(documentRecordTypeId) == pmlEdmDocumentRecordType.getDocumentRecordTypeId() ? "selected" : ""%> 
-			    			value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"><%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %></option>
-	  			</logic:iterate>
-			</select>
-	  	</td>
 		<td ><liferay-ui:message key="pccc-cvdtn-capgoi"/>&nbsp;:</td>
 	    <td>
 	      	<select name="<portlet:namespace/>levelSendId" id="capgoicvdtn" style="width:96%" onchange="changeLevelSend()">
@@ -158,18 +170,6 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 		      	</logic:iterate>
 	      	</select>
 	    </td>
-	 </tr>
-  	
-  	<tr>
-	    <td width="18%"><div align="left"><label><liferay-ui:message key="pccc-cvdtn-loaicongvan"/>:</label></div></td>
-		<td width="32%">
-	    	<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:96%" onchange="changeDocumentType();">
-	    		<logic:iterate id="documentType" name="documentTypes" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
-			    	<option <%= documentReceiptDTO.getDocumentTypeName().equals(documentType.getDocumentTypeName()) ? "selected" : ""%> 
-			    			value="<%= documentType.getDocumentTypeId() %>"><%=documentType.getDocumentTypeName() %></option>
-     			</logic:iterate>
-	    	</select>
-		</td>
 		<td ><liferay-ui:message key="pccc-cvdtn-noiphathanh"/><font color="red">(*)</font>&nbsp;:</td>
 		<td>
 			<div>
@@ -333,7 +333,7 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 %>
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pcccdocumentsend-taptindinhkem"/></label>
+		<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-taptindinhkem"/></legend>
 		<table id="recentFile" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">
 			<tr class="portlet-section-header results-header">
 				<td width="35px" align="center"><liferay-ui:message key="pccc-TN-stt"/></td>
@@ -358,7 +358,7 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 	} 
 %>
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">
 		<tr class="portlet-section-header results-header" >
 			<td width="" ><liferay-ui:message key="document_attached_file_title" /></td>

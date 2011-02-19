@@ -36,28 +36,63 @@ window.onload = function () {
 				return noiNhan;
 			}
 		});
-		
-		documentSendUtilClient.getSignerName( function (data){
+	// vu close code 20110212
+		//documentSendUtilClient.getSignerName( function (data){
+			//if (data.length > 0) {
+				//nguoiKy = [data.length];
+				//for ( var i = 0; i < data.length; i++) {
+					//nguoiKy[i] = data[i] + "";			
+				//}
+				//return nguoiKy;
+			//}
+			
+		//});
+	// end vu close code 20110212
+	
+	// vu update 20110212  chon nguoi ki van ban se hien thi them chuc vu
+		documentSendUtilClient.getSigner( function (data){
 			if (data.length > 0) {
 				nguoiKy = [data.length];
 				for ( var i = 0; i < data.length; i++) {
-					nguoiKy[i] = data[i] + "";			
+					nguoiKy[i] = data[i].userName + "";					
 				}
 				return nguoiKy;
 			}
 			
 		});
+				
+	// end vu update 20110212
 		
 	dwr.engine.endBatch({
 	  async:false
 	});
 
 
+	// vu update 20110212  chon nguoi ki van ban se hien thi them chuc vu
+			function chucVu(){
+			var signer = document.getElementById('signer').value;
+			var chucVu = "";
+			dwr.engine.beginBatch();
+			documentSendUtilClient.getSigner( function (data){
+				if (data.length > 0) {				
+					for ( var i = 0; i < data.length; i++) {
+						if(data[i].userName == signer){		
+							chucVu = data[i].position;
+							break;
+						}						
+					}				
+				}
+				
+			});
+			dwr.engine.endBatch({
+				  async:false
+				});
+			document.getElementById('position').value = chucVu;
+			
+		}
+	// end vu update 20112012
+	
 	$().ready(function() {
-		jQuerythoind("#signer").autocomplete(nguoiKy, {		
-			minChars: 0,
-			matchContains: true,
-			autoFill: true});
 		jQuerythoind("#receiveplace").autocomplete(noiNhan, {
 			multiple: true,
 			multipleSeparator: '; ',
@@ -65,6 +100,12 @@ window.onload = function () {
 			matchContains: true,
 			autoFill: true}
 			);
+		$jq("#signer").autocomplete({
+			source: nguoiKy,
+			select: function(even, ui){
+				setTimeout('chucVu()',150);	
+			}
+			});
 	});
 </script>
 <portlet:actionURL var="add">
@@ -82,20 +123,21 @@ window.onload = function () {
 		// end update vu
 %>
 		<form autocomplete="off" name="formdocumentsend" action="<%=add %>" enctype="multipart/form-data" onsubmit="return validateSendDocReceipt()" method="post">
+		<input type="hidden" id="userIdLogin" value="<%= String.valueOf(editor.getUserId()) %>">
 		<div class="title_categ"><liferay-ui:message key="soan-cong-van-di"/></div>
 		<div class="boxcontent">
 		
 		<table width="100%" cellspacing="0">
+		
 		<tr>
-			<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.creator"/>&nbsp;:</label></div></td>
-			<td width="34%"><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>editorId" id="nguoitaocvdtn" value="<%= username %>"></td>
-		    <td width="16%"><div align="left"><label><liferay-ui:message key="receipt.docrectype"/><font color="#FF0000" size="1">(*)</font>&nbsp;:</label></div></td>
+			<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.docrectype"/><font color="#FF0000" size="1">(*)</font>&nbsp;:</label></div></td>
 		    <td>
-				<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:99%" onchange="changeDocumentRecordType()">
+				<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:60%" onchange="changeDocumentRecordType()">
 		        	<logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
 		      			<option value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"> <%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %> </option>
 		      		</logic:iterate>
-		      	</select>    	      	
+		      	</select>  		      	
+		      	   
 		    	<script language="javascript">
 		    		// Mac dinh chon so cong van
 		    		var objDRType = document.getElementById("socongvancvdtn");
@@ -103,23 +145,8 @@ window.onload = function () {
 		    			objDRType.value = "2";
 		    		} // end if 
 		    	</script>
+		    	<liferay-ui:message key="so-cua-phong"/><input id="soVanBanCuaPhong" name="<portlet:namespace/>soVanBanCuaPhong" type="checkbox" onclick="loadDocumentRecordType()"/>
 		    </td>
-		    <%-- phmphuc close: 14/01/2011
-		    <td width="16%"><div align="left"><label><liferay-ui:message key="receipt.doctype"/><font color="#FF0000" size="1">(*)</font>:</label></div></td>
-		    <td>
-			    <select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:99%"  onchange="getDocumentRecordByDocTypeId();">
-			    	<logic:iterate id="pmlEdmDocumentType" name="pmlEdmDocumentTypeListSend" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
-		      			<option value="<%= pmlEdmDocumentType.getDocumentTypeId() %>"> <%= pmlEdmDocumentType.getDocumentTypeName() %> </option>
-		      		</logic:iterate>
-			    </select>
-		    </td>
-		    --%>
-		    <!-- end phmphuc update 14/01/2010 -->
-		</tr>
-		
-		<tr>
-			<td><div align="left"><label><liferay-ui:message key="receipt.department"/>&nbsp;:</label></div></td>
-			<td><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>department" id="dept" value='<%= ((Department) renderRequest.getAttribute("department")).getDepartmentsName() %>'></td>
 		    <td><div align="left"><label><liferay-ui:message key="receipt.doctype"/><font color="#FF0000" size="1">(*)</font>&nbsp;:</label></div></td>
 		    <td>
 		    	<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:99%" >
@@ -135,17 +162,26 @@ window.onload = function () {
 		    --%>
 		    <!-- end phmphuc update 14/01/2010 -->
 		</tr>
+		<tr>
+			<td width="16%"><div align="left"><label><liferay-ui:message key="nguoi-soan"/>&nbsp;:</label></div></td>
+			<td width="34%"><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>editorId" id="nguoitaocvdtn" value="<%= username %>"></td>
+			<td><div align="left"><label><liferay-ui:message key="receipt.department"/>&nbsp;:</label></div></td>
+			<td><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>department" id="dept" value='<%= ((Department) renderRequest.getAttribute("department")).getDepartmentsName() %>'></td>
+		    
+		    <%-- phmphuc close: 14/01/2011
+		    <td width="16%"><div align="left"><label><liferay-ui:message key="receipt.doctype"/><font color="#FF0000" size="1">(*)</font>:</label></div></td>
+		    <td>
+			    <select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:99%"  onchange="getDocumentRecordByDocTypeId();">
+			    	<logic:iterate id="pmlEdmDocumentType" name="pmlEdmDocumentTypeListSend" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
+		      			<option value="<%= pmlEdmDocumentType.getDocumentTypeId() %>"> <%= pmlEdmDocumentType.getDocumentTypeName() %> </option>
+		      		</logic:iterate>
+			    </select>
+		    </td>
+		    --%>
+		    <!-- end phmphuc update 14/01/2010 -->
+		</tr>
 		
 		<tr>
-			<td><div align="left"><label><liferay-ui:message key="receipt.receiveplace"/>&nbsp;:</label></div></td>
-			<td>		
-				<input style="width:72.5%" type="text" name="<portlet:namespace/>receivingPlace" id="receiveplace"  >
-				
-			    <input type="hidden" id="issuingPlaceId"  name="<portlet:namespace />issuingPlaceId">
-			   	<input  id="btn_receiveplace" type="button" value="..." onclick="mypopupIssuingplace()" style="width: 15%">
-			
-			</td>
-		
 			<td><div align="left"><label><liferay-ui:message key="receipt.confidentallevelid"/><font color="#FF0000" size="1">(*)</font>&nbsp;:</label></div></td>
 			<td>
 				<select name="<portlet:namespace/>confidentialLevelId" id="domatcvdtn" style="width:99%">
@@ -154,18 +190,6 @@ window.onload = function () {
 					</logic:iterate>
 				</select>
 			</td>
-		</tr>
-			  
-		<tr>
-			<td><div align="left"><label><liferay-ui:message key="receipt.signer"/>&nbsp;:</label></div></td>
-			<td>
-			
-				<input type="text" name="<portlet:namespace/>signerName" id="signer" style="width: 72.5%" >	
-				<input type="hidden" id="signerId"  name="<portlet:namespace />signerId" >
-				<input  id="btn_signer" type="button" value="..."  onclick="mypopupSigner()" style="width: 15%">
-			
-			</td>
-				    
 			<td><div align="left"><label><liferay-ui:message key="receipt.previlegenlevelid"/><font color="#FF0000" size="1">(*)</font>&nbsp;:</label></div></td>
 			<td>
 				<select name="<portlet:namespace/>privilegenLevelId" id="dokhancvdtn" style="width:99%">
@@ -175,16 +199,36 @@ window.onload = function () {
 				</select>
 			</td>
 		</tr>
-		
+			  
 		<tr>
+			<td><div align="left"><label><liferay-ui:message key="receipt.signer"/>&nbsp;:</label></div></td>
 			<td>
+			
+				<input type="text" name="<portlet:namespace/>signerName" id="signer" style="width: 72.5%" onchange="chucVu();">	
+				<input type="hidden" id="signerId"  name="<portlet:namespace />signerId" >
+				<input  id="btn_signer" type="button" value="..."  onclick="mypopupSigner()" style="width: 15%">
+			
+			</td>
+			
+		    <td>
 				<div align="left">
 					<label><liferay-ui:message key="receipt.position"/>&nbsp;:</label>
 				</div>
 			</td>
 			
 			<td><input style="width: 90%" type="text" maxlength="50" name="<portlet:namespace/>position" id="position" ></td>
-			    
+			
+		</tr>
+		
+		<tr>
+		<td>
+				<div align="left">
+					<label><liferay-ui:message key="receipt.docid"/>&nbsp;:</label>
+				</div>
+			</td>
+			<td>
+				<input style="width: 90%" type="text" maxlength="45" name="<portlet:namespace/>documentSendCode" id="docid" >
+			</td>
 			<td>
 				<div align="left">
 					<label><liferay-ui:message key="pccc-cvdtn-canphucdap"/>&nbsp;:</label>
@@ -196,14 +240,14 @@ window.onload = function () {
 		</tr>
 		
 		<tr>
-			<td>
-				<div align="left">
-					<label><liferay-ui:message key="receipt.docid"/>&nbsp;:</label>
-				</div>
-			</td>
-			<td>
-				<input style="width: 90%" type="text" maxlength="45" name="<portlet:namespace/>documentSendCode" id="docid" >
-			</td>
+			<td><div align="left"><label><liferay-ui:message key="receipt.receiveplace"/>&nbsp;:</label></div></td>
+			<td>		
+				<input style="width:72.5%" type="text" name="<portlet:namespace/>receivingPlace" id="receiveplace"  >
+				
+			    <input type="hidden" id="issuingPlaceId"  name="<portlet:namespace />issuingPlaceId">
+			   	<input  id="btn_receiveplace" type="button" value="..." onclick="mypopupIssuingplace()" style="width: 15%">
+			
+			</td>   
 			<td>
 				<div align="left">
 					<label><liferay-ui:message key="receipt.page"/>&nbsp;:</label>
@@ -270,7 +314,7 @@ window.onload = function () {
 		</table>
 		<br>
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-documentsent-filevanbandidinhkem" /></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-documentsent-filevanbandidinhkem" /></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 			<td><liferay-ui:message key="document_attached_file_title" /></td>

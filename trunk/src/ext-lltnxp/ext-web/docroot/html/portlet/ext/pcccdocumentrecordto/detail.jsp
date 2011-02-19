@@ -291,7 +291,7 @@
 	</table>
 	<br>
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 		<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
@@ -371,7 +371,7 @@ List<PmlEdmDocumentReceiptExtend> dREs = PmlEdmDocumentReceiptExtendUtil.findByD
 if (!dREs.isEmpty()) {
 %>
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></label>
+		<legend class="laborder"><liferay-ui:message key="information-extend-process-document-receipt"/></legend>
 		<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
@@ -446,7 +446,7 @@ Doc ds thay doi cach thuc xu ly -->
 %>
 <br>
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-XL-thongtinthaydoicachthucxuly"/></legend>
 		<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
@@ -559,7 +559,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 
 <c:if test="<%= !docRecIdsRelation.isEmpty() || !docSendIdsRelation.isEmpty() %>">
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+		<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 		<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 				

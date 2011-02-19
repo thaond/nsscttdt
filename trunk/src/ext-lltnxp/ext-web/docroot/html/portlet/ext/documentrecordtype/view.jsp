@@ -16,11 +16,14 @@
 
 	function addPmlEdmDocumentRecordType(url) {	
 		var valueName =  document.getElementById("<portlet:namespace/>recordname").value;
-		var valueCode =  document.getElementById("<portlet:namespace/>recordcode").value;
-		if (valueCode.trim () == "") {
-			alert('<liferay-ui:message key="vui-long-nhap-documenttype-code"/>');
-			document.getElementById("<portlet:namespace/>recordcode").focus();
-		} else if (valueName.trim () == "" ) {
+		// vu close code 20110212
+		//var valueCode =  document.getElementById("<portlet:namespace/>recordcode").value;		
+		//if (valueCode.trim () == "") {
+		//	alert('<liferay-ui:message key="vui-long-nhap-documenttype-code"/>');
+		//	document.getElementById("<portlet:namespace/>recordcode").focus();
+		//	} else
+			// end vu close code 20110212
+		if (valueName.trim () == "" ) {
 			alert('<liferay-ui:message key="vui-long-nhap-ten"/>');
 			document.getElementById("<portlet:namespace/>recordname").focus();
 		}
@@ -70,10 +73,10 @@
 	</portlet:actionURL>
 	
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="add-documentrecord" /></label>
+		<legend class="laborder"><liferay-ui:message key="add-documentrecord" /></legend>
 		<table cellspacing="0" width="100%">
 			<tr>
-				<td width="8%"><label><liferay-ui:message key="recordtype.code" /><font color="#FF0000" size="1">(*)</font>:&nbsp;</label></td>
+				<td width="8%"><label><liferay-ui:message key="recordtype.code" /></label></td>
 				<td width="20%">
 					<input id="<portlet:namespace/>recordcode" name="<portlet:namespace/>recordcode" style="width: 90%" type="text" value="" />
 				</td>

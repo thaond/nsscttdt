@@ -69,7 +69,7 @@
 </table>		
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="document-manager-send"/></label>
+		<legend class="laborder"><liferay-ui:message key="document-manager-send"/></legend>
 		<% 	for(AttactFileDocument attactFileDocument : attactFileDocuments){
 			String path = attactFileDocument.getAttactFileDocumentPath();
 			String title = (String)attactFileDocument.getAttactFileDocumentTitle().subSequence(0,attactFileDocument.getAttactFileDocumentTitle().indexOf("_"));

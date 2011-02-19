@@ -212,7 +212,7 @@
 <form>
 <div class="boxcontent">
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinchitiet"/></label>
+	<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinchitiet"/></legend>
 			<table width="100%" cellspacing="0">
 				<tr>
 					<td class="td-left" width="18%"><label><liferay-ui:message key="pccc-cvdtn-capgoi"/>: </label></td>
@@ -324,7 +324,7 @@
 </fieldset>
 <br>
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+	<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 	<div class="Scrollbarauto">
 		<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 							<tr class="portlet-section-header results-header" >

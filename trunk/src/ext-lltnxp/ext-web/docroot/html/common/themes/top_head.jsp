@@ -35,11 +35,6 @@
 
 <link href="<%= themeDisplay.getCDNHost() %><%= themeDisplay.getPathMain() %>/portal/css_cached?themeId=<%= themeDisplay.getTheme().getThemeId() %>&amp;colorSchemeId=<%= themeDisplay.getColorScheme().getColorSchemeId() %>&amp;t=<%= theme.getTimestamp() %>" type="text/css" rel="stylesheet" />
 
-<link href="/html/css/jstree/classic/style.css" type="text/css" rel="stylesheet" />
-<!-- 
--->
-<link href="/html/css/jqueryui/jquery.ui.all.css" type="text/css" rel="stylesheet" />
-
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.js"></script>
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery-ui.js"></script>
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.ui.position.js"></script>
@@ -53,6 +48,7 @@
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.jstree.js"></script>
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.cookie.js"></script>
 <script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="/html/js/jquery/1_4_2/jquery.ezpz_hint.js"></script>
 <script type="text/javascript">
 var $jq = jQuery.noConflict();
 if (!$jq) {

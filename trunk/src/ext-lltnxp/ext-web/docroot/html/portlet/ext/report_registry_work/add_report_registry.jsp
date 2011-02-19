@@ -62,7 +62,7 @@
 </table>	
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="result-work"/></label>
+		<legend class="laborder"><liferay-ui:message key="result-work"/></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 		   		<td><liferay-ui:message key="result-title-file" /></td>
@@ -77,7 +77,7 @@
 </fieldset>
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="program-work"/></label>
+		<legend class="laborder"><liferay-ui:message key="program-work"/></legend>
 		<table id="addfileupload1" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 		   		<td><liferay-ui:message key="program-title-file" /></td>

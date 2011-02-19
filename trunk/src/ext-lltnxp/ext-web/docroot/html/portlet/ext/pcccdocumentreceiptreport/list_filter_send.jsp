@@ -12,6 +12,14 @@
 <%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
 <%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
+<%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
+<%@page import="com.sgs.portlet.department.model.Department"%>
+<%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+
 <%
 	DocumentReportSendSearch searchContainer = (DocumentReportSendSearch)request.getAttribute("liferay-ui:search:searchContainer");
 	DocumentReportSendDisplayTerms displayTerms = (DocumentReportSendDisplayTerms) searchContainer.getDisplayTerms();
@@ -21,6 +29,7 @@
 <select onchange="viewListDocumentReport(this.value)" name="<portlet:namespace /><%= DocumentReportSendDisplayTerms.NHOMCONGVAN %>" style="width: 100px;">
 	<option value="<%= portletURLStringFilter %>"><liferay-ui:message key="pccc-cvdtn-tatca"/></option>
 	<%
+		/*
 		// phmphuc update loai so van ban - 11/11/2010
 		// lay loai VB thuoc VB den
 		List<PmlEdmDocumentType> documentTypeList = null;
@@ -42,6 +51,7 @@
 		} catch (Exception e) {
 			documentTypeList = new ArrayList<PmlEdmDocumentType>();
 		}	
+		*/
 		
 		/*
 		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = null;
@@ -52,6 +62,27 @@
 		}
 		*/
 		// end phmphuc update 11/11/2010	
+		
+		/* phmphuc update 10/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+
+		long userId = PortalUtil.getUserId(renderRequest);
+		PmlUser pmlUser = null;
+		Department department = null;
+		try {
+			pmlUser = PmlUserUtil.findByPrimaryKey(userId);
+			department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+		} catch (Exception e) { }
+		
+		if (department != null) {
+			try {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+			} catch (Exception e) { }
+		}
 		
 		int pmlEdmDocumentRecordTypeSize = pmlEdmDocumentRecordTypeList.size();
 		

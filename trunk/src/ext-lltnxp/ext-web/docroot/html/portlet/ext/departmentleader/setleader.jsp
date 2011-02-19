@@ -1,3 +1,6 @@
+<%@page import="com.sgs.portlet.documentdelegate.util.PmlDocumentDelegateUtil"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
 <%@page import="com.liferay.portal.kernel.language.LanguageUtil"%>
 <%@ include file="/html/portlet/ext/departmentleader/init.jsp" %>
 <%@page import="com.sgs.portlet.departmentleader.search.PmlUserLeaderSearch"%>
@@ -104,6 +107,11 @@
 		
 		// phmphuc update 27/05/2010
 		List<PmlUser> results = PmlUserLocalServiceUtil.findUserListByDepartment(departmentId, pmlUserLeaderSearch.getStart(), pmlUserLeaderSearch.getEnd());
+		Collections.sort(results, new Comparator<PmlUser>(){
+			public int compare(PmlUser o1, PmlUser o2) {
+				return PmlDocumentDelegateUtil.getFullName(o1.getUserId()).compareTo(PmlDocumentDelegateUtil.getFullName(o2.getUserId()));
+			}
+		});
 		int total = PmlUserLocalServiceUtil.countUserListByDepartment(departmentId);
 	
 		// List<PmlUserDTO> results = pmlUserDTOList; // phmphuc close 27/05/2010

@@ -21,7 +21,7 @@
 	<div class="title_categ"><liferay-ui:message key="cap-nhat-thong-tin"/></div>
 	<div class="boxcontent">
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pmluser-thong-tin-dang-nhap"/></label>
+		<legend class="laborder"><liferay-ui:message key="pmluser-thong-tin-dang-nhap"/></legend>
 		<table width="100%" cellspacing="0">
 			<tr>
 				<td width="15%"><liferay-ui:message key="screen-name" /> :</td>
@@ -35,7 +35,7 @@
 	</fieldset>
 	
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pmluser-thong-tin-ca-nhan"/></label>
+		<legend class="laborder"><liferay-ui:message key="pmluser-thong-tin-ca-nhan"/></legend>
 		<table width="100%" cellspacing="0">
 			<tr>
 				<td width="15%"><liferay-ui:message key="last-name" /> :</td>

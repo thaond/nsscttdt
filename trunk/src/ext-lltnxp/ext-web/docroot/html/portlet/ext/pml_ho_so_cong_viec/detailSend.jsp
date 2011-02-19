@@ -54,7 +54,7 @@ window.onload = function () {
 <div class="boxcontent">
 
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pccc-Chitiethoso"/></label>
+<legend class="laborder"><liferay-ui:message key="pccc-Chitiethoso"/></legend>
 <table width="100%" cellspacing="0">
 	<tr>
 		<td width="18%" class="td-left"><liferay-ui:message key="receipt.doctype"/>&nbsp;:</td>
@@ -149,7 +149,7 @@ window.onload = function () {
 %>
 <br/>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></legend>
 <div class="Scrollbarauto">
 	<table cellspacing="0" width="100%">
 	<tr>
@@ -179,7 +179,7 @@ window.onload = function () {
 %>
 <br/>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-quatrinhluanchuyencongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-quatrinhluanchuyencongvanden"/></legend>
 <div class="Scrollbarauto">
 	<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
@@ -249,7 +249,7 @@ for (int idxR = 0; idxR < (docRelations.isEmpty() ? 0 : docRelations.size()); id
 %>
 <c:if test="<%= !docRecIdsRelation.isEmpty() || !docSendIdsRelation.isEmpty() %>">
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 <div class="Scrollbarauto">
 			<%
 			if (!docRecIdsRelation.isEmpty()) {

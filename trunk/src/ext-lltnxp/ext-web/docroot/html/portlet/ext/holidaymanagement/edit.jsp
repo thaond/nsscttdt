@@ -68,7 +68,7 @@
 	if ("Holiday".equals(holidayType)) {
 %>
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="holiday-ngay-nghi-le" /></label>
+	<legend class="laborder"><liferay-ui:message key="holiday-ngay-nghi-le" /></legend>
 	<table id="holidayTable" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 			<td width="80%"><liferay-ui:message key="holiday-kieu-ngay-nghi" /></td>
@@ -90,7 +90,7 @@
 	} else {
 %>
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="holiday-ngay-nghi-trong-tuan" /></label>
+	<legend class="laborder"><liferay-ui:message key="holiday-ngay-nghi-trong-tuan" /></legend>
 		<table id="holidayTable" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 				<td width="25%" align="center"><liferay-ui:message key="holiday-nghi-ca-ngay" /></td>

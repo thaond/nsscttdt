@@ -222,7 +222,7 @@ window.onload = function () {
   </table>
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 		   		<td><liferay-ui:message key="document_attached_file_title" /></td>

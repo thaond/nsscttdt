@@ -102,7 +102,7 @@
 	%>
 	
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="them-quan-huyen" /></label>
+		<legend class="laborder"><liferay-ui:message key="them-quan-huyen" /></legend>
 		<table cellspacing="0" width="100%">
 			<tr>
 				<td width="15%"  align="right"><label><liferay-ui:message key="districtmanagement.code" /><font color="red">(*)</font>:&nbsp;</label></td>

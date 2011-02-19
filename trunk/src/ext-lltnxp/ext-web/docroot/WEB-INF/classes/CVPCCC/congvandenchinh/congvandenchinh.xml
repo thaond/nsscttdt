@@ -48,6 +48,12 @@
 				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler" />
 			</event>
 		</task>
+		<task name="chuyenvanthuphong:chuyenvanthuphong:chuyenphongban">
+			<assignment class="com.sgs.liferay.jbpm.handler.document.TokenActorIdAssignmentHandler"></assignment>
+			<event type="task-end">
+				<action class="com.sgs.liferay.jbpm.handler.MultiTaskEndActionHandler"></action>
+			</event>
+		</task>
 		
 		<transition to="choxacnhan" name="choghibutphe"></transition>
 		<transition to="chanhvanphong" name="chanhvanphong"></transition>

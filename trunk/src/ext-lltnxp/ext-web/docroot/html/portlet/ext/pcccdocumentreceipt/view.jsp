@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
 <%@ include file="/html/portlet/ext/pcccdocumentreceipt/init.jsp" %>
 <%@page import="com.sgs.portlet.document.workflow.DocumentReceiptPortletAction"%>
 <%@page import="com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec"%>
@@ -76,6 +78,28 @@ window.onload = function () {
 <div class="title_categ"><liferay-ui:message key="nhap-thong-tin-cong-van-den"/></div>
 <div class="boxcontent">
 <table width="100%" cellspacing="0">
+	<tr>
+		<td><label><liferay-ui:message key="pccc-cvdtn-socongvan"/>:</label></td>
+		<td>
+			<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:96%" onchange="changeDocumentRecordType();">
+				<logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
+	     			<option value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"> <%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %> </option>
+	  			 </logic:iterate>
+			</select>
+		</td>
+		<td width="18%"><div align="left"><label><liferay-ui:message key="pccc-cvdtn-loaicongvan"/>:</label></div></td>
+		<td width="32%">
+	    	<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:96%" onchange="changeDocumentType();">
+	    		<%--
+	    		<logic:iterate id="pmlEdmDocumentType" name="pmlEdmDocumentTypeListReceipt" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
+	     			<option value="<%= pmlEdmDocumentType.getDocumentTypeId() %>"> <%= pmlEdmDocumentType.getDocumentTypeName() %> </option>
+	  			</logic:iterate>
+	  			--%> 	
+	    	</select>
+		</td>
+	</tr>
+
+
   	<tr>
   		<td><liferay-ui:message key="pccc-cvdtn-soCVden"/>&nbsp;:</td>
 		<td>
@@ -86,14 +110,7 @@ window.onload = function () {
   	</tr>
   	
   	<tr>
-		<td><label><liferay-ui:message key="pccc-cvdtn-socongvan"/>:</label></td>
-		<td>
-			<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:96%" onchange="changeDocumentRecordType();">
-				<logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
-	     			<option value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"> <%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %> </option>
-	  			 </logic:iterate>
-			</select>
-		</td>
+		
 		<td ><liferay-ui:message key="pccc-cvdtn-capgoi"/>&nbsp;:</td>
 	    <td>
 	      	<select name="<portlet:namespace/>levelSendId" id="capgoicvdtn" style="width:96%" onchange="changeLevelSend()">
@@ -103,19 +120,7 @@ window.onload = function () {
 	      		</logic:iterate>
 	      	</select>
 	    </td>
-	</tr>
-  
-  	<tr>
-	    <td width="18%"><div align="left"><label><liferay-ui:message key="pccc-cvdtn-loaicongvan"/>:</label></div></td>
-		<td width="32%">
-	    	<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:96%" onchange="changeDocumentType();">
-	    		<%--
-	    		<logic:iterate id="pmlEdmDocumentType" name="pmlEdmDocumentTypeListReceipt" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
-	     			<option value="<%= pmlEdmDocumentType.getDocumentTypeId() %>"> <%= pmlEdmDocumentType.getDocumentTypeName() %> </option>
-	  			</logic:iterate>
-	  			--%> 	
-	    	</select>
-		</td>
+	
 		<td ><liferay-ui:message key="pccc-cvdtn-noiphathanh"/><font color="red">(*)</font>&nbsp;:</td>
 		<td>
 			<div>
@@ -142,7 +147,7 @@ window.onload = function () {
 	    </td>
 		<td><liferay-ui:message key="pccc-cvdtn-ngayden"/>:</td>
 		<td align="left">
-    		<input style="width: 65px;" type="text" name="<portlet:namespace/>dateArrive" id="ngaydencvdtn"  value='<%=new java.text.SimpleDateFormat("dd/MM/yyyy").format( new Date().getTime()) %>'  maxlength="10" onblur="getGeneralNumberDocumentReceipt();">
+    		<input style="width: 65px;" type="text" name="<portlet:namespace/>dateArrive" id="ngaydencvdtn"  value='<%=new java.text.SimpleDateFormat("dd/MM/yyyy").format( new Date().getTime()) %>'  maxlength="10" >
 	   		<div id="calendarImage" style="display: none;"><img id="cal-button-dateArrive" src="/html/images/cal.gif" onclick="callCalendar('ngaydencvdtn','cal-button-dateArrive')"/></div>
 		   	<label><liferay-ui:message key="hour"/>:</label>
 		   	<input style="width: 50px;" readonly="readonly" type="text" name="dateArriveTime" id="dateArriveTime" value="">
@@ -226,7 +231,16 @@ window.onload = function () {
 					<td ><liferay-ui:message key="pml_tieude"/></td>
 				</tr>
 	      	<%
-			List<PmlHoSoCongViec> pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+	      	//minh upate 20100210
+			//List<PmlHoSoCongViec> pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+	      	List<PmlHoSoCongViec> pmlHoSoCongViecList = null;
+	      	try {
+		      	long userIdLogin = PortalUtil.getUserId(renderRequest);
+				pmlHoSoCongViecList = PmlHoSoCongViecUtil.findByUserId_HoatDong(userIdLogin,"1");
+	      	} catch (Exception e) {
+	      		pmlHoSoCongViecList = new ArrayList<PmlHoSoCongViec>();
+	      	}
+			//end minh upate 20100210
 			int pmlHoSoCongViecSize = pmlHoSoCongViecList.size();
 			for (int i = 0; i < pmlHoSoCongViecSize; i ++) {
 				PmlHoSoCongViec pmlHoSoCongViec = pmlHoSoCongViecList.get(i);
@@ -264,7 +278,7 @@ window.onload = function () {
 </table>
 
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></label>
+	<legend class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></legend>
 	<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 		<tr class="portlet-section-header results-header" >
 	   		<td><liferay-ui:message key="document_attached_file_title" /></td>

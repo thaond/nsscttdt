@@ -113,6 +113,10 @@
     <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.trans">
         <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/trans.jsp"/>
     </definition>
+    <!-- chuyen phat hanh -->
+     <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.movetopublish">
+        <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/movetopublish.jsp"/>
+    </definition>
     <!-- Cho so va phat hanh -->
     <definition extends="portlet" name="portlet.sgs.pcccdocumentsendprocess.saveAndPublish">
         <put name="portlet_content" value="/portlet/ext/pcccdocumentsendprocess/saveAndPublish.jsp"/>
@@ -910,5 +914,14 @@
     </definition>
     <definition extends="portlet" name="portlet.sgs.vanbannoibo.view">
         <put name="portlet_content" value="/portlet/ext/vanbannoibo/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.vanbannoibo.tiepnhanvanbannoibo">
+        <put name="portlet_content" value="/portlet/ext/vanbannoibo/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.sovanbannoibo.view">
+        <put name="portlet_content" value="/portlet/ext/sovanbannoibo/view.jsp"/>
+    </definition>
+    <definition extends="portlet" name="portlet.sgs.loaivanbannoibo.view">
+        <put name="portlet_content" value="/portlet/ext/loaivanbannoibo/view.jsp"/>
     </definition>
 </tiles-definitions>

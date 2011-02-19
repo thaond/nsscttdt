@@ -240,7 +240,7 @@
 %>
 <br>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-traloichocongvanden"/></legend>
 <table cellspacing="0" width="100%">
 			<tr>
 				<td class="td-left" width="18%">
@@ -262,7 +262,7 @@
 %>
 <br/>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-quatrinhluanchuyencongvanden"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-quatrinhluanchuyencongvanden"/></legend>
 <div class="Scrollbarauto">
 <table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 				<tr class="portlet-section-header results-header" >

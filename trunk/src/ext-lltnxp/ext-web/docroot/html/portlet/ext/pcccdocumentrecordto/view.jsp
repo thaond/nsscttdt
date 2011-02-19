@@ -20,7 +20,8 @@
 <%@page import="com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel"%>
 <%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmConfidentialLevelUtil"%>
 
-<portlet:actionURL var="filter">
+
+<%@page import="com.sgs.portlet.document.model.PmlDocumentReceiptLog"%><portlet:actionURL var="filter">
 	<portlet:param name="struts_action" value="/sgs/pcccdocumentrecordto/view" />
 </portlet:actionURL>
 
@@ -59,6 +60,8 @@
 	<%@ include file="/html/portlet/ext/pcccdocumentrecordto/docrecordto_search_results.jspf" %>
 
 	<div class="separator"><!-- --></div>
+	<input type="hidden" name="<portlet:namespace/>orderByCol" value="<%= searchContainer.getOrderByCol() %>"/>
+	<input type="hidden" name="<portlet:namespace/>orderByType" value="<%= searchContainer.getOrderByType() %>"/>
 
 	<%
 	// Doc do mat va luu thanh 3 list: khong gioi han xem, phai tham gia xu ly va khong can tham gia xu ly
@@ -127,10 +130,11 @@
 
 	for (int idx = 0; idx < results.size(); idx++) {
 		PmlEdmDocumentReceipt docRecItem = (PmlEdmDocumentReceipt)results.get(idx);
+		long documentReceiptId = docRecItem.getDocumentReceiptId();
 
 		docRecItem = docRecItem.toEscapedModel();
 
-		ResultRow row = new ResultRow(docRecItem, docRecItem.getDocumentReceiptId(), idx);
+		ResultRow row = new ResultRow(docRecItem, documentReceiptId, idx);
 
 		PortletURL rowURL = renderResponse.createRenderURL();
 
@@ -138,7 +142,7 @@
 
 		rowURL.setParameter("struts_action", "/sgs/pcccdocumentrecordto/detail");
 		rowURL.setParameter("redirect", currentURL);
-		rowURL.setParameter("docRecId", String.valueOf(docRecItem.getDocumentReceiptId()));
+		rowURL.setParameter("docRecId", String.valueOf(documentReceiptId));
 		
 		boolean showDetail = false;
 		
@@ -151,7 +155,7 @@
 		else if (docRecItem.getConfidentialLevelId().length() > 0) {
 			if (confNoNeedHaveProcessIds != null && !confNoNeedHaveProcessIds.isEmpty() && 
 					confNoNeedHaveProcessIds.contains(docRecItem.getConfidentialLevelId())) {
-		String viewDepIdDetail = arlDepIdForDocIdList.get(arlDocId.indexOf(docRecItem.getDocumentReceiptId()));
+		String viewDepIdDetail = arlDepIdForDocIdList.get(arlDocId.indexOf(documentReceiptId));
 		if (viewAllDoc == true) {
 			showDetail = true;
 		}
@@ -168,16 +172,16 @@
 		}
 		// Cho phep nguoi dung xem duoc chi tiet nhung van ban do minh xu ly
 		if (showDetail == false) {
-			if (!PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Processor(docRecItem.getDocumentReceiptId(), userId).isEmpty()) {
+			if (!PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Processor(documentReceiptId, userId).isEmpty()) {
 				showDetail = true;
 			}
-			else if (!PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Receiver(docRecItem.getDocumentReceiptId(), userId).isEmpty()) {
+			else if (!PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Receiver(documentReceiptId, userId).isEmpty()) {
 				showDetail = true;
 			}
 		}
 
 		// Stt
-		row.addText(String.valueOf(idx + 1));
+		row.addText((idx + 1) + ".");
 
 		// So noi bo
 		if (showDetail == true) {
@@ -186,26 +190,6 @@
 		else {
 			row.addText(docRecItem.getNumberDocumentReceipt());
 		}
-
-		// So hieu goc
-		if (showDetail == true) {
-			row.addText(docRecItem.getDocumentReference(), rowURL);
-		}
-		else {
-			row.addText(docRecItem.getDocumentReference());
-		}
-
-		// Loai van ban
-		String docTypeName = "";
-		if (docRecItem.getDocumentTypeId() > 0) {
-			try {
-				docTypeName = PmlEdmDocumentTypeUtil.findByPrimaryKey(docRecItem.getDocumentTypeId()).getDocumentTypeName();
-			}
-			catch (Exception ex) {
-				// Do nothing
-			}
-		}
-		row.addText(docTypeName);
 		
 		// Ngay van ban den
 		if (docRecItem.getDateArrive() != null) {
@@ -214,15 +198,7 @@
 		else {
 			row.addText("");
 		}
-
-		// Ngay ban hanh
-		if (docRecItem.getIssuingDate() != null) {
-			row.addText(String.valueOf(format.format(docRecItem.getIssuingDate())));
-		}
-		else {
-			row.addText("");
-		}
-
+		
 		// Noi ban hanh
 		String issPlaceDesc = "";
 		if (docRecItem.getIssuingPlaceId().trim().length() > 0) {
@@ -238,8 +214,63 @@
 		}
 		row.addText(issPlaceDesc);
 		
+		// So hieu goc
+		if (showDetail == true) {
+			row.addText(docRecItem.getDocumentReference(), rowURL);
+		}
+		else {
+			row.addText(docRecItem.getDocumentReference());
+		}
+
+		// Ngay ban hanh
+		if (docRecItem.getIssuingDate() != null) {
+			row.addText(String.valueOf(format.format(docRecItem.getIssuingDate())));
+		}
+		else {
+			row.addText("");
+		}
+		
+		// Loai van ban
+		String docTypeName = "";
+		if (docRecItem.getDocumentTypeId() > 0) {
+			try {
+				docTypeName = PmlEdmDocumentTypeUtil.findByPrimaryKey(docRecItem.getDocumentTypeId()).getDocumentTypeName();
+			}
+			catch (Exception ex) {
+				// Do nothing
+			}
+		}
+		row.addText(docTypeName);
+
 		// Trich yeu
 		row.addText(docRecItem.getBriefContent());
+		
+		// don vi hoac nguoi nhan
+		String donViNhan = "";
+		String departmentId = docRecItem.getMainDepartmentProcessId();
+		if (departmentId != null && !departmentId.equals("")) {
+			try {
+				Department mainDepartment = DepartmentUtil.findByPrimaryKey(departmentId);
+				donViNhan = mainDepartment.getDepartmentsName();
+				
+				if (docRecItem.getMainUserProcessId() != 0) {
+					try {
+						donViNhan += " (" + PmlUserLocalServiceUtil.getFullName(docRecItem.getMainUserProcessId()) + ")";
+					} catch (Exception e) { }
+				}
+			} catch (Exception e) { }
+		}
+		row.addText(donViNhan);
+		
+		// ky nhan
+		PmlDocumentReceiptLog documentReceiptLog = null;
+		try {
+			documentReceiptLog = PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Transition(documentReceiptId, 1).get(0);
+			String kyNhan = PmlUserLocalServiceUtil.getFullName(documentReceiptLog.getProcesser());
+			row.addText(kyNhan);
+		} catch (Exception e) {
+			row.addText("");
+		}
 		
 		// Add result row
 		resultRows.add(row);

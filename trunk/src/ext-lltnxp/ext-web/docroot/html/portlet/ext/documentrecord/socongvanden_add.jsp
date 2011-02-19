@@ -156,7 +156,19 @@
 						
 						<%
 							String check = "";
-							
+						
+						// vu update 20110210
+							String disabled="";
+						
+						for (int i = 0; i < listDocumentRecordTo.size(); i++) {
+							if(documentrecordtype.getDocumentRecordTypeId() == listDocumentRecordTo.get(i).getDocumentRecordTypeId()
+										&& listDocumentRecordTo.get(i).getYearInUse().equalsIgnoreCase(new SimpleDateFormat("yyyy").format(new Date()))){
+								disabled="disabled";
+								break;
+								
+							}
+						}
+							// end vu update 20110210
 							for (int i = 0; i < listDocumentRecordTo.size(); i++) {
 								if ((int) documentrecordtype.getDocumentRecordTypeId() == listDocumentRecordTo.get(i).getDocumentRecordTypeId()) {
 									check = "checked=checked";
@@ -168,7 +180,7 @@
 							<tr class="${((k % 2) == 0) ? 'results-row' : 'tr_two results-row'} " >
 								<td align="center" id="<%= k %>" width="45px">
 									<input class="styled" type="checkbox" onclick="Liferay.Util.checkAllBox(<portlet:namespace />fm,'<portlet:namespace/>documentRecordTypes', checkallbox);"
-										<%= check %> name="<portlet:namespace/>documentRecordTypes" id="<%= k %>" value="<%= documentrecordtype.getDocumentRecordTypeId()%>" />
+									  <%= disabled %> <%= check %> name="<portlet:namespace/>documentRecordTypes" id="<%= k %>" value="<%= documentrecordtype.getDocumentRecordTypeId()%>" />
 								</td>
 								<td><%=  documentrecordtype.getDocumentRecordTypeName() %></td>
 							</tr>
