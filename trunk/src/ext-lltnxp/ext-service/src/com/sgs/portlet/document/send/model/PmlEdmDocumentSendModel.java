@@ -146,5 +146,11 @@ public interface PmlEdmDocumentSendModel extends BaseModel {
 
     public void setDocumentRecordTypeId(int documentRecordTypeId);
 
+    public boolean getIsDocOfDepartment();
+
+    public boolean isIsDocOfDepartment();
+
+    public void setIsDocOfDepartment(boolean isDocOfDepartment);
+
     public PmlEdmDocumentSend toEscapedModel();
 }

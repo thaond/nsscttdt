@@ -83,9 +83,56 @@ public class VanBanNoiBoLocalServiceUtil {
         return getService().updateVanBanNoiBo(vanBanNoiBo);
     }
 
+    public static java.util.List<com.sgs.portlet.vanbannoibo.model.VanBanNoiBo> getVanBanNoiBoByYear(
+        int year) throws com.liferay.portal.SystemException {
+        return getService().getVanBanNoiBoByYear(year);
+    }
+
     public static java.util.List<com.sgs.portlet.vanbannoibo.model.FileDinhKemVanBanNoiBo> getFileDinhKemVanBanNoiBos(
         long idVanBanNoiBo) throws com.liferay.portal.SystemException {
         return getService().getFileDinhKemVanBanNoiBos(idVanBanNoiBo);
+    }
+
+    public static void reIndex(long companyId,
+        com.sgs.portlet.vanbannoibo.model.VanBanNoiBo vanBanNoiBo)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        getService().reIndex(companyId, vanBanNoiBo);
+    }
+
+    public static com.sgs.portlet.vanbannoibo.model.VanBanNoiBo addVanBanNoiBo(
+        long companyId,
+        com.sgs.portlet.vanbannoibo.model.VanBanNoiBo vanBanNoiBo)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().addVanBanNoiBo(companyId, vanBanNoiBo);
+    }
+
+    public static com.sgs.portlet.vanbannoibo.model.VanBanNoiBo updateVanBanNoiBo(
+        long companyId,
+        com.sgs.portlet.vanbannoibo.model.VanBanNoiBo vanBanNoiBo)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        return getService().updateVanBanNoiBo(companyId, vanBanNoiBo);
+    }
+
+    public static void deleteVanBanNoiBo(long companyId,
+        com.sgs.portlet.vanbannoibo.model.VanBanNoiBo vanBanNoiBo)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        getService().deleteVanBanNoiBo(companyId, vanBanNoiBo);
+    }
+
+    public static void deleteVanBanNoiBo(long companyId, long vanBanNoiBoId)
+        throws com.liferay.portal.PortalException,
+            com.liferay.portal.SystemException {
+        getService().deleteVanBanNoiBo(companyId, vanBanNoiBoId);
+    }
+
+    public static void reIndex(java.lang.String[] ids)
+        throws com.liferay.portal.SystemException,
+            com.liferay.portal.kernel.search.SearchException {
+        getService().reIndex(ids);
     }
 
     public static VanBanNoiBoLocalService getService() {

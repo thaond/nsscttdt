@@ -471,6 +471,50 @@ public class PmlUserUtil {
             obc);
     }
 
+    public static java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong) throws com.liferay.portal.SystemException {
+        return getPersistence().findByIsVanThuPhong(isVanThuPhong);
+    }
+
+    public static java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByIsVanThuPhong(isVanThuPhong, start, end);
+    }
+
+    public static java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByIsVanThuPhong(isVanThuPhong, start, end, obc);
+    }
+
+    public static com.sgs.portlet.pmluser.model.PmlUser findByIsVanThuPhong_First(
+        boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException {
+        return getPersistence().findByIsVanThuPhong_First(isVanThuPhong, obc);
+    }
+
+    public static com.sgs.portlet.pmluser.model.PmlUser findByIsVanThuPhong_Last(
+        boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException {
+        return getPersistence().findByIsVanThuPhong_Last(isVanThuPhong, obc);
+    }
+
+    public static com.sgs.portlet.pmluser.model.PmlUser[] findByIsVanThuPhong_PrevAndNext(
+        long userId, boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException {
+        return getPersistence()
+                   .findByIsVanThuPhong_PrevAndNext(userId, isVanThuPhong, obc);
+    }
+
     public static java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException {
@@ -546,6 +590,11 @@ public class PmlUserUtil {
         getPersistence().removeByIsLeaderMetting(isLeaderMetting);
     }
 
+    public static void removeByIsVanThuPhong(boolean isVanThuPhong)
+        throws com.liferay.portal.SystemException {
+        getPersistence().removeByIsVanThuPhong(isVanThuPhong);
+    }
+
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
     }
@@ -596,6 +645,11 @@ public class PmlUserUtil {
     public static int countByIsLeaderMetting(boolean isLeaderMetting)
         throws com.liferay.portal.SystemException {
         return getPersistence().countByIsLeaderMetting(isLeaderMetting);
+    }
+
+    public static int countByIsVanThuPhong(boolean isVanThuPhong)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().countByIsVanThuPhong(isVanThuPhong);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

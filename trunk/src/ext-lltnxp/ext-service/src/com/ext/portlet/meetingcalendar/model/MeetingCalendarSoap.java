@@ -48,6 +48,7 @@ public class MeetingCalendarSoap implements Serializable {
     private boolean _evening;
     private int _stt;
     private boolean _prior;
+    private boolean _deleted;
 
     public MeetingCalendarSoap() {
     }
@@ -77,6 +78,7 @@ public class MeetingCalendarSoap implements Serializable {
         soapModel.setEvening(model.getEvening());
         soapModel.setStt(model.getStt());
         soapModel.setPrior(model.getPrior());
+        soapModel.setDeleted(model.getDeleted());
 
         return soapModel;
     }
@@ -294,5 +296,17 @@ public class MeetingCalendarSoap implements Serializable {
 
     public void setPrior(boolean prior) {
         _prior = prior;
+    }
+
+    public boolean getDeleted() {
+        return _deleted;
+    }
+
+    public boolean isDeleted() {
+        return _deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        _deleted = deleted;
     }
 }

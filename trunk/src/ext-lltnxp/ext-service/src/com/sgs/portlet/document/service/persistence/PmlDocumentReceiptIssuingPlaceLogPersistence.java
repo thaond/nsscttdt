@@ -113,6 +113,36 @@ public interface PmlDocumentReceiptIssuingPlaceLogPersistence {
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException;
 
+    public java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog findByDocId_First(
+        long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException;
+
+    public com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog findByDocId_Last(
+        long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException;
+
+    public com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog[] findByDocId_PrevAndNext(
+        long documentReceiptIssuingPlaceLogId, long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException;
+
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException;
@@ -137,12 +167,18 @@ public interface PmlDocumentReceiptIssuingPlaceLogPersistence {
     public void removeByDoc_Step(long documentReceiptId, int step)
         throws com.liferay.portal.SystemException;
 
+    public void removeByDocId(long documentReceiptId)
+        throws com.liferay.portal.SystemException;
+
     public void removeAll() throws com.liferay.portal.SystemException;
 
     public int countByDoc_Proc_Step(long documentReceiptId, long processor,
         int step) throws com.liferay.portal.SystemException;
 
     public int countByDoc_Step(long documentReceiptId, int step)
+        throws com.liferay.portal.SystemException;
+
+    public int countByDocId(long documentReceiptId)
         throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;

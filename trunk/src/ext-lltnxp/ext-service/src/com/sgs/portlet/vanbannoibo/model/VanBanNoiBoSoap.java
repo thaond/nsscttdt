@@ -28,13 +28,14 @@ import java.util.List;
 public class VanBanNoiBoSoap implements Serializable {
     private long _vanBanNoiBoId;
     private long _loaiVanBanNoiBo;
+    private long _soVanBanNoiBo;
     private Date _ngayTao;
     private Date _ngayKy;
     private String _trichYeu;
     private long _nguoiKy;
     private String _ghiChu;
-    private String _soVanBanNoiBo;
-    private String _soPhatSinhTheoNam;
+    private String _soVaoSoVanBanNoiBo;
+    private int _soPhatSinhTheoNam;
     private long _userId;
     private long _groupId;
     private long _companyId;
@@ -47,12 +48,13 @@ public class VanBanNoiBoSoap implements Serializable {
 
         soapModel.setVanBanNoiBoId(model.getVanBanNoiBoId());
         soapModel.setLoaiVanBanNoiBo(model.getLoaiVanBanNoiBo());
+        soapModel.setSoVanBanNoiBo(model.getSoVanBanNoiBo());
         soapModel.setNgayTao(model.getNgayTao());
         soapModel.setNgayKy(model.getNgayKy());
         soapModel.setTrichYeu(model.getTrichYeu());
         soapModel.setNguoiKy(model.getNguoiKy());
         soapModel.setGhiChu(model.getGhiChu());
-        soapModel.setSoVanBanNoiBo(model.getSoVanBanNoiBo());
+        soapModel.setSoVaoSoVanBanNoiBo(model.getSoVaoSoVanBanNoiBo());
         soapModel.setSoPhatSinhTheoNam(model.getSoPhatSinhTheoNam());
         soapModel.setUserId(model.getUserId());
         soapModel.setGroupId(model.getGroupId());
@@ -95,6 +97,14 @@ public class VanBanNoiBoSoap implements Serializable {
         _loaiVanBanNoiBo = loaiVanBanNoiBo;
     }
 
+    public long getSoVanBanNoiBo() {
+        return _soVanBanNoiBo;
+    }
+
+    public void setSoVanBanNoiBo(long soVanBanNoiBo) {
+        _soVanBanNoiBo = soVanBanNoiBo;
+    }
+
     public Date getNgayTao() {
         return _ngayTao;
     }
@@ -135,19 +145,19 @@ public class VanBanNoiBoSoap implements Serializable {
         _ghiChu = ghiChu;
     }
 
-    public String getSoVanBanNoiBo() {
-        return _soVanBanNoiBo;
+    public String getSoVaoSoVanBanNoiBo() {
+        return _soVaoSoVanBanNoiBo;
     }
 
-    public void setSoVanBanNoiBo(String soVanBanNoiBo) {
-        _soVanBanNoiBo = soVanBanNoiBo;
+    public void setSoVaoSoVanBanNoiBo(String soVaoSoVanBanNoiBo) {
+        _soVaoSoVanBanNoiBo = soVaoSoVanBanNoiBo;
     }
 
-    public String getSoPhatSinhTheoNam() {
+    public int getSoPhatSinhTheoNam() {
         return _soPhatSinhTheoNam;
     }
 
-    public void setSoPhatSinhTheoNam(String soPhatSinhTheoNam) {
+    public void setSoPhatSinhTheoNam(int soPhatSinhTheoNam) {
         _soPhatSinhTheoNam = soPhatSinhTheoNam;
     }
 

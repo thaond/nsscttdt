@@ -38,6 +38,10 @@ public interface VanBanNoiBoModel extends BaseModel {
 
     public void setLoaiVanBanNoiBo(long loaiVanBanNoiBo);
 
+    public long getSoVanBanNoiBo();
+
+    public void setSoVanBanNoiBo(long soVanBanNoiBo);
+
     public Date getNgayTao();
 
     public void setNgayTao(Date ngayTao);
@@ -58,13 +62,13 @@ public interface VanBanNoiBoModel extends BaseModel {
 
     public void setGhiChu(String ghiChu);
 
-    public String getSoVanBanNoiBo();
+    public String getSoVaoSoVanBanNoiBo();
 
-    public void setSoVanBanNoiBo(String soVanBanNoiBo);
+    public void setSoVaoSoVanBanNoiBo(String soVaoSoVanBanNoiBo);
 
-    public String getSoPhatSinhTheoNam();
+    public int getSoPhatSinhTheoNam();
 
-    public void setSoPhatSinhTheoNam(String soPhatSinhTheoNam);
+    public void setSoPhatSinhTheoNam(int soPhatSinhTheoNam);
 
     public long getUserId();
 

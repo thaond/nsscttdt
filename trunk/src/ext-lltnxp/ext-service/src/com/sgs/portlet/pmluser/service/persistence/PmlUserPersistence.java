@@ -322,6 +322,36 @@ public interface PmlUserPersistence {
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.pmluser.NoSuchPmlUserException;
 
+    public java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong) throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.pmluser.model.PmlUser> findByIsVanThuPhong(
+        boolean isVanThuPhong, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public com.sgs.portlet.pmluser.model.PmlUser findByIsVanThuPhong_First(
+        boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException;
+
+    public com.sgs.portlet.pmluser.model.PmlUser findByIsVanThuPhong_Last(
+        boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException;
+
+    public com.sgs.portlet.pmluser.model.PmlUser[] findByIsVanThuPhong_PrevAndNext(
+        long userId, boolean isVanThuPhong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pmluser.NoSuchPmlUserException;
+
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException;
@@ -368,6 +398,9 @@ public interface PmlUserPersistence {
     public void removeByIsLeaderMetting(boolean isLeaderMetting)
         throws com.liferay.portal.SystemException;
 
+    public void removeByIsVanThuPhong(boolean isVanThuPhong)
+        throws com.liferay.portal.SystemException;
+
     public void removeAll() throws com.liferay.portal.SystemException;
 
     public int countByPositionId(java.lang.String positionId)
@@ -396,6 +429,9 @@ public interface PmlUserPersistence {
         boolean active) throws com.liferay.portal.SystemException;
 
     public int countByIsLeaderMetting(boolean isLeaderMetting)
+        throws com.liferay.portal.SystemException;
+
+    public int countByIsVanThuPhong(boolean isVanThuPhong)
         throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;

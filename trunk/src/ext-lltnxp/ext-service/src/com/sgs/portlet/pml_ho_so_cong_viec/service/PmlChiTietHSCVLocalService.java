@@ -140,4 +140,14 @@ public interface PmlChiTietHSCVLocalService {
     public int deletePmlChiTietHSCVByCVDenId(long docRecId);
 
     public int deletePmlChiTietHSCVByCVDiId(long docSendId);
+
+    public com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV findBy_IdHSCV_CVDen(
+        long hoSoCongViecId, long documentReceiptId)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlChiTietHSCVException;
+
+    public com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV findBy_IdHSCV_CVDi(
+        long hoSoCongViecId, long documentSendId)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlChiTietHSCVException;
 }

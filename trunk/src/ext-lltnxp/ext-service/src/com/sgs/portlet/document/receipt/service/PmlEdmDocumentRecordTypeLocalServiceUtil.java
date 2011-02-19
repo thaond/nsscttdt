@@ -135,6 +135,14 @@ public class PmlEdmDocumentRecordTypeLocalServiceUtil {
             currentYear);
     }
 
+    public static java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType> getDocumentRecordTypeUseForDeparment(
+        java.lang.String departmentId, int currentYear)
+        throws java.lang.Exception {
+        return getService()
+                   .getDocumentRecordTypeUseForDeparment(departmentId,
+            currentYear);
+    }
+
     public static PmlEdmDocumentRecordTypeLocalService getService() {
         if (_service == null) {
             throw new RuntimeException(

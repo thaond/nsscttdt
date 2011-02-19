@@ -365,6 +365,54 @@ public class PmlHoSoCongViecUtil {
                    .findByUserId_PrevAndNext(idHoSoCongViec, userId, obc);
     }
 
+    public static java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByUserId_HoatDong(userId, hoatDong);
+    }
+
+    public static java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByUserId_HoatDong(userId, hoatDong, start, end);
+    }
+
+    public static java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByUserId_HoatDong(userId, hoatDong, start, end, obc);
+    }
+
+    public static com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec findByUserId_HoatDong_First(
+        long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException {
+        return getPersistence()
+                   .findByUserId_HoatDong_First(userId, hoatDong, obc);
+    }
+
+    public static com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec findByUserId_HoatDong_Last(
+        long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException {
+        return getPersistence().findByUserId_HoatDong_Last(userId, hoatDong, obc);
+    }
+
+    public static com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec[] findByUserId_HoatDong_PrevAndNext(
+        long idHoSoCongViec, long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException {
+        return getPersistence()
+                   .findByUserId_HoatDong_PrevAndNext(idHoSoCongViec, userId,
+            hoatDong, obc);
+    }
+
     public static java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException {
@@ -428,6 +476,11 @@ public class PmlHoSoCongViecUtil {
         getPersistence().removeByUserId(userId);
     }
 
+    public static void removeByUserId_HoatDong(long userId,
+        java.lang.String hoatDong) throws com.liferay.portal.SystemException {
+        getPersistence().removeByUserId_HoatDong(userId, hoatDong);
+    }
+
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
     }
@@ -465,6 +518,11 @@ public class PmlHoSoCongViecUtil {
     public static int countByUserId(long userId)
         throws com.liferay.portal.SystemException {
         return getPersistence().countByUserId(userId);
+    }
+
+    public static int countByUserId_HoatDong(long userId,
+        java.lang.String hoatDong) throws com.liferay.portal.SystemException {
+        return getPersistence().countByUserId_HoatDong(userId, hoatDong);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

@@ -206,6 +206,21 @@ public class PmlChiTietHSCVLocalServiceUtil {
         return getService().deletePmlChiTietHSCVByCVDiId(docSendId);
     }
 
+    public static com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV findBy_IdHSCV_CVDen(
+        long hoSoCongViecId, long documentReceiptId)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlChiTietHSCVException {
+        return getService()
+                   .findBy_IdHSCV_CVDen(hoSoCongViecId, documentReceiptId);
+    }
+
+    public static com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV findBy_IdHSCV_CVDi(
+        long hoSoCongViecId, long documentSendId)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlChiTietHSCVException {
+        return getService().findBy_IdHSCV_CVDi(hoSoCongViecId, documentSendId);
+    }
+
     public static PmlChiTietHSCVLocalService getService() {
         if (_service == null) {
             throw new RuntimeException("PmlChiTietHSCVLocalService is not set");

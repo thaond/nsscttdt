@@ -53,6 +53,7 @@ public class PmlEdmDocumentSendSoap implements Serializable {
     private long _orgExternalId;
     private boolean _numOfDirector;
     private int _documentRecordTypeId;
+    private boolean _isDocOfDepartment;
 
     public PmlEdmDocumentSendSoap() {
     }
@@ -87,6 +88,7 @@ public class PmlEdmDocumentSendSoap implements Serializable {
         soapModel.setOrgExternalId(model.getOrgExternalId());
         soapModel.setNumOfDirector(model.getNumOfDirector());
         soapModel.setDocumentRecordTypeId(model.getDocumentRecordTypeId());
+        soapModel.setIsDocOfDepartment(model.getIsDocOfDepartment());
 
         return soapModel;
     }
@@ -340,5 +342,17 @@ public class PmlEdmDocumentSendSoap implements Serializable {
 
     public void setDocumentRecordTypeId(int documentRecordTypeId) {
         _documentRecordTypeId = documentRecordTypeId;
+    }
+
+    public boolean getIsDocOfDepartment() {
+        return _isDocOfDepartment;
+    }
+
+    public boolean isIsDocOfDepartment() {
+        return _isDocOfDepartment;
+    }
+
+    public void setIsDocOfDepartment(boolean isDocOfDepartment) {
+        _isDocOfDepartment = isDocOfDepartment;
     }
 }

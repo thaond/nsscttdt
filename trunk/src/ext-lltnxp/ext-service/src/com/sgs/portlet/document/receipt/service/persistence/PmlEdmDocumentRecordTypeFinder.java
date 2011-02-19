@@ -38,4 +38,12 @@ public interface PmlEdmDocumentRecordTypeFinder {
     public java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType> getDocumentRecordTypeUseForAgency(
         java.lang.String flag, java.lang.String agencyId, int currentYear)
         throws java.lang.Exception;
+
+    public java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordTo> findByDocumentRecordTypeId_Year(
+        int documentRecordTypeId, java.lang.String year)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType> getDocumentRecordTypeUseForDeparment(
+        java.lang.String departmentId, int currentYear)
+        throws java.lang.Exception;
 }

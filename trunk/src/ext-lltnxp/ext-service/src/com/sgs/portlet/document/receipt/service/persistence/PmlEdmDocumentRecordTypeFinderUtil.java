@@ -67,6 +67,21 @@ public class PmlEdmDocumentRecordTypeFinderUtil {
             currentYear);
     }
 
+    public static java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordTo> findByDocumentRecordTypeId_Year(
+        int documentRecordTypeId, java.lang.String year)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .findByDocumentRecordTypeId_Year(documentRecordTypeId, year);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType> getDocumentRecordTypeUseForDeparment(
+        java.lang.String departmentId, int currentYear)
+        throws java.lang.Exception {
+        return getFinder()
+                   .getDocumentRecordTypeUseForDeparment(departmentId,
+            currentYear);
+    }
+
     public static PmlEdmDocumentRecordTypeFinder getFinder() {
         return _finder;
     }

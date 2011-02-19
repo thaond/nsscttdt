@@ -174,6 +174,50 @@ public class PmlDocumentReceiptIssuingPlaceLogUtil {
             documentReceiptId, step, obc);
     }
 
+    public static java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId) throws com.liferay.portal.SystemException {
+        return getPersistence().findByDocId(documentReceiptId);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByDocId(documentReceiptId, start, end);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByDocId(documentReceiptId, start, end, obc);
+    }
+
+    public static com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog findByDocId_First(
+        long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException {
+        return getPersistence().findByDocId_First(documentReceiptId, obc);
+    }
+
+    public static com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog findByDocId_Last(
+        long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException {
+        return getPersistence().findByDocId_Last(documentReceiptId, obc);
+    }
+
+    public static com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog[] findByDocId_PrevAndNext(
+        long documentReceiptIssuingPlaceLogId, long documentReceiptId,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.document.NoSuchReceiptIssuingPlaceLogException {
+        return getPersistence()
+                   .findByDocId_PrevAndNext(documentReceiptIssuingPlaceLogId,
+            documentReceiptId, obc);
+    }
+
     public static java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException {
@@ -213,6 +257,11 @@ public class PmlDocumentReceiptIssuingPlaceLogUtil {
         getPersistence().removeByDoc_Step(documentReceiptId, step);
     }
 
+    public static void removeByDocId(long documentReceiptId)
+        throws com.liferay.portal.SystemException {
+        getPersistence().removeByDocId(documentReceiptId);
+    }
+
     public static void removeAll() throws com.liferay.portal.SystemException {
         getPersistence().removeAll();
     }
@@ -226,6 +275,11 @@ public class PmlDocumentReceiptIssuingPlaceLogUtil {
     public static int countByDoc_Step(long documentReceiptId, int step)
         throws com.liferay.portal.SystemException {
         return getPersistence().countByDoc_Step(documentReceiptId, step);
+    }
+
+    public static int countByDocId(long documentReceiptId)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().countByDocId(documentReceiptId);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

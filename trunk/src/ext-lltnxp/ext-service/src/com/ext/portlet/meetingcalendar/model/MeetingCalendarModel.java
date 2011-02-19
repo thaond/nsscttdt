@@ -128,5 +128,11 @@ public interface MeetingCalendarModel extends BaseModel {
 
     public void setPrior(boolean prior);
 
+    public boolean getDeleted();
+
+    public boolean isDeleted();
+
+    public void setDeleted(boolean deleted);
+
     public MeetingCalendar toEscapedModel();
 }

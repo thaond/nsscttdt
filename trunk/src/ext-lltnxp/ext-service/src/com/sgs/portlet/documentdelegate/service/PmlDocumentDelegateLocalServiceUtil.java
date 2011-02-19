@@ -83,6 +83,12 @@ public class PmlDocumentDelegateLocalServiceUtil {
         return getService().updatePmlDocumentDelegate(pmlDocumentDelegate);
     }
 
+    public static java.util.List<com.sgs.portlet.documentdelegate.model.PmlDocumentDelegate> getPmlDocumentDelegate_ALLUSERISDELEGATE(
+        int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc) {
+        return getService()
+                   .getPmlDocumentDelegate_ALLUSERISDELEGATE(start, end, obc);
+    }
+
     public static java.util.List<com.sgs.portlet.documentdelegate.model.PmlDocumentDelegate> getPmlDocumentDelegate_SD_TD_USERISDELEGATE(
         long userDelegate, java.lang.String fromDateDelegate,
         java.lang.String toDateDelegate, java.lang.String listUserIsDelegate,
@@ -99,6 +105,64 @@ public class PmlDocumentDelegateLocalServiceUtil {
         return getService()
                    .countPmlDocumentDelegate_SD_TD_USERISDELEGATE(userDelegate,
             fromDateDelegate, toDateDelegate, listUserIsDelegate);
+    }
+
+    public static java.util.List<com.sgs.portlet.pmluser.model.PmlUser> getDanhSachNguoiUyQuyen(
+        long userIsDelegateId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc) {
+        return getService()
+                   .getDanhSachNguoiUyQuyen(userIsDelegateId, start, end, obc);
+    }
+
+    public static int countDanhSachNguoiUyQuyen(long userIsDelegateId) {
+        return getService().countDanhSachNguoiUyQuyen(userIsDelegateId);
+    }
+
+    public static java.util.List<com.sgs.portlet.pmluser.model.PmlUser> getDanhSachNguoiDuocUyQuyen(
+        long userDelegateId, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc) {
+        return getService()
+                   .getDanhSachNguoiDuocUyQuyen(userDelegateId, start, end, obc);
+    }
+
+    public static int countDanhSachNguoiDuocUyQuyen(long userDelegateId) {
+        return getService().countDanhSachNguoiDuocUyQuyen(userDelegateId);
+    }
+
+    public static int countNumOfDocumentReceiptIsDelegated(
+        long userDelegateId, long userIsDelegateId, java.util.Date fromDate,
+        java.util.Date toDate) throws com.liferay.portal.SystemException {
+        return getService()
+                   .countNumOfDocumentReceiptIsDelegated(userDelegateId,
+            userIsDelegateId, fromDate, toDate);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceipt> getNumOfDocumentReceiptIsDelegated(
+        long userDelegateId, long userIsDelegateId, java.util.Date fromDate,
+        java.util.Date toDate, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getNumOfDocumentReceiptIsDelegated(userDelegateId,
+            userIsDelegateId, fromDate, toDate, start, end, obc);
+    }
+
+    public static int countNumOfDocumentSendIsDelegated(long userDelegateId,
+        long userIsDelegateId, java.util.Date fromDate, java.util.Date toDate)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .countNumOfDocumentSendIsDelegated(userDelegateId,
+            userIsDelegateId, fromDate, toDate);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> getNumOfDocumentSendIsDelegated(
+        long userDelegateId, long userIsDelegateId, java.util.Date fromDate,
+        java.util.Date toDate, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getService()
+                   .getNumOfDocumentSendIsDelegated(userDelegateId,
+            userIsDelegateId, fromDate, toDate, start, end, obc);
     }
 
     public static PmlDocumentDelegateLocalService getService() {
