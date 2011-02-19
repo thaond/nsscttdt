@@ -65,6 +65,7 @@ public class MeetingCalendarJSONSerializer {
         jsonObj.put("evening", model.getEvening());
         jsonObj.put("stt", model.getStt());
         jsonObj.put("prior", model.getPrior());
+        jsonObj.put("deleted", model.getDeleted());
 
         return jsonObj;
     }

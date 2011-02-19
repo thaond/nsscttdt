@@ -87,6 +87,7 @@ public class PmlEdmDocumentReceiptSearch extends SearchContainer<User> {
 		iteratorURL.setParameter(PmlEdmDocumentReceiptDisplayTerms.TRANG_THAI, String.valueOf(displayTerms.getTrangThai()));
 		iteratorURL.setParameter(PmlEdmDocumentReceiptDisplayTerms.NGUOI_KY, displayTerms.getNguoiKy());
 		iteratorURL.setParameter(PmlEdmDocumentReceiptDisplayTerms.TRICH_YEU, displayTerms.getTrichYeu());
+		iteratorURL.setParameter(PmlEdmDocumentReceiptDisplayTerms.SOVANBAN, String.valueOf(displayTerms.getSoVanBan()));
 		
 		try {
 			PortalPreferences preferences = PortletPreferencesFactoryUtil.getPortalPreferences(req);

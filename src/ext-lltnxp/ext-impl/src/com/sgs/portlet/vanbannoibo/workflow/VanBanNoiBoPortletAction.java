@@ -14,7 +14,7 @@ import com.sgs.liferay.web.struts.action.WorkflowPortletAction;
 import com.sgs.liferay.web.struts.support.TaskNameDispatcher;
 
 public abstract class VanBanNoiBoPortletAction extends WorkflowPortletAction{
-	public static final String COMMAND_PREFIX = "command.vanbannoibo.tiepnhan";
+	public static final String COMMAND_PREFIX = "command.vanbannoibo";
 	
 	protected VanBanNoiBoLiferayWorkflowService VanBanNoiBoLWS = new VanBanNoiBoLiferayWorkflowService(); 
 	protected VanBanNoiBoProcessTaskNameDispatcher VanBanNoiBoTND = new VanBanNoiBoProcessTaskNameDispatcher();
@@ -24,8 +24,8 @@ public abstract class VanBanNoiBoPortletAction extends WorkflowPortletAction{
 		 return VanBanNoiBoLWS;
 	}
 
-//	@Override
-//	protected long getProcessInstanceId(PortletRequest req) {
+	@Override
+	protected long getProcessInstanceId(PortletRequest req) {
 //		// get documentReceiptId from request.
 //		long documentReceiptId = ParamUtil.getLong(req, "documentReceiptId", -1);
 //		long userIdXLT = ParamUtil.getLong(req, "userIdXLT", -1);	
@@ -96,18 +96,18 @@ public abstract class VanBanNoiBoPortletAction extends WorkflowPortletAction{
 //			}
 //		}
 //		
-//		return -1;
-//	}
-//
-//	@Override
-//	protected long getTaskInstanceId(PortletRequest req) {
-//		// get "taskId" parameter from request.
-//		return ParamUtil.getLong(req, "taskId", -1);
-//	}
-//
-//
-//	@Override
-//	protected TaskNameDispatcher getTaskNameDispatcher() {
-//		return documentReceiptTND;
-//	}
+		return -1;
+	}
+
+	@Override
+	protected long getTaskInstanceId(PortletRequest req) {
+		// get "taskId" parameter from request.
+		return ParamUtil.getLong(req, "taskId", -1);
+	}
+
+
+	@Override
+	protected TaskNameDispatcher getTaskNameDispatcher() {
+		return VanBanNoiBoTND;
+	}
 }

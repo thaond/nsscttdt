@@ -120,9 +120,12 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
             { "numofdirector", new Integer(Types.BOOLEAN) },
             
 
-            { "documentrecordtypeid", new Integer(Types.INTEGER) }
+            { "documentrecordtypeid", new Integer(Types.INTEGER) },
+            
+
+            { "isdocofdepartment", new Integer(Types.BOOLEAN) }
         };
-    public static final String TABLE_SQL_CREATE = "create table pml_edm_documentsend (documentsendid LONG not null primary key,briefcontent VARCHAR(75) null,documentreference VARCHAR(75) null,receivingplace VARCHAR(75) null,issuingdate DATE null,opinion VARCHAR(75) null,editorid LONG,signerid LONG,documenttypeid LONG,privilegelevelid VARCHAR(75) null,confidentiallevelid VARCHAR(75) null,datecreated DATE null,islocal BOOLEAN,active VARCHAR(75) null,senddate DATE null,signername VARCHAR(75) null,position_ VARCHAR(75) null,numberpage VARCHAR(75) null,numberpublish VARCHAR(75) null,documentsendcode VARCHAR(75) null,statusid LONG,iscongvanphucdap BOOLEAN,numofdocref LONG,ispublish BOOLEAN,orgexternalid LONG,numofdirector BOOLEAN,documentrecordtypeid INTEGER)";
+    public static final String TABLE_SQL_CREATE = "create table pml_edm_documentsend (documentsendid LONG not null primary key,briefcontent VARCHAR(75) null,documentreference VARCHAR(75) null,receivingplace VARCHAR(75) null,issuingdate DATE null,opinion VARCHAR(75) null,editorid LONG,signerid LONG,documenttypeid LONG,privilegelevelid VARCHAR(75) null,confidentiallevelid VARCHAR(75) null,datecreated DATE null,islocal BOOLEAN,active VARCHAR(75) null,senddate DATE null,signername VARCHAR(75) null,position_ VARCHAR(75) null,numberpage VARCHAR(75) null,numberpublish VARCHAR(75) null,documentsendcode VARCHAR(75) null,statusid LONG,iscongvanphucdap BOOLEAN,numofdocref LONG,ispublish BOOLEAN,orgexternalid LONG,numofdirector BOOLEAN,documentrecordtypeid INTEGER,isdocofdepartment BOOLEAN)";
     public static final String TABLE_SQL_DROP = "drop table pml_edm_documentsend";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -159,6 +162,7 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
     private long _orgExternalId;
     private boolean _numOfDirector;
     private int _documentRecordTypeId;
+    private boolean _isDocOfDepartment;
 
     public PmlEdmDocumentSendModelImpl() {
     }
@@ -193,6 +197,7 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
         model.setOrgExternalId(soapModel.getOrgExternalId());
         model.setNumOfDirector(soapModel.getNumOfDirector());
         model.setDocumentRecordTypeId(soapModel.getDocumentRecordTypeId());
+        model.setIsDocOfDepartment(soapModel.getIsDocOfDepartment());
 
         return model;
     }
@@ -553,6 +558,20 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
         }
     }
 
+    public boolean getIsDocOfDepartment() {
+        return _isDocOfDepartment;
+    }
+
+    public boolean isIsDocOfDepartment() {
+        return _isDocOfDepartment;
+    }
+
+    public void setIsDocOfDepartment(boolean isDocOfDepartment) {
+        if (isDocOfDepartment != _isDocOfDepartment) {
+            _isDocOfDepartment = isDocOfDepartment;
+        }
+    }
+
     public PmlEdmDocumentSend toEscapedModel() {
         if (isEscapedModel()) {
             return (PmlEdmDocumentSend) this;
@@ -590,6 +609,7 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
             model.setOrgExternalId(getOrgExternalId());
             model.setNumOfDirector(getNumOfDirector());
             model.setDocumentRecordTypeId(getDocumentRecordTypeId());
+            model.setIsDocOfDepartment(getIsDocOfDepartment());
 
             model = (PmlEdmDocumentSend) Proxy.newProxyInstance(PmlEdmDocumentSend.class.getClassLoader(),
                     new Class[] { PmlEdmDocumentSend.class },
@@ -629,6 +649,7 @@ public class PmlEdmDocumentSendModelImpl extends BaseModelImpl {
         clone.setOrgExternalId(getOrgExternalId());
         clone.setNumOfDirector(getNumOfDirector());
         clone.setDocumentRecordTypeId(getDocumentRecordTypeId());
+        clone.setIsDocOfDepartment(getIsDocOfDepartment());
 
         return clone;
     }

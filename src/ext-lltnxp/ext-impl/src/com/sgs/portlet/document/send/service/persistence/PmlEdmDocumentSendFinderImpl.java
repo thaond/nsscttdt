@@ -530,8 +530,7 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 	}
 
 	/**
-	 * tra ve so luong cong van den ung voi mot dang sach user va trang thai cu
-	 * the
+	 * tra ve so luong cong van den ung voi mot dang sach user va trang thai cu the
 	 */
 
 	public int countByDocumentSend_Users_Status_DangXuLy(List<Long> userIds,
@@ -5330,7 +5329,7 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 				sql += " AND ( cvsend.documenttypeid = dt.documenttypeid ) ";
 				sql += " AND dt.documenttypeid = " + loaisocongvan;
 			}
-
+			
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
 
 			SQLQuery q = session.createSQLQuery(sql);
@@ -7709,7 +7708,7 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 	 */
 	// chuyen vien dang xu ly
 	public List<PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy(
-			List<Long> userIds, long statusId, long loaiVB, String soKyHieu,
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
 			String donViSoanThao, String nguoiKy, String trichYeu,
 			String coQuanNhan, String tuNgay, String denNgay, int start,
 			int end, OrderByComparator obc) throws Exception {
@@ -7751,10 +7750,9 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 
 			String sql = " SELECT log.*, cvsend.editorid ";
 			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf,";
-			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " (SELECT  DISTINCT (documentsendid), MAX (transition_) AS tran ";
 			sql += " FROM pml_documentsend_log  ";
-			sql += " WHERE ( pml_documentsend_log.receiver IN (" + userIdList
-					+ "))";
+			sql += " WHERE (receiver IN (" + userIdList + ") OR (transition_ = 1 AND processer IN (" + userIdList + ")))";
 			sql += " GROUP BY pml_documentsend_log.documentsendid ";
 			sql += ") AS pml_send_log, pml_documentsend_log log";
 			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid ";
@@ -7770,17 +7768,13 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 			sql += " AND pml_send_log.documentsendid = log.documentsendid ";
 			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
 			sql += " AND log.documentsendid = cvsendwf.documentsendid";
-			sql += " AND log.dateprocess IS NOT NULL ";
+			sql += " AND cvsend.datecreated IS NOT NULL ";
 			sql += " AND('" + fromDate
-					+ "' <= log.dateprocess AND log.dateprocess <= '" + toDate
+					+ "' <= cvsend.datecreated AND cvsend.datecreated <= '" + toDate
 					+ "' )";
 
-			if (0 != loaiVB) {
-				sql = sql
-						.replace(") AS pml_send_log, pml_documentsend_log log",
-								") AS pml_send_log, pml_documentsend_log log, pml_edm_documenttype dt");
-				sql += " AND cvsend.documenttypeid = dt.documenttypeid";
-				sql += " AND dt.documenttypeid = " + loaiVB;
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
 			}
 
 			if (!"".equals(donViSoanThao)) {
@@ -7812,7 +7806,7 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 			}
 
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
-
+			
 			SQLQuery q = session.createSQLQuery(sql);
 			q.addEntity("PmlDocumentSendLog", PmlDocumentSendLogImpl.class);
 
@@ -7827,7 +7821,7 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 
 	// chuyen vien xu ly tre han
 	public List<PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy_TreHan(
-			List<Long> userIds, long statusId, long loaiVB, String soKyHieu,
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
 			String donViSoanThao, String nguoiKy, String trichYeu,
 			String coQuanNhan, String tuNgay, String denNgay, int start,
 			int end, OrderByComparator obc) throws Exception {
@@ -7871,10 +7865,9 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 
 			String sql = " SELECT log.*, cvsend.editorid ";
 			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad,";
-			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " (SELECT  DISTINCT (documentsendid), MAX (transition_) AS tran ";
 			sql += " FROM pml_documentsend_log  ";
-			sql += " WHERE ( pml_documentsend_log.receiver IN (" + userIdList
-					+ "))";
+			sql += " WHERE (receiver IN (" + userIdList + ") OR (transition_ = 1 AND processer IN (" + userIdList + ")))";
 			sql += " GROUP BY pml_documentsend_log.documentsendid ";
 			sql += ") AS pml_send_log, pml_documentsend_log log";
 			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid";
@@ -7894,18 +7887,13 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 			sql += " AND cvsend.datecreated + cvden.processtime + songaynghile(cvsend.datecreated, cvden.processtime) < '"
 					+ currentDate + "'";
 
-			sql += " AND log.dateprocess IS NOT NULL ";
+			sql += " AND cvsend.datecreated IS NOT NULL ";
 			sql += " AND ( '" + fromDate
-					+ "' <= log.dateprocess AND log.dateprocess <= '" + toDate
+					+ "' <= cvsend.datecreated AND cvsend.datecreated <= '" + toDate
 					+ "' )";
 
-			if (0 != loaiVB) {
-				sql = sql
-						.replace(
-								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad",
-								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad, pml_edm_documenttype dt");
-				sql += " AND cvsend.documenttypeid = dt.documenttypeid";
-				sql += " AND dt.documenttypeid = " + loaiVB;
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
 			}
 
 			if (!"".equals(donViSoanThao)) {
@@ -8152,7 +8140,8 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 			}
 			// Loai van ban
 			if (loaiVB > 0) {
-				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				//sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				sql += "AND doc.documentrecordtypeid = " + loaiVB + " ";
 			}
 			// Ten nguoi ky
 			if ((tenNguoiKy != null) && (tenNguoiKy.trim().length() > 0)) {
@@ -8240,7 +8229,8 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 			}
 			// Loai van ban
 			if (loaiVB > 0) {
-				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				//sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				sql += "AND doc.documentrecordtypeid = " + loaiVB + " ";
 			}
 			// Ten nguoi ky
 			if ((tenNguoiKy != null) && (tenNguoiKy.trim().length() > 0)) {
@@ -8466,4 +8456,1215 @@ public class PmlEdmDocumentSendFinderImpl extends BasePersistenceImpl implements
 		}
 		return 0;
 	}
+	
+	/* phmphuc add methods replace Loai Van Ban by So Van Ban 16/02/2011 */
+	public int countByDocumentSend_Users_Status_DangXuLy1(List<Long> userIds,
+			long statusId, long soVanBan, String soKyHieu, String donViSoanThao,
+			String nguoiKy, String trichYeu, String coQuanNhan, String tuNgay,
+			String denNgay) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		String userIdList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i != userIds.size() - 1) {
+				userIdList += userIds.get(i) + ", ";
+			}
+			userIdList += userIds.get(i);
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			DocumentSendLiferayWorkflowService workflowService = new DocumentSendLiferayWorkflowService();
+			List<Long> listProcessId = workflowService
+					.getListProcessInstanceByStatusId(userIds, statusId);
+
+			String sql = " SELECT COUNT(*) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf,";
+			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer IN (" + userIdList
+					+ "))";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid ";
+
+			sql += "AND cvsendwf.processid in (";
+
+			for (Long processId : listProcessId) {
+				sql += processId + ",";
+			}
+
+			sql += "0)";
+
+			sql += " AND pml_send_log.documentsendid = log.documentsendid ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND log.documentsendid = cvsendwf.documentsendid";
+			sql += " AND log.dateprocess IS NULL ";
+			sql += " AND (log.senddatebefore IS NULL OR (log.senddatebefore IS NOT NULL AND( '"
+					+ fromDate
+					+ "' <= log.senddatebefore AND log.senddatebefore <= '"
+					+ toDate + "' )))";
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw new SystemException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay, int start,
+			int end, OrderByComparator obc) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		String userIdList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i != userIds.size() - 1) {
+				userIdList += userIds.get(i) + ", ";
+			}
+			userIdList += userIds.get(i);
+		}
+
+		DocumentSendLiferayWorkflowService workflowService = new DocumentSendLiferayWorkflowService();
+		List<Long> listProcessId = workflowService
+				.getListProcessInstanceByStatusId(userIds, statusId);
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT cvsend.*  ";
+			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf,";
+			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer IN (" + userIdList
+					+ "))";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid ";
+
+			sql += " AND cvsendwf.processid in (";
+
+			for (Long processId : listProcessId) {
+				sql += processId + ",";
+			}
+
+			sql += "0)";
+
+			sql += " AND pml_send_log.documentsendid = log.documentsendid ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND log.documentsendid = cvsendwf.documentsendid";
+			sql += " AND log.dateprocess IS NULL ";
+			sql += " AND (log.senddatebefore IS NULL OR (log.senddatebefore IS NOT NULL AND( '"
+					+ fromDate
+					+ "' <= log.senddatebefore AND log.senddatebefore <= '"
+					+ toDate + "' )))";
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + " %')";
+			}
+
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("PmlEdmDocumentSend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public int countByDocumentSend_Users_Status_DangXuLy_TreHan1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		String userIdList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i != userIds.size() - 1) {
+				userIdList += userIds.get(i) + ", ";
+			}
+			userIdList += userIds.get(i);
+		}
+
+		// Lay ngay hien tai
+		String currentDate = new SimpleDateFormat("yyyy-MM-dd")
+				.format(new Date());
+
+		DocumentSendLiferayWorkflowService workflowService = new DocumentSendLiferayWorkflowService();
+		List<Long> listProcessId = workflowService
+				.getListProcessInstanceByStatusId(userIds, statusId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = "SELECT COUNT(DISTINCT(cvsend.documentsendid)) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad,";
+			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer IN (" + userIdList
+					+ "))";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid";
+			sql += " AND cvsendwf.processid in (";
+
+			for (Long processId : listProcessId) {
+				sql += processId + ",";
+			}
+
+			sql += "0) ";
+
+			sql += " AND cvsend.documentsendid = ad.documentsendid ";
+			sql += " AND cvden.documentreceiptid = ad.documentreceiptid ";
+			sql += " AND pml_send_log.documentsendid = log.documentsendid ";
+			sql += " AND pml_send_log.tran = log.transition_ ";
+			sql += " AND log.documentsendid = cvsendwf.documentsendid";
+			sql += " AND cvsend.datecreated + cvden.processtime + songaynghile(cvsend.datecreated, cvden.processtime) < '"
+					+ currentDate + "'";
+
+			sql += " AND log.dateprocess IS NULL ";
+			sql += " AND ( '" + fromDate
+					+ "' <= log.senddatebefore AND log.senddatebefore <= '"
+					+ toDate + "' )";
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(
+								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad",
+								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + " %')";
+			}
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw new SystemException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy_TreHan1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay, int start,
+			int end, OrderByComparator obc) throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		String userIdList = "";
+		for (int i = 0; i < userIds.size(); i++) {
+			if (i != userIds.size() - 1) {
+				userIdList += userIds.get(i) + ", ";
+			}
+			userIdList += userIds.get(i);
+		}
+
+		DocumentSendLiferayWorkflowService workflowService = new DocumentSendLiferayWorkflowService();
+		List<Long> listProcessId = workflowService
+				.getListProcessInstanceByStatusId(userIds, statusId);
+
+		// Lay ngay hien tai
+		String currentDate = new SimpleDateFormat("yyyy-MM-dd")
+				.format(new Date());
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT DISTINCT(cvsend.*) ";
+			sql += " FROM pml_edm_documentsend cvsend, pml_documentsend_wf cvsendwf, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad,";
+			sql += " (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer IN (" + userIdList
+					+ "))";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE cvsend.documentsendid = cvsendwf.documentsendid";
+			sql += " AND cvsendwf.processid in (";
+
+			for (Long processId : listProcessId) {
+				sql += processId + ",";
+			}
+
+			sql += "0) ";
+
+			sql += " AND cvsend.documentsendid = ad.documentsendid ";
+			sql += " AND cvden.documentreceiptid = ad.documentreceiptid ";
+			sql += " AND pml_send_log.documentsendid = log.documentsendid ";
+			sql += " AND pml_send_log.tran = log.transition_ ";
+			sql += " AND log.documentsendid = cvsendwf.documentsendid";
+			sql += " AND cvsend.datecreated + cvden.processtime + songaynghile(cvsend.datecreated, cvden.processtime) < '"
+					+ currentDate + "'";
+
+			sql += " AND log.dateprocess IS NULL ";
+			sql += " AND ( '" + fromDate
+					+ "' <= log.senddatebefore AND log.senddatebefore <= '"
+					+ toDate + "' )";
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(
+								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad",
+								") AS pml_send_log, pml_documentsend_log log, pml_edm_documentreceipt cvden, pml_edm_answerdetail ad, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + " %')";
+			}
+
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("PmlEdmDocumentSend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyChung1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT cvsend.*  ";
+			sql += " FROM pml_edm_documentsend cvsend, (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran  ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer = " + userId + ") ";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE ( pml_send_log.documentsendid = log.documentsendid ) ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND ( cvsend.documentsendid = log.documentsendid ) ";
+			sql += " AND ('" + fromDate + "' <= log.dateprocess";
+			sql += " AND log.dateprocess <= '" + toDate + "' )";
+			
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+			
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_edm_documentsend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public int countListCVDiDaXuLyChung1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT COUNT(*) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran  ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer = " + userId + ") ";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE ( pml_send_log.documentsendid = log.documentsendid ) ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND ( cvsend.documentsendid = log.documentsendid ) ";
+			sql += " AND ('" + fromDate + "' <= log.dateprocess";
+			sql += " AND log.dateprocess <= '" + toDate + "' )";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = "SELECT cvsend.* ";
+			sql += " FROM pml_edm_documentsend cvsend, (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran  ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer = " + userId + ") ";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE ( pml_send_log.documentsendid = log.documentsendid ) ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND ( log.processer = log.receiver ) ";
+			sql += " AND ( cvsend.documentsendid = log.documentsendid ) ";
+			sql += " AND ('" + fromDate + "' <= log.dateprocess";
+			sql += " AND log.dateprocess <= '" + toDate + "' )";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_edm_documentsend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public int countListCVDiDaXuLyTuXuLy1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT COUNT(*) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, (SELECT  DISTINCT (pml_documentsend_log.documentsendid), MAX  (pml_documentsend_log.transition_) AS tran  ";
+			sql += " FROM pml_documentsend_log  ";
+			sql += " WHERE ( pml_documentsend_log.processer = " + userId + ") ";
+			sql += " GROUP BY pml_documentsend_log.documentsendid ";
+			sql += ") AS pml_send_log, pml_documentsend_log log";
+			sql += " WHERE ( pml_send_log.documentsendid = log.documentsendid ) ";
+			sql += " AND ( pml_send_log.tran = log.transition_ ) ";
+			sql += " AND ( log.processer = log.receiver ) ";
+			sql += " AND ( cvsend.documentsendid = log.documentsendid ) ";
+			sql += " AND ('" + fromDate + "' <= log.dateprocess";
+			sql += " AND log.dateprocess <= '" + toDate + "' )";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql
+						.replace(") AS pml_send_log, pml_documentsend_log log",
+								") AS pml_send_log, pml_documentsend_log log, pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyChung_treHan1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT cvsend.* ";
+			sql += " FROM pml_edm_documentsend cvsend, ";
+			sql += " (SELECT DISTINCT (logdi.documentsendid) ";
+			sql += " FROM pml_documentsend_log logdi, ";
+			sql += " ( SELECT logden.documentreceiptid AS  docid, MAX(logden.transition_) AS t_  ";
+			sql += " FROM pml_documentsend_log logdi, pml_documentreceipt_log logden, pml_edm_answerdetail detail ";
+			sql += " WHERE detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.documentreceiptid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " GROUP BY logden.documentreceiptid ";
+			sql += " ) AS logden, pml_documentreceipt_log logres, pml_edm_answerdetail detail ";
+			sql += " WHERE logres.documentreceiptid = logden.docid ";
+			sql += " AND logres.transition_ = logden.t_  ";
+			sql += " AND detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.docid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " AND ('" + fromDate
+					+ "' <= logdi.dateprocess AND logdi.dateprocess <= '"
+					+ toDate + "' )";
+			sql += " AND (logres.senddatebefore IS NOT NULL )";
+			sql += " AND (logres.senddatebefore + logres.numdateprocess + songaynghile(logres.senddatebefore, logres.numdateprocess)) < logdi.dateprocess ";
+			sql += ") AS logdi ";
+			sql += " WHERE ( cvsend.documentsendid = logdi.documentsendid ) ";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql.replace(") AS logdi ", ") AS logdi , pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_edm_documentsend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public int countListCVDiDaXuLyChung_treHan1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT COUNT(*) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, ";
+			sql += " (SELECT DISTINCT (logdi.documentsendid) ";
+			sql += " FROM pml_documentsend_log logdi, ";
+			sql += " ( SELECT logden.documentreceiptid AS  docid, MAX(logden.transition_) AS t_  ";
+			sql += " FROM pml_documentsend_log logdi, pml_documentreceipt_log logden, pml_edm_answerdetail detail ";
+			sql += " WHERE detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.documentreceiptid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " GROUP BY logden.documentreceiptid ";
+			sql += " ) AS logden, pml_documentreceipt_log logres, pml_edm_answerdetail detail ";
+			sql += " WHERE logres.documentreceiptid = logden.docid ";
+			sql += " AND logres.transition_ = logden.t_  ";
+			sql += " AND detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.docid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " AND ('" + fromDate
+					+ "' <= logdi.dateprocess AND logdi.dateprocess <= '"
+					+ toDate + "' )";
+			sql += " AND (logres.senddatebefore IS NOT NULL )";
+			sql += " AND (logres.senddatebefore + logres.numdateprocess + songaynghile(logres.senddatebefore, logres.numdateprocess)) < logdi.dateprocess ";
+			sql += ") AS logdi ";
+			sql += " WHERE ( cvsend.documentsendid = logdi.documentsendid ) ";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql.replace(") AS logdi ", ") AS logdi , pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy_treHan1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = "SELECT cvsend.* ";
+			sql += " FROM pml_edm_documentsend cvsend, ";
+			sql += " (SELECT DISTINCT (logdi.documentsendid) ";
+			sql += " FROM pml_documentsend_log logdi, ";
+			sql += " ( SELECT logden.documentreceiptid AS  docid, MAX(logden.transition_) AS t_  ";
+			sql += " FROM pml_documentsend_log logdi, pml_documentreceipt_log logden, pml_edm_answerdetail detail ";
+			sql += " WHERE detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.documentreceiptid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " GROUP BY logden.documentreceiptid ";
+			sql += " ) AS logden, pml_documentreceipt_log logres, pml_edm_answerdetail detail ";
+			sql += " WHERE logres.documentreceiptid = logden.docid ";
+			sql += " AND logres.transition_ = logden.t_  ";
+			sql += " AND detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.docid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " AND logdi.processer = logdi.receiver ";
+			sql += " AND ('" + fromDate
+					+ "' <= logdi.dateprocess AND logdi.dateprocess <= '"
+					+ toDate + "' )";
+			sql += " AND (logres.senddatebefore IS NOT NULL )";
+			sql += " AND (logres.senddatebefore + logres.numdateprocess + songaynghile(logres.senddatebefore, logres.numdateprocess)) < logdi.dateprocess ";
+			sql += ") AS logdi ";
+			sql += " WHERE ( cvsend.documentsendid = logdi.documentsendid ) ";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql.replace(") AS logdi ", ") AS logdi , pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + "%')";
+			}
+
+			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("pml_edm_documentsend", PmlEdmDocumentSendImpl.class);
+
+			return (List<PmlEdmDocumentSend>) QueryUtil.list(q, getDialect(),
+					start, end);
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	
+	public int countListCVDiDaXuLyTuXuLy_treHan1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String fromDate = "";
+		String toDate = "";
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int year = calendar.get(Calendar.YEAR);
+		try {
+			if ("".equals(tuNgay) && "".equals(denNgay)) {
+				fromDate = sdf.format(df.parse("01/01/" + year));
+				toDate = sdf.format(df.parse("31/12/" + year));
+			} else {
+				fromDate = sdf.format(df.parse(tuNgay));
+				toDate = sdf.format(df.parse(denNgay));
+			}
+		} catch (ParseException e) {
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = " SELECT COUNT(*) AS COUNT_VALUE";
+			sql += " FROM pml_edm_documentsend cvsend, ";
+			sql += " (SELECT DISTINCT (logdi.documentsendid) ";
+			sql += " FROM pml_documentsend_log logdi, ";
+			sql += " ( SELECT logden.documentreceiptid AS  docid, MAX(logden.transition_) AS t_  ";
+			sql += " FROM pml_documentsend_log logdi, pml_documentreceipt_log logden, pml_edm_answerdetail detail ";
+			sql += " WHERE detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.documentreceiptid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " GROUP BY logden.documentreceiptid ";
+			sql += " ) AS logden, pml_documentreceipt_log logres, pml_edm_answerdetail detail ";
+			sql += " WHERE logres.documentreceiptid = logden.docid ";
+			sql += " AND logres.transition_ = logden.t_  ";
+			sql += " AND detail.documentsendid =  logdi.documentsendid ";
+			sql += " AND detail.documentreceiptid = logden.docid ";
+			sql += " AND logdi.processer = " + userId;
+			sql += " AND logdi.processer = logdi.receiver ";
+			sql += " AND ('" + fromDate
+					+ "' <= logdi.dateprocess AND logdi.dateprocess <= '"
+					+ toDate + "' )";
+			sql += " AND (logres.senddatebefore IS NOT NULL )";
+			sql += " AND (logres.senddatebefore + logres.numdateprocess + songaynghile(logres.senddatebefore, logres.numdateprocess)) < logdi.dateprocess ";
+			sql += ") AS logdi ";
+			sql += " WHERE ( cvsend.documentsendid = logdi.documentsendid ) ";
+
+			if (!"".equals(donViSoanThao)) {
+				sql = sql.replace(") AS logdi ", ") AS logdi , pml_user ");
+				sql += " AND cvsend.editorid = pml_user.userid";
+				sql += " AND pml_user.departmentsid = '" + donViSoanThao + "' ";
+			}
+
+			if (0 != soVanBan) {
+				sql += " AND cvsend.documentrecordtypeid = " + soVanBan;
+			}
+
+			if (!"".equals(soKyHieu)) {
+				sql += " AND lower(cvsend.documentreference) LIKE lower('%"
+						+ soKyHieu + "%')";
+			}
+
+			if (!"".equals(nguoiKy)) {
+				sql += " AND lower(cvsend.signername) LIKE lower('%" + nguoiKy
+						+ "%') ";
+			}
+
+			if (!"".equals(trichYeu)) {
+				sql += "AND lower(cvsend.briefcontent) LIKE lower('%"
+						+ trichYeu + "%') ";
+			}
+
+			if (!"".equals(coQuanNhan)) {
+				sql += " AND lower(cvsend.receivingplace) LIKE lower('%"
+						+ coQuanNhan + " %')";
+			}
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			Iterator<Long> iter = q.list().iterator();
+			if (iter.hasNext()) {
+				Long count = iter.next();
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+			return 0;
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	/* end phmphuc update 16/02/2011 */
 }

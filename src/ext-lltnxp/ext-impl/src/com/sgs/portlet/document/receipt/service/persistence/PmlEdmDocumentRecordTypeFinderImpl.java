@@ -14,7 +14,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
+import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordTo;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType;
+import com.sgs.portlet.document.receipt.model.impl.PmlEdmDocumentRecordToImpl;
 import com.sgs.portlet.document.receipt.model.impl.PmlEdmDocumentRecordTypeImpl;
 
 public class PmlEdmDocumentRecordTypeFinderImpl extends BasePersistenceImpl implements PmlEdmDocumentRecordTypeFinder{
@@ -185,4 +187,51 @@ public class PmlEdmDocumentRecordTypeFinderImpl extends BasePersistenceImpl impl
 		}
 	}
 	// end phmphuc add 13/01/2011
+	
+	// vu update 20110210 kiem tra so van ban da duoc tao hay chua
+	public List<PmlEdmDocumentRecordTo> findByDocumentRecordTypeId_Year(int documentRecordTypeId, String year) throws SystemException{ 
+		Session session = null;
+		try {
+			session = openSession();
+			String sql = "SELECT * FROM pml_edm_documentrecordto";
+			sql += "pml_edm_documentrecordto.documentrecordtypeid = '" + documentRecordTypeId + "' ";
+			sql += " AND pml_edm_documentrecordto.yearinuse = '" + year + "' ";
+			
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("PmlEdmDocumentRecordTo", PmlEdmDocumentRecordToImpl.class);
+			
+			return (List<PmlEdmDocumentRecordTo>) QueryUtil.list(q, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		} catch (Exception e) {
+			throw new SystemException(e);
+		}finally{
+			closeSession(session);
+		}
+	}
+	
+	// end vu update 20110210
+	
+	// minh update 20110215
+	public List<PmlEdmDocumentRecordType> getDocumentRecordTypeUseForDeparment(String departmentId, int currentYear) throws Exception {
+		Session session = null;
+		try {
+			session = openSession();
+
+			String sql = "select retype.* from pml_edm_documentrecordtype retype";
+			sql += " inner join pml_edm_bookdocumentsend book";
+			sql += " on retype.documentrecordtypeid = book.documentrecordtypeid";
+			sql += " and book.departmentsid = '" + departmentId + "'";
+			sql += " and book.yearinuse = '" + currentYear + "'";
+			sql += " order by retype.documentrecordtypename ASC";
+
+			SQLQuery q = session.createSQLQuery(sql);
+			q.addEntity("PmlEdmDocumentRecordType", PmlEdmDocumentRecordTypeImpl.class);
+
+			return (List<PmlEdmDocumentRecordType>) QueryUtil.list(q, getDialect(), -1, -1);
+		} catch (Exception e) {
+			throw processException(e);
+		} finally {
+			closeSession(session);
+		}
+	}
+	// end minh update 20110215
 }

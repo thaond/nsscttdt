@@ -66,8 +66,8 @@ public class ReceiptIndexer implements com.liferay.portal.kernel.search.Indexer 
 			// Do nothing
 		} // end catch
 		
-		return getDocumentReceipt(companyId, documentReceipt.getDocumentReceiptId(),
-				documentReceipt.getDocumentReference(), documentReceipt.getDocumentTypeId(), 
+		return getDocumentReceipt4(companyId, documentReceipt.getDocumentReceiptId(),
+				documentReceipt.getDocumentReference(), documentReceipt.getDocumentRecordTypeId(), 
 				documentReceipt.getSigner(), documentReceipt.getNumberDocumentReceipt(), 
 				noiPhatHanh, documentReceipt.getDateArrive(), soHSCV,  
 				documentReceipt.getStatusId(), documentReceipt.getBriefContent(), 
@@ -265,5 +265,49 @@ public class ReceiptIndexer implements com.liferay.portal.kernel.search.Indexer 
 	public static void deletePortletDocuments(long companyId) throws SearchException {
 		SearchEngineUtil.deletePortletDocuments(companyId, PORTLET_ID);
 	}
+	
+	public static Document getDocumentReceipt4(long companyId,
+			long documentReceiptId, String documentReference,
+			int documentRecordType, String signer, String numberDocumentReceipt,
+			String issuingPlaceId, Date issuingDate, String[] soHSCV,
+			long status, String briefContent, String active, 
+			long generalOrderNo) throws UnsupportedEncodingException {
+		
+		documentReference = (documentReference.toLowerCase());
+		signer = signer.toLowerCase();
+		numberDocumentReceipt = numberDocumentReceipt.toLowerCase();
+		briefContent = briefContent.toLowerCase();
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Document doc = new DocumentImpl();
+		doc.addUID(PORTLET_ID, documentReceiptId);
 
+		doc.addKeyword(Field.COMPANY_ID, companyId);
+		doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
+
+		doc.addKeyword(Field.ENTRY_CLASS_PK, documentReceiptId);
+
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.SO_CV_DEN, documentReference);
+		
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.SOVANBAN, documentRecordType);
+		
+		doc.addText(PmlEdmDocumentReceiptDisplayTerms.NGUOI_KY, signer);
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.NGUOI_KY_ORDER, signer);
+		
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.SO_VAO_SO, numberDocumentReceipt);
+		
+		//xuancong close doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.NOI_PHAT_HANH, issuingPlaceId);
+		doc.addText(PmlEdmDocumentReceiptDisplayTerms.NOI_PHAT_HANH, issuingPlaceId);
+		
+		doc.addKeyword("ngayDen", issuingDate != null ? dateFormat.format(issuingDate) : "");
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.SO_HSCV, soHSCV);
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.TRANG_THAI, status);
+		doc.addKeyword("active", active);
+		
+		doc.addText(PmlEdmDocumentReceiptDisplayTerms.TRICH_YEU, briefContent);
+		// xuancong add Them truong generalorderno de sap xep
+		doc.addKeyword(PmlEdmDocumentReceiptDisplayTerms.GENERALORDERNO, generalOrderNo);
+
+		return doc;
+	}
 }

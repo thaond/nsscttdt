@@ -5,8 +5,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.liferay.portal.util.PropsUtil;
 import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.model.impl.DepartmentImpl;
 import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordTo;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType;
@@ -19,9 +23,12 @@ import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentRecord
 import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil;
 import com.sgs.portlet.document.send.model.PmlEdmBookDocumentSend;
 import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
+import com.sgs.portlet.document.send.model.impl.PmlEdmBookDocumentSendImpl;
 import com.sgs.portlet.document.send.service.PmlEdmBookDocumentSendLocalServiceUtil;
 import com.sgs.portlet.document.send.service.PmlEdmDocumentSendLocalServiceUtil;
+import com.sgs.portlet.document.send.service.persistence.PmlEdmBookDocumentSendUtil;
 import com.sgs.portlet.document.send.service.persistence.PmlEdmDocumentSendUtil;
+import com.sgs.portlet.pcccdocumentsend.action.ViewAction;
 import com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace;
 import com.sgs.portlet.pmlissuingplace.service.PmlEdmIssuingPlaceLocalServiceUtil;
 import com.sgs.portlet.pmlissuingplace.service.persistence.PmlEdmIssuingPlaceUtil;
@@ -29,6 +36,7 @@ import com.sgs.portlet.pmllevelsend.model.PmlEdmLevelSend;
 import com.sgs.portlet.pmllevelsend.service.PmlEdmLevelSendLocalServiceUtil;
 import com.sgs.portlet.pmllevelsend.service.persistence.PmlEdmLevelSendUtil;
 import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 /**
@@ -39,7 +47,7 @@ import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
  */
 @SuppressWarnings("static-access")
 public class PCCCDocumentUtil {
-	
+	private static Log _log = LogFactory.getLog(PCCCDocumentUtil.class); 
 	
 	public static final int CAPGOI_TATCA = -1;
 	public static final String ACTIVE = "1";
@@ -202,8 +210,10 @@ public class PCCCDocumentUtil {
 	}
 	
 	
-	public static String getNumberPublish(int documentRecordTypeId, long documentTypeId, long userId,int documentRecordTypeIdHidden, boolean documentRecordTypeCode, boolean documentTypeCode, String addText, boolean departmentCode, boolean useYear) {
-		
+	public static String getNumberPublish(int documentRecordTypeId, long documentTypeId, 
+			String dept, String sohieuHidden, int documentRecordTypeIdHidden, boolean documentRecordTypeCode, 
+			boolean documentTypeCode, String addText, boolean departmentCode, boolean useYear, boolean soVanBanCuaPhong) {
+	
 		String numberResult = null;
 	
 		try {
@@ -226,18 +236,43 @@ public class PCCCDocumentUtil {
 			calendar.setTime(new Date());
 			int yearCurrent = calendar.get(calendar.YEAR);
 			
-			PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userId);	
-			
-			Department department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
-			
-//			PmlEdmDocumentRecordTo pmlEdmDocumentRecordTo = PmlEdmDocumentRecordToLocalServiceUtil.getDocumentRecordToBy_YearInUse_AgencyId_DocumentRecordTypeId(yearCurrent+"", department.getAgencyId(), documentRecordTypeId);
-			PmlEdmBookDocumentSend pmlEdmDocumentRecordTo = PmlEdmBookDocumentSendLocalServiceUtil.getBookDocumentSendBy_AgencyId_YearInUse_DocumentRecordTypeId(department.getAgencyId(), yearCurrent+"", documentRecordTypeId);
-			int numberDocument = (int) pmlEdmDocumentRecordTo.getCurrentRecord();
-			if (documentRecordTypeIdHidden != documentRecordTypeId) {
-				numberDocument += 1;
+			Department department = null;
+			try {
+				department = DepartmentUtil.findByPrimaryKey(dept);
+			} catch (Exception e) {
+				department = DepartmentUtil.findByDepartmentsName(dept).get(0);
 			}
 			
-				numberResult = String.valueOf(numberDocument);
+			if (department.getDepartmentsParentId() != null && !department.getDepartmentsParentId().equals("")) {
+				department = DepartmentUtil.findByPrimaryKey(department.getDepartmentsParentId());
+			}
+			PmlEdmBookDocumentSend pmlEdmDocumentRecordTo = null;
+			if (!soVanBanCuaPhong) {
+				// la van thu don vi
+//				PmlEdmDocumentRecordTo pmlEdmDocumentRecordTo = PmlEdmDocumentRecordToLocalServiceUtil.getDocumentRecordToBy_YearInUse_AgencyId_DocumentRecordTypeId(yearCurrent+"", department.getAgencyId(), documentRecordTypeId);
+				pmlEdmDocumentRecordTo = PmlEdmBookDocumentSendLocalServiceUtil.getBookDocumentSendBy_AgencyId_YearInUse_DocumentRecordTypeId(department.getAgencyId(), String.valueOf(yearCurrent), documentRecordTypeId);
+			} else {
+				// lavan thu phong
+				try {
+					pmlEdmDocumentRecordTo = PmlEdmBookDocumentSendUtil.findByDepartDocYear(String.valueOf(yearCurrent), department.getDepartmentsId(), documentRecordTypeId).get(0);
+				} catch (Exception e) {
+					System.out.println("ERROR: get PmlEdmBookDocumentSend from documentRecordTypeId =[ " + documentRecordTypeId + "] and department=["+ department.getDepartmentsId() +"]" + PCCCDocumentUtil.class+ e.getMessage());
+					pmlEdmDocumentRecordTo = new PmlEdmBookDocumentSendImpl();
+					pmlEdmDocumentRecordTo.setCurrentRecord(-1);
+				}
+			}
+			
+			int numberDocument = (int) pmlEdmDocumentRecordTo.getCurrentRecord();
+			
+			if (!sohieuHidden.equals("")) {
+				numberDocument = Integer.parseInt(sohieuHidden);
+			}
+			
+			if (documentRecordTypeIdHidden != documentRecordTypeId) {
+				numberDocument = (int) pmlEdmDocumentRecordTo.getCurrentRecord() + 1;
+			}
+			
+			numberResult = String.valueOf(numberDocument);
 			
 			if (useYear) {
 				numberResult +=  "/" + yearCurrent;
@@ -279,11 +314,11 @@ public class PCCCDocumentUtil {
 			if (!resTemp.equals("")) {
 				numberResult += resTemp;
 			} 
-
+	
 		} catch (Exception e) {
-			System.out.println("ERROR: in method getNumberPublish "+PCCCDocumentUtil.class);
+			System.out.println("ERROR: in method getNumberPublish " + PCCCDocumentUtil.class);
 			System.out.println(e.getMessage());
-
+	
 		}
 		
 		return numberResult;
@@ -814,5 +849,51 @@ public class PCCCDocumentUtil {
 			return -1;
 		} // end catch
 	}
+	
+	// minh update 20110215
+	public static List<PmlEdmDocumentRecordType> loadDocumentRecordType(long userIdLogin, boolean valueChecked) {
+		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+		
+		// lay ra phong ban cua user soan van ban di
+		Department department = null;
+		PmlUser pmlUser = null;
+		String departmentId = "";
+		try {
+			pmlUser = PmlUserLocalServiceUtil.getPmlUser(userIdLogin);
+			departmentId = pmlUser.getDepartmentsId();
+			department = DepartmentUtil.findByPrimaryKey(departmentId);
+		} catch (Exception e) {
+			_log.error("ERROR NO GET department FROM USER LOGIN "+ViewAction.class + "" +e.getMessage());
+			department = new DepartmentImpl();
+		}
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+		
+		if (!valueChecked) {
+			try {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+			} catch (Exception e) {
+			}
+		} else {
+			if (pmlUser.getIsVanThuPhong()) {
+				try {
+					pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForDeparment(departmentId, currentYear);
+				} catch (Exception e) {
+					_log.error("ERROR NO GET LIST PmlEdmDocumentRecordType FROM USER VAN THU PHONG OF DEPARTMENT =[ "+ departmentId +"]" +ViewAction.class + "" +e.getMessage());
+				}
+			}
+			// neu co phong phu trach
+			if (pmlEdmDocumentRecordTypeList.size() == 0) {
+				try {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForDeparment(department.getDepartmentsParentId(), currentYear);
+				} catch (Exception e) {
+					_log.error("ERROR NO GET LIST PmlEdmDocumentRecordType FROM USER VAN THU PHONG CO PHONG PHU TRACH OF DEPARTMENT =[ "+ departmentId +"]" +ViewAction.class + "" +e.getMessage());
+				}
+			}
+		}
+		return pmlEdmDocumentRecordTypeList;
+	}
+	// end minh update 20110215
 }
-

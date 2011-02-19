@@ -1790,27 +1790,27 @@ public class PmlEdmDocumentSendLocalServiceImpl extends
 	 */
 	// chuyen vien dang xu ly
 	public List<PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy(
-			List<Long> userIds, long statusId, long loaiVB, String soKyHieu,
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
 			String donViSoanThao, String nguoiKy, String trichYeu,
 			String coQuanNhan, String tuNgay, String denNgay, int start,
 			int end, OrderByComparator obc) throws Exception {
 
 		return pmlEdmDocumentSendFinder
 				.findByDocumentSendLog_Users_Status_DangXuLy(userIds, statusId,
-						loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+						soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
 						coQuanNhan, tuNgay, denNgay, start, end, obc);
 	}
 
 	// chuyen vien xu ly tre han
 	public List<PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy_TreHan(
-			List<Long> userIds, long statusId, long loaiVB, String soKyHieu,
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
 			String donViSoanThao, String nguoiKy, String trichYeu,
 			String coQuanNhan, String tuNgay, String denNgay, int start,
 			int end, OrderByComparator obc) throws Exception {
 
 		return pmlEdmDocumentSendFinder
 				.findByDocumentSendLog_Users_Status_DangXuLy_TreHan(userIds,
-						statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy,
+						statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy,
 						trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
 	}
 
@@ -2021,7 +2021,7 @@ public class PmlEdmDocumentSendLocalServiceImpl extends
 
 	// phmphuc update 27/12/2010 - cau sql cho phan Tim kiem VB di
 	public Hits timKiemVBDi(long companyId, int numOfDirector,
-			String soPhatHanh, long loaiCongVan, String traLoiCongVanSo,
+			String soPhatHanh, long soVanBan, String traLoiCongVanSo,
 			String phongSoanThao, String noiNhan, String nguoiKy, Date tuNgay,
 			Date denNgay, long soHSCV, String trichYeu, String active,
 			long nguoiSoanThao, String sortField, int sortType,
@@ -2071,10 +2071,9 @@ public class PmlEdmDocumentSendLocalServiceImpl extends
 								soPhatHanh);
 				booleanQueries.add(soPhatHanhQuery);
 			}
-			if (loaiCongVan > 0) {
-				loaiCongVanQuery.addTerm(
-						PmlEdmDocumentSendDisplayTerms.LOAI_CONG_VAN,
-						loaiCongVan);
+			if (soVanBan > 0) {
+//				loaiCongVanQuery.addTerm(PmlEdmDocumentSendDisplayTerms.LOAI_CONG_VAN, loaiCongVan);
+				loaiCongVanQuery.addTerm(PmlEdmDocumentSendDisplayTerms.SOVANBAN, soVanBan);
 				booleanQueries.add(loaiCongVanQuery);
 			}
 			if (Validator.isNotNull(traLoiCongVanSo)) {
@@ -2220,4 +2219,116 @@ public class PmlEdmDocumentSendLocalServiceImpl extends
 
 	private static Log _log = LogFactory
 			.getLog(PmlEdmDocumentSendLocalServiceImpl.class);
+	
+	/* phmphuc add methods replace Loai Van Ban by So Van Ban 16/02/2011 */
+	public int countByDocumentSend_Users_Status_DangXuLy1(List<Long> userIds,
+			long statusId, long soVanBan, String soKyHieu, String donViSoanThao,
+			String nguoiKy, String trichYeu, String coQuanNhan, String tuNgay,
+			String denNgay) throws Exception {
+		
+		return pmlEdmDocumentSendFinder.countByDocumentSend_Users_Status_DangXuLy1(userIds,
+				statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	
+	public List<PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay, int start,
+			int end, OrderByComparator obc) throws Exception {
+		
+		return pmlEdmDocumentSendFinder.findByDocumentSend_Users_Status_DangXuLy1(userIds,
+				statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public int countByDocumentSend_Users_Status_DangXuLy_TreHan1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay) throws Exception {
+		
+		return pmlEdmDocumentSendFinder.countByDocumentSend_Users_Status_DangXuLy_TreHan1(userIds,
+				statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	
+	public List<PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy_TreHan1(
+			List<Long> userIds, long statusId, long soVanBan, String soKyHieu,
+			String donViSoanThao, String nguoiKy, String trichYeu,
+			String coQuanNhan, String tuNgay, String denNgay, int start,
+			int end, OrderByComparator obc) throws Exception {
+		
+		return pmlEdmDocumentSendFinder.findByDocumentSend_Users_Status_DangXuLy_TreHan1(userIds,
+				statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyChung1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.getListCVDiDaXuLyChung1(userId,	soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public int countListCVDiDaXuLyChung1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.countListCVDiDaXuLyChung1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.getListCVDiDaXuLyTuXuLy1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public int countListCVDiDaXuLyTuXuLy1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.countListCVDiDaXuLyTuXuLy1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyChung_treHan1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.getListCVDiDaXuLyChung_treHan1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public int countListCVDiDaXuLyChung_treHan1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.countListCVDiDaXuLyChung_treHan1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	
+	public List<PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy_treHan1(long userId,
+			long soVanBan, String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay,
+			int start, int end, OrderByComparator obc) throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.getListCVDiDaXuLyTuXuLy_treHan1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, start, end, obc);
+	}
+	
+	public int countListCVDiDaXuLyTuXuLy_treHan1(long userId, long soVanBan,
+			String soKyHieu, String donViSoanThao, String nguoiKy,
+			String trichYeu, String coQuanNhan, String tuNgay, String denNgay)
+			throws SystemException {
+		
+		return pmlEdmDocumentSendFinder.countListCVDiDaXuLyTuXuLy_treHan1(userId, soVanBan, soKyHieu, 
+				donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+	}
+	/* end phmphuc update 16/02/2011 */
 }

@@ -36,6 +36,7 @@ public class VanBanNoiBoJSONSerializer {
 
         jsonObj.put("vanBanNoiBoId", model.getVanBanNoiBoId());
         jsonObj.put("loaiVanBanNoiBo", model.getLoaiVanBanNoiBo());
+        jsonObj.put("soVanBanNoiBo", model.getSoVanBanNoiBo());
 
         Date ngayTao = model.getNgayTao();
 
@@ -59,7 +60,7 @@ public class VanBanNoiBoJSONSerializer {
         jsonObj.put("trichYeu", model.getTrichYeu());
         jsonObj.put("nguoiKy", model.getNguoiKy());
         jsonObj.put("ghiChu", model.getGhiChu());
-        jsonObj.put("soVanBanNoiBo", model.getSoVanBanNoiBo());
+        jsonObj.put("soVaoSoVanBanNoiBo", model.getSoVaoSoVanBanNoiBo());
         jsonObj.put("soPhatSinhTheoNam", model.getSoPhatSinhTheoNam());
         jsonObj.put("userId", model.getUserId());
         jsonObj.put("groupId", model.getGroupId());

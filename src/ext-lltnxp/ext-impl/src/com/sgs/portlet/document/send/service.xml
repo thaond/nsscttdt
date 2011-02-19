@@ -199,6 +199,7 @@
 		<column name="orgExternalId" type="long" db-name="orgexternalid"/>
 		<column name="numOfDirector" type="boolean" db-name="numofdirector"/>
 		<column name="documentRecordTypeId" type="int" db-name="documentrecordtypeid"/>
+		<column name="isDocOfDepartment" type="boolean" db-name="isdocofdepartment"/>
 		<!-- Order -->
 
 		<order by="desc">

@@ -21,10 +21,17 @@ import org.apache.struts.action.ActionMapping;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.sgs.liferay.jbpm.param.WorkflowParam;
+import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
+import com.sgs.portlet.document.send.service.PmlEdmDocumentSendLocalServiceUtil;
 import com.sgs.portlet.document.workflow.DocumentSendLiferayWorkflowService;
 import com.sgs.portlet.document.workflow.DocumentSendPortletAction;
+import com.sgs.portlet.documentdelegate.util.PmlDocumentDelegateUtil;
+import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
+import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 /**
  * <ul>
@@ -50,7 +57,7 @@ public class MoveToPublishAction extends DocumentSendPortletAction {
 		throws Exception {
 
 		List<User> results = new ArrayList<User>();
-		long documentSendId = ParamUtil.getLong(req, "documentSendId", 0);
+//		long documentSendId = ParamUtil.getLong(req, "documentSendId", 0);
 
 		long taskId = getTaskInstanceId(req);
 		List<User> users =
@@ -113,20 +120,60 @@ public class MoveToPublishAction extends DocumentSendPortletAction {
 		RenderRequest req, RenderResponse res)
 		throws Exception {
 
-		List<User> users = getListUser(req);
+		long documentSendId = ParamUtil.getLong(req, "documentSendId", 0);
+		PmlEdmDocumentSend pmlEdmDocumentSend = PmlEdmDocumentSendLocalServiceUtil.getPmlEdmDocumentSend(documentSendId);
+		
+		List<User> users = new ArrayList<User>();
+		if (!pmlEdmDocumentSend.getIsDocOfDepartment()) {
+			users = getListUser(req);
+		} else {
+			long userId = PortalUtil.getUserId(req);
+			PmlUser pmlUser = null;
+			String departmentId = "";
+			List<PmlUser> userOfDepartmentList = new ArrayList<PmlUser>();
+			try {
+				pmlUser = PmlUserLocalServiceUtil.getPmlUser(userId);
+				departmentId = pmlUser.getDepartmentsId();
+				userOfDepartmentList = PmlUserUtil.findByDepartmentsId(departmentId);
+				
+				for (PmlUser pmlUser2 : userOfDepartmentList) {
+					if (pmlUser2.getIsVanThuPhong()) {
+						users.add(UserLocalServiceUtil.getUser(pmlUser2.getUserId()));
+					}
+				}
+			} catch (Exception e) {}
+			
+//			 new nguoi chuyen phat hanh khong co van thu phong
+			if (users.size() == 0) {
+				try {
+					userOfDepartmentList = PmlUserUtil.findByIsVanThuPhong(true);
+					for (PmlUser pmlUser2 : userOfDepartmentList) {
+						users.add(UserLocalServiceUtil.getUser(pmlUser2.getUserId()));
+					}
+				} catch (Exception e) {
+				}
+			}
+		}
+
+		Collections.sort(users, new Comparator<User>() {
+
+			public int compare(User o1, User o2) {
+				return PmlDocumentDelegateUtil.getFullName(o1.getUserId()).compareTo(PmlDocumentDelegateUtil.getFullName(o2.getUserId()));
+			}
+		});
 
 		// get current page
-		int page = ParamUtil.getInteger(req, "page", 1);
+//		int page = ParamUtil.getInteger(req, "page", 1);
 
 		// get total item of page
-		int limit = ParamUtil.getInteger(req, "limit", 20); // default
+//		int limit = ParamUtil.getInteger(req, "limit", 20); // default
 
 		req.setAttribute("users", users);
 
-		req.setAttribute("currentPage", page);
-		req.setAttribute("currentLimit", limit);
+//		req.setAttribute("currentPage", page);
+//		req.setAttribute("currentLimit", limit);
 
-		return mapping.findForward("portlet.sgs.pcccdocumentsendprocess.trans");
+		return mapping.findForward("portlet.sgs.pcccdocumentsendprocess.movetopublish");
 	}
 
 }

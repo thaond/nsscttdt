@@ -96,17 +96,21 @@ public class DocumentReceiptLogNode {
 			: "<p>(\u0110\u00e3 x\u1eed l\u00fd" +
 				(isAutoFinish() ? " - T\u1ef1 ho\u00e0n th\u00e0nh" : "") +
 				")</p>");
+
 		sb.append("<p><b>Ng\u00e0y g\u1eedi: </b>");
-		sb.append(receiptLog.getDateProcessTime() == null
+		sb.append((parent == null) || (receiptLog.getDateProcessTime() == null)
 			? "N/A" : DF.format(receiptLog.getDateProcessTime()));
 		sb.append("</p>");
+
 		sb.append("<p><b>Ng\u00e0y nh\u1eadn: </b>");
-		sb.append(receiptLog.getReceiveDateTime() == null
+		sb.append((parent == null) || (receiptLog.getReceiveDateTime() == null)
 			? "N/A" : DF.format(receiptLog.getReceiveDateTime()));
 		sb.append("</p>");
+
 		sb.append("<p><b>Y\u00eau c\u1ea7u x\u1eed l\u00fd: </b>");
-		sb.append(receiptLog.getProcessInfomation());
+		sb.append((parent == null) ? "N/A" : receiptLog.getProcessInfomation());
 		sb.append("</p>");
+
 		sb.append(getReceivingOrganization());
 		sb.append("</div>");
 		return sb.toString();

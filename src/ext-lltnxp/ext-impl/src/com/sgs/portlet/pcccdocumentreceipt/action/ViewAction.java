@@ -74,7 +74,6 @@ public class ViewAction extends DocumentReceiptPortletAction {
 		try {
 			
 		int documentRecordTypeId = ParamUtil.getInteger(req, "documentRecordTypeId",0);
-		System.out.println("documentRecordTypeId "+ documentRecordTypeId);
 		boolean privateDocument = ParamUtil.getBoolean(req, "privateDocument");
 		String DocumentSendReference = ParamUtil.getString(req, "socongvandiphucdap");
 		

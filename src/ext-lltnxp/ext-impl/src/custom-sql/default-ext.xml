@@ -44,7 +44,9 @@
 	
 	<sql file="custom-sql/receivergroup.xml" />
 	<sql file="custom-sql/reportregistrywork.xml" />
-	<sql file="custom-sql/documentmanager.xml" />	
+	<sql file="custom-sql/documentmanager.xml" />
+	<sql file="custom-sql/loaivanbannoibo.xml" />
+	<sql file="custom-sql/sovanbannoibo.xml" />	
 	
 	<!-- By TriLTM -->		
 	<sql file="custom-sql/pmledmdocumentreceipt.xml" />			

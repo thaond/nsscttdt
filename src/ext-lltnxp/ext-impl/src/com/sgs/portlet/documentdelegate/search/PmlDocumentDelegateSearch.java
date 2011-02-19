@@ -54,6 +54,7 @@ public class PmlDocumentDelegateSearch extends SearchContainer<PmlDocumentDelega
 			iteratorURL.setParameter(PmlDocumentDelegateDisplayTerms.LIST_USER_IS_DELEGATE, displayTerms.getListUserIsDelegate());
 			iteratorURL.setParameter(PmlDocumentDelegateDisplayTerms.FROM_DATE_DELEGATE, displayTerms.getFromDateDelegate());
 			iteratorURL.setParameter(PmlDocumentDelegateDisplayTerms.TO_DATE_DELEGATE, displayTerms.getToDateDelegate());
+			iteratorURL.setParameter(PmlDocumentDelegateDisplayTerms.CHECK_ALL_USER, String.valueOf(displayTerms.isCheckAllUser()));
 			
 			try {
 				PortalPreferences preferences =

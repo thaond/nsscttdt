@@ -62,4 +62,10 @@ public class PmlEdmDocumentRecordTypeLocalServiceImpl
 	public List<PmlEdmDocumentRecordType> getDocumentRecordTypeUseForAgency(String flag, String agencyId, int currentYear) throws Exception {
 		return pmlEdmDocumentRecordTypeFinder.getDocumentRecordTypeUseForAgency(flag, agencyId, currentYear);
 	}
+	
+	// minh update 20110215
+	public List<PmlEdmDocumentRecordType> getDocumentRecordTypeUseForDeparment(String departmentId, int currentYear) throws Exception {
+		return pmlEdmDocumentRecordTypeFinder.getDocumentRecordTypeUseForDeparment(departmentId, currentYear);
+	}
+	// end minh update 20110215
 }

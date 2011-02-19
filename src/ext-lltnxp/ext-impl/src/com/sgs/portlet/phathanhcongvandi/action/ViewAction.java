@@ -1,4 +1,3 @@
-
 package com.sgs.portlet.phathanhcongvandi.action;
 
 import java.io.File;
@@ -124,13 +123,21 @@ public class ViewAction extends DocumentSendPortletAction {
 		document.setEditorId(userLoginId);
 		// department
 		Department department = null;
+		Department departmentParent = null;
 		String departmentName = "";
 		String departmentsId = "";
 		try {
-			department =
-				DepartmentLocalServiceUtil.getDepartment(pmlUser.getDepartmentsId());
-			departmentName = department.getDepartmentsName();
-			departmentsId = department.getDepartmentsId();
+			department = DepartmentLocalServiceUtil.getDepartment(pmlUser.getDepartmentsId());
+			// lay phong ban cha
+			if (department.getDepartmentsParentId() != null && !department.getDepartmentsParentId().equals("")) {
+				String departmentParentId = department.getDepartmentsParentId();
+				departmentParent = DepartmentLocalServiceUtil.getDepartment(departmentParentId);
+				departmentName = departmentParent.getDepartmentsName();
+				departmentsId = departmentParent.getDepartmentsId();
+			} else {
+				departmentName = department.getDepartmentsName();
+				departmentsId = department.getDepartmentsId();
+			}
 		}
 		catch (Exception e) {
 			departmentName = "";
@@ -187,6 +194,22 @@ public class ViewAction extends DocumentSendPortletAction {
 		catch (Exception e) {
 			pmlEdmDocumentTypeList = new ArrayList<PmlEdmDocumentType>();
 		}
+		
+		// danh sach phong ban
+		List<Department> departmentList = null;
+		try {
+			departmentList = DepartmentLocalServiceUtil.findDepartmentsByDepartmentParentId();
+		} catch (Exception e) {
+			departmentList = new ArrayList<Department>();
+		}
+		
+		// danh sach chuyen vien phong ban
+		List<PmlUser> userList = null;
+		try {
+			userList = PmlUserLocalServiceUtil.findUserListByDepartmentId(departmentsId, -1, -1, null);
+		} catch (Exception e) {
+			userList = new ArrayList<PmlUser>();
+		}
 
 		req.setAttribute("documentDTO", documentSendDTO);
 		req.setAttribute(
@@ -197,13 +220,17 @@ public class ViewAction extends DocumentSendPortletAction {
 		req.setAttribute("pmlEdmDocumentTypeList", pmlEdmDocumentTypeList);
 		req.setAttribute("departmentName", departmentName);
 		req.setAttribute("departmentsId", departmentsId);
+		req.setAttribute("departmentList", departmentList);
+		req.setAttribute("userList", userList);
 
 		return mapping.findForward("portlet.sgs.phathanhcongvandi.view");
 	}
 
-	private void updateDocumentSend(ActionRequest req, ActionResponse res)
-		throws Exception {
-
+	private void updateDocumentSend(ActionRequest req, ActionResponse res) throws Exception {
+		// minh upate 20110215
+		boolean soVanBanCuaPhong =
+			ParamUtil.getBoolean(req, "soVanBanCuaPhong");
+		// end minh upate 20110215
 		String message = "true";
 		int documentRecordTypeId =
 			ParamUtil.getInteger(req, "documentRecordTypeId");
@@ -221,6 +248,7 @@ public class ViewAction extends DocumentSendPortletAction {
 		String confidentialLevelId =
 			ParamUtil.getString(req, "confidentialLevelId");
 		long creatorId = ParamUtil.getLong(req, "creatorId");
+		long creatorName = ParamUtil.getLong(req, "creatorName");
 		String signerName = ParamUtil.getString(req, "signerName");
 		String privilegenLevelId =
 			ParamUtil.getString(req, "privilegenLevelId");
@@ -249,7 +277,7 @@ public class ViewAction extends DocumentSendPortletAction {
 		document.setSendDate(sendDate);
 		document.setIssuingDate(issuingDate);
 		document.setDocumentTypeId(documentTypeId);
-
+		document.setIscongvanphucdap(soVanBanCuaPhong);
 		// Canh
 		String receivingPlace2 =
 			ParamUtil.getString(req, "receivingPlace2", "");
@@ -281,7 +309,8 @@ public class ViewAction extends DocumentSendPortletAction {
 		// End of Canh
 
 		document.setConfidentialLevelId(confidentialLevelId);
-		document.setEditorId(creatorId);
+//		document.setEditorId(creatorId);
+		document.setEditorId(creatorName);
 		document.setSignerName(signerName);
 		document.setPrivilegeLevelId(privilegenLevelId);
 		document.setPosition(position);
@@ -291,6 +320,7 @@ public class ViewAction extends DocumentSendPortletAction {
 		document.setNumberPublish(numberPublist);
 		document.setNumOfDocRef(numOfDocRef);
 		document.setNumOfDirector(numOfDirector);
+		document.setDocumentRecordTypeId(documentRecordTypeId); // phmphuc them 12/02/2011
 
 		// chi muc
 		User user = PortalUtil.getUser(req);
@@ -307,7 +337,7 @@ public class ViewAction extends DocumentSendPortletAction {
 		Date dateArrive = new Timestamp(new Date().getTime());
 		bookDocumentRecordTo(
 			Long.parseLong(arrDocRef[0]), documentRecordTypeId, documentSendId,
-			user.getUserId(), dateArrive, documentTypeId);
+			user.getUserId(), dateArrive, documentTypeId, soVanBanCuaPhong);
 		// end minh upate 20100113
 
 		// upload file
@@ -589,7 +619,7 @@ public class ViewAction extends DocumentSendPortletAction {
 
 	private void bookDocumentRecordTo(
 		long numberDocumentReference, int documentRecordTypeId,
-		long documentSendId, long userId, Date dateArrive, long documentTypeId)
+		long documentSendId, long userId, Date dateArrive, long documentTypeId, boolean soVanBanCuaPhong)
 		throws SystemException, NoSuchPmlEdmDocumentTypeException,
 		NoSuchDepartmentException, NoSuchPmlUserException,
 		ArrayIndexOutOfBoundsException {
@@ -607,31 +637,41 @@ public class ViewAction extends DocumentSendPortletAction {
 		department = DepartmentUtil.findByPrimaryKey(departmentId);
 		String agencyId = department.getAgencyId();
 
-		List<PmlEdmBookDocumentSend> pmlEdmBookDocumentSends =
-			PmlEdmBookDocumentSendUtil.findByAgencyId_YearInUse_DocumentRecordTypeId(
-				agencyId, yearInUse, documentRecordTypeId);
+		// minh upate 20110215
+		List<PmlEdmBookDocumentSend> pmlEdmBookDocumentSends = null;
+		PmlEdmBookDocumentSend pmlEdmBookDocumentSend = null;
+		if (!soVanBanCuaPhong) {
+			 pmlEdmBookDocumentSends =
+				PmlEdmBookDocumentSendUtil.findByAgencyId_YearInUse_DocumentRecordTypeId(
+					agencyId, yearInUse, documentRecordTypeId);
+		} else {
+			pmlEdmBookDocumentSends = PmlEdmBookDocumentSendUtil.findByDepartDocYear(yearInUse, departmentId, documentRecordTypeId);
+		}
+			 
 		if ((pmlEdmBookDocumentSends != null) &&
 			!pmlEdmBookDocumentSends.isEmpty()) {
-			PmlEdmBookDocumentSend pmlEdmBookDocumentSend =
-				pmlEdmBookDocumentSends.get(0);
-			if ((pmlEdmBookDocumentSend.getAgencyId() != null) &&
-				(pmlEdmBookDocumentSend.getYearInUse() != null)) {
-				PmlEdmWriteDocumentSend writeDocumentSend =
-					new PmlEdmWriteDocumentSendImpl();
-
-				writeDocumentSend =
-					setDataIntoWriteDocumentSend(
-						writeDocumentSend, documentSendId,
-						pmlEdmBookDocumentSend, dateArrive);
-
-				PmlEdmWriteDocumentSendLocalServiceUtil.updatePmlEdmWriteDocumentSend(writeDocumentSend);
-
+				
+			pmlEdmBookDocumentSend = pmlEdmBookDocumentSends.get(0);
+			
+			//if ((pmlEdmBookDocumentSend.getAgencyId() != null) &&
+			//	(pmlEdmBookDocumentSend.getYearInUse() != null)) {
+				
+			PmlEdmWriteDocumentSend writeDocumentSend = new PmlEdmWriteDocumentSendImpl();
+	
+			writeDocumentSend = setDataIntoWriteDocumentSend(
+							writeDocumentSend, documentSendId,
+							pmlEdmBookDocumentSend, dateArrive);
+	
+			PmlEdmWriteDocumentSendLocalServiceUtil.updatePmlEdmWriteDocumentSend(writeDocumentSend);
+	
 				// pmlEdmBookDocumentSend.setCurrentRecord(pmlEdmBookDocumentSend.getCurrentRecord()
 				// + 1);
-				pmlEdmBookDocumentSend.setCurrentRecord(numberDocumentReference);
-				PmlEdmBookDocumentSendLocalServiceUtil.updatePmlEdmBookDocumentSend(pmlEdmBookDocumentSend);
-			}
-		}
+			pmlEdmBookDocumentSend.setCurrentRecord(numberDocumentReference);
+			PmlEdmBookDocumentSendLocalServiceUtil.updatePmlEdmBookDocumentSend(pmlEdmBookDocumentSend);
+			//}
+		} 
+		
+		// end minh upate 20110215
 
 	}
 

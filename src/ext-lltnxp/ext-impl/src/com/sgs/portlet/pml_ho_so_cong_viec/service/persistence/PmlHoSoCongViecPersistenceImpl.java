@@ -1892,6 +1892,286 @@ public class PmlHoSoCongViecPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public List<PmlHoSoCongViec> findByUserId_HoatDong(long userId,
+        String hoatDong) throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlHoSoCongViecModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlHoSoCongViec.class.getName();
+        String finderMethodName = "findByUserId_HoatDong";
+        String[] finderParams = new String[] {
+                Long.class.getName(), String.class.getName()
+            };
+        Object[] finderArgs = new Object[] { new Long(userId), hoatDong };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec WHERE ");
+
+                query.append("userId = ?");
+
+                query.append(" AND ");
+
+                if (hoatDong == null) {
+                    query.append("hoat_dong IS NULL");
+                } else {
+                    query.append("hoat_dong = ?");
+                }
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("tieu_de ASC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(userId);
+
+                if (hoatDong != null) {
+                    qPos.add(hoatDong);
+                }
+
+                List<PmlHoSoCongViec> list = q.list();
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlHoSoCongViec>) result;
+        }
+    }
+
+    public List<PmlHoSoCongViec> findByUserId_HoatDong(long userId,
+        String hoatDong, int start, int end) throws SystemException {
+        return findByUserId_HoatDong(userId, hoatDong, start, end, null);
+    }
+
+    public List<PmlHoSoCongViec> findByUserId_HoatDong(long userId,
+        String hoatDong, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlHoSoCongViecModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlHoSoCongViec.class.getName();
+        String finderMethodName = "findByUserId_HoatDong";
+        String[] finderParams = new String[] {
+                Long.class.getName(), String.class.getName(),
+                
+                "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(userId),
+                
+                hoatDong,
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec WHERE ");
+
+                query.append("userId = ?");
+
+                query.append(" AND ");
+
+                if (hoatDong == null) {
+                    query.append("hoat_dong IS NULL");
+                } else {
+                    query.append("hoat_dong = ?");
+                }
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("tieu_de ASC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(userId);
+
+                if (hoatDong != null) {
+                    qPos.add(hoatDong);
+                }
+
+                List<PmlHoSoCongViec> list = (List<PmlHoSoCongViec>) QueryUtil.list(q,
+                        getDialect(), start, end);
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlHoSoCongViec>) result;
+        }
+    }
+
+    public PmlHoSoCongViec findByUserId_HoatDong_First(long userId,
+        String hoatDong, OrderByComparator obc)
+        throws NoSuchPmlHoSoCongViecException, SystemException {
+        List<PmlHoSoCongViec> list = findByUserId_HoatDong(userId, hoatDong, 0,
+                1, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No PmlHoSoCongViec exists with the key {");
+
+            msg.append("userId=" + userId);
+
+            msg.append(", ");
+            msg.append("hoatDong=" + hoatDong);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchPmlHoSoCongViecException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlHoSoCongViec findByUserId_HoatDong_Last(long userId,
+        String hoatDong, OrderByComparator obc)
+        throws NoSuchPmlHoSoCongViecException, SystemException {
+        int count = countByUserId_HoatDong(userId, hoatDong);
+
+        List<PmlHoSoCongViec> list = findByUserId_HoatDong(userId, hoatDong,
+                count - 1, count, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No PmlHoSoCongViec exists with the key {");
+
+            msg.append("userId=" + userId);
+
+            msg.append(", ");
+            msg.append("hoatDong=" + hoatDong);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchPmlHoSoCongViecException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlHoSoCongViec[] findByUserId_HoatDong_PrevAndNext(
+        long idHoSoCongViec, long userId, String hoatDong, OrderByComparator obc)
+        throws NoSuchPmlHoSoCongViecException, SystemException {
+        PmlHoSoCongViec pmlHoSoCongViec = findByPrimaryKey(idHoSoCongViec);
+
+        int count = countByUserId_HoatDong(userId, hoatDong);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec WHERE ");
+
+            query.append("userId = ?");
+
+            query.append(" AND ");
+
+            if (hoatDong == null) {
+                query.append("hoat_dong IS NULL");
+            } else {
+                query.append("hoat_dong = ?");
+            }
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("tieu_de ASC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(userId);
+
+            if (hoatDong != null) {
+                qPos.add(hoatDong);
+            }
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    pmlHoSoCongViec);
+
+            PmlHoSoCongViec[] array = new PmlHoSoCongViecImpl[3];
+
+            array[0] = (PmlHoSoCongViec) objArray[0];
+            array[1] = (PmlHoSoCongViec) objArray[1];
+            array[2] = (PmlHoSoCongViec) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
         Session session = null;
@@ -2044,6 +2324,14 @@ public class PmlHoSoCongViecPersistenceImpl extends BasePersistenceImpl
 
     public void removeByUserId(long userId) throws SystemException {
         for (PmlHoSoCongViec pmlHoSoCongViec : findByUserId(userId)) {
+            remove(pmlHoSoCongViec);
+        }
+    }
+
+    public void removeByUserId_HoatDong(long userId, String hoatDong)
+        throws SystemException {
+        for (PmlHoSoCongViec pmlHoSoCongViec : findByUserId_HoatDong(userId,
+                hoatDong)) {
             remove(pmlHoSoCongViec);
         }
     }
@@ -2481,6 +2769,84 @@ public class PmlHoSoCongViecPersistenceImpl extends BasePersistenceImpl
                 QueryPos qPos = QueryPos.getInstance(q);
 
                 qPos.add(userId);
+
+                Long count = null;
+
+                Iterator<Long> itr = q.list().iterator();
+
+                if (itr.hasNext()) {
+                    count = itr.next();
+                }
+
+                if (count == null) {
+                    count = new Long(0);
+                }
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, count);
+
+                return count.intValue();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return ((Long) result).intValue();
+        }
+    }
+
+    public int countByUserId_HoatDong(long userId, String hoatDong)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlHoSoCongViecModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlHoSoCongViec.class.getName();
+        String finderMethodName = "countByUserId_HoatDong";
+        String[] finderParams = new String[] {
+                Long.class.getName(), String.class.getName()
+            };
+        Object[] finderArgs = new Object[] { new Long(userId), hoatDong };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec WHERE ");
+
+                query.append("userId = ?");
+
+                query.append(" AND ");
+
+                if (hoatDong == null) {
+                    query.append("hoat_dong IS NULL");
+                } else {
+                    query.append("hoat_dong = ?");
+                }
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(userId);
+
+                if (hoatDong != null) {
+                    qPos.add(hoatDong);
+                }
 
                 Long count = null;
 

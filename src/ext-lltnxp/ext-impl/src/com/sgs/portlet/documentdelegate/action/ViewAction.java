@@ -3,6 +3,7 @@ package com.sgs.portlet.documentdelegate.action;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import javax.portlet.RenderResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.compass.core.util.backport.java.util.Collections;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -28,11 +30,9 @@ import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.documentdelegate.model.PmlDocumentDelegate;
 import com.sgs.portlet.documentdelegate.model.impl.PmlDocumentDelegateImpl;
 import com.sgs.portlet.documentdelegate.service.PmlDocumentDelegateLocalServiceUtil;
-import com.sgs.portlet.onedoor.model.PmlAgencyLeader;
+import com.sgs.portlet.documentdelegate.util.PmlDocumentDelegateUtil;
 import com.sgs.portlet.onedoor.model.PmlDepartmentsLeader;
-import com.sgs.portlet.onedoor.service.PmlAgencyLeaderLocalServiceUtil;
 import com.sgs.portlet.onedoor.service.PmlDepartmentsLeaderLocalServiceUtil;
-import com.sgs.portlet.onedoor.service.persistence.PmlDepartmentsLeaderUtil;
 import com.sgs.portlet.pmluser.model.PmlUser;
 import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 import com.sgs.portlet.pmluser.util.PmlUserUtil;
@@ -144,9 +144,10 @@ public class ViewAction extends PortletAction {
 				
 				PmlUser pmlUserDelegate = null;
 				String departmentParentId = "";
+				/* minh upate 20110214
 				List<PmlUser> pmlUserIsDelegateTemps = new ArrayList<PmlUser>();
 				List<PmlDepartmentsLeader> departmentsLeaderTemps = new ArrayList<PmlDepartmentsLeader>();
-
+				end minh upate 20110214*/
 				if (checkUserLogin) {
 					try {
 						if (userDelelegate == 0) {
@@ -158,6 +159,7 @@ public class ViewAction extends PortletAction {
 						}
 						
 						
+						/* minh upate 20110214
 						List<PmlAgencyLeader> agencyLeaders = null;
 						try {
 							agencyLeaders = PmlAgencyLeaderLocalServiceUtil.getPmlAgencyLeaders(-1, -1);
@@ -168,6 +170,7 @@ public class ViewAction extends PortletAction {
 						
 						long userAgencyLeaderId = 0;
 						PmlUser pmlUserAgencyLeader = null;
+						
 						boolean isAgencyLeader = false;
 						
 						for (int i = 0; i < agencyLeaders.size(); i++) {
@@ -181,13 +184,20 @@ public class ViewAction extends PortletAction {
 								_log.error("ERROR: GET PMLUSER LEAGER " + ViewAction.class + " " + e.getMessage());		
 							}
 						}
+						end minh upate 20110214*/
 						// phmphuc them 05/01/2011 - neu chon uy quyen tat ca chuyen vien
 						if (checkAllUser) {
+							/* minh upate 20110214
 							List<PmlDepartmentsLeader> departmentsLeaderList = null;
 							PmlDepartmentsLeader departmentsLeader = null;
 							PmlUser pmlUser = null;
+							end minh upate 20110214*/
 							try {
 								pmlUserIsDelegates = PmlUserLocalServiceUtil.getPmlUsers(-1, -1);
+								// minh upate 20110214
+								pmlUserIsDelegates.remove(pmlUserDelegate);
+								// end minh upate 20110214
+								/* minh upate 20110214
 								departmentsLeaderList = PmlDepartmentsLeaderLocalServiceUtil.getPmlDepartmentsLeaders(-1, -1);
 								
 								for (int i = 0; i < departmentsLeaderList.size(); i ++) {
@@ -198,12 +208,15 @@ public class ViewAction extends PortletAction {
 									
 									pmlUserIsDelegates.remove(pmlUser);
 								}
+								end minh upate 20110214*/
 							} catch (Exception e) {
 								_log.error("ERROR: GET LIST PMLUSER " + ViewAction.class + " " + e.getMessage());	
 							}
 						}
 						// end phmphuc add 05/01/2011
+						
 						else {
+							/* minh upate 20110214
 						
 							if (isAgencyLeader) {
 								try {
@@ -214,6 +227,7 @@ public class ViewAction extends PortletAction {
 								}
 							
 							} else {
+						end minh upate 20110214*/	
 								departmentParentId = pmlUserDelegate.getDepartmentsId(); 
 								List<Department> departments = null;
 								try {
@@ -222,8 +236,12 @@ public class ViewAction extends PortletAction {
 									_log.error("ERROR GET DEPARTMENT OF USER DELEGATE " + ViewAction.class + " " + e.getMessage());
 								}
 								
+								/* minh upate 20110214
 								if (departments == null || departments.isEmpty()) {
+								
 									pmlUserIsDelegateTemps = PmlUserUtil.getPmlUserByDepartmentId(departmentParentId);
+									pmlUserIsDelegateTemps.remove(pmlUserDelegate);
+									
 									departmentsLeaderTemps = PmlDepartmentsLeaderUtil.findByDepartmentsId(departmentParentId);
 									
 									int sizePmlUserTemp = pmlUserIsDelegateTemps.size();
@@ -242,21 +260,45 @@ public class ViewAction extends PortletAction {
 											pmlUserIsDelegateTemps.remove(PmlUserLocalServiceUtil.getPmlUser(departmentsLeaderTemps.get(i).getUserId()));
 										}
 									}
+								
 									
 									pmlUserIsDelegates = pmlUserIsDelegateTemps;
 								} else {
-									for (int i = 0; i < departments.size(); i++) {
-										pmlUserIsDelegates.addAll(PmlUserUtil.getPmlUserByDepartmentId(departments.get(i).getDepartmentsId()));
+								 end minh upate 20110214*/
+									pmlUserIsDelegates = PmlUserUtil.getPmlUserByDepartmentId(departmentParentId);
+									pmlUserIsDelegates.remove(pmlUserDelegate);
+									
+									if (departments != null) {
+										for (int i = 0; i < departments.size(); i++) {
+											pmlUserIsDelegates.addAll(PmlUserUtil.getPmlUserByDepartmentId(departments.get(i).getDepartmentsId()));
+										}
 									}
-								}
+							/* minh upate 20110214
 							}
+							end minh upate 20110214*/
 						}
-						
 					} catch (Exception e) {
 						_log.error("ERROR CREATE LIST  PMLUSER FROM USER LOGIN IN " + ViewAction.class + " " + e.getMessage());
 					}
 				}  
 				
+				 // minh upate 20110214
+				Collections.sort(pmlUserDelegates, new Comparator<PmlUser>() {
+
+					public int compare(PmlUser o1, PmlUser o2) {
+						
+						return PmlDocumentDelegateUtil.getFullName(o1.getUserId()).compareTo(PmlDocumentDelegateUtil.getFullName(o2.getUserId()));
+					}
+				});
+				
+				Collections.sort(pmlUserIsDelegates, new Comparator<PmlUser>() {
+
+					public int compare(PmlUser o1, PmlUser o2) {
+						return PmlDocumentDelegateUtil.getFullName(o1.getUserId()).compareTo(PmlDocumentDelegateUtil.getFullName(o2.getUserId()));
+					}
+				});
+				
+				 // end minh upate 20110214
 				req.setAttribute("pmlUserDelegates", pmlUserDelegates);
 				req.setAttribute("pmlUserIsDelegates", pmlUserIsDelegates);
 				

@@ -36,7 +36,7 @@ public class DocumentRecordToUtil extends RTFUtil {
 
 	@Override
 	protected void putContext(IContext context) {
-		context.put("documentRecordToList", this.documentRecordToList);
+		context.put("list", this.documentRecordToList);
 	}
 
 	public static OrderByComparator getDocumentRecordToOrderByComparator(
@@ -50,7 +50,7 @@ public class DocumentRecordToUtil extends RTFUtil {
 
 		OrderByComparator orderByComparator = null;
 
-		if (orderByCol.equals("sovanbannoibo")) {
+		if (orderByCol.equals("soden")) {
 			orderByComparator = new DocumentRecordToSoNoiBoComparator(orderByAsc);
 		}
 		else if (orderByCol.equals("ngayden")) {
@@ -58,6 +58,9 @@ public class DocumentRecordToUtil extends RTFUtil {
 		}
 		else if (orderByCol.equals("ngayphathanh")) {
 			orderByComparator = new DocumentRecordToNgayPHComparator(orderByAsc);
+		}
+		else {
+			orderByComparator = new DocumentRecordToNgayDenComparator(orderByAsc);
 		}
 
 		return orderByComparator;

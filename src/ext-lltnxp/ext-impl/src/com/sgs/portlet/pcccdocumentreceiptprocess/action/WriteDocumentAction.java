@@ -27,6 +27,8 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.persistence.UserUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.sgs.liferay.jbpm.param.WorkflowParam;
+import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.document.receipt.model.PmlEdmAttachedFile;
 import com.sgs.portlet.document.receipt.model.PmlEdmBookDocumentRecordTo;
 import com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel;
@@ -45,7 +47,6 @@ import com.sgs.portlet.document.receipt.service.persistence.PmlEdmAttachedFileUt
 import com.sgs.portlet.document.receipt.service.persistence.PmlEdmBookDocumentRecordToUtil;
 import com.sgs.portlet.document.receipt.service.persistence.PmlEdmConfidentialLevelUtil;
 import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentReceiptUtil;
-import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil;
 import com.sgs.portlet.document.receipt.service.persistence.PmlEdmPrivilegeLevelUtil;
 import com.sgs.portlet.document.send.model.PmlEdmAnswerDetail;
 import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
@@ -55,15 +56,13 @@ import com.sgs.portlet.document.send.service.PmlEdmAnswerDetailLocalServiceUtil;
 import com.sgs.portlet.document.send.service.PmlEdmDocumentSendLocalServiceUtil;
 import com.sgs.portlet.document.workflow.DocumentReceiptPortletAction;
 import com.sgs.portlet.generatetemplateid.service.IdTemplateServiceUtil;
-import com.sgs.portlet.department.model.Department;
-import com.sgs.portlet.pmluser.model.PmlUser;
-import com.sgs.portlet.department.service.persistence.DepartmentUtil;
-import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.impl.PmlChiTietHSCVImpl;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.PmlChiTietHSCVLocalServiceUtil;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecUtil;
+import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 /**
  * Prepare data for form add send document.
@@ -72,9 +71,14 @@ import com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecUt
  */
 public class WriteDocumentAction extends DocumentReceiptPortletAction {
 	//xuancong close private static final int HSVC_KHONGCHON = -1;
+	@Override
 	public void processStrutsAction(ActionMapping mapping, ActionForm form,
 			PortletConfig config, ActionRequest req, ActionResponse res)
 			throws Exception {
+		// minh upate 20110215
+		// soan van ban di cua phong	
+		boolean soVanBanCuaPhong = ParamUtil.getBoolean(req, "soVanBanCuaPhong", false);
+		// end minh upate 20110215
 		
 		long documentReceiptId = ParamUtil.getLong(req, "documentReceiptId");
 		String documentReference = IdTemplateServiceUtil.generatedStringId(PmlEdmDocumentSend.class.getName());
@@ -122,6 +126,7 @@ public class WriteDocumentAction extends DocumentReceiptPortletAction {
 		pmlEdmDocumentSend.setPrivilegeLevelId(privilegenLevelId);
 		pmlEdmDocumentSend.setBriefContent(StringUtil.encodeHtml(briefContent));
 		pmlEdmDocumentSend.setIscongvanphucdap(socongvanphucdap);
+		pmlEdmDocumentSend.setIsDocOfDepartment(soVanBanCuaPhong);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
@@ -254,15 +259,20 @@ public class WriteDocumentAction extends DocumentReceiptPortletAction {
 		
 	}
 
+	@Override
 	public ActionForward renderStruts(ActionMapping mapping, ActionForm form,
 			PortletConfig config, RenderRequest req, RenderResponse res)
 			throws Exception {
 		
-		// so ho so cong viec
+		long userId = PortalUtil.getUser(req).getUserId();
 		
+		// so ho so cong viec
 		List<PmlHoSoCongViec> pmlHoSoCongViecList = new ArrayList<PmlHoSoCongViec>();
 		try {
-			pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+			//minh upate 20100210
+			//pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+			pmlHoSoCongViecList = PmlHoSoCongViecUtil.findByUserId_HoatDong(userId,"1");
+			//end minh upate 20100210
 		} catch (Exception e) {
 		
 		}
@@ -271,7 +281,6 @@ public class WriteDocumentAction extends DocumentReceiptPortletAction {
 		
 		try {
 			// lay ra user hien hanh
-			long userId = PortalUtil.getUser(req).getUserId();
 			User user = UserUtil.findByPrimaryKey(userId);
 			req.setAttribute("user", user);
 			
@@ -288,32 +297,52 @@ public class WriteDocumentAction extends DocumentReceiptPortletAction {
 			}
 			*/
 			// lay so van ban theo loai VB
+			// minh upate 20110216
+//			List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+//			List<PmlEdmDocumentType> documentTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
+//			int documentRecordTypeId = 0;
+//			PmlEdmDocumentRecordType recordType = null;
+//			for (PmlEdmDocumentType documentType : documentTypes) {
+//				documentRecordTypeId = documentType.getDocumentRecordTypeId();
+//				try {
+//					recordType = PmlEdmDocumentRecordTypeLocalServiceUtil.getPmlEdmDocumentRecordType(documentRecordTypeId);
+//					if (!pmlEdmDocumentRecordTypeList.contains(recordType)) {
+//						pmlEdmDocumentRecordTypeList.add(recordType);
+//					}
+//				} catch (Exception e) { }
+//			}
+			
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			int currentYear = calendar.get(Calendar.YEAR);
+
 			List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
-			List<PmlEdmDocumentType> documentTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
-			int documentRecordTypeId = 0;
-			PmlEdmDocumentRecordType recordType = null;
-			for (PmlEdmDocumentType documentType : documentTypes) {
-				documentRecordTypeId = documentType.getDocumentRecordTypeId();
-				try {
-					recordType = PmlEdmDocumentRecordTypeLocalServiceUtil.getPmlEdmDocumentRecordType(documentRecordTypeId);
-					if (!pmlEdmDocumentRecordTypeList.contains(recordType)) {
-						pmlEdmDocumentRecordTypeList.add(recordType);
-					}
-				} catch (Exception e) { }
+			if (department != null) {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
 			}
+			// end minh upate 20110216
 			// end phmphuc update 12/11/2010
 			
 			
 			req.setAttribute("pmlEdmDocumentRecordTypeList", pmlEdmDocumentRecordTypeList);
 			
 			// Loai cong van
-			List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeUtil.findAll();
-			
-			if (pmlEdmDocumentTypeList == null) {
-				req.setAttribute("pmlEdmDocumentTypeList", new ArrayList<PmlEdmDocumentType>());
+			// minh upate 20110216
+//			List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeUtil.findAll();
+//			
+//			if (pmlEdmDocumentTypeList == null) {
+//				req.setAttribute("pmlEdmDocumentTypeList", new ArrayList<PmlEdmDocumentType>());
+//			}
+			List<PmlEdmDocumentType> pmlEdmDocumentTypeListSend = null;
+			try {
+				pmlEdmDocumentTypeListSend = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2,3);
+				
+			} catch (Exception e) {
+				pmlEdmDocumentTypeListSend = new ArrayList<PmlEdmDocumentType>();
 			}
-			
-			req.setAttribute("pmlEdmDocumentTypeList", pmlEdmDocumentTypeList);
+
+			req.setAttribute("pmlEdmDocumentTypeList", pmlEdmDocumentTypeListSend);
+			// end minh upate 20110216
 			
 			// Do mat
 			List<PmlEdmConfidentialLevel> pmlEdmConfidentialLevelList = PmlEdmConfidentialLevelUtil.findAll();

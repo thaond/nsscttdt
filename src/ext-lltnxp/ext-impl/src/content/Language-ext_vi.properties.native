@@ -671,8 +671,8 @@ hoanthanh=Hoàn thành
 ##
 luutam=Lưu tạm
 chuyenphathanh=Chuyển phát hành
-trinhlanhdao=Trình ban giám đốc
-trinhtruongphong=Trình chỉ huy
+trinhlanhdao=Trình chỉ huy
+trinhtruongphong=Trình lãnh đạo phòng
 baocaocanhan=Báo cáo cá nhân
 chopheduyet=Chờ phê duyệt
 baocaodonvi=Báo cáo đơn vị
@@ -1311,7 +1311,7 @@ chotrahoso=Trả hồ sơ
 hosodaluu=Hồ sơ đã lưu
 nhapsocongvan=Xin vui lòng nhập số văn bản
 nhapthongtinveviec=Nhập thông tin về việc
-chuyenlanhdao=Chuyển ban giám đốc
+chuyenlanhdao=Chuyển ban chỉ huy
 soancongvandi1=Soạn văn bản đi
 soancongvandi2=Soạn văn bản đi
 
@@ -3556,6 +3556,7 @@ so-va-ky-hieu-vb-phat-hanh-da-ton-tai=Số và ký hiệu văn bản phát hành
 ## Quản lý luồng
 ## Quan ly luong
 ##
+action.ADD=Thêm mới
 javax.portlet.title.SGS_RECEIVERGROUP=Quản lý luồng
 ten-luong=Tên luồng
 them-luong=Thêm luồng
@@ -3566,6 +3567,12 @@ enter-group-name=Xin nhập tên luồng
 this-name-already-exists=Tên này đã tồn tại
 ban-muon-xoa-luong-nay=Bạn muốn xóa luồng này?
 nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them=Nhấp vào để tìm kiếm đơn vị/người nhận muốn thêm
+receiver-group=Luồng
+phong-ban=Phòng ban
+don-vi-khac=Đơn vị khác
+phong=Phòng
+chuyen-den-to-chuc-khac=Chuyển đến tổ chức khác
+nhap-yeu-cau-xu-ly=Nhập yêu cầu xử lý
 
 check-all-user=Chọn bất kỳ chuyên viên
 
@@ -3573,7 +3580,7 @@ check-all-user=Chọn bất kỳ chuyên viên
 chon-lanh-dao-xu-ly-chinh=Chọn lãnh đạo xử lý chính
 lanh-dao-xu-ly-chinh=Lãnh đạo xử lý chính
 chanhvanphong=LĐ VP
-lanhdao=Ban giám đốc
+lanhdao=Ban chỉ huy
 
 nhap-lieu-thay=Nhập liệu thay
 nhap-so-lon-hon-hoac-bang-0=Nhập số lớn hơn hoặc bằng 0
@@ -3586,7 +3593,7 @@ Control panel=Bảng điều khiển
 receiver-group=Luồng
 
 su-dung-ma-phong-ban=Sử dụng mã phòng ban
-su-dung-nam-hien-ta=Sử dụng năm hiện tại
+su-dung-nam-hien-tai=Sử dụng năm hiện tại
 
 dia-chi-dang-trien-khai-he-thong =8A Hàm Tử Phường 1 Quận 5, TP. Hồ Chí Minh
 
@@ -3694,3 +3701,60 @@ thu-thap-van-ban-den-cho-ho-so-cong-viec=Thu thập văn bản đến cho hồ s
 thu-thap-van-ban-di-cho-ho-so-cong-viec=Thu thập văn bản đi cho hồ sơ công việc
 nguoi-chu-tri-hop=Người chủ trì họp
 van-thu-phong=Văn thư phòng
+nguoi-soan=Người soạn
+phong-ban-soan=Phòng ban soạn
+chon-nguoi-soan-van-ban=Chọn người soạn văn bản
+no-pml-edm-document-send-were-found=Không tìm thấy văn bản đi cho hồ sơ công việc
+no-pml-edm-document-receipt-were-found=Không tìm thấy văn bản đến cho hồ sơ công việc
+khong-co-tap-tin-dinh-kem=Không có tập tin đính kèm
+so-hieu=Số hiệu
+
+tac-gia=Tác giả
+ngay-thang=Ngày tháng
+don-vi-hoac-nguoi-nhan=Đơn vị hoặc người nhận
+ky-nhan=Ký nhận
+chuyenvanthuphong=Chuyển văn thư phòng
+
+##
+## Loai van ban noi bo
+##
+javax.portlet.title.SGS_LOAIVANBANNOIBO=Loại văn bản nội bộ
+loai-van-ban-noi-bo=Loại văn bản nội bộ
+add-loai-van-ban-noi-bo=Thêm loại văn bản nội bộ
+ky-hieu-loai-van-ban-noi-bo=Ký hiệu loại văn bản nội bộ
+ten-loai-van-ban-noi-bo=Tên loại văn bản nội bộ
+update-loai-van-ban-noi-bo=Cập nhật
+input-ky-hieu-loai-van-ban-noi-bo=Nhập ký hiệu loại văn bản nội bộ
+input-ten-loai-van-ban-noi-bo=Nhập tên loại văn bản nội bộ
+not-add-loai-van-ban-noi-bo=Ký hiệu loại văn bản nội bộ không được trùng
+not-edit-loai-van-ban-noi-bo=Ký hiệu loại văn bản nội bộ không được trùng
+no-loai-van-ban-noi-bo-were-found=Không tìm thấy kết quả nào
+
+##
+##So van ban noi bo
+##
+javax.portlet.title.SGS_SOVANBANNOIBO=Sổ văn bản nội bộ
+so-van-ban-noi-bo=Sổ văn bản nội bộ
+add-so-van-ban-noi-bo=Thêm sổ văn bản nội bộ
+ma-so-van-ban-noi-bo=Mã sổ văn bản nội bộ
+ten-so-van-ban-noi-bo=Tên sổ văn bản nội bộ
+config-loai-van-ban-noi-bo=Cấu hình loại văn bản nội bộ
+config-phong-ban=Cấu hình phòng ban
+edit-so-van-ban-noi-bo=Cập nhật
+phong-ban-van-ban-noi-bo=Phòng ban
+ma-phong-ban-van-ban-noi-bo=Mã phòng ban
+ten-phong-ban-van-ban-noi-bo=Tên phòng ban
+ten-viet-tat-phong-ban-van-ban-noi-bo=Tên viết tắt phòng ban
+update-phong-ban=Cập nhật phòng ban
+update-loai-van-ban-noi-bo=Cập nhật loại văn bản nội bộ
+input-ma-so-van-ban-noi-bo=Nhập mã sổ văn bản nội bộ
+input-ten-so-van-ban-noi-bo=Nhập tên sổ văn bản nội bộ
+ban-co-muon-tiep-tuc-khong=Bạn có muốn tiếp tục không
+not-add-so-van-ban-noi-bo=Mã sổ văn bản nội bộ không được trùng
+not-edit-so-van-ban-noi-bo=Mã sổ văn bản nội bộ không được trùng
+no-phong-ban-van-ban-noi-bo-were-found=Không tìm thấy kết quả nào
+no-so-van-ban-noi-bo-were-found=Không tìm thấy kết quả nào
+so-cua-phong=Sổ của phòng
+
+nguoi-nhan-ban-luu=Người nhận bản lưu
+so-ban=Số bản

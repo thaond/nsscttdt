@@ -38,22 +38,25 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
 import com.liferay.portal.kernel.dao.search.DAOParamUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.service.persistence.DepartmentUtil;
+import com.sgs.portlet.document.model.PmlDocumentReceiptLog;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceipt;
-import com.sgs.portlet.document.receipt.model.PmlEdmDocumentType;
 import com.sgs.portlet.document.receipt.service.PmlEdmDocumentReceiptLocalServiceUtil;
-import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentReceiptUtil;
-import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil;
+import com.sgs.portlet.document.service.persistence.PmlDocumentReceiptLogUtil;
 import com.sgs.portlet.pcccdocumentrecordto.dto.DocumentRecordToDTO;
 import com.sgs.portlet.pcccdocumentrecordto.search.DocumentRecordToDisplayTerms;
 import com.sgs.portlet.pcccdocumentrecordto.util.DocumentRecordToUtil;
 import com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace;
 import com.sgs.portlet.pmlissuingplace.service.persistence.PmlEdmIssuingPlaceUtil;
+import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 
 public class ViewAction extends PortletAction {
 	
@@ -88,9 +91,13 @@ public class ViewAction extends PortletAction {
 				String thongTinTrichYeu = DAOParamUtil.getLike(request, DocumentRecordToDisplayTerms.TRICHYEU, true);
 				String uuTien = ParamUtil.getString(request, DocumentRecordToDisplayTerms.UUTIEN);
 				
+				String orderByCol = ParamUtil.getString(request, "orderByCol");
+				String orderByType = ParamUtil.getString(request, "orderByType");
+				OrderByComparator obc = DocumentRecordToUtil.getDocumentRecordToOrderByComparator(orderByCol, orderByType);
+				
 				if (cmd.equals("report")) { // Report
 					xuatExcel(request, response, reportType, phongBan, soNoiBo, soHieuGoc, ngayDenDay, ngayDenMonth, ngayDenYear,
-							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien);
+							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien, obc);
 				}
 			}
 			return null;
@@ -130,14 +137,18 @@ public class ViewAction extends PortletAction {
 				String thongTinTrichYeu = DAOParamUtil.getLike(request, DocumentRecordToDisplayTerms.TRICHYEU, true);
 				String uuTien = ParamUtil.getString(request, DocumentRecordToDisplayTerms.UUTIEN);
 				
+				String orderByCol = ParamUtil.getString(req, "orderByCol");
+				String orderByType = ParamUtil.getString(req, "orderByType");
+				OrderByComparator obc = DocumentRecordToUtil.getDocumentRecordToOrderByComparator(orderByCol, orderByType);
+				
 				if (reportType.equals("word")) { // Xuat file Word
 					inBaoCao(request, response, reportType, phongBan, soNoiBo, soHieuGoc, ngayDenDay, ngayDenMonth, ngayDenYear,
-							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien);
+							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien, obc);
 				} 
 				else if (reportType.equals("excel")) { // Xuat file Excel
 					req.setAttribute(WebKeys.PORTLET_STRUTS_EXECUTE, true);
 					xuatExcel(request, response, reportType, phongBan, soNoiBo, soHieuGoc, ngayDenDay, ngayDenMonth, ngayDenYear,
-							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien);
+							ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien, obc);
 				}
 			}
 		}
@@ -153,114 +164,164 @@ public class ViewAction extends PortletAction {
 			}
 	}
 	
-	private List<DocumentRecordToDTO> getDocumentRecordToListReport(String reportType,String phongBan,String soNoiBo,
-				String soHieuGoc,int ngayDenDay,int ngayDenMonth,int ngayDenYear,int ngayPhatHanhDay,int ngayPhatHanhMonth,
-				int ngayPhatHanhYear,long capGui,long loaiVB,String noiPhatHanh,String thongTinTrichYeu,String uuTien){
+	private List<DocumentRecordToDTO> getDocumentRecordToListReport(String reportType, String phongBan,String soNoiBo, String soHieuGoc,
+				int ngayDenDay, int ngayDenMonth, int ngayDenYear, int ngayPhatHanhDay, int ngayPhatHanhMonth, int ngayPhatHanhYear,
+				long capGui, long loaiVB, String noiPhatHanh, String thongTinTrichYeu, String uuTien, OrderByComparator obc){
 		
 		List<PmlEdmDocumentReceipt> pmlEdmDocumentReceiptList = new ArrayList<PmlEdmDocumentReceipt>();
 		try {
-			pmlEdmDocumentReceiptList = PmlEdmDocumentReceiptLocalServiceUtil.findByN_D_I_L_I_P_D_D_D_B(soNoiBo, soHieuGoc, ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, noiPhatHanh, uuTien, ngayDenDay, ngayDenMonth, ngayDenYear, loaiVB, phongBan, thongTinTrichYeu, -1, -1, null);
+			pmlEdmDocumentReceiptList = PmlEdmDocumentReceiptLocalServiceUtil.findByN_D_I_L_I_P_D_D_D_B(soNoiBo, soHieuGoc, 
+					ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui, noiPhatHanh, uuTien, ngayDenDay, ngayDenMonth, 
+					ngayDenYear, loaiVB, phongBan, thongTinTrichYeu, -1, -1, obc);
 		} catch (Exception e) {
 			_log.error(e.getMessage());
 		}
 		
+		SimpleDateFormat dformat = new SimpleDateFormat("dd/MM/yyyy");
+		
 		int stt = 1;
-		String soCVNoiBo = "";
-		String soCVDen = "";
+		String soDen = "";
 		String ngayDen = "";
-		String ngayPhatHanh = "";
 		String noiBanHanh = "";
+		String soKyHieu = "";
+		String ngayPhatHanh = "";
 		String trichYeu = "";
-		String loaiCV = "";
+		String donViNhan = "";
+		String kyNhan = "";
 		
 		PmlEdmIssuingPlace pmlEdmIssuingPlace = null;
-		PmlEdmDocumentType documentType = null;
-		PmlEdmDocumentReceipt pmlEdmDocumentReceipt = null;
 		List<DocumentRecordToDTO> documentRecordToList = new ArrayList<DocumentRecordToDTO>();
 		
-		for (PmlEdmDocumentReceipt documentReceipt : pmlEdmDocumentReceiptList) {
-			try {
-				pmlEdmDocumentReceipt = PmlEdmDocumentReceiptUtil.findByPrimaryKey(documentReceipt.getDocumentReceiptId());
-			} catch (Exception e) {
-				_log.error(e.getMessage());
-			}
-			
-			soCVNoiBo = pmlEdmDocumentReceipt.getNumberDocumentReceipt();
-			soCVDen = pmlEdmDocumentReceipt.getDocumentReference();
-			
-			if (null != pmlEdmDocumentReceipt.getDateArrive()) {
-				ngayDen = new SimpleDateFormat("dd/MM/yyyy").format(pmlEdmDocumentReceipt.getDateArrive());
-			}
-			
-			if (null != pmlEdmDocumentReceipt.getIssuingDate()) {
-				ngayPhatHanh = new SimpleDateFormat("dd/MM/yyyy").format(pmlEdmDocumentReceipt.getIssuingDate());
-			}
-			
-			String issuingPlaceId = pmlEdmDocumentReceipt.getIssuingPlaceId();
-			if(issuingPlaceId.equals("")) {
-				noiBanHanh = pmlEdmDocumentReceipt.getIssuingPlaceOtherName();
-			} else {
-				try {
-					pmlEdmIssuingPlace = PmlEdmIssuingPlaceUtil.findByPrimaryKey(pmlEdmDocumentReceipt.getIssuingPlaceId());
-					noiBanHanh = pmlEdmIssuingPlace.getIssuingPlaceName();
-				} catch (Exception e) {
-					_log.error(e.getMessage());
+		if (!pmlEdmDocumentReceiptList.isEmpty()) {
+			for (PmlEdmDocumentReceipt documentReceipt : pmlEdmDocumentReceiptList) {
+				long documentReceiptId = documentReceipt.getDocumentReceiptId();
+				
+				// so den
+				soDen = documentReceipt.getNumberDocumentReceipt();
+				
+				// ngay den
+				if (null != documentReceipt.getDateArrive()) {
+					ngayDen = dformat.format(documentReceipt.getDateArrive());
 				}
+				
+				// tac gia (noi phat hanh)
+				String issuingPlaceId = documentReceipt.getIssuingPlaceId();
+				if(issuingPlaceId.equals("")) {
+					noiBanHanh = documentReceipt.getIssuingPlaceOtherName();
+				} else {
+					try {
+						pmlEdmIssuingPlace = PmlEdmIssuingPlaceUtil.findByPrimaryKey(documentReceipt.getIssuingPlaceId());
+						noiBanHanh = pmlEdmIssuingPlace.getIssuingPlaceName();
+					} catch (Exception e) {
+						_log.error(e.getMessage());
+					}
+				}
+				
+				// so ky hieu
+				soKyHieu = documentReceipt.getDocumentReference();
+				
+				// ngay than (ngay phat hanh)
+				if (null != documentReceipt.getIssuingDate()) {
+					ngayPhatHanh = dformat.format(documentReceipt.getIssuingDate());
+				}
+				
+				// trich yeu
+				trichYeu = documentReceipt.getBriefContent();
+				
+				// loai vb
+//				try {
+//					documentType = PmlEdmDocumentTypeUtil.findByPrimaryKey(pmlEdmDocumentReceipt.getDocumentTypeId());
+//					loaiCV = documentType.getDocumentTypeName();
+//				} catch (Exception e) {
+//					_log.error(e.getMessage());
+//				}
+				
+				// don vi hoac nguoi nhan
+				String departmentId = documentReceipt.getMainDepartmentProcessId();
+				if (departmentId != null && !departmentId.equals("")) {
+					try {
+						Department mainDepartment = DepartmentUtil.findByPrimaryKey(departmentId);
+						donViNhan = mainDepartment.getDepartmentsName();
+						
+						if (documentReceipt.getMainUserProcessId() != 0) {
+							try {
+								donViNhan += " (" + PmlUserLocalServiceUtil.getFullName(documentReceipt.getMainUserProcessId()) + ")";
+							} catch (Exception e) { }
+						}
+					} catch (Exception e) { }
+				}
+				
+				// ky nhan (nguoi tiep nhan vb)
+				PmlDocumentReceiptLog documentReceiptLog = null;
+				try {
+					documentReceiptLog = PmlDocumentReceiptLogUtil.findByDocumentReceiptId_Transition(documentReceiptId, 1).get(0);
+					kyNhan = PmlUserLocalServiceUtil.getFullName(documentReceiptLog.getProcesser());
+				} catch (Exception e) { }
+				
+				DocumentRecordToDTO documentRecordToDTO = new DocumentRecordToDTO();
+				
+				documentRecordToDTO.setStt(stt + ".");
+				documentRecordToDTO.setNgayDen(ngayDen);
+				documentRecordToDTO.setNgayPhatHanh(ngayPhatHanh);
+				if ("word".equals(reportType)) {
+					documentRecordToDTO.setSoDen(StringUtils.convertToRTF(soDen));
+					documentRecordToDTO.setNoiBanHanh(StringUtils.convertToRTF(noiBanHanh));
+					documentRecordToDTO.setSoKyHieu(StringUtils.convertToRTF(soKyHieu));
+					documentRecordToDTO.setTrichYeu(StringUtils.convertToRTF(trichYeu));
+					documentRecordToDTO.setDonViNhan(StringUtils.convertToRTF(donViNhan));
+					documentRecordToDTO.setKyNhan(StringUtils.convertToRTF(kyNhan));
+				}
+				else if ("excel".equals(reportType)) {
+					documentRecordToDTO.setSoDen(soDen);
+					documentRecordToDTO.setNoiBanHanh(noiBanHanh);
+					documentRecordToDTO.setSoKyHieu(soKyHieu);
+					documentRecordToDTO.setTrichYeu(trichYeu);
+					documentRecordToDTO.setDonViNhan(donViNhan);
+					documentRecordToDTO.setKyNhan(kyNhan);
+				}
+				stt ++;
+				documentRecordToList.add(documentRecordToDTO);
 			}
-			
-			trichYeu = pmlEdmDocumentReceipt.getBriefContent();
-			try {
-				documentType = PmlEdmDocumentTypeUtil.findByPrimaryKey(pmlEdmDocumentReceipt.getDocumentTypeId());
-				loaiCV = documentType.getDocumentTypeName();
-			} catch (Exception e) {
-				_log.error(e.getMessage());
-			}
-			
+		} else {
 			DocumentRecordToDTO documentRecordToDTO = new DocumentRecordToDTO();
-			if ("word".equals(reportType)) {
-				documentRecordToDTO.setStt(stt);
-				documentRecordToDTO.setSoCVNoiBo(StringUtils.convertToRTF(soCVNoiBo));
-				documentRecordToDTO.setSoCVDen(StringUtils.convertToRTF(soCVDen));
-				documentRecordToDTO.setLoaiCV(StringUtils.convertToRTF(loaiCV));
-				documentRecordToDTO.setNgayDen(ngayDen);
-				documentRecordToDTO.setNgayPhatHanh(ngayPhatHanh);
-				documentRecordToDTO.setNoiBanHanh(StringUtils.convertToRTF(noiBanHanh));
-				documentRecordToDTO.setTrichYeu(StringUtils.convertToRTF(trichYeu));
-			}
-			else if ("excel".equals(reportType)) {
-				documentRecordToDTO.setStt(stt);
-				documentRecordToDTO.setSoCVNoiBo(soCVNoiBo);
-				documentRecordToDTO.setSoCVDen(soCVDen);
-				documentRecordToDTO.setLoaiCV(loaiCV);
-				documentRecordToDTO.setNgayDen(ngayDen);
-				documentRecordToDTO.setNgayPhatHanh(ngayPhatHanh);
-				documentRecordToDTO.setNoiBanHanh(noiBanHanh);
-				documentRecordToDTO.setTrichYeu(trichYeu);
-			}
-			stt++;
+			documentRecordToDTO.setStt("");
+			documentRecordToDTO.setNgayDen(ngayDen);
+			documentRecordToDTO.setNgayPhatHanh(ngayPhatHanh);
+			documentRecordToDTO.setSoDen(soDen);
+			documentRecordToDTO.setNoiBanHanh(noiBanHanh);
+			documentRecordToDTO.setSoKyHieu(soKyHieu);
+			documentRecordToDTO.setTrichYeu(trichYeu);
+			documentRecordToDTO.setDonViNhan(donViNhan);
+			documentRecordToDTO.setKyNhan(kyNhan);
+			
 			documentRecordToList.add(documentRecordToDTO);
 		}
 		
 		return documentRecordToList;
 	}
 
-	private void inBaoCao(HttpServletRequest request, HttpServletResponse response, String reportType,String phongBan,String soNoiBo,
-			String soHieuGoc,int ngayDenDay,int ngayDenMonth,int ngayDenYear,int ngayPhatHanhDay,int ngayPhatHanhMonth,
-			int ngayPhatHanhYear,long capGui,long loaiVB,String noiPhatHanh,String thongTinTrichYeu,String uuTien) throws Exception {
+	private void inBaoCao(HttpServletRequest request, HttpServletResponse response, String reportType, String phongBan, String soNoiBo,
+			String soHieuGoc, int ngayDenDay, int ngayDenMonth, int ngayDenYear, int ngayPhatHanhDay, int ngayPhatHanhMonth, 
+			int ngayPhatHanhYear, long capGui, long loaiVB, String noiPhatHanh, String thongTinTrichYeu, String uuTien, OrderByComparator obc)
+			throws Exception {
 		
 		String path = request.getSession().getServletContext().getRealPath("reports");
 		String pathTemplate = request.getSession().getServletContext().getRealPath("reports/SoCongVanDenCuaPhong.rtf");
 		
 		DocumentRecordToUtil rtfUtil = new DocumentRecordToUtil(path, getDocumentRecordToListReport(reportType, phongBan, 
 				soNoiBo, soHieuGoc, ngayDenDay, ngayDenMonth, ngayDenYear, ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear,
-				capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien));
+				capGui, loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien, obc));
+		
 		InputStream in = rtfUtil.run(pathTemplate);
+		
 		ServletResponseUtil.sendFile(response, "report.rtf", in, "application/rtf");
 	}
 	
-	private void xuatExcel(HttpServletRequest request, HttpServletResponse response, String reportType,String phongBan,String soNoiBo,
-			String soHieuGoc,int ngayDenDay,int ngayDenMonth,int ngayDenYear,int ngayPhatHanhDay,int ngayPhatHanhMonth,
-			int ngayPhatHanhYear,long capGui,long loaiVB,String noiPhatHanh,String thongTinTrichYeu,String uuTien) throws Exception {
+	@SuppressWarnings("unchecked")
+	private void xuatExcel(HttpServletRequest request, HttpServletResponse response, String reportType, String phongBan, String soNoiBo,
+			String soHieuGoc, int ngayDenDay, int ngayDenMonth, int ngayDenYear, int ngayPhatHanhDay, int ngayPhatHanhMonth,
+			int ngayPhatHanhYear, long capGui, long loaiVB, String noiPhatHanh, String thongTinTrichYeu, String uuTien,
+			OrderByComparator obc) throws Exception {
 		
 		ServletContext context = request.getSession().getServletContext();
 		JRExporter exporter = null;
@@ -272,7 +333,7 @@ public class ViewAction extends PortletAction {
 		
 		JRBeanCollectionDataSource dataSource1 = new JRBeanCollectionDataSource(getDocumentRecordToListReport(reportType, phongBan,
 				soNoiBo, soHieuGoc, ngayDenDay, ngayDenMonth, ngayDenYear, ngayPhatHanhDay, ngayPhatHanhMonth, ngayPhatHanhYear, capGui,
-				loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien));
+				loaiVB, noiPhatHanh, thongTinTrichYeu, uuTien, obc));
 		
 		JasperCompileManager.compileReportToFile(context.getRealPath("reports/SoCongVanDenCuaPhong.jrxml"), 
 				context.getRealPath("reports/SoCongVanDenCuaPhong.jasper"));

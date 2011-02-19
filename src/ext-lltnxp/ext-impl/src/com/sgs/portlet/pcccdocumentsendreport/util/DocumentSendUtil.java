@@ -17,6 +17,7 @@ import com.sgs.portlet.pcccdocumentsendreport.dto.DocumentSendDTO;
 public class DocumentSendUtil extends RTFUtil {
 
 	private List<DocumentSendDTO> documentSendList;
+	private int total;
 	
 	public DocumentSendUtil(String outDirectory) {
 		super(outDirectory);
@@ -28,9 +29,17 @@ public class DocumentSendUtil extends RTFUtil {
 		this.documentSendList.addAll(documentSendList);
 	}
 	
+	public DocumentSendUtil(String outDirectory, List<DocumentSendDTO> documentSendList, int total) {
+		super(outDirectory);
+		this.documentSendList = new ArrayList<DocumentSendDTO>();
+		this.documentSendList.addAll(documentSendList);
+		this.total = total;
+	}
+	
 	@Override
 	protected void putContext(IContext context) {
-		context.put("documentRecordToList", this.documentSendList);
+		context.put("list", this.documentSendList);
+		context.put("total", this.total);
 	}
 
 	public static OrderByComparator getDocSendReportOrderByComparator(

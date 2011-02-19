@@ -59,7 +59,7 @@ public class ViewAction extends PortletAction {
 		}
 		if(cmd.equals(Constants.ADD)){
 			if(!checkSoVaoSo){
-				addVanBanNoiBo(req, res, redirect);
+				//addVanBanNoiBo(req, res, redirect);
 			}else{
 //				updateVanBanNoiBo(req, res, redirect);
 			}
@@ -86,7 +86,7 @@ public class ViewAction extends PortletAction {
 			vanBanNoiBo.setGroupId(groupId);
 			vanBanNoiBo.setCompanyId(companyId);
 			
-			vanBanNoiBo.setSoVanBanNoiBo(soVaoSo);
+			vanBanNoiBo.setSoVaoSoVanBanNoiBo(soVaoSo);
 			vanBanNoiBo.setNguoiKy(nguoiKy);
 			vanBanNoiBo.setUserId(userId);
 			vanBanNoiBo.setLoaiVanBanNoiBo(loaiVanBan);
@@ -101,7 +101,7 @@ public class ViewAction extends PortletAction {
 			Date dateCreate = simpleDateFormat.parse(ngayKy);
 			Timestamp ngayKyDate = new Timestamp(dateCreate.getTime());
 			vanBanNoiBo.setNgayKy(ngayKyDate);
-			vanBanNoiBo.setSoPhatSinhTheoNam(String.valueOf(dateNow.getYear() + 1900));
+			vanBanNoiBo.setSoPhatSinhTheoNam(dateNow.getYear() + 1900);
 			
 			String nameFieldRow = ParamUtil.getString(req, "nameFieldRow");
 			nameFieldRow = StringUtil.encodeHtml(nameFieldRow);

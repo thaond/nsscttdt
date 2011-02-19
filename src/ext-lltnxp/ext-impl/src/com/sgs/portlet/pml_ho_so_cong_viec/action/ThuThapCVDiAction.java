@@ -13,6 +13,7 @@ import org.apache.struts.action.ActionMapping;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.struts.PortletAction;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.PmlChiTietHSCVLocalServiceUtil;
@@ -33,16 +34,21 @@ public class ThuThapCVDiAction extends PortletAction {
 		for (String documentSendIdStr : documentSendIdStrs) {
 			long documentSendId = Long.valueOf(documentSendIdStr);
 
-			long chiTietHSCVId = CounterLocalServiceUtil
-					.increment(PmlChiTietHSCV.class.getName());
+			chiTietHSCV = PmlChiTietHSCVLocalServiceUtil.findBy_IdHSCV_CVDi(
+					idHoSoCongViec, documentSendId);
 
-			chiTietHSCV = PmlChiTietHSCVLocalServiceUtil
-					.createPmlChiTietHSCV(chiTietHSCVId);
+			if (Validator.isNull(chiTietHSCV)) {
+				long chiTietHSCVId = CounterLocalServiceUtil
+						.increment(PmlChiTietHSCV.class.getName());
 
-			chiTietHSCV.setIdHoSoCongViec(idHoSoCongViec);
-			chiTietHSCV.setIdCongVanDi(documentSendId);
+				chiTietHSCV = PmlChiTietHSCVLocalServiceUtil
+						.createPmlChiTietHSCV(chiTietHSCVId);
 
-			PmlChiTietHSCVLocalServiceUtil.addPmlChiTietHSCV(chiTietHSCV);
+				chiTietHSCV.setIdHoSoCongViec(idHoSoCongViec);
+				chiTietHSCV.setIdCongVanDi(documentSendId);
+
+				PmlChiTietHSCVLocalServiceUtil.addPmlChiTietHSCV(chiTietHSCV);
+			}
 		}
 		res.sendRedirect(redirect);
 	}

@@ -47,8 +47,6 @@ import com.liferay.portal.util.WebKeys;
 import com.liferay.util.servlet.ServletResponseUtil;
 import com.sgs.portlet.department.model.Department;
 import com.sgs.portlet.department.service.DepartmentLocalServiceUtil;
-import com.sgs.portlet.document.receipt.model.PmlEdmDocumentType;
-import com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil;
 import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
 import com.sgs.portlet.document.send.service.PmlEdmDocumentSendLocalServiceUtil;
 import com.sgs.portlet.document.send.service.persistence.PmlEdmDocumentSendUtil;
@@ -167,14 +165,15 @@ public class ViewAction extends PortletAction {
 		
 		int index = 1;
 		String stt = "";
-		String soCVDi = "";
-		String loaiCV = "";
+		String soKyHieu = "";
 		String ngayPhatHanh = "";
 		String trichYeu = "";
-		String donViSoanThao = "";
+		String nguoiKy = "";
+		String noiNhanVB = "";
+		String nguoiNhanBanLuu = "";
+		String soBan = "";
 		
 		PmlEdmDocumentSend pmlEdmDocumentSend = null;
-		PmlEdmDocumentType pmlEdmDocumentType = null;
 		PmlUser editor = null;
 		Department department = null;
 		
@@ -188,56 +187,62 @@ public class ViewAction extends PortletAction {
 				}
 				
 				stt = (index ++) + ".";
-				soCVDi = pmlEdmDocumentSend.getDocumentReference();
-				
-				try {
-					pmlEdmDocumentType = PmlEdmDocumentTypeUtil.findByPrimaryKey(pmlEdmDocumentSend.getDocumentTypeId());
-					loaiCV = pmlEdmDocumentType.getDocumentTypeName();
-				}  catch (Exception e) {
-					_log.error(e.getMessage());
-				}
-				
+				soKyHieu = pmlEdmDocumentSend.getDocumentReference();
+
 				if (pmlEdmDocumentSend.getIssuingDate() != null) {
 					ngayPhatHanh = new SimpleDateFormat("dd/MM/yyyy").format(pmlEdmDocumentSend.getIssuingDate());
 				}
 				
 				trichYeu = pmlEdmDocumentSend.getBriefContent();
 				
+				nguoiKy = pmlEdmDocumentSend.getSignerName();
+				
+				noiNhanVB = pmlEdmDocumentSend.getReceivingPlace();
+				
+				// nguoi nhan ban luu (nguoi soan vb di)
+				long editorId = pmlEdmDocumentSend.getEditorId();
 				try {
-					editor = PmlUserLocalServiceUtil.getPmlUser(pmlEdmDocumentSend.getEditorId());
+					nguoiNhanBanLuu = PmlUserLocalServiceUtil.getFullName(editorId);
+				} catch (Exception e) { }
+				try {
+					editor = PmlUserLocalServiceUtil.getPmlUser(editorId);
 					department = DepartmentLocalServiceUtil.getDepartment(editor.getDepartmentsId());
-					donViSoanThao = department.getDepartmentsName();
-				}  catch (Exception e) {
-					_log.error(e.getMessage());
-				}
+					nguoiNhanBanLuu += " (" + department.getDepartmentsName() + ")";
+				}  catch (Exception e) { }
+				
+				soBan = pmlEdmDocumentSend.getNumberPublish();
 				
 				DocumentSendDTO documentSendDTO = new DocumentSendDTO();
 				
 				documentSendDTO.setStt(stt);
 				documentSendDTO.setNgayPhatHanh(ngayPhatHanh);
 				if ("word".equals(reportType)) {
-					documentSendDTO.setSoCVDi(StringUtils.convertToRTF(soCVDi));
-					documentSendDTO.setLoaiCV(StringUtils.convertToRTF(loaiCV));
+					documentSendDTO.setSoKyHieu(StringUtils.convertToRTF(soKyHieu));
 					documentSendDTO.setTrichYeu(StringUtils.convertToRTF(trichYeu));
-					documentSendDTO.setNguoiSoanThao(StringUtils.convertToRTF(donViSoanThao));
+					documentSendDTO.setNguoiKy(StringUtils.convertToRTF(nguoiKy));
+					documentSendDTO.setNoiNhan(StringUtils.convertToRTF(noiNhanVB));
+					documentSendDTO.setNguoiNhanBanLuu(StringUtils.convertToRTF(nguoiNhanBanLuu));
+					documentSendDTO.setSoBan(StringUtils.convertToRTF(soBan));
 				}
 				else if ("excel".equals(reportType)) {
-					documentSendDTO.setSoCVDi(soCVDi);
-					documentSendDTO.setLoaiCV(loaiCV);
+					documentSendDTO.setSoKyHieu(soKyHieu);
 					documentSendDTO.setTrichYeu(trichYeu);
-					documentSendDTO.setNguoiSoanThao(donViSoanThao);
+					documentSendDTO.setNguoiKy(nguoiKy);
+					documentSendDTO.setNoiNhan(noiNhanVB);
+					documentSendDTO.setNguoiNhanBanLuu(nguoiNhanBanLuu);
+					documentSendDTO.setSoBan(soBan);
 				}
 				documentSendList.add(documentSendDTO);
 			}
 		}
 		else  {
 			DocumentSendDTO documentSendDTO = new DocumentSendDTO();
-			documentSendDTO.setStt(stt);
-			documentSendDTO.setNgayPhatHanh(ngayPhatHanh);
-			documentSendDTO.setSoCVDi(soCVDi);
-			documentSendDTO.setLoaiCV(loaiCV);
+			documentSendDTO.setSoKyHieu(soKyHieu);
 			documentSendDTO.setTrichYeu(trichYeu);
-			documentSendDTO.setNguoiSoanThao(donViSoanThao);
+			documentSendDTO.setNguoiKy(nguoiKy);
+			documentSendDTO.setNoiNhan(noiNhanVB);
+			documentSendDTO.setNguoiNhanBanLuu(nguoiNhanBanLuu);
+			documentSendDTO.setSoBan(soBan);
 			
 			documentSendList.add(documentSendDTO);
 		}
@@ -245,13 +250,34 @@ public class ViewAction extends PortletAction {
 		return documentSendList;
 	}
 	
+	
+	private int countDocumentSendListReport(String reportType, String soPH, int ngayPHMonth, int ngayPHYear, 
+			String phongST, String noiNhan, long loaiVB, String tenNguoiKy, long nguoiST, String thongTinTrichYeu, String vanBanPH) {
+
+		int results = 0;
+		
+		try {
+			results = PmlEdmDocumentSendLocalServiceUtil.countByVBDi_SoVBDiCuaPhong(soPH, ngayPHMonth, ngayPHYear, phongST, 
+													noiNhan, loaiVB, tenNguoiKy, nguoiST, thongTinTrichYeu, vanBanPH);
+		} catch (Exception e) {
+			_log.error(e.getMessage());
+		}
+		
+		return results;
+	}
+	
+	
 	private void inBaoCao( HttpServletRequest request, HttpServletResponse response, String reportType, String soPH, int ngayPHMonth,
 							int ngayPHYear,String phongST, String noiNhan, long loaiVB, String tenNguoiKy, long nguoiST, 
 							String thongTinTrichYeu, String vanBanPH, OrderByComparator obc) throws Exception {
 		
 		String path = request.getSession().getServletContext().getRealPath("reports");
-		DocumentSendUtil rtfUtil = new DocumentSendUtil(path, getDocumentSendListReport(reportType, soPH, ngayPHMonth, ngayPHYear,
-					phongST, noiNhan, loaiVB, tenNguoiKy, nguoiST, thongTinTrichYeu, vanBanPH, obc));
+		
+		List<DocumentSendDTO> list = getDocumentSendListReport(reportType, soPH, ngayPHMonth, ngayPHYear,
+										phongST, noiNhan, loaiVB, tenNguoiKy, nguoiST, thongTinTrichYeu, vanBanPH, obc);
+		int total = countDocumentSendListReport(reportType, soPH, ngayPHMonth, ngayPHYear, phongST, noiNhan, loaiVB, tenNguoiKy, nguoiST, thongTinTrichYeu, vanBanPH);
+		
+		DocumentSendUtil rtfUtil = new DocumentSendUtil(path, list, total);
 		
 		InputStream in = rtfUtil.run(request.getSession().getServletContext().getRealPath("reports/SoCongVanDiCuaPhong.rtf"));
 		ServletResponseUtil.sendFile(response, "report.rtf", in, "application/rtf");

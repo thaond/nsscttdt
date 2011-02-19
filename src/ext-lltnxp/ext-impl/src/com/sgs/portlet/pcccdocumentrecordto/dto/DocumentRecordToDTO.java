@@ -5,41 +5,45 @@ package com.sgs.portlet.pcccdocumentrecordto.dto;
 
 /**
  * @author DienNH
- *
+ * 
  */
 public class DocumentRecordToDTO {
 
-	private int stt;
+	private String stt;
 	private String soCVNoiBo;
 	private String soCVDen;
-	private String ngayDen;
 	private String ngayHetHan;
-	private String ngayPhatHanh;
-	private String noiBanHanh;
-	private String trichYeu;
 	private String loaiCV;
 	private String doUuTien;
 	private String trinhTuXuLy;
-	
+
+	private String soDen;
+	private String ngayDen;
+	private String noiBanHanh;
+	private String soKyHieu;
+	private String ngayPhatHanh;
+	private String trichYeu;
+	private String donViNhan;
+	private String kyNhan;
+
 	/**
 	 * 
 	 */
 	public DocumentRecordToDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public int getStt() {
+	public String getStt() {
 		return stt;
 	}
 
-	public void setStt(int stt) {
+	public void setStt(String stt) {
 		this.stt = stt;
 	}
-	
+
 	public String getNgayPhatHanh() {
 		return ngayPhatHanh;
 	}
-	
+
 	public void setNgayPhatHanh(String ngayPhatHanh) {
 		this.ngayPhatHanh = ngayPhatHanh;
 	}
@@ -114,6 +118,38 @@ public class DocumentRecordToDTO {
 
 	public void setTrinhTuXuLy(String trinhTuXuLy) {
 		this.trinhTuXuLy = trinhTuXuLy;
+	}
+
+	public String getSoDen() {
+		return soDen;
+	}
+
+	public void setSoDen(String soDen) {
+		this.soDen = soDen;
+	}
+
+	public String getSoKyHieu() {
+		return soKyHieu;
+	}
+
+	public void setSoKyHieu(String soKyHieu) {
+		this.soKyHieu = soKyHieu;
+	}
+
+	public String getDonViNhan() {
+		return donViNhan;
+	}
+
+	public void setDonViNhan(String donViNhan) {
+		this.donViNhan = donViNhan;
+	}
+
+	public String getKyNhan() {
+		return kyNhan;
+	}
+
+	public void setKyNhan(String kyNhan) {
+		this.kyNhan = kyNhan;
 	}
 
 }

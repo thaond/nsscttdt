@@ -10,6 +10,7 @@ import com.sgs.portlet.vanbannoibo.service.VanBanNoiBoLocalService;
 import com.sgs.portlet.vanbannoibo.service.VanBanNoiBoService;
 import com.sgs.portlet.vanbannoibo.service.persistence.FileDinhKemVanBanNoiBoPersistence;
 import com.sgs.portlet.vanbannoibo.service.persistence.LogVanBanNoiBoPersistence;
+import com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoFinder;
 import com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoPersistence;
 
 
@@ -21,6 +22,8 @@ public abstract class LogVanBanNoiBoServiceBaseImpl extends PrincipalBean
     protected VanBanNoiBoService vanBanNoiBoService;
     @javax.annotation.Resource(name = "com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoPersistence.impl")
     protected VanBanNoiBoPersistence vanBanNoiBoPersistence;
+    @javax.annotation.Resource(name = "com.sgs.portlet.vanbannoibo.service.persistence.VanBanNoiBoFinder.impl")
+    protected VanBanNoiBoFinder vanBanNoiBoFinder;
     @javax.annotation.Resource(name = "com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoLocalService.impl")
     protected FileDinhKemVanBanNoiBoLocalService fileDinhKemVanBanNoiBoLocalService;
     @javax.annotation.Resource(name = "com.sgs.portlet.vanbannoibo.service.FileDinhKemVanBanNoiBoService.impl")
@@ -58,6 +61,14 @@ public abstract class LogVanBanNoiBoServiceBaseImpl extends PrincipalBean
     public void setVanBanNoiBoPersistence(
         VanBanNoiBoPersistence vanBanNoiBoPersistence) {
         this.vanBanNoiBoPersistence = vanBanNoiBoPersistence;
+    }
+
+    public VanBanNoiBoFinder getVanBanNoiBoFinder() {
+        return vanBanNoiBoFinder;
+    }
+
+    public void setVanBanNoiBoFinder(VanBanNoiBoFinder vanBanNoiBoFinder) {
+        this.vanBanNoiBoFinder = vanBanNoiBoFinder;
     }
 
     public FileDinhKemVanBanNoiBoLocalService getFileDinhKemVanBanNoiBoLocalService() {

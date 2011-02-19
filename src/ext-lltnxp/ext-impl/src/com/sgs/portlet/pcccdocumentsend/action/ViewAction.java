@@ -86,6 +86,10 @@ public class ViewAction extends DocumentSendPortletAction {
 		String message = null;
 
 		try {
+			// minh upate 20110215
+			// soan van ban di cua phong	
+			boolean soVanBanCuaPhong = ParamUtil.getBoolean(req, "soVanBanCuaPhong", false);
+			// end minh upate 20110215	
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new Date();
 			String datecreated = formatter.format(date);
@@ -142,7 +146,7 @@ public class ViewAction extends DocumentSendPortletAction {
 			pmlEdmDocumentSend.setBriefContent(StringUtil.encodeHtml(briefContent));
 
 			pmlEdmDocumentSend.setDocumentRecordTypeId(documentRecordTypeId);
-
+			pmlEdmDocumentSend.setIsDocOfDepartment(soVanBanCuaPhong);
                         //PmlEdmDocumentSendLocalServiceUtil.addPmlEdmDocumentSend(pmlEdmDocumentSend);
 			
 			//canh update
@@ -214,17 +218,20 @@ public class ViewAction extends DocumentSendPortletAction {
 		RenderRequest req, RenderResponse res)
 		throws Exception {
 
+		long userId = PortalUtil.getUser(req).getUserId();
 		// so ho so cong viec
 		
 		List<PmlHoSoCongViec> pmlHoSoCongViecList = new ArrayList<PmlHoSoCongViec>();
 		try {
-			pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+			//minh upate 20100210
+			//pmlHoSoCongViecList = PmlHoSoCongViecUtil.findAll();
+			pmlHoSoCongViecList = PmlHoSoCongViecUtil.findByUserId_HoatDong(userId,"1");
+			//end minh upate 20100210
 		} catch (Exception e) {
 		}
 		
 		req.setAttribute("pmlHoSoCongViecList", pmlHoSoCongViecList);
 		
-		long userId = PortalUtil.getUser(req).getUserId();
 		
 		try {
 			// lay ra user hien hanh

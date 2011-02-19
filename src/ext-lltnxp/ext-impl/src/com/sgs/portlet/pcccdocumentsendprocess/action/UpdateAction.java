@@ -114,7 +114,13 @@ public class UpdateAction extends DocumentSendPortletAction {
 
 		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
 		if (department != null) {
-			pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+			if (!document.isIsDocOfDepartment()) {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+		
+			} else {
+				pmlEdmDocumentRecordTypeList =
+					PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForDeparment(department.getDepartmentsId(), currentYear);
+			}
 		}
 		
 		// Do mat
@@ -182,6 +188,20 @@ public class UpdateAction extends DocumentSendPortletAction {
 					}
 				}
 			}
+			// minh update 20100210 phan ho so cong viec lay theo user login
+			
+			List<PmlHoSoCongViec> pmlHoSoCongViecForUserList = null;
+	      	try {
+		      	pmlHoSoCongViecForUserList = PmlHoSoCongViecUtil.findByUserId_HoatDong(pmlUserLogin.getUserId(),"1");
+	      	} catch (Exception e) {
+	      		pmlHoSoCongViecForUserList = new ArrayList<PmlHoSoCongViec>();
+	      	}
+	      	for (int i = 0; i < pmlHoSoCongViecForUserList.size(); i++) {
+				if (!pmlHoSoCongViecList.contains(pmlHoSoCongViecForUserList.get(i))) {
+					pmlHoSoCongViecList.add(pmlHoSoCongViecForUserList.get(i));
+				}
+			}
+	     // end minh update 20100210
 		}
 		//req.setAttribute("pmlHoSoCongViecList", pmlHoSoCongViecList);
 		
@@ -218,6 +238,10 @@ public class UpdateAction extends DocumentSendPortletAction {
 	}
 
 	private void updateDocumentSend(ActionRequest req, ActionResponse res) throws Exception{
+		// minh upate 20110215
+		// soan van ban di cua phong	
+		boolean soVanBanCuaPhong = ParamUtil.getBoolean(req, "soVanBanCuaPhong", false);
+		// end minh upate 20110215	
 		long documentTypeId = ParamUtil.getLong(req, "documentTypeId");
 		String receivingPlace = ParamUtil.getString(req, "receivingPlace", "");
 		String confidentialLevelId = ParamUtil.getString(req, "confidentialLevelId");
@@ -245,6 +269,7 @@ public class UpdateAction extends DocumentSendPortletAction {
 		document.setDocumentSendCode(StringUtil.encodeHtml(documentSendCode));
 		document.setNumberPage(StringUtil.encodeHtml(numberPage));
 		document.setDocumentRecordTypeId(documentRecordTypeId);
+		document.setIsDocOfDepartment(soVanBanCuaPhong);
 		//Canh update
 		User user = PortalUtil.getUser(req);
 		document = PmlEdmDocumentSendLocalServiceUtil.updatePmlEdmDocumentSend(user.getCompanyId(), document);
