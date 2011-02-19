@@ -58,7 +58,7 @@ public class ReceiverFinderImpl extends BasePersistenceImpl
 				qPos.add(companyId);
 			}
 			qPos.add(false);
-			qPos.add(names, 4);
+			qPos.add(names, 6);
 			qPos.add(true);
 
 			return (List<User>) QueryUtil.list(q, getDialect(), 0, 100);

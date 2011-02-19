@@ -1,18 +1,19 @@
 package com.sgs.portlet.pcccdocumentreceiptreport.util;
 
-//import java.util.ArrayList;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.persistence.UserUtil;
+import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType;
-import com.sgs.portlet.document.receipt.model.PmlEdmDocumentType;
 import com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil;
-import com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil;
-import com.sgs.portlet.pcccdocumentreceipt.util.PCCCDocumentUtil;
 import com.sgs.portlet.pmluser.model.PmlUser;
 import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
+import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 public class TinhHinhThuLyCongVanDWRUtil {
 	/* xuancong close khong su dung PmlUserDTO ma su dung PmlUser
@@ -63,31 +64,31 @@ public class TinhHinhThuLyCongVanDWRUtil {
 	/**
 	 * lay so cong van theo loai cong van duoc chon 11/11/2010
 	 */
-	public List<PmlEdmDocumentRecordType> getDocumentRecordByDocType(String type) {
-		List<PmlEdmDocumentRecordType> results = null;
-		List<PmlEdmDocumentType> documentTypes = null;
-		PmlEdmDocumentRecordType recordType = null;
-		int recordTypeId = 0;
+	public List<PmlEdmDocumentRecordType> getDocumentRecordByDocType(long userId, String type) {
+		List<PmlEdmDocumentRecordType> results = new ArrayList<PmlEdmDocumentRecordType>();
 		
+		/* phmphuc update 10/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+
+		PmlUser pmlUser = null;
+		Department department = null;
 		try {
-			if (type.equals("congvandi")) {
-				documentTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
-			} else {
-				documentTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
+			pmlUser = PmlUserUtil.findByPrimaryKey(userId);
+			department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+		} catch (Exception e) { }
+		
+		if (department != null) {
+			try {
+				if (type.equals("congvandi")) {
+					results = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+				} else {
+					results = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbden", department.getAgencyId(), currentYear);
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR: in method getDocumentRecordByDocType " + TinhHinhThuLyCongVanDWRUtil.class);
 			}
-			results = new ArrayList<PmlEdmDocumentRecordType>();
-			for (PmlEdmDocumentType documentType : documentTypes) {
-				recordTypeId = documentType.getDocumentRecordTypeId();
-				try {
-					recordType = PmlEdmDocumentRecordTypeLocalServiceUtil.getPmlEdmDocumentRecordType(recordTypeId);
-					if (!results.contains(recordType)) {
-						results.add(recordType);
-					}
-				} catch (Exception e1) { }
-			}
-		} catch (Exception e) {
-			System.out.println("ERROR: in method getDocumentRecordByDocType " + TinhHinhThuLyCongVanDWRUtil.class);
-			System.out.println(e.getMessage());
 		}
 
 		return results;

@@ -2546,6 +2546,237 @@ public class PmlUserPersistenceImpl extends BasePersistenceImpl
         }
     }
 
+    public List<PmlUser> findByIsVanThuPhong(boolean isVanThuPhong)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlUserModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlUser.class.getName();
+        String finderMethodName = "findByIsVanThuPhong";
+        String[] finderParams = new String[] { Boolean.class.getName() };
+        Object[] finderArgs = new Object[] { Boolean.valueOf(isVanThuPhong) };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.pmluser.model.PmlUser WHERE ");
+
+                query.append("isvanthuphong = ?");
+
+                query.append(" ");
+
+                query.append("ORDER BY ");
+
+                query.append("firstname ASC, ");
+                query.append("lastname ASC");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(isVanThuPhong);
+
+                List<PmlUser> list = q.list();
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlUser>) result;
+        }
+    }
+
+    public List<PmlUser> findByIsVanThuPhong(boolean isVanThuPhong, int start,
+        int end) throws SystemException {
+        return findByIsVanThuPhong(isVanThuPhong, start, end, null);
+    }
+
+    public List<PmlUser> findByIsVanThuPhong(boolean isVanThuPhong, int start,
+        int end, OrderByComparator obc) throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlUserModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlUser.class.getName();
+        String finderMethodName = "findByIsVanThuPhong";
+        String[] finderParams = new String[] {
+                Boolean.class.getName(),
+                
+                "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            };
+        Object[] finderArgs = new Object[] {
+                Boolean.valueOf(isVanThuPhong),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.pmluser.model.PmlUser WHERE ");
+
+                query.append("isvanthuphong = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+                else {
+                    query.append("ORDER BY ");
+
+                    query.append("firstname ASC, ");
+                    query.append("lastname ASC");
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(isVanThuPhong);
+
+                List<PmlUser> list = (List<PmlUser>) QueryUtil.list(q,
+                        getDialect(), start, end);
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlUser>) result;
+        }
+    }
+
+    public PmlUser findByIsVanThuPhong_First(boolean isVanThuPhong,
+        OrderByComparator obc) throws NoSuchPmlUserException, SystemException {
+        List<PmlUser> list = findByIsVanThuPhong(isVanThuPhong, 0, 1, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No PmlUser exists with the key {");
+
+            msg.append("isVanThuPhong=" + isVanThuPhong);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchPmlUserException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlUser findByIsVanThuPhong_Last(boolean isVanThuPhong,
+        OrderByComparator obc) throws NoSuchPmlUserException, SystemException {
+        int count = countByIsVanThuPhong(isVanThuPhong);
+
+        List<PmlUser> list = findByIsVanThuPhong(isVanThuPhong, count - 1,
+                count, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append("No PmlUser exists with the key {");
+
+            msg.append("isVanThuPhong=" + isVanThuPhong);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchPmlUserException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlUser[] findByIsVanThuPhong_PrevAndNext(long userId,
+        boolean isVanThuPhong, OrderByComparator obc)
+        throws NoSuchPmlUserException, SystemException {
+        PmlUser pmlUser = findByPrimaryKey(userId);
+
+        int count = countByIsVanThuPhong(isVanThuPhong);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append("FROM com.sgs.portlet.pmluser.model.PmlUser WHERE ");
+
+            query.append("isvanthuphong = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+            else {
+                query.append("ORDER BY ");
+
+                query.append("firstname ASC, ");
+                query.append("lastname ASC");
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(isVanThuPhong);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc, pmlUser);
+
+            PmlUser[] array = new PmlUserImpl[3];
+
+            array[0] = (PmlUser) objArray[0];
+            array[1] = (PmlUser) objArray[1];
+            array[2] = (PmlUser) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
         Session session = null;
@@ -2709,6 +2940,13 @@ public class PmlUserPersistenceImpl extends BasePersistenceImpl
     public void removeByIsLeaderMetting(boolean isLeaderMetting)
         throws SystemException {
         for (PmlUser pmlUser : findByIsLeaderMetting(isLeaderMetting)) {
+            remove(pmlUser);
+        }
+    }
+
+    public void removeByIsVanThuPhong(boolean isVanThuPhong)
+        throws SystemException {
+        for (PmlUser pmlUser : findByIsVanThuPhong(isVanThuPhong)) {
             remove(pmlUser);
         }
     }
@@ -3341,6 +3579,70 @@ public class PmlUserPersistenceImpl extends BasePersistenceImpl
                 QueryPos qPos = QueryPos.getInstance(q);
 
                 qPos.add(isLeaderMetting);
+
+                Long count = null;
+
+                Iterator<Long> itr = q.list().iterator();
+
+                if (itr.hasNext()) {
+                    count = itr.next();
+                }
+
+                if (count == null) {
+                    count = new Long(0);
+                }
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, count);
+
+                return count.intValue();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return ((Long) result).intValue();
+        }
+    }
+
+    public int countByIsVanThuPhong(boolean isVanThuPhong)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlUserModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlUser.class.getName();
+        String finderMethodName = "countByIsVanThuPhong";
+        String[] finderParams = new String[] { Boolean.class.getName() };
+        Object[] finderArgs = new Object[] { Boolean.valueOf(isVanThuPhong) };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.sgs.portlet.pmluser.model.PmlUser WHERE ");
+
+                query.append("isvanthuphong = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(isVanThuPhong);
 
                 Long count = null;
 

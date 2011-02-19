@@ -31,7 +31,7 @@ public class PcccDocumentSendProcessSearch extends SearchContainer<PmlEdmDocumen
 	
 	static {
 		headerNames.add("sgs_onedoor_no.");
-		headerNames.add("pccc-cvdtn-loaicongvan");
+		headerNames.add("receipt.docrectype");
 		headerNames.add("receipt.detail");
 		headerNames.add("receipt.creator");
 		headerNames.add("receipt.signer");

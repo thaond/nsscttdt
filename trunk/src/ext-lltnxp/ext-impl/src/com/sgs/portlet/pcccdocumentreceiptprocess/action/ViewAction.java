@@ -3,6 +3,7 @@ package com.sgs.portlet.pcccdocumentreceiptprocess.action;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +28,8 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.document.model.PmlDocumentReceiptLog;
 import com.sgs.portlet.document.model.PmlFileStatus;
 import com.sgs.portlet.document.receipt.dto.PmlEdmDocumentReceiptDTO;
@@ -50,6 +53,8 @@ import com.sgs.portlet.pcccdocumentreceiptprocess.search.PcccDocumentReceiptProc
 import com.sgs.portlet.pcccdocumentreceiptprocess.util.QuanLyCongVanUtil;
 import com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace;
 import com.sgs.portlet.pmlissuingplace.service.PmlEdmIssuingPlaceLocalServiceUtil;
+import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 public class ViewAction extends DocumentReceiptPortletAction {
 	private static Log _log = LogFactoryUtil.getLog(ViewAction.class);
@@ -338,6 +343,7 @@ public class ViewAction extends DocumentReceiptPortletAction {
 		String cachThucXuLy = ParamUtil.getString(req, "cachThucXuLy", "-1");
 		String tabChung = ParamUtil.getString(req,"tabChung","rad-letter-process");
 		 
+		/*
 		// phmphuc close and change by under code 11/11/2010
 //		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getPmlEdmDocumentRecordTypes(-1, -1);
 		// lay so van ban theo loai VB
@@ -355,10 +361,27 @@ public class ViewAction extends DocumentReceiptPortletAction {
 			} catch (Exception e) { }
 		}
 		// end phmphuc update 11/11/2010
+		 */
+		/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+		int currentYear = calendar.get(Calendar.YEAR);
+
+		long userId = PortalUtil.getUserId(req);
+		PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userId);		
+		Department department = null;
+		try {
+			department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+		} catch (Exception e) { }
+		
+		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+		if (department != null) {
+			pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbden", department.getAgencyId(), currentYear);
+		}
+		req.setAttribute("pmlEdmDocumentRecordTypeList", pmlEdmDocumentRecordTypeList);
 		
 		List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeLocalServiceUtil.getPmlEdmDocumentTypes(-1, -1);
 		req.setAttribute("pmlEdmDocumentTypeList", pmlEdmDocumentTypeList);
-		req.setAttribute("pmlEdmDocumentRecordTypeList", pmlEdmDocumentRecordTypeList);
 		
 		req.setAttribute("statusId", statusId);
 		req.setAttribute("hienTrang", hienTrang);

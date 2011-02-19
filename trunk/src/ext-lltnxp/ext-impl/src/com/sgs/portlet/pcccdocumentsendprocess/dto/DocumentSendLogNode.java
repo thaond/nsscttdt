@@ -90,17 +90,21 @@ public class DocumentSendLogNode {
 			: "<p>(\u0110\u00e3 x\u1eed l\u00fd" +
 				(isAutoFinish() ? " - T\u1ef1 ho\u00e0n th\u00e0nh" : "") +
 				")</p>");
+
 		sb.append("<p><b>Ng\u00e0y g\u1eedi: </b>");
-		sb.append(sendLog.getDateProcessTime() == null
+		sb.append((parent == null) || (sendLog.getDateProcessTime() == null)
 			? "N/A" : DF.format(sendLog.getDateProcessTime()));
 		sb.append("</p>");
+
 		sb.append("<p><b>Ng\u00e0y nh\u1eadn: </b>");
-		sb.append(sendLog.getReceiveDateTime() == null
+		sb.append((parent == null) || (sendLog.getReceiveDateTime() == null)
 			? "N/A" : DF.format(sendLog.getReceiveDateTime()));
 		sb.append("</p>");
+
 		sb.append("<p><b>Y\u00eau c\u1ea7u x\u1eed l\u00fd: </b>");
-		sb.append(sendLog.getProcessInfomation());
+		sb.append((parent == null) ? "N/A" : sendLog.getProcessInfomation());
 		sb.append("</p>");
+
 		sb.append("</div>");
 		return sb.toString();
 	}

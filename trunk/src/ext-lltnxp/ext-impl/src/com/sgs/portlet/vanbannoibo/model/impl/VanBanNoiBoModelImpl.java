@@ -48,6 +48,9 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
             { "loaiVanBanNoiBo", new Integer(Types.BIGINT) },
             
 
+            { "soVanBanNoiBo", new Integer(Types.BIGINT) },
+            
+
             { "ngayTao", new Integer(Types.TIMESTAMP) },
             
 
@@ -63,10 +66,10 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
             { "ghiChu", new Integer(Types.VARCHAR) },
             
 
-            { "soVanBanNoiBo", new Integer(Types.VARCHAR) },
+            { "soVaoSoVanBanNoiBo", new Integer(Types.VARCHAR) },
             
 
-            { "soPhatSinhTheoNam", new Integer(Types.VARCHAR) },
+            { "soPhatSinhTheoNam", new Integer(Types.INTEGER) },
             
 
             { "userId", new Integer(Types.BIGINT) },
@@ -77,7 +80,7 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
 
             { "companyId", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table pml_edm_vanbannoibo (vanBanNoiBoId LONG not null primary key,loaiVanBanNoiBo LONG,ngayTao DATE null,ngayKy DATE null,trichYeu VARCHAR(75) null,nguoiKy LONG,ghiChu VARCHAR(75) null,soVanBanNoiBo VARCHAR(75) null,soPhatSinhTheoNam VARCHAR(75) null,userId LONG,groupId LONG,companyId LONG)";
+    public static final String TABLE_SQL_CREATE = "create table pml_edm_vanbannoibo (vanBanNoiBoId LONG not null primary key,loaiVanBanNoiBo LONG,soVanBanNoiBo LONG,ngayTao DATE null,ngayKy DATE null,trichYeu VARCHAR(75) null,nguoiKy LONG,ghiChu VARCHAR(75) null,soVaoSoVanBanNoiBo VARCHAR(75) null,soPhatSinhTheoNam INTEGER,userId LONG,groupId LONG,companyId LONG)";
     public static final String TABLE_SQL_DROP = "drop table pml_edm_vanbannoibo";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -89,13 +92,14 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
                 "lock.expiration.time.com.sgs.portlet.vanbannoibo.model.VanBanNoiBo"));
     private long _vanBanNoiBoId;
     private long _loaiVanBanNoiBo;
+    private long _soVanBanNoiBo;
     private Date _ngayTao;
     private Date _ngayKy;
     private String _trichYeu;
     private long _nguoiKy;
     private String _ghiChu;
-    private String _soVanBanNoiBo;
-    private String _soPhatSinhTheoNam;
+    private String _soVaoSoVanBanNoiBo;
+    private int _soPhatSinhTheoNam;
     private long _userId;
     private long _groupId;
     private long _companyId;
@@ -108,12 +112,13 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
 
         model.setVanBanNoiBoId(soapModel.getVanBanNoiBoId());
         model.setLoaiVanBanNoiBo(soapModel.getLoaiVanBanNoiBo());
+        model.setSoVanBanNoiBo(soapModel.getSoVanBanNoiBo());
         model.setNgayTao(soapModel.getNgayTao());
         model.setNgayKy(soapModel.getNgayKy());
         model.setTrichYeu(soapModel.getTrichYeu());
         model.setNguoiKy(soapModel.getNguoiKy());
         model.setGhiChu(soapModel.getGhiChu());
-        model.setSoVanBanNoiBo(soapModel.getSoVanBanNoiBo());
+        model.setSoVaoSoVanBanNoiBo(soapModel.getSoVaoSoVanBanNoiBo());
         model.setSoPhatSinhTheoNam(soapModel.getSoPhatSinhTheoNam());
         model.setUserId(soapModel.getUserId());
         model.setGroupId(soapModel.getGroupId());
@@ -161,6 +166,16 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
     public void setLoaiVanBanNoiBo(long loaiVanBanNoiBo) {
         if (loaiVanBanNoiBo != _loaiVanBanNoiBo) {
             _loaiVanBanNoiBo = loaiVanBanNoiBo;
+        }
+    }
+
+    public long getSoVanBanNoiBo() {
+        return _soVanBanNoiBo;
+    }
+
+    public void setSoVanBanNoiBo(long soVanBanNoiBo) {
+        if (soVanBanNoiBo != _soVanBanNoiBo) {
+            _soVanBanNoiBo = soVanBanNoiBo;
         }
     }
 
@@ -226,28 +241,25 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
         }
     }
 
-    public String getSoVanBanNoiBo() {
-        return GetterUtil.getString(_soVanBanNoiBo);
+    public String getSoVaoSoVanBanNoiBo() {
+        return GetterUtil.getString(_soVaoSoVanBanNoiBo);
     }
 
-    public void setSoVanBanNoiBo(String soVanBanNoiBo) {
-        if (((soVanBanNoiBo == null) && (_soVanBanNoiBo != null)) ||
-                ((soVanBanNoiBo != null) && (_soVanBanNoiBo == null)) ||
-                ((soVanBanNoiBo != null) && (_soVanBanNoiBo != null) &&
-                !soVanBanNoiBo.equals(_soVanBanNoiBo))) {
-            _soVanBanNoiBo = soVanBanNoiBo;
+    public void setSoVaoSoVanBanNoiBo(String soVaoSoVanBanNoiBo) {
+        if (((soVaoSoVanBanNoiBo == null) && (_soVaoSoVanBanNoiBo != null)) ||
+                ((soVaoSoVanBanNoiBo != null) && (_soVaoSoVanBanNoiBo == null)) ||
+                ((soVaoSoVanBanNoiBo != null) && (_soVaoSoVanBanNoiBo != null) &&
+                !soVaoSoVanBanNoiBo.equals(_soVaoSoVanBanNoiBo))) {
+            _soVaoSoVanBanNoiBo = soVaoSoVanBanNoiBo;
         }
     }
 
-    public String getSoPhatSinhTheoNam() {
-        return GetterUtil.getString(_soPhatSinhTheoNam);
+    public int getSoPhatSinhTheoNam() {
+        return _soPhatSinhTheoNam;
     }
 
-    public void setSoPhatSinhTheoNam(String soPhatSinhTheoNam) {
-        if (((soPhatSinhTheoNam == null) && (_soPhatSinhTheoNam != null)) ||
-                ((soPhatSinhTheoNam != null) && (_soPhatSinhTheoNam == null)) ||
-                ((soPhatSinhTheoNam != null) && (_soPhatSinhTheoNam != null) &&
-                !soPhatSinhTheoNam.equals(_soPhatSinhTheoNam))) {
+    public void setSoPhatSinhTheoNam(int soPhatSinhTheoNam) {
+        if (soPhatSinhTheoNam != _soPhatSinhTheoNam) {
             _soPhatSinhTheoNam = soPhatSinhTheoNam;
         }
     }
@@ -293,13 +305,14 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
 
             model.setVanBanNoiBoId(getVanBanNoiBoId());
             model.setLoaiVanBanNoiBo(getLoaiVanBanNoiBo());
+            model.setSoVanBanNoiBo(getSoVanBanNoiBo());
             model.setNgayTao(getNgayTao());
             model.setNgayKy(getNgayKy());
             model.setTrichYeu(HtmlUtil.escape(getTrichYeu()));
             model.setNguoiKy(getNguoiKy());
             model.setGhiChu(HtmlUtil.escape(getGhiChu()));
-            model.setSoVanBanNoiBo(HtmlUtil.escape(getSoVanBanNoiBo()));
-            model.setSoPhatSinhTheoNam(HtmlUtil.escape(getSoPhatSinhTheoNam()));
+            model.setSoVaoSoVanBanNoiBo(HtmlUtil.escape(getSoVaoSoVanBanNoiBo()));
+            model.setSoPhatSinhTheoNam(getSoPhatSinhTheoNam());
             model.setUserId(getUserId());
             model.setGroupId(getGroupId());
             model.setCompanyId(getCompanyId());
@@ -317,12 +330,13 @@ public class VanBanNoiBoModelImpl extends BaseModelImpl {
 
         clone.setVanBanNoiBoId(getVanBanNoiBoId());
         clone.setLoaiVanBanNoiBo(getLoaiVanBanNoiBo());
+        clone.setSoVanBanNoiBo(getSoVanBanNoiBo());
         clone.setNgayTao(getNgayTao());
         clone.setNgayKy(getNgayKy());
         clone.setTrichYeu(getTrichYeu());
         clone.setNguoiKy(getNguoiKy());
         clone.setGhiChu(getGhiChu());
-        clone.setSoVanBanNoiBo(getSoVanBanNoiBo());
+        clone.setSoVaoSoVanBanNoiBo(getSoVaoSoVanBanNoiBo());
         clone.setSoPhatSinhTheoNam(getSoPhatSinhTheoNam());
         clone.setUserId(getUserId());
         clone.setGroupId(getGroupId());

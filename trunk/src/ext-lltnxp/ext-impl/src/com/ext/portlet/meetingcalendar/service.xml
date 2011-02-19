@@ -29,6 +29,7 @@
 		<column name="evening" type="boolean"/>
 		<column name="stt" type="int"/>
 		<column name="prior" type="boolean"/> 
+		<column name="deleted" type="boolean"/> 
 		<!-- Order -->
 		<order by="asc">
 			<order-column name="mcalId" />
@@ -36,10 +37,12 @@
 		<!-- Finder methods -->
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
+			<finder-column name="deleted" />
 		</finder>
 		<finder name="G_State" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="state" />
+			<finder-column name="deleted" />
 		</finder>
 		<!-- References -->
 		<reference package-path="com.liferay.counter" entity="Counter" />

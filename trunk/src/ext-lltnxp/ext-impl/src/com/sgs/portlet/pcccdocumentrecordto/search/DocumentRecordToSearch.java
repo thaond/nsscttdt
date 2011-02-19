@@ -33,19 +33,21 @@ public class DocumentRecordToSearch extends SearchContainer<PmlEdmDocumentReceip
 	static Map<String, String> orderableHeaders = new HashMap<String, String>();
 
 	static {
-		headerNames.add("pcccdocumentrecordto-stt");
-		headerNames.add("pccc-cvdtn-soCVden");
-		headerNames.add("pccc-cvdtn-sohieu");
-		headerNames.add("pcccdocumentrecordto-loaicv");
-		headerNames.add("pcccdocumentrecordto-ngayden");
-		headerNames.add("documentreceipt-search-ngayphathanh");
-		headerNames.add("pcccdocumentrecordto-noibanhanh");
-		headerNames.add("pcccdocumentrecordto-trichyeu");
+		headerNames.add("stt");
+		headerNames.add("so-den-theo-so");
+		headerNames.add("ngay-den");
+		headerNames.add("tac-gia");
+		headerNames.add("so-ky-hieu");
+		headerNames.add("ngay-thang");
+		headerNames.add("receipt.doctype");
+		headerNames.add("receipt.briftcontent");
+		headerNames.add("don-vi-hoac-nguoi-nhan");
+		headerNames.add("ky-nhan");
 
 		// Order by
-		orderableHeaders.put("pcccdocumentrecordto-socvnoibo", "sovanbannoibo");
-		orderableHeaders.put("pcccdocumentrecordto-ngayden", "ngayden");
-		orderableHeaders.put("documentreceipt-search-ngayphathanh", "ngayphathanh");
+		orderableHeaders.put("so-den-theo-so", "soden");
+		orderableHeaders.put("ngay-den", "ngayden");
+		orderableHeaders.put("ngay-thang", "ngayphathanh");
 	}
 
 	public static final String EMPTY_RESULTS_MESSAGE =
@@ -93,27 +95,22 @@ public class DocumentRecordToSearch extends SearchContainer<PmlEdmDocumentReceip
 			PortalPreferences prefs =
 				PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
 
-			String orderByCol = ParamUtil.getString(renderRequest, "orderByCol");
-			String orderByType = ParamUtil.getString(renderRequest, "orderByType");
+			String orderByCol = ParamUtil.getString(renderRequest, "orderByCol", "ngayden");
+			String orderByType = ParamUtil.getString(renderRequest, "orderByType", "asc");
 
-			if (Validator.isNotNull(orderByCol) &&
-				Validator.isNotNull(orderByType)) {
+			if (Validator.isNotNull(orderByCol) && Validator.isNotNull(orderByType)) {
 
-				prefs.setValue(
-					PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-col", orderByCol);
-				prefs.setValue(
-					PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-type", orderByType);
+				prefs.setValue(PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-col", orderByCol);
+				prefs.setValue(PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-type", orderByType);
 			}
 			else {
 				orderByCol = prefs.getValue(
-						PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-col", "sovanbannoibo");
+						PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-col", "ngayden");
 				orderByType = prefs.getValue(
-						PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-type", "desc");
+						PortletKeysExt.DOCUMENTRECORDTO, "documentrecordto-order-by-type", "asc");
 			}
 
-			OrderByComparator orderByComparator =
-				DocumentRecordToUtil.getDocumentRecordToOrderByComparator(
-						orderByCol, orderByType);
+			OrderByComparator orderByComparator = DocumentRecordToUtil.getDocumentRecordToOrderByComparator(orderByCol, orderByType);
 
 			setOrderableHeaders(orderableHeaders);
 			setOrderByCol(orderByCol);

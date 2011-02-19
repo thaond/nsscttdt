@@ -596,13 +596,17 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public List<MeetingCalendar> findByGroupId(long groupId)
+    public List<MeetingCalendar> findByGroupId(long groupId, boolean deleted)
         throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "findByGroupId";
-        String[] finderParams = new String[] { Long.class.getName() };
-        Object[] finderArgs = new Object[] { new Long(groupId) };
+        String[] finderParams = new String[] {
+                Long.class.getName(), Boolean.class.getName()
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(groupId), Boolean.valueOf(deleted)
+            };
 
         Object result = null;
 
@@ -624,6 +628,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("groupId = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 query.append("ORDER BY ");
@@ -635,6 +643,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 QueryPos qPos = QueryPos.getInstance(q);
 
                 qPos.add(groupId);
+
+                qPos.add(deleted);
 
                 List<MeetingCalendar> list = q.list();
 
@@ -653,24 +663,24 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public List<MeetingCalendar> findByGroupId(long groupId, int start, int end)
-        throws SystemException {
-        return findByGroupId(groupId, start, end, null);
+    public List<MeetingCalendar> findByGroupId(long groupId, boolean deleted,
+        int start, int end) throws SystemException {
+        return findByGroupId(groupId, deleted, start, end, null);
     }
 
-    public List<MeetingCalendar> findByGroupId(long groupId, int start,
-        int end, OrderByComparator obc) throws SystemException {
+    public List<MeetingCalendar> findByGroupId(long groupId, boolean deleted,
+        int start, int end, OrderByComparator obc) throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "findByGroupId";
         String[] finderParams = new String[] {
-                Long.class.getName(),
+                Long.class.getName(), Boolean.class.getName(),
                 
                 "java.lang.Integer", "java.lang.Integer",
                 "com.liferay.portal.kernel.util.OrderByComparator"
             };
         Object[] finderArgs = new Object[] {
-                new Long(groupId),
+                new Long(groupId), Boolean.valueOf(deleted),
                 
                 String.valueOf(start), String.valueOf(end), String.valueOf(obc)
             };
@@ -695,6 +705,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("groupId = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 if (obc != null) {
@@ -712,6 +726,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 QueryPos qPos = QueryPos.getInstance(q);
 
                 qPos.add(groupId);
+
+                qPos.add(deleted);
 
                 List<MeetingCalendar> list = (List<MeetingCalendar>) QueryUtil.list(q,
                         getDialect(), start, end);
@@ -731,9 +747,9 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public MeetingCalendar findByGroupId_First(long groupId,
+    public MeetingCalendar findByGroupId_First(long groupId, boolean deleted,
         OrderByComparator obc) throws NoSuchendarException, SystemException {
-        List<MeetingCalendar> list = findByGroupId(groupId, 0, 1, obc);
+        List<MeetingCalendar> list = findByGroupId(groupId, deleted, 0, 1, obc);
 
         if (list.size() == 0) {
             StringBuilder msg = new StringBuilder();
@@ -741,6 +757,9 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
             msg.append("No MeetingCalendar exists with the key {");
 
             msg.append("groupId=" + groupId);
+
+            msg.append(", ");
+            msg.append("deleted=" + deleted);
 
             msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -750,12 +769,12 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public MeetingCalendar findByGroupId_Last(long groupId,
+    public MeetingCalendar findByGroupId_Last(long groupId, boolean deleted,
         OrderByComparator obc) throws NoSuchendarException, SystemException {
-        int count = countByGroupId(groupId);
+        int count = countByGroupId(groupId, deleted);
 
-        List<MeetingCalendar> list = findByGroupId(groupId, count - 1, count,
-                obc);
+        List<MeetingCalendar> list = findByGroupId(groupId, deleted, count - 1,
+                count, obc);
 
         if (list.size() == 0) {
             StringBuilder msg = new StringBuilder();
@@ -763,6 +782,9 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
             msg.append("No MeetingCalendar exists with the key {");
 
             msg.append("groupId=" + groupId);
+
+            msg.append(", ");
+            msg.append("deleted=" + deleted);
 
             msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -773,11 +795,11 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
     }
 
     public MeetingCalendar[] findByGroupId_PrevAndNext(long mcalId,
-        long groupId, OrderByComparator obc)
+        long groupId, boolean deleted, OrderByComparator obc)
         throws NoSuchendarException, SystemException {
         MeetingCalendar meetingCalendar = findByPrimaryKey(mcalId);
 
-        int count = countByGroupId(groupId);
+        int count = countByGroupId(groupId, deleted);
 
         Session session = null;
 
@@ -790,6 +812,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 "FROM com.ext.portlet.meetingcalendar.model.MeetingCalendar WHERE ");
 
             query.append("groupId = ?");
+
+            query.append(" AND ");
+
+            query.append("deleted = ?");
 
             query.append(" ");
 
@@ -809,6 +835,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
             qPos.add(groupId);
 
+            qPos.add(deleted);
+
             Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
                     meetingCalendar);
 
@@ -826,15 +854,18 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public List<MeetingCalendar> findByG_State(long groupId, int state)
-        throws SystemException {
+    public List<MeetingCalendar> findByG_State(long groupId, int state,
+        boolean deleted) throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "findByG_State";
         String[] finderParams = new String[] {
-                Long.class.getName(), Integer.class.getName()
+                Long.class.getName(), Integer.class.getName(),
+                Boolean.class.getName()
             };
-        Object[] finderArgs = new Object[] { new Long(groupId), new Integer(state) };
+        Object[] finderArgs = new Object[] {
+                new Long(groupId), new Integer(state), Boolean.valueOf(deleted)
+            };
 
         Object result = null;
 
@@ -860,6 +891,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("state = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 query.append("ORDER BY ");
@@ -873,6 +908,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 qPos.add(groupId);
 
                 qPos.add(state);
+
+                qPos.add(deleted);
 
                 List<MeetingCalendar> list = q.list();
 
@@ -892,23 +929,25 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
     }
 
     public List<MeetingCalendar> findByG_State(long groupId, int state,
-        int start, int end) throws SystemException {
-        return findByG_State(groupId, state, start, end, null);
+        boolean deleted, int start, int end) throws SystemException {
+        return findByG_State(groupId, state, deleted, start, end, null);
     }
 
     public List<MeetingCalendar> findByG_State(long groupId, int state,
-        int start, int end, OrderByComparator obc) throws SystemException {
+        boolean deleted, int start, int end, OrderByComparator obc)
+        throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "findByG_State";
         String[] finderParams = new String[] {
                 Long.class.getName(), Integer.class.getName(),
+                Boolean.class.getName(),
                 
                 "java.lang.Integer", "java.lang.Integer",
                 "com.liferay.portal.kernel.util.OrderByComparator"
             };
         Object[] finderArgs = new Object[] {
-                new Long(groupId), new Integer(state),
+                new Long(groupId), new Integer(state), Boolean.valueOf(deleted),
                 
                 String.valueOf(start), String.valueOf(end), String.valueOf(obc)
             };
@@ -937,6 +976,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("state = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 if (obc != null) {
@@ -956,6 +999,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 qPos.add(groupId);
 
                 qPos.add(state);
+
+                qPos.add(deleted);
 
                 List<MeetingCalendar> list = (List<MeetingCalendar>) QueryUtil.list(q,
                         getDialect(), start, end);
@@ -976,8 +1021,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
     }
 
     public MeetingCalendar findByG_State_First(long groupId, int state,
-        OrderByComparator obc) throws NoSuchendarException, SystemException {
-        List<MeetingCalendar> list = findByG_State(groupId, state, 0, 1, obc);
+        boolean deleted, OrderByComparator obc)
+        throws NoSuchendarException, SystemException {
+        List<MeetingCalendar> list = findByG_State(groupId, state, deleted, 0,
+                1, obc);
 
         if (list.size() == 0) {
             StringBuilder msg = new StringBuilder();
@@ -988,6 +1035,9 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
             msg.append(", ");
             msg.append("state=" + state);
+
+            msg.append(", ");
+            msg.append("deleted=" + deleted);
 
             msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -998,11 +1048,12 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
     }
 
     public MeetingCalendar findByG_State_Last(long groupId, int state,
-        OrderByComparator obc) throws NoSuchendarException, SystemException {
-        int count = countByG_State(groupId, state);
+        boolean deleted, OrderByComparator obc)
+        throws NoSuchendarException, SystemException {
+        int count = countByG_State(groupId, state, deleted);
 
-        List<MeetingCalendar> list = findByG_State(groupId, state, count - 1,
-                count, obc);
+        List<MeetingCalendar> list = findByG_State(groupId, state, deleted,
+                count - 1, count, obc);
 
         if (list.size() == 0) {
             StringBuilder msg = new StringBuilder();
@@ -1014,6 +1065,9 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
             msg.append(", ");
             msg.append("state=" + state);
 
+            msg.append(", ");
+            msg.append("deleted=" + deleted);
+
             msg.append(StringPool.CLOSE_CURLY_BRACE);
 
             throw new NoSuchendarException(msg.toString());
@@ -1023,11 +1077,11 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
     }
 
     public MeetingCalendar[] findByG_State_PrevAndNext(long mcalId,
-        long groupId, int state, OrderByComparator obc)
+        long groupId, int state, boolean deleted, OrderByComparator obc)
         throws NoSuchendarException, SystemException {
         MeetingCalendar meetingCalendar = findByPrimaryKey(mcalId);
 
-        int count = countByG_State(groupId, state);
+        int count = countByG_State(groupId, state, deleted);
 
         Session session = null;
 
@@ -1044,6 +1098,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
             query.append(" AND ");
 
             query.append("state = ?");
+
+            query.append(" AND ");
+
+            query.append("deleted = ?");
 
             query.append(" ");
 
@@ -1064,6 +1122,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
             qPos.add(groupId);
 
             qPos.add(state);
+
+            qPos.add(deleted);
 
             Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
                     meetingCalendar);
@@ -1205,15 +1265,17 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         remove(meetingCalendar);
     }
 
-    public void removeByGroupId(long groupId) throws SystemException {
-        for (MeetingCalendar meetingCalendar : findByGroupId(groupId)) {
+    public void removeByGroupId(long groupId, boolean deleted)
+        throws SystemException {
+        for (MeetingCalendar meetingCalendar : findByGroupId(groupId, deleted)) {
             remove(meetingCalendar);
         }
     }
 
-    public void removeByG_State(long groupId, int state)
+    public void removeByG_State(long groupId, int state, boolean deleted)
         throws SystemException {
-        for (MeetingCalendar meetingCalendar : findByG_State(groupId, state)) {
+        for (MeetingCalendar meetingCalendar : findByG_State(groupId, state,
+                deleted)) {
             remove(meetingCalendar);
         }
     }
@@ -1371,12 +1433,17 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public int countByGroupId(long groupId) throws SystemException {
+    public int countByGroupId(long groupId, boolean deleted)
+        throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "countByGroupId";
-        String[] finderParams = new String[] { Long.class.getName() };
-        Object[] finderArgs = new Object[] { new Long(groupId) };
+        String[] finderParams = new String[] {
+                Long.class.getName(), Boolean.class.getName()
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(groupId), Boolean.valueOf(deleted)
+            };
 
         Object result = null;
 
@@ -1399,6 +1466,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("groupId = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 Query q = session.createQuery(query.toString());
@@ -1406,6 +1477,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 QueryPos qPos = QueryPos.getInstance(q);
 
                 qPos.add(groupId);
+
+                qPos.add(deleted);
 
                 Long count = null;
 
@@ -1434,15 +1507,18 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
         }
     }
 
-    public int countByG_State(long groupId, int state)
+    public int countByG_State(long groupId, int state, boolean deleted)
         throws SystemException {
         boolean finderClassNameCacheEnabled = MeetingCalendarModelImpl.CACHE_ENABLED;
         String finderClassName = MeetingCalendar.class.getName();
         String finderMethodName = "countByG_State";
         String[] finderParams = new String[] {
-                Long.class.getName(), Integer.class.getName()
+                Long.class.getName(), Integer.class.getName(),
+                Boolean.class.getName()
             };
-        Object[] finderArgs = new Object[] { new Long(groupId), new Integer(state) };
+        Object[] finderArgs = new Object[] {
+                new Long(groupId), new Integer(state), Boolean.valueOf(deleted)
+            };
 
         Object result = null;
 
@@ -1469,6 +1545,10 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
 
                 query.append("state = ?");
 
+                query.append(" AND ");
+
+                query.append("deleted = ?");
+
                 query.append(" ");
 
                 Query q = session.createQuery(query.toString());
@@ -1478,6 +1558,8 @@ public class MeetingCalendarPersistenceImpl extends BasePersistenceImpl
                 qPos.add(groupId);
 
                 qPos.add(state);
+
+                qPos.add(deleted);
 
                 Long count = null;
 

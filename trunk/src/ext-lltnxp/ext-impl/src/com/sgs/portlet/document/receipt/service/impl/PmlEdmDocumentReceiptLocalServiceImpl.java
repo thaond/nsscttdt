@@ -1455,8 +1455,8 @@ public class PmlEdmDocumentReceiptLocalServiceImpl extends
 						soHSCV);
 				searchQuerys.add(soHSCVQuery);
 			}
-			if (loaiCV > 0) {
-				loaiCVQuery.addTerm(PmlEdmDocumentReceiptDisplayTerms.LOAI_CV,
+			if (loaiCV > 0) { // doi loai van ban thanh So van ban
+				loaiCVQuery.addTerm(PmlEdmDocumentReceiptDisplayTerms.SOVANBAN,
 						loaiCV);
 				searchQuerys.add(loaiCVQuery);
 			}

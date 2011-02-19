@@ -11,6 +11,7 @@
 				MeetingCalendar ON
 					(MeetingCalendar.mcalId = CalEvent.eventId)
 			WHERE
+				(MeetingCalendar.deleted = ?) AND
 				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
@@ -29,6 +30,7 @@
 				MeetingCalendar ON
 					(MeetingCalendar.mcalId = CalEvent.eventId)
 			WHERE
+				(MeetingCalendar.deleted = ?) AND
 				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
@@ -48,6 +50,7 @@
 				MeetingCalendar ON
 					(MeetingCalendar.mcalId = CalEvent.eventId)
 			WHERE
+				(MeetingCalendar.deleted = ?) AND
 				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
@@ -68,6 +71,7 @@
 				MeetingCalendar ON
 					(MeetingCalendar.mcalId = CalEvent.eventId)
 			WHERE
+				(MeetingCalendar.deleted = ?) AND
 				(startDate >= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(startDate <= ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 				(description LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
@@ -101,6 +105,7 @@
 				CalEvent ON
 					(MeetingCalendar.mcalId = CalEvent.eventId)
 			WHERE
+				(MeetingCalendar.deleted = ?) AND
 				(CalEvent.groupId = ?) AND
 				(CalEvent.startDate >= ?) AND
 				(CalEvent.startDate <= ?) AND

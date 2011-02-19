@@ -30,6 +30,7 @@ public class PmlEdmDocumentReceiptSearchTerms extends PmlEdmDocumentReceiptDispl
 		trangThai = ParamUtil.getLong(req, TRANG_THAI);
 		nguoiKy = ParamUtil.getString(req, NGUOI_KY);
 		trichYeu = ParamUtil.getString(req, TRICH_YEU);
+		soVanBan = ParamUtil.getInteger(req, SOVANBAN);
 	}
 
 }

@@ -105,9 +105,12 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
             { "stt", new Integer(Types.INTEGER) },
             
 
-            { "prior", new Integer(Types.BOOLEAN) }
+            { "prior", new Integer(Types.BOOLEAN) },
+            
+
+            { "deleted", new Integer(Types.BOOLEAN) }
         };
-    public static final String TABLE_SQL_CREATE = "create table MeetingCalendar (uuid_ VARCHAR(75) null,mcalId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,state INTEGER,place VARCHAR(75) null,place_diff VARCHAR(75) null,sponsor VARCHAR(75) null,component VARCHAR(75) null,note VARCHAR(75) null,userApproved LONG,dateApproved DATE null,moveMcalId LONG,repeatWeek BOOLEAN,filename VARCHAR(75) null,morning BOOLEAN,afternoon BOOLEAN,evening BOOLEAN,stt INTEGER,prior BOOLEAN)";
+    public static final String TABLE_SQL_CREATE = "create table MeetingCalendar (uuid_ VARCHAR(75) null,mcalId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,state INTEGER,place VARCHAR(75) null,place_diff VARCHAR(75) null,sponsor VARCHAR(75) null,component VARCHAR(75) null,note VARCHAR(75) null,userApproved LONG,dateApproved DATE null,moveMcalId LONG,repeatWeek BOOLEAN,filename VARCHAR(75) null,morning BOOLEAN,afternoon BOOLEAN,evening BOOLEAN,stt INTEGER,prior BOOLEAN,deleted BOOLEAN)";
     public static final String TABLE_SQL_DROP = "drop table MeetingCalendar";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -139,6 +142,7 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
     private boolean _evening;
     private int _stt;
     private boolean _prior;
+    private boolean _deleted;
 
     public MeetingCalendarModelImpl() {
     }
@@ -168,6 +172,7 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
         model.setEvening(soapModel.getEvening());
         model.setStt(soapModel.getStt());
         model.setPrior(soapModel.getPrior());
+        model.setDeleted(soapModel.getDeleted());
 
         return model;
     }
@@ -457,6 +462,20 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
         }
     }
 
+    public boolean getDeleted() {
+        return _deleted;
+    }
+
+    public boolean isDeleted() {
+        return _deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        if (deleted != _deleted) {
+            _deleted = deleted;
+        }
+    }
+
     public MeetingCalendar toEscapedModel() {
         if (isEscapedModel()) {
             return (MeetingCalendar) this;
@@ -488,6 +507,7 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
             model.setEvening(getEvening());
             model.setStt(getStt());
             model.setPrior(getPrior());
+            model.setDeleted(getDeleted());
 
             model = (MeetingCalendar) Proxy.newProxyInstance(MeetingCalendar.class.getClassLoader(),
                     new Class[] { MeetingCalendar.class },
@@ -522,6 +542,7 @@ public class MeetingCalendarModelImpl extends BaseModelImpl {
         clone.setEvening(getEvening());
         clone.setStt(getStt());
         clone.setPrior(getPrior());
+        clone.setDeleted(getDeleted());
 
         return clone;
     }

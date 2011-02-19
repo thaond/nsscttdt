@@ -778,6 +778,229 @@ public class PmlDocumentReceiptIssuingPlaceLogPersistenceImpl
         }
     }
 
+    public List<PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId) throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlDocumentReceiptIssuingPlaceLogModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlDocumentReceiptIssuingPlaceLog.class.getName();
+        String finderMethodName = "findByDocId";
+        String[] finderParams = new String[] { Long.class.getName() };
+        Object[] finderArgs = new Object[] { new Long(documentReceiptId) };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog WHERE ");
+
+                query.append("documentReceiptId = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(documentReceiptId);
+
+                List<PmlDocumentReceiptIssuingPlaceLog> list = q.list();
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlDocumentReceiptIssuingPlaceLog>) result;
+        }
+    }
+
+    public List<PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end) throws SystemException {
+        return findByDocId(documentReceiptId, start, end, null);
+    }
+
+    public List<PmlDocumentReceiptIssuingPlaceLog> findByDocId(
+        long documentReceiptId, int start, int end, OrderByComparator obc)
+        throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlDocumentReceiptIssuingPlaceLogModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlDocumentReceiptIssuingPlaceLog.class.getName();
+        String finderMethodName = "findByDocId";
+        String[] finderParams = new String[] {
+                Long.class.getName(),
+                
+                "java.lang.Integer", "java.lang.Integer",
+                "com.liferay.portal.kernel.util.OrderByComparator"
+            };
+        Object[] finderArgs = new Object[] {
+                new Long(documentReceiptId),
+                
+                String.valueOf(start), String.valueOf(end), String.valueOf(obc)
+            };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append(
+                    "FROM com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog WHERE ");
+
+                query.append("documentReceiptId = ?");
+
+                query.append(" ");
+
+                if (obc != null) {
+                    query.append("ORDER BY ");
+                    query.append(obc.getOrderBy());
+                }
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(documentReceiptId);
+
+                List<PmlDocumentReceiptIssuingPlaceLog> list = (List<PmlDocumentReceiptIssuingPlaceLog>) QueryUtil.list(q,
+                        getDialect(), start, end);
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, list);
+
+                return list;
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return (List<PmlDocumentReceiptIssuingPlaceLog>) result;
+        }
+    }
+
+    public PmlDocumentReceiptIssuingPlaceLog findByDocId_First(
+        long documentReceiptId, OrderByComparator obc)
+        throws NoSuchReceiptIssuingPlaceLogException, SystemException {
+        List<PmlDocumentReceiptIssuingPlaceLog> list = findByDocId(documentReceiptId,
+                0, 1, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append(
+                "No PmlDocumentReceiptIssuingPlaceLog exists with the key {");
+
+            msg.append("documentReceiptId=" + documentReceiptId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchReceiptIssuingPlaceLogException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlDocumentReceiptIssuingPlaceLog findByDocId_Last(
+        long documentReceiptId, OrderByComparator obc)
+        throws NoSuchReceiptIssuingPlaceLogException, SystemException {
+        int count = countByDocId(documentReceiptId);
+
+        List<PmlDocumentReceiptIssuingPlaceLog> list = findByDocId(documentReceiptId,
+                count - 1, count, obc);
+
+        if (list.size() == 0) {
+            StringBuilder msg = new StringBuilder();
+
+            msg.append(
+                "No PmlDocumentReceiptIssuingPlaceLog exists with the key {");
+
+            msg.append("documentReceiptId=" + documentReceiptId);
+
+            msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+            throw new NoSuchReceiptIssuingPlaceLogException(msg.toString());
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public PmlDocumentReceiptIssuingPlaceLog[] findByDocId_PrevAndNext(
+        long documentReceiptIssuingPlaceLogId, long documentReceiptId,
+        OrderByComparator obc)
+        throws NoSuchReceiptIssuingPlaceLogException, SystemException {
+        PmlDocumentReceiptIssuingPlaceLog pmlDocumentReceiptIssuingPlaceLog = findByPrimaryKey(documentReceiptIssuingPlaceLogId);
+
+        int count = countByDocId(documentReceiptId);
+
+        Session session = null;
+
+        try {
+            session = openSession();
+
+            StringBuilder query = new StringBuilder();
+
+            query.append(
+                "FROM com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog WHERE ");
+
+            query.append("documentReceiptId = ?");
+
+            query.append(" ");
+
+            if (obc != null) {
+                query.append("ORDER BY ");
+                query.append(obc.getOrderBy());
+            }
+
+            Query q = session.createQuery(query.toString());
+
+            QueryPos qPos = QueryPos.getInstance(q);
+
+            qPos.add(documentReceiptId);
+
+            Object[] objArray = QueryUtil.getPrevAndNext(q, count, obc,
+                    pmlDocumentReceiptIssuingPlaceLog);
+
+            PmlDocumentReceiptIssuingPlaceLog[] array = new PmlDocumentReceiptIssuingPlaceLogImpl[3];
+
+            array[0] = (PmlDocumentReceiptIssuingPlaceLog) objArray[0];
+            array[1] = (PmlDocumentReceiptIssuingPlaceLog) objArray[1];
+            array[2] = (PmlDocumentReceiptIssuingPlaceLog) objArray[2];
+
+            return array;
+        } catch (Exception e) {
+            throw processException(e);
+        } finally {
+            closeSession(session);
+        }
+    }
+
     public List<Object> findWithDynamicQuery(DynamicQuery dynamicQuery)
         throws SystemException {
         Session session = null;
@@ -896,6 +1119,13 @@ public class PmlDocumentReceiptIssuingPlaceLogPersistenceImpl
         throws SystemException {
         for (PmlDocumentReceiptIssuingPlaceLog pmlDocumentReceiptIssuingPlaceLog : findByDoc_Step(
                 documentReceiptId, step)) {
+            remove(pmlDocumentReceiptIssuingPlaceLog);
+        }
+    }
+
+    public void removeByDocId(long documentReceiptId) throws SystemException {
+        for (PmlDocumentReceiptIssuingPlaceLog pmlDocumentReceiptIssuingPlaceLog : findByDocId(
+                documentReceiptId)) {
             remove(pmlDocumentReceiptIssuingPlaceLog);
         }
     }
@@ -1034,6 +1264,69 @@ public class PmlDocumentReceiptIssuingPlaceLogPersistenceImpl
                 qPos.add(documentReceiptId);
 
                 qPos.add(step);
+
+                Long count = null;
+
+                Iterator<Long> itr = q.list().iterator();
+
+                if (itr.hasNext()) {
+                    count = itr.next();
+                }
+
+                if (count == null) {
+                    count = new Long(0);
+                }
+
+                FinderCacheUtil.putResult(finderClassNameCacheEnabled,
+                    finderClassName, finderMethodName, finderParams,
+                    finderArgs, count);
+
+                return count.intValue();
+            } catch (Exception e) {
+                throw processException(e);
+            } finally {
+                closeSession(session);
+            }
+        } else {
+            return ((Long) result).intValue();
+        }
+    }
+
+    public int countByDocId(long documentReceiptId) throws SystemException {
+        boolean finderClassNameCacheEnabled = PmlDocumentReceiptIssuingPlaceLogModelImpl.CACHE_ENABLED;
+        String finderClassName = PmlDocumentReceiptIssuingPlaceLog.class.getName();
+        String finderMethodName = "countByDocId";
+        String[] finderParams = new String[] { Long.class.getName() };
+        Object[] finderArgs = new Object[] { new Long(documentReceiptId) };
+
+        Object result = null;
+
+        if (finderClassNameCacheEnabled) {
+            result = FinderCacheUtil.getResult(finderClassName,
+                    finderMethodName, finderParams, finderArgs, this);
+        }
+
+        if (result == null) {
+            Session session = null;
+
+            try {
+                session = openSession();
+
+                StringBuilder query = new StringBuilder();
+
+                query.append("SELECT COUNT(*) ");
+                query.append(
+                    "FROM com.sgs.portlet.document.model.PmlDocumentReceiptIssuingPlaceLog WHERE ");
+
+                query.append("documentReceiptId = ?");
+
+                query.append(" ");
+
+                Query q = session.createQuery(query.toString());
+
+                QueryPos qPos = QueryPos.getInstance(q);
+
+                qPos.add(documentReceiptId);
 
                 Long count = null;
 

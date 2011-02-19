@@ -35,7 +35,10 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.persistence.UserUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.sgs.portlet.department.model.Department;
 import com.sgs.portlet.department.model.PmlDepartmentHSCV;
+import com.sgs.portlet.department.service.DepartmentLocalServiceUtil;
+import com.sgs.portlet.department.service.persistence.DepartmentUtil;
 import com.sgs.portlet.department.service.persistence.PmlDepartmentHSCVUtil;
 import com.sgs.portlet.document.receipt.model.PmlEdmAttachedFile;
 import com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel;
@@ -55,18 +58,15 @@ import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
 import com.sgs.portlet.document.send.model.impl.PmlEdmDocumentSendImpl;
 import com.sgs.portlet.document.send.service.PmlEdmDocumentSendLocalServiceUtil;
 import com.sgs.portlet.document.workflow.DocumentSendPortletAction;
-import com.sgs.portlet.department.model.Department;
-import com.sgs.portlet.pmluser.model.PmlUser;
-import com.sgs.portlet.department.service.DepartmentLocalServiceUtil;
-import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
-import com.sgs.portlet.department.service.persistence.DepartmentUtil;
-import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.PmlChiTietHSCV;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec;
 import com.sgs.portlet.pml_ho_so_cong_viec.model.impl.PmlChiTietHSCVImpl;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.PmlChiTietHSCVLocalServiceUtil;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlChiTietHSCVUtil;
 import com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecUtil;
+import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
+import com.sgs.portlet.pmluser.service.persistence.PmlUserUtil;
 
 /**
  * @author triltm
@@ -74,6 +74,7 @@ import com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecUt
  */
 public class UpdateSearchAction extends DocumentSendPortletAction {	
 	
+	@Override
 	public void processStrutsAction(ActionMapping mapping, ActionForm form,
 			PortletConfig config, ActionRequest req, ActionResponse res)
 			throws Exception {
@@ -85,6 +86,7 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		res.sendRedirect(redirect);
 	}
 
+	@Override
 	public ActionForward renderStruts(ActionMapping mapping, ActionForm form,
 			PortletConfig config, RenderRequest req, RenderResponse res)
 			throws Exception {
@@ -98,6 +100,14 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		Department department = DepartmentLocalServiceUtil.getDepartment(pmlUser.getDepartmentsId());
 		String departmentName = department.getDepartmentsName();
 		String departmentsId = department.getDepartmentsId();
+		// lay phong ban cha
+		Department departmentParent = null;
+		if (department.getDepartmentsParentId() != null && !department.getDepartmentsParentId().equals("")) {
+			String departmentParentId = department.getDepartmentsParentId();
+			departmentParent = DepartmentLocalServiceUtil.getDepartment(departmentParentId);
+			departmentName = departmentParent.getDepartmentsName();
+			departmentsId = departmentParent.getDepartmentsId();
+		}
 		
 		// So cong van
 		/* phmphuc update 13/01/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
@@ -107,7 +117,13 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 
 		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
 		if (department != null) {
-			pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+			if (!document.isIsDocOfDepartment()) {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), currentYear);
+		
+			} else {
+				pmlEdmDocumentRecordTypeList =
+					PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForDeparment(department.getDepartmentsId(), currentYear);
+			}
 		}
 		
 		// Do mat
@@ -127,6 +143,22 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		List<PmlEdmAttachedFile> attachedFiles = PmlEdmAttachedFileUtil
 		.findByObjectContentId_ObjectType(documentSendId, 
 			new PmlEdmDocumentSendImpl().getClass().getName());
+		
+		// danh sach phong ban
+		List<Department> departmentList = null;
+		try {
+			departmentList = DepartmentLocalServiceUtil.findDepartmentsByDepartmentParentId();
+		} catch (Exception e) {
+			departmentList = new ArrayList<Department>();
+		}
+		
+		// danh sach chuyen vien phong ban
+		List<PmlUser> userList = null;
+		try {
+			userList = PmlUserLocalServiceUtil.findUserListByDepartmentId(departmentsId, -1, -1, null);
+		} catch (Exception e) {
+			userList = new ArrayList<PmlUser>();
+		}
 
 		req.setAttribute("documentDTO", documentSendDTO);
 		req.setAttribute("pmlEdmDocumentRecordTypeList",
@@ -139,6 +171,8 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		req.setAttribute("departmentName", departmentName);
 		req.setAttribute("departmentsId", departmentsId);
 		req.setAttribute("attachedFiles", attachedFiles);
+		req.setAttribute("departmentList", departmentList);
+		req.setAttribute("userList", userList);
 		
 		// ho so cong viec cua moi phong tuong ung
 		List<PmlHoSoCongViec> pmlHoSoCongViecList = new ArrayList<PmlHoSoCongViec>();
@@ -176,6 +210,21 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 					}
 				}
 			}
+			
+			// minh update 20100210 phan ho so cong viec lay theo user login
+			
+			List<PmlHoSoCongViec> pmlHoSoCongViecForUserList = null;
+	      	try {
+		      	pmlHoSoCongViecForUserList = PmlHoSoCongViecUtil.findByUserId_HoatDong(pmlUserLogin.getUserId(),"1");
+	      	} catch (Exception e) {
+	      		pmlHoSoCongViecForUserList = new ArrayList<PmlHoSoCongViec>();
+	      	}
+	      	for (int i = 0; i < pmlHoSoCongViecForUserList.size(); i++) {
+				if (!pmlHoSoCongViecList.contains(pmlHoSoCongViecForUserList.get(i))) {
+					pmlHoSoCongViecList.add(pmlHoSoCongViecForUserList.get(i));
+				}
+			}
+	     // end minh update 20100210
 		}
 		//req.setAttribute("pmlHoSoCongViecList", pmlHoSoCongViecList);
 		
@@ -212,6 +261,10 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 	}
 
 	private void updateDocumentSend(ActionRequest req, ActionResponse res) throws Exception {
+		// minh upate 20110215
+		// soan van ban di cua phong	
+		boolean soVanBanCuaPhong = ParamUtil.getBoolean(req, "soVanBanCuaPhong", false);
+		// end minh upate 20110215	
 		String documentReference = ParamUtil.getString(req, "documentReference", "");
 		String phanMoRong = ParamUtil.getString(req, "phanMoRong", "");
 		documentReference += phanMoRong;
@@ -240,8 +293,9 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		boolean ishasdoc = ParamUtil.getBoolean(req, "ishasdoc");
 		 
 		// phmphuc update nguoi soan thao va phong ban soan thao
-		long creatorId = ParamUtil.getLong(req, "creatorId");
-
+//		long creatorId = ParamUtil.getLong(req, "creatorId");
+		long creatorName = ParamUtil.getLong(req, "creatorName");
+		
 		long documentSendId = ParamUtil.getLong(req, "documentSendId");
 		PmlEdmDocumentSend document = PmlEdmDocumentSendLocalServiceUtil
 				.getPmlEdmDocumentSend(documentSendId);
@@ -254,8 +308,8 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 			document.setIssuingDate(issuingDate);
 		}
 		
-		if (creatorId != 0) {
-			document.setEditorId(creatorId);
+		if (creatorName != 0) {
+			document.setEditorId(creatorName);
 		}
 		
 		document.setIscongvanphucdap(ishasdoc);
@@ -268,6 +322,7 @@ public class UpdateSearchAction extends DocumentSendPortletAction {
 		document.setBriefContent(StringUtil.encodeHtml(briefContent));
 		document.setDocumentSendCode(StringUtil.encodeHtml(documentSendCode));
 		document.setNumberPage(StringUtil.encodeHtml(numberPage));
+		document.setIsDocOfDepartment(soVanBanCuaPhong);
 		//Canh update
 		User user = PortalUtil.getUser(req);
 		document = PmlEdmDocumentSendLocalServiceUtil.updatePmlEdmDocumentSend(user.getCompanyId(), document);

@@ -62,6 +62,7 @@ public class PmlEdmDocumentSendSearch extends SearchContainer<PmlEdmDocumentSend
 		iteratorURL.setParameter(PmlEdmDocumentSendDisplayTerms.NGUOI_SOAN_THAO, String.valueOf(displayTerms.getNguoiSoanThao()));
 
 		iteratorURL.setParameter(PmlEdmDocumentSendDisplayTerms.NUMOFDIRECTOR, String.valueOf(displayTerms.getNumOfDirector()));
+		iteratorURL.setParameter(PmlEdmDocumentSendDisplayTerms.SOVANBAN, String.valueOf(displayTerms.getSoVanBan()));
 		
 		try {
 			PortalPreferences preferences =

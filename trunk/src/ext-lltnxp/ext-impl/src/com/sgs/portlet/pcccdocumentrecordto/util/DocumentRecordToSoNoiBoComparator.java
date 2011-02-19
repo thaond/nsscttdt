@@ -6,8 +6,8 @@ import com.sgs.portlet.document.receipt.model.PmlEdmDocumentReceipt;
 public class DocumentRecordToSoNoiBoComparator extends OrderByComparator {
 	// Vi generalorderno anh xa tuong ung voi numberdocumentreceipt
 	// nen khi so sanh so van ban noi bo thi di so sanh generalorderno
-	public static final String ORDER_BY_ASC = "generalorderno ASC";
-	public static final String ORDER_BY_DESC = "generalorderno DESC";
+	public static final String ORDER_BY_ASC = "numberdocumentreceipt ASC";
+	public static final String ORDER_BY_DESC = "numberdocumentreceipt DESC";
 
 	public DocumentRecordToSoNoiBoComparator() {
 		this(false);

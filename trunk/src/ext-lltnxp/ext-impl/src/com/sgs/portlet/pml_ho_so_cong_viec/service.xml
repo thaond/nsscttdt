@@ -59,6 +59,11 @@
 			<finder-column name="userId" comparator="="/>
 		</finder>
 		
+		<finder name="UserId_HoatDong" return-type="Collection">
+			<finder-column name="userId" comparator="="/>
+			<finder-column name="hoatDong" />
+		</finder>
+		
 		<!-- References -->
 		<reference package-path="com.liferay.counter" entity="Counter" />
 		<reference package-path="com.liferay.portal" entity="User" />	

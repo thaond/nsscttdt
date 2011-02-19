@@ -88,6 +88,7 @@ public class PmlEdmDocumentSendJSONSerializer {
         jsonObj.put("orgExternalId", model.getOrgExternalId());
         jsonObj.put("numOfDirector", model.getNumOfDirector());
         jsonObj.put("documentRecordTypeId", model.getDocumentRecordTypeId());
+        jsonObj.put("isDocOfDepartment", model.getIsDocOfDepartment());
 
         return jsonObj;
     }

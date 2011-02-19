@@ -32,7 +32,7 @@ public class DocumentSendDTO {
 	private String numberPublish;
 	private String documentRecord;
 	private boolean iscongvanphucdap;
-	
+	private boolean isDocOfDepartment;
 	// phmphuc them thuoc tinh cho vb di phat hanh - 01/12/2010
 	private long soHieuVB;
 	private String phanMoRong;
@@ -380,4 +380,18 @@ public class DocumentSendDTO {
 	public void setIscongvanphucdap(boolean iscongvanphucdap) {
 		this.iscongvanphucdap = iscongvanphucdap;
 	}
+
+	public boolean isDocOfDepartment() {
+		return isDocOfDepartment;
+	}
+
+	public void setDocOfDepartment(boolean isDocOfDepartment) {
+		this.isDocOfDepartment = isDocOfDepartment;
+	}
+
+	public void setLocal(boolean isLocal) {
+		this.isLocal = isLocal;
+	}
+	
+	
 }

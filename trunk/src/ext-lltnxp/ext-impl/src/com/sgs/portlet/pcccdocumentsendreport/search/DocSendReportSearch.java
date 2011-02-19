@@ -34,14 +34,17 @@ public class DocSendReportSearch extends SearchContainer<PmlEdmDocumentSend> {
 
 	static {
 		headerNames.add("no.");
-		headerNames.add("so-phat-hanh");
-		headerNames.add("loai-van-ban");
+		headerNames.add("so-ky-hieu");
 		headerNames.add("ngay-phat-hanh");
+		headerNames.add("loai-van-ban");
 		headerNames.add("trich-yeu");
-		headerNames.add("don-vi-soan-thao");
+		headerNames.add("nguoi-ky");
+		headerNames.add("noi-nhan-cong-van");
+		headerNames.add("nguoi-nhan-ban-luu");
+		headerNames.add("so-ban");
 
 		// Order by
-		orderableHeaders.put("so-phat-hanh", "sophathanh");
+		orderableHeaders.put("so-ky-hieu", "sophathanh");
 		orderableHeaders.put("ngay-phat-hanh", "ngayphathanh");
 	}
 

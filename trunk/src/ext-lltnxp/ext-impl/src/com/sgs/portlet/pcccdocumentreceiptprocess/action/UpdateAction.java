@@ -193,6 +193,22 @@ public class UpdateAction extends DocumentReceiptPortletAction {
 					}
 				}
 			}
+			
+			 // minh update 20100210 phan ho so cong viec lay theo user login
+			
+			List<PmlHoSoCongViec> pmlHoSoCongViecForUserList = null;
+	      	try {
+		      	pmlHoSoCongViecForUserList = PmlHoSoCongViecUtil.findByUserId_HoatDong(pmlUserLogin.getUserId(),"1");
+	      	} catch (Exception e) {
+	      		pmlHoSoCongViecForUserList = new ArrayList<PmlHoSoCongViec>();
+	      	}
+	      	for (int i = 0; i < pmlHoSoCongViecForUserList.size(); i++) {
+				if (!pmlHoSoCongViecList.contains(pmlHoSoCongViecForUserList.get(i))) {
+					pmlHoSoCongViecList.add(pmlHoSoCongViecForUserList.get(i));
+				}
+			}
+	      // end minh update 20100210
+			
 		}	
 		//req.setAttribute("pmlHoSoCongViecList", pmlHoSoCongViecList);
 		

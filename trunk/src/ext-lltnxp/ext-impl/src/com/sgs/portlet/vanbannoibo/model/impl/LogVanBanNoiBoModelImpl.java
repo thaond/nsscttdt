@@ -69,7 +69,7 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
             { "ngayGui", new Integer(Types.TIMESTAMP) },
             
 
-            { "phongXuLyChinh", new Integer(Types.BIGINT) },
+            { "phongXuLyChinh", new Integer(Types.VARCHAR) },
             
 
             { "nguoiXuLyChinh", new Integer(Types.BIGINT) },
@@ -96,10 +96,10 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
             { "nguoiXuLyTrucTiep", new Integer(Types.BIGINT) },
             
 
-            { "phongXuLy", new Integer(Types.BIGINT) },
+            { "phongXuLy", new Integer(Types.VARCHAR) },
             
 
-            { "phongNhan", new Integer(Types.BIGINT) },
+            { "phongNhan", new Integer(Types.VARCHAR) },
             
 
             { "vanBanHoanThanhHayChua", new Integer(Types.BOOLEAN) },
@@ -116,7 +116,7 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
 
             { "companyId", new Integer(Types.BIGINT) }
         };
-    public static final String TABLE_SQL_CREATE = "create table pml_edm_log_vanbannoibo (logVanBanNoiBoId LONG not null primary key,buocLuanChuyen INTEGER,nguoiXuLy LONG,ngayXuLy DATE null,nguoiNhan LONG,ngayNhan DATE null,trangThaiTruoc VARCHAR(75) null,trangThaiSau VARCHAR(75) null,ngayGui DATE null,phongXuLyChinh LONG,nguoiXuLyChinh LONG,loaiQuyTrinh INTEGER,ngayHetHan DATE null,soNgayXuLy INTEGER,processInstanceId LONG,thongTinXuLy VARCHAR(75) null,step INTEGER,nguoiXuLyTrucTiep LONG,phongXuLy LONG,phongNhan LONG,vanBanHoanThanhHayChua BOOLEAN,vanBanNoiBoId LONG,userId LONG,groupId LONG,companyId LONG)";
+    public static final String TABLE_SQL_CREATE = "create table pml_edm_log_vanbannoibo (logVanBanNoiBoId LONG not null primary key,buocLuanChuyen INTEGER,nguoiXuLy LONG,ngayXuLy DATE null,nguoiNhan LONG,ngayNhan DATE null,trangThaiTruoc VARCHAR(75) null,trangThaiSau VARCHAR(75) null,ngayGui DATE null,phongXuLyChinh VARCHAR(75) null,nguoiXuLyChinh LONG,loaiQuyTrinh INTEGER,ngayHetHan DATE null,soNgayXuLy INTEGER,processInstanceId LONG,thongTinXuLy VARCHAR(75) null,step INTEGER,nguoiXuLyTrucTiep LONG,phongXuLy VARCHAR(75) null,phongNhan VARCHAR(75) null,vanBanHoanThanhHayChua BOOLEAN,vanBanNoiBoId LONG,userId LONG,groupId LONG,companyId LONG)";
     public static final String TABLE_SQL_DROP = "drop table pml_edm_log_vanbannoibo";
     public static final String DATA_SOURCE = "liferayDataSource";
     public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -135,7 +135,7 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
     private String _trangThaiTruoc;
     private String _trangThaiSau;
     private Date _ngayGui;
-    private long _phongXuLyChinh;
+    private String _phongXuLyChinh;
     private long _nguoiXuLyChinh;
     private int _loaiQuyTrinh;
     private Date _ngayHetHan;
@@ -144,8 +144,8 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
     private String _thongTinXuLy;
     private int _step;
     private long _nguoiXuLyTrucTiep;
-    private long _phongXuLy;
-    private long _phongNhan;
+    private String _phongXuLy;
+    private String _phongNhan;
     private boolean _vanBanHoanThanhHayChua;
     private long _vanBanNoiBoId;
     private long _userId;
@@ -314,12 +314,15 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
         }
     }
 
-    public long getPhongXuLyChinh() {
-        return _phongXuLyChinh;
+    public String getPhongXuLyChinh() {
+        return GetterUtil.getString(_phongXuLyChinh);
     }
 
-    public void setPhongXuLyChinh(long phongXuLyChinh) {
-        if (phongXuLyChinh != _phongXuLyChinh) {
+    public void setPhongXuLyChinh(String phongXuLyChinh) {
+        if (((phongXuLyChinh == null) && (_phongXuLyChinh != null)) ||
+                ((phongXuLyChinh != null) && (_phongXuLyChinh == null)) ||
+                ((phongXuLyChinh != null) && (_phongXuLyChinh != null) &&
+                !phongXuLyChinh.equals(_phongXuLyChinh))) {
             _phongXuLyChinh = phongXuLyChinh;
         }
     }
@@ -410,22 +413,28 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
         }
     }
 
-    public long getPhongXuLy() {
-        return _phongXuLy;
+    public String getPhongXuLy() {
+        return GetterUtil.getString(_phongXuLy);
     }
 
-    public void setPhongXuLy(long phongXuLy) {
-        if (phongXuLy != _phongXuLy) {
+    public void setPhongXuLy(String phongXuLy) {
+        if (((phongXuLy == null) && (_phongXuLy != null)) ||
+                ((phongXuLy != null) && (_phongXuLy == null)) ||
+                ((phongXuLy != null) && (_phongXuLy != null) &&
+                !phongXuLy.equals(_phongXuLy))) {
             _phongXuLy = phongXuLy;
         }
     }
 
-    public long getPhongNhan() {
-        return _phongNhan;
+    public String getPhongNhan() {
+        return GetterUtil.getString(_phongNhan);
     }
 
-    public void setPhongNhan(long phongNhan) {
-        if (phongNhan != _phongNhan) {
+    public void setPhongNhan(String phongNhan) {
+        if (((phongNhan == null) && (_phongNhan != null)) ||
+                ((phongNhan != null) && (_phongNhan == null)) ||
+                ((phongNhan != null) && (_phongNhan != null) &&
+                !phongNhan.equals(_phongNhan))) {
             _phongNhan = phongNhan;
         }
     }
@@ -502,7 +511,7 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
             model.setTrangThaiTruoc(HtmlUtil.escape(getTrangThaiTruoc()));
             model.setTrangThaiSau(HtmlUtil.escape(getTrangThaiSau()));
             model.setNgayGui(getNgayGui());
-            model.setPhongXuLyChinh(getPhongXuLyChinh());
+            model.setPhongXuLyChinh(HtmlUtil.escape(getPhongXuLyChinh()));
             model.setNguoiXuLyChinh(getNguoiXuLyChinh());
             model.setLoaiQuyTrinh(getLoaiQuyTrinh());
             model.setNgayHetHan(getNgayHetHan());
@@ -511,8 +520,8 @@ public class LogVanBanNoiBoModelImpl extends BaseModelImpl {
             model.setThongTinXuLy(HtmlUtil.escape(getThongTinXuLy()));
             model.setStep(getStep());
             model.setNguoiXuLyTrucTiep(getNguoiXuLyTrucTiep());
-            model.setPhongXuLy(getPhongXuLy());
-            model.setPhongNhan(getPhongNhan());
+            model.setPhongXuLy(HtmlUtil.escape(getPhongXuLy()));
+            model.setPhongNhan(HtmlUtil.escape(getPhongNhan()));
             model.setVanBanHoanThanhHayChua(getVanBanHoanThanhHayChua());
             model.setVanBanNoiBoId(getVanBanNoiBoId());
             model.setUserId(getUserId());

@@ -22,5 +22,6 @@ public class PmlEdmDocumentSendSearchTerms extends PmlEdmDocumentSendDisplayTerm
 		nguoiSoanThao = ParamUtil.getLong(renderRequest, NGUOI_SOAN_THAO);
 
 		numOfDirector = ParamUtil.getInteger(renderRequest, NUMOFDIRECTOR);
+		soVanBan = ParamUtil.getInteger(renderRequest, SOVANBAN);
 	}
 }

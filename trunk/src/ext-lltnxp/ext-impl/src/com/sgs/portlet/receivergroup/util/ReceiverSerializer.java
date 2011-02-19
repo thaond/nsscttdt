@@ -10,7 +10,11 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.model.User;
+import com.sgs.portlet.department.model.Department;
+import com.sgs.portlet.department.service.DepartmentLocalServiceUtil;
 import com.sgs.portlet.pmlissuingplace.model.PmlEdmIssuingPlace;
+import com.sgs.portlet.pmluser.model.PmlUser;
+import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 
 /**
  * @author canhminh
@@ -42,6 +46,18 @@ public class ReceiverSerializer {
 		sb.append(user.getMiddleName());
 		sb.append(" ");
 		sb.append(user.getFirstName());
+
+		try {
+			PmlUser pmlUser =
+				PmlUserLocalServiceUtil.getPmlUser(user.getUserId());
+			Department department =
+				DepartmentLocalServiceUtil.getDepartment(pmlUser.getDepartmentsId());
+			sb.append(" - ");
+			sb.append(department.getDepartmentsName());
+		}
+		catch (Exception e) {
+		}
+
 		return sb.toString();
 	}
 

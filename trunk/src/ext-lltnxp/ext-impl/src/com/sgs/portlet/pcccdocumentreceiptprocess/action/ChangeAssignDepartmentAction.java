@@ -170,11 +170,14 @@ public class ChangeAssignDepartmentAction extends DocumentReceiptPortletAction {
 
 		// Canh Update 20110122
 		String supportUsers2 = ParamUtil.getString(req, "supportUsers2", "");
+		String[] organizationsArr = req.getParameterValues("organizations");
 		String receivers = ParamUtil.getString(req, "receivers", "");
 		JSONObject supportUsers2JsonObject = new JSONObject();
 		JSONObject receiversJsonObject = new JSONObject();
+		boolean selectedUserTree = false;
 		try {
 			supportUsers2JsonObject = new JSONObject(supportUsers2);
+			selectedUserTree = supportUsers2JsonObject.length() > 0;
 		}
 		catch (Exception e) {
 		}
@@ -191,6 +194,12 @@ public class ChangeAssignDepartmentAction extends DocumentReceiptPortletAction {
 		if ((supportUsers != null) && (supportUsers.length > 0)) {
 			for (String supportUser : supportUsers) {
 				supportUsers2JsonObject.put(supportUser, "");
+			}
+		}
+
+		if (organizationsArr != null) {
+			for (String organizationStr : organizationsArr) {
+				receiversJsonObject.put(organizationStr, "");
 			}
 		}
 
@@ -219,7 +228,7 @@ public class ChangeAssignDepartmentAction extends DocumentReceiptPortletAction {
 
 		int countLDB = ParamUtil.getInteger(req, "countLDB");
 
-		if (countLDB == supportUsers.length) {
+		if (countLDB == supportUsers2JsonObject.length()) {
 			addWorkflowParameter(req, "isPTB", WorkflowParam.TRANSIENT, "true");
 		}
 		else if (countLDB == 0) {
@@ -263,13 +272,25 @@ public class ChangeAssignDepartmentAction extends DocumentReceiptPortletAction {
 				processInformation);
 		}
 		else {
-			for (int i = 0; i < supportUsers.length; i++) {
-				addWorkflowParameter(
-					req,
-					"processInformationForUser" + supportUsers[i],
-					WorkflowParam.TRANSIENT,
-					ParamUtil.getString(req, "processInformationForUser" +
-						supportUsers[i], ""));
+			iterator = supportUsers2JsonObject.keys();
+			while (iterator.hasNext()) {
+				String supportUser = iterator.next();
+				if (selectedUserTree) {
+					addWorkflowParameter(
+						req, "processInformationForUser" + supportUser,
+						WorkflowParam.TRANSIENT, ParamUtil.getString(
+							req, "processInformationForUserTree" + supportUser,
+							""));
+				}
+				else {
+					addWorkflowParameter(
+						req,
+						"processInformationForUser" + supportUser,
+						WorkflowParam.TRANSIENT,
+						ParamUtil.getString(req, "processInformationForUser" +
+							supportUser, ""));
+
+				}
 			}
 		}
 		// end minh update 20101117

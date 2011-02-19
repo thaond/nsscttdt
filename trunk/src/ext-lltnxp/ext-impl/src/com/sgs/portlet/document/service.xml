@@ -558,6 +558,9 @@
 			<finder-column name="documentReceiptId"/>
 			<finder-column name="step"/>
 		</finder>
+		<finder return-type="Collection" name="DocId">
+			<finder-column name="documentReceiptId"/>
+		</finder>
 	</entity>
 	
 	<!-- log for document send -->

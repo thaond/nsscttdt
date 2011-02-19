@@ -243,6 +243,8 @@ public class DepartmentFinderImpl extends BasePersistenceImpl implements Departm
 			
 			sql += " WHERE (departmentsparentid is null OR departmentsparentid = '" + "')";
 			
+			sql += " ORDER BY departmentsname ASC";
+			
 			SQLQuery q = session.createSQLQuery(sql);
 			
 			q.addEntity("pml_departments", DepartmentImpl.class);

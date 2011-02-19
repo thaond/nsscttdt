@@ -277,6 +277,16 @@
 				<param name="service.file" value="src/com/sgs/portlet/vanbannoibo/service.xml" />
 			</antcall>
 	</target>
+	<target name="build-service-portlet-loaivanbannoibo">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/loaivanbannoibo/service.xml" />
+			</antcall>
+	</target>
+	<target name="build-service-portlet-sovanbannoibo">
+			<antcall target="build-service">
+				<param name="service.file" value="src/com/sgs/portlet/sovanbannoibo/service.xml" />
+			</antcall>
+	</target>
 	
 	<!-- Language -->
 	<target name="build-lang-native2ascii-vi">

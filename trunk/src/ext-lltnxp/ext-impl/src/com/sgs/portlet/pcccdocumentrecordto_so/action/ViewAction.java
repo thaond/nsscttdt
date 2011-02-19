@@ -166,7 +166,7 @@ public class ViewAction extends PortletAction {
 			String trinhTuXuLy = "";
 			
 			DocumentRecordToDTO documentRecordToDTO = new DocumentRecordToDTO();
-			documentRecordToDTO.setStt(index ++);
+			documentRecordToDTO.setStt(String.valueOf(index ++));
 			documentRecordToDTO.setSoCVNoiBo(soCVNoiBo);
 			documentRecordToDTO.setSoCVDen(soCVDen);
 			documentRecordToDTO.setNgayDen(ngayDen);
@@ -235,7 +235,7 @@ public class ViewAction extends PortletAction {
 			String trinhTuXuLy = "";
 			
 			DocumentRecordToDTO documentRecordToDTO = new DocumentRecordToDTO();
-			documentRecordToDTO.setStt(index ++);
+			documentRecordToDTO.setStt(String.valueOf(index ++));
 			documentRecordToDTO.setSoCVNoiBo(StringUtils.convertToRTF(soCVNoiBo));
 			documentRecordToDTO.setSoCVDen(StringUtils.convertToRTF(soCVDen));
 			documentRecordToDTO.setNgayDen(ngayDen);

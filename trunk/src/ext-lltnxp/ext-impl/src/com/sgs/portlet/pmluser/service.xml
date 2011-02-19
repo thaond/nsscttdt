@@ -74,6 +74,10 @@
 			<finder-column name="isLeaderMetting"/>
 		</finder>
 		
+		<finder return-type="Collection" name="IsVanThuPhong">
+			<finder-column name="isVanThuPhong"/>
+		</finder>
+		
 	</entity>
 	
 </service-builder>

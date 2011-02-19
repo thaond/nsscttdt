@@ -166,15 +166,24 @@ public class SendIndexer implements Indexer {
 		 * documentSend.getIssuingDate(), hscvs, documentSend.getBriefContent(),
 		 * documentSend.getActive()); xuancong close end
 		 */
-		return getSendDocument(
-			companyId, documentSend.getDocumentSendId(),
-			documentSend.getDocumentReference(),
-			documentSend.getDocumentTypeId(), traLoiCongVanSo, phongSoanThao,
-			documentSend.getReceivingPlace(), documentSend.getSignerName(),
-			documentSend.getIssuingDate(), hscvs,
-			documentSend.getBriefContent(), documentSend.getActive(),
-			documentSend.getNumOfDocRef(), documentSend.getEditorId(),
-			documentSend.getNumOfDirector());
+//		return getSendDocument(
+//			companyId, documentSend.getDocumentSendId(),
+//			documentSend.getDocumentReference(),
+//			documentSend.getDocumentTypeId(), traLoiCongVanSo, phongSoanThao,
+//			documentSend.getReceivingPlace(), documentSend.getSignerName(),
+//			documentSend.getIssuingDate(), hscvs,
+//			documentSend.getBriefContent(), documentSend.getActive(),
+//			documentSend.getNumOfDocRef(), documentSend.getEditorId(),
+//			documentSend.getNumOfDirector());
+		return getSendDocument2(
+				companyId, documentSend.getDocumentSendId(),
+				documentSend.getDocumentReference(),
+				documentSend.getDocumentRecordTypeId(), traLoiCongVanSo, phongSoanThao,
+				documentSend.getReceivingPlace(), documentSend.getSignerName(),
+				documentSend.getIssuingDate(), hscvs,
+				documentSend.getBriefContent(), documentSend.getActive(),
+				documentSend.getNumOfDocRef(), documentSend.getEditorId(),
+				documentSend.getNumOfDirector());
 	}
 
 	/*
@@ -286,4 +295,55 @@ public class SendIndexer implements Indexer {
 
 		SearchEngineUtil.deletePortletDocuments(companyId, PORTLET_ID);
 	}
+	
+	public static Document getSendDocument2(
+			long companyId, long documentSendId, String soPhatHanh,
+			int documentRecordType, String[] traLoiCongVanSo, String phongSoanThao,
+			String receivingPlace, String signer, Date issuingDate, String[] hscvs,
+			String briefContent, String active, long numOfDocRef,
+			long nguoiSoanThao, boolean numOfDirector)
+			throws UnsupportedEncodingException {
+
+			soPhatHanh = soPhatHanh.toLowerCase();
+			phongSoanThao = phongSoanThao.toLowerCase();
+			receivingPlace = receivingPlace.toLowerCase();
+			briefContent = briefContent.toLowerCase();
+			signer = signer.toLowerCase();
+
+			DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+			Document doc = new DocumentImpl();
+			doc.addUID(PORTLET_ID, documentSendId);
+
+			doc.addKeyword(Field.COMPANY_ID, companyId);
+			doc.addKeyword(Field.PORTLET_ID, PORTLET_ID);
+
+			doc.addKeyword(Field.ENTRY_CLASS_PK, documentSendId);
+
+			doc.addKeyword(PmlEdmDocumentSendDisplayTerms.SO_PHAT_HANH, soPhatHanh);
+			doc.addKeyword(
+				PmlEdmDocumentSendDisplayTerms.SOVANBAN, documentRecordType);
+			doc.addKeyword(
+				PmlEdmDocumentSendDisplayTerms.TRA_LOI_CONG_VAN_SO, traLoiCongVanSo);
+			doc.addKeyword(
+				PmlEdmDocumentSendDisplayTerms.PHONG_SOAN_THAO, phongSoanThao);
+			doc.addText(PmlEdmDocumentSendDisplayTerms.NOI_NHAN, receivingPlace);
+			// xuancong close dung Text thay cho Keyword
+			// doc.addKeyword(PmlEdmDocumentSendDisplayTerms.NGUOI_KY,
+			// signer.replace(" ", ""));
+			doc.addText(PmlEdmDocumentSendDisplayTerms.NGUOI_KY, signer);
+			doc.addKeyword(
+				"ngayPhatHanh",
+				issuingDate != null ? dateFormat.format(issuingDate) : "");
+			doc.addKeyword(PmlEdmDocumentSendDisplayTerms.SO_HSCV, hscvs);
+			doc.addKeyword("active", active);
+			doc.addText(PmlEdmDocumentSendDisplayTerms.TRICH_YEU, briefContent);
+			doc.addKeyword(PmlEdmDocumentSendDisplayTerms.NUMOFDOCREF, numOfDocRef);
+			doc.addKeyword(
+				PmlEdmDocumentSendDisplayTerms.NGUOI_SOAN_THAO, nguoiSoanThao);
+			doc.addKeyword(
+				PmlEdmDocumentSendDisplayTerms.NUMOFDIRECTOR,
+				String.valueOf(numOfDirector));
+
+			return doc;
+		}
 }

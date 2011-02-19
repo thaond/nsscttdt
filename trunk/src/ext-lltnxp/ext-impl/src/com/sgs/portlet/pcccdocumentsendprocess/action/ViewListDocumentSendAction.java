@@ -129,10 +129,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy(listUser_LDVP_Long, statusId, String.valueOf(searchTerms.getLoaiSoCongVan()),"tatca",
 							searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 				} else {
-					total1 = PmlEdmDocumentSendLocalServiceUtil.countByDocumentSend_Users_Status_DangXuLy(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
+					total1 = PmlEdmDocumentSendLocalServiceUtil.countByDocumentSend_Users_Status_DangXuLy1(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
 								tuNgay, denNgay); 
 					
-					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
+					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy1(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
 								tuNgay, denNgay, searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 				}
 				// phmphuc them 12/11/2010 - lay danh sach log tuong ung voi documentsend
@@ -147,10 +147,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy_TreHan(listUser_LDVP_Long, statusId, String.valueOf(searchTerms.getLoaiSoCongVan()), "tatca",
 							searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 				} else {
-					total1 = PmlEdmDocumentSendLocalServiceUtil.countByDocumentSend_Users_Status_DangXuLy_TreHan(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
+					total1 = PmlEdmDocumentSendLocalServiceUtil.countByDocumentSend_Users_Status_DangXuLy_TreHan1(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
 								tuNgay, denNgay); 
 					
-					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy_TreHan(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
+					results = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy_TreHan1(listUser_LDVP_Long, statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, 
 								tuNgay, denNgay, searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 				}
 				// phmphuc them 12/11/2010 - lay danh sach log tuong ung voi documentsend
@@ -172,10 +172,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 						
 						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung(userId, String.valueOf(year),  String.valueOf(searchTerms.getLoaiSoCongVan()));
 					} else {
-						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay, searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 						
-						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay);
 					}
 				} 
@@ -186,10 +186,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 						
 						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy(userId, String.valueOf(year), String.valueOf(searchTerms.getLoaiSoCongVan()));
 					} else {
-						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 								   tuNgay, denNgay,searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 						
-						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 								   tuNgay, denNgay);
 					}
 				}
@@ -201,10 +201,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 						
 						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung_treHan(userId, String.valueOf(year),  String.valueOf(searchTerms.getLoaiSoCongVan()));
 					} else {
-						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung_treHan(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung_treHan1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay, searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 						
-						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung_treHan(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyChung_treHan1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay);
 					}
 				}
@@ -215,10 +215,10 @@ public class ViewListDocumentSendAction extends DocumentSendPortletAction {
 						
 						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy_treHan(userId, String.valueOf(year), String.valueOf(searchTerms.getLoaiSoCongVan()));
 					} else {
-						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy_treHan(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						results = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy_treHan1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay, searchContainerList.getStart(), searchContainerList.getEnd(), searchContainerList.getOrderByComparator());
 						
-						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy_treHan(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
+						total1 = PmlEdmDocumentSendLocalServiceUtil.countListCVDiDaXuLyTuXuLy_treHan1(userId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan,
 									tuNgay, denNgay);
 					}
 				}

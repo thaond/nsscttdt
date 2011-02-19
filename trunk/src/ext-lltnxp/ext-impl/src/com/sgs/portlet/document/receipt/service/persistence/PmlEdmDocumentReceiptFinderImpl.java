@@ -6619,7 +6619,8 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 			} // end if
 				// Loai van ban
 			if (loaiVB > 0) {
-				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+//				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				sql += "AND doc.documentrecordtypeid = " + loaiVB + " ";
 			}
 			// Phong ban
 			if ((phongBan != null) && (phongBan.trim().length() > 0)) {
@@ -6775,9 +6776,10 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 					}
 				}
 			} // end if
-				// Loai van ban
+				// Loai van ban, doi thanh So Van Ban
 			if (loaiVB > 0) {
-				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+//				sql += "AND doc.documenttypeid = " + loaiVB + " ";
+				sql += "AND doc.documentrecordtypeid = " + loaiVB + " ";
 			}
 			// Phong ban
 			if ((phongBan != null) && (phongBan.trim().length() > 0)) {
@@ -8614,9 +8616,9 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 			sql += " AND log.documentreceiptid = cvwf.documentreceiptid";
 			sql += " AND a.maxtran = log.transition_";
 			sql += " AND a.documentreceiptid = log.documentreceiptid";
-			sql += " AND log.dateprocess is not null ";
+			sql += " AND cv.datearrive is not null ";
 			sql += " AND ( '" + fromDate
-					+ "' <= log.dateprocess AND log.dateprocess <= '" + toDate
+					+ "' <= cv.datearrive AND cv.datearrive <= '" + toDate
 					+ "' )";
 
 			if (0 != loaiSoVanBan) {
@@ -8718,14 +8720,10 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 
 			String sql = "SELECT log.*, cv.generalorderno, cv.datearrive ";
 			sql += "FROM pml_edm_documentreceipt cv, pml_documentreceipt_wf cvwf, ";
-			sql += "(SELECT MAX(log.transition_) as maxtran, log.documentreceiptid";
-			sql += " FROM pml_documentreceipt_log log";
-			sql += " WHERE log.receiver IN (" + userIdList + ")"; // truong hop
-																	// xu ly
-																	// thay nen
-																	// nhap vao
-																	// ds userId
-			sql += " GROUP BY log.documentreceiptid) AS a, pml_documentreceipt_log log";
+			sql += "(SELECT MAX(transition_) as maxtran, documentreceiptid";
+			sql += " FROM pml_documentreceipt_log ";
+			sql += " WHERE receiver IN (" + userIdList + ") OR (transition_ = 1 AND processer IN (" + userIdList + "))"; 
+			sql += " GROUP BY documentreceiptid) AS a, pml_documentreceipt_log log";
 
 			if (0 != loaiSoVanBan) {
 				sql += ", pml_edm_documenttype dt, pml_edm_documentrecordtype drt";
@@ -8752,11 +8750,10 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 			sql += " AND log.documentreceiptid = cvwf.documentreceiptid";
 			sql += " AND a.maxtran = log.transition_";
 			sql += " AND a.documentreceiptid = log.documentreceiptid";
-			sql += " AND log.dateprocess is not null ";
+			sql += " AND cv.datearrive is not null ";
 			sql += " AND ( '" + fromDate
-					+ "' <= log.dateprocess AND log.dateprocess <= '" + toDate
+					+ "' <= cv.datearrive AND cv.datearrive <= '" + toDate
 					+ "' )";
-			sql += " AND log.numdateprocess > 0 ";
 			sql += " AND (log.dateprocess + log.numdateprocess + songaynghile(log.dateprocess, log.numdateprocess)) < '"
 					+ currentDate + "'";
 
@@ -8854,14 +8851,10 @@ public class PmlEdmDocumentReceiptFinderImpl extends BasePersistenceImpl
 
 			String sql = "SELECT log.*, cv.generalorderno, cv.datearrive ";
 			sql += "FROM pml_edm_documentreceipt cv, pml_documentreceipt_wf cvwf, ";
-			sql += " (SELECT MAX(log.transition_) as maxtran, log.documentreceiptid";
-			sql += " FROM pml_documentreceipt_log log";
-			sql += " WHERE log.receiver IN (" + userIdList + ")"; // truong hop
-																	// xu ly
-																	// thay nen
-																	// nhap vao
-																	// ds userId
-			sql += " GROUP BY log.documentreceiptid) AS a, pml_documentreceipt_log log";
+			sql += "(SELECT MAX(transition_) as maxtran, documentreceiptid";
+			sql += " FROM pml_documentreceipt_log ";
+			sql += " WHERE receiver IN (" + userIdList + ") OR (transition_ = 1 AND processer IN (" + userIdList + "))"; 
+			sql += " GROUP BY documentreceiptid) AS a, pml_documentreceipt_log log";
 
 			if (0 != loaiSoVanBan) { // chon loai so cong van
 				sql += ", pml_edm_documenttype dt";

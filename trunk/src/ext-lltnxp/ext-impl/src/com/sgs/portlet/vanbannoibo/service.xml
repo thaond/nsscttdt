@@ -9,13 +9,14 @@
 		<column name="vanBanNoiBoId" type="long" primary="true" />
 		<!-- Other fields -->
 		<column name="loaiVanBanNoiBo" type="long" />
+		<column name="soVanBanNoiBo" type="long" />
 		<column name="ngayTao" type="Date" />
 		<column name="ngayKy" type="Date" />
 		<column name="trichYeu" type="String" />
 		<column name="nguoiKy" type="long" />
 		<column name="ghiChu" type="String" />
-		<column name="soVanBanNoiBo" type="String" />
-		<column name="soPhatSinhTheoNam" type="String" />
+		<column name="soVaoSoVanBanNoiBo" type="String" />
+		<column name="soPhatSinhTheoNam" type="int" />
 		<column name="fileDinhKemVanBanNoiBos" type="Collection" entity="FileDinhKemVanBanNoiBo" mapping-key="vanBanNoiBoId" />
 		
 		<column name="userId" type="long"/>
@@ -53,7 +54,7 @@
 		<column name="trangThaiTruoc" type="String" />
 		<column name="trangThaiSau" type="String" />
 		<column name="ngayGui" type="Date" />
-		<column name="phongXuLyChinh" type="long" />
+		<column name="phongXuLyChinh" type="String" />
 		<column name="nguoiXuLyChinh" type="long" />
 		<column name="loaiQuyTrinh" type="int" />
 		<column name="ngayHetHan" type="Date" />
@@ -62,8 +63,8 @@
 		<column name="thongTinXuLy" type="String" />
 		<column name="step" type="int" />
 		<column name="nguoiXuLyTrucTiep" type="long" />
-		<column name="phongXuLy" type="long" />
-		<column name="phongNhan" type="long" />
+		<column name="phongXuLy" type="String" />
+		<column name="phongNhan" type="String" />
 		<column name="vanBanHoanThanhHayChua" type="boolean" />
 		<column name="vanBanNoiBoId" type="long" />
 		

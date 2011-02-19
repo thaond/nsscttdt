@@ -206,9 +206,14 @@ public class SaveAndPublishAction extends DocumentSendPortletAction {
 		List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList =
 			new ArrayList<PmlEdmDocumentRecordType>();
 		if (department != null) {
-			pmlEdmDocumentRecordTypeList =
-				PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency(
-					"vbdi", department.getAgencyId(), currentYear);
+			if (!documentSendDTO.isDocOfDepartment()) {
+				pmlEdmDocumentRecordTypeList =
+					PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency(
+						"vbdi", department.getAgencyId(), currentYear);
+			} else {
+				pmlEdmDocumentRecordTypeList =
+					PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForDeparment(department.getDepartmentsId(), currentYear);
+			}
 		}
 		// lay so van ban cua co quan trong nam
 		req.setAttribute(

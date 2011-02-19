@@ -127,7 +127,7 @@ public class ViewAction extends DocumentSendPortletAction {
 								String.valueOf(loaiCVID), "tatca", -1, -1, null);
 						// end
 					} else {
-						documentSends = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy(userIdList, statusId, loaiVB,
+						documentSends = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy1(userIdList, statusId, loaiVB,
 								soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 					}
 				}
@@ -139,7 +139,7 @@ public class ViewAction extends DocumentSendPortletAction {
 								String.valueOf(loaiCVID), "tatca", -1, -1, null);
 						// end
 					} else {
-						documentSends = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy_TreHan(userIdList, statusId, loaiVB,
+						documentSends = PmlEdmDocumentSendLocalServiceUtil.findByDocumentSend_Users_Status_DangXuLy_TreHan1(userIdList, statusId, loaiVB,
 								soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 					}
 				}
@@ -160,7 +160,7 @@ public class ViewAction extends DocumentSendPortletAction {
 							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung(userId, String.valueOf(year), 
 									String.valueOf(loaiCVID), -1, -1, null);
 						} else {
-							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung(userId,  loaiVB,
+							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung1(userId,  loaiVB,
 									soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 						}
 					}
@@ -169,7 +169,7 @@ public class ViewAction extends DocumentSendPortletAction {
 							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy(userId, String.valueOf(year), 
 									String.valueOf(loaiCVID), -1, -1, null);
 						} else {
-							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy(userId, loaiVB,
+							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy1(userId, loaiVB,
 									soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 						}
 					}
@@ -181,7 +181,7 @@ public class ViewAction extends DocumentSendPortletAction {
 							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung_treHan(userId, String.valueOf(year),
 									String.valueOf(loaiCVID), -1, -1, null);
 						} else {
-							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung_treHan(userId, loaiVB,
+							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyChung_treHan1(userId, loaiVB,
 									soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 						}
 					}
@@ -190,7 +190,7 @@ public class ViewAction extends DocumentSendPortletAction {
 							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy_treHan(userId, String.valueOf(year), 
 									String.valueOf(loaiCVID), -1, -1, null);
 						} else {
-							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy_treHan(userId, loaiVB,
+							documentSends = PmlEdmDocumentSendLocalServiceUtil.getListCVDiDaXuLyTuXuLy_treHan1(userId, loaiVB,
 									soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay, -1, -1, null);
 						}
 					}
@@ -207,62 +207,74 @@ public class ViewAction extends DocumentSendPortletAction {
 			}
 		}
 
-		int stt = 1;
-		for (PmlEdmDocumentSend pmlEdmDocumentSend : documentSends) {
-			DocumentSendDTO documentSendDTO = populateDocumentSendToDTO(pmlEdmDocumentSend);
-			
-			QuanLyCongVanDiDTO quanLyCongVanDiDTO = new QuanLyCongVanDiDTO();
-			quanLyCongVanDiDTO.setStt(stt + ".");
-			quanLyCongVanDiDTO.setSoKyHieuVanBan(documentSendDTO.getDocumentReference());
-			quanLyCongVanDiDTO.setNguoiTao(StringUtils.convertToRTF(documentSendDTO.getEditor()));
-			quanLyCongVanDiDTO.setNguoiKyVanBan(StringUtils.convertToRTF(documentSendDTO.getSigner()));
-			quanLyCongVanDiDTO.setNoiNhan(StringUtils.convertToRTF(documentSendDTO.getReceivingPlace()));
-			quanLyCongVanDiDTO.setTrichYeu(StringUtils.convertToRTF(documentSendDTO.getBriefContent()));
-			// phmphuc update 22/04/2010
+		if (!documentSends.isEmpty()) {
+			int stt = 1;
+			for (PmlEdmDocumentSend pmlEdmDocumentSend : documentSends) {
+				DocumentSendDTO documentSendDTO = populateDocumentSendToDTO(pmlEdmDocumentSend);
+				
+				QuanLyCongVanDiDTO quanLyCongVanDiDTO = new QuanLyCongVanDiDTO();
+				quanLyCongVanDiDTO.setStt(stt + ".");
+				quanLyCongVanDiDTO.setSoKyHieuVanBan(documentSendDTO.getDocumentReference());
+				quanLyCongVanDiDTO.setNguoiTao(StringUtils.convertToRTF(documentSendDTO.getEditor()));
+				quanLyCongVanDiDTO.setNguoiKyVanBan(StringUtils.convertToRTF(documentSendDTO.getSigner()));
+				quanLyCongVanDiDTO.setNoiNhan(StringUtils.convertToRTF(documentSendDTO.getReceivingPlace()));
+				quanLyCongVanDiDTO.setTrichYeu(StringUtils.convertToRTF(documentSendDTO.getBriefContent()));
+				// phmphuc update 22/04/2010
 //			quanLyCongVanDiDTO.setTrangThai(StringUtils.convertToRTF(documentSendDTO.getState()));
-			
-			// lay trang thai hien thi giong trang list.jsp
-			PmlDocumentSendLog pmlDocumentSendLog = null;
-			try {
-				pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor_Receivedate_StateProcessIdAfter(
-						pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0) , null , 0).get(0);
-			} catch (Exception e) {
+				
+				// lay trang thai hien thi giong trang list.jsp
+				PmlDocumentSendLog pmlDocumentSendLog = null;
 				try {
-					pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor_StateProcessIdAfter(
-							pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0) , 0).get(0);
-				} catch (Exception ex) {
-					try {					
-						pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor(
-								pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0))
-								.get(PmlDocumentSendLogUtil.findByDocumentSendId_Processor(
-										pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0)).size() - 1);	
-					} catch (Exception e2) {
-						pmlDocumentSendLog = new PmlDocumentSendLogImpl();
+					pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor_Receivedate_StateProcessIdAfter(
+							pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0) , null , 0).get(0);
+				} catch (Exception e) {
+					try {
+						pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor_StateProcessIdAfter(
+								pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0) , 0).get(0);
+					} catch (Exception ex) {
+						try {					
+							pmlDocumentSendLog =  PmlDocumentSendLogUtil.findByDocumentSendId_Processor(
+									pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0))
+									.get(PmlDocumentSendLogUtil.findByDocumentSendId_Processor(
+											pmlEdmDocumentSend.getDocumentSendId(), userIdList.get(0)).size() - 1);	
+						} catch (Exception e2) {
+							pmlDocumentSendLog = new PmlDocumentSendLogImpl();
+						}
 					}
 				}
-			}
-			
-			PmlFileStatusStateProcess fileStatusStateProcess = null;
-			if (pmlDocumentSendLog != null) {
-				try {
-					fileStatusStateProcess = PmlFileStatusStateProcessUtil.findByFileStatus_StateProcess(statusId, pmlDocumentSendLog.getStateProcessIdBefore()).get(0);
-				} catch (Exception e) {
-					fileStatusStateProcess = null;
+				
+				PmlFileStatusStateProcess fileStatusStateProcess = null;
+				if (pmlDocumentSendLog != null) {
+					try {
+						fileStatusStateProcess = PmlFileStatusStateProcessUtil.findByFileStatus_StateProcess(statusId, pmlDocumentSendLog.getStateProcessIdBefore()).get(0);
+					} catch (Exception e) {
+						fileStatusStateProcess = null;
+					}
 				}
+				
+				if (fileStatusStateProcess != null) {
+					quanLyCongVanDiDTO.setTrangThai(StringUtils.convertToRTF(fileStatusStateProcess.getDescription()));
+				}
+				
+				else {
+					quanLyCongVanDiDTO.setTrangThai("");
+				}
+				// end
+				
+				results.add(quanLyCongVanDiDTO);
+				stt ++;
 			}
-			
-			if (fileStatusStateProcess != null) {
-				quanLyCongVanDiDTO.setTrangThai(StringUtils.convertToRTF(fileStatusStateProcess.getDescription()));
-			}
-			
-			else {
-				quanLyCongVanDiDTO.setTrangThai("");
-			}
-			// end
-			
-			results.add(quanLyCongVanDiDTO);
-			stt ++;
+		} else {
+			QuanLyCongVanDiDTO quanLyCongVanDiDTO = new QuanLyCongVanDiDTO();
+			quanLyCongVanDiDTO.setStt("");
+			quanLyCongVanDiDTO.setSoKyHieuVanBan("");
+			quanLyCongVanDiDTO.setNguoiTao("");
+			quanLyCongVanDiDTO.setNguoiKyVanBan("");
+			quanLyCongVanDiDTO.setNoiNhan("");
+			quanLyCongVanDiDTO.setTrichYeu("");
+			quanLyCongVanDiDTO.setTrangThai("");
 		}
+		
 		return results;
 	}
 	

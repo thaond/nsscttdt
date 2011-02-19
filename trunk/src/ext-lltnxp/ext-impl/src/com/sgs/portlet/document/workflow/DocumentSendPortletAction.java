@@ -19,8 +19,6 @@ import com.liferay.portal.util.PortalUtil;
 import com.sgs.liferay.jbpm.service.LiferayWorkflowService;
 import com.sgs.liferay.web.struts.action.WorkflowPortletAction;
 import com.sgs.liferay.web.struts.support.TaskNameDispatcher;
-import com.sgs.portlet.department.model.Department;
-import com.sgs.portlet.department.service.DepartmentLocalServiceUtil;
 import com.sgs.portlet.document.model.PmlDocumentSendWF;
 import com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel;
 import com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType;
@@ -35,9 +33,6 @@ import com.sgs.portlet.document.send.dto.LogProcessDTO;
 import com.sgs.portlet.document.send.model.PmlEdmDocumentSend;
 import com.sgs.portlet.document.service.persistence.PmlDocumentSendWFUtil;
 import com.sgs.portlet.document.service.persistence.PmlStateProcessUtil;
-import com.sgs.portlet.pcccdocumentreceipt.util.PCCCDocumentUtil;
-import com.sgs.portlet.pmluser.model.PmlUser;
-import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 
 /**
  * @author hieuvh
@@ -46,8 +41,8 @@ import com.sgs.portlet.pmluser.service.PmlUserLocalServiceUtil;
 public abstract class DocumentSendPortletAction extends WorkflowPortletAction {
 	public static final String COMMAND_PREFIX = "command.document.send";
 	
-	private DocumentSendLiferayWorkflowService documentSendLWS = new DocumentSendLiferayWorkflowService(); 
-	private DocumentSendProcessTaskNameDispatcher documentSendTND = new DocumentSendProcessTaskNameDispatcher();
+	private final DocumentSendLiferayWorkflowService documentSendLWS = new DocumentSendLiferayWorkflowService(); 
+	private final DocumentSendProcessTaskNameDispatcher documentSendTND = new DocumentSendProcessTaskNameDispatcher();
 	
 	@Override
 	protected LiferayWorkflowService getLiferayWorkflowService() {
@@ -171,11 +166,12 @@ public abstract class DocumentSendPortletAction extends WorkflowPortletAction {
 				.getPmlEdmPrivilegeLevel(documentSend.getPrivilegeLevelId());
 		
 			String signer = documentSend.getSignerName();
+			String soPhatHanh = documentSend.getDocumentReference();
 			
 			sendDTO = new DocumentSendDTO();
 			sendDTO.setDocumentSendId(documentSend.getDocumentSendId());
 			sendDTO.setBriefContent(documentSend.getBriefContent());
-			sendDTO.setDocumentReference(documentSend.getDocumentReference());
+			sendDTO.setDocumentReference(soPhatHanh);
 			sendDTO.setReceivingPlace(documentSend.getReceivingPlace());
 			
 			sendDTO.setIssuingDate(documentSend.getIssuingDate());
@@ -216,16 +212,18 @@ public abstract class DocumentSendPortletAction extends WorkflowPortletAction {
 			sendDTO.setDocumentRecord(documentRecordType.getDocumentRecordTypeName());
 			
 			// phmphuc them 2 thuoc tinh cho vb di phat hanh - 01/12/2010
-			PmlUser pmlUser = PmlUserLocalServiceUtil.getPmlUser(editorId);
-			Department department = DepartmentLocalServiceUtil.getDepartment(pmlUser.getDepartmentsId());
-			
-			long soHieuVB = PCCCDocumentUtil.getSoHieuVB(documentTypeId);
-			String phanMoRong = PCCCDocumentUtil.getPhanMoRong(documentTypeId, department.getDepartmentsId());
-			sendDTO.setSoHieuVB(soHieuVB);
-			sendDTO.setPhanMoRong(phanMoRong);
+			String[] soPhatHanhArr = soPhatHanh.split("/");
+			if (!soPhatHanh.equals("")) {
+				long soHieuVB = Long.parseLong(soPhatHanhArr[0]);
+				String phanMoRong = soPhatHanh.replace(soPhatHanhArr[0], "");
+				sendDTO.setSoHieuVB(soHieuVB);
+				sendDTO.setPhanMoRong(phanMoRong);
+			}
 			// end phmphuc them 01/12/2010
 			sendDTO.setDocumentTypeId(documentTypeId);
 			sendDTO.setDocumentRecordTypeId(documentSend.getDocumentRecordTypeId());
+			// minh upate 20110215
+			sendDTO.setDocOfDepartment(documentSend.getIsDocOfDepartment());
 		}
 		catch (PortalException e) {
 			e.printStackTrace();

@@ -44,8 +44,8 @@ public class BookRecordPBSearch extends SearchContainer<PmlEdmBookDocumentSend>{
 		
 		BookRecordPBDisplayTerms displayTerms = (BookRecordPBDisplayTerms)getDisplayTerms();
 		
-		iteratorURL.setParameter(BookRecordDisplayTerms.LOAI_SO_CV, displayTerms.getLoaiSoCV());
-		iteratorURL.setParameter(BookRecordDisplayTerms.SO_PB, displayTerms.getSoPB());
+		iteratorURL.setParameter(BookRecordPBDisplayTerms.LOAI_SO_CV, displayTerms.getLoaiSoCV());
+		iteratorURL.setParameter(BookRecordPBDisplayTerms.SO_PB, displayTerms.getSoPB());
 		
 		try {
 			PortalPreferences preferences =

@@ -6,7 +6,7 @@ import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 public class PmlEdmDocumentSendDisplayTerms extends DisplayTerms {
-	
+
 	public static final String SO_PHAT_HANH = "soPhatHanh";
 	public static final String LOAI_CONG_VAN = "loaiCongVan";
 	public static final String TRA_LOI_CONG_VAN_SO = "traLoiCongVanSo";
@@ -21,7 +21,8 @@ public class PmlEdmDocumentSendDisplayTerms extends DisplayTerms {
 	public static final String NGUOI_SOAN_THAO = "nguoiSoanThao";
 
 	public static final String NUMOFDIRECTOR = "numOfDirector";
-	
+	public static final String SOVANBAN = "soVanBan";
+
 	protected String soPhatHanh;
 	protected long loaiCongVan;
 	protected String traLoiCongVanSo;
@@ -35,23 +36,26 @@ public class PmlEdmDocumentSendDisplayTerms extends DisplayTerms {
 	protected long nguoiSoanThao;
 
 	protected int numOfDirector;
-	
+	protected int soVanBan;
+
 	public PmlEdmDocumentSendDisplayTerms(RenderRequest renderRequest) {
 		super(renderRequest);
-		
+
 		soPhatHanh = ParamUtil.getString(renderRequest, SO_PHAT_HANH);
 		loaiCongVan = ParamUtil.getLong(renderRequest, LOAI_CONG_VAN);
-		traLoiCongVanSo = ParamUtil.getString(renderRequest, TRA_LOI_CONG_VAN_SO);
+		traLoiCongVanSo = ParamUtil.getString(renderRequest,
+				TRA_LOI_CONG_VAN_SO);
 		phongSoanThao = ParamUtil.getString(renderRequest, PHONG_SOAN_THAO);
 		noiNhan = ParamUtil.getString(renderRequest, NOI_NHAN);
 		nguoiKy = ParamUtil.getString(renderRequest, NGUOI_KY);
 		tuNgay = ParamUtil.getString(renderRequest, TU_NGAY);
-		denNgay = ParamUtil .getString(renderRequest, DEN_NGAY);
+		denNgay = ParamUtil.getString(renderRequest, DEN_NGAY);
 		soHSCV = ParamUtil.getLong(renderRequest, SO_HSCV);
 		trichYeu = ParamUtil.getString(renderRequest, TRICH_YEU);
 		nguoiSoanThao = ParamUtil.getLong(renderRequest, NGUOI_SOAN_THAO);
-		
+
 		numOfDirector = ParamUtil.getInteger(renderRequest, NUMOFDIRECTOR);
+		soVanBan = ParamUtil.getInteger(renderRequest, SOVANBAN);
 	}
 
 	public String getSoPhatHanh() {
@@ -133,7 +137,7 @@ public class PmlEdmDocumentSendDisplayTerms extends DisplayTerms {
 	public void setTrichYeu(String trichYeu) {
 		this.trichYeu = trichYeu;
 	}
-	
+
 	public long getNguoiSoanThao() {
 		return nguoiSoanThao;
 	}
@@ -149,4 +153,13 @@ public class PmlEdmDocumentSendDisplayTerms extends DisplayTerms {
 	public void setNumOfDirector(int numOfDirector) {
 		this.numOfDirector = numOfDirector;
 	}
+
+	public int getSoVanBan() {
+		return soVanBan;
+	}
+
+	public void setSoVanBan(int soVanBan) {
+		this.soVanBan = soVanBan;
+	}
+
 }
