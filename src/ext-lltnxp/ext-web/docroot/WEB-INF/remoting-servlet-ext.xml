@@ -1214,4 +1214,136 @@
 		<property name="service" ref="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService.impl" />
 		<property name="serviceInterface" value="com.sgs.portlet.vanbannoibo.service.LogVanBanNoiBoService" />
 	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoLoaiVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoLoaiVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoLoaiVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoPhongVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoPhongVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_SoPhongVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_loaivanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.loaivanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoCuaSoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoCuaSoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiVanBanNoiBoCuaSoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiVanBanNoiBoCuaSoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoLoaiVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoLoaiVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoLoaiVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoLoaiVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoPhongVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoPhongVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_SoPhongVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.SoPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-burlap" class="org.springframework.remoting.caucho.BurlapServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
+	<bean name="/com_sgs_portlet_sovanbannoibo_service_spring_LoaiPhongVanBanNoiBoService-http" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+		<property name="service" ref="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService.impl" />
+		<property name="serviceInterface" value="com.sgs.portlet.sovanbannoibo.service.LoaiPhongVanBanNoiBoService" />
+	</bean>
 </beans>

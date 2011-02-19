@@ -75,7 +75,7 @@
 	<input type="hidden" name="<portlet:namespace />redirect" value='<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="struts_action" value="/sgs/pcccdocumentreceiptprocess/viewextend" /><portlet:param name="documentReceiptId" value="<%= String.valueOf(documentReceiptId) %>" /><portlet:param name="docRecLogId" value="<%= String.valueOf(docRecLogId) %>" /></portlet:renderURL>'/>
 	<liferay-ui:error exception="<%= InvalidExtendProcessException.class %>" message="values-relate-not-valid-to-extend" />
 	<fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="information-summary-document-receipt-need-extend"/></label>
+	<legend class="laborder"><liferay-ui:message key="information-summary-document-receipt-need-extend"/></legend>
 		<table width="100%" cellspacing="0" cellpadding="0">
 			<tr>
 				<td class="td-left" width="20%"><label><liferay-ui:message key="pccc-cvdtn-sohieu"/>: </label></td>
@@ -181,7 +181,7 @@
 		</table>
 	</fieldset>
 	<fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="extend-process"/></label>
+	<legend class="laborder"><liferay-ui:message key="extend-process"/></legend>
 			<table cellspacing="0" width="100%">
 				<%
 				// Lay ma so phong, ten phong, ten nguoi dung

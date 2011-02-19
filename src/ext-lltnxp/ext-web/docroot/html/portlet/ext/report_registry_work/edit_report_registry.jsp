@@ -67,7 +67,7 @@
 </table>	
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="result-work"/></label>
+		<legend class="laborder"><liferay-ui:message key="result-work"/></legend>
 		<% 	for(ResultProgram resultProgram : resultPrograms){
 			String path = resultProgram.getResultProgramPath();
 			String title = (String)resultProgram.getResultProgramTitle().subSequence(0,resultProgram.getResultProgramTitle().indexOf("_"));
@@ -95,7 +95,7 @@
 </fieldset>
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="program-work"/></label>
+		<legend class="laborder"><liferay-ui:message key="program-work"/></legend>
 		<% 	for(ResultProgram resultProgram : resultPrograms){
 			String path = resultProgram.getResultProgramPath();
 			String title = (String)resultProgram.getResultProgramTitle().subSequence(0,resultProgram.getResultProgramTitle().indexOf("_"));

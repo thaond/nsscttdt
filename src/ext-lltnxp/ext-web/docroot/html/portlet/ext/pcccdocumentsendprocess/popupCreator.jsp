@@ -118,7 +118,7 @@ window.onload = function () {
 									--%>
 									<input type="radio" name="chk" id="chk_<%= idx %>" value='<%= userDTO.getUserName() + "#" + userDTO.getUserId() + "#" + userDTO.getDepartment() %>' />
 								</td>
-								<td class='td-stt-pml' id="td2_<%= idx %>" style='color:#c00;font-weight:bold;background-color:#EAEBDB'>
+								<td class='td-stt-pml' id="td2_<%= idx %>" style='color:#c00;background-color:#EAEBDB'>
 									<span id='no'><%= idx + 1 %></span></td>
 								<td class='td-stt-pml' id="td3_<%= idx %>" style='color:#003366;' align='left'>
 									<div align='left'><%= userDTO.getUserName() %></div></td>

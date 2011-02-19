@@ -46,7 +46,7 @@ fieldset {
 	padding: 0;margin: 0;	
 }
 .filborder {border: 1px solid #60bffc;padding: 10px;margin: 15px 0;display: block;}
-.filborder .laborder {background: #f9ffff;top: -20px;padding: 0 15px; position: relative;color: #004571;font-weight: bold;text-transform: uppercase;}
+.filborder .laborder {background: #f9ffff;padding: 0 15px; position: relative;color: #004571;font-weight: bold;text-transform: uppercase;}
 textarea.textarea-display {border: 1px solid #D4FBFD;background: #fff; height: 70px;;width: 90%; padding: 0 5px;border-style: none;font-family: "Times New Roman", Times, serif, Tahoma, Verdana, Arial; font-size: 14px;color: #222;}
 select > option {padding: 1px 5px;border-collapse: separate;background: #f9ffff;}
 .ie7 select > option, .ie8 select > option {background: none;width: 100%;}

@@ -1,20 +1,27 @@
 <%@ include file="/html/portlet/ext/pml_ho_so_cong_viec/init.jsp" %>
 
+<style>
+.srch_xl-1, .resrch-1{
+	width: 3%;
+	text-align: center;
+}
+
+.srch_xl-4, .resrch-4{
+	text-align: left !important;
+}
+</style>
+
 <link type="text/css" rel="stylesheet"	href="/html/_css/modulework/chitiethscv.css" />
 
 <script type="text/javascript" src="/html/js/_libJS/_libJS.js"></script>
 
 <script type="text/javascript">
-function setValueCVDen(idCongVanDen) 
-{
-	if (trim(idCongVanDen) != null){
-		document.<portlet:namespace />fm.<portlet:namespace />hidCVDen.value = idCongVanDen ;
-	}
-}
-	
+
 function <portlet:namespace />deleteCVDen() 
 {
-	if (document.<portlet:namespace />fm.<portlet:namespace />hidCVDen.value == "" || document.<portlet:namespace />fm.<portlet:namespace />hidCVDen.value == null ){
+	var deleteDocumentReceiptIds = $jq("#<portlet:namespace />deleteDocumentReceiptIds");
+	deleteDocumentReceiptIds.val(Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds"));
+	if (deleteDocumentReceiptIds.val() == ""){
 		alert('<%= UnicodeLanguageUtil.get(pageContext, "chon-cong-van-den-can-xu-ly") %>');
 	}
 	else {
@@ -24,16 +31,12 @@ function <portlet:namespace />deleteCVDen()
 		}
 	}
 }
-function setValueCVDi(idCongVanDi) 
-{	
-	if (trim(idCongVanDi) != null){
-		document.<portlet:namespace />fm.<portlet:namespace />hidCVDi.value = idCongVanDi ;
-	}
-}
 	
 function <portlet:namespace />deleteCVDi() 
 {
-	if (document.<portlet:namespace />fm.<portlet:namespace />hidCVDi.value == "" || document.<portlet:namespace />fm.<portlet:namespace />hidCVDi.value == null ){
+	var deleteDocumentSendIds = $jq("#<portlet:namespace />deleteDocumentSendIds");
+	deleteDocumentSendIds.val(Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds"));
+	if (deleteDocumentSendIds.val() == ""){
 		alert('<%= UnicodeLanguageUtil.get(pageContext, "chon-cong-van-di-can-xu-ly") %>');
 	}
 	else {
@@ -48,6 +51,7 @@ function <portlet:namespace />backURL()
 {
 	submitForm(document.<portlet:namespace />fm, "<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/sgs/pml_ho_so_cong_viec/view" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 }
+
 </script>
 
 <%
@@ -75,10 +79,15 @@ function <portlet:namespace />backURL()
 	String vanDeLienQuan = "";
 	String tinhTrangXuLy = "";
 	String hoSoCha = "";
-
+	
+	boolean isThuThap = false;
+	
 	pmlHoSoCongViec = PmlHoSoCongViecLocalServiceUtil.getPmlHoSoCongViec(idHoSoCongViec);
 	
 	if (Validator.isNotNull(pmlHoSoCongViec)){
+		if (pmlHoSoCongViec.getHoatDong().equals("1")) {
+			isThuThap = true;
+		}
 		soHieuHSCV = pmlHoSoCongViec.getSoHieuHSCV();
 		tieuDe = pmlHoSoCongViec.getTieuDe();
 		
@@ -135,9 +144,9 @@ function <portlet:namespace />backURL()
 <input name="<portlet:namespace />tabs" type="hidden" value="<%= HtmlUtil.escape(tabs) %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/sgs/pml_ho_so_cong_viec/viewdetail" /><portlet:param name="tabs" value="<%= tabs %>" />portlet:param name="cur" value="<%= cur %>" /></portlet:renderURL>" />
 <input name="<portlet:namespace />pmlChiTietHSCVURL" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/sgs/pml_ho_so_cong_viec/viewdetail" /></portlet:renderURL>" />
-<input name="<portlet:namespace />hidCVDen" type="hidden"/>
-<input name="<portlet:namespace />hidCVDi" type="hidden"/>
-<input name="<portlet:namespace />idHoSoCongViec" type="hidden" value="<%=idHoSoCongViec %>" />
+<input name="<portlet:namespace />idHoSoCongViec" type="hidden" value="<%= idHoSoCongViec %>" />
+<input name="<portlet:namespace />deleteDocumentReceiptIds" id="<portlet:namespace />deleteDocumentReceiptIds" type="hidden" value="" />
+<input name="<portlet:namespace />deleteDocumentSendIds" id="<portlet:namespace />deleteDocumentSendIds" type="hidden" value="" />
 
 <div class="title_categ"><liferay-ui:message key="thong-tin-ho-so-cong-viec"/></div>
 

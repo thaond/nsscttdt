@@ -25,6 +25,7 @@
 	DocumentReportDisplayTerms displayTerms = (DocumentReportDisplayTerms) searchContainer.getDisplayTerms();
 	long userId = displayTerms.getUserId();//(renderRequest.getAttribute("userId") == null) ? 0 : (Long) renderRequest.getAttribute("userId");
 	Department pmlDepartment = null;
+	long userIdLogin = PortalUtil.getUserId(renderRequest);
 %>
 <fieldset>
 <div class="search_tk">
@@ -34,61 +35,39 @@
 			<td align="right" width="10%"><liferay-ui:message key="tinhhinhthulycongvan.phongban" />:&nbsp;</td>
 			<td align="left" width="15%">
 				<select name="<%= displayTerms.DEPARTMENTID %>" id="<portlet:namespace/>departmentId" style="width: 90%" onchange="<portlet:namespace/>enableItems(<%= userId %>);">
-					<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.VIEWREPORTALL) %>">
-						<option selected="selected" value="toancoquan"><liferay-ui:message key="tinhhinhthulycongvan.toancoquan" /></option>
-						<option <%= "tatcaphongban".equals(displayTerms.getDepartmentId()) ? "selected" : "" %> value="tatcaphongban"><liferay-ui:message key="tinhhinhthulycongvan.tatcaphongban" /></option>
-						<%
-						List<Department> pmlDepartmentList = DepartmentLocalServiceUtil.findDepartmentsByDepartmentParentId();
-						int pmlDepartmentSize = pmlDepartmentList.size();
-						for(int i = 0; i < pmlDepartmentSize; i ++) {
-							pmlDepartment = pmlDepartmentList.get(i);
-							String selected = pmlDepartment.getDepartmentsId().equals(displayTerms.getDepartmentId()) ? "selected" : "";
-							out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\" " + selected + ">" + pmlDepartment.getDepartmentsName() + "</option>");
+					<% if (PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.VIEWREPORTALL)) { %>
+							<option selected="selected" value="toancoquan"><liferay-ui:message key="tinhhinhthulycongvan.toancoquan" /></option>
+							<option <%= "tatcaphongban".equals(displayTerms.getDepartmentId()) ? "selected" : "" %> value="tatcaphongban"><liferay-ui:message key="tinhhinhthulycongvan.tatcaphongban" /></option>
+							<%
+							List<Department> pmlDepartmentList = DepartmentLocalServiceUtil.findDepartmentsByDepartmentParentId();
+							int pmlDepartmentSize = pmlDepartmentList.size();
+							for(int i = 0; i < pmlDepartmentSize; i ++) {
+								pmlDepartment = pmlDepartmentList.get(i);
+								String selected = pmlDepartment.getDepartmentsId().equals(displayTerms.getDepartmentId()) ? "selected" : "";
+								out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\" " + selected + ">" + pmlDepartment.getDepartmentsName() + "</option>");
+							}
+						} else {
+							if (!(PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.VIEWREPORTALL))) {
+								try {
+									String pmlDepartmentId = PmlUserUtil.findByPrimaryKey(userIdLogin).getDepartmentsId();
+									pmlDepartment = DepartmentUtil.findByPrimaryKey(pmlDepartmentId);
+									String pmlDepartmentParentId = "";
+									Department pmlDepartmentParent = null;
+									if (pmlDepartment != null) {
+										pmlDepartmentParentId = pmlDepartment.getDepartmentsParentId();
+										if (pmlDepartmentParentId != null && !"".equals(pmlDepartmentParentId)) {
+											try {
+												pmlDepartmentParent = DepartmentUtil.findByPrimaryKey(pmlDepartmentParentId);
+												out.print("<option value=\"" + pmlDepartmentParent.getDepartmentsId() + "\">" + pmlDepartmentParent.getDepartmentsName() + "</option>");
+											} catch (Exception e) {}
+										} else {
+											out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\">" + pmlDepartment.getDepartmentsName() + "</option>");
+										}
+									} 
+							 	} catch (Exception e) {}
+							}
 						}
-						%>
-					</c:if>
-					
-					<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.TRUONGPHONG) %>">
-						<%
-						if (!(PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.VIEWREPORTALL))) {
-							String pmlDepartmentId = PmlUserUtil.findByPrimaryKey(PortalUtil.getUserId(renderRequest)).getDepartmentsId();
-							try {
-								pmlDepartment = DepartmentUtil.findByPrimaryKey(pmlDepartmentId);
-								out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\">" + pmlDepartment.getDepartmentsName() + "</option>");
-							} catch (Exception e) { }
-						}
-						%>
-					</c:if>
-					
-					<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.CHUYENVIEN) %>">
-						<%
-						if (!(PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.VIEWREPORTALL))
-								&& !(PortletPermissionUtil.contains(permissionChecker, plid, "SGS_PCCCDOCUMENTRECEIPTREPORT", ActionKeysExt.TRUONGPHONG))) {
-							/*String pmlDepartmentId = PmlUserUtil.findByPrimaryKey(PortalUtil.getUserId(renderRequest)).getDepartmentsId();
-							PmlDepartment pmlDepartment = PmlDepartmentUtil.findByPrimaryKey(pmlDepartmentId);
-							out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\">" + pmlDepartment.getDepartmentsName() + "</option>");*/
-							
-							// phmphuc update 05/03/2010
-							try {
-								String pmlDepartmentId = PmlUserUtil.findByPrimaryKey(PortalUtil.getUserId(renderRequest)).getDepartmentsId();
-								pmlDepartment = DepartmentUtil.findByPrimaryKey(pmlDepartmentId);
-								String pmlDepartmentParentId = "";
-								Department pmlDepartmentParent = null;
-								if (pmlDepartment != null) {
-									pmlDepartmentParentId = pmlDepartment.getDepartmentsParentId();
-									if (pmlDepartmentParentId != null && !"".equals(pmlDepartmentParentId)) {
-										try {
-											pmlDepartmentParent = DepartmentUtil.findByPrimaryKey(pmlDepartmentParentId);
-											out.print("<option value=\"" + pmlDepartmentParent.getDepartmentsId() + "\">" + pmlDepartmentParent.getDepartmentsName() + "</option>");
-										} catch (Exception e) {}
-									} else {
-										out.print("<option value=\"" + pmlDepartment.getDepartmentsId() + "\">" + pmlDepartment.getDepartmentsName() + "</option>");
-									}
-								} 
-						 	} catch (Exception e) {} // end
-						}	
-						%>
-					</c:if>
+					%>
 				</select>
 			</td>
 			
@@ -114,7 +93,7 @@
 							document.getElementById("<portlet:namespace/>userId").disabled = "";
 						</script>
 						<%
-						PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(PortalUtil.getUserId(renderRequest));
+						PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userIdLogin);
 						out.print("<option value=\"" + pmlUser.getUserId() + "\">" + TinhHinhThuLyCongVanDWRUtil.getFullName(pmlUser.getUserId()) + "</option>");
 						%>
 					</c:if>
@@ -124,7 +103,7 @@
 			<!-- loai van ban thong ke -->
 			<td align="right" width="7%"><liferay-ui:message key="tinhhinhthulycongvan.loai" />:&nbsp;</td>
 			<td align="left" width="12%">
-				<select name="<%= displayTerms.LOAICONGVAN %>" id="<portlet:namespace/>loaiCongVan"  style="width: 100%" onchange="getDocumentRecordByDocTypeId();">
+				<select name="<%= displayTerms.LOAICONGVAN %>" id="<portlet:namespace/>loaiCongVan"  style="width: 100%" onchange="getDocumentRecordByDocTypeId(<%= userIdLogin %>);">
 					<% if (plid == 89659) { %>
 						<option <%="congvandi".equals(displayTerms.getLoaiCongVan()) ? "selected" : "" %> value="congvandi"><liferay-ui:message key="tinhhinhthulycongvan.congvandi" /></option>
 						<option <%="congvanden".equals(displayTerms.getLoaiCongVan()) ? "selected" : "" %> value="congvanden"><liferay-ui:message key="tinhhinhthulycongvan.congvanden" /></option>
@@ -193,7 +172,7 @@
 
 <script type="text/javascript">
 	//minh update 20100607
-	getDocumentRecordByDocTypeId();
+	getDocumentRecordByDocTypeId(<%= userIdLogin %>);
 	if (document.getElementById('<portlet:namespace />fromDate') != null) {
 		callCalendar('<portlet:namespace />fromDate','cal-button-FromDate');
 	}

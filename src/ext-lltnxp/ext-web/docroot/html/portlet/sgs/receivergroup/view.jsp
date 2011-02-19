@@ -1,8 +1,7 @@
 <%@ include file="/html/portlet/sgs/receivergroup/init.jsp" %>
 <%
 int type = ParamUtil.getInteger(renderRequest, ReceiverKeys.TYPE, 0);
-String updateViewId = ParamUtil.getString(renderRequest, "update_view_id", "");
-String updateDataId = ParamUtil.getString(renderRequest, "update_data_id", "");
+String edit_text_name = ParamUtil.getString(renderRequest, "edit_text_name", "");
 String _callback = ParamUtil.getString(renderRequest, "_callback", "");
 %>
 <liferay-portlet:renderURL var="edit" portletName="<%=ReceiverKeys.PORTLET_NAME %>" windowState="<%=LiferayWindowState.EXCLUSIVE.toString() %>">
@@ -71,7 +70,6 @@ function <portlet:namespace/>initTree<%=type%>() {
 						var button2 = $jq("<img/>");
 						button.attr("src", "/html/images/imgedit.png");
 						button2.attr("src", "/html/images/imgdelete.png");
-						//button.attr("onclick", "<portlet:namespace/>editReciverGroup<%=type%>('" + rg.receiverGroupId + "')");
 						button.attr("gid", rg.receiverGroupId);
 						button.click(function(){
 							<portlet:namespace/>editReciverGroup<%=type%>($jq(this).attr("gid"));
@@ -103,8 +101,8 @@ function <portlet:namespace/>initTree<%=type%>() {
 	return true;
 }
 
-function <portlet:namespace/>registerUpdateEle<%=type %>() {
-	var tree = $jq("#nss_jstree<%=type %>");
+/*function <portlet:namespace/>registerUpdateEle<!%=type %>() {
+	var tree = $jq("#nss_jstree<!%=type %>");
 	var ref = $jq.jstree._reference(tree);
 	try {
 		tree.bind("change_state.jstree", function(){
@@ -121,7 +119,7 @@ function <portlet:namespace/>registerUpdateEle<%=type %>() {
 						return data;
 					}
 				});
-				var ele = $jq("#<%=updateDataId%>");
+				var ele = $jq("#<!%=updateDataId%>");
 				if (ele.length > 0) {
 					if (ele.get(0).tagName.toLowerCase() == 'select') {
 						ele.find("option").each(function(){
@@ -145,7 +143,7 @@ function <portlet:namespace/>registerUpdateEle<%=type %>() {
 			}, 150);
 		});
 	} catch (err){}
-}
+}*/
 
 function <portlet:namespace/>initBranch<%=type%>(li, groupId) {
 	if (!flags<%=type%>) {
@@ -162,18 +160,32 @@ function <portlet:namespace/>initBranch<%=type%>(li, groupId) {
 					for (var j = 0; j < data.length; j++) {
 						var r = data[j];
 						var li2 = $jq("<li/>");
-						switch (r.receiverType) {
-						case 1:
-							li2.attr("id", r.receiverUserId);
-							break;
-						case 3:
-							li2.attr("id", r.receiverUserName);
-							break;
-						}
 						li2.addClass("leaf");
 						var a2 = $jq("<a class='_lf'/>");
 						a2.text(r.viewName);
 						li2.append(a2);
+						
+						var span = $jq("<span class='_edit_text'/>");
+						var input = $jq('<input type=\'text\' title=\'<liferay-ui:message key="nhap-yeu-cau-xu-ly"/>\'/>')
+						span.append(input);
+						input.addClass("tree_edit_text");
+						input.hint({hintClass: 'i'});
+						input.val("");
+						
+						switch (r.receiverType) {
+						case 1:
+							li2.attr("id", r.receiverUserId);
+							input.attr('name','<%=edit_text_name%>Tree' + r.receiverUserId);
+							break;
+						case 3:
+							li2.attr("id", r.receiverUserName);
+							input.attr('name','<%=edit_text_name%>Tree' + r.receiverUserName);
+							break;
+						}
+						
+						li2.append(span);
+						span.hide();
+						
 						ul.append(li2);
 						
 					}
@@ -194,7 +206,7 @@ function <portlet:namespace/>myTree<%=type%>(_callback) {
 		var tree = 	$jq("#nss_jstree<%=type %>").jstree({
 			"core": {"animation": 0},
 			"themes" : {
-				"theme" : "classic",
+				//"theme" : "apple",
 				"dots" : true,
 				"icons" : false
 			},
@@ -277,6 +289,9 @@ $jq(document).ready(function(){
 .receiver-group-content {
 	min-height: 200px;
 }
+#nss_jstree<%=type %> li {
+	position: relative;
+}
 
 #nss_jstree<%=type %> li.branch{
 	position: relative;
@@ -285,8 +300,8 @@ $jq(document).ready(function(){
 	min-height: 25px;
 }
 
-a._brch {
-	padding: 5px;
+.jstree a {
+	padding: 5px 2px;
 }
 
 ._button {
@@ -295,7 +310,15 @@ a._brch {
 	right: 5%;
 }
 
+._edit_text {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 60%;
+}
+
 .btn {
 }
 
+.tree_edit_text {width: 100%;}
 </style>

@@ -3,8 +3,7 @@
 <div class="boxcontent">
 <%
 	boolean flag = (Boolean) renderRequest.getPortletSession().getAttribute("search",PortletSession.APPLICATION_SCOPE);
-%>
-<%
+
 	String receiptFlag = renderRequest.getAttribute("receiptFlag") == null? "flase" : (String) renderRequest.getAttribute("receiptFlag");  
 	String sendFlag = renderRequest.getAttribute("sendFlag") == null? "flase" : (String) renderRequest.getAttribute("sendFlag");
 	
@@ -22,11 +21,10 @@
 	
 	URL.setParameter("struts_action", "/sgs/pcccdocumentreceiptprocess/search");
 	URL.setParameter("tabs", tabs);
-	  
 %>
 
-
-
+<%-- 
+// phmphuc close 11/02/2011 - hien thi tab Tra cuu van ban den
 <liferay-ui:tabs names="cvden,cvdi"	param="tabs" url="<%= URL.toString() %>" value="<%=tabs %>"/>
 <div class="boxcontent_Tab">
 <c:choose>
@@ -42,4 +40,9 @@
 	</c:when>
 </c:choose>
 </div>
+// end phmphuc close 11/02/2011
+--%>
+
+<%@ include file="/html/portlet/ext/pcccdocumentreceiptprocess/timcongvanden.jsp" %>
+
 </div>

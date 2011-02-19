@@ -57,7 +57,7 @@
 	%>
 	
 	<fieldset class="filborder">
-		<label class="laborder" ><liferay-ui:message key="add-issuingplace" /></label>
+		<legend class="laborder" ><liferay-ui:message key="add-issuingplace" /></legend>
 		<table cellspacing="0" width="100%">
 			<tr>
 				<td width="18%"><label><liferay-ui:message key="issuing-place-ten-don-vi-lien-quan" /><font color="#FF0000" size="1">(*)</font>:&nbsp;</label></td>

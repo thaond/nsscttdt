@@ -163,6 +163,14 @@
 			row.addText(docSendItem.getDocumentReference());
 		}
 		
+		// Ngay phat hanh
+		if (docSendItem.getIssuingDate() != null) {
+			row.addText(String.valueOf(format.format(docSendItem.getIssuingDate())));
+		}
+		else {
+			row.addText("");
+		}
+		
 		// Loai van ban
 		String docTypeName = "";
 		if (docSendItem.getDocumentTypeId() > 0) {
@@ -175,26 +183,34 @@
 		}
 		row.addText(docTypeName);
 		
-		// Ngay phat hanh
-		if (docSendItem.getIssuingDate() != null) {
-			row.addText(String.valueOf(format.format(docSendItem.getIssuingDate())));
-		}
-		else {
-			row.addText("");
-		}
 
 		// Trich yeu
-		row.addText(docSendItem.getBriefContent());
+		row.addText(docSendItem.getBriefContent(), rowURL);
+		
+		// nguoi ky
+		row.addText(docSendItem.getSignerName());
+		
+		// noi nhan vb
+		row.addText(docSendItem.getReceivingPlace());
+		
+		// nguoi nhan ban luu (nguoi soan vb di)
+		long editorId = docSendItem.getEditorId();
+		String editorName = "";
+		try {
+			editorName = PmlUserLocalServiceUtil.getFullName(editorId);
+		} catch (Exception e) { }
 		
 		// Don vi soan thao
-		String departmentName = "";
 		try {
-			editor = PmlUserLocalServiceUtil.getPmlUser(docSendItem.getEditorId());
+			editor = PmlUserLocalServiceUtil.getPmlUser(editorId);
 			department = DepartmentLocalServiceUtil.getDepartment(editor.getDepartmentsId());
-			departmentName = department.getDepartmentsName();
+			editorName += " (" + department.getDepartmentsName() + ")";
 		}
 		catch (Exception ex) {}
-		row.addText(departmentName);
+		row.addText(editorName);
+		
+		// so ban
+		row.addText(docSendItem.getNumberPublish());
 		
 		// Add result row
 		resultRows.add(row);

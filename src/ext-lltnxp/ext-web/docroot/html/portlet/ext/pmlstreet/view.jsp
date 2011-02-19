@@ -36,7 +36,7 @@
 	</table>
 		<br /> 
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="them-moi" /></label>
+		<legend class="laborder"><liferay-ui:message key="them-moi" /></legend>
 			<table cellspacing="0" width="100%">
 				<tr>
 					<td width="9%" align="right"><liferay-ui:message key="ma_duong"/>&nbsp;:</td>

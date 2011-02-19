@@ -252,11 +252,11 @@
 
 <!-- start form search -->
 <fieldset class="filborder">
-		<label class="laborder">
+		<legend class="laborder">
 		<span class="act_hv" onclick="showhideformsearch()">			
 			<liferay-ui:message key="tieu-thuc-tim-kiem"/>			
 		</span>
-		</label>
+		</legend>
 <div id="searchform">
 		<table cellspacing="0" width="100%">
 		<tr>
@@ -460,7 +460,7 @@
 	<ul id="<portlet:namespace />letter-doc-process">
 		<li style="width: 49.5%; margin-right: 0.8%;">
 					<fieldset class="filborder">
-					<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></label>		
+					<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></legend>		
 						<table width="100%" cellspacing="0" class="bgtablil">										
 									<%
 									if (dangXuLyChung != null ) {
@@ -532,7 +532,7 @@
 		</li>
 		<li style="width: 49.6%">
 					<fieldset class="filborder">
-					<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></label>	
+					<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></legend>	
 						<table class="bgtablil" width="100%" cellspacing="0">
 									<%
 									if (dangXuLyTuXuLy != null) {
@@ -607,7 +607,7 @@
 	<ul  style="display:none;" id="<portlet:namespace />letter-doc-finish">
 		<li style="width: 49.5%; margin-right: 0.8%;">
 		<fieldset class="filborder">
-					<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></label>
+					<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvanxulychung"/></legend>
 					<table width="100%" cellspacing="0" class="bgtablil">
 									
 									<%
@@ -663,7 +663,7 @@
 		</li>
 		<li style="width: 49.6%;">
 			<fieldset class="filborder">
-					<label class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></label>
+					<legend class="laborder"><liferay-ui:message key ="quanlycongvan-congvantuxuly"/></legend>
 					<table width="100%" cellspacing="0" class="bgtablil">
 								
 									<%

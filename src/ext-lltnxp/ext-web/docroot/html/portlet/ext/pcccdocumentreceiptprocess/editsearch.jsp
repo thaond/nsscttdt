@@ -101,13 +101,6 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 <div class="boxcontent">
 <table width="100%" cellspacing="0">
 	<tr>
-		<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-soCVden"/>:</label></div></td>
-    	<td><input style="width:90%" type="text" readonly name="<portlet:namespace/>numberDocumentReceipt" id="soCVdencvdtn" maxlength="50" style="width:60%" value='<%=documentReceiptDTO.getNumberDocumentReceipt() != null ? documentReceiptDTO.getNumberDocumentReceipt() : "" %>'></td>
-    	<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-sohieu"/>&nbsp;: </div></td>
-    	<td><input style="width:90%" type="text" name="<portlet:namespace/>documentReference" id="sohieucvdtn" maxlength="50" style="width:99%" value='<%=documentReceiptDTO.getDocumentReference() != null ? documentReceiptDTO.getDocumentReference() : "" %>'></td>
-	</tr>
-
-	<tr>
 		<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-socongvan"/>&nbsp;:</label></div></td>
 		<td>
 			<select name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" style="width:92.5%" onchange="changeDocumentRecordType()">
@@ -116,17 +109,6 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 		     	</logic:iterate>
 			</select>
 		</td>
-		<td width="18%" ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-capgoi"/>&nbsp;:</label></div></td>
-	    <td width="35%">
-		    <select name="<portlet:namespace/>levelSendId" id="capgoicvdtn" style="width:92.5%" onchange="changeLevelSend()">
-			    <logic:iterate id="pmlEdmLevelSend" name="pmlEdmLevelSendList" type="com.sgs.portlet.pmllevelsend.model.PmlEdmLevelSend" scope="request">
-		      		<option <%= documentReceiptDTO.getLevelSendName().equals(pmlEdmLevelSend.getLevelSendName()) ? "selected" : "" %> value="<%= pmlEdmLevelSend.getLevelSendId() %>"> <%= pmlEdmLevelSend.getLevelSendName() %> </option>
-		      	</logic:iterate>
-		    </select>
-	    </td>
-	</tr>
-	
-	<tr>
 		<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-loaicongvan"/>&nbsp;:</label></div></td>
 		<td>
 			<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:92.5%" onchange="changeDocumentType()">
@@ -134,6 +116,23 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 			    	<option <%=documentReceiptDTO.getDocumentTypeName().equals(documentType.getDocumentTypeName()) ? "selected" : ""%> value="<%=documentType.getDocumentTypeId() %>"><%=documentType.getDocumentTypeName() %></option>
 			    </logic:iterate>
 		   	</select>
+	    </td>
+	</tr>
+	<tr>
+		<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-soCVden"/>:</label></div></td>
+    	<td><input style="width:90%" type="text" readonly name="<portlet:namespace/>numberDocumentReceipt" id="soCVdencvdtn" maxlength="50" style="width:60%" value='<%=documentReceiptDTO.getNumberDocumentReceipt() != null ? documentReceiptDTO.getNumberDocumentReceipt() : "" %>'></td>
+    	<td ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-sohieu"/>&nbsp;: </div></td>
+    	<td><input style="width:90%" type="text" name="<portlet:namespace/>documentReference" id="sohieucvdtn" maxlength="50" style="width:99%" value='<%=documentReceiptDTO.getDocumentReference() != null ? documentReceiptDTO.getDocumentReference() : "" %>'></td>
+	</tr>
+
+	<tr>
+		<td width="18%" ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-capgoi"/>&nbsp;:</label></div></td>
+	    <td width="35%">
+		    <select name="<portlet:namespace/>levelSendId" id="capgoicvdtn" style="width:92.5%" onchange="changeLevelSend()">
+			    <logic:iterate id="pmlEdmLevelSend" name="pmlEdmLevelSendList" type="com.sgs.portlet.pmllevelsend.model.PmlEdmLevelSend" scope="request">
+		      		<option <%= documentReceiptDTO.getLevelSendName().equals(pmlEdmLevelSend.getLevelSendName()) ? "selected" : "" %> value="<%= pmlEdmLevelSend.getLevelSendId() %>"> <%= pmlEdmLevelSend.getLevelSendName() %> </option>
+		      	</logic:iterate>
+		    </select>
 	    </td>
 	    <td width="13%" ><div align="left"><label><liferay-ui:message key="pccc-cvdtn-noiphathanh"/>&nbsp;:</label></div></td>
 	    <td>
@@ -263,7 +262,7 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 	if (!attachFiles.isEmpty()) {
 %>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pcccdocumentsend-taptindinhkem"/></label>
+<legend class="laborder"><liferay-ui:message key="pcccdocumentsend-taptindinhkem"/></legend>
 <table id="recentFile" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">
 <tr class="portlet-section-header results-header">
 	<td width="35px" align="center"><div align="center"><liferay-ui:message key="pccc-TN-stt"/></div></td>
@@ -287,7 +286,7 @@ boolean useYear = PrefsParamUtil.getBoolean(prefs, request, "useYear",false);
 	} 
 %>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></label>
+<legend class="laborder"><liferay-ui:message key="pccc-cvdtn-toanvan"/></legend>
 <table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">
 <tr class="portlet-section-header results-header" >
 	<td ><liferay-ui:message key="document_attached_file_title" /></td>

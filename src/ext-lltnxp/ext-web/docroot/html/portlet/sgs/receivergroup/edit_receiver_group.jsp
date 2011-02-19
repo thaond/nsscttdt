@@ -41,7 +41,7 @@ try {
 	</ul>
 	<ul class="_container">
 		<li class="label float-left"><label for="<portlet:namespace/>searchBox"><b><liferay-ui:message key="noi-nhan"/>:&nbsp;</b></label></li>
-		<li class="_content float-left" style="width: 75%;"><input style="width: 100%;" class="search-input i" id="<portlet:namespace/>searchBox" name="<portlet:namespace/>searchBox" type="text" value="<liferay-ui:message key="nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them"/>"/></li>
+		<li class="_content float-left" style="width: 75%;"><input style="width: 100%;" class="search-input" id="<portlet:namespace/>searchBox" name="<portlet:namespace/>searchBox" type="text" value="" title="<liferay-ui:message key="nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them"/>"/></li>
 	</ul>	
 	<ul class="_container" id="<portlet:namespace/>container">
 		<% for (Receiver receiver: receivers) {
@@ -76,7 +76,7 @@ $jq("#<portlet:namespace/>searchBox").autocomplete({
 	select: function( event, ui ) {
 		var container = $jq("#<portlet:namespace/>container");
 		if (ui.item) {
-			$jq("#" + ui.item.value).remove();
+			container.find("#" + ui.item.value).remove();
 			var elItem = $jq("<li/>");
 			var item = ui.item;
 			elItem.attr("id", ui.item.value);
@@ -275,22 +275,7 @@ $jq(function(){
 			<portlet:namespace/>GNClickAction();
 		});
 	}
-	$jq("#<portlet:namespace/>searchBox").focus(function(){
-		var el = $jq(this);
-		if (el.val() == '<liferay-ui:message key="nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them"/>') {
-			el.val('');
-			el.removeClass('i');
-		} else {
-			el.select();
-		}
-	});
-	$jq("#<portlet:namespace/>searchBox").blur(function(){
-		var el = $jq(this);
-		if (el.val().trim().length == 0) {
-			el.val('<liferay-ui:message key="nhap-vao-de-tim-kiem-don-vi-nguoi-nhan-muon-them"/>');
-			el.addClass('i');
-		}
-	});
+	$jq("#<portlet:namespace/>searchBox").hint({hintClass: 'i'});
 	<portlet:namespace/>itemAction();
 });
 
@@ -319,8 +304,4 @@ input#<portlet:namespace/>groupName {display: block;}
 span#<portlet:namespace/>groupName {display: block; padding: 4px; border: 1px solid #FFFFFF;}
 #<portlet:namespace/>groupName:HOVER{ border: 1px solid #7BD5EB; }
 .error {color: red;}
-.i {
-	font-style: italic;
-	color: #AAAAAA;
-}
 </style>

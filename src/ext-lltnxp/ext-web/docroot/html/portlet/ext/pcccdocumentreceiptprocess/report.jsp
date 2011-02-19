@@ -113,7 +113,7 @@
 <ul>
 	<li style="width: 100%">
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="document_attached_file"/></label>
+		<legend class="laborder"><liferay-ui:message key="document_attached_file"/></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 		<tr class="portlet-section-header results-header" >
 		   	<td ><liferay-ui:message key="document_attached_file_title" /></td>

@@ -791,5 +791,32 @@ function getDocumentRecordByDocTypeId() {
 		}
 	});
 }
+
+/*
+ * minh update 20100215
+ */
+// load so van ban the do vi hay la phong
+
+	function loadDocumentRecordType() {
+		var  valueChecked = document.getElementById("soVanBanCuaPhong").checked;
+		var  userIdLogin = document.getElementById("userIdLogin").value;
+		var  socongvancvdtnSelect = document.getElementById("socongvancvdtn");
+		DWRUtil.removeAllOptions("socongvancvdtn");
+		DWRUtil.removeAllOptions("loaicongvancvdtn");
+		pcccdocumentreceiptClient.loadDocumentRecordType(userIdLogin, valueChecked, function (data){
+			if (data.length > 0) {
+				for ( var i = 0; i < data.length; i++) {
+					socongvancvdtnSelect.options[i] = new Option(data[i].documentRecordTypeName, data[i].documentRecordTypeId);
+				}
+				// load lai loai van ban theo so cua so hoac phong
+				changeDocumentRecordType();
+			}
+	
+			else {
+				//alert("khong co docment type")
+			}		
+		});
+	}
+
 </script>
 	

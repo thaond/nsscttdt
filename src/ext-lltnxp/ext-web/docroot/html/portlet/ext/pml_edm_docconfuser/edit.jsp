@@ -173,7 +173,7 @@
 				<tr>
 					<td colspan="2">
 					<fieldset class="filborder">
-					<label class="laborder"><liferay-ui:message key="view-document-of-department" /></label>
+					<legend class="laborder"><liferay-ui:message key="view-document-of-department" /></legend>
 					<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="results-header-Scrollbar" >
 									<td width="45px" align="center">

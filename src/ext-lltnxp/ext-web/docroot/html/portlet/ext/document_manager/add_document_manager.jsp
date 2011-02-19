@@ -65,7 +65,7 @@
 </table>	
 <div class="separator"></div>
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="document-manager-send"/></label>
+		<legend class="laborder"><liferay-ui:message key="document-manager-send"/></legend>
 		<table id="addfileupload" class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 			<tr class="portlet-section-header results-header" >
 		   		<td><liferay-ui:message key="document-title-name-file" /></td>

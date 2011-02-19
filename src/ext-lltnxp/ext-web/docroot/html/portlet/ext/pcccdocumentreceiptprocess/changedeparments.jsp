@@ -127,46 +127,23 @@ window.onload=function() {
 	<!-- Canh update 20110122 -->
 	<tr valign="top">
 		<td><label><liferay-ui:message key="noi-nhan" /></label><font color="red">(*)</font> &nbsp;:</td>
-		<td>
+		<td style="padding-right: 1%" >
 		<div id="tabs">
 			<ul>
 				<li><a href="#tabs-1"><liferay-ui:message key="phong-ban" /></a></li>
-				<li><a href="#tabs-2"><liferay-ui:message key="don-vi-khac" /></a></li>
+				<li><a href="#tabs-2"><liferay-ui:message key="receiver-group" /></a></li>
 			</ul>
 			<div id="tabs-1">
-				<ul>
-					<li><a href="#tabs-1-1"><liferay-ui:message key="phong-ban" /></a></li>
-					<li><a href="#tabs-1-2"><liferay-ui:message key="receiver-group" /></a></li>
-				</ul>
-				<div id="tabs-1-1">					
-					<div style="width: 99%" class="Scrollbarauto">
+				<div class="Scrollbarauto">					
 						<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
-						
-						<%
-							String rowAllNameUser = "checkallboxUser";
-							String formNameUser = renderResponse.getNamespace() + "fm";
-							String rowNameUser = renderResponse.getNamespace() + "supportUsers";
-							StringBuilder rowAllNameCheckedUser = new StringBuilder();
-							rowAllNameCheckedUser.append("<input name=\"");
-							rowAllNameCheckedUser.append(rowAllNameUser);
-							rowAllNameCheckedUser.append("\" type=\"checkbox\" ");
-							rowAllNameCheckedUser.append("onClick=\"Liferay.Util.checkAll(");
-							rowAllNameCheckedUser.append(formNameUser);
-							rowAllNameCheckedUser.append(", '");
-							rowAllNameCheckedUser.append(rowNameUser);
-							rowAllNameCheckedUser.append("', this");
-							rowAllNameCheckedUser.append(");checkAllOrNoneUserAssign(this);openAllInfo(this);\">");
-										
-						%>
 								<thead>
 								<tr class="portlet-section-header results-header" >
-									<td align="center" width="40px"><img src="/html/images/grippy.png" />&nbsp;<%= rowAllNameCheckedUser.toString() %></td>
+									<td align="center" width="40px"><img src="/html/images/grippy.png" />&nbsp;<input type="checkbox" name="checkallboxUser"/></td>
 									<td width="30%"><liferay-ui:message key="ten"/></td>
 									<!--<td width="30%"><liferay-ui:message key="LCCV-tenphongban"/></td>
 									--><td><liferay-ui:message key="LCCV-yeucauxuly"/></td>
 								</tr>
 								</thead>
-								<tbody class="Scrollbarauto" style="height: 365px;">
 								<logic:iterate  id="departmentLeader" name="pmlDepartmentsLeaderList" type="com.sgs.portlet.onedoor.model.PmlDepartmentsLeader" scope="request" indexId="k">
 								<%
 									long userId = departmentLeader.getUserId();
@@ -184,40 +161,29 @@ window.onload=function() {
 								<tr class="${((k % 2) == 0) ? 'results-row' : 'tr_two results-row'}" 
 								
 								<%--onclick="checkUserAssign(this)"--%>
-								
-								onmouseover='onMouseOverTr(this);' onmouseout='onMouseOutTr(this);'>
+								>
 									<td align="center" id="<%= k%>">
-										<img src="/html/images/grippy.png" />&nbsp;<input class="styled" type="checkbox" onclick="Liferay.Util.checkAllBox(<%= formNameUser%>, '<%=  rowNameUser %>', <%= rowAllNameUser %>);openProcessInfoForEveryUser(this);clickCheckBox(event,this);" name="<portlet:namespace/>supportUsers" id="nguoiNhan<%= k%>" value="<%= String.valueOf(userId) %>" data="<%= userName %>"/>
+										<img src="/html/images/grippy.png" />&nbsp;<input class="styled" type="checkbox" name="<portlet:namespace/>supportUsers" id="nguoiNhan<%= k%>" value="<%= String.valueOf(userId) %>" data="<%= userName %>"/>
 									</td>
-									<td ><%= userName %><br/><small><liferay-ui:message key="phong"/>:&nbsp;<%= deparmentName %></small></td>
+									<td ><font style="font-size: 12px; font-weight: bold;color: #444;"><%= userName %></font><br/><font style="font-size: 12px"><liferay-ui:message key="phong"/>:&nbsp;<%= deparmentName %></font></td>
 									<!--<td></td>
 									--><td >
 										<div id="<portlet:namespace />user<%= k%>" style="display: none;">
-											<textarea  name="<portlet:namespace />processInformationForUser<%= String.valueOf(userId) %>" rows="1" style="width: 95%" ></textarea>
+											<input type="text"  name="<portlet:namespace />processInformationForUser<%= String.valueOf(userId) %>" rows="1" style="width: 95%" />
 										</div>	
 									</td>
 								</tr>
 								</logic:iterate>
-								</tbody>
 						</table>
-					</div>
-				</div>
-				<div id="tabs-1-2">
-					<input type="hidden" name="<portlet:namespace/>supportUsers2" id="<portlet:namespace/>supportUsers2" style="width: 100%;"/>
-					<liferay-portlet:renderURL portletName="<%=ReceiverKeys.PORTLET_NAME %>" windowState="<%=LiferayWindowState.EXCLUSIVE.toString() %>" var="luong1">
-					<liferay-portlet:param name="struts_action" value="/sgs/receivergroup/view" />
-					<liferay-portlet:param name="<%=ReceiverKeys.TYPE %>" value="<%= String.valueOf(ReceiverKeys.PERSONAL) %>" />
-					</liferay-portlet:renderURL>
-					<div id="boxcontent"></div>
 				</div>
 			</div>
 			<div id="tabs-2">
-				<input type="hidden" name="<portlet:namespace/>receivers" id="<portlet:namespace/>receivers" style="width: 100%;"/>
-				<liferay-portlet:renderURL portletName="<%=ReceiverKeys.PORTLET_NAME %>" windowState="<%=LiferayWindowState.EXCLUSIVE.toString() %>" var="luong2">
+				<input type="hidden" name="<portlet:namespace/>supportUsers2" id="<portlet:namespace/>supportUsers2" style="width: 100%;"/>
+				<liferay-portlet:renderURL portletName="<%=ReceiverKeys.PORTLET_NAME %>" windowState="<%=LiferayWindowState.EXCLUSIVE.toString() %>" var="luong1">
 				<liferay-portlet:param name="struts_action" value="/sgs/receivergroup/view" />
-				<liferay-portlet:param name="<%=ReceiverKeys.TYPE %>" value="<%= String.valueOf(ReceiverKeys.ORGANIZATION) %>" />
+				<liferay-portlet:param name="<%=ReceiverKeys.TYPE %>" value="<%= String.valueOf(ReceiverKeys.PERSONAL) %>" />
 				</liferay-portlet:renderURL>
-				<div id="boxcontent2"></div>
+				<div id="boxcontent"></div>				
 			</div>
 		</div>
 				</td>
@@ -353,39 +319,213 @@ window.onload=function() {
 </form>
 <script type="text/javascript">
 /*Canh update 20110122*/
+$jq(function(){
+	$jq("#<portlet:namespace />checkInfo").change(function(){
+		<portlet:namespace/>choiceProcessInformation();
+		<portlet:namespace/>choiceProcessInformationTree();
+		/*if ($jq("#<portlet:namespace />checkInfo").attr('checked')) {
+			$jq('#processInformation').attr('disabled', false);
+		} else {
+			$jq('#processInformation').attr('disabled', true);
+		}*/
+	});
+	$jq('#processInformation').keyup(function(){
+		var ele = $jq(this);
+		$jq("input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked").each(function(){
+			var e = $jq(this).parent();
+			while (!e.is('tr')) {
+				e = e.parent();
+			}
+			e.find("input[type=text]").val(ele.val());
+		});
+		var tree = $jq("#nss_jstree1");
+		var ref = $jq.jstree._reference(tree);
+		ref.get_checked().each(function(){
+			if ($jq(this).is(".branch")) {
+				$jq(this).find("li").each(function(){
+					$jq(this).find("input[type=text]").not('.i').show().val(ele.val());
+					$jq(this).find("input[type=text]").not('.i').prev('input[type=text]:first').hide();
+				});
+			} else {
+				$jq(this).find("input[type=text]").not('.i').show().val(ele.val());
+				$jq(this).find("input[type=text]").not('.i').prev('input[type=text]:first').hide();
+			}
+		});
+	});
+	$jq('#processInformation').blur(function(){
+		var tree = $jq("#nss_jstree1");
+		var ref = $jq.jstree._reference(tree);
+		$jq(this).val($jq(this).val().trim());
+		if ($jq(this).val().length == 0) {
+			ref.get_checked().each(function(){
+				if ($jq(this).is(".branch")) {
+					$jq(this).find("li").each(function(){
+						$jq(this).find("input[type=text]").not('.i').hide().prev('input[type=text]:first').show();
+					});
+				} else {
+					$jq(this).find("input[type=text]").not('.i').hide().prev('input[type=text]:first').show();
+				}
+			});
+		}
+	});
+	$jq('input[name=checkallboxUser][type=checkbox]').change(function(){
+		Liferay.Util.checkAll(document.<portlet:namespace />fm, '<portlet:namespace/>supportUsers', this);
+		$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]').each(function(){
+			openProcessInfoForEveryUser(this);
+		});
+	});
+	$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]').change(function(event){
+		Liferay.Util.checkAllBox(document.<portlet:namespace />fm, '<portlet:namespace/>supportUsers', document.<portlet:namespace />fm.checkallboxUser);
+		openProcessInfoForEveryUser(this);
+		clickCheckBox(event,this);
+	});
+	$jq('input[name=checkallboxOrganization][type=checkbox]').live("change", function(){
+		Liferay.Util.checkAll(document.<portlet:namespace />fm, '<portlet:namespace/>organizations', this);
+	});
+	$jq('input[name=<portlet:namespace/>organizations][type=checkbox]').live("change", function(event){
+		Liferay.Util.checkAllBox(document.<portlet:namespace />fm, '<portlet:namespace/>organizations', document.<portlet:namespace />fm.checkallboxOrganization);
+	});
+	
+});
+
+
 var _personalCallback = function() {
 	$jq("#<portlet:namespace/>supportUsers2").val("");
-	$jq("input[name=<portlet:namespace/>supportUsers]").change(function(){
+	$jq("input[name=checkallboxUser][type=checkbox], input[name=<portlet:namespace/>supportUsers]").change(function(){
 		<portlet:namespace/>selectUserEvent();
 	});
-	$jq("#nss_jstree1").unbind("change_state.jstree").bind("change_state.jstree", function(){
-		setTimeout('<portlet:namespace/>selectUserEvent()', 150);
+	$jq("#nss_jstree1").unbind("check_node.jstree uncheck_node.jstree").bind("check_node.jstree uncheck_node.jstree", function(){
+		setTimeout('<portlet:namespace/>selectUserTreeEvent()', 150);
+		setTimeout('<portlet:namespace/>choiceProcessInformationTree()', 150);
 	});
 };
 var _receivingPlaceCallback = function() {
 	$jq("#<portlet:namespace/>receivers").val("");
-	$jq("#nss_jstree3").unbind("change_state.jstree").bind("change_state.jstree", function(){
-		setTimeout('<portlet:namespace/>selectReceivingPlaceEvent()', 150);
+	$jq("#nss_jstree3").unbind("select_node.jstree").bind("select_node.jstree", function(){
+		setTimeout('<portlet:namespace/>selectOrgTreeEvent()', 150);
 	});
 };
-	
-function <portlet:namespace/>selectUserEvent() {
-	var data = new Object();
+
+function <portlet:namespace/>choiceProcessInformation() {
+	var ctrlEle = $jq("#<portlet:namespace />checkInfo");
+		if (ctrlEle.attr("checked")) {
+			$jq("input[name=<portlet:namespace/>supportUsers][type=checkbox]").parents('tr').find("input[type=text]").parent().hide();
+		} else {
+			$jq("input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked").each(function(){
+				var e = $jq(this).parent();
+				while (!e.is('tr')) {
+					e = e.parent();
+				}
+				e.find("input[type=text]").parent().show();
+			});
+		}
+}
+
+function <portlet:namespace/>choiceProcessInformationTree() {
+	var ctrlEle = $jq("#<portlet:namespace />checkInfo");
 	var tree = $jq("#nss_jstree1");
 	var ref = $jq.jstree._reference(tree);
 	ref.get_checked().each(function(){
 		if ($jq(this).is(".branch")) {
 			$jq(this).find("li").each(function(){
-				data[$jq(this).attr("id")] = $jq(this).text().trim();
+				if (ctrlEle.attr("checked")) {
+					$jq(this).find("span").hide();
+				} else {
+					$jq(this).find("span").show();
+				}
 			});
 		} else {
-			data[$jq(this).attr("id")] = $jq(this).text().trim();
+			if (ctrlEle.attr("checked")) {
+				$jq(this).find("span").hide();
+			} else {
+				$jq(this).find("span").show();
+			}
+		}
+	});
+	ref.get_unchecked().each(function(){
+		if ($jq(this).is(".branch")) {
+			$jq(this).find("li").each(function(){
+				$jq(this).find("span").hide();
+			});
+		} else {
+			$jq(this).find("span").hide();
+		}
+	});
+}
+	
+function <portlet:namespace/>selectUserEvent() {
+	var tree = $jq("#nss_jstree1");
+	var ref = $jq.jstree._reference(tree);
+	ref.uncheck_all();
+	<portlet:namespace/>choiceProcessInformationTree();
+	$jq("#<portlet:namespace/>supportUsers2").val('');
+	
+	var data = new Object();
+	var ele = $jq("#selectedOptionsmain");
+	ele.empty();
+	$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked').each(function(){
+		data[$jq(this).val()] = $jq(this).attr("data");
+	});
+	for (var a in data) {
+		var e = $jq("<option/>");
+		e.val(a);
+		e.text(data[a]);
+		ele.append(e);
+	}
+}
+function <portlet:namespace/>selectOrgEvent() {
+	var tree = $jq("#nss_jstree3");
+	var ref = $jq.jstree._reference(tree);
+	ref.uncheck_all();
+	<portlet:namespace/>choiceProcessInformationTree();
+	$jq("#<portlet:namespace/>receivers").val('');
+	
+	/*var data = new Object();
+	var ele = $jq("#selectedOptionsmain");
+	ele.empty();
+	$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked').each(function(){
+		data[$jq(this).val()] = $jq(this).attr("data");
+	});
+	for (var a in data) {
+		var e = $jq("<option/>");
+		e.val(a);
+		e.text(data[a]);
+		ele.append(e);
+	}*/
+}
+
+function <portlet:namespace/>selectUserTreeEvent() {
+	$jq('input[name=checkallboxUser][type=checkbox]').attr("checked", false);
+	$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked').each(function(){
+		$jq(this).attr("checked", false);
+		openProcessInfoForEveryUser(this);
+	});
+	
+	var data = new Object();
+	var tree = $jq("#nss_jstree1");
+	var ref = $jq.jstree._reference(tree);
+	$jq(":checked[name=<portlet:namespace/>supportUsers]").attr('checked', false);
+	ref.get_checked().each(function(){
+		if ($jq(this).is(".branch")) {
+			$jq(this).find("li").each(function(){
+				data[$jq(this).attr("id")] = $jq(this).find("a").text().trim();
+			});
+		} else {
+			data[$jq(this).attr("id")] = $jq(this).find("a").text().trim();
 		}
 		return data;
 	});
 	$jq("#<portlet:namespace/>supportUsers2").val(JSON.stringify(data));
-	$jq("#countLDB").val(data.length);
-	$jq("input[name=<portlet:namespace/>supportUsers]").each(function(){
+	var ele = $jq("#selectedOptionsmain");
+	ele.empty();
+	for (var a in data) {
+		var e = $jq("<option/>");
+		e.val(a);
+		e.text(data[a]);
+		ele.append(e);
+	}
+	/*$jq("#countLDB").val(data.length);
+	$jq("input[name=<portlet:namespace/>supportUsers][checked=true]").each(function(){
 		if ($jq(this).attr("checked")) {
 			data[$jq(this).val()] = $jq(this).attr("data");
 			return data;
@@ -398,7 +538,53 @@ function <portlet:namespace/>selectUserEvent() {
 		e.val(a);
 		e.text(data[a]);
 		ele.append(e);
+	}*/
+}
+function <portlet:namespace/>selectOrgTreeEvent() {
+	$jq('input[name=checkallboxUser][type=checkbox]').attr("checked", false);
+	$jq('input[name=<portlet:namespace/>supportUsers][type=checkbox]:checked').each(function(){
+		$jq(this).attr("checked", false);
+		openProcessInfoForEveryUser(this);
+	});
+	
+	var data = new Object();
+	var tree = $jq("#nss_jstree1");
+	var ref = $jq.jstree._reference(tree);
+	$jq(":checked[name=<portlet:namespace/>supportUsers]").attr('checked', false);
+	ref.get_checked().each(function(){
+		if ($jq(this).is(".branch")) {
+			$jq(this).find("li").each(function(){
+				data[$jq(this).attr("id")] = $jq(this).find("a").text().trim();
+			});
+		} else {
+			data[$jq(this).attr("id")] = $jq(this).find("a").text().trim();
+		}
+		return data;
+	});
+	$jq("#<portlet:namespace/>supportUsers2").val(JSON.stringify(data));
+	var ele = $jq("#selectedOptionsmain");
+	ele.empty();
+	for (var a in data) {
+		var e = $jq("<option/>");
+		e.val(a);
+		e.text(data[a]);
+		ele.append(e);
 	}
+	/*$jq("#countLDB").val(data.length);
+	$jq("input[name=<portlet:namespace/>supportUsers][checked=true]").each(function(){
+		if ($jq(this).attr("checked")) {
+			data[$jq(this).val()] = $jq(this).attr("data");
+			return data;
+		}
+	});
+	var ele = $jq("#selectedOptionsmain");
+	ele.empty();
+	for (var a in data) {
+		var e = $jq("<option/>");
+		e.val(a);
+		e.text(data[a]);
+		ele.append(e);
+	}*/
 }
 
 function <portlet:namespace/>selectReceivingPlaceEvent() {
@@ -418,11 +604,80 @@ function <portlet:namespace/>selectReceivingPlaceEvent() {
 	$jq("#<portlet:namespace/>receivers").val(JSON.stringify(data));
 }
 
+function initOrganizationList() {
+	documentSendUtilClient.getIssuingPlace(function(data){
+		if (!data || data.length == 0) {
+			return;
+		} else {
+			var container = $jq("#organizationList");
+			container.empty();
+			for ( var i= 0; i < data.length; i++) {
+				var pmlIssuingPlace = data[i];
+				
+				var tr = $jq('<tr/>');
+				tr.addClass("results-row");
+				if (i % 2 != 0) {
+					tr.addClass("tr_two");
+				}
+				
+				var td0 = $jq("<td align='center'/>");
+				var checkbox = $jq('<input type="checkbox" name="<portlet:namespace/>organizations"/>');
+				checkbox.val(pmlIssuingPlace.issuingPlaceId);
+				td0.append('<img src="/html/images/grippy.png" />&nbsp;');
+				td0.append(checkbox);
+				
+				var td1 = $jq("<td/>");
+				td1.text(pmlIssuingPlace.issuingPlaceId);
+				var td2 = $jq("<td/>");
+				td2.text(pmlIssuingPlace.issuingPlaceName);
+				var td3 = $jq("<td/>");
+				td3.text(pmlIssuingPlace.note);
+				
+				tr.append(td0);
+				tr.append(td1);
+				tr.append(td2);
+				tr.append(td3);
+				
+				container.append(tr);
+			}
+		}
+	});
+}
+
+function <portlet:namespace/>isSelectingUser() {
+	
+	var tree = $jq("#nss_jstree1");
+	var ref = $jq.jstree._reference(tree);
+	if ($jq(":checked[name=<portlet:namespace/>supportUsers]").length > 0) {
+		return true;
+	} else if (ref.get_checked().length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function <portlet:namespace/>isSelectingOrg() {
+	var tree = $jq("#nss_jstree3");
+	var ref = $jq.jstree._reference(tree);
+	if ($jq(":checked[name=<portlet:namespace/>organizations]").length > 0) {
+		return true;
+	} else if (ref.get_checked().length > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 $jq(function(){
-	$jq("#boxcontent").load('<%= luong1%>', {"_callback": _personalCallback.toString()});
-	$jq("#boxcontent2").load('<%= luong2%>', {"_callback": _receivingPlaceCallback.toString()});
+	$jq("#boxcontent").load('<%= luong1%>', {"_callback": _personalCallback.toString(), "edit_text_name": "<%= renderResponse.getNamespace()%>processInformationForUser"});
+	initOrganizationList();
 	$jq("#tabs").tabs();
-	$jq("#tabs-1").tabs();
 });
 /*End of Canh*/
 </script>
+<style type="text/css">
+.results-row:HOVER td {
+	background: #bbedfc;
+}
+</style>

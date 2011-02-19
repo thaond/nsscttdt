@@ -1,3 +1,4 @@
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
 <%@page import="java.util.List"%>
 <%@page import="com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec"%>
 <%@page import="java.util.ArrayList"%>
@@ -33,6 +34,7 @@ window.onload = function () {
 </script>
 
 
+</script>
 <script type="text/javascript">
 	var noiNhan;
 	var nguoiKy;
@@ -47,21 +49,60 @@ window.onload = function () {
 				return noiNhan;
 			}
 		});
+		// vu close code 20110215
+		//documentSendUtilClient.getSignerName( function (data){
+			//if (data.length > 0) {
+				//nguoiKy = [data.length];
+				//for ( var i = 0; i < data.length; i++) {
+					//nguoiKy[i] = data[i] + "";			
+				//}
+				//return nguoiKy;
+			//}
+			
+		//});
+		// end vu close code 20110215
 		
-		documentSendUtilClient.getSignerName( function (data){
+	// vu update 20110215  chon nguoi ki van ban se hien thi them chuc vu
+		documentSendUtilClient.getSigner( function (data){
 			if (data.length > 0) {
 				nguoiKy = [data.length];
 				for ( var i = 0; i < data.length; i++) {
-					nguoiKy[i] = data[i] + "";			
+					nguoiKy[i] = data[i].userName + "";					
 				}
 				return nguoiKy;
 			}
 			
 		});
+				
+	// end vu update 20110215	
 		
 	dwr.engine.endBatch({
 	  async:false
 	});
+	
+	// vu update 20110215  chon nguoi ki van ban se hien thi them chuc vu
+		function chucVu(){
+		var signer = document.getElementById('signer').value;
+		var chucVu = "";
+		dwr.engine.beginBatch();
+		documentSendUtilClient.getSigner( function (data){
+			if (data.length > 0) {				
+				for ( var i = 0; i < data.length; i++) {
+					if(data[i].userName == signer){		
+						chucVu = data[i].position;
+						break;
+					}						
+				}				
+			}
+			
+		});
+		dwr.engine.endBatch({
+			  async:false
+			});
+		document.getElementById('position').value = chucVu;
+		
+	}
+	// end vu update 20112015
 	
 	$().ready(function() {
 		jQuerythoind("#receiveplace").autocomplete(noiNhan, {
@@ -71,13 +112,14 @@ window.onload = function () {
 			matchContains: true,
 			autoFill: true}
 			);
-		jQuerythoind("#signer").autocomplete(nguoiKy, {		
-			minChars: 0,
-			autoFill: true});
+		$jq("#signer").autocomplete({
+			source: nguoiKy,
+			select: function(even, ui){
+				setTimeout('chucVu()',150);	
+			}
+			});
 	});
-
 </script>
-
 
 <link type="text/css" rel="stylesheet"	href="/html/css/calendar-system.css" />
 
@@ -106,38 +148,30 @@ window.onload = function () {
 </portlet:actionURL>
 
 <form autocomplete="off" name="<portlet:namespace/>fm" action="<%=update %>" enctype="multipart/form-data" method="post" onsubmit="return checkUpdateform()">
+<input type="hidden" id="<portlet:namespace/>nguoitaocvdtnHidden" value="<%= String.valueOf(editorId) %>">
 <div class="title_categ"><liferay-ui:message key="pccc-cvdtn-suacongvan"/></div>
 <div class="boxcontent">
 <table width="100%" cellspacing="0">
 
 <tr>
-	<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.creator"/></label>:</div> </td>
-	<td width="34%"><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>editorId" id="nguoitaocvdtn" value="<%=documentDTO.getEditor() %>"></td>
-		
 	<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.docrectype"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
     <td >
-		<select style="width: 99%" name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" onchange="changeDocumentRecordTypeUpdate()">
+		<select style="width: 50%" name="<portlet:namespace/>documentRecordTypeId" id="socongvancvdtn" onchange="changeDocumentRecordTypeUpdateNoSearch()">
 	        <logic:iterate id="pmlEdmDocumentRecordType" name="pmlEdmDocumentRecordTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType" scope="request">
-	      		<option <%=pmlEdmDocumentRecordType.getDocumentRecordTypeName().equals(documentDTO.getDocumentRecord()) ? "selected" : "" %> value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"> <%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %> </option>
+	      		<option <%=pmlEdmDocumentRecordType.getDocumentRecordTypeId()== documentDTO.getDocumentRecordTypeId() ? "selected" : "" %> value="<%= pmlEdmDocumentRecordType.getDocumentRecordTypeId() %>"> <%= pmlEdmDocumentRecordType.getDocumentRecordTypeName() %> </option>
 	      	</logic:iterate>
-		</select>    	      	
+		</select> 
+		<liferay-ui:message key="so-cua-phong"/><input id="<portlet:namespace/>soVanBanCuaPhong" name="<portlet:namespace/>soVanBanCuaPhong" type="checkbox" <%= documentDTO.isDocOfDepartment()? "checked":" " %> onclick="loadDocumentRecordTypeUpdateNoSearch()" />   	      	
     </td>
-    <%-- 
-	<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.doctype"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
+    	<td width="16%"><div align="left"><label><liferay-ui:message key="receipt.doctype"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
 	<td>
 	    <select style="width: 99%" name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:99%" onchange="getDocumentRecordByDocTypeId();">
     		<logic:iterate id="documentType" name="pmlEdmDocumentTypeList" type="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType" scope="request">
-		    	<option <%= documentDTO.getDocumentType().equals(documentType.getDocumentTypeName()) ? "selected" : ""%> value="<%=documentType.getDocumentTypeId() %>"><%=documentType.getDocumentTypeName() %></option>
+		    	<option <%= documentDTO.getDocumentTypeId() == documentType.getDocumentTypeId() ? "selected" : ""%> value="<%=documentType.getDocumentTypeId() %>"><%=documentType.getDocumentTypeName() %></option>
     			</logic:iterate>
     	</select>
-	</td>
-    --%>
-</tr>
-	
-<tr>
-	<td ><div align="left"><label><liferay-ui:message key="receipt.department"/></label>:</div></td>
-	<td><input style="width: 90%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>department" id="dept" value='<%=departmentName != null ? departmentName : "" %>'></td>
-	
+	</td>    
+    <%--
 	<td ><div align="left"><label><liferay-ui:message key="receipt.doctype"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
 	<td>
 		<select name="<portlet:namespace/>documentTypeId" id="loaicongvancvdtn" style="width:99%">
@@ -156,22 +190,36 @@ window.onload = function () {
     </td>
 	--%>
 </tr>
+
+
+<tr>
+	<td width="16%"><div align="left"><label><liferay-ui:message key="nguoi-soan"/></label>:</div> </td>
+	<td width="34%"><input style="width: 88%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>editorId" id="nguoitaocvdtn" value="<%=documentDTO.getEditor() %>"></td>
+	
+	<td ><div align="left"><label><liferay-ui:message key="receipt.department"/></label>:</div></td>
+	<td><input style="width: 97%" type="text" maxlength="50" readonly="readonly" name="<portlet:namespace/>department" id="dept" value='<%=departmentName != null ? departmentName : "" %>'></td>	
+	 
+
+</tr>
+	
 	
 <tr>
-	<td><div align="left"><label><liferay-ui:message key="receipt.receiveplace"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
-	<td >
-		<input style="width:72.5%" type="text" name="<portlet:namespace/>receivingPlace" id="receiveplace" value='<%=documentDTO.getReceivingPlace() != null ? documentDTO.getReceivingPlace() : "" %>'>
-	    <input type="hidden" id="issuingPlaceId" name="<portlet:namespace />issuingPlaceId">
-	   	<input  id="btn_receiveplace" type="button" value="..."  onclick="mypopupIssuingplace()" style="width: 15%">
-	</td>
-	
+
 	<td ><div align="left"><label><liferay-ui:message key="receipt.confidentallevelid"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
 	<td>
-		<select name="<portlet:namespace/>confidentialLevelId" id="domatcvdtn" style="width:99%">
+		<select name="<portlet:namespace/>confidentialLevelId" id="domatcvdtn" style="width:90%">
 		    <logic:iterate id="pmlEdmConfidentialLevel" name="pmlEdmConfidentialLevelList" type="com.sgs.portlet.document.receipt.model.PmlEdmConfidentialLevel" scope="request">
 				<option <%=documentDTO.getConfidentialLevel().equals(pmlEdmConfidentialLevel.getConfidentialLevelName()) ? "selected" : "" %> value="<%= pmlEdmConfidentialLevel.getConfidentialLevelId() %>"> <%= pmlEdmConfidentialLevel.getConfidentialLevelName() %> </option>
 			</logic:iterate>
 		</select>
+	</td>
+	<td ><label><liferay-ui:message key="receipt.previlegenlevelid"/> <font color="red">(*)</font> &nbsp;:</label></td>
+    <td>
+		<select name="<portlet:namespace/>privilegenLevelId" id="dokhancvdtn" style="width:99%">
+			<logic:iterate id="pmlEdmPrivilegeLevel" name="pmlEdmPrivilegeLevelList" type="com.sgs.portlet.document.receipt.model.PmlEdmPrivilegeLevel" scope="request">
+				<option <%=documentDTO.getPrivilegel().equals(pmlEdmPrivilegeLevel.getPrivilegeLevelName()) ? "selected" : "" %> value="<%= pmlEdmPrivilegeLevel.getPrivilegeLevelId() %>"> <%= pmlEdmPrivilegeLevel.getPrivilegeLevelName() %> </option>
+			</logic:iterate>
+		   </select>
 	</td>
 </tr>
 	
@@ -183,29 +231,28 @@ window.onload = function () {
 		<input  id="btn_signer" type="button" value="..."  onclick="mypopupSigner()" style="width: 15%">
 	</td>
 	
-	<td ><div align="left"><label><liferay-ui:message key="receipt.previlegenlevelid"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
-	<td>
-		<select name="<portlet:namespace/>privilegenLevelId" id="dokhancvdtn" style="width:99%">
-			<logic:iterate id="pmlEdmPrivilegeLevel" name="pmlEdmPrivilegeLevelList" type="com.sgs.portlet.document.receipt.model.PmlEdmPrivilegeLevel" scope="request">
-				<option <%=documentDTO.getPrivilegel().equals(pmlEdmPrivilegeLevel.getPrivilegeLevelName()) ? "selected" : "" %> value="<%= pmlEdmPrivilegeLevel.getPrivilegeLevelId() %>"> <%= pmlEdmPrivilegeLevel.getPrivilegeLevelName() %> </option>
-			</logic:iterate>
-		   </select>
-	</td>
-</tr>
-	
-<tr>
 	<td >
 		<div align="left">
 			<label><liferay-ui:message key="receipt.position"/></label>:
 		</div>
 	</td>
 	<td>
-		<input style="width: 90%" type="text" maxlength="50" name="<portlet:namespace/>position" id="position" value='<%=documentDTO.getPosition() != null ? documentDTO.getPosition() : "" %>'>
+		<input style="width: 97%" type="text" maxlength="50" name="<portlet:namespace/>position" id="position" value='<%=documentDTO.getPosition() != null ? documentDTO.getPosition() : "" %>'>
 	</td>
+</tr>
+	
+<tr>	
+	
+	<td>
+		<div align="left">
+			<label><liferay-ui:message key="receipt.docid"/></label>:
+		</div>
+	</td>
+	<td><input style="width: 90%" type="text" maxlength="45" name="<portlet:namespace/>documentSendCode" id="docid" value='<%=documentDTO.getDocumentSendCode() != null ? documentDTO.getDocumentSendCode() : "" %>' ></td>
 	
 	<td >
 		<div align="left">
-			<label><liferay-ui:message key="pccc-cvdtn-cocongvanphucdap"/>:</label>
+			<label><liferay-ui:message key="pccc-cvdtn-canphucdap"/>:</label>
 	 	</div>
 	</td>
 	
@@ -215,19 +262,20 @@ window.onload = function () {
 </tr>
 	
 <tr>
-	<td>
-		<div align="left">
-			<label><liferay-ui:message key="receipt.docid"/></label>:
-		</div>
+	
+	<td><div align="left"><label><liferay-ui:message key="receipt.receiveplace"/></label><font color="#FF0000" size="1">(*)</font>:</div></td>
+	<td >
+		<input style="width:72.5%" type="text" name="<portlet:namespace/>receivingPlace" id="receiveplace" value='<%=documentDTO.getReceivingPlace() != null ? documentDTO.getReceivingPlace() : "" %>'>
+	    <input type="hidden" id="issuingPlaceId" name="<portlet:namespace />issuingPlaceId">
+	   	<input  id="btn_receiveplace" type="button" value="..."  onclick="mypopupIssuingplace()" style="width: 15%">
 	</td>
-	<td><input style="width: 90%" type="text" maxlength="45" name="<portlet:namespace/>documentSendCode" id="docid" value='<%=documentDTO.getDocumentSendCode() != null ? documentDTO.getDocumentSendCode() : "" %>' ></td>
-
+	
 	<td>
 		<div align="left">
 			<label><liferay-ui:message key="receipt.page"/></label>:
 		</div>	
 	</td>
-	<td><input style="width: 95%" type="text" maxlength="50" name="<portlet:namespace/>numberPage" id="page" value='<%=(!"".equals(documentDTO.getNumberPage()) || !"0".equals(documentDTO.getNumberPage())) ? documentDTO.getNumberPage() : "" %>' ></td>
+	<td><input style="width: 97%" type="text" maxlength="50" name="<portlet:namespace/>numberPage" id="page" value='<%=(!"".equals(documentDTO.getNumberPage()) || !"0".equals(documentDTO.getNumberPage())) ? documentDTO.getNumberPage() : "" %>' ></td>
 </tr>
 
 <tr>

@@ -113,7 +113,7 @@
 
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-XL-quatrinhluanchuyencongvanden"/></legend>
 			<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 				<tr class="portlet-section-header results-header" >
 				<td align="center" width="35px"><liferay-ui:message key="pccc-TN-stt"/></td>

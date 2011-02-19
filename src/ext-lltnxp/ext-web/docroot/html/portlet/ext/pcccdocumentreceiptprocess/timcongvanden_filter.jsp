@@ -17,7 +17,16 @@
 
 <%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
 
-<script type="text/javascript"	src="/html/js/calendar.js"></script>
+
+<%@page import="java.util.Date"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
+<%@page import="com.sgs.portlet.department.model.Department"%>
+<%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
+<%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%><script type="text/javascript"	src="/html/js/calendar.js"></script>
 <script type="text/javascript"	src="/html/js/calendar-setup.js"></script>
 <script type="text/javascript"	src="/html/js/calendar-en.js"></script>
 <link type="text/css" rel="stylesheet"	href="/html/css/calendar-system.css" />
@@ -113,20 +122,34 @@
 	<tr>
 		<td width="13%"><liferay-ui:message key="pccc-cvdtn-sohieu" />&nbsp;:</td>
 		<td width="35%"><input type="text" name="<portlet:namespace/>socvden" id="textfield" value="<%= soCVDen %>" style="width: 90%;"></td>
-		<td width="13%"><liferay-ui:message	key="loai-cong-van" />&nbsp;:</td>
+		<td width="13%"><liferay-ui:message	key="pccc-cvdtn-socongvan" />&nbsp;:</td>
 		<td>
 			<select  name="<portlet:namespace/>loaicv" id="select2" style="width: 93%;">
 			<option value="0"><liferay-ui:message key="documentreceipt-search-tatca" /></option>
 			<%
 			// phmphuc close 11/11/2010
 			//List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeUtil.findAll();
-			List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
+			//List<PmlEdmDocumentType> pmlEdmDocumentTypeList = PmlEdmDocumentTypeLocalServiceUtil.getDocType(1, 3);
 			// end phmphuc update 11/11/2010
-			int pmlEdmDocumentTypeSize = pmlEdmDocumentTypeList.size();
-			for (int i = 0; i < pmlEdmDocumentTypeSize; i ++) {
-				PmlEdmDocumentType pmlEdmDocumentType = pmlEdmDocumentTypeList.get(i);
-				String selected = loaiCV == pmlEdmDocumentType.getDocumentTypeId() ? "selected" : "";
-				out.print("<option value=\"" + pmlEdmDocumentType.getDocumentTypeId() + "\" " + selected + ">" + pmlEdmDocumentType.getDocumentTypeName() + "</option>");
+			
+			/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+			long userIdLogin = PortalUtil.getUserId(renderRequest);
+			PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userIdLogin);		
+			Department department = null;
+			try {
+				department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+			} catch (Exception e) { }
+			
+			List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+			if (department != null) {
+				pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbden", department.getAgencyId(), year);
+			}
+			
+			int pmlEdmDocumentRecordTypeListSize = pmlEdmDocumentRecordTypeList.size();
+			for (int i = 0; i < pmlEdmDocumentRecordTypeListSize; i ++) {
+				PmlEdmDocumentRecordType documentRecordType = pmlEdmDocumentRecordTypeList.get(i);
+				String selected = loaiCV == documentRecordType.getDocumentRecordTypeId() ? "selected" : "";
+				out.print("<option value=\"" + documentRecordType.getDocumentRecordTypeId() + "\" " + selected + ">" + documentRecordType.getDocumentRecordTypeName() + "</option>");
 			}
 			%>
 			</select>

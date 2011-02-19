@@ -97,7 +97,7 @@
 	<input type="hidden" name="<portlet:namespace />detailBackURL" value="<%= HtmlUtil.escape(detailBackURL) %>" />
 
 	<fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="link-document-exist"/></label>
+	<legend class="laborder"><liferay-ui:message key="link-document-exist"/></legend>
 		<div style="text-align: left;">
 			<span>
 				<label><%= linkDesc %></label>
@@ -266,7 +266,7 @@
 </fieldset>
 		
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="create-link-document-new"/></label>
+	<legend class="laborder"><liferay-ui:message key="create-link-document-new"/></legend>
 			<liferay-ui:tabs
 				names="cvden,cvdi"
 				param="tabnew"

@@ -16,16 +16,8 @@ Liferay.Service.PmlDocument = {
 	servicePackage: "com.sgs.portlet.document.service.http."
 };
 
-Liferay.Service.IssuingPlace = {
-	servicePackage: "com.sgs.portlet.pmlissuingplace.service.http."
-};
-
-Liferay.Service.ReportRegistryWork = {
-	servicePackage: "com.sgs.portlet.report_registry_work.service.http."
-};
-
-Liferay.Service.DocumentManager = {
-	servicePackage: "com.sgs.portlet.document_manager.service.http."
+Liferay.Service.User = {
+	servicePackage: "com.sgs.portlet.pmluser.service.http."
 };
 
 Liferay.Service.ReceiverGroup = {
@@ -209,6 +201,18 @@ Liferay.Service.PmlDocumentSend = {
 	servicePackage: "com.sgs.portlet.document.send.service.http."
 };
 
-Liferay.Service.User = {
-	servicePackage: "com.sgs.portlet.pmluser.service.http."
+Liferay.Service.VanBanNoiBo = {
+	servicePackage: "com.sgs.portlet.vanbannoibo.service.http."
+};
+
+Liferay.Service.PmlDocumentDelegate = {
+	servicePackage: "com.sgs.portlet.documentdelegate.service.http."
+};
+
+Liferay.Service.LoaiVanBanNoiBo = {
+	servicePackage: "com.sgs.portlet.loaivanbannoibo.service.http."
+};
+
+Liferay.Service.SoVanBanNoiBo = {
+	servicePackage: "com.sgs.portlet.sovanbannoibo.service.http."
 };

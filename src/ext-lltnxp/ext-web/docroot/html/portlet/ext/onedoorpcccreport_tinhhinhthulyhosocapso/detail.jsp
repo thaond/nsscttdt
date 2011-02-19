@@ -36,7 +36,7 @@
 <ul>
 	<li style="width: 49.6%; margin-right: 0.8%" >
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td-left"><liferay-ui:message key="pccc-DSHS-mahoso"/>:</td>
@@ -94,7 +94,7 @@
 			</table>
 		</fieldset>
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-hosothietke"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-hosothietke"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td-left"><liferay-ui:message key="pccc-TN-congtrinh"/>:</td>
@@ -123,7 +123,7 @@
 			</table>
 		</fieldset>
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-dinhkemtaptin"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-dinhkemtaptin"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 				<%
 					if (filePCCCAttachedFileList == null || filePCCCAttachedFileList.size() == 0) {
@@ -150,7 +150,7 @@
 	</li>
 	<li style="width: 49.6%;" >
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinquanly"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinquanly"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td-left"><liferay-ui:message key="pccc-TN-nguoinhaplieu"/>:</td>
@@ -189,7 +189,7 @@
 			</table>
 		</fieldset>
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtintrahoso"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtintrahoso"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr>
 				<td class="td-left"><liferay-ui:message key="pccc-TN-nguoitrahoso"/>:</td>
@@ -252,7 +252,7 @@
 			</table>
 		</fieldset>
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-ketluanvehosothamduyet"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-ketluanvehosothamduyet"/></legend>
 			<table cellspacing="0" width="100%" class="bor_rgh">
 			<tr valign="top">
 				<td class="td-left"><liferay-ui:message key="pccc-TN-ketluan"/>:</td>
@@ -266,7 +266,7 @@
 <ul>
 	<li style="width: 100%;" >
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-hosodinhkem"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-hosodinhkem"/></legend>
 			<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
 						<td width="35px" align="center"><liferay-ui:message key="pccc-TN-stt"/></td>
@@ -308,7 +308,7 @@
 <ul>
 	<li style="width: 100%;" >
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-quytrinhxuly"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-quytrinhxuly"/></legend>
 				<table class="taglib-search-iterator table-pml" cellspacing="0" width="100%">	
 					<tr class="portlet-section-header results-header" >
 						<td width="35px" align="center"><liferay-ui:message key="pccc-TN-stt"/></td>

@@ -6,7 +6,7 @@
 }
 .results-header td,.results-header th {font-weight: bold; color: #023c60;padding: 5px 2px;border-width: 1px;border-color: #d5f5ff #8ad1fe #8ad1fe #d5f5ff ;border-style: solid;}
 .results-header-Scrollbar td,.results-header-Scrollbar th {font-weight: bold; color: #023c60;padding: 5px 2px;border-width: 1px ;border-color: #d5f5ff #8ad1fe #8ad1fe #d5f5ff;border-style: solid;border-bottom: none;}
-.results-row td, .results-row th {border-right: 1px solid #8ad1fe;padding: 8px 2px 8px 3px;font-size:9pt;background: #f9ffff;}
+.results-row td, .results-row th {border-right: 1px solid #8ad1fe;padding: 5px 2px 8px 3px;font-size:9pt;background: #f9ffff;}
 .taglib-search-iterator .results-row:hover {background: #bbedfc;}
 .results-header,.results-header-Scrollbar {
 	background:#d5f5ff url(../images/imgbasic/bgresult.jpg) repeat-x top left;

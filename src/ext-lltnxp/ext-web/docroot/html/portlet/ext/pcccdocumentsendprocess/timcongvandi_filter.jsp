@@ -5,14 +5,17 @@
 <%@page import="com.sgs.portlet.document.receipt.searchdocumentsend.PmlEdmDocumentSendSearch"%>
 <%@page import="com.sgs.portlet.document.receipt.searchdocumentsend.PmlEdmDocumentSendDisplayTerms"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil"%>
-<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType"%>
 <%@page import="com.sgs.portlet.department.model.Department"%>
 <%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
 <%@page import="com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec"%>
 <%@page import="com.sgs.portlet.pml_ho_so_cong_viec.service.persistence.PmlHoSoCongViecUtil"%>
 
-<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@page import="com.sgs.portlet.pmluser.service.persistence.PmlUserUtil"%>
+<%@page import="com.sgs.portlet.pmluser.model.PmlUser"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
 
 <script type="text/javascript"	src="/html/js/calendar.js"></script>
 <script type="text/javascript"	src="/html/js/calendar-setup.js"></script>
@@ -65,21 +68,36 @@ String search = portleturlSearch.toString();
 		<td width="35%">
 			<input style="width: 90%;" type="text" name="<portlet:namespace /><%= displayTerms.SO_PHAT_HANH %>" value="<%= HtmlUtil.escape(displayTerms.getSoPhatHanh()) %>" id="textfield">
 		</td>
-		<td width="13%"><liferay-ui:message key="loai-cong-van" />&nbsp;:</td>
+		<td width="13%"><liferay-ui:message key="pccc-cvdtn-socongvan" />&nbsp;:</td>
 		<td>
 			<select name="<portlet:namespace /><%= displayTerms.LOAI_CONG_VAN %>" id="select2" style="width: 93%;">
     		<option <%=(displayTerms.getLoaiCongVan() == 0 ? "selected" : "" )%> value="0"><liferay-ui:message key="documentreceipt-search-tatca" /></option>
 				<%
 				// phmphuc close 11/11/2010
 				// List<PmlEdmDocumentType> allDocTypes = PmlEdmDocumentTypeUtil.findAll();
-				List<PmlEdmDocumentType> allDocTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
+				// List<PmlEdmDocumentType> allDocTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
 				// end phmphuc update 11/11/2010
-				if (!allDocTypes.isEmpty()) { // Co danh sach
+				
+				/* phmphuc update 17/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+				long userIdLogin = PortalUtil.getUserId(renderRequest);
+				PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userIdLogin);		
+				Department department = null;
+				try {
+					department = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+				} catch (Exception e) { }
+				
+				List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+				if (department != null) {
+					pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", department.getAgencyId(), year);
+				}
+				
+				if (!pmlEdmDocumentRecordTypeList.isEmpty()) { // Co danh sach
 					// Duyet danh sach
-					for (int idx = 0; idx < allDocTypes.size(); idx ++) {
-						PmlEdmDocumentType DTItem = (PmlEdmDocumentType) allDocTypes.get(idx);
-						String selDesc = (displayTerms.getLoaiCongVan() == DTItem.getDocumentTypeId() ? "selected" : "" );
-						out.println("<option " + selDesc + " value=\"" + String.valueOf(DTItem.getDocumentTypeId()) + "\">" + DTItem.getDocumentTypeName() + "</option>");
+					for (int idx = 0; idx < pmlEdmDocumentRecordTypeList.size(); idx ++) {
+						PmlEdmDocumentRecordType DTItem = (PmlEdmDocumentRecordType) pmlEdmDocumentRecordTypeList.get(idx);
+						String selDesc = (displayTerms.getLoaiCongVan() == DTItem.getDocumentRecordTypeId() ? "selected" : "" );
+						out.println("<option " + selDesc + " value=\"" + String.valueOf(DTItem.getDocumentRecordTypeId()) + "\">" + 
+								DTItem.getDocumentRecordTypeName() + "</option>");
 					}
 				}
 				%>

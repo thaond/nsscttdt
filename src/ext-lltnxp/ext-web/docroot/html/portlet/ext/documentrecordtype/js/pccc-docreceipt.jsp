@@ -324,23 +324,26 @@ function cancel (id) {
 function updateDocumentRecordType (id, url) {
 	var form = document.<portlet:namespace />fm;
 	form.action = url;
-	var code = document.getElementById("hiddenCode" + id);
+	// vu close code 20110212
+	//var code = document.getElementById("hiddenCode" + id);
+	// end vu close code 20110212
 	var name = document.getElementById("hidden" + id);
 	
 	form.onsubmit = "";
 	
-	
-	if (code.value.trim () == "") {
-		alert('<liferay-ui:message key="vui-long-nhap-documenttype-code"/>');
-		code.focus();
+	// vu close code 20110212
+	//if (code.value.trim () == "") {
+		//alert('<liferay-ui:message key="vui-long-nhap-documenttype-code"/>');
+		//code.focus();
 		
-	}  else	if (name.value.trim() == "") {
+	//}  else  
+		// end vu close code 20110212
+		if (name.value.trim() == "") {
 		alert('<liferay-ui:message key="vui-long-nhap-ten"/>');
 		name.focus();
-	} 
-	else {
+		} else {
 		form.submit();
-	}
+		}
 }
  // vu update 20110118
  // ky hieu loai van ban co the trung

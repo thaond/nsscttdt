@@ -69,7 +69,7 @@
 			</td>
 			<td style="padding-right: 5px;">
 			<fieldset class="filborder">
-			<label class="laborder"><liferay-ui:message key="thuoc-cap-gui-van-ban" /></label>
+			<legend class="laborder"><liferay-ui:message key="thuoc-cap-gui-van-ban" /></legend>
 			<div style="width: 100%; height: 150px; overflow-x: none; overflow-y: auto;">
 						<%
 						if (!levelSends.isEmpty()) {

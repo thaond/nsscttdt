@@ -15,11 +15,18 @@ function <portlet:namespace />thuThapCVDi(url)
 </script>
 
 <%
-	String redirect = ParamUtil.getString(renderRequest, "redirect");
 	long idHoSoCongViec = ParamUtil.getLong(renderRequest, "idHoSoCongViec"); 
+
+	PortletURL redirect = renderResponse.createRenderURL();
+	redirect.setWindowState(WindowState.NORMAL);
+	redirect.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/viewdetail");
+	redirect.setParameter("tabs", "cvdi");
+	redirect.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
 	
 	PortletURL portletURL = renderResponse.createRenderURL();
 	portletURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvdi");
+	portletURL.setParameter("idHoSoCongViec", String.valueOf(idHoSoCongViec));
+	portletURL.setParameter("redirect", redirect.toString());
 	
 	PmlEdmDocumentSendSearch searchContainer = new PmlEdmDocumentSendSearch (renderRequest, portletURL);
 	PmlEdmDocumentSendSearchTerms searchTerms = (PmlEdmDocumentSendSearchTerms) searchContainer.getSearchTerms();
@@ -28,18 +35,19 @@ function <portlet:namespace />thuThapCVDi(url)
 	
 	PortletURL thuThapCVDiURL = renderResponse.createActionURL();
 	thuThapCVDiURL.setParameter("struts_action", "/sgs/pml_ho_so_cong_viec/thu_thap_cvdi");
-	thuThapCVDiURL.setParameter("redirect", redirect);
+	thuThapCVDiURL.setParameter("redirect", redirect.toString());
+	
 %>
 
 <form name="<portlet:namespace />fm" method="post" action="<%= portletURL.toString() %>">
 <input type="hidden" name="<portlet:namespace />documentSendIds" id="<portlet:namespace />documentSendIds" />
-<input type="hidden" name="<portlet:namespace />idHoSoCongViec" value="<%= idHoSoCongViec %>" />
+<input type="hidden" name="<portlet:namespace />idHoSoCongViec" value="<%= String.valueOf(idHoSoCongViec) %>" />
 <div class="title_categ" ><liferay-ui:message key="thu-thap-van-ban-di-cho-ho-so-cong-viec"/></div>
 <div class="boxcontent">	
 	<liferay-ui:search-form	page="/html/portlet/ext/pml_ho_so_cong_viec/cvdi_search.jsp" searchContainer="<%= searchContainer %>" />
 	
-		<input type="button" value="<liferay-ui:message key="thu-thap"/>" onclick="<portlet:namespace />thuThapCVDi('<%= thuThapCVDiURL.toString() %>');" />
-		<input type="button" value="<liferay-ui:message key="back"/>" onClick="location.href = '<%= redirect %>';" />
+	<input type="button" value="<liferay-ui:message key="thu-thap"/>" onclick="<portlet:namespace />thuThapCVDi('<%= thuThapCVDiURL.toString() %>');" />
+	<input type="button" value="<liferay-ui:message key="back"/>" onClick="location.href = '<%= redirect %>';" />
 <br><br>	
 	<%
 		int total = PmlEdmDocumentSendLocalServiceUtil.countBy_R_B_F_T(searchTerms.getDocumentSendReference(), searchTerms.getDocumentSendBriefContent(), searchTerms.getDocumentSendFromDate(), searchTerms.getDocumentSendToDate(), searchTerms.isAndOperator());

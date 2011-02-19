@@ -134,7 +134,7 @@
 	%>
 	
 	<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="add-city" /></label>
+		<legend class="laborder"><liferay-ui:message key="add-city" /></legend>
 			<table cellspacing="0" width="100%">
 			<tr>
 				<td width="17%" align="right"><label><liferay-ui:message key="citymanagement.code" /><font color="red">(*)</font>:&nbsp;</label></td>

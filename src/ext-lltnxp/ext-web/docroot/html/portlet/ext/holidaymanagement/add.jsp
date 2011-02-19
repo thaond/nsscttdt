@@ -81,7 +81,7 @@
 	</table>
 
 <fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="holiday-ngay-nghi-le" /></label>
+		<legend class="laborder"><liferay-ui:message key="holiday-ngay-nghi-le" /></legend>
 		<input type="hidden" id="stt" value="1" />
 		<input type="hidden" id="arr_ngaynghile" name="arr_ngaynghile" value="" />
 

@@ -2,10 +2,8 @@
 <div class="title_categ"><liferay-ui:message key="tieu-chi-tra-cuu"/></div>
 <div class="boxcontent">
 <%
-boolean flag = (Boolean) renderRequest.getPortletSession().getAttribute("search",PortletSession.APPLICATION_SCOPE);
-%>
-
-<%
+	boolean flag = (Boolean) renderRequest.getPortletSession().getAttribute("search",PortletSession.APPLICATION_SCOPE);
+	
 	String receiptFlag = renderRequest.getAttribute("receiptFlag") == null? "flase" : (String) renderRequest.getAttribute("receiptFlag");  
 	String sendFlag = renderRequest.getAttribute("sendFlag") == null? "flase" : (String) renderRequest.getAttribute("sendFlag");
 	
@@ -17,19 +15,16 @@ boolean flag = (Boolean) renderRequest.getPortletSession().getAttribute("search"
 	else if ("true".equals(receiptFlag)  && "flase".equals(sendFlag)) {
 		tabs = "cvden";
 	}
-
 	
 	PortletURL URL = renderResponse.createRenderURL();
 	URL.setWindowState(WindowState.NORMAL);
 	
 	URL.setParameter("struts_action", "/sgs/pcccdocumentsendprocess/search");
 	URL.setParameter("tabs", tabs);
-	
-	
 %>
 
-
-
+<%-- 
+// phmphuc close 11/02/2011 - hien thi tab Tra cuu van ban di
 <liferay-ui:tabs names="cvdi,cvden" param="tabs" url="<%= URL.toString() %>" value="<%=tabs %>"/>
 <div class="boxcontent_Tab">
 <c:choose>
@@ -45,4 +40,9 @@ boolean flag = (Boolean) renderRequest.getPortletSession().getAttribute("search"
 	</c:when>
 </c:choose>
 </div>
+// end phmphuc close 11/02/2011
+--%>
+
+<%@ include file="/html/portlet/ext/pcccdocumentsendprocess/timcongvandi.jsp" %>
+
 </div>

@@ -12,6 +12,13 @@
 
 @import url(forms.css);
 
+@import url(jqueryui/jquery.ui.all.css);
+
+@import url(jstree/apple/style.css);
+@import url(jstree/classic/style.css);
+@import url(jstree/default/style.css);
+@import url(jstree/default-rtl/style.css);
+
 @import url(custom.css);
 
 /*

@@ -69,7 +69,7 @@
 <ul>
 	<li style="width: 49%; padding-right: 2%">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinhoso"/></legend>
 					<table width="100%" cellspacing="0">
 			      	<tr>
 			        	<td width="40%"><label><liferay-ui:message key="pccc-DSHS-mahoso"/></label>:</td>
@@ -126,7 +126,7 @@
 	</li>
 	<li style="width: 49%">
 		<fieldset class="filborder">
-		<label class="laborder"><liferay-ui:message key="pccc-TN-thongtinngaythang"/></label>
+		<legend class="laborder"><liferay-ui:message key="pccc-TN-thongtinngaythang"/></legend>
 				    	<table width="100%" cellspacing="0">		    	
 				      	<tr>
 				        	<td width="40%"><label><liferay-ui:message key="pccc-TN-ngaynhanTN"/></label>:</td>

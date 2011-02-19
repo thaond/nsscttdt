@@ -1,6 +1,4 @@
 <%@page import="java.util.List"%>
-<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentType"%>
-<%@page import="com.sgs.portlet.document.receipt.service.persistence.PmlEdmDocumentTypeUtil"%>
 <%@page import="com.sgs.portlet.department.model.Department"%>
 <%@page import="com.sgs.portlet.department.service.persistence.DepartmentUtil"%>
 <%@page import="com.liferay.portal.kernel.util.HtmlUtil"%>
@@ -13,7 +11,12 @@
 <%@page import="com.liferay.portal.service.persistence.UserUtil"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.Comparator"%>
-<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentTypeLocalServiceUtil"%><style>
+<%@page import="java.util.Date"%>
+<%@page import="com.liferay.portal.util.PortalUtil"%>
+<%@page import="com.sgs.portlet.document.receipt.model.PmlEdmDocumentRecordType"%>
+<%@page import="com.sgs.portlet.document.receipt.service.PmlEdmDocumentRecordTypeLocalServiceUtil"%>
+
+<style>
 	<%@ include file="/html/_css/qlcvmodule/module.css"%>
 </style>
 <script type="text/javascript" src="/html/js/_libJS/_libJS.js"></script>
@@ -24,8 +27,27 @@
 	// Danh sach cac doi tuong nap vao combo box
 	// phmphuc close 11/11/2010
 	//List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeUtil.findAll();
-	List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
+	//List<PmlEdmDocumentType> docTypes = PmlEdmDocumentTypeLocalServiceUtil.getDocType(2, 3);
 	// end phmphuc update 11/11/2010
+	
+	/* phmphuc update 16/02/2011 - nhung loai so vb duoc tao so vb cua co quan thi moi duoc hien thi */
+	Calendar calendar = Calendar.getInstance();
+	calendar.setTime(new Date());
+	int yearSearch = calendar.get(Calendar.YEAR);
+	
+	long userIdLogin = PortalUtil.getUserId(renderRequest);
+	PmlUser pmlUser = PmlUserUtil.findByPrimaryKey(userIdLogin);		
+	Department departmentLogin = null;
+	try {
+		departmentLogin = DepartmentUtil.findByPrimaryKey(pmlUser.getDepartmentsId());
+	} catch (Exception e) { }
+	
+	List<PmlEdmDocumentRecordType> pmlEdmDocumentRecordTypeList = new ArrayList<PmlEdmDocumentRecordType>();
+	if (departmentLogin != null) {
+		pmlEdmDocumentRecordTypeList = PmlEdmDocumentRecordTypeLocalServiceUtil.getDocumentRecordTypeUseForAgency("vbdi", departmentLogin.getAgencyId(), yearSearch);
+	}
+	// end phmphuc update 16/02/2011
+	
 	List<Department> departments = DepartmentUtil.findAll();
 	List<PmlUser> pmlUsers = PmlUserUtil.findAll();
 	// Doc nguoi dung tu he thong va luu vao danh sach
@@ -42,7 +64,7 @@
 	}
 %>
 <fieldset class="filborder">
-<label class="laborder"><liferay-ui:message key="tieu-thuc-tim-kiem"/></label>
+<legend class="laborder"><liferay-ui:message key="tieu-thuc-tim-kiem"/></legend>
 <table cellspacing="0" width="100%">
 	<tr>
 		<td width="15%"><liferay-ui:message key="so-phat-hanh" />&nbsp;:</td>
@@ -62,22 +84,32 @@
 				}
 				%>
 			</select>
-			<liferay-ui:message key="nam" />&nbsp;
-			<input name="<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>" type="text" value="<%= displayTerms.getNgayPHYear() != 0 ? String.valueOf(displayTerms.getNgayPHYear()) : String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) %>" maxlength="4" style="width: 95px;" />
+			<label><liferay-ui:message key="nam" />&nbsp;</label>
+			<select name="<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>" id="yearsearch" style="width: 80px;">
+				<option value="0" selected="selected">&nbsp;</option>
+				<%
+				for (int idx = yearSearch - 10; idx <= yearSearch; idx++) {
+				%>
+					<option <%= idx == displayTerms.getNgayPHYear() ? "selected" : ""%> value="<%= idx %>"><%= idx %></option>
+				<%
+				}
+				%>
+			</select>
 		</td>
 	</tr>
 
 	<tr>
-		<td><liferay-ui:message key="loai-cong-van" />&nbsp;:</td>
+		<td><liferay-ui:message key="receipt.docrectype" />&nbsp;:</td>
 		<td>
 			<select name="<portlet:namespace /><%= displayTerms.LOAIVB %>" style="width: 82.5%;">
 				<option value="0">&nbsp;</option>
 				<%
-				if (!docTypes.isEmpty()) {
-					for (int idx = 0; idx < docTypes.size(); idx ++) {
-						PmlEdmDocumentType dTItem = (PmlEdmDocumentType) docTypes.get(idx);
+				if (!pmlEdmDocumentRecordTypeList.isEmpty()) {
+					for (int idx = 0; idx < pmlEdmDocumentRecordTypeList.size(); idx ++) {
+						PmlEdmDocumentRecordType dTItem = (PmlEdmDocumentRecordType) pmlEdmDocumentRecordTypeList.get(idx);
 				%>
-						<option value="<%= dTItem.getDocumentTypeId() %>" <%= dTItem.getDocumentTypeId() == displayTerms.getLoaiVB() ? "selected" : ""%>><%= dTItem.getDocumentTypeName() %></option>
+						<option value="<%= dTItem.getDocumentRecordTypeId() %>" <%= dTItem.getDocumentRecordTypeId() == displayTerms.getLoaiVB() ? "selected" : ""%>>
+										<%= dTItem.getDocumentRecordTypeName() %></option>
 				<%
 					}
 				}
@@ -190,22 +222,22 @@
 
 	function <portlet:namespace />searchData() {
 		// Kiem tra ngay phat hanh
-		if (document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>.value != "") {
-			if (isIntegerPositiveNumeric(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>.value)) {
+		//if (document.<portlet:namespace />fm.<portlet:namespace /></%= displayTerms.NGAYPHYEAR %>.value != "") {
+			//if (isIntegerPositiveNumeric(document.<portlet:namespace />fm.<portlet:namespace /></%= displayTerms.NGAYPHYEAR %/>.value)) {
 				// Do nothing
-			}
-			else {
-				alert("<liferay-ui:message key='vui-long-kiem-tra-ngay-nhap'/>");
-				Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>);
-				return;
-			} 
-		} // end if
-		else {
+			//}
+			//else {
+				//alert("<liferay-ui:message key='vui-long-kiem-tra-ngay-nhap'/>");
+				//Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /></%= displayTerms.NGAYPHYEAR %/>);
+				//return;
+			//} 
+		//} // end if
+		//else {
 			// Bat buoc phai nhap nam cua ngay den
-			alert("<liferay-ui:message key='nam-cua-ngay-phat-hanh-bat-buoc-phai-nhap'/>");
-			Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /><%= displayTerms.NGAYPHYEAR %>);
-			return;
-		}
+			//alert("<liferay-ui:message key='nam-cua-ngay-phat-hanh-bat-buoc-phai-nhap'/>");
+			//Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace /></%= displayTerms.NGAYPHYEAR %/>);
+			//return;
+		//}
 
 		document.<portlet:namespace />fm.method = 'post';
 		submitForm(document.<portlet:namespace />fm);

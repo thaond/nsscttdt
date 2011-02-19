@@ -1034,4 +1034,14 @@
 		</configuration-action-class>
         <use-default-template>false</use-default-template>
     </portlet>
+    <portlet>
+        <portlet-name>SGS_SOVANBANNOIBO</portlet-name>
+        <struts-path>sgs/sovanbannoibo</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
+    <portlet>
+        <portlet-name>SGS_LOAIVANBANNOIBO</portlet-name>
+        <struts-path>sgs/loaivanbannoibo</struts-path>
+        <use-default-template>false</use-default-template>
+    </portlet>
 </liferay-portlet-app>

@@ -53,7 +53,7 @@
 <!-- <div class="title_allbos"></div> -->
 
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="tieu-thuc-lap-bao-cao"/></label>
+	<legend class="laborder"><liferay-ui:message key="tieu-thuc-lap-bao-cao"/></legend>
 	<table cellspacing="0" width="100%">
 		<tr>
 			<td width="18%"><liferay-ui:message key="danh-sach-phong-ban" />&nbsp;:</td>

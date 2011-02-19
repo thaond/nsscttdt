@@ -95,7 +95,7 @@
 </table>	
 
 <fieldset class="filborder">
-	<label class="laborder"><liferay-ui:message key="holiday-calendar"/></label>
+	<legend class="laborder"><liferay-ui:message key="holiday-calendar"/></legend>
 	<% 
 	if(attactFileHolidays != null && attactFileHolidays.size() > 0){
 		String linkAttactFile = "";
