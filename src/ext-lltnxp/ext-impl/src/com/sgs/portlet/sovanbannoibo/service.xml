@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 5.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_5_1_0.dtd">
+
+<service-builder package-path="com.sgs.portlet.sovanbannoibo">
+	<namespace>SoVanBanNoiBo</namespace>
+	
+	<entity name="LoaiVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_loaivanbannoibo">
+		<!-- PK fields -->
+		<column name="loaiVanBanNoiBoId" type="long" primary="true"></column>
+		<!-- Other fields -->
+		<column name="kyHieuLoaiVanBanNoiBo" type="String" />
+		<column name="tenLoaiVanBanNoiBo" type="String"></column>
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="LoaiVanBanNoiBoCuaSo" local-service="true" remote-service="true" table="pml_edm_loaivanbannoibo">
+		<!-- PK fields -->
+		<column name="loaiVanBanNoiBoId" type="long" primary="true"></column>
+		<!-- Other fields -->
+		<column name="kyHieuLoaiVanBanNoiBo" type="String" />
+		<column name="tenLoaiVanBanNoiBo" type="String"></column>
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="SoVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_sovanbannoibo">
+		<!-- PK fields -->
+		<column name="soVanBanNoiBoId" type="long" primary="true" />
+		<!-- Other fields -->
+		<column name="maSoVanBanNoiBo" type="String" />
+		<column name="tenSoVanBanNoiBo" type="String" />
+		<column name="ngayTao" type="Date" />
+		
+		<column name="userId" type="long"/>
+	  	<column name="groupId" type="long"/>	
+		<column name="companyId" type="long"/>
+	</entity>
+	
+	<entity name="SoLoaiVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_so_loai_vanbannoibo">
+		<column name="soVanBanNoiBoId" type="long" primary="true" />
+		<column name="loaiVanBanNoiBoId" type="long" primary="true" ></column>
+		
+		<finder name="SoVanBanNoiBo" return-type="Collection">
+			<finder-column name="soVanBanNoiBoId" />
+		</finder>
+		<finder name="LoaiVanBanNoiBo" return-type="Collection">
+			<finder-column name="loaiVanBanNoiBoId" />
+		</finder>
+		<finder name="SoVanBanNoiBo_LoaiVanBanNoiBo" return-type="Collection">
+			<finder-column name="soVanBanNoiBoId" />
+			<finder-column name="loaiVanBanNoiBoId" />
+		</finder>
+	</entity>
+	
+	<entity name="SoPhongVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_so_phong_vanbannoibo">
+		<column name="soVanBanNoiBoId" type="long" primary="true" />
+		<column name="phongVanBanNoiBoId" type="String" primary="true" ></column>
+		
+		<finder name="SoVanBanNoiBo" return-type="Collection">
+			<finder-column name="soVanBanNoiBoId" />
+		</finder>
+		<finder name="PhongVanBanNoiBo" return-type="Collection">
+			<finder-column name="phongVanBanNoiBoId" />
+		</finder>
+		<finder name="SoVanBanNoiBo_PhongVanBanNoiBo" return-type="Collection">
+			<finder-column name="soVanBanNoiBoId" />
+			<finder-column name="phongVanBanNoiBoId" />
+		</finder>
+	</entity>
+	
+	<entity name="LoaiPhongVanBanNoiBo" local-service="true" remote-service="true" table="pml_edm_phong_loai_vanbannoibo">
+		<column name="loaiVanBanNoiBoId" type="long" primary="true" ></column>
+		<column name="phongVanBanNoiBoId" type="String" primary="true" ></column>
+	</entity>
+</service-builder>

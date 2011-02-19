@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.sgs.portlet.loaivanbannoibo.service.persistence.LoaiVanBanNoiBoFinder.COUNT_LOAI_VAN_BAN_NOI_BO">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM pml_edm_loaivanbannoibo
+		WHERE
+		(lower(kyHieuLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.sgs.portlet.loaivanbannoibo.service.persistence.LoaiVanBanNoiBoFinder.FIND_LOAI_VAN_BAN_NOI_BO">
+		<![CDATA[
+		SELECT *
+		FROM pml_edm_loaivanbannoibo
+		WHERE
+		(lower(kyHieuLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY kyHieuLoaiVanBanNoiBo ASC
+		]]>
+	</sql>
+</custom-sql>

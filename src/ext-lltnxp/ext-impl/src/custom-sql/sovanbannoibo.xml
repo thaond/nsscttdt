@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<custom-sql>
+	<sql
+		id="com.sgs.portlet.sovanbannoibo.service.persistence.SoVanBanNoiBoFinder.COUNT_SO_VAN_BAN_NOI_BO">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM pml_edm_sovanbannoibo
+		WHERE
+		(lower(maSoVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenSoVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.sgs.portlet.sovanbannoibo.service.persistence.SoVanBanNoiBoFinder.FIND_SO_VAN_BAN_NOI_BO">
+		<![CDATA[
+		SELECT *
+		FROM pml_edm_sovanbannoibo
+		WHERE
+		(lower(maSoVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenSoVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY maSoVanBanNoiBo ASC
+		]]>
+	</sql>
+	<sql
+		id="com.sgs.portlet.sovanbannoibo.service.persistence.LoaiVanBanNoiBoCuaSoFinder.COUNT_LOAI_VAN_BAN_NOI_BO_CUA_SO">
+		<![CDATA[
+		SELECT COUNT (*) AS COUNT_VALUE
+		FROM pml_edm_loaivanbannoibo
+		WHERE
+		(lower(kyHieuLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		]]>
+	</sql>
+
+	<sql
+		id="com.sgs.portlet.sovanbannoibo.service.persistence.LoaiVanBanNoiBoCuaSoFinder.FIND_LOAI_VAN_BAN_NOI_BO_CUA_SO">
+		<![CDATA[
+		SELECT *
+		FROM pml_edm_loaivanbannoibo
+		WHERE
+		(lower(kyHieuLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+		(lower(tenLoaiVanBanNoiBo) LIKE ? [$AND_OR_NULL_CHECK$])
+		ORDER BY kyHieuLoaiVanBanNoiBo ASC
+		]]>
+	</sql>
+</custom-sql>
