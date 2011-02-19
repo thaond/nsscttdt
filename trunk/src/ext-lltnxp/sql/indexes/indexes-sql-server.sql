@@ -231,7 +231,9 @@ create index IX_CB854772 on MBThread (categoryId);
 create index IX_FA179180 on MeetingCalComponent (mcalId);
 
 create index IX_F199C38B on MeetingCalendar (groupId);
+create index IX_451FC5DE on MeetingCalendar (groupId, deleted);
 create index IX_3B1B516 on MeetingCalendar (groupId, state);
+create index IX_644760B3 on MeetingCalendar (groupId, state, deleted);
 create index IX_5AD0BCD5 on MeetingCalendar (uuid_);
 create index IX_A1E35775 on MeetingCalendar (uuid_, groupId);
 
@@ -627,6 +629,7 @@ create index IX_2C6373F1 on pml_district (districtName);
 
 create index IX_7DDBAE38 on pml_do_quan_trong (ten_do_quan_trong);
 
+create index IX_765B14DA on pml_documentreceipt_issuingplace_log (documentReceiptId);
 create index IX_D48B8868 on pml_documentreceipt_issuingplace_log (documentReceiptId, processor, step);
 create index IX_7CF5591A on pml_documentreceipt_issuingplace_log (documentReceiptId, step);
 
@@ -741,7 +744,9 @@ create index IX_A5806B65 on pml_edm_documentreceipt (docreceipttempid);
 create index IX_F7702835 on pml_edm_documentreceipt (docreceipttempid, orgexternalid);
 create index IX_195C7CCB on pml_edm_documentreceipt (documenttype);
 create index IX_344E2CE6 on pml_edm_documentreceipt (documenttypeid);
+create index IX_B64C9B03 on pml_edm_documentreceipt (fieldid);
 create index IX_F4D3AF82 on pml_edm_documentreceipt (issuingplaceid);
+create index IX_A65D2BA7 on pml_edm_documentreceipt (isvbqppl);
 create index IX_44318C15 on pml_edm_documentreceipt (levelsendid);
 create index IX_5095AB4D on pml_edm_documentreceipt (maindepartmentprocessid);
 create index IX_A4E73374 on pml_edm_documentreceipt (mainuserprocessid);
@@ -833,6 +838,14 @@ create index IX_55886F8C on pml_edm_privilegelevel (privilegelevelname);
 create index IX_707D1D62 on pml_edm_processdocumentreceiptdetail (documentreceiptid);
 create index IX_F222C540 on pml_edm_processdocumentreceiptdetail (userid);
 
+create index IX_48D6104C on pml_edm_so_loai_vanbannoibo (loaiVanBanNoiBoId);
+create index IX_9FE5DAFB on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId);
+create index IX_7C19E70E on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId, loaiVanBanNoiBoId);
+
+create index IX_60CA7786 on pml_edm_so_phong_vanbannoibo (phongVanBanNoiBoId);
+create index IX_431EFE9A on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId);
+create index IX_A8F35322 on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId, phongVanBanNoiBoId);
+
 create index IX_F963C762 on pml_edm_writedocumentsend (bookdocumentsendid);
 create index IX_438BB903 on pml_edm_writedocumentsend (datecreated);
 create index IX_34A68AF9 on pml_edm_writedocumentsend (documentsendid);
@@ -923,6 +936,7 @@ create index IX_3583860E on pml_ho_so_cong_viec (id_tinh_chat);
 create index IX_F5AC1C84 on pml_ho_so_cong_viec (id_trang_thai_hscv);
 create index IX_6641DAF3 on pml_ho_so_cong_viec (so_hieu_hscv);
 create index IX_8CAC1550 on pml_ho_so_cong_viec (userId);
+create index IX_D07F49 on pml_ho_so_cong_viec (userId, hoat_dong);
 
 create index IX_6FE7F965 on pml_holiday (from_date);
 create index IX_DA2F71DD on pml_holiday (from_date, to_date);
@@ -1042,6 +1056,8 @@ create index IX_96AFFA06 on pml_transition (version_);
 create index IX_4871D6EB on pml_user (departmentsId);
 create index IX_6DFE34E5 on pml_user (departmentsId, active);
 create index IX_4A13A6AE on pml_user (handphone);
+create index IX_3FAB2D46 on pml_user (isleadermetting);
+create index IX_9542BDD7 on pml_user (isvanthuphong);
 create index IX_8EF417A7 on pml_user (note);
 create index IX_D9949119 on pml_user (positionId);
 create index IX_54858438 on pml_user (positionId, departmentsId, roleId);

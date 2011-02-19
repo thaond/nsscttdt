@@ -830,7 +830,8 @@ create table MeetingCalendar (
 	afternoon boolean,
 	evening boolean,
 	stt int,
-	prior boolean
+	prior boolean,
+	deleted boolean
 )
 extent size 16 next size 16
 lock mode row;
@@ -2491,6 +2492,23 @@ create table pml_edm_documenttype (
 extent size 16 next size 16
 lock mode row;
 
+create table pml_edm_file_dinh_kem_vanbannoibo (
+	fileDinhKemVanBanNoiBoId int8 not null primary key,
+	tenFileFull varchar(75),
+	tenFile varchar(75),
+	duongDanFile varchar(75),
+	tieuDe varchar(75),
+	ngayTao datetime YEAR TO FRACTION,
+	loaiFile varchar(75),
+	mucDichFile varchar(75),
+	vanBanNoiBoId int8,
+	userId int8,
+	groupId int8,
+	companyId int8
+)
+extent size 16 next size 16
+lock mode row;
+
 create table pml_edm_issuingplace (
 	issuingplaceid varchar(75) not null primary key,
 	issuingplacename varchar(75),
@@ -2522,6 +2540,55 @@ create table pml_edm_levelsenddetail (
 extent size 16 next size 16
 lock mode row;
 
+create table pml_edm_loaivanbannoibo (
+	loaiVanBanNoiBoId int8 not null primary key,
+	kyHieuLoaiVanBanNoiBo varchar(75),
+	tenLoaiVanBanNoiBo varchar(75),
+	userId int8,
+	groupId int8,
+	companyId int8
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_log_vanbannoibo (
+	logVanBanNoiBoId int8 not null primary key,
+	buocLuanChuyen int,
+	nguoiXuLy int8,
+	ngayXuLy datetime YEAR TO FRACTION,
+	nguoiNhan int8,
+	ngayNhan datetime YEAR TO FRACTION,
+	trangThaiTruoc varchar(75),
+	trangThaiSau varchar(75),
+	ngayGui datetime YEAR TO FRACTION,
+	phongXuLyChinh varchar(75),
+	nguoiXuLyChinh int8,
+	loaiQuyTrinh int,
+	ngayHetHan datetime YEAR TO FRACTION,
+	soNgayXuLy int,
+	processInstanceId int8,
+	thongTinXuLy varchar(75),
+	step int,
+	nguoiXuLyTrucTiep int8,
+	phongXuLy varchar(75),
+	phongNhan varchar(75),
+	vanBanHoanThanhHayChua boolean,
+	vanBanNoiBoId int8,
+	userId int8,
+	groupId int8,
+	companyId int8
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_phong_loai_vanbannoibo (
+	loaiVanBanNoiBoId int8 not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (loaiVanBanNoiBoId, phongVanBanNoiBoId)
+)
+extent size 16 next size 16
+lock mode row;
+
 create table pml_edm_privilegelevel (
 	privilegelevelid varchar(75) not null primary key,
 	privilegelevelname varchar(75)
@@ -2536,6 +2603,52 @@ create table pml_edm_processdocumentreceiptdetail (
 	note varchar(75),
 	datecreated datetime YEAR TO FRACTION,
 	dateupdate datetime YEAR TO FRACTION
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_so_loai_vanbannoibo (
+	soVanBanNoiBoId int8 not null,
+	loaiVanBanNoiBoId int8 not null,
+	primary key (soVanBanNoiBoId, loaiVanBanNoiBoId)
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_so_phong_vanbannoibo (
+	soVanBanNoiBoId int8 not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (soVanBanNoiBoId, phongVanBanNoiBoId)
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_sovanbannoibo (
+	soVanBanNoiBoId int8 not null primary key,
+	maSoVanBanNoiBo varchar(75),
+	tenSoVanBanNoiBo varchar(75),
+	ngayTao datetime YEAR TO FRACTION,
+	userId int8,
+	groupId int8,
+	companyId int8
+)
+extent size 16 next size 16
+lock mode row;
+
+create table pml_edm_vanbannoibo (
+	vanBanNoiBoId int8 not null primary key,
+	loaiVanBanNoiBo int8,
+	soVanBanNoiBo int8,
+	ngayTao datetime YEAR TO FRACTION,
+	ngayKy datetime YEAR TO FRACTION,
+	trichYeu varchar(75),
+	nguoiKy int8,
+	ghiChu varchar(75),
+	soVaoSoVanBanNoiBo varchar(75),
+	soPhatSinhTheoNam int,
+	userId int8,
+	groupId int8,
+	companyId int8
 )
 extent size 16 next size 16
 lock mode row;
@@ -3020,7 +3133,8 @@ create table pml_user (
 	lastname varchar(75),
 	male boolean,
 	birthday datetime YEAR TO FRACTION,
-	isleadermetting boolean
+	isleadermetting boolean,
+	isvanthuphong boolean
 )
 extent size 16 next size 16
 lock mode row;
