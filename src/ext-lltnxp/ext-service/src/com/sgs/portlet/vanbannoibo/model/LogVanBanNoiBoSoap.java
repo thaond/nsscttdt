@@ -35,7 +35,7 @@ public class LogVanBanNoiBoSoap implements Serializable {
     private String _trangThaiTruoc;
     private String _trangThaiSau;
     private Date _ngayGui;
-    private long _phongXuLyChinh;
+    private String _phongXuLyChinh;
     private long _nguoiXuLyChinh;
     private int _loaiQuyTrinh;
     private Date _ngayHetHan;
@@ -44,8 +44,8 @@ public class LogVanBanNoiBoSoap implements Serializable {
     private String _thongTinXuLy;
     private int _step;
     private long _nguoiXuLyTrucTiep;
-    private long _phongXuLy;
-    private long _phongNhan;
+    private String _phongXuLy;
+    private String _phongNhan;
     private boolean _vanBanHoanThanhHayChua;
     private long _vanBanNoiBoId;
     private long _userId;
@@ -177,11 +177,11 @@ public class LogVanBanNoiBoSoap implements Serializable {
         _ngayGui = ngayGui;
     }
 
-    public long getPhongXuLyChinh() {
+    public String getPhongXuLyChinh() {
         return _phongXuLyChinh;
     }
 
-    public void setPhongXuLyChinh(long phongXuLyChinh) {
+    public void setPhongXuLyChinh(String phongXuLyChinh) {
         _phongXuLyChinh = phongXuLyChinh;
     }
 
@@ -249,19 +249,19 @@ public class LogVanBanNoiBoSoap implements Serializable {
         _nguoiXuLyTrucTiep = nguoiXuLyTrucTiep;
     }
 
-    public long getPhongXuLy() {
+    public String getPhongXuLy() {
         return _phongXuLy;
     }
 
-    public void setPhongXuLy(long phongXuLy) {
+    public void setPhongXuLy(String phongXuLy) {
         _phongXuLy = phongXuLy;
     }
 
-    public long getPhongNhan() {
+    public String getPhongNhan() {
         return _phongNhan;
     }
 
-    public void setPhongNhan(long phongNhan) {
+    public void setPhongNhan(String phongNhan) {
         _phongNhan = phongNhan;
     }
 

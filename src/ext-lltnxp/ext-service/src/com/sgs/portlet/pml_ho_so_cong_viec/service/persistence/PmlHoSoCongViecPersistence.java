@@ -251,6 +251,37 @@ public interface PmlHoSoCongViecPersistence {
         throws com.liferay.portal.SystemException,
             com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException;
 
+    public java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong, int start, int end)
+        throws com.liferay.portal.SystemException;
+
+    public java.util.List<com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec> findByUserId_HoatDong(
+        long userId, java.lang.String hoatDong, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException;
+
+    public com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec findByUserId_HoatDong_First(
+        long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException;
+
+    public com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec findByUserId_HoatDong_Last(
+        long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException;
+
+    public com.sgs.portlet.pml_ho_so_cong_viec.model.PmlHoSoCongViec[] findByUserId_HoatDong_PrevAndNext(
+        long idHoSoCongViec, long userId, java.lang.String hoatDong,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException,
+            com.sgs.portlet.pml_ho_so_cong_viec.NoSuchPmlHoSoCongViecException;
+
     public java.util.List<Object> findWithDynamicQuery(
         com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
         throws com.liferay.portal.SystemException;
@@ -290,6 +321,9 @@ public interface PmlHoSoCongViecPersistence {
     public void removeByUserId(long userId)
         throws com.liferay.portal.SystemException;
 
+    public void removeByUserId_HoatDong(long userId, java.lang.String hoatDong)
+        throws com.liferay.portal.SystemException;
+
     public void removeAll() throws com.liferay.portal.SystemException;
 
     public int countByIdHSCVCha(long idHSCVCha)
@@ -311,6 +345,9 @@ public interface PmlHoSoCongViecPersistence {
         throws com.liferay.portal.SystemException;
 
     public int countByUserId(long userId)
+        throws com.liferay.portal.SystemException;
+
+    public int countByUserId_HoatDong(long userId, java.lang.String hoatDong)
         throws com.liferay.portal.SystemException;
 
     public int countAll() throws com.liferay.portal.SystemException;

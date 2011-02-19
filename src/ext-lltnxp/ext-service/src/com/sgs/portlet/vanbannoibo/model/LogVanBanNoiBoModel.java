@@ -66,9 +66,9 @@ public interface LogVanBanNoiBoModel extends BaseModel {
 
     public void setNgayGui(Date ngayGui);
 
-    public long getPhongXuLyChinh();
+    public String getPhongXuLyChinh();
 
-    public void setPhongXuLyChinh(long phongXuLyChinh);
+    public void setPhongXuLyChinh(String phongXuLyChinh);
 
     public long getNguoiXuLyChinh();
 
@@ -102,13 +102,13 @@ public interface LogVanBanNoiBoModel extends BaseModel {
 
     public void setNguoiXuLyTrucTiep(long nguoiXuLyTrucTiep);
 
-    public long getPhongXuLy();
+    public String getPhongXuLy();
 
-    public void setPhongXuLy(long phongXuLy);
+    public void setPhongXuLy(String phongXuLy);
 
-    public long getPhongNhan();
+    public String getPhongNhan();
 
-    public void setPhongNhan(long phongNhan);
+    public void setPhongNhan(String phongNhan);
 
     public boolean getVanBanHoanThanhHayChua();
 

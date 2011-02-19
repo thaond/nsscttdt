@@ -123,86 +123,94 @@ public class MeetingCalendarUtil {
     }
 
     public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByGroupId(
-        long groupId) throws com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId(groupId);
-    }
-
-    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByGroupId(
-        long groupId, int start, int end)
+        long groupId, boolean deleted)
         throws com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId(groupId, start, end);
+        return getPersistence().findByGroupId(groupId, deleted);
     }
 
     public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByGroupId(
-        long groupId, int start, int end,
+        long groupId, boolean deleted, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByGroupId(groupId, deleted, start, end);
+    }
+
+    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByGroupId(
+        long groupId, boolean deleted, int start, int end,
         com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId(groupId, start, end, obc);
+        return getPersistence().findByGroupId(groupId, deleted, start, end, obc);
     }
 
     public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByGroupId_First(
-        long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
+        long groupId, boolean deleted,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.ext.portlet.meetingcalendar.NoSuchendarException,
             com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId_First(groupId, obc);
+        return getPersistence().findByGroupId_First(groupId, deleted, obc);
     }
 
     public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByGroupId_Last(
-        long groupId, com.liferay.portal.kernel.util.OrderByComparator obc)
+        long groupId, boolean deleted,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.ext.portlet.meetingcalendar.NoSuchendarException,
             com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId_Last(groupId, obc);
+        return getPersistence().findByGroupId_Last(groupId, deleted, obc);
     }
 
     public static com.ext.portlet.meetingcalendar.model.MeetingCalendar[] findByGroupId_PrevAndNext(
-        long mcalId, long groupId,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
-            com.liferay.portal.SystemException {
-        return getPersistence().findByGroupId_PrevAndNext(mcalId, groupId, obc);
-    }
-
-    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
-        long groupId, int state) throws com.liferay.portal.SystemException {
-        return getPersistence().findByG_State(groupId, state);
-    }
-
-    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
-        long groupId, int state, int start, int end)
-        throws com.liferay.portal.SystemException {
-        return getPersistence().findByG_State(groupId, state, start, end);
-    }
-
-    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
-        long groupId, int state, int start, int end,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.liferay.portal.SystemException {
-        return getPersistence().findByG_State(groupId, state, start, end, obc);
-    }
-
-    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByG_State_First(
-        long groupId, int state,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
-            com.liferay.portal.SystemException {
-        return getPersistence().findByG_State_First(groupId, state, obc);
-    }
-
-    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByG_State_Last(
-        long groupId, int state,
-        com.liferay.portal.kernel.util.OrderByComparator obc)
-        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
-            com.liferay.portal.SystemException {
-        return getPersistence().findByG_State_Last(groupId, state, obc);
-    }
-
-    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar[] findByG_State_PrevAndNext(
-        long mcalId, long groupId, int state,
+        long mcalId, long groupId, boolean deleted,
         com.liferay.portal.kernel.util.OrderByComparator obc)
         throws com.ext.portlet.meetingcalendar.NoSuchendarException,
             com.liferay.portal.SystemException {
         return getPersistence()
-                   .findByG_State_PrevAndNext(mcalId, groupId, state, obc);
+                   .findByGroupId_PrevAndNext(mcalId, groupId, deleted, obc);
+    }
+
+    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
+        long groupId, int state, boolean deleted)
+        throws com.liferay.portal.SystemException {
+        return getPersistence().findByG_State(groupId, state, deleted);
+    }
+
+    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
+        long groupId, int state, boolean deleted, int start, int end)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByG_State(groupId, state, deleted, start, end);
+    }
+
+    public static java.util.List<com.ext.portlet.meetingcalendar.model.MeetingCalendar> findByG_State(
+        long groupId, int state, boolean deleted, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByG_State(groupId, state, deleted, start, end, obc);
+    }
+
+    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByG_State_First(
+        long groupId, int state, boolean deleted,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
+            com.liferay.portal.SystemException {
+        return getPersistence().findByG_State_First(groupId, state, deleted, obc);
+    }
+
+    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar findByG_State_Last(
+        long groupId, int state, boolean deleted,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
+            com.liferay.portal.SystemException {
+        return getPersistence().findByG_State_Last(groupId, state, deleted, obc);
+    }
+
+    public static com.ext.portlet.meetingcalendar.model.MeetingCalendar[] findByG_State_PrevAndNext(
+        long mcalId, long groupId, int state, boolean deleted,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.ext.portlet.meetingcalendar.NoSuchendarException,
+            com.liferay.portal.SystemException {
+        return getPersistence()
+                   .findByG_State_PrevAndNext(mcalId, groupId, state, deleted,
+            obc);
     }
 
     public static java.util.List<Object> findWithDynamicQuery(
@@ -244,14 +252,14 @@ public class MeetingCalendarUtil {
         getPersistence().removeByUUID_G(uuid, groupId);
     }
 
-    public static void removeByGroupId(long groupId)
+    public static void removeByGroupId(long groupId, boolean deleted)
         throws com.liferay.portal.SystemException {
-        getPersistence().removeByGroupId(groupId);
+        getPersistence().removeByGroupId(groupId, deleted);
     }
 
-    public static void removeByG_State(long groupId, int state)
+    public static void removeByG_State(long groupId, int state, boolean deleted)
         throws com.liferay.portal.SystemException {
-        getPersistence().removeByG_State(groupId, state);
+        getPersistence().removeByG_State(groupId, state, deleted);
     }
 
     public static void removeAll() throws com.liferay.portal.SystemException {
@@ -268,14 +276,14 @@ public class MeetingCalendarUtil {
         return getPersistence().countByUUID_G(uuid, groupId);
     }
 
-    public static int countByGroupId(long groupId)
+    public static int countByGroupId(long groupId, boolean deleted)
         throws com.liferay.portal.SystemException {
-        return getPersistence().countByGroupId(groupId);
+        return getPersistence().countByGroupId(groupId, deleted);
     }
 
-    public static int countByG_State(long groupId, int state)
+    public static int countByG_State(long groupId, int state, boolean deleted)
         throws com.liferay.portal.SystemException {
-        return getPersistence().countByG_State(groupId, state);
+        return getPersistence().countByG_State(groupId, state, deleted);
     }
 
     public static int countAll() throws com.liferay.portal.SystemException {

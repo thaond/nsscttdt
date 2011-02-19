@@ -925,7 +925,7 @@ public class PmlEdmDocumentSendFinderUtil {
     }
 
     public static java.util.List<com.sgs.portlet.document.model.PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy(
-        java.util.List<Long> userIds, long statusId, long loaiVB,
+        java.util.List<Long> userIds, long statusId, long soVanBan,
         java.lang.String soKyHieu, java.lang.String donViSoanThao,
         java.lang.String nguoiKy, java.lang.String trichYeu,
         java.lang.String coQuanNhan, java.lang.String tuNgay,
@@ -934,12 +934,12 @@ public class PmlEdmDocumentSendFinderUtil {
         throws java.lang.Exception {
         return getFinder()
                    .findByDocumentSendLog_Users_Status_DangXuLy(userIds,
-            statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
             coQuanNhan, tuNgay, denNgay, start, end, obc);
     }
 
     public static java.util.List<com.sgs.portlet.document.model.PmlDocumentSendLog> findByDocumentSendLog_Users_Status_DangXuLy_TreHan(
-        java.util.List<Long> userIds, long statusId, long loaiVB,
+        java.util.List<Long> userIds, long statusId, long soVanBan,
         java.lang.String soKyHieu, java.lang.String donViSoanThao,
         java.lang.String nguoiKy, java.lang.String trichYeu,
         java.lang.String coQuanNhan, java.lang.String tuNgay,
@@ -948,7 +948,7 @@ public class PmlEdmDocumentSendFinderUtil {
         throws java.lang.Exception {
         return getFinder()
                    .findByDocumentSendLog_Users_Status_DangXuLy_TreHan(userIds,
-            statusId, loaiVB, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
             coQuanNhan, tuNgay, denNgay, start, end, obc);
     }
 
@@ -1017,6 +1017,154 @@ public class PmlEdmDocumentSendFinderUtil {
         return getFinder()
                    .countBy_R_B_F_T(documentReference, briefContent, fromDate,
             toDate, andOperator);
+    }
+
+    public static int countByDocumentSend_Users_Status_DangXuLy1(
+        java.util.List<Long> userIds, long statusId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay) throws java.lang.Exception {
+        return getFinder()
+                   .countByDocumentSend_Users_Status_DangXuLy1(userIds,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            coQuanNhan, tuNgay, denNgay);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy1(
+        java.util.List<Long> userIds, long statusId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws java.lang.Exception {
+        return getFinder()
+                   .findByDocumentSend_Users_Status_DangXuLy1(userIds,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            coQuanNhan, tuNgay, denNgay, start, end, obc);
+    }
+
+    public static int countByDocumentSend_Users_Status_DangXuLy_TreHan1(
+        java.util.List<Long> userIds, long statusId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay) throws java.lang.Exception {
+        return getFinder()
+                   .countByDocumentSend_Users_Status_DangXuLy_TreHan1(userIds,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            coQuanNhan, tuNgay, denNgay);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> findByDocumentSend_Users_Status_DangXuLy_TreHan1(
+        java.util.List<Long> userIds, long statusId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws java.lang.Exception {
+        return getFinder()
+                   .findByDocumentSend_Users_Status_DangXuLy_TreHan1(userIds,
+            statusId, soVanBan, soKyHieu, donViSoanThao, nguoiKy, trichYeu,
+            coQuanNhan, tuNgay, denNgay, start, end, obc);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> getListCVDiDaXuLyChung1(
+        long userId, long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .getListCVDiDaXuLyChung1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay,
+            start, end, obc);
+    }
+
+    public static int countListCVDiDaXuLyChung1(long userId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay) throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .countListCVDiDaXuLyChung1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy1(
+        long userId, long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .getListCVDiDaXuLyTuXuLy1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay,
+            start, end, obc);
+    }
+
+    public static int countListCVDiDaXuLyTuXuLy1(long userId, long soVanBan,
+        java.lang.String soKyHieu, java.lang.String donViSoanThao,
+        java.lang.String nguoiKy, java.lang.String trichYeu,
+        java.lang.String coQuanNhan, java.lang.String tuNgay,
+        java.lang.String denNgay) throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .countListCVDiDaXuLyTuXuLy1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> getListCVDiDaXuLyChung_treHan1(
+        long userId, long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .getListCVDiDaXuLyChung_treHan1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay,
+            start, end, obc);
+    }
+
+    public static int countListCVDiDaXuLyChung_treHan1(long userId,
+        long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .countListCVDiDaXuLyChung_treHan1(userId, soVanBan,
+            soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay,
+            denNgay);
+    }
+
+    public static java.util.List<com.sgs.portlet.document.send.model.PmlEdmDocumentSend> getListCVDiDaXuLyTuXuLy_treHan1(
+        long userId, long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay, int start, int end,
+        com.liferay.portal.kernel.util.OrderByComparator obc)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .getListCVDiDaXuLyTuXuLy_treHan1(userId, soVanBan, soKyHieu,
+            donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay, denNgay,
+            start, end, obc);
+    }
+
+    public static int countListCVDiDaXuLyTuXuLy_treHan1(long userId,
+        long soVanBan, java.lang.String soKyHieu,
+        java.lang.String donViSoanThao, java.lang.String nguoiKy,
+        java.lang.String trichYeu, java.lang.String coQuanNhan,
+        java.lang.String tuNgay, java.lang.String denNgay)
+        throws com.liferay.portal.SystemException {
+        return getFinder()
+                   .countListCVDiDaXuLyTuXuLy_treHan1(userId, soVanBan,
+            soKyHieu, donViSoanThao, nguoiKy, trichYeu, coQuanNhan, tuNgay,
+            denNgay);
     }
 
     public static PmlEdmDocumentSendFinder getFinder() {
