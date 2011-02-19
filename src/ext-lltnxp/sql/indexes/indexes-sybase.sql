@@ -1038,6 +1038,8 @@ go
 create index IX_7DDBAE38 on pml_do_quan_trong (ten_do_quan_trong)
 go
 
+create index IX_765B14DA on pml_documentreceipt_issuingplace_log (documentReceiptId)
+go
 create index IX_D48B8868 on pml_documentreceipt_issuingplace_log (documentReceiptId, processor, step)
 go
 create index IX_7CF5591A on pml_documentreceipt_issuingplace_log (documentReceiptId, step)
@@ -1251,7 +1253,11 @@ create index IX_195C7CCB on pml_edm_documentreceipt (documenttype)
 go
 create index IX_344E2CE6 on pml_edm_documentreceipt (documenttypeid)
 go
+create index IX_B64C9B03 on pml_edm_documentreceipt (fieldid)
+go
 create index IX_F4D3AF82 on pml_edm_documentreceipt (issuingplaceid)
+go
+create index IX_A65D2BA7 on pml_edm_documentreceipt (isvbqppl)
 go
 create index IX_44318C15 on pml_edm_documentreceipt (levelsendid)
 go
@@ -1409,6 +1415,20 @@ go
 create index IX_707D1D62 on pml_edm_processdocumentreceiptdetail (documentreceiptid)
 go
 create index IX_F222C540 on pml_edm_processdocumentreceiptdetail (userid)
+go
+
+create index IX_48D6104C on pml_edm_so_loai_vanbannoibo (loaiVanBanNoiBoId)
+go
+create index IX_9FE5DAFB on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId)
+go
+create index IX_7C19E70E on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId, loaiVanBanNoiBoId)
+go
+
+create index IX_60CA7786 on pml_edm_so_phong_vanbannoibo (phongVanBanNoiBoId)
+go
+create index IX_431EFE9A on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId)
+go
+create index IX_A8F35322 on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId, phongVanBanNoiBoId)
 go
 
 create index IX_F963C762 on pml_edm_writedocumentsend (bookdocumentsendid)
@@ -1578,6 +1598,8 @@ go
 create index IX_6641DAF3 on pml_ho_so_cong_viec (so_hieu_hscv)
 go
 create index IX_8CAC1550 on pml_ho_so_cong_viec (userId)
+go
+create index IX_D07F49 on pml_ho_so_cong_viec (userId, hoat_dong)
 go
 
 create index IX_6FE7F965 on pml_holiday (from_date)

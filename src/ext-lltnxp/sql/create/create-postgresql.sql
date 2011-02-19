@@ -2146,21 +2146,6 @@ create table pml_edm_documenttype (
 	HaveDepartExtends bool
 );
 
-create table pml_edm_file_dinh_kem_van_ban_noi_bo (
-	fileDinhKemVanBanNoiBoId bigint not null primary key,
-	tenFileFull varchar(75) null,
-	tenFile varchar(75) null,
-	duongDanFile varchar(75) null,
-	tieuDe varchar(75) null,
-	ngayTao timestamp null,
-	loaiFile varchar(75) null,
-	mucDichFile varchar(75) null,
-	vanBanNoiBoId bigint,
-	userId bigint,
-	groupId bigint,
-	companyId bigint
-);
-
 create table pml_edm_file_dinh_kem_vanbannoibo (
 	fileDinhKemVanBanNoiBoId bigint not null primary key,
 	tenFileFull varchar(75) null,
@@ -2201,29 +2186,10 @@ create table pml_edm_levelsenddetail (
 	primary key (levelsendid, issuingPlaceId)
 );
 
-create table pml_edm_log_van_ban_noi_bo (
-	logVanBanNoiBoId bigint not null primary key,
-	buocLuanChuyen integer,
-	nguoiXuLy bigint,
-	ngayXuLy timestamp null,
-	nguoiNhan bigint,
-	ngayNhan timestamp null,
-	trangThaiTruoc varchar(75) null,
-	trangThaiSau varchar(75) null,
-	ngayGui timestamp null,
-	phongXuLyChinh bigint,
-	nguoiXuLyChinh bigint,
-	loaiQuyTrinh integer,
-	ngayHetHan timestamp null,
-	soNgayXuLy integer,
-	processInstanceId bigint,
-	thongTinXuLy varchar(75) null,
-	step integer,
-	nguoiXuLyTrucTiep bigint,
-	phongXuLy bigint,
-	phongNhan bigint,
-	vanBanHoanThanhHayChua bool,
-	vanBanNoiBoId bigint,
+create table pml_edm_loaivanbannoibo (
+	loaiVanBanNoiBoId bigint not null primary key,
+	kyHieuLoaiVanBanNoiBo varchar(75) null,
+	tenLoaiVanBanNoiBo varchar(75) null,
 	userId bigint,
 	groupId bigint,
 	companyId bigint
@@ -2239,7 +2205,7 @@ create table pml_edm_log_vanbannoibo (
 	trangThaiTruoc varchar(75) null,
 	trangThaiSau varchar(75) null,
 	ngayGui timestamp null,
-	phongXuLyChinh bigint,
+	phongXuLyChinh varchar(75) null,
 	nguoiXuLyChinh bigint,
 	loaiQuyTrinh integer,
 	ngayHetHan timestamp null,
@@ -2248,13 +2214,19 @@ create table pml_edm_log_vanbannoibo (
 	thongTinXuLy varchar(75) null,
 	step integer,
 	nguoiXuLyTrucTiep bigint,
-	phongXuLy bigint,
-	phongNhan bigint,
+	phongXuLy varchar(75) null,
+	phongNhan varchar(75) null,
 	vanBanHoanThanhHayChua bool,
 	vanBanNoiBoId bigint,
 	userId bigint,
 	groupId bigint,
 	companyId bigint
+);
+
+create table pml_edm_phong_loai_vanbannoibo (
+	loaiVanBanNoiBoId bigint not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (loaiVanBanNoiBoId, phongVanBanNoiBoId)
 );
 
 create table pml_edm_privilegelevel (
@@ -2271,16 +2243,39 @@ create table pml_edm_processdocumentreceiptdetail (
 	dateupdate timestamp null
 );
 
+create table pml_edm_so_loai_vanbannoibo (
+	soVanBanNoiBoId bigint not null,
+	loaiVanBanNoiBoId bigint not null,
+	primary key (soVanBanNoiBoId, loaiVanBanNoiBoId)
+);
+
+create table pml_edm_so_phong_vanbannoibo (
+	soVanBanNoiBoId bigint not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (soVanBanNoiBoId, phongVanBanNoiBoId)
+);
+
+create table pml_edm_sovanbannoibo (
+	soVanBanNoiBoId bigint not null primary key,
+	maSoVanBanNoiBo varchar(75) null,
+	tenSoVanBanNoiBo varchar(75) null,
+	ngayTao timestamp null,
+	userId bigint,
+	groupId bigint,
+	companyId bigint
+);
+
 create table pml_edm_vanbannoibo (
 	vanBanNoiBoId bigint not null primary key,
 	loaiVanBanNoiBo bigint,
+	soVanBanNoiBo bigint,
 	ngayTao timestamp null,
 	ngayKy timestamp null,
 	trichYeu varchar(75) null,
 	nguoiKy bigint,
 	ghiChu varchar(75) null,
-	soVanBanNoiBo varchar(75) null,
-	soPhatSinhTheoNam varchar(75) null,
+	soVaoSoVanBanNoiBo varchar(75) null,
+	soPhatSinhTheoNam integer,
 	userId bigint,
 	groupId bigint,
 	companyId bigint
@@ -6941,6 +6936,14 @@ create index IX_55886F8C on pml_edm_privilegelevel (privilegelevelname);
 
 create index IX_707D1D62 on pml_edm_processdocumentreceiptdetail (documentreceiptid);
 create index IX_F222C540 on pml_edm_processdocumentreceiptdetail (userid);
+
+create index IX_48D6104C on pml_edm_so_loai_vanbannoibo (loaiVanBanNoiBoId);
+create index IX_9FE5DAFB on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId);
+create index IX_7C19E70E on pml_edm_so_loai_vanbannoibo (soVanBanNoiBoId, loaiVanBanNoiBoId);
+
+create index IX_60CA7786 on pml_edm_so_phong_vanbannoibo (phongVanBanNoiBoId);
+create index IX_431EFE9A on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId);
+create index IX_A8F35322 on pml_edm_so_phong_vanbannoibo (soVanBanNoiBoId, phongVanBanNoiBoId);
 
 create index IX_F963C762 on pml_edm_writedocumentsend (bookdocumentsendid);
 create index IX_438BB903 on pml_edm_writedocumentsend (datecreated);

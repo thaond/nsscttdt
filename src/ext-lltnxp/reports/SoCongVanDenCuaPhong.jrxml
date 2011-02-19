@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoCongVanDenCuaPhong" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoCongVanDenCuaPhong" pageWidth="900" pageHeight="555" orientation="Landscape" columnWidth="900" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty">
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
@@ -14,26 +17,43 @@
 	<group name="group1">
 		<groupExpression><![CDATA[$P{subMap1}]]></groupExpression>
 		<groupHeader>
-			<band height="79">
+			<band height="118">
 				<staticText>
-					<reportElement key="staticText-1" x="1" y="0" width="801" height="30"/>
-					<box>
-						<topPen lineWidth="0.5"/>
-						<leftPen lineWidth="0.5"/>
-						<bottomPen lineWidth="0.5"/>
-						<rightPen lineWidth="0.5"/>
-					</box>
+					<reportElement key="staticText-1" x="0" y="40" width="900" height="28"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Times New Roman" size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
 					</textElement>
 					<text><![CDATA[Sổ Công Văn Đến Của Phòng]]></text>
 				</staticText>
 				<subreport isUsingCache="true">
-					<reportElement key="subreport-1" x="1" y="30" width="801" height="49"/>
+					<reportElement key="subreport-1" x="0" y="68" width="900" height="50"/>
 					<parametersMapExpression><![CDATA[$P{subMap1}]]></parametersMapExpression>
 					<dataSourceExpression><![CDATA[$P{dataSource1}]]></dataSourceExpression>
 					<subreportExpression class="net.sf.jasperreports.engine.JasperReport"><![CDATA[$P{subReport1}]]></subreportExpression>
 				</subreport>
+				<staticText>
+					<reportElement x="72" y="1" width="259" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="11"/>
+					</textElement>
+					<text><![CDATA[ỦY BAN NHÂN DÂN TP.HỒ CHÍ MINH
+LỰC LƯỢNG THANH NIÊN XUNG PHONG
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="542" y="1" width="288" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="11"/>
+					</textElement>
+					<text><![CDATA[CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+Độc lập – Tự do – Hạnh phúc]]></text>
+				</staticText>
+				<line>
+					<reportElement x="635" y="35" width="100" height="1"/>
+				</line>
+				<line>
+					<reportElement x="128" y="35" width="137" height="1"/>
+				</line>
 			</band>
 		</groupHeader>
 	</group>

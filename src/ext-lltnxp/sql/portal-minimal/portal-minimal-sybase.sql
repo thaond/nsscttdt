@@ -775,7 +775,8 @@ create table MeetingCalendar (
 	afternoon int,
 	evening int,
 	stt int,
-	prior int
+	prior int,
+	deleted int
 )
 go
 
@@ -2316,6 +2317,22 @@ create table pml_edm_documenttype (
 )
 go
 
+create table pml_edm_file_dinh_kem_vanbannoibo (
+	fileDinhKemVanBanNoiBoId decimal(20,0) not null primary key,
+	tenFileFull varchar(75) null,
+	tenFile varchar(75) null,
+	duongDanFile varchar(75) null,
+	tieuDe varchar(75) null,
+	ngayTao datetime null,
+	loaiFile varchar(75) null,
+	mucDichFile varchar(75) null,
+	vanBanNoiBoId decimal(20,0),
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
+)
+go
+
 create table pml_edm_issuingplace (
 	issuingplaceid varchar(75) not null primary key,
 	issuingplacename varchar(75) null,
@@ -2344,6 +2361,52 @@ create table pml_edm_levelsenddetail (
 )
 go
 
+create table pml_edm_loaivanbannoibo (
+	loaiVanBanNoiBoId decimal(20,0) not null primary key,
+	kyHieuLoaiVanBanNoiBo varchar(75) null,
+	tenLoaiVanBanNoiBo varchar(75) null,
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
+)
+go
+
+create table pml_edm_log_vanbannoibo (
+	logVanBanNoiBoId decimal(20,0) not null primary key,
+	buocLuanChuyen int,
+	nguoiXuLy decimal(20,0),
+	ngayXuLy datetime null,
+	nguoiNhan decimal(20,0),
+	ngayNhan datetime null,
+	trangThaiTruoc varchar(75) null,
+	trangThaiSau varchar(75) null,
+	ngayGui datetime null,
+	phongXuLyChinh varchar(75) null,
+	nguoiXuLyChinh decimal(20,0),
+	loaiQuyTrinh int,
+	ngayHetHan datetime null,
+	soNgayXuLy int,
+	processInstanceId decimal(20,0),
+	thongTinXuLy varchar(75) null,
+	step int,
+	nguoiXuLyTrucTiep decimal(20,0),
+	phongXuLy varchar(75) null,
+	phongNhan varchar(75) null,
+	vanBanHoanThanhHayChua int,
+	vanBanNoiBoId decimal(20,0),
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
+)
+go
+
+create table pml_edm_phong_loai_vanbannoibo (
+	loaiVanBanNoiBoId decimal(20,0) not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (loaiVanBanNoiBoId, phongVanBanNoiBoId)
+)
+go
+
 create table pml_edm_privilegelevel (
 	privilegelevelid varchar(75) not null primary key,
 	privilegelevelname varchar(75) null
@@ -2357,6 +2420,48 @@ create table pml_edm_processdocumentreceiptdetail (
 	note varchar(75) null,
 	datecreated datetime null,
 	dateupdate datetime null
+)
+go
+
+create table pml_edm_so_loai_vanbannoibo (
+	soVanBanNoiBoId decimal(20,0) not null,
+	loaiVanBanNoiBoId decimal(20,0) not null,
+	primary key (soVanBanNoiBoId, loaiVanBanNoiBoId)
+)
+go
+
+create table pml_edm_so_phong_vanbannoibo (
+	soVanBanNoiBoId decimal(20,0) not null,
+	phongVanBanNoiBoId varchar(75) not null,
+	primary key (soVanBanNoiBoId, phongVanBanNoiBoId)
+)
+go
+
+create table pml_edm_sovanbannoibo (
+	soVanBanNoiBoId decimal(20,0) not null primary key,
+	maSoVanBanNoiBo varchar(75) null,
+	tenSoVanBanNoiBo varchar(75) null,
+	ngayTao datetime null,
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
+)
+go
+
+create table pml_edm_vanbannoibo (
+	vanBanNoiBoId decimal(20,0) not null primary key,
+	loaiVanBanNoiBo decimal(20,0),
+	soVanBanNoiBo decimal(20,0),
+	ngayTao datetime null,
+	ngayKy datetime null,
+	trichYeu varchar(75) null,
+	nguoiKy decimal(20,0),
+	ghiChu varchar(75) null,
+	soVaoSoVanBanNoiBo varchar(75) null,
+	soPhatSinhTheoNam int,
+	userId decimal(20,0),
+	groupId decimal(20,0),
+	companyId decimal(20,0)
 )
 go
 
@@ -2800,7 +2905,8 @@ create table pml_user (
 	lastname varchar(75) null,
 	male int,
 	birthday datetime null,
-	isleadermetting int
+	isleadermetting int,
+	isvanthuphong int
 )
 go
 

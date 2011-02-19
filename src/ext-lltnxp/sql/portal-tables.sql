@@ -720,7 +720,8 @@ create table MeetingCalendar (
 	afternoon BOOLEAN,
 	evening BOOLEAN,
 	stt INTEGER,
-	prior BOOLEAN
+	prior BOOLEAN,
+	deleted BOOLEAN
 );
 
 create table MeetingDetailWeek (
@@ -2129,7 +2130,8 @@ create table pml_edm_documentsend (
 	ispublish BOOLEAN,
 	orgexternalid LONG,
 	numofdirector BOOLEAN,
-	documentrecordtypeid INTEGER
+	documentrecordtypeid INTEGER,
+	isdocofdepartment BOOLEAN
 );
 
 create table pml_edm_documenttype (
@@ -2139,6 +2141,21 @@ create table pml_edm_documenttype (
 	documentrecordtypeid INTEGER,
 	sendreceiptdistinction INTEGER,
 	HaveDepartExtends BOOLEAN
+);
+
+create table pml_edm_file_dinh_kem_vanbannoibo (
+	fileDinhKemVanBanNoiBoId LONG not null primary key,
+	tenFileFull VARCHAR(75) null,
+	tenFile VARCHAR(75) null,
+	duongDanFile VARCHAR(75) null,
+	tieuDe VARCHAR(75) null,
+	ngayTao DATE null,
+	loaiFile VARCHAR(75) null,
+	mucDichFile VARCHAR(75) null,
+	vanBanNoiBoId LONG,
+	userId LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table pml_edm_issuingplace (
@@ -2166,6 +2183,49 @@ create table pml_edm_levelsenddetail (
 	primary key (levelsendid, issuingPlaceId)
 );
 
+create table pml_edm_loaivanbannoibo (
+	loaiVanBanNoiBoId LONG not null primary key,
+	kyHieuLoaiVanBanNoiBo VARCHAR(75) null,
+	tenLoaiVanBanNoiBo VARCHAR(75) null,
+	userId LONG,
+	groupId LONG,
+	companyId LONG
+);
+
+create table pml_edm_log_vanbannoibo (
+	logVanBanNoiBoId LONG not null primary key,
+	buocLuanChuyen INTEGER,
+	nguoiXuLy LONG,
+	ngayXuLy DATE null,
+	nguoiNhan LONG,
+	ngayNhan DATE null,
+	trangThaiTruoc VARCHAR(75) null,
+	trangThaiSau VARCHAR(75) null,
+	ngayGui DATE null,
+	phongXuLyChinh VARCHAR(75) null,
+	nguoiXuLyChinh LONG,
+	loaiQuyTrinh INTEGER,
+	ngayHetHan DATE null,
+	soNgayXuLy INTEGER,
+	processInstanceId LONG,
+	thongTinXuLy VARCHAR(75) null,
+	step INTEGER,
+	nguoiXuLyTrucTiep LONG,
+	phongXuLy VARCHAR(75) null,
+	phongNhan VARCHAR(75) null,
+	vanBanHoanThanhHayChua BOOLEAN,
+	vanBanNoiBoId LONG,
+	userId LONG,
+	groupId LONG,
+	companyId LONG
+);
+
+create table pml_edm_phong_loai_vanbannoibo (
+	loaiVanBanNoiBoId LONG not null,
+	phongVanBanNoiBoId VARCHAR(75) not null,
+	primary key (loaiVanBanNoiBoId, phongVanBanNoiBoId)
+);
+
 create table pml_edm_privilegelevel (
 	privilegelevelid VARCHAR(75) not null primary key,
 	privilegelevelname VARCHAR(75) null
@@ -2178,6 +2238,44 @@ create table pml_edm_processdocumentreceiptdetail (
 	note VARCHAR(75) null,
 	datecreated DATE null,
 	dateupdate DATE null
+);
+
+create table pml_edm_so_loai_vanbannoibo (
+	soVanBanNoiBoId LONG not null,
+	loaiVanBanNoiBoId LONG not null,
+	primary key (soVanBanNoiBoId, loaiVanBanNoiBoId)
+);
+
+create table pml_edm_so_phong_vanbannoibo (
+	soVanBanNoiBoId LONG not null,
+	phongVanBanNoiBoId VARCHAR(75) not null,
+	primary key (soVanBanNoiBoId, phongVanBanNoiBoId)
+);
+
+create table pml_edm_sovanbannoibo (
+	soVanBanNoiBoId LONG not null primary key,
+	maSoVanBanNoiBo VARCHAR(75) null,
+	tenSoVanBanNoiBo VARCHAR(75) null,
+	ngayTao DATE null,
+	userId LONG,
+	groupId LONG,
+	companyId LONG
+);
+
+create table pml_edm_vanbannoibo (
+	vanBanNoiBoId LONG not null primary key,
+	loaiVanBanNoiBo LONG,
+	soVanBanNoiBo LONG,
+	ngayTao DATE null,
+	ngayKy DATE null,
+	trichYeu VARCHAR(75) null,
+	nguoiKy LONG,
+	ghiChu VARCHAR(75) null,
+	soVaoSoVanBanNoiBo VARCHAR(75) null,
+	soPhatSinhTheoNam INTEGER,
+	userId LONG,
+	groupId LONG,
+	companyId LONG
 );
 
 create table pml_edm_writedocumentsend (
